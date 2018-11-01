@@ -1,0 +1,147 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.nav
+{
+	position: relative;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	align-items: stretch;
+	flex-flow: column;
+	justify-content: flex-start;
+	list-style-type: none;
+
+	li.nav-item
+	{
+		position: relative;
+		display: block;
+		margin: 0;
+		padding: 0;
+		flex: 0 0 auto;
+	}
+
+	a.nav-link
+	{
+		position: relative;
+		display: flex;
+		height: 44px;
+		margin: 0;
+		padding: 0 2rem;
+		align-items: center;
+		flex: 0 0 auto;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		cursor: pointer;
+		text-decoration: none;
+
+		i.mdi
+		{
+			position: relative;
+			display: block;
+			height: 24px;
+			width: 24px;
+			font-size: 24px;
+			line-height: 24px;
+		}
+
+		span
+		{
+			position: relative;
+			display: flex;
+			align-items: center;
+			flex-flow: row nowrap;
+			justify-content: flex-start;
+			flex: 1 1 0;
+
+			&.sub-label
+			{
+				margin-left: 1rem;
+				opacity: .5;
+			}
+		}
+
+		i.mdi + span
+		{
+			margin-left: 30px;
+		}
+
+		i.mdi:last-child
+		{
+			margin-right: -3px;
+		}
+	}
+
+	div.divider
+	{
+		margin: 9px 2rem;
+	}
+
+	div.section
+	{
+		position: relative;
+		display: block;
+		margin: 1rem 2rem .75rem 2rem;
+		color: rgba(theme-color-var(dark, null, true), .3);
+	}
+}
+
+.nav.latte-nav-list
+{
+	padding: 1rem 0;
+
+	a.nav-link
+	{
+		color: $body-color;
+		transition: all 90ms $ease-standard-curve;
+		will-change: background, color;
+
+		--badge-bg: #{theme-color-alpha(primary, .1, darker-1)};
+		--badge-bg-hover: #{theme-color-alpha(primary, .2, darker-1)};
+		--badge-color: #{theme-color-var(primary)};
+
+		&.is-hover,
+		&:hover
+		{
+			background: theme-color-var(primary);
+			color: theme-color-var(primary, text);
+
+			--badge-bg: #{theme-color-alpha(light, .1, darker-1)};
+			--badge-bg-hover: #{theme-color-alpha(light, .2, darker-1)};
+			--badge-color: #{theme-color-var(light)};
+		}
+
+		&.active
+		{
+			background: transparent;
+			color: theme-color-var(primary);
+
+			--badge-bg: #{theme-color-alpha(primary, .1, darker-1)};
+			--badge-bg-hover: #{theme-color-alpha(primary, .2, darker-1)};
+			--badge-color: #{theme-color-var(primary)};
+		}
+
+		span.badge
+		{
+			flex: 0 0 0;
+		}
+
+		img.avatar
+		{
+			height: 36px;
+			margin: 0 -6px;
+			width: 36px;
+		}
+
+		img.avatar + span
+		{
+			margin-left: 2rem;
+		}
+	}
+}

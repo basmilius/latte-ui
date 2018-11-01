@@ -1,0 +1,42 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$compact-at: sm !default;
+$expand-at: md !default;
+
+$border-radius: 6px !default;
+
+$elevation-umbra-opacity: .05 !default;
+$elevation-penumbra-opacity: .035 !default;
+$elevation-ambient-opacity: .06 !default;
+
+$content-gutter: 24px !default;
+$drawer-primary-width: 70px;
+$drawer-secondary-width: 230px;
+$drawer-width: $drawer-primary-width + $drawer-secondary-width;
+$toolbar-height: 60px !default;
+
+$drawer-animation-duration: 360ms !default;
+$drawer-animation-ease: $ease-swift-out !default;
+
+@mixin compact()
+{
+	@include media-breakpoint-down($compact-at)
+	{
+		@content;
+	}
+}
+
+@mixin expanded()
+{
+	@include media-breakpoint-up($expand-at)
+	{
+		@content;
+	}
+}

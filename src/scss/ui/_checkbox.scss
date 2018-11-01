@@ -1,0 +1,87 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$checkbox-outline: $body-bg;
+
+input[type=checkbox].checkbox
+{
+	position: relative;
+	display: inline-block;
+	appearance: none;
+	height: 24px;
+	margin-right: .5em;
+	width: 24px;
+	flex: 0 0 auto;
+	background: transparent;
+	border: 2px solid $checkbox-outline;
+	border-radius: var(--border-radius);
+	color: var(--color-primary);
+	cursor: pointer;
+	outline: none;
+	transition: transform 210ms $ease-swift-out;
+	vertical-align: middle;
+	will-change: transform;
+
+	&:active
+	{
+		transform: scale3d(0.7, 0.7, 0.7);
+	}
+
+	&::before,
+	&::after
+	{
+		position: absolute;
+		display: block;
+		content: "";
+		background: transparent;
+		border-radius: 3px;
+	}
+
+	&::before
+	{
+		top: 10px;
+		left: 3px;
+		height: 3px;
+		width: 8px;
+		transform: rotate(45deg);
+	}
+
+	&::after
+	{
+		top: 8px;
+		left: 6px;
+		height: 3px;
+		width: 12px;
+		transform: rotate(-50deg);
+	}
+
+	&:checked::before,
+	&:checked::after
+	{
+		background: currentColor;
+	}
+
+	&:last-child
+	{
+		margin-right: 0;
+	}
+
+	&:focus
+	{
+		border-color: currentColor;
+	}
+}
+
+@each $type in map-keys($theme-colors)
+{
+	input[type=checkbox].checkbox.checkbox-#{$type}
+	{
+		color: theme-color-var($type);
+	}
+}

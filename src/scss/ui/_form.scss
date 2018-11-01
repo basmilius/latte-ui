@@ -1,0 +1,193 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.form-group
+{
+	position: relative;
+	display: block;
+
+	&.row
+	{
+		display: flex;
+	}
+
+	+ div.form-group
+	{
+		margin-top: 1rem;
+	}
+
+	> span.spinner
+	{
+		position: absolute;
+		display: none;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(255, 255, 255, .9);
+		color: var(--color-primary);
+		font-size: 2.5rem;
+		z-index: 2;
+	}
+
+	&.is-loading > span.spinner
+	{
+		display: inline-flex;
+	}
+}
+
+label.col-form-label
+{
+	position: relative;
+	display: block;
+	padding: 8px 16px 8px $grid-gutter-width / 2;
+	font-weight: 600;
+	line-height: 26px;
+}
+
+.custom-select
+{
+	position: relative;
+	display: block;
+	appearance: none;
+	padding: 8px 16px;
+	width: 100%;
+	background:
+	{
+		color: transparent;
+		image: url(../image/icon/chevron-down-select.svg);
+		position: center right 9px;
+		repeat: no-repeat;
+		size: 24px 24px;
+	}
+	border: none;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, .05);
+	color: currentColor;
+	font-size: 1rem;
+	line-height: 26px;
+	outline: none;
+	transition: all 180ms $ease-standard-curve;
+	vertical-align: middle;
+	will-change: border-radius, box-shadow;
+
+	&::placeholder
+	{
+		color: currentColor;
+		opacity: .5;
+	}
+
+	&:focus
+	{
+		box-shadow: 0 0 0 2px theme-color-alpha(primary, .75);
+	}
+
+	&[disabled]
+	{
+		background-color: rgba(0, 0, 0, .025);
+	}
+}
+
+.form-control,
+.form-control-plain
+{
+	position: relative;
+	display: block;
+	padding: 8px 16px;
+	width: 100%;
+	background: transparent;
+	border: none;
+	border-radius: inherit;
+	color: currentColor;
+	font-size: 1rem;
+	line-height: 26px;
+	outline: none;
+	vertical-align: middle;
+
+	&.form-control-sm
+	{
+		padding: 4px 8px;
+		line-height: 1em;
+	}
+
+	&[disabled]
+	{
+		background: rgba(0, 0, 0, .025);
+		pointer-events: none;
+	}
+}
+
+.form-control
+{
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, .05);
+	transition: all 180ms $ease-standard-curve;
+	will-change: border-radius, box-shadow;
+
+	&::placeholder
+	{
+		color: currentColor;
+		opacity: .5;
+	}
+
+	&:focus,
+	&:focus-within
+	{
+		box-shadow: 0 0 0 2px theme-color-alpha(primary, .75);
+	}
+}
+
+.form-control > .form-control-plain
+{
+	margin: -8px -16px;
+}
+
+.form-control.form-control-sm > .form-control-plain
+{
+	margin: -4px -8px;
+	padding: 4px 8px;
+}
+
+div.form-control
+{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	z-index: 0;
+
+	> input.form-control-plain
+	{
+		flex: 1 1 auto;
+	}
+
+	.form-control-prefix,
+	.form-control-suffix
+	{
+		margin: -6px 12px;
+		flex: 0 0 auto;
+		z-index: 1;
+	}
+
+	.form-control-prefix
+	{
+		margin-left: -12px;
+	}
+
+	.form-control-suffix
+	{
+		margin-right: -12px;
+	}
+}
+
+.form-text
+{
+	position: relative;
+	display: block;
+	margin: 6px 16px;
+}

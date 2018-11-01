@@ -1,0 +1,28 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+nav.nav.latte-nav-list.latte-context-menu
+{
+	position: fixed;
+	display: block;
+	padding: 6px 0;
+	background: #ffffff;
+	border-radius: var(--border-radius);
+	transition: opacity 90ms $ease-swift-out, transform 90ms $ease-swift-out;
+	z-index: 9999999999;
+
+	@include elevation(16);
+
+	&:not(.is-open)
+	{
+		opacity: 0;
+		pointer-events: none;
+		transform: scale3d(0.95, 0.95, 0.95);
+	}
+}

@@ -1,0 +1,56 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+body.view-dashboard div#app-notices
+{
+	margin-top: -24px;
+	margin-bottom: 1rem;
+}
+
+body.view-dashboard main#app div.content
+{
+	padding: 0;
+}
+
+main#dashboard
+{
+	position: relative;
+	display: block;
+	min-height: calc(100vh - #{$toolbar-height + $content-gutter * 2});
+	width: auto;
+	padding: 0;
+	overflow: hidden;
+
+	.dashboard-drag-handle
+	{
+		cursor: move;
+	}
+
+	span.spinner
+	{
+		position: absolute;
+		display: inline-flex;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba($body-bg, .5);
+		font-size: 2rem;
+		z-index: 1000;
+	}
+}
+
+div.latte-empty-view#dashboard-empty-view
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}

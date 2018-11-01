@@ -1,0 +1,147 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.btn
+{
+	--btn-bg-pvt: var(--btn-bg, transparent);
+	--btn-bg-active-pvt: var(--btn-bg-active, transparent);
+	--btn-bg-hover-pvt: var(--btn-bg-hover, transparent);
+	--btn-color-pvt: var(--btn-color, black);
+
+	position: relative;
+	display: inline-flex;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+	justify-content: center;
+	background: var(--btn-bg-pvt);
+	border: none;
+	border-radius: var(--border-radius);
+	color: var(--btn-color-pvt);
+	cursor: pointer;
+	flex: 0 0 auto;
+	font-weight: 500;
+	outline: none !important;
+	text-align: center;
+	transition: all 90ms $ease-swift-out;
+	vertical-align: middle;
+
+	&:hover,
+	&:focus
+	{
+		background: var(--btn-bg-hover-pvt);
+	}
+
+	&:active,
+	&.is-active
+	{
+		background: var(--btn-bg-active-pvt);
+	}
+
+	+ .btn
+	{
+		margin-left: 6px;
+	}
+
+	&[disabled],
+	&.disabled
+	{
+		filter: grayscale(100%);
+		opacity: .5;
+		pointer-events: none;
+	}
+
+	i.mdi
+	{
+		position: relative;
+		display: block;
+		height: 24px;
+		margin: 0 -4px;
+		width: 24px;
+		font-size: 24px;
+		line-height: 24px;
+	}
+
+	i.mdi + span
+	{
+		margin-left: 12px;
+	}
+
+	span + i.mdi
+	{
+		margin-left: 8px;
+	}
+
+	&.btn-icon
+	{
+		height: 36px;
+		width: 36px;
+
+		i.mdi
+		{
+			margin: 0;
+		}
+
+		&.btn-sm
+		{
+			height: 24px;
+			width: 24px;
+
+			i.mdi
+			{
+				font-size: 18px;
+			}
+		}
+	}
+
+	&.btn-text
+	{
+		height: 36px;
+		padding: 0 16px;
+	}
+
+	&.btn-contained
+	{
+		height: 36px;
+		padding: 0 16px;
+
+		&.btn-large
+		{
+			height: 54px;
+			padding: 0 24px;
+		}
+	}
+
+	&.btn-pill
+	{
+		display: flex;
+		height: 54px;
+		margin: 0;
+		width: 100%;
+	}
+
+	@each $type in map-keys($theme-colors)
+	{
+		&.btn-#{$type}.btn-icon,
+		&.btn-#{$type}.btn-text
+		{
+			--btn-bg-active: #{rgba(theme-color-var($type, null, true), .2)};
+			--btn-bg-hover: #{rgba(theme-color-var($type, null, true), .1)};
+			--btn-color: #{theme-color-var($type)};
+		}
+
+		&.btn-#{$type}.btn-contained
+		{
+			--btn-bg: #{theme-color-var($type)};
+			--btn-bg-active: #{theme-color-var($type, darker-2)};
+			--btn-bg-hover: #{theme-color-var($type, darker-1)};
+			--btn-color: #{theme-color-var($type, text)};
+		}
+	}
+}

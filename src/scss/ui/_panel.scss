@@ -1,0 +1,327 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$panel-gutter: 24px;
+$panel-outline: $body-bg;
+
+.panel
+{
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	flex-flow: column;
+	justify-content: flex-start;
+	background: white;
+	border-radius: var(--border-radius);
+
+	@include elevation(3);
+
+	+ .panel,
+	&.panel-gutter
+	{
+		margin-top: $panel-gutter;
+	}
+}
+
+.mt-panel-gutter
+{
+	margin-top: $panel-gutter;
+}
+
+.mb-panel-gutter
+{
+	margin-bottom: $panel-gutter;
+}
+
+a.panel
+{
+	cursor: pointer;
+	transition: elevation-transition(150ms);
+
+	&:hover
+	{
+		@include elevation(9);
+	}
+}
+
+.panel-body
+{
+	position: relative;
+	display: block;
+	padding: $panel-gutter;
+	flex: 1 1 auto;
+
+	+ .panel-body
+	{
+		border-top: 2px solid $panel-outline;
+	}
+}
+
+.panel-column
+{
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+
+.panel-footer
+{
+	position: relative;
+	display: flex;
+	min-height: 60px;
+	padding: 0 $panel-gutter;
+	align-items: center;
+	justify-content: flex-start;
+
+	&:not(:first-child)
+	{
+		border-top: 2px solid $panel-outline;
+	}
+}
+
+.panel-header
+{
+	position: relative;
+	display: flex;
+	min-height: 75px;
+	padding: 0 $panel-gutter;
+	align-items: center;
+	flex: 0 0 auto;
+	justify-content: flex-start;
+
+	&:not(:last-child)
+	{
+		border-bottom: 2px solid $panel-outline;
+	}
+}
+
+.panel-rich-media
+{
+	position: relative;
+	display: flex;
+	flex: 0 0 auto;
+	background:
+	{
+		color: inherit;
+		position: center center;
+		repeat: no-repeat;
+		size: cover;
+	}
+	border-radius: inherit;
+	overflow: hidden;
+
+	&:not(:first-child)
+	{
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	&:not(:last-child)
+	{
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&.panel-rich-media-gutter
+	{
+		margin: $panel-gutter / 2;
+		width: calc(100% - #{$panel-gutter});
+		border-radius: inherit;
+	}
+}
+
+.panel-title
+{
+	position: relative;
+	display: block;
+	color: #808080;
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+.panel-sub-title
+{
+	position: relative;
+	display: block;
+	color: #b3b3b3;
+	font-weight: 600;
+}
+
+.panel.is-closed .panel-header
+{
+	border-bottom-color: transparent;
+}
+
+.panel-footer .btn.btn-icon:first-child,
+.panel-header .btn.btn-icon:first-child
+{
+	margin-left: -12px;
+}
+
+.panel-footer .btn.btn-icon:last-child,
+.panel-header .btn.btn-icon:last-child
+{
+	margin-right: -12px;
+}
+
+.panel-footer .btn.btn-text:first-child,
+.panel-header .btn.btn-text:first-child
+{
+	margin-left: -15px;
+}
+
+.panel-footer .btn.btn-text:last-child,
+.panel-header .btn.btn-text:last-child
+{
+	margin-right: -15px;
+}
+
+.panel-header nav.nav.nav-tabs a.nav-link
+{
+	min-height: 73px;
+}
+
+.panel-header nav.nav.nav-tabs:last-child
+{
+	margin-bottom: -2px;
+	margin-right: -15px;
+}
+
+.panel-rich-media-gutter + .panel-body
+{
+	padding-top: $panel-gutter / 2;
+}
+
+.panel-rich-media-gutter + .panel-header
+{
+	margin-top: -($panel-gutter / 2);
+}
+
+div.panel > span.spinner
+{
+	position: absolute;
+	display: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, .9);
+	border-radius: inherit;
+	color: var(--color-primary);
+	font-size: 2.5rem;
+	z-index: 2;
+}
+
+div.panel.is-loading > span.spinner
+{
+	display: flex;
+}
+
+div.panel-explanation
+{
+	position: relative;
+	display: flex;
+	padding: $panel-gutter;
+	align-items: flex-start;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+
+	> i.mdi
+	{
+		position: relative;
+		display: block;
+		height: 1em;
+		width: 1em;
+		color: theme-color-var(primary);
+		font-size: 2.4em;
+		line-height: 1em;
+
+		@include media-breakpoint-down(lg)
+		{
+			font-size: 24px;
+		}
+	}
+
+	div.panel-explanation-content
+	{
+		position: relative;
+		display: flex;
+		margin-left: 1.6em;
+		padding: .2em 0;
+		align-items: flex-start;
+		flex-flow: column;
+		justify-content: flex-start;
+	}
+}
+
+div.panel.panel-explained
+{
+	display: flex;
+	align-items: flex-start;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+
+	div.panel-explanation
+	{
+		width: 390px;
+		margin: 1.6em 0;
+		padding: 0 1.6em;
+		flex: 0 0 auto;
+		border-right: .1em solid $panel-outline;
+	}
+
+	div.panel-content
+	{
+		flex: 1 1 auto;
+	}
+
+	&.large
+	{
+		div.panel-explanation
+		{
+			margin: 3.2em 0;
+			padding: 0 3.2em;
+		}
+
+		div.panel-content
+		{
+			padding: 3.2em;
+		}
+	}
+
+	@include media-breakpoint-down(lg)
+	{
+		flex-flow: column;
+
+		div.panel-explanation
+		{
+			margin: 0 1.6em;
+			padding: 1.6em 0;
+			width: calc(100% - 3.2em);
+			flex: 1 1 auto;
+			border-right: none;
+			border-bottom: .1em solid $panel-outline;
+		}
+
+		&.large div.panel-explanation
+		{
+			margin: 0 3.2em;
+			padding: 3.2em 0;
+			width: calc(100% - 96px);
+		}
+	}
+}
+
+.panel-table
+{
+	display: block;
+	overflow: auto;
+}

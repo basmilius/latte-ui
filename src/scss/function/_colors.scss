@@ -1,0 +1,82 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+@import "math";
+
+/**
+ * Gets a tint of {@see $percentage} from {@see $color}.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+@function tint($color, $percentage)
+{
+	@return mix(white, $color, $percentage);
+}
+
+/**
+ * Gets a shade of {@see $percentage} from {@see $color}.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+@function shade($color, $percentage)
+{
+	@return mix(black, $color, $percentage);
+}
+
+/**
+ * Gets the luminance of a {@see $color}.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+@function luminance ($color)
+{
+	$rgb: (
+			'red': red($color),
+			'green': green($color),
+			'blue': blue($color)
+	);
+
+	@each $name, $value in $rgb
+	{
+		$value: $value / 255;
+
+		@if $value < 0.03928
+		{
+			$value: $value / 12.92;
+		} @else
+		{
+			$value: ($value + .055) / 1.055;
+			$value: pow($value, 2.4)
+		}
+
+		$rgb: map-merge($rgb, ($name: $value));
+	}
+
+	@return (map-get($rgb, 'red') * .2126) + (map-get($rgb, 'green') * .7152) + (map-get($rgb, 'blue') * .0722);
+}
+
+/**
+ * Returns {@see $dark} if {@see $color} is a light color, otherwise it returns {@see $light}.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+@function dark-or-light($color, $dark, $light, $delta: 0.5)
+{
+	@if (luminance($color) < $delta)
+	{
+		@return $light;
+	} @else
+	{
+		@return $dark;
+	}
+}

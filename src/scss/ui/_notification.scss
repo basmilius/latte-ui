@@ -1,0 +1,177 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$notification-gutter: 24px;
+$notification-icons: (
+		error: "\F028",
+		info: "\F2FC",
+		success: "\F5E0",
+		warning: "\F026",
+		default: "\F09A"
+);
+
+div#notification-center
+{
+	position: fixed;
+	display: block;
+	top: 0;
+	right: 24px;
+	width: 360px;
+	z-index: 20000000;
+
+	div.notification
+	{
+		position: absolute;
+		width: inherit;
+	}
+}
+
+div.notification
+{
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-flow: row;
+	justify-content: flex-start;
+	background: white;
+	border-radius: var(--border-radius);
+	transition: all 360ms $ease-swift-out;
+	will-change: top, opacity, transform;
+
+	@include elevation(9);
+
+	&.is-hidden
+	{
+		opacity: 0;
+		transform: translate3d(calc(100% + 24px), 0, 0);
+	}
+}
+
+span.notification-title
+{
+	position: relative;
+	display: block;
+	color: #808080;
+	font-size: 1.1em;
+	font-weight: 700;
+}
+
+span.notification-text
+{
+	position: relative;
+	display: block;
+
+	span.notification-title + &
+	{
+		margin-top: 3px;
+	}
+}
+
+div.notification-content
+{
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+
+div.notification-actions
+{
+	position: relative;
+	display: flex;
+	padding: $notification-gutter ($notification-gutter - 16px);
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+
+	&:not(:first-child)
+	{
+		margin-top: -12px;
+		padding-top: 0;
+	}
+}
+
+div.notification-body
+{
+	position: relative;
+	display: flex;
+	padding: $notification-gutter;
+	align-items: flex-start;
+	flex-flow: column;
+	justify-content: flex-start;
+}
+
+div.notification-icon
+{
+	position: relative;
+	display: block;
+	height: 60px;
+	margin: $notification-gutter;
+	width: 60px;
+	align-self: flex-start;
+	background: var(--notification-color, black);
+	border-radius: 30px;
+	color: var(--notification-color-text, white);
+
+	i.mdi
+	{
+		position: relative;
+		display: block;
+		height: 1em;
+		margin: 18px;
+		width: 1em;
+		font-size: 24px;
+		line-height: 1em;
+
+		&::before
+		{
+			content: var(--notification-icon);
+		}
+	}
+
+	&:first-child
+	{
+		margin-right: 0;
+	}
+
+	&:last-child
+	{
+		margin-left: 0;
+	}
+}
+
+div.notification > img.avatar
+{
+	position: relative;
+	margin: $notification-gutter;
+	align-self: flex-start;
+	flex: 0 0 auto;
+	font-size: 60px;
+
+	&:first-child
+	{
+		margin-right: 0;
+	}
+
+	&:last-child
+	{
+		margin-left: 0;
+	}
+}
+
+@each $type in map-keys($theme-colors)
+{
+	.notification-#{$type}
+	{
+		--notification-color: #{theme-color-var($type)};
+		--notification-color-text: #{theme-color-var($type, text)};
+		--notification-icon: "#{if(map-has-key($notification-icons, $type), #{map-get($notification-icons, $type)}, #{map-get($notification-icons, default)})}";
+	}
+}

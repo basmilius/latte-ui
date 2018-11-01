@@ -1,0 +1,113 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.toolbar
+{
+	position: sticky;
+	display: flex;
+	top: 0;
+	height: $toolbar-height;
+	padding: 0 1rem 0 0;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	background: #ffffff;
+	z-index: 1000000;
+
+	@include elevation(2);
+
+	button.nav-toggler
+	{
+		position: relative;
+		display: flex;
+		height: $toolbar-height;
+		margin-right: 1rem;
+		width: $drawer-primary-width;
+		align-items: center;
+		justify-content: center;
+		background: theme-color-var(dark);
+		border: none;
+		color: theme-color-var(dark, text);
+		cursor: pointer;
+		outline: none;
+
+		&:hover
+		{
+			background: theme-color-var(primary);
+			color: theme-color-var(primary, text);
+		}
+
+		i.mdi
+		{
+			height: 1em;
+			width: 1em;
+			font-size: 24px;
+			line-height: 1em;
+		}
+
+		@include expanded
+		{
+			background: theme-color-var(dark);
+			color: theme-color-var(primary, text);
+			pointer-events: none;
+
+			i.mdi
+			{
+				font-size: 36px;
+			}
+
+			i.mdi::before
+			{
+				height: inherit;
+				width: inherit;
+				content: " ";
+				background:
+				{
+					image: var(--branding-logo);
+					position: center center;
+					repeat: no-repeat;
+					size: contain;
+				}
+			}
+		}
+	}
+
+	> *
+	{
+		flex: 0 0 auto;
+	}
+
+	div.divider
+	{
+		height: 24px;
+
+		&:first-child
+		{
+			display: none;
+		}
+	}
+
+	span.toolbar-title
+	{
+		position: relative;
+		display: block;
+		margin: 0 1rem;
+		color: var(--color-dark);
+		font:
+		{
+			size: 1.25rem;
+			weight: 700;
+		}
+
+		@at-root .toolbar-no-title &
+		{
+			display: none !important;
+		}
+	}
+}

@@ -1,0 +1,67 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.latte-overlay
+{
+	$anim-duration: 210ms;
+	$anim-delay: $anim-duration / 2;
+
+	position: fixed;
+	display: none;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 48px;
+	align-items: flex-start;
+	justify-content: flex-start;
+	background: rgba(theme-color-var(dark, null, true), .85);
+	opacity: 1;
+	overflow-y: auto;
+	transition: all $anim-duration $ease-swift-out;
+	will-change: opacity;
+	z-index: 2000000;
+
+	div.panel
+	{
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+		transition: all $anim-duration $ease-swift-out;
+		transition-delay: $anim-delay;
+		will-change: opacity, transform;
+	}
+
+	> div.panel
+	{
+		margin: auto;
+	}
+
+	&.is-visible
+	{
+		display: flex;
+	}
+
+	&:not(.is-open)
+	{
+		opacity: 0;
+		transition-delay: $anim-delay;
+
+		div.panel
+		{
+			opacity: 0;
+			transform: scale3d(0.95, 0.95, 0.95); //translate3d(0, 48px, 0);
+			transition-delay: 0ms;
+		}
+	}
+
+	@include media-breakpoint-down(md)
+	{
+		padding: 24px;
+	}
+}

@@ -1,0 +1,33 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.content
+{
+	position: relative;
+	display: block;
+	padding: $content-gutter;
+
+	> div.notice
+	{
+		margin-bottom: 1rem;
+	}
+}
+
+@include expanded
+{
+	div#drawer + div.content
+	{
+		margin-left: $drawer-primary-width;
+	}
+
+	div#drawer.has-secondary + div.content
+	{
+		margin-left: $drawer-width;
+	}
+}

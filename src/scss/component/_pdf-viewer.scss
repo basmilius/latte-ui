@@ -1,0 +1,36 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.panel.pdf-viewer
+{
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	flex-flow: column;
+	justify-content: flex-start;
+	background: transparent;
+
+	@include elevation(0);
+
+	div.page
+	{
+		position: relative;
+		display: block;
+		background: white;
+		border-radius: inherit;
+		overflow: hidden;
+
+		@include elevation(3);
+	}
+
+	div.page + div.page
+	{
+		margin-top: 1rem;
+	}
+}

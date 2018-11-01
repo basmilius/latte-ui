@@ -1,0 +1,217 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+table.table
+{
+	position: relative;
+	width: 100%;
+
+	$border: 1px solid $color-light-bg;
+	$hover-bg: rgba($color-light-bg, .5);
+
+	&.table-border
+	{
+		border-collapse: collapse;
+
+		td,
+		th
+		{
+			border: $border;
+		}
+	}
+
+	tr
+	{
+		position: relative;
+
+		@supports not (-moz-appearance: none)
+		{
+			height: 1px; // Fucking Firefox.
+		}
+	}
+
+	tr td,
+	tr th
+	{
+		position: relative;
+		height: inherit;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		border-top: $border;
+		vertical-align: middle;
+	}
+
+	&:not(.table-border) thead tr:first-child th
+	{
+		border: none;
+	}
+
+	tbody tr:hover td,
+	tbody tr:hover th,
+	tbody tr.is-hover td,
+	tbody tr.is-hover th
+	{
+		background: $hover-bg;
+	}
+
+	.column-content
+	{
+		position: relative;
+		display: flex;
+		height: 100%;
+		margin: 0;
+		padding: 12px 24px;
+		align-items: flex-start;
+		flex-flow: column wrap;
+		justify-content: center;
+		vertical-align: middle;
+		transition: background 90ms $ease-swift-out;
+
+		*
+		{
+			vertical-align: middle;
+		}
+	}
+
+	tfoot tr td .column-content,
+	tfoot tr th .column-content,
+	thead tr td .column-content,
+	thead tr th .column-content
+	{
+		padding: 18px 24px;
+		font-weight: 500;
+	}
+
+	tbody input.column-content
+	{
+		height: 100%;
+		padding: 12px 24px;
+		background: transparent;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+
+		&:hover,
+		&:focus
+		{
+			background: $hover-bg;
+			box-shadow: none;
+		}
+	}
+
+	tbody select.column-content
+	{
+		height: 100%;
+		padding: 14px 16px 14px 16px;
+		background-color: transparent;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		&:hover,
+		&:focus
+		{
+			background-color: $hover-bg;
+			box-shadow: none;
+		}
+	}
+
+	a.column-content
+	{
+		color: $body-color;
+		cursor: pointer;
+		text-decoration: none;
+
+		&:hover
+		{
+			background: $hover-bg;
+		}
+	}
+
+	th.actions,
+	td.actions
+	{
+		a.btn + a.btn
+		{
+			margin-left: 4px;
+		}
+	}
+
+	tr.search-row
+	{
+		position: relative;
+
+		td,
+		th
+		{
+			background: $color-light-bg;
+			border-top: 1px solid $color-light-border;
+			border-bottom: 1px solid $color-light-border;
+		}
+
+		input
+		{
+			position: relative;
+			display: block;
+			padding: 12px 24px;
+			width: 100%;
+			background: transparent;
+			border: none;
+			color: theme-color-var(dark);
+			font-weight: 500;
+			outline: none;
+
+			&::placeholder
+			{
+				color: rgba($body-color, .3);
+			}
+		}
+	}
+
+	&.table-compact thead,
+	&.table-compact tfoot
+	{
+		.column-content
+		{
+			padding: 12px 18px;
+		}
+
+		.column-content.with-button
+		{
+			padding: 12px 9px;
+		}
+	}
+
+	&.table-compact tbody
+	{
+		.column-content.with-button
+		{
+			padding: 9px 9px;
+		}
+
+		.column-content
+		{
+			padding: 9px 18px;
+		}
+
+		select.column-content
+		{
+			padding: 11px 36px 11px 18px;
+		}
+	}
+
+	.column-content nav.pagination
+	{
+		position: sticky;
+		right: 21px;
+	}
+}

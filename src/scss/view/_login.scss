@@ -1,0 +1,167 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+main.auth-ui
+{
+	position: relative;
+	display: flex;
+	max-height: 100vh;
+	align-items: stretch;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+
+	section#intro-view
+	{
+		position: relative;
+		display: flex;
+		height: 100vh;
+		padding: 72px;
+		width: 540px;
+		align-items: flex-start;
+		flex: 0 0 auto;
+		flex-flow: column;
+		justify-content: center;
+		color: white;
+		z-index: 0;
+
+		&::before,
+		&::after
+		{
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			content: "";
+		}
+
+		&::before
+		{
+			background:
+			{
+				color: theme-color-var(primary);
+				image: url(/resource/image/wallpaper/1.jpg);
+				position: left center;
+				repeat: no-repeat;
+				size: cover;
+			}
+			z-index: -2;
+		}
+
+		&::after
+		{
+			background: linear-gradient(to bottom right, theme-color-alpha(primary, 0.7, lighter-3), theme-color-alpha(primary, 0.85, darker-3));
+			z-index: -1;
+		}
+
+		p.lead
+		{
+			max-width: 50%;
+		}
+	}
+
+	section#panel-view
+	{
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		flex: 1 1 auto;
+		flex-flow: column;
+		justify-content: flex-start;
+		background: white;
+		overflow: auto;
+
+		span.spinner
+		{
+			position: absolute;
+			display: none;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(255, 255, 255, .9);
+			font-size: 2.5rem;
+		}
+
+		&.is-loading span.spinner
+		{
+			display: flex;
+		}
+	}
+
+	@include media-breakpoint-down(lg)
+	{
+		section#intro-view
+		{
+			width: 300px;
+		}
+	}
+
+	@include media-breakpoint-down(md)
+	{
+		flex-flow: column;
+
+		section#intro-view
+		{
+			height: 100px;
+			width: unset;
+		}
+
+		section#panel-view
+		{
+			padding: 48px 24px;
+			flex-shrink: 0;
+			overflow: unset;
+		}
+	}
+}
+
+div#login-ui
+{
+	position: relative;
+	display: block;
+	margin: auto;
+	padding: 0 30px;
+	max-width: 600px;
+
+	i.mdi.mdi-branding-logo
+	{
+		position: relative;
+		display: block;
+		margin-bottom: 36px;
+		height: 72px;
+		width: 72px;
+		font-size: 72px;
+		line-height: 72px;
+	}
+
+	h5
+	{
+		margin-bottom: 36px;
+		font-weight: 400;
+	}
+
+	.form-control
+	{
+		height: 54px;
+	}
+
+	div.form-group
+	{
+		margin: 24px 0;
+	}
+
+	footer#latte-copyright
+	{
+		font-size: .9rem;
+		text-align: center;
+		opacity: .7;
+	}
+}

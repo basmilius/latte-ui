@@ -1,0 +1,294 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.latte-datepicker-root
+{
+	position: relative;
+	display: block;
+
+	input[type=date][readonly]
+	{
+		background: #ffffff;
+	}
+
+	div.latte-datepicker-picker
+	{
+		position: absolute;
+		display: none;
+		margin: .25rem 0 0 0;
+		padding: 12px;
+		width: 339px;
+		background: #ffffff;
+		border-radius: var(--border-radius);
+		user-select: none;
+		z-index: 500;
+
+		@include elevation(16);
+
+		&::before
+		{
+			position: absolute;
+			display: block;
+			top: -9px;
+			left: 27px;
+			content: "";
+			border: 9px solid transparent;
+			border-top: none;
+			border-bottom-color: rgba($color-bt-dark, .06);
+		}
+
+		&::after
+		{
+			position: absolute;
+			display: block;
+			top: -7px;
+			left: 28px;
+			margin: 0 1px;
+			content: "";
+			border: 7px solid transparent;
+			border-top: none;
+			border-bottom-color: #ffffff;
+		}
+	}
+
+	&.is-open div.latte-datepicker-picker
+	{
+		display: block;
+	}
+
+	div.picker-top
+	{
+		position: relative;
+		display: flex;
+		align-items: center;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+
+		button.picker-top-nav
+		{
+			position: relative;
+			display: block;
+			height: 42px;
+			padding: 9px;
+			width: 42px;
+			flex: 0 0 42px;
+			background: transparent;
+			border: none;
+			border-radius: var(--border-radius);
+			color: $color-bt-text;
+			cursor: pointer;
+			outline: none;
+
+			i.mdi
+			{
+				position: relative;
+				display: block;
+				height: 24px;
+				width: 24px;
+				font-size: 24px;
+				line-height: 24px;
+			}
+
+			&:hover
+			{
+				background: rgba(theme-color-var(primary, null, true), .09);
+				color: theme-color-var(dark);
+			}
+		}
+
+		span
+		{
+			position: relative;
+			display: block;
+			margin: 3px 0;
+			padding: 0 12px;
+			flex: 0 0 auto;
+			border-radius: var(--border-radius);
+			color: $color-bt-dark-secondary;
+			cursor: pointer;
+			font-weight: 500;
+			line-height: 36px;
+			text-align: center;
+			text-transform: capitalize;
+
+			&:hover
+			{
+				background: rgba(theme-color-var(primary, null, true), .09);
+				color: theme-color-var(dark);
+			}
+
+			&.month
+			{
+				margin-left: auto;
+			}
+
+			&.year
+			{
+				margin-right: auto;
+			}
+		}
+	}
+
+	div.picker-month-view
+	{
+		position: relative;
+		display: block;
+
+		div.picker-view-days
+		{
+			position: relative;
+			display: grid;
+			margin: 9px 0;
+			grid-template-columns: repeat(7, 1fr);
+
+			div.day
+			{
+				position: relative;
+				display: block;
+				padding: 6px;
+				color: $color-bt-text-secondary;
+				font:
+				{
+					size: .8rem;
+					weight: 600;
+				}
+				text-align: center;
+				text-transform: uppercase;
+			}
+		}
+
+		div.picker-view-dates
+		{
+			position: relative;
+			display: grid;
+			grid-gap: 3px;
+			grid-template-columns: repeat(7, 1fr);
+
+			div.date
+			{
+				position: relative;
+				display: block;
+				border-radius: var(--border-radius);
+				color: theme-color-var(dark, lighter-3);
+				cursor: pointer;
+				font:
+				{
+					size: .9rem;
+					weight: 500;
+				}
+				line-height: 42px;
+				text-align: center;
+
+				&.is-other-month
+				{
+					opacity: .25;
+					pointer-events: none;
+				}
+
+				&:hover
+				{
+					background: rgba(theme-color-var(primary, null, true), .09);
+				}
+
+				&.is-today
+				{
+					color: var(--color-primary);
+				}
+
+				&.is-selected
+				{
+					background: var(--color-dark);
+					color: #ffffff;
+				}
+			}
+		}
+	}
+
+	div.picker-year-view
+	{
+		position: relative;
+		display: block;
+		height: 242px;
+		overflow: auto;
+
+		div.picker-view-months
+		{
+			position: relative;
+			display: flex;
+			padding: 12px 0;
+			align-items: stretch;
+			flex-flow: column nowrap;
+			justify-content: flex-start;
+
+			div.month
+			{
+				position: relative;
+				display: block;
+				padding: 0 1rem;
+				border-radius: var(--border-radius);
+				color: rgba($color-bt-dark, .7);
+				font-weight: 500;
+				line-height: 39px;
+				text-align: center;
+				text-transform: capitalize;
+
+				&:hover
+				{
+					background: rgba(theme-color-var(primary, null, true), .09);
+				}
+
+				&.is-selected
+				{
+					color: var(--color-primary);
+				}
+			}
+		}
+	}
+
+	div.picker-years-view
+	{
+		position: relative;
+		display: block;
+		height: 242px;
+		overflow: auto;
+
+		div.picker-view-years
+		{
+			position: relative;
+			display: flex;
+			padding: 12px 0;
+			align-items: stretch;
+			flex-flow: column nowrap;
+			justify-content: flex-start;
+
+			div.year
+			{
+				position: relative;
+				display: block;
+				padding: 0 1rem;
+				border-radius: var(--border-radius);
+				color: rgba($color-bt-dark, .7);
+				font-weight: 500;
+				line-height: 39px;
+				text-align: center;
+				text-transform: capitalize;
+
+				&:hover
+				{
+					background: rgba(theme-color-var(primary, null, true), .09);
+				}
+
+				&.is-selected
+				{
+					color: var(--color-primary);
+				}
+			}
+		}
+	}
+}

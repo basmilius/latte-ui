@@ -1,0 +1,33 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+
+@mixin make-color-vars()
+{
+	@each $type, $color in $theme-colors
+	{
+		$variants: make-color-variants($color);
+
+		--color-#{$type}: #{$color};
+		--color-#{$type}-rgb: #{red($color)}, #{green($color)}, #{blue($color)};
+
+		@each $variant, $color in $variants
+		{
+			--color-#{$type}-#{$variant}: #{$color};
+			--color-#{$type}-#{$variant}-rgb: #{red($color)}, #{green($color)}, #{blue($color)};
+		}
+	}
+}
+
+@mixin make-typography-vars()
+{
+	--font-family-sans-serif: #{$font-family-sans-serif};
+	--font-family-serif: #{$font-family-serif};
+	--font-family-monospace: #{$font-family-monospace};
+}

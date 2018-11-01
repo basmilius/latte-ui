@@ -1,0 +1,65 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$radio-outline: $body-bg;
+
+input[type=radio].radio-button
+{
+	position: relative;
+	display: inline-block;
+	height: 24px;
+	margin-right: .5em;
+	width: 24px;
+	appearance: none;
+	border: 2px solid $radio-outline;
+	border-radius: 12px;
+	color: var(--color-primary);
+	cursor: pointer;
+	outline: none;
+	transition: transform 210ms $ease-swift-out;
+	vertical-align: middle;
+	will-change: transform;
+
+	&:active
+	{
+		transform: scale3d(0.7, 0.7, 0.7);
+	}
+
+	&::before
+	{
+		position: absolute;
+		display: block;
+		height: 14px;
+		margin: 3px;
+		width: 14px;
+		content: "";
+		background: currentColor;
+		border-radius: 7px;
+		transform: scale3d(0, 0, 0);
+		transition: transform 130ms $ease-standard-curve;
+	}
+
+	&:checked::before
+	{
+		transform: scale3d(1, 1, 1);
+	}
+
+	&:focus
+	{
+		border-color: currentColor;
+	}
+}
+
+@each $type in map-keys($theme-colors)
+{
+	.radio-button-#{$type}
+	{
+		color: theme-color-var($type);
+	}
+}

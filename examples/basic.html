@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Basic UI</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="nav-toggler" aria-label="Open/Sluit Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+			<span class="toolbar-title">Basic UI</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<a class="btn btn-text btn-primary"><i class="mdi mdi-plus-circle"></i><span>Project</span></a>
+				<div class="divider divider-vertical" role="separator"></div>
+				<latte-button-dropdown aria-label="Mijn Profiel" icon="avatar://latte.dev-preview.nl/storage/27de3e71/2018/10/b1d1ec42-d631-11e8-a95b-525400806242-thumb-64.jpg" type="list" v-cloak>
+					<nav class="nav latte-nav-list">
+						<a class="nav-link" href="#" style="height:60px"><img src="//latte.dev-preview.nl/storage/27de3e71/2018/10/b1d1ec42-d631-11e8-a95b-525400806242-thumb-64.jpg" alt="Bas Milius" class="avatar"/><span>Bas Milius</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-account-edit"></i><span>Profiel bewerken</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-key"></i><span>Wachtwoord wijzigen</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-security-account"></i><span>Mijn sessies</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-settings"></i><span>Instellingen</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Uitloggen</span></a></nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<div id="drawer" class="has-secondary" data-ui-is-nav-open role="menu">
+			<nav class="nav" id="drawer-primary">
+				<a href="#" class="nav-item" aria-label="Home" role="menuitem" data-tooltip="Home" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+				<a href="#" class="nav-item" aria-label="Relaties" role="menuitem" data-tooltip="Relaties" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
+				<a href="#" class="nav-item" aria-label="Contacten" role="menuitem" data-tooltip="Contacten" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
+				<a href="#" class="nav-item active" aria-label="Projecten" role="menuitem" data-tooltip="Projecten" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
+				<a href="#" class="nav-item" aria-label="Financiën" role="menuitem" data-tooltip="Financiën" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
+				<a href="#" class="nav-item" aria-label="Hosting" role="menuitem" data-tooltip="Hosting" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-cloud"></i></a>
+				<div class="divider divider-horizontal mt-auto" role="separator"></div>
+				<a href="#" class="nav-item" aria-label="Instellingen" role="menuitem" data-tooltip="Instellingen" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				<a href="#" class="nav-item" aria-label="Development" role="menuitem" data-tooltip="Development" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-lifebuoy"></i></a>
+			</nav>
+			<nav class="nav latte-nav-list" id="drawer-secondary">
+				<div class="section">Projecten</div>
+				<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projecten</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Lopend</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Historie</span></a>
+				<div class="divider divider-horizontal" role="separator"></div>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Nieuw project</span></a>
+			</nav>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12">
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hello world!</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur delectus doloremque dolorum labore neque nihil placeat, sed? Delectus, iste labore magnam non perferendis placeat quisquam ratione reiciendis reprehenderit ullam ut!
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

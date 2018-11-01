@@ -1,0 +1,47 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$color-bt-dark: rgb(25, 26, 28) !default;
+$color-bt-dark-outline: rgb(42, 43, 49) !default;
+$color-bt-dark-secondary: rgb(32, 33, 36) !default;
+$color-bt-folder: rgb(48, 119, 145) !default;
+$color-bt-text: rgb(207, 208, 210) !default;
+$color-bt-text-secondary: rgb(186, 187, 189) !default;
+
+$color-light-bg: #f3f6fb !default;
+$color-light-border: #e8ebf2 !default;
+
+/*
+rgb(19, 49, 133) - Nice dark blue
+ */
+
+$colors: (
+		"blue": rgb(0, 120, 255),
+		"teal-blue": rgb(0, 202, 255),
+		"orange": rgb(255, 143, 0),
+		"purple": rgb(90, 81, 222),
+		"pink": rgb(255, 0, 79),
+		"orchid": rgb(185, 89, 255),
+		"charocoal": rgb(49, 57, 76)
+) !default;
+
+$theme-colors: map-merge($colors, (
+		primary: #113B96,
+		error: rgb(254, 50, 75),
+		info: rgb(8, 122, 254),
+		success: rgb(23, 195, 123),
+		warning: rgb(254, 179, 52),
+		light: rgb(255, 255, 255),
+		dark: rgb(25, 26, 28)
+)) !default;
+
+$theme-variants: () !default;
+
+$body-bg: #f9f9f9 !default;
+$body-color: rgba(0, 0, 0, .87) !default;

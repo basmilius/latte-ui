@@ -1,0 +1,73 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--branding-logo: url(/resource/image/branding/logo.svg);
+
+	--border-radius: #{$border-radius};
+
+	@include make-color-vars;
+	@include make-typography-vars;
+}
+
+html body
+{
+	margin: 0;
+	font-size: 1rem;
+}
+
+i.mdi.latte-sorting
+{
+	position: relative;
+	z-index: 0;
+
+	&::after
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: inherit;
+		content: "\F54F";
+		font:
+		{
+			family: "Material Design Icons", sans-serif;
+			style: normal;
+			weight: 400;
+		}
+		font-size: inherit;
+		line-height: inherit;
+		opacity: .25;
+		text-rendering: auto;
+		z-index: 0;
+
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	&::before
+	{
+		z-index: 1;
+	}
+
+	&.down::before
+	{
+		content: "\F140";
+		color: var(--color-primary);
+		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, .27em, 0);
+	}
+
+	&.up::before
+	{
+		content: "\F143";
+		color: var(--color-primary);
+		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, -.27em, 0);
+	}
+}

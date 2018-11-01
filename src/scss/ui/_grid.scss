@@ -1,0 +1,61 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.latte-grid
+{
+	position: relative;
+	transition: transform 210ms $ease-deceleration-curve;
+}
+
+div.latte-grid-item
+{
+	position: relative;
+	display: block;
+	transition: all 210ms $ease-deceleration-curve;
+	will-change: height, width, opacity, transform;
+
+	&.latte-grid-placeholder::before
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: "";
+		background: rgba(theme-color-var(primary, null, true), .03);
+		outline: 2px dashed rgba(theme-color-var(primary, null, true), .2);
+		outline-offset: 2px;
+	}
+
+	&.is-dragging
+	{
+		transition: none;
+		opacity: .5;
+		z-index: 1;
+	}
+
+	&.is-resizing
+	{
+		transition: none;
+		opacity: .5;
+		z-index: 1;
+	}
+
+	div.grid-item-resize-handle
+	{
+		position: absolute;
+		display: block;
+		right: -6px;
+		bottom: -6px;
+		height: 12px;
+		width: 12px;
+		cursor: se-resize;
+	}
+}

@@ -1,0 +1,67 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.toggle-button
+{
+	position: relative;
+	display: inline-block;
+	height: 24px;
+	margin-right: .5em;
+	width: 36px;
+	appearance: none;
+	flex: 0 0 auto;
+	border: 2px solid currentColor;
+	border-radius: 12px;
+	color: rgba(0, 0, 0, .05);
+	cursor: pointer;
+	outline: none;
+	transition: all 240ms $ease-swift-out;
+	vertical-align: middle;
+	will-change: background, border;
+
+	&::before
+	{
+		position: relative;
+		display: block;
+		height: 14px;
+		margin: 3px;
+		width: 14px;
+		content: "";
+		background: currentColor;
+		border-radius: 7px;
+		transform: translate3d(0, 0, 0);
+		transition: inherit;
+		will-change: color, transform;
+	}
+
+	&:checked
+	{
+		background: currentColor;
+
+		&::before
+		{
+			transform: translate3d(12px, 0, 0);
+
+			@include elevation(0);
+		}
+	}
+}
+
+@each $type in map-keys($theme-colors)
+{
+	.toggle-button-#{$type}:checked
+	{
+		color: theme-color-var($type);
+
+		&::before
+		{
+			color: theme-color-var($type, text);
+		}
+	}
+}

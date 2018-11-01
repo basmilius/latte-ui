@@ -1,0 +1,109 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div#drawer
+{
+	position: fixed;
+	display: flex;
+	top: $toolbar-height;
+	left: 0;
+	bottom: 0;
+	align-items: stretch;
+	justify-content: flex-start;
+	background: #ffffff;
+	z-index: 1000001;
+
+	@include elevation(1);
+
+	nav#drawer-primary
+	{
+		position: relative;
+		padding: 1rem 0 0;
+		width: $drawer-primary-width;
+		background: theme-color-var(dark);
+		border-top: 1px solid theme-color-alpha(dark, .06, text);
+		overflow: auto;
+
+		-webkit-overflow-scrolling: touch;
+
+		div.divider
+		{
+			margin: 0 1rem;
+			background: rgba(255, 255, 255, .05);
+		}
+
+		a.nav-item
+		{
+			position: relative;
+			display: flex;
+			height: $drawer-primary-width;
+			width: $drawer-primary-width;
+			align-items: center;
+			flex: 0 0 auto;
+			justify-content: center;
+			color: rgba(theme-color-var(dark, text, true), .7);
+			transition: all 90ms $ease-standard-curve;
+			will-change: background, color;
+
+			&:hover
+			{
+				background: rgba(theme-color-var(dark, text, true), .07);
+				color: theme-color-var(dark, text);
+			}
+
+			&.active
+			{
+				background: theme-color-var(primary);
+				color: theme-color-var(primary, text);
+			}
+
+			i.mdi
+			{
+				height: 24px;
+				width: 24px;
+				font-size: 24px;
+				line-height: 24px;
+			}
+		}
+	}
+
+	nav#drawer-secondary
+	{
+		position: relative;
+		padding: 2rem 0;
+		width: $drawer-secondary-width;
+		background: #ffffff;
+		border-top: 1px solid theme-color-alpha(light, .05, text);
+		overflow: auto;
+
+		-webkit-overflow-scrolling: touch;
+
+		div.section:first-child
+		{
+			margin-top: .75rem;
+		}
+
+		a.nav-link
+		{
+			height: 45px;
+		}
+	}
+
+	@include compact
+	{
+		left: -($drawer-width + 2px);
+		transition: left 300ms $ease-swift-out;
+		will-change: left;
+
+		&.is-nav-open
+		{
+			left: 0;
+		}
+	}
+}

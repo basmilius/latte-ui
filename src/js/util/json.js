@@ -1,0 +1,33 @@
+/*
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+"use strict";
+
+/**
+ * Returns TRUE if {@see str} is valid JSON.
+ *
+ * @param {String} str
+ *
+ * @returns {Boolean}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function isJson(str)
+{
+	try
+	{
+		JSON.parse(str);
+
+		return true;
+	}
+	catch(err)
+	{
+		return false;
+	}
+}

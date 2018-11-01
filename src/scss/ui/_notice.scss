@@ -1,0 +1,99 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$notice-icons: (
+		error: "\F028",
+		info: "\F2FC",
+		success: "\F5E0",
+		warning: "\F026",
+		default: "\F09A"
+);
+
+div.notice
+{
+	--notice-bg-pvt: var(--notice-bg, transparent);
+	--notice-icon-pvt: var(--notice-icon, "\F2FC");
+
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 16px 48px 16px 72px;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+
+	&::before
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: "";
+		background: var(--notice-bg-pvt);
+		opacity: .3;
+	}
+
+	&::after
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		padding: 8px 16px;
+		content: var(--notice-icon-pvt);
+		background: var(--notice-bg-pvt);
+		color: #ffffff;
+		font:
+		{
+			family: "Material Design Icons", sans-serif;
+			size: 24px;
+		}
+	}
+
+	&.notice-outline
+	{
+		padding-left: 56px;
+		border: 2px dashed var(--notice-bg-pvt);
+		color: var(--notice-bg-pvt);
+
+		&::before
+		{
+			display: none;
+		}
+
+		&::after
+		{
+			background: unset;
+			color: inherit;
+		}
+	}
+
+	button.notice-dismiss
+	{
+		position: absolute;
+		top: 9px;
+		right: 9px;
+	}
+
+	+ div.notice
+	{
+		margin-top: 1rem;
+	}
+}
+
+@each $type in map-keys($theme-colors)
+{
+	.notice-#{$type}
+	{
+		--notice-bg: #{theme-color-var($type)};
+		--notice-icon: "#{if(map-has-key($notice-icons, $type), #{map-get($notice-icons, $type)}, #{map-get($notice-icons, default)})}";
+	}
+}

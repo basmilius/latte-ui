@@ -1,0 +1,47 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+p:last-child
+{
+	margin-bottom: 0;
+}
+
+img.emoji
+{
+	position: relative !important;
+	display: inline-block !important;
+	height: 1em !important;
+	margin: -.1em .07em 0 .07em !important;
+	padding: 0 !important;
+	width: 1em !important;
+	background: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	vertical-align: -0.1em !important;
+}
+
+@for $heading from 1 through 6
+{
+	h#{$heading}
+	{
+		position: relative;
+		display: block;
+		margin: 0 0 1rem 0;
+		color: currentColor;
+		font-weight: 800;
+		vertical-align: middle;
+	}
+}
+
+h1 { @include fluid-type(400px, 1024px, 22.128px, 48.828px); }
+h2 { @include fluid-type(400px, 1024px, 20.739px, 39.063px); }
+h3 { @include fluid-type(400px, 1024px, 19.436px, 31.25px); }
+h4 { @include fluid-type(400px, 1024px, 18.216px, 25px); }
+h5 { @include fluid-type(400px, 1024px, 17.072px, 20px); }
+h6 { @include fluid-type(400px, 1024px, 16px, 16px); }

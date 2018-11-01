@@ -1,0 +1,59 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.latte-drop-container
+{
+	position: relative;
+	display: block;
+	z-index: 0;
+
+	div.drop-here
+	{
+		position: absolute;
+		display: flex;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		align-items: center;
+		justify-content: center;
+		background: rgba(theme-color-var(primary, lighter-3, true), .5);
+		color: theme-color-var(primary);
+		font:
+		{
+			size: 1.25rem;
+			weight: 500;
+		}
+		opacity: 0;
+		outline: 2px dashed rgba(theme-color-var(primary, null, true), .24);
+		outline-offset: 3px;
+		pointer-events: none;
+		transition: opacity 90ms $ease-swift-out;
+		z-index: 10;
+
+		&.is-droppable
+		{
+			opacity: 1;
+		}
+	}
+
+	span.spinner
+	{
+		position: absolute;
+		display: inline-flex;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(255, 255, 255, .9);
+		color: var(--color-primary);
+		font-size: 2.5rem;
+		z-index: 2;
+	}
+}

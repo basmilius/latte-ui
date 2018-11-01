@@ -1,0 +1,74 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+nav.pagination
+{
+	position: relative;
+	display: flex;
+	margin: -3px;
+	padding: 0;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+
+	a.pagination-item
+	{
+		position: relative;
+		display: block;
+		margin: 0;
+		padding: 0;
+		height: 30px;
+		width: 30px;
+		flex: 1 1 auto;
+		border-radius: 999px;
+		color: currentColor;
+		cursor: pointer;
+		font:
+		{
+			size: .8rem;
+			weight: 500;
+		}
+		line-height: 30px;
+		opacity: .75;
+		text-align: center;
+		text-decoration: none;
+		vertical-align: middle;
+
+		i.mdi
+		{
+			height: 24px;
+			width: 24px;
+			font-size: 24px;
+			line-height: 24px;
+		}
+
+		&:hover
+		{
+			background: theme-color-var(dark);
+			color: theme-color-var(dark, text);
+			opacity: 1;
+		}
+
+		&.is-current
+		{
+			background: theme-color-var(primary);
+			color: theme-color-var(primary, text);
+			cursor: default;
+			opacity: 1;
+			pointer-events: none;
+		}
+
+		&.is-disabled
+		{
+			cursor: default;
+			opacity: .5;
+			pointer-events: none;
+		}
+	}
+}

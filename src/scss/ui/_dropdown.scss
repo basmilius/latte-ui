@@ -1,0 +1,126 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.dropdown
+{
+	position: relative;
+	display: block;
+	background: #ffffff;
+	border-radius: var(--border-radius);
+
+	@include elevation(16);
+
+	&.dropdown-at-root
+	{
+		position: fixed;
+		display: block;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		transition: all 180ms $ease-swift-out;
+		will-change: opacity, transform;
+		z-index: 99999999;
+
+		&.is-open
+		{
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+
+	&::after
+	{
+		position: absolute;
+		display: none;
+		margin: 0 1px;
+		content: "";
+		border: 8px solid transparent;
+		border-top-color: #ffffff;
+		border-bottom-color: #ffffff;
+	}
+
+	&.dropdown-left-above
+	{
+		&:not(.dropdown-at-root)
+		{
+			bottom: 30px;
+			left: 0;
+		}
+
+		&::after
+		{
+			display: block;
+			left: 27px;
+			bottom: -8px;
+			border-bottom: none;
+		}
+	}
+
+	&.dropdown-right-above
+	{
+		&:not(.dropdown-at-root)
+		{
+			bottom: 30px;
+			right: 0;
+		}
+
+		&::after
+		{
+			display: block;
+			right: 27px;
+			bottom: -8px;
+			border-bottom: none;
+		}
+	}
+
+	&.dropdown-left-under
+	{
+		&:not(.dropdown-at-root)
+		{
+			top: 30px;
+			left: 0;
+		}
+
+		&::after
+		{
+			display: block;
+			top: -8px;
+			left: 27px;
+			border-top: none;
+		}
+	}
+
+	&.dropdown-right-under
+	{
+		&:not(.dropdown-at-root)
+		{
+			top: 30px;
+			right: 0;
+		}
+
+		&::after
+		{
+			display: block;
+			top: -8px;
+			right: 27px;
+			border-top: none;
+		}
+	}
+
+	div.dropdown-content
+	{
+		position: relative;
+		display: block;
+		max-height: 55vh;
+		overflow: auto;
+
+		-webkit-overflow-scrolling: touch;
+	}
+}

@@ -1,0 +1,14 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+$ease-acceleration-curve: cubic-bezier(0.4, 0.0, 1, 1) !default;
+$ease-deceleration-curve: cubic-bezier(0.0, 0.0, 0.2, 1) !default;
+$ease-sharp-curve: cubic-bezier(0.4, 0.0, 0.6, 1) !default;
+$ease-standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1) !default;
+$ease-swift-out: cubic-bezier(.55, 0, .1, 1) !default;
