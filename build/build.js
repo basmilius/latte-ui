@@ -48,7 +48,7 @@ async function build()
 
 	await bundle.write({
 		file: "dist/latte.js",
-		format: "cjs",
+		format: "iife",
 		sourcemap: true
 	});
 }
