@@ -18,21 +18,24 @@
 
 		<div class="toolbar" data-ui-is-nav-open role="toolbar">
 			<button class="nav-toggler" aria-label="Open/Sluit Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+
 			<span class="toolbar-title">Basic UI</span>
 
 			<div class="d-flex align-items-center ml-auto">
 				<a class="btn btn-text btn-primary"><i class="mdi mdi-plus-circle"></i><span>Project</span></a>
 				<div class="divider divider-vertical" role="separator"></div>
+
 				<latte-button-dropdown aria-label="Mijn Profiel" icon="avatar:https://latte.dev-preview.nl/storage/27de3e71/2018/10/b1d1ec42-d631-11e8-a95b-525400806242-thumb-64.jpg" type="list" v-cloak>
 					<nav class="nav latte-nav-list">
 						<a class="nav-link" href="#" style="height:60px"><img src="https://latte.dev-preview.nl/storage/27de3e71/2018/10/b1d1ec42-d631-11e8-a95b-525400806242-thumb-64.jpg" alt="Bas Milius" class="avatar"/><span>Bas Milius</span></a>
 						<div class="divider divider-horizontal"></div>
-						<a class="nav-link" href="#"><i class="mdi mdi-account-edit"></i><span>Profiel bewerken</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-key"></i><span>Wachtwoord wijzigen</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-security-account"></i><span>Mijn sessies</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-settings"></i><span>Instellingen</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-account-edit"></i><span>Edit profile</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-key"></i><span>Change password</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-security-account"></i><span>My sessions</span></a>
+						<a class="nav-link" href="#"><i class="mdi mdi-settings"></i><span>Settings</span></a>
 						<div class="divider divider-horizontal"></div>
-						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Uitloggen</span></a></nav>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
 				</latte-button-dropdown>
 			</div>
 		</div>
@@ -40,22 +43,21 @@
 		<div id="drawer" class="has-secondary" data-ui-is-nav-open role="menu">
 			<nav class="nav" id="drawer-primary">
 				<a href="#" class="nav-item" aria-label="Home" role="menuitem" data-tooltip="Home" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
-				<a href="#" class="nav-item" aria-label="Relaties" role="menuitem" data-tooltip="Relaties" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
-				<a href="#" class="nav-item" aria-label="Contacten" role="menuitem" data-tooltip="Contacten" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
-				<a href="#" class="nav-item active" aria-label="Projecten" role="menuitem" data-tooltip="Projecten" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
-				<a href="#" class="nav-item" aria-label="Financiën" role="menuitem" data-tooltip="Financiën" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
+				<a href="#" class="nav-item" aria-label="Partners" role="menuitem" data-tooltip="Partners" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
+				<a href="#" class="nav-item" aria-label="Contacts" role="menuitem" data-tooltip="Contacts" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
+				<a href="#" class="nav-item active" aria-label="Projects" role="menuitem" data-tooltip="Projects" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
+				<a href="#" class="nav-item" aria-label="Finance" role="menuitem" data-tooltip="Finance" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
 				<a href="#" class="nav-item" aria-label="Hosting" role="menuitem" data-tooltip="Hosting" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-cloud"></i></a>
 				<div class="divider divider-horizontal mt-auto" role="separator"></div>
-				<a href="#" class="nav-item" aria-label="Instellingen" role="menuitem" data-tooltip="Instellingen" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
-				<a href="#" class="nav-item" aria-label="Development" role="menuitem" data-tooltip="Development" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-lifebuoy"></i></a>
+				<a href="#" class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
 			</nav>
 			<nav class="nav latte-nav-list" id="drawer-secondary">
-				<div class="section">Projecten</div>
-				<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projecten</span></a>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Lopend</span></a>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Historie</span></a>
+				<div class="section">Projects</div>
+				<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projects</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Ongoing</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Archive</span></a>
 				<div class="divider divider-horizontal" role="separator"></div>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Nieuw project</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>New project</span></a>
 			</nav>
 		</div>
 
