@@ -1,0 +1,25 @@
+{
+  "name": "@bybas/latte-ui",
+  "version": "1.0.0",
+  "description": "UI Library of Latte Framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basmilius/latte-ui.git"
+  },
+  "keywords": [
+    "ui",
+    "latte",
+    "latte-framework",
+    "latte-ui"
+  ],
+  "author": "Bas Milius",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/basmilius/latte-ui/issues"
+  },
+  "homepage": "https://github.com/basmilius/latte-ui#readme"
+}
