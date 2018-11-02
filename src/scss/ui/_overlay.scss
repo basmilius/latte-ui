@@ -24,7 +24,7 @@ div.latte-overlay
 	background: rgba(theme-color-var(dark, null, true), .85);
 	opacity: 1;
 	overflow-y: auto;
-	transition: all $anim-duration $ease-swift-out;
+	transition: all $anim-duration var(--ease-swift-out);
 	will-change: opacity;
 	z-index: 2000000;
 
@@ -32,7 +32,7 @@ div.latte-overlay
 	{
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
-		transition: all $anim-duration $ease-swift-out;
+		transition: all $anim-duration var(--ease-swift-out);
 		transition-delay: $anim-delay;
 		will-change: opacity, transform;
 	}
@@ -55,7 +55,7 @@ div.latte-overlay
 		div.panel
 		{
 			opacity: 0;
-			transform: scale3d(0.95, 0.95, 0.95); //translate3d(0, 48px, 0);
+			transform: scale3d(0.95, 0.95, 0.95);
 			transition-delay: 0ms;
 		}
 	}

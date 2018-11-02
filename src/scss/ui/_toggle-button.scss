@@ -18,10 +18,10 @@
 	flex: 0 0 auto;
 	border: 2px solid currentColor;
 	border-radius: 12px;
-	color: rgba(0, 0, 0, .05);
+	color: var(--form-field-outline);
 	cursor: pointer;
 	outline: none;
-	transition: all 240ms $ease-swift-out;
+	transition: all 240ms var(--ease-swift-out);
 	vertical-align: middle;
 	will-change: background, border;
 

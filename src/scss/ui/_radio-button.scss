@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$radio-outline: $body-bg;
-
 input[type=radio].radio-button
 {
 	position: relative;
@@ -17,12 +15,12 @@ input[type=radio].radio-button
 	margin-right: .5em;
 	width: 24px;
 	appearance: none;
-	border: 2px solid $radio-outline;
+	border: 2px solid var(--form-field-outline);
 	border-radius: 12px;
 	color: var(--color-primary);
 	cursor: pointer;
 	outline: none;
-	transition: transform 210ms $ease-swift-out;
+	transition: transform 210ms var(--ease-swift-out);
 	vertical-align: middle;
 	will-change: transform;
 
@@ -42,7 +40,7 @@ input[type=radio].radio-button
 		background: currentColor;
 		border-radius: 7px;
 		transform: scale3d(0, 0, 0);
-		transition: transform 130ms $ease-standard-curve;
+		transition: transform 130ms var(--ease-standard-curve);
 	}
 
 	&:checked::before

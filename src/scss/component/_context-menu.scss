@@ -11,13 +11,11 @@ nav.nav.latte-nav-list.latte-context-menu
 {
 	position: fixed;
 	display: block;
-	padding: 6px 0;
-	background: #ffffff;
+	background: var(--dropdown-background);
 	border-radius: var(--border-radius);
-	transition: opacity 90ms $ease-swift-out, transform 90ms $ease-swift-out;
+	box-shadow: var(--dropdown-elevation);
+	transition: opacity 90ms var(--ease-swift-out), transform 90ms var(--ease-swift-out);
 	z-index: 9999999999;
-
-	@include elevation(16);
 
 	&:not(.is-open)
 	{

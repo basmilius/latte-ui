@@ -40,7 +40,7 @@ main#dashboard
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: rgba($body-bg, .5);
+		background: var(--panel-spinner-background);
 		font-size: 2rem;
 		z-index: 1000;
 	}

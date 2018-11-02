@@ -11,7 +11,7 @@ div.divider
 {
 	position: relative;
 	display: block;
-	background: $color-light-border;
+	background: var(--outline-color);
 
 	&.divider-horizontal
 	{

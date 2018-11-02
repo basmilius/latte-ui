@@ -54,7 +54,7 @@ div.latte-empty-view
 			display: block;
 			margin: 0;
 			padding: 0;
-			color: $body-color;
+			color: var(--main-foreground);
 			font:
 			{
 				size: 1.5rem;
@@ -67,7 +67,7 @@ div.latte-empty-view
 			position: relative;
 			display: block;
 			margin: 1rem 0 0 0;
-			color: rgba($body-color, .6);
+			color: var(--main-placeholder);
 			font:
 			{
 				size: 1.1rem;

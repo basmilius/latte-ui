@@ -17,10 +17,9 @@ div.toolbar
 	align-items: center;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
-	background: #ffffff;
+	background: var(--toolbar-background);
+	box-shadow: var(--toolbar-elevation);
 	z-index: 1000000;
-
-	@include elevation(2);
 
 	button.nav-toggler
 	{
@@ -31,9 +30,9 @@ div.toolbar
 		width: $drawer-primary-width;
 		align-items: center;
 		justify-content: center;
-		background: theme-color-var(dark);
+		background: var(--toolbar-action-background);
 		border: none;
-		color: theme-color-var(dark, text);
+		color: var(--toolbar-action-foreground);
 		cursor: pointer;
 		outline: none;
 
@@ -53,8 +52,6 @@ div.toolbar
 
 		@include expanded
 		{
-			background: theme-color-var(dark);
-			color: theme-color-var(primary, text);
 			pointer-events: none;
 
 			i.mdi
@@ -98,7 +95,7 @@ div.toolbar
 		position: relative;
 		display: block;
 		margin: 0 1rem;
-		color: var(--color-dark);
+		color: var(--toolbar-color);
 		font:
 		{
 			size: 1.25rem;

@@ -30,7 +30,7 @@
 		display: block;
 		margin: 0 12px;
 		flex: 1 1 auto;
-		color: $body-color;
+		color: var(--main-foreground);
 		font-size: .9em;
 		font-weight: 600;
 		line-height: 24px;
@@ -44,7 +44,7 @@
 a.chip
 {
 	cursor: pointer;
-	transition: background 90ms $ease-standard-curve;
+	transition: background 90ms var(--ease-standard-curve);
 	will-change: background;
 
 	&:hover

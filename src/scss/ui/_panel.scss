@@ -8,7 +8,6 @@
  */
 
 $panel-gutter: 24px;
-$panel-outline: $body-bg;
 
 .panel
 {
@@ -17,10 +16,9 @@ $panel-outline: $body-bg;
 	align-items: stretch;
 	flex-flow: column;
 	justify-content: flex-start;
-	background: white;
+	background: var(--panel-background);
 	border-radius: var(--border-radius);
-
-	@include elevation(3);
+	box-shadow: var(--panel-elevation);
 
 	+ .panel,
 	&.panel-gutter
@@ -46,7 +44,7 @@ a.panel
 
 	&:hover
 	{
-		@include elevation(9);
+		box-shadow: var(--panel-elevation-hover);
 	}
 }
 
@@ -59,7 +57,7 @@ a.panel
 
 	+ .panel-body
 	{
-		border-top: 2px solid $panel-outline;
+		border-top: 2px solid var(--outline-color-secondary);
 	}
 }
 
@@ -83,7 +81,7 @@ a.panel
 
 	&:not(:first-child)
 	{
-		border-top: 2px solid $panel-outline;
+		border-top: 2px solid var(--outline-color-secondary);
 	}
 }
 
@@ -99,7 +97,7 @@ a.panel
 
 	&:not(:last-child)
 	{
-		border-bottom: 2px solid $panel-outline;
+		border-bottom: 2px solid var(--outline-color-secondary);
 	}
 }
 
@@ -213,7 +211,7 @@ div.panel > span.spinner
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: rgba(255, 255, 255, .9);
+	background: var(--panel-spinner-background);
 	border-radius: inherit;
 	color: var(--color-primary);
 	font-size: 2.5rem;
@@ -275,7 +273,7 @@ div.panel.panel-explained
 		margin: 1.6em 0;
 		padding: 0 1.6em;
 		flex: 0 0 auto;
-		border-right: .1em solid $panel-outline;
+		border-right: .1em solid var(--outline-color-secondary);
 	}
 
 	div.panel-content
@@ -308,7 +306,7 @@ div.panel.panel-explained
 			width: calc(100% - 3.2em);
 			flex: 1 1 auto;
 			border-right: none;
-			border-bottom: .1em solid $panel-outline;
+			border-bottom: .1em solid var(--outline-color-secondary);
 		}
 
 		&.large div.panel-explanation

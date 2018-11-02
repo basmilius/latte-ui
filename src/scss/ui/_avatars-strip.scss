@@ -19,7 +19,7 @@ div.avatars-strip
 		height: 1em;
 		margin-left: -.3em;
 		width: 1em;
-		box-shadow: 0 0 0 .1em white;
+		box-shadow: 0 0 0 .1em var(--panel-background);
 		transition: all 180ms $ease-swift-out;
 
 		&:first-child

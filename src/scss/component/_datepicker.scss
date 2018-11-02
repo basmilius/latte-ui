@@ -12,11 +12,6 @@ div.latte-datepicker-root
 	position: relative;
 	display: block;
 
-	input[type=date][readonly]
-	{
-		background: #ffffff;
-	}
-
 	div.latte-datepicker-picker
 	{
 		position: absolute;
@@ -24,24 +19,11 @@ div.latte-datepicker-root
 		margin: .25rem 0 0 0;
 		padding: 12px;
 		width: 339px;
-		background: #ffffff;
+		background: var(--dropdown-background);
 		border-radius: var(--border-radius);
+		box-shadow: var(--dropdown-elevation);
 		user-select: none;
 		z-index: 500;
-
-		@include elevation(16);
-
-		&::before
-		{
-			position: absolute;
-			display: block;
-			top: -9px;
-			left: 27px;
-			content: "";
-			border: 9px solid transparent;
-			border-top: none;
-			border-bottom-color: rgba($color-bt-dark, .06);
-		}
 
 		&::after
 		{
@@ -53,7 +35,7 @@ div.latte-datepicker-root
 			content: "";
 			border: 7px solid transparent;
 			border-top: none;
-			border-bottom-color: #ffffff;
+			border-bottom-color: var(--dropdown-background);
 		}
 	}
 
@@ -81,7 +63,7 @@ div.latte-datepicker-root
 			background: transparent;
 			border: none;
 			border-radius: var(--border-radius);
-			color: $color-bt-text;
+			color: var(--main-color);
 			cursor: pointer;
 			outline: none;
 
@@ -110,7 +92,7 @@ div.latte-datepicker-root
 			padding: 0 12px;
 			flex: 0 0 auto;
 			border-radius: var(--border-radius);
-			color: $color-bt-dark-secondary;
+			color: var(--main-placeholder);
 			cursor: pointer;
 			font-weight: 500;
 			line-height: 36px;
@@ -120,7 +102,7 @@ div.latte-datepicker-root
 			&:hover
 			{
 				background: rgba(theme-color-var(primary, null, true), .09);
-				color: theme-color-var(dark);
+				color: var(--main-foreground);
 			}
 
 			&.month
@@ -152,12 +134,13 @@ div.latte-datepicker-root
 				position: relative;
 				display: block;
 				padding: 6px;
-				color: $color-bt-text-secondary;
+				color: var(--main-color);
 				font:
 				{
 					size: .8rem;
 					weight: 600;
 				}
+				opacity: .7;
 				text-align: center;
 				text-transform: uppercase;
 			}
@@ -175,7 +158,7 @@ div.latte-datepicker-root
 				position: relative;
 				display: block;
 				border-radius: var(--border-radius);
-				color: theme-color-var(dark, lighter-3);
+				color: var(--main-placeholder);
 				cursor: pointer;
 				font:
 				{
@@ -187,24 +170,25 @@ div.latte-datepicker-root
 
 				&.is-other-month
 				{
-					opacity: .25;
+					opacity: .4;
 					pointer-events: none;
 				}
 
 				&:hover
 				{
-					background: rgba(theme-color-var(primary, null, true), .09);
+					background: rgba(theme-color-var(primary, null, true), .12);
 				}
 
 				&.is-today
 				{
 					color: var(--color-primary);
+					font-style: italic;
 				}
 
 				&.is-selected
 				{
-					background: var(--color-dark);
-					color: #ffffff;
+					background: var(--color-primary);
+					color: var(--color-primary-text);
 				}
 			}
 		}
@@ -232,15 +216,17 @@ div.latte-datepicker-root
 				display: block;
 				padding: 0 1rem;
 				border-radius: var(--border-radius);
-				color: rgba($color-bt-dark, .7);
+				color: var(--main-foreground);
 				font-weight: 500;
 				line-height: 39px;
+				opacity: .75;
 				text-align: center;
 				text-transform: capitalize;
 
 				&:hover
 				{
-					background: rgba(theme-color-var(primary, null, true), .09);
+					background: var(--color-primary);
+					color: var(--color-primary-text);
 				}
 
 				&.is-selected
@@ -273,15 +259,17 @@ div.latte-datepicker-root
 				display: block;
 				padding: 0 1rem;
 				border-radius: var(--border-radius);
-				color: rgba($color-bt-dark, .7);
+				color: var(--main-foreground);
 				font-weight: 500;
 				line-height: 39px;
+				opacity: .75;
 				text-align: center;
 				text-transform: capitalize;
 
 				&:hover
 				{
-					background: rgba(theme-color-var(primary, null, true), .09);
+					background: var(--color-primary);
+					color: var(--color-primary-text);
 				}
 
 				&.is-selected

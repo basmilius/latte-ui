@@ -10,14 +10,14 @@
 div.latte-grid
 {
 	position: relative;
-	transition: transform 210ms $ease-deceleration-curve;
+	transition: transform 210ms var(--ease-deceleration-curve);
 }
 
 div.latte-grid-item
 {
 	position: relative;
 	display: block;
-	transition: all 210ms $ease-deceleration-curve;
+	transition: all 210ms var(--ease-deceleration-curve);
 	will-change: height, width, opacity, transform;
 
 	&.latte-grid-placeholder::before

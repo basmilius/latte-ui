@@ -9,7 +9,6 @@ const buble = require("rollup-plugin-buble");
 const cleanup = require("rollup-plugin-cleanup");
 const comments = require("postcss-discard-comments");
 const commonjs = require("rollup-plugin-commonjs");
-const cssnano = require("cssnano");
 const replace = require("rollup-plugin-replace");
 const uglify = require("rollup-plugin-uglify").uglify;
 const vue = require("rollup-plugin-vue").default;
@@ -60,10 +59,6 @@ async function build()
 
 					comments({
 						removeAll: true
-					}),
-
-					cssnano({
-						preset: "advanced"
 					})
 				],
 				sourceMap: true

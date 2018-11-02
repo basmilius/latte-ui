@@ -18,7 +18,7 @@ div.panel.file-manager
 	div.panel-header.file-manager-toolbar
 	{
 		min-height: 54px;
-		background: $color-light-bg;
+		background: var(--outline-color-secondary);
 
 		button.btn
 		{

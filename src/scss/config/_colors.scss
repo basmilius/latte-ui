@@ -14,13 +14,6 @@ $color-bt-folder: rgb(48, 119, 145) !default;
 $color-bt-text: rgb(207, 208, 210) !default;
 $color-bt-text-secondary: rgb(186, 187, 189) !default;
 
-$color-light-bg: #f3f6fb !default;
-$color-light-border: #e8ebf2 !default;
-
-/*
-rgb(19, 49, 133) - Nice dark blue
- */
-
 $colors: (
 		"blue": rgb(0, 120, 255),
 		"teal-blue": rgb(0, 202, 255),
@@ -32,7 +25,7 @@ $colors: (
 ) !default;
 
 $theme-colors: map-merge($colors, (
-		primary: #113B96,
+		primary: rgb(0, 120, 255), //#113B96,
 		error: rgb(254, 50, 75),
 		info: rgb(8, 122, 254),
 		success: rgb(23, 195, 123),
@@ -42,6 +35,3 @@ $theme-colors: map-merge($colors, (
 )) !default;
 
 $theme-variants: () !default;
-
-$body-bg: #f9f9f9 !default;
-$body-color: rgba(0, 0, 0, .87) !default;

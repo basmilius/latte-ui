@@ -16,17 +16,16 @@ div.panel.pdf-viewer
 	justify-content: flex-start;
 	background: transparent;
 
-	@include elevation(0);
+	--panel-elevation: none;
 
 	div.page
 	{
 		position: relative;
 		display: block;
-		background: white;
+		background: var(--panel-background);
 		border-radius: inherit;
+		box-shadow: var(--panel-elevation);
 		overflow: hidden;
-
-		@include elevation(3);
 	}
 
 	div.page + div.page

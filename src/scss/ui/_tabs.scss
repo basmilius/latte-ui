@@ -32,7 +32,7 @@ nav.nav.nav-tabs
 		flex-flow: column;
 		justify-content: center;
 		border-bottom: 2px solid transparent;
-		color: theme-color-var(dark);
+		color: var(--main-foreground);
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;

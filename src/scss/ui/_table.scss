@@ -12,8 +12,8 @@ table.table
 	position: relative;
 	width: 100%;
 
-	$border: 1px solid $color-light-bg;
-	$hover-bg: rgba($color-light-bg, .5);
+	$border: 1px solid var(--outline-color-secondary);
+	$hover-bg: rgba(var(--outline-color-secondary-rgb), .5);
 
 	&.table-border
 	{
@@ -32,7 +32,7 @@ table.table
 
 		@supports not (-moz-appearance: none)
 		{
-			height: 1px; // Fucking Firefox.
+			height: 1px;
 		}
 	}
 
@@ -127,7 +127,7 @@ table.table
 
 	a.column-content
 	{
-		color: $body-color;
+		color: var(--main-foreground);
 		cursor: pointer;
 		text-decoration: none;
 
@@ -153,9 +153,9 @@ table.table
 		td,
 		th
 		{
-			background: $color-light-bg;
-			border-top: 1px solid $color-light-border;
-			border-bottom: 1px solid $color-light-border;
+			background: var(--outline-color-secondary);
+			border-top: 1px solid var(--outline-color);
+			border-bottom: 1px solid var(--outline-color);
 		}
 
 		input
@@ -172,7 +172,7 @@ table.table
 
 			&::placeholder
 			{
-				color: rgba($body-color, .3);
+				color: var(--main-placeholder);
 			}
 		}
 	}

@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$checkbox-outline: $body-bg;
-
 input[type=checkbox].checkbox
 {
 	position: relative;
@@ -19,12 +17,12 @@ input[type=checkbox].checkbox
 	width: 24px;
 	flex: 0 0 auto;
 	background: transparent;
-	border: 2px solid $checkbox-outline;
+	border: 2px solid var(--form-field-outline);
 	border-radius: var(--border-radius);
 	color: var(--color-primary);
 	cursor: pointer;
 	outline: none;
-	transition: transform 210ms $ease-swift-out;
+	transition: transform 210ms var(--ease-swift-out);
 	vertical-align: middle;
 	will-change: transform;
 

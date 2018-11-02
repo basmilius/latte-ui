@@ -30,7 +30,7 @@ div.form-group
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: rgba(255, 255, 255, .9);
+		background: var(--panel-spinner-background);
 		color: var(--color-primary);
 		font-size: 2.5rem;
 		z-index: 2;
@@ -68,12 +68,12 @@ label.col-form-label
 	}
 	border: none;
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 0 0 2px var(--form-field-outline);
 	color: currentColor;
 	font-size: 1rem;
 	line-height: 26px;
 	outline: none;
-	transition: all 180ms $ease-standard-curve;
+	transition: all 180ms var(--ease-standard-curve);
 	vertical-align: middle;
 	will-change: border-radius, box-shadow;
 
@@ -126,8 +126,8 @@ label.col-form-label
 .form-control
 {
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 2px rgba(0, 0, 0, .05);
-	transition: all 180ms $ease-standard-curve;
+	box-shadow: 0 0 0 2px var(--form-field-outline);
+	transition: all 180ms var(--ease-standard-curve);
 	will-change: border-radius, box-shadow;
 
 	&::placeholder

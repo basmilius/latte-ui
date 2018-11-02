@@ -16,7 +16,6 @@ div#drawer
 	bottom: 0;
 	align-items: stretch;
 	justify-content: flex-start;
-	background: #ffffff;
 	z-index: 1000001;
 
 	@include elevation(1);
@@ -26,8 +25,8 @@ div#drawer
 		position: relative;
 		padding: 1rem 0 0;
 		width: $drawer-primary-width;
-		background: theme-color-var(dark);
-		border-top: 1px solid theme-color-alpha(dark, .06, text);
+		background: var(--drawer-background-primary);
+		border-top: 1px solid var(--drawer-outline-primary);
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
@@ -35,7 +34,7 @@ div#drawer
 		div.divider
 		{
 			margin: 0 1rem;
-			background: rgba(255, 255, 255, .05);
+			background: var(--drawer-outline-primary);
 		}
 
 		a.nav-item
@@ -78,8 +77,8 @@ div#drawer
 		position: relative;
 		padding: 2rem 0;
 		width: $drawer-secondary-width;
-		background: #ffffff;
-		border-top: 1px solid theme-color-alpha(light, .05, text);
+		background: var(--drawer-background-secondary);
+		border-top: 1px solid var(--drawer-outline-secondary);
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;

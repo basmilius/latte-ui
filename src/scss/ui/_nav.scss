@@ -88,7 +88,7 @@
 		position: relative;
 		display: block;
 		margin: 1rem 2rem .75rem 2rem;
-		color: rgba(theme-color-var(dark, null, true), .3);
+		color: var(--nav-section-foreground);
 	}
 }
 
@@ -98,7 +98,7 @@
 
 	a.nav-link
 	{
-		color: $body-color;
+		color: var(--main-foreground);
 		transition: all 90ms $ease-standard-curve;
 		will-change: background, color;
 

@@ -1,0 +1,34 @@
+:root
+{
+	--main-background: #f9f9f9;
+	--main-foreground: rgba(0, 0, 0, .87);
+	--main-placeholder: rgba(0, 0, 0, .42);
+
+	--outline-color: #e8ebf2;
+	--outline-color-rgb: 232, 235, 242;
+	--outline-color-secondary: #f3f6fb;
+	--outline-color-secondary-rgb: 243, 246, 251;
+
+	--drawer-background-primary: var(--color-dark);
+	--drawer-background-secondary: #ffffff;
+	--drawer-outline-primary: rgba(255, 255, 255, .05);
+	--drawer-outline-secondary: rgba(0, 0, 0, .05);
+
+	--toolbar-background: #ffffff;
+	--toolbar-action-background: var(--color-dark);
+	--toolbar-action-foreground: var(--color-dark-text);
+	--toolbar-elevation: #{elevation-generate(2)};
+	--toolbar-foreground: var(--color-dark);
+
+	--dropdown-background: #ffffff;
+	--dropdown-elevation: #{elevation-generate(16)};
+
+	--form-field-outline: rgba(0, 0, 0, .05);
+
+	--panel-background: #ffffff;
+	--panel-elevation: #{elevation-generate(3)};
+	--panel-elevation-hover: #{elevation-generate(9)};
+	--panel-spinner-background: rgba(255, 255, 255, .9);
+
+	--nav-section-foreground: rgba(0, 0, 0, .25);
+}

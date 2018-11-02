@@ -12,7 +12,7 @@
 	--btn-bg-pvt: var(--btn-bg, transparent);
 	--btn-bg-active-pvt: var(--btn-bg-active, transparent);
 	--btn-bg-hover-pvt: var(--btn-bg-hover, transparent);
-	--btn-color-pvt: var(--btn-color, black);
+	--btn-color-pvt: var(--btn-color, var(--main-foreground));
 
 	position: relative;
 	display: inline-flex;

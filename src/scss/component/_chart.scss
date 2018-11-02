@@ -20,7 +20,7 @@ div.latte-charts
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: rgba(255, 255, 255, .75);
+		background: var(--panel-spinner-background);
 		font-size: 2rem;
 		z-index: 10;
 	}

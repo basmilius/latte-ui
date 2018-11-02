@@ -39,12 +39,11 @@ div.notification
 	align-items: center;
 	flex-flow: row;
 	justify-content: flex-start;
-	background: white;
+	background: var(--panel-background);
 	border-radius: var(--border-radius);
-	transition: all 360ms $ease-swift-out;
+	box-shadow: var(--panel-elevation-hover);
+	transition: all 360ms var(--ease-swift-out);
 	will-change: top, opacity, transform;
-
-	@include elevation(9);
 
 	&.is-hidden
 	{

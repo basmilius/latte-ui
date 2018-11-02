@@ -11,10 +11,9 @@ div.dropdown
 {
 	position: relative;
 	display: block;
-	background: #ffffff;
+	background: var(--dropdown-background);
 	border-radius: var(--border-radius);
-
-	@include elevation(16);
+	box-shadow: var(--dropdown-elevation);
 
 	&.dropdown-at-root
 	{
@@ -24,7 +23,7 @@ div.dropdown
 		left: 0;
 		opacity: 0;
 		pointer-events: none;
-		transition: all 180ms $ease-swift-out;
+		transition: all 180ms var(--ease-swift-out);
 		will-change: opacity, transform;
 		z-index: 99999999;
 
@@ -42,8 +41,8 @@ div.dropdown
 		margin: 0 1px;
 		content: "";
 		border: 8px solid transparent;
-		border-top-color: #ffffff;
-		border-bottom-color: #ffffff;
+		border-top-color: var(--dropdown-background);
+		border-bottom-color: var(--dropdown-background);
 	}
 
 	&.dropdown-left-above
