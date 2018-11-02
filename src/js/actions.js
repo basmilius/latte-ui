@@ -41,21 +41,6 @@ function onAction(element, evt)
 	actions[action].forEach(callback => callback(actionData, element, evt));
 }
 
-function onHashChange(evt)
-{
-	const parameters = evt.detail;
-	const action = parameters.action;
-
-	delete parameters.action;
-
-	updateURLHash(parameters);
-
-	if (action === undefined || action === null)
-		return;
-
-	dispatch(action.value, action.vars);
-}
-
 export default {
 
 	dispatch,
@@ -66,4 +51,16 @@ export default {
 
 live(document.body, "[data-action]", "click", (element, evt) => onAction(element, evt), {passive: true});
 
-window.addEventListener("latte:hash-change", onHashChange, false);
+on("latte:hash-change", parameters =>
+{
+	const action = parameters.action;
+
+	delete parameters.action;
+
+	updateURLHash(parameters);
+
+	if (action === undefined || action === null)
+		return;
+
+	dispatch(action.value, action.vars);
+});
