@@ -1,22 +1,7 @@
-/*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
- *
- * This file is part of the Latte Framework package.
- *
- * For the full copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
-
 "use strict";
 
-export const rootElement = document.querySelector("body");
+import { dispatch } from "../actions";
 
-/**
- * Creates the root component.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function createRootComponent()
 {
 	return new Vue({
@@ -35,15 +20,12 @@ export function createRootComponent()
 	});
 }
 
-/**
- * Installs our service worker.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function installServiceWorker()
 {
-	if (!('serviceWorker' in navigator))
+	if (!("LatteSW" in window))
+		return;
+
+	if (!("serviceWorker" in navigator))
 		return;
 
 	if (!window.isSecureContext)
@@ -54,18 +36,12 @@ function installServiceWorker()
 		if (registration !== undefined)
 			return registration.update();
 
-		navigator.serviceWorker.register('/service-worker.min.js')
+		navigator.serviceWorker.register("/service-worker.js")
 			.then(() => console.debug("Service Worker installed!"))
 			.catch(err => console.error("Service Worker not installed due to an error.", err));
 	});
 }
 
-/**
- * Invoked when the url hash is changed.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function onHashChange()
 {
 	const hash = location.hash.substr(1);
@@ -97,15 +73,9 @@ function onHashChange()
 		parameters[kv[0]] = {value, vars};
 	}
 
-	window.dispatchEvent(new CustomEvent("latte:hash-change", {detail: parameters}));
+	dispatch("latte:hash-change", parameters)
 }
 
-/**
- * Removes saved=1 from the query string.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function removeQueryString()
 {
 	let queryString = window.location.search.substr(1);

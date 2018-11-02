@@ -10,37 +10,10 @@
 "use strict";
 
 import { live } from "./util/dom.js";
-import { register } from "./sdk.js";
-import { updateURLHash } from "./util/core.js";
+import { updateURLHash } from "./core.js";
 
 const actions = {};
 
-/**
- * Initializes the global action system.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function initialize()
-{
-	live(document.body, "[data-action]", "click", (element, evt) => onAction(element, evt), {passive: true});
-
-	register(latte => latte.actions = {dispatch, on});
-
-	window.addEventListener("latte:hash-change", onHashChange, false);
-}
-
-/**
- * Fires an action.
- *
- * @param {String} action
- * @param {*} data
- * @param {HTMLElement|undefined} el
- * @param {Event|undefined} evt
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function dispatch(action, data = undefined, el = undefined, evt = undefined)
 {
 	if (typeof actions[action] === "undefined")
@@ -49,15 +22,6 @@ export function dispatch(action, data = undefined, el = undefined, evt = undefin
 	actions[action].forEach(callback => callback(data, el, evt));
 }
 
-/**
- * Registers an action.
- *
- * @param {String} action
- * @param {Function} callback
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function on(action, callback)
 {
 	if (typeof actions[action] === "undefined")
@@ -66,15 +30,6 @@ export function on(action, callback)
 	actions[action].push(callback);
 }
 
-/**
- * Invoked when an action is called.
- *
- * @param {HTMLElement} element
- * @param {Event} evt
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function onAction(element, evt)
 {
 	const action = element.dataset.action;
@@ -86,14 +41,6 @@ function onAction(element, evt)
 	actions[action].forEach(callback => callback(actionData, element, evt));
 }
 
-/**
- * Invoked when the URL hash has changed.
- *
- * @param {CustomEvent} evt
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function onHashChange(evt)
 {
 	const parameters = evt.detail;
@@ -108,3 +55,15 @@ function onHashChange(evt)
 
 	dispatch(action.value, action.vars);
 }
+
+export default {
+
+	dispatch,
+
+	on
+
+}
+
+live(document.body, "[data-action]", "click", (element, evt) => onAction(element, evt), {passive: true});
+
+window.addEventListener("latte:hash-change", onHashChange, false);

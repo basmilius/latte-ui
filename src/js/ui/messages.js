@@ -1,29 +1,9 @@
-/*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
- *
- * This file is part of the Latte Framework package.
- *
- * For the full copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
+"use strict";
 
-import { register } from "../sdk.js";
 import { createElement } from "../util/dom.js";
-import { timeout } from "../util/core.js";
-import { rootElement } from "./root.js";
-import { spaceship } from "../operator/spaceship.js";
+import { timeout } from "../core.js";
+import { spaceship } from "../operators";
 import { translate } from "../i18n.js";
-
-/**
- * Initializes the messages system.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function initialize()
-{
-	register(latte => createSDK(latte));
-}
 
 export const Buttons = {
 	OK: 1,
@@ -51,19 +31,7 @@ export const ButtonsDescribed = [
 	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", type: "primary", weight: 1}
 ];
 
-/**
- * Creates a message.
- *
- * @param title
- * @param message
- * @param buttons
- * @param prompt
- *
- * @returns {Promise<*>}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-function createMessage(title, message, buttons, prompt = false)
+export function createMessage(title, message, buttons, prompt = false)
 {
 	return new Promise(resolve =>
 	{
@@ -130,80 +98,28 @@ function createMessage(title, message, buttons, prompt = false)
 
 		overlay.appendChild(panel);
 
-		rootElement.appendChild(overlay);
+		document.body.appendChild(overlay);
 
 		timeout(0, () => overlay.classList.add("is-visible"));
 		timeout(20, () => overlay.classList.add("is-open"));
 	});
 }
 
-/**
- * Creates an alert.
- *
- * @param title
- * @param message
- *
- * @returns {Promise<*>}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-function alert(title, message)
+export function alert(title, message)
 {
 	return createMessage(title, message, Buttons.OK);
 }
 
-/**
- * Creates a confirm alert.
- *
- * @param title
- * @param message
- *
- * @returns {Promise<*>}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-function confirm(title, message)
+export function confirm(title, message)
 {
 	return createMessage(title, message, Buttons.OK | Buttons.CANCEL);
 }
 
-/**
- * Creates a prompt alert.
- *
- * @param title
- * @param message
- *
- * @returns {Promise<*>}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-function prompt(title, message)
+export function prompt(title, message)
 {
 	return createMessage(title, message, Buttons.OK | Buttons.CANCEL, true);
 }
 
-/**
- * Creates SDK definitions.
- *
- * @param {*} latte
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-function createSDK(latte)
-{
-	latte.ui = Object.assign(latte.ui || {}, {Buttons, ButtonsDescribed, alert, confirm, createMessage, prompt});
-}
-
-/**
- * Returns Buttons for buttons.
- *
- * @param {Number} buttons
- *
- * @returns {*[]}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 function buttonsToButtons(buttons)
 {
 	let actualButtons = [];
@@ -216,4 +132,20 @@ function buttonsToButtons(buttons)
 	actualButtons.forEach(button => button.label = translate("root", button.label));
 
 	return actualButtons;
+}
+
+export default {
+
+	Buttons,
+
+	ButtonsDescribed,
+
+	createMessage,
+
+	alert,
+
+	confirm,
+
+	prompt
+
 }

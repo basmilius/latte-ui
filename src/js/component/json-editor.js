@@ -488,7 +488,7 @@ export function createComponent()
 
 				if (!oj.name)
 				{
-					Latte.ui.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
+					Latte.messages.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
 					return;
 				}
 
@@ -510,7 +510,7 @@ export function createComponent()
 			{
 				if (item.name.length <= 0)
 				{
-					Latte.ui.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
+					Latte.messages.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
 					item.name = "null";
 					e.target.focus();
 				}

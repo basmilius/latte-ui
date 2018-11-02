@@ -1,18 +1,17 @@
-/*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
- *
- * This file is part of the Latte Framework package.
- *
- * For the full copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
+<template>
 
-"use strict";
+	<div class="form-control">
+		<input :type="fieldType" :autocomplete="autocomplete" class="form-control-plain" v-bind="bindings" v-model="password"/>
+		<button class="btn btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi" :class="iconClass"></i></button>
+	</div>
 
-export function createComponent()
-{
+</template>
 
-	Vue.component("latte-password", {
+<script>
+
+	export default {
+
+		name: "latte-password",
 
 		props: {
 
@@ -53,11 +52,6 @@ export function createComponent()
 			}
 
 		},
-
-		template: `	<div class="form-control">
-						<input :type="fieldType" :autocomplete="autocomplete" class="form-control-plain" v-bind="bindings" v-model="password"/>
-						<button class="btn btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi" :class="iconClass"></i></button>
-					</div>`,
 
 		data()
 		{
@@ -115,6 +109,6 @@ export function createComponent()
 
 		}
 
-	});
+	}
 
-}
+</script>

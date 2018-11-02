@@ -10,7 +10,7 @@
 "use strict";
 
 import { forObject } from "../i18n.js";
-import { create as createNotice } from "../notices.js";
+import { create as createNotice } from "../ui/notices.js";
 import { id as generateUniqueId, request } from "../util/api.js";
 
 /**

@@ -1,0 +1,25 @@
+import Autocomplete from "./Autocomplete.vue";
+import ButtonDropdown from "./ButtonDropdown.vue";
+import Chart from "./Chart.vue";
+import ChartPanel from "./ChartPanel.vue";
+import DataTable from "./DataTable.vue";
+import DatePicker from "./DatePicker.vue";
+import Draggable from "./Draggable.vue";
+import Moment from "./Moment.vue";
+import Notifications from "./Notifications.vue";
+import Overlay from "./Overlay.vue";
+import Pagination from "./Pagination.vue";
+import Password from "./Password.vue";
+
+Vue.component("latte-autocomplete", Autocomplete);
+Vue.component("latte-button-dropdown", ButtonDropdown);
+Vue.component("latte-chart", Chart);
+Vue.component("latte-chart-panel", ChartPanel);
+Vue.component("latte-data-table", DataTable);
+Vue.component("latte-datepicker", DatePicker);
+Vue.component("latte-draggable", Draggable);
+Vue.component("latte-moment", Moment);
+Vue.component("latte-notifications", Notifications);
+Vue.component("latte-overlay", Overlay);
+Vue.component("latte-pagination", Pagination);
+Vue.component("latte-password", Password);

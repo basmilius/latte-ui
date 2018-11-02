@@ -1,40 +1,21 @@
-/*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
- *
- * This file is part of the Latte Framework package.
- *
- * For the full copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
-
 "use strict";
 
 import { createElement, live } from "../util/dom.js";
 import { on } from "../actions.js";
 
-/** @type {HTMLBodyElement|Element} */
-export const rootElement = document.querySelector("body");
-
-/** @type {HTMLDivElement|HTMLElement} */
 let tooltipElement = null;
 
-/**
- * Creates the tooltip component.
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function createTooltipComponent()
+export function initializeTooltips()
 {
 	tooltipElement = createElement("div", div =>
 	{
 		div.setAttribute("class", "tooltip is-hidden");
 
-		rootElement.appendChild(div);
+		document.body.appendChild(div);
 	});
 
-	live(rootElement, "[data-tooltip]", "pointerover", (el, evt) => onTooltipElementHover(el, evt));
-	live(rootElement, "[data-tooltip]", "pointerout", (el, evt) => onTooltipElementLeave(el, evt));
+	live(document.body, "[data-tooltip]", "pointerover", (el, evt) => onTooltipElementHover(el, evt));
+	live(document.body, "[data-tooltip]", "pointerout", (el, evt) => onTooltipElementLeave(el, evt));
 
 	on("latte:tooltip:hide", () => onTooltipElementLeave());
 }

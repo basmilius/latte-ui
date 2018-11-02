@@ -1,24 +1,5 @@
-/*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
- *
- * This file is part of the Latte Framework package.
- *
- * For the full copyright and license information, please view the
- * LICENSE file that was distributed with this source code.
- */
-
 "use strict";
 
-/**
- * Finds the closest parent.
- *
- * @param {HTMLElement|Document|Node} element
- * @param {String} selector
- *
- * @returns {HTMLElement|null}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function closest(element, selector)
 {
 	for (; element && element !== document; element = element.parentNode)
@@ -28,16 +9,6 @@ export function closest(element, selector)
 	return null;
 }
 
-/***
- * Creates a new DOM element.
- *
- * @param {String} element
- * @param {Function} func
- *
- * @returns {HTMLElement}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function createElement(element, func = undefined)
 {
 	const el = document.createElement(element);
@@ -48,15 +19,6 @@ export function createElement(element, func = undefined)
 	return el;
 }
 
-/**
- * Downloads a file from url.
- *
- * @param {String} fileName
- * @param {String} url
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function downloadFile(fileName, url)
 {
 	createElement("a", a =>
@@ -71,18 +33,6 @@ export function downloadFile(fileName, url)
 	});
 }
 
-/**
- * Adds a Live Event listener.
- *
- * @param {HTMLElement|Document} root
- * @param {String} selector
- * @param {String} event
- * @param {Function} callback
- * @param {*} options
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function live(root, selector, event, callback, options = {passive: true})
 {
 	if (event.indexOf(" ") > -1)
@@ -112,14 +62,6 @@ export function live(root, selector, event, callback, options = {passive: true})
 	}, options);
 }
 
-/**
- * Prints a document.
- *
- * @param {String} url
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function printDocument(url)
 {
 	const wnd = window.open(url);
@@ -130,16 +72,6 @@ export function printDocument(url)
 	});
 }
 
-/**
- * Implementation of querySelectorAll that puts everything in an Array.
- *
- * @param {String} selector
- * @param {HTMLElement|Document} root
- *
- * @returns {Array}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function querySelectorAll(selector, root = document)
 {
 	const elements = [];
@@ -149,15 +81,6 @@ export function querySelectorAll(selector, root = document)
 	return elements;
 }
 
-/**
- * Converts a string into DOM.
- *
- * @param {String} str
- *
- * @returns {DocumentFragment}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
 export function toDOM(str)
 {
 	const temp = document.createElement("div");
@@ -167,8 +90,26 @@ export function toDOM(str)
 
 	temp.innerHTML = str;
 
-	while (child = temp.firstChild)
+	while ((child = temp.firstChild))
 		fragment.appendChild(child);
 
 	return fragment;
+}
+
+export default {
+
+	closest,
+
+	createElement,
+
+	downloadFile,
+
+	live,
+
+	printDocument,
+
+	querySelectorAll,
+
+	toDOM
+
 }
