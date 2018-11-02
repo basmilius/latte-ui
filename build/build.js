@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 const postcss = require("rollup-plugin-postcss");
 const rollup = require("rollup");
 
@@ -13,6 +15,27 @@ const vue = require("rollup-plugin-vue").default;
 
 async function build()
 {
+	const root = path.resolve(__dirname, "..");
+	const dist = path.join(root, "dist");
+
+	const bundles = [
+		path.join(dist, "latte.css"),
+		path.join(dist, "latte.css.map"),
+		path.join(dist, "latte.js"),
+		path.join(dist, "latte.js.map")
+	];
+
+	for (const bundle of bundles)
+	{
+		if (!fs.existsSync(bundle))
+			continue;
+
+		console.log("[build]", `Removing old bundle file: ${bundle}`);
+		await fs.promises.unlink(bundle);
+	}
+
+	console.log("[build]", "Building css and js bundles...");
+
 	const bundle = await rollup.rollup({
 		input: "src/bundle.js",
 		output: {
@@ -44,7 +67,7 @@ async function build()
 			commonjs(),
 
 			babel({
-				exclude: 'node_modules/**',
+				exclude: 'node_modules/**'
 			}),
 
 			buble(),
