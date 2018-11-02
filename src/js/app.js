@@ -11,6 +11,8 @@ import { initializeTooltips } from "./ui/tooltip";
 import "../vue/mixin";
 import "../vue/component";
 import "../vue/directive";
+import "../vue/view";
+import "../vue/widget";
 
 moment.locale(window["LatteMomentLocale"] || "en");
 
