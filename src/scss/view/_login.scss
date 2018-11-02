@@ -75,7 +75,7 @@ main.auth-ui
 		flex: 1 1 auto;
 		flex-flow: column;
 		justify-content: flex-start;
-		background: white;
+		background: var(--panel-background);
 		overflow: auto;
 
 		span.spinner
@@ -86,7 +86,7 @@ main.auth-ui
 			left: 0;
 			right: 0;
 			bottom: 0;
-			background: rgba(255, 255, 255, .9);
+			background: var(--panel-spinner-background);
 			font-size: 2.5rem;
 		}
 
