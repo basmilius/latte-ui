@@ -1,20 +1,44 @@
 "use strict";
 
-import { dispatch } from "../actions";
+import { dispatch, on } from "../actions";
+import { getCookie, setCookie } from "../util/cookies";
 
 export function createRootComponent()
 {
+	document.body.dataset.theme = document.body.dataset.theme || getCookie("$ui:theme") || "light";
+
 	return new Vue({
 
 		el: "main#app",
+
+		created()
+		{
+			on("latte:switch-theme", data => this.onSwitchTheme(data));
+
+			window.addEventListener("hashchange", onHashChange, false);
+		},
 
 		mounted()
 		{
 			installServiceWorker();
 			onHashChange();
 			removeQueryString();
+		},
 
-			window.addEventListener("hashchange", onHashChange, false);
+		methods: {
+
+			onSwitchTheme(data)
+			{
+				if (!("themeId" in data))
+					return;
+
+				const {themeId} = data;
+
+				document.body.dataset.theme = themeId;
+
+				setCookie("$ui:theme", themeId);
+			}
+
 		}
 
 	});
