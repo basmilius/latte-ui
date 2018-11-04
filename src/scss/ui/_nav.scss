@@ -27,57 +27,6 @@
 		flex: 0 0 auto;
 	}
 
-	a.nav-link
-	{
-		position: relative;
-		display: flex;
-		height: 44px;
-		margin: 0;
-		padding: 0 2rem;
-		align-items: center;
-		flex: 0 0 auto;
-		flex-flow: row nowrap;
-		justify-content: flex-start;
-		cursor: pointer;
-		text-decoration: none;
-
-		i.mdi
-		{
-			position: relative;
-			display: block;
-			height: 24px;
-			width: 24px;
-			font-size: 24px;
-			line-height: 24px;
-		}
-
-		span
-		{
-			position: relative;
-			display: flex;
-			align-items: center;
-			flex-flow: row nowrap;
-			justify-content: flex-start;
-			flex: 1 1 0;
-
-			&.sub-label
-			{
-				margin-left: 1rem;
-				opacity: .5;
-			}
-		}
-
-		i.mdi + span
-		{
-			margin-left: 30px;
-		}
-
-		i.mdi:last-child
-		{
-			margin-right: -3px;
-		}
-	}
-
 	div.divider
 	{
 		margin: 9px 2rem;
@@ -89,6 +38,57 @@
 		display: block;
 		margin: 1rem 2rem .75rem 2rem;
 		color: var(--nav-section-foreground);
+	}
+}
+
+a.nav-link
+{
+	position: relative;
+	display: flex;
+	height: 44px;
+	margin: 0;
+	padding: 0 2rem;
+	align-items: center;
+	flex: 0 0 auto;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	cursor: pointer;
+	text-decoration: none;
+
+	i.mdi
+	{
+		position: relative;
+		display: block;
+		height: 24px;
+		width: 24px;
+		font-size: 24px;
+		line-height: 24px;
+	}
+
+	span
+	{
+		position: relative;
+		display: flex;
+		align-items: center;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		flex: 1 1 0;
+
+		&.sub-label
+		{
+			margin-left: 1rem;
+			opacity: .5;
+		}
+	}
+
+	i.mdi + span
+	{
+		margin-left: 30px;
+	}
+
+	i.mdi:last-child
+	{
+		margin-right: -3px;
 	}
 }
 

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Basic UI</title>
+	<title>Buttons &mdash; @bybas/latte-ui</title>
 	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
 	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
 	<link rel="stylesheet" href="../dist/latte.css"/>
@@ -23,19 +23,11 @@
 		<div class="toolbar" data-ui-is-nav-open role="toolbar">
 			<button class="nav-toggler" aria-label="Open/Sluit Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
 
-			<span class="toolbar-title">Basic UI</span>
+			<span class="toolbar-title">Buttons</span>
 
 			<div class="d-flex align-items-center ml-auto">
-				<a class="btn btn-text btn-primary"><i class="mdi mdi-plus-circle"></i><span>Project</span></a>
-				<div class="divider divider-vertical" role="separator"></div>
-
 				<latte-button-dropdown aria-label="Mijn Profiel" icon="account-circle" type="list" v-cloak>
 					<nav class="nav latte-nav-list">
-						<a class="nav-link" href="#"><i class="mdi mdi-account-edit"></i><span>Edit profile</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-key"></i><span>Change password</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-security-account"></i><span>My sessions</span></a>
-						<a class="nav-link" href="#"><i class="mdi mdi-settings"></i><span>Settings</span></a>
-						<div class="divider divider-horizontal"></div>
 						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
 						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
 						<div class="divider divider-horizontal"></div>
@@ -45,24 +37,11 @@
 			</div>
 		</div>
 
-		<div id="drawer" class="has-secondary" data-ui-is-nav-open role="menu">
+		<div id="drawer" data-ui-is-nav-open role="menu">
 			<nav class="nav" id="drawer-primary">
-				<a href="#" class="nav-item" aria-label="Home" role="menuitem" data-tooltip="Home" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
-				<a href="#" class="nav-item" aria-label="Partners" role="menuitem" data-tooltip="Partners" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
-				<a href="#" class="nav-item" aria-label="Contacts" role="menuitem" data-tooltip="Contacts" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
-				<a href="#" class="nav-item active" aria-label="Projects" role="menuitem" data-tooltip="Projects" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
-				<a href="#" class="nav-item" aria-label="Finance" role="menuitem" data-tooltip="Finance" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
-				<a href="#" class="nav-item" aria-label="Hosting" role="menuitem" data-tooltip="Hosting" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-cloud"></i></a>
+				<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
 				<div class="divider divider-horizontal mt-auto" role="separator"></div>
-				<a href="#" class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
-			</nav>
-			<nav class="nav latte-nav-list" id="drawer-secondary">
-				<div class="section">Projects</div>
-				<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projects</span></a>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Ongoing</span><span class="badge">10</span></a>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Archive</span></a>
-				<div class="divider divider-horizontal" role="separator"></div>
-				<a href="#" target="_self" class="nav-link" role="menuitem"><span>New project</span></a>
+				<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
 			</nav>
 		</div>
 

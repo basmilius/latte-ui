@@ -42,6 +42,7 @@ async function build()
 		output: {
 			file: "dist/latte.js",
 			format: "iife",
+			indent: false,
 			sourcemap: true
 		},
 		plugins: [

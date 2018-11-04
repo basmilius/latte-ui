@@ -21,6 +21,7 @@
 	margin: 0;
 	padding: var(--btn-padding, 0);
 	align-items: center;
+	flex-shrink: 0;
 	justify-content: center;
 	border: 0;
 	border-radius: var(--border-radius);

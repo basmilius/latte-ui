@@ -6,6 +6,7 @@
 	"scripts": {
 		"build": "node build/build.js",
 		"postinstall": "npm run build",
+		"watch": "node build/watch.js",
 		"watch:css": "node build/watch-css.js"
 	},
 	"repository": {

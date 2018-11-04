@@ -12,10 +12,13 @@
 	--branding-logo: url(/resource/image/branding/logo.svg);
 	--border-radius: #{$border-radius};
 
+	--default-light: 255, 255, 255;
+	--default-dark: 25, 26, 28;
+
 	@each $type, $color in $theme-colors
 	{
 		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
-		--color-#{$type}-foreground: #{dark-or-light($color, var(--color-dark), var(--color-light))};
+		--color-#{$type}-foreground: #{dark-or-light($color, var(--default-dark), var(--default-light))};
 	}
 
 	--ease-acceleration-curve: #{$ease-acceleration-curve};
