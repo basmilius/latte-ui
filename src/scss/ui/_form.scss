@@ -92,6 +92,11 @@ label.col-form-label
 	{
 		background-color: rgba(0, 0, 0, .025);
 	}
+
+	option
+	{
+		background: var(--panel-background);
+	}
 }
 
 .form-control,
