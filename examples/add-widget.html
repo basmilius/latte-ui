@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Add Widget &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="nav-toggler" aria-label="Open/Sluit Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+
+			<span class="toolbar-title">Dashboard</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Manage modules..." data-tooltip-class="tooltip-bottom tooltip-contain" onclick="Latte.overlays.open('modules')"><i class="mdi mdi-power-plug"></i></button>
+				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Add widget..." data-tooltip-class="tooltip-bottom tooltip-contain" onclick="Latte.overlays.open('add-widget')"><i class="mdi mdi-plus-circle-outline"></i></button>
+				<div class="divider divider-vertical"></div>
+				<latte-button-dropdown aria-label="Mijn Profiel" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<div id="drawer" data-ui-is-nav-open role="menu">
+			<nav class="nav" id="drawer-primary">
+				<a class="nav-item active" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+				<div class="divider divider-horizontal mt-auto" role="separator"></div>
+				<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+			</nav>
+		</div>
+
+		<div class="content">
+
+			<latte-overlay name="modules" :opened="true">
+
+				<div class="panel" style="width: 960px">
+					<div class="panel-header">
+						<span class="panel-title">Module Store</span>
+						<button class="btn btn-text btn-icon btn-dark ml-auto" onclick="Latte.overlays.close('modules')"><i class="mdi mdi-window-close"></i></button>
+					</div>
+					<div class="row no-gutters align-items-stretch">
+						<div class="col-auto" style="width: 300px; border-right: 2px solid var(--outline-color-secondary)">
+
+							<div class="panel-body">
+								<input type="search" class="form-control" placeholder="Search&hellip;">
+							</div>
+							<nav class="nav nav-list pt-0">
+								<a class="nav-link active"><i class="mdi mdi-star"></i><span>Populair</span></a>
+								<a class="nav-link"><i class="mdi mdi-new-box"></i><span>New &amp; updated</span></a>
+								<a class="nav-link"><i class="mdi mdi-check-circle"></i><span>Installed</span><span class="badge">7</span></a>
+								<div class="divider divider-horizontal"></div>
+								<div class="section">Categories</div>
+								<a class="nav-link"><span>CMS</span></a>
+								<a class="nav-link"><span>Management</span></a>
+								<a class="nav-link"><span>Communication</span></a>
+								<a class="nav-link"><span>Utilities</span></a>
+								<a class="nav-link"><span>Widgets</span></a>
+							</nav>
+
+						</div>
+						<div class="col" style="background: var(--main-background)">
+
+							<div class="panel-body">
+								B
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			</latte-overlay>
+
+			<latte-overlay name="add-widget">
+
+				<div class="panel" style="width: 960px">
+					<div class="panel-header">
+						<span class="panel-title">Add Widget</span>
+						<button class="btn btn-text btn-icon btn-dark ml-auto" onclick="Latte.overlays.close('add-widget')"><i class="mdi mdi-window-close"></i></button>
+					</div>
+					<div class="row no-gutters align-items-stretch">
+						<div class="col-auto" style="width: 300px; border-right: 2px solid var(--outline-color-secondary)">
+
+							<div class="panel-body">
+								<input type="search" class="form-control" placeholder="Search&hellip;">
+							</div>
+							<nav class="nav nav-list pt-0">
+								<div class="section">Categories</div>
+								<a class="nav-link"><span>All</span></a>
+								<a class="nav-link"><span>Time &amp; calendar</span></a>
+								<a class="nav-link"><span>Status &amp; uptime</span></a>
+								<a class="nav-link active"><span>Utilities</span></a>
+								<div class="divider divider-horizontal"></div>
+								<a class="nav-link"><span>Hosting</span></a>
+								<a class="nav-link"><span>Finance</span></a>
+								<a class="nav-link"><span>Projects</span></a>
+								<a class="nav-link"><span>Relations</span></a>
+							</nav>
+
+						</div>
+						<div class="col" style="background: var(--main-background)">B</div>
+					</div>
+				</div>
+
+			</latte-overlay>
+
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>
