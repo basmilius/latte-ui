@@ -1,5 +1,6 @@
-const rollup = require("rollup");
+const ncp = require("ncp").ncp;
 const postcss = require("rollup-plugin-postcss");
+const rollup = require("rollup");
 
 const autoprefixer = require("autoprefixer");
 
@@ -30,7 +31,7 @@ const watcher = rollup.watch({
 
 watcher.on("event", evt =>
 {
-	switch(evt.code)
+	switch (evt.code)
 	{
 		case "START":
 			console.log("watch:css", "Watching src/scss...");
@@ -41,6 +42,7 @@ watcher.on("event", evt =>
 			break;
 
 		case "BUNDLE_END":
+			ncp("src/image", "dist/image");
 			console.log("watch:css", `Compiled successfully in ${evt.duration}ms: ${evt.input}`);
 			break;
 

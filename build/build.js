@@ -1,4 +1,5 @@
 const fs = require("fs");
+const ncp = require("ncp").ncp;
 const path = require("path");
 const postcss = require("rollup-plugin-postcss");
 const rollup = require("rollup");
@@ -90,6 +91,9 @@ async function build()
 		format: "iife",
 		sourcemap: true
 	});
+
+	console.log("[build]", "Copying images...");
+	await new Promise(resolve => ncp("src/image", "dist/image", () => resolve()));
 }
 
 build()
