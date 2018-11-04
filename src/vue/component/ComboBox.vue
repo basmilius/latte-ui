@@ -8,7 +8,7 @@
 		<button class="btn btn-text btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi mdi-chevron-down"></i></button>
 
 		<div class="dropdown" :class="{'is-open': isDropdownOpened}" role="combobox">
-			<nav class="nav latte-nav-list">
+			<nav class="nav nav-list">
 				<slot></slot>
 			</nav>
 		</div>

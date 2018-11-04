@@ -6,7 +6,7 @@
 			<input type="search" :name="name" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 		</div>
 		<div class="dropdown" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
-			<nav class="nav latte-nav-list">
+			<nav class="nav nav-list">
 
 				<template v-for="(suggestion, index) in suggestionsFiltered">
 					<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">

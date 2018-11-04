@@ -7,11 +7,13 @@
  * LICENSE file that was distributed with this source code.
  */
 
-nav.nav.nav-tabs
+.nav.nav-tabs
 {
 	align-items: stretch;
 	flex-flow: row;
 	justify-content: flex-start;
+
+	--tabs-accent: var(--color-primary);
 
 	&.is-over-outline
 	{
@@ -19,34 +21,27 @@ nav.nav.nav-tabs
 		z-index: 1;
 	}
 
-	a.nav-link
+	.nav-link
 	{
 		position: relative;
 		display: flex;
-		margin: 2px 9px 0 9px;
 		height: auto;
 		min-height: 45px;
-		padding: 12px 3px;
+		padding: 9px 6px;
 		align-items: center;
 		flex: 0 0 auto;
 		flex-flow: column;
 		justify-content: center;
-		border-bottom: 2px solid transparent;
 		color: var(--main-foreground);
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;
-		transition: all 90ms $ease-swift-out;
+		transition: all 90ms var(--ease-swift-out);
 		will-change: border-color, opacity;
 
-		i.mdi
+		+ .nav-link
 		{
-			margin: 0;
-		}
-
-		span
-		{
-			margin: 0;
+			margin-left: 18px;
 		}
 
 		i.mdi + span
@@ -56,25 +51,32 @@ nav.nav.nav-tabs
 
 		&:hover
 		{
-			border-color: RGB(var(--color-primary));
+			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
 			opacity: .8;
 		}
 
 		&.is-active
 		{
-			border-color: RGB(var(--color-primary));
+			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
 			opacity: 1;
 		}
 	}
 
-	&.tabs-fill a.nav-link
+	&.tabs-fill .nav-link
 	{
 		flex: 1 1 auto;
 	}
 }
 
-div.toolbar nav.nav.nav-tabs a.nav-link
+div.panel > .nav.nav-tabs
 {
-	font-size: 1rem;
-}
+	padding: 0 18px;
+	border-bottom: 2px solid var(--outline-color-secondary);
 
+	.nav-link
+	{
+		height: 54px;
+		margin-bottom: -2px;
+		z-index: 1;
+	}
+}

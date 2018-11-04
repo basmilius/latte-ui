@@ -59,7 +59,7 @@
 			<td class="actions" v-if="actions.length > 0">
 				<div class="column-content flex-row align-items-center pl-0">
 					<latte-button-dropdown icon="dots-vertical" :small="true">
-						<nav class="nav latte-nav-list">
+						<nav class="nav nav-list">
 							<div v-for="(action, actionKey) in actions" :id="createAction(action, row, rowKey)" :key="actionKey"></div>
 						</nav>
 					</latte-button-dropdown>

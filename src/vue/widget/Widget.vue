@@ -11,7 +11,7 @@
 				<slot name="title"></slot>
 
 				<latte-button-dropdown icon="dots-vertical" :small="true" type="list">
-					<nav class="nav latte-nav-list">
+					<nav class="nav nav-list">
 						<slot name="widget_menu"></slot>
 						<a class="nav-link" @click="removeWidget()"><i class="mdi mdi-delete"></i> <span>Delete widget</span></a>
 					</nav>

@@ -8,7 +8,7 @@
 				<span class="panel-title">{{ user.name }}</span>
 			</div>
 
-			<nav class="nav latte-nav-list">
+			<nav class="nav nav-list">
 				<a href="#" class="nav-link"><i class="mdi mdi-phone"></i><span>Call {{ user["firstname"] }}</span></a>
 				<a href="#" class="nav-link"><i class="mdi mdi-email"></i><span>Email {{ user["firstname"] }}</span></a>
 				<a :href="profileUrl" class="nav-link"><i class="mdi mdi-account-card-details"></i><span>View profile</span></a>

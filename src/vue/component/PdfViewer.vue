@@ -7,7 +7,7 @@
 
 		<span class="spinner"></span>
 
-		<nav class="nav latte-nav-list latte-context-menu">
+		<nav class="nav nav-list latte-context-menu">
 			<a class="nav-link" :href="source" target="_blank"><i class="mdi mdi-open-in-new"></i> <span>{{ i18n.openInNewTab }}</span></a>
 			<a class="nav-link" @click="download"><i class="mdi mdi-download"></i> <span>{{ i18n.download }}</span></a>
 			<a class="nav-link" @click="print"><i class="mdi mdi-printer"></i> <span>{{ i18n.print }}</span></a>

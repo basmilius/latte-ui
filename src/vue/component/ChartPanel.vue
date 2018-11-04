@@ -4,7 +4,7 @@
 		<div class="panel-header">
 			<span class="panel-title">{{ name }}</span>
 			<latte-button-dropdown class="ml-auto" icon="dots-vertical" type="list">
-				<nav class="nav latte-nav-list">
+				<nav class="nav nav-list">
 					<a @click="$refs['chart'].loadChart()" class="nav-link"><i class="mdi mdi-refresh"></i> <span>Refresh chart</span></a>
 				</nav>
 			</latte-button-dropdown>

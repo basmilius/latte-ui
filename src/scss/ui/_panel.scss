@@ -182,15 +182,15 @@ a.panel
 	margin-right: -12px;
 }
 
-.panel-header nav.nav.nav-tabs a.nav-link
-{
-	min-height: 73px;
-}
-
-.panel-header nav.nav.nav-tabs:last-child
+.panel-header .nav.nav-tabs
 {
 	margin-bottom: -2px;
-	margin-right: -15px;
+	z-index: 1;
+}
+
+.panel-header .nav.nav-tabs .nav-link
+{
+	min-height: 75px;
 }
 
 .panel-rich-media-gutter + .panel-body
