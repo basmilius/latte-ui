@@ -19,16 +19,16 @@ export const Buttons = {
 };
 
 export const ButtonsDescribed = [
-	{id: Buttons.OK, icon: "check-circle", label: "OK", type: "primary", weight: 1},
-	{id: Buttons.CANCEL, icon: null, label: "Cancel", type: "light", weight: 0},
-	{id: Buttons.YES, icon: "check-circle", label: "Yes", type: "primary", weight: 1},
-	{id: Buttons.NO, icon: null, label: "No", type: "light", weight: 0},
-	{id: Buttons.UPDATE, icon: "check-circle", label: "Update", type: "primary", weight: 1},
-	{id: Buttons.SAVE, icon: "check-circle", label: "Save", type: "primary", weight: 1},
-	{id: Buttons.REMOVE, icon: "alert-circle", label: "Remove", type: "error", weight: 1},
-	{id: Buttons.CREATE, icon: "check-circle", label: "Create", type: "primary", weight: 1},
-	{id: Buttons.GO, icon: "arrow-right-bold-circle", label: "Go", type: "primary", weight: 1},
-	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", type: "primary", weight: 1}
+	{id: Buttons.OK, icon: "check-circle", label: "OK", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.CANCEL, icon: null, label: "Cancel", classes: ["btn-text", "btn-dark"], weight: 0},
+	{id: Buttons.YES, icon: "check-circle", label: "Yes", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.NO, icon: null, label: "No", classes: ["btn-text", "btn-dark"], weight: 0},
+	{id: Buttons.UPDATE, icon: "check-circle", label: "Update", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.SAVE, icon: "check-circle", label: "Save", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.REMOVE, icon: "alert-circle", label: "Remove", classes: "error", weight: 1},
+	{id: Buttons.CREATE, icon: "check-circle", label: "Create", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.GO, icon: "arrow-right-bold-circle", label: "Go", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", classes: ["btn-contained", "btn-primary"], weight: 1}
 ];
 
 export function createMessage(title, message, buttons, prompt = false)
@@ -71,7 +71,7 @@ export function createMessage(title, message, buttons, prompt = false)
 
 		for (const button of buttons)
 		{
-			const el = createElement("button", el => el.classList.add("btn", "btn-contained", `btn-${button.type}`));
+			const el = createElement("button", el => el.classList.add("btn", "btn-contained", ...button.classes));
 
 			if (button.icon !== null)
 				el.appendChild(createElement("i", i => i.classList.add("mdi", `mdi-${button.icon}`)));

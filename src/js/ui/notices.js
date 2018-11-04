@@ -39,7 +39,7 @@ export function create(message, type, dismissible = true)
 	if (dismissible)
 	{
 		const dismiss = document.createElement("button");
-		dismiss.classList.add("btn", "btn-icon", "btn-dark", "notice-dismiss");
+		dismiss.classList.add("btn", "btn-text", "btn-icon", "btn-dark", "notice-dismiss");
 
 		const icon = document.createElement("i");
 		icon.classList.add("mdi", "mdi-close");
