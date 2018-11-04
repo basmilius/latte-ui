@@ -112,9 +112,9 @@
 			background: RGB(var(--color-primary));
 			color: RGB(var(--color-primary-foreground));
 
-			--badge-bg: RGBA(var(--color-light), .1);
-			--badge-bg-hover: RGBA(var(--color-light), .2);
-			--badge-color: RGB(var(--color-light));
+			--badge-bg: RGBA(var(--color-primary-foreground), .1);
+			--badge-bg-hover: RGBA(var(--color-primary-foreground), .2);
+			--badge-color: RGB(var(--color-primary-foreground));
 		}
 
 		&.active

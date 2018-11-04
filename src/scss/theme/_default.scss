@@ -27,10 +27,15 @@
 
 	--form-field-outline: rgba(0, 0, 0, .05);
 
+	--overlay-background: rgba(var(--color-dark), .85);
+
 	--panel-background: #ffffff;
 	--panel-elevation: #{elevation-generate(3)};
 	--panel-elevation-hover: #{elevation-generate(9)};
 	--panel-spinner-background: rgba(255, 255, 255, .9);
+
+	--tooltip-background: rgba(var(--color-dark), .9);
+	--tooltip-foreground: rgb(var(--color-dark-foreground));
 
 	--nav-section-foreground: rgba(0, 0, 0, .25);
 }

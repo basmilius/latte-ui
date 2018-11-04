@@ -21,7 +21,7 @@ div.latte-overlay
 	padding: 48px;
 	align-items: flex-start;
 	justify-content: flex-start;
-	background: RGBA(var(--color-dark), .85);
+	background: var(--overlay-background);
 	opacity: 1;
 	overflow-y: auto;
 	transition: all $anim-duration var(--ease-swift-out);
