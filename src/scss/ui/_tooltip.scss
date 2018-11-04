@@ -17,11 +17,11 @@ div.tooltip
 	left: 0;
 	max-width: 300px;
 	padding: 12px 18px;
-	background: rgba(0, 0, 0, .9);
+	background: RGBA(var(--color-dark), .9);
 	border-radius: var(--border-radius);
-	color: white;
+	color: RGB(var(--color-dark-foreground));
 	pointer-events: none;
-	transition: opacity 240ms $ease-swift-out;
+	transition: opacity 240ms var(--ease-swift-out);
 	will-change: opacity;
 	z-index: 1000000000;
 
@@ -30,7 +30,7 @@ div.tooltip
 		position: absolute;
 		display: block;
 		content: "";
-		color: rgba(0, 0, 0, .9);
+		color: RGBA(var(--color-dark), .9);
 		border: $tooltip-arrow solid transparent;
 		transition: inherit;
 		will-change: border, color;
@@ -93,16 +93,16 @@ div.tooltip
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
 {
-	div.tooltip.tooltip-#{$type}
+	.tooltip.tooltip-#{$type}
 	{
-		background: theme-color-var($type);
-		color: theme-color-var($type, text);
+		background: RGB(var(--color-#{$type}));
+		color: RGB(var(--color-#{$type}-foreground));
 
 		&::before
 		{
-			color: theme-color-var($type);
+			color: RGB(var(--color-#{$type}));
 		}
 	}
 }

@@ -12,13 +12,18 @@
 	--branding-logo: url(/resource/image/branding/logo.svg);
 	--border-radius: #{$border-radius};
 
+	@each $type, $color in $theme-colors
+	{
+		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
+		--color-#{$type}-foreground: #{dark-or-light($color, var(--color-dark), var(--color-light))};
+	}
+
 	--ease-acceleration-curve: #{$ease-acceleration-curve};
 	--ease-deceleration-curve: #{$ease-deceleration-curve};
 	--ease-sharp-curve: #{$ease-sharp-curve};
 	--ease-standard-curve: #{$ease-standard-curve};
 	--ease-swift-out: #{$ease-swift-out};
 
-	@include make-color-vars;
 	@include make-typography-vars;
 }
 

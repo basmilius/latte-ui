@@ -76,10 +76,10 @@ input[type=checkbox].checkbox
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
 {
-	input[type=checkbox].checkbox.checkbox-#{$type}
+	input[type=checkbox].checkbox-#{$type}
 	{
-		color: theme-color-var($type);
+		color: RGB(var(--color-#{$type}));
 	}
 }

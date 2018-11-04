@@ -53,15 +53,15 @@
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
 {
 	.toggle-button-#{$type}:checked
 	{
-		color: theme-color-var($type);
+		color: RGB(var(--color-#{$type}));
 
 		&::before
 		{
-			color: theme-color-var($type, text);
+			color: RGB(var(--color-#{$type}-foreground));
 		}
 	}
 }

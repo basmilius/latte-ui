@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$font-family-sans-serif: "proxima-nova" !default;
+$font-family-sans-serif: "proxima-nova", sans-serif !default;
 $font-family-serif: Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base: var(--font-family-sans-serif) !default;

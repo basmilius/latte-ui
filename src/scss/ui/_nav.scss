@@ -102,29 +102,29 @@
 		transition: all 90ms $ease-standard-curve;
 		will-change: background, color;
 
-		--badge-bg: #{theme-color-alpha(primary, .1, darker-1)};
-		--badge-bg-hover: #{theme-color-alpha(primary, .2, darker-1)};
-		--badge-color: #{theme-color-var(primary)};
+		--badge-bg: RGBA(var(--color-primary), .1);
+		--badge-bg-hover: RGBA(var(--color-primary), .2);
+		--badge-color: RGB(var(--color-primary));
 
 		&.is-hover,
 		&:hover
 		{
-			background: theme-color-var(primary);
-			color: theme-color-var(primary, text);
+			background: RGB(var(--color-primary));
+			color: RGB(var(--color-primary-foreground));
 
-			--badge-bg: #{theme-color-alpha(light, .1, darker-1)};
-			--badge-bg-hover: #{theme-color-alpha(light, .2, darker-1)};
-			--badge-color: #{theme-color-var(light)};
+			--badge-bg: RGBA(var(--color-light), .1);
+			--badge-bg-hover: RGBA(var(--color-light), .2);
+			--badge-color: RGB(var(--color-light));
 		}
 
 		&.active
 		{
 			background: transparent;
-			color: theme-color-var(primary);
+			color: RGB(var(--color-primary));
 
-			--badge-bg: #{theme-color-alpha(primary, .1, darker-1)};
-			--badge-bg-hover: #{theme-color-alpha(primary, .2, darker-1)};
-			--badge-color: #{theme-color-var(primary)};
+			--badge-bg: RGBA(var(--color-primary), .1);
+			--badge-bg-hover: RGBA(var(--color-primary), .2);
+			--badge-color: RGB(var(--color-primary));
 		}
 
 		span.badge

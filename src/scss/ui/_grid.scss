@@ -29,8 +29,8 @@ div.latte-grid-item
 		right: 0;
 		bottom: 0;
 		content: "";
-		background: rgba(theme-color-var(primary, null, true), .03);
-		outline: 2px dashed rgba(theme-color-var(primary, null, true), .2);
+		background: RGBA(var(--color-primary), .03);
+		outline: 2px dashed RGBA(var(--color-primary), .2);
 		outline-offset: 2px;
 	}
 

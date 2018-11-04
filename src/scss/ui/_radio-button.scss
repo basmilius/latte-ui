@@ -54,10 +54,10 @@ input[type=radio].radio-button
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
 {
-	.radio-button-#{$type}
+	.radio-button.radio-button-#{$type}
 	{
-		color: theme-color-var($type);
+		color: RGB(var(--color-#{$type}));
 	}
 }

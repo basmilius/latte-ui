@@ -30,7 +30,7 @@ div.tree-view
 			flex-flow: row nowrap;
 			justify-content: flex-start;
 			cursor: pointer;
-			transition: all 90ms $ease-standard-curve;
+			transition: all 90ms var(--ease-standard-curve);
 			will-change: background, box-shadow;
 
 			button
@@ -41,7 +41,7 @@ div.tree-view
 
 				i.mdi
 				{
-					transition: transform 150ms $ease-swift-out;
+					transition: transform 150ms var(--ease-swift-out);
 				}
 			}
 
@@ -53,7 +53,7 @@ div.tree-view
 				margin: 0 6px 0 0;
 				width: 24px;
 				flex: 0 0 24px;
-				color: theme-color-var(dark);
+				color: RGB(var(--color-dark));
 				font-size: 24px;
 				line-height: 24px;
 
@@ -75,7 +75,7 @@ div.tree-view
 
 			&:hover
 			{
-				background: rgba(theme-color-var(dark, null, true), .05);
+				background: RGBA(var(--color-dark), .05);
 			}
 
 			&.is-expanded button i.mdi

@@ -38,7 +38,7 @@
 			},
 
 			buttonClass: {
-				default: "btn-icon btn-dark",
+				default: "btn-text btn-icon btn-dark",
 				required: false,
 				type: String
 			},

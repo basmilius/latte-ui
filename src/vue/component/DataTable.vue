@@ -8,7 +8,7 @@
 				<div class="column-content flex-row align-items-center justify-content-start">
 					<span>{{ column.label }}</span>
 
-					<button v-if="show.sorting && column.is_sortable" class="btn btn-icon btn-dark btn-sm ml-1" @click="sortBy(column.field)">
+					<button v-if="show.sorting && column.is_sortable" class="btn btn-text btn-icon btn-dark btn-sm ml-1" @click="sortBy(column.field)">
 						<i class="mdi latte-sorting none" v-if="sort.by !== column.field"></i>
 						<i class="mdi latte-sorting down" v-else-if="sort.order === 'ASC'"></i>
 						<i class="mdi latte-sorting up" v-else-if="sort.order === 'DESC'"></i>
@@ -33,7 +33,7 @@
 					<template v-for="(filter, filterKey) of filters">
 						<span class="badge mr-1" :class="filter.class">
 							<span>{{ filter.label }}</span>
-							<button class="btn btn-icon" @click="removeFilter($event, filterKey)"><i class="mdi mdi-close"></i></button>
+							<button class="btn btn-text btn-icon" @click="removeFilter($event, filterKey)"><i class="mdi mdi-window-close"></i></button>
 						</span>
 					</template>
 

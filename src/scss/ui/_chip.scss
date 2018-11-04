@@ -13,9 +13,9 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: flex-start;
-	background: theme-color-alpha(primary, .05);
+	background: RGBA(var(--color-primary), .05);
 	border-radius: 999px;
-	box-shadow: 0 0 0 1px theme-color-alpha(primary, .1);
+	box-shadow: 0 0 0 1px RGBA(var(--color-primary), .1);
 	vertical-align: middle;
 
 	img.avatar
@@ -49,6 +49,6 @@ a.chip
 
 	&:hover
 	{
-		background: theme-color-alpha(primary, .1);
+		background: RGBA(var(--color-primary), .1);
 	}
 }

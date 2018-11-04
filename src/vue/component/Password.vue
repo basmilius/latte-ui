@@ -2,7 +2,7 @@
 
 	<div class="form-control">
 		<input :type="fieldType" :autocomplete="autocomplete" class="form-control-plain" v-bind="bindings" v-model="password"/>
-		<button class="btn btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi" :class="iconClass"></i></button>
+		<button class="btn btn-text btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi" :class="iconClass"></i></button>
 	</div>
 
 </template>

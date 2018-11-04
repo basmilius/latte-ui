@@ -8,8 +8,8 @@
 			</div>
 			<div class="col d-flex align-self-center mt-3 mt-lg-0 ml-0 ml-lg-auto" style="flex-grow:0">
 				<button type="button" class="btn btn-contained btn-primary" @click="selectFile"><i class="mdi mdi-plus-circle"></i><span>{{ i18n.select }}</span></button>
-				<button type="button" class="btn btn-icon btn-dark" @click="remove" v-if="currentFile !== null && previewUrl === null"><i class="mdi mdi-delete"></i></button>
-				<button type="button" class="btn btn-icon btn-dark" @click="cancel" v-if="previewUrl !== null"><i class="mdi mdi-close"></i></button>
+				<button type="button" class="btn btn-text btn-icon btn-dark" @click="remove" v-if="currentFile !== null && previewUrl === null"><i class="mdi mdi-delete"></i></button>
+				<button type="button" class="btn btn-text btn-icon btn-dark" @click="cancel" v-if="previewUrl !== null"><i class="mdi mdi-close"></i></button>
 			</div>
 		</div>
 		<div class="drop-here" :class="{'is-droppable': isDroppable}">{{ i18n.dropHere }}</div>

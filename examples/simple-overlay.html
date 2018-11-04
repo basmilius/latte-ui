@@ -68,7 +68,7 @@
 
 		<div class="content">
 			<div class="row">
-				<div class="col-12 col-lg-6">
+				<div class="col-12 col-lg-12">
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Hello world!</span></div>
@@ -77,53 +77,26 @@
 						</div>
 					</div>
 
-					<div class="panel">
-						<table class="table">
-							<thead>
-							<tr>
-								<th><div class="column-content">Column</div></th>
-								<th><div class="column-content">Column</div></th>
-								<th><div class="column-content">Column</div></th>
-								<th><div class="column-content">Column</div></th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-							</tr>
-							<tr>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-							</tr>
-							<tr>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-								<td><a class="column-content">Column</a></td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
-
-				</div>
-				<div class="col-12 col-lg-6">
-
-					<div class="panel panel-toggleable is-closed">
-						<div class="panel-header">
-							<span class="panel-title">Panel</span>
-						</div>
-						<div class="panel-body d-none">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias dignissimos dolore in, nesciunt perferendis quo ut vitae! Assumenda cum ducimus enim excepturi maiores nesciunt nihil obcaecati temporibus totam. Autem, obcaecati!
-						</div>
-					</div>
-
 				</div>
 			</div>
+
+			<latte-overlay name="example" :opened="true">
+
+				<div class="panel" style="width: 540px">
+					<div class="panel-header">
+						<span class="panel-title">Simple overlay</span>
+						<button class="btn btn-text btn-icon btn-dark ml-auto"><i class="mdi mdi-window-close"></i></button>
+					</div>
+					<div class="panel-body">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dignissimos eveniet pariatur possimus! Doloremque dolores nam totam? Aliquam asperiores doloribus est fugiat minima necessitatibus pariatur praesentium qui rem, voluptatibus. Laudantium?
+					</div>
+					<div class="panel-footer">
+						<button class="btn btn-text btn-dark ml-auto"><span>Cancel</span></button>
+						<button class="btn btn-contained btn-primary"><i class="mdi mdi-check-circle"></i><span>Save</span></button>
+					</div>
+				</div>
+
+			</latte-overlay>
 		</div>
 
 	</main>

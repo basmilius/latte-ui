@@ -79,8 +79,8 @@ div.latte-datepicker-root
 
 			&:hover
 			{
-				background: rgba(theme-color-var(primary, null, true), .09);
-				color: theme-color-var(dark);
+				background: RGBA(var(--color-primary), .09);
+				color: var(--main-foreground);
 			}
 		}
 
@@ -101,7 +101,7 @@ div.latte-datepicker-root
 
 			&:hover
 			{
-				background: rgba(theme-color-var(primary, null, true), .09);
+				background: RGBA(var(--color-primary), .09);
 				color: var(--main-foreground);
 			}
 
@@ -176,19 +176,19 @@ div.latte-datepicker-root
 
 				&:hover
 				{
-					background: rgba(theme-color-var(primary, null, true), .12);
+					background: RGBA(var(--color-primary), .12);
 				}
 
 				&.is-today
 				{
-					color: var(--color-primary);
+					color: RGB(var(--color-primary));
 					font-style: italic;
 				}
 
 				&.is-selected
 				{
-					background: var(--color-primary);
-					color: var(--color-primary-text);
+					background: RGB(var(--color-primary));
+					color: RGB(var(--color-primary-foreground));
 				}
 			}
 		}
@@ -225,13 +225,13 @@ div.latte-datepicker-root
 
 				&:hover
 				{
-					background: var(--color-primary);
-					color: var(--color-primary-text);
+					background: RGB(var(--color-primary));
+					color: RGB(var(--color-primary-foreground));
 				}
 
 				&.is-selected
 				{
-					color: var(--color-primary);
+					color: RGB(var(--color-primary));
 				}
 			}
 		}
@@ -268,13 +268,13 @@ div.latte-datepicker-root
 
 				&:hover
 				{
-					background: var(--color-primary);
-					color: var(--color-primary-text);
+					background: RGB(var(--color-primary));
+					color: RGB(var(--color-primary-foreground));
 				}
 
 				&.is-selected
 				{
-					color: var(--color-primary);
+					color: RGB(var(--color-primary));
 				}
 			}
 		}

@@ -7,24 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-
-@mixin make-color-vars()
-{
-	@each $type, $color in $theme-colors
-	{
-		$variants: make-color-variants($color);
-
-		--color-#{$type}: #{$color};
-		--color-#{$type}-rgb: #{red($color)}, #{green($color)}, #{blue($color)};
-
-		@each $variant, $color in $variants
-		{
-			--color-#{$type}-#{$variant}: #{$color};
-			--color-#{$type}-#{$variant}-rgb: #{red($color)}, #{green($color)}, #{blue($color)};
-		}
-	}
-}
-
 @mixin make-typography-vars()
 {
 	--font-family-sans-serif: #{$font-family-sans-serif};

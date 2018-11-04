@@ -23,18 +23,18 @@ div.latte-drop-container
 		bottom: 0;
 		align-items: center;
 		justify-content: center;
-		background: rgba(theme-color-var(primary, lighter-3, true), .5);
-		color: theme-color-var(primary);
+		background: RGBA(var(--color-primary), .5);
+		color: RGB(var(--color-primary));
 		font:
 		{
 			size: 1.25rem;
 			weight: 500;
 		}
 		opacity: 0;
-		outline: 2px dashed rgba(theme-color-var(primary, null, true), .24);
+		outline: 2px dashed RGBA(var(--color-primary) .24);
 		outline-offset: 3px;
 		pointer-events: none;
-		transition: opacity 90ms $ease-swift-out;
+		transition: opacity 90ms var(--ease-swift-out);
 		z-index: 10;
 
 		&.is-droppable
@@ -52,7 +52,7 @@ div.latte-drop-container
 		right: 0;
 		bottom: 0;
 		background: rgba(255, 255, 255, .9);
-		color: var(--color-primary);
+		color: RGB(var(--color-primary));
 		font-size: 2.5rem;
 		z-index: 2;
 	}

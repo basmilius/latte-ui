@@ -85,7 +85,7 @@ label.col-form-label
 
 	&:focus
 	{
-		box-shadow: 0 0 0 2px theme-color-alpha(primary, .75);
+		box-shadow: 0 0 0 2px RGBA(var(--color-primary), .75);
 	}
 
 	&[disabled]
@@ -139,7 +139,7 @@ label.col-form-label
 	&:focus,
 	&:focus-within
 	{
-		box-shadow: 0 0 0 2px theme-color-alpha(primary, .75);
+		box-shadow: 0 0 0 2px RGBA(var(--color-primary), .75);
 	}
 }
 

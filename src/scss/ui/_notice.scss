@@ -93,7 +93,7 @@ div.notice
 {
 	.notice-#{$type}
 	{
-		--notice-bg: #{theme-color-var($type)};
+		--notice-bg: RGB(var(--color-#{$type}));
 		--notice-icon: "#{if(map-has-key($notice-icons, $type), #{map-get($notice-icons, $type)}, #{map-get($notice-icons, default)})}";
 	}
 }

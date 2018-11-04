@@ -50,15 +50,15 @@ nav.pagination
 
 		&:hover
 		{
-			background: theme-color-var(dark);
-			color: theme-color-var(dark, text);
+			background: RGB(var(--color-dark));
+			color: RGB(var(--color-dark-foreground));
 			opacity: 1;
 		}
 
 		&.is-current
 		{
-			background: theme-color-var(primary);
-			color: theme-color-var(primary, text);
+			background: RGB(var(--color-primary));
+			color: RGB(var(--color-primary-foreground));
 			cursor: default;
 			opacity: 1;
 			pointer-events: none;

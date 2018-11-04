@@ -2,6 +2,7 @@
 
 import { dispatch, on } from "../actions";
 import { getCookie, setCookie } from "../util/cookies";
+import { timeout } from "../core";
 
 export function createRootComponent()
 {
@@ -35,7 +36,6 @@ export function createRootComponent()
 				const {themeId} = data;
 
 				document.body.dataset.theme = themeId;
-
 				setCookie("$ui:theme", themeId);
 			}
 

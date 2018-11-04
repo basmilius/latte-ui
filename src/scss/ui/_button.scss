@@ -9,139 +9,94 @@
 
 .btn
 {
-	--btn-bg-pvt: var(--btn-bg, transparent);
-	--btn-bg-active-pvt: var(--btn-bg-active, transparent);
-	--btn-bg-hover-pvt: var(--btn-bg-hover, transparent);
-	--btn-color-pvt: var(--btn-color, var(--main-foreground));
+	--btn-background: var(--color-primary);
+	--btn-foreground: var(--color-primary-foreground);
 
 	position: relative;
 	display: inline-flex;
+	appearance: none;
+	height: var(--btn-height, auto);
 	margin: 0;
-	padding: 0;
+	padding: var(--btn-padding, 0);
 	align-items: center;
-	justify-content: center;
-	background: var(--btn-bg-pvt);
-	border: none;
+	justify-content: flex-start;
+	border: 0;
 	border-radius: var(--border-radius);
-	color: var(--btn-color-pvt);
 	cursor: pointer;
-	flex: 0 0 auto;
-	font-weight: 500;
-	outline: none !important;
 	text-align: center;
-	transition: all 90ms $ease-swift-out;
 	vertical-align: middle;
 
-	&:hover,
-	&:focus
-	{
-		background: var(--btn-bg-hover-pvt);
-	}
-
-	&:active,
-	&.is-active
-	{
-		background: var(--btn-bg-active-pvt);
-	}
-
-	+ .btn
+	& + .btn
 	{
 		margin-left: 6px;
-	}
-
-	&[disabled],
-	&.disabled
-	{
-		filter: grayscale(100%);
-		opacity: .5;
-		pointer-events: none;
 	}
 
 	i.mdi
 	{
 		position: relative;
 		display: block;
-		height: 24px;
-		margin: 0 -4px;
-		width: 24px;
+		height: 1em;
+		width: 1em;
+		line-height: 1em;
 		font-size: 24px;
-		line-height: 24px;
 	}
 
 	i.mdi + span
 	{
-		margin-left: 12px;
+		margin-left: 6px;
 	}
 
-	span + i.mdi
+	&.btn-contained
 	{
-		margin-left: 8px;
-	}
+		--btn-height: 36px;
+		--btn-padding: 6px 15px;
 
-	&.btn-icon
-	{
-		height: 36px;
-		width: 36px;
+		background: RGB(var(--btn-background));
+		color: RGB(var(--btn-foreground));
 
-		i.mdi
+		&:hover,
+		&:focus
 		{
-			margin: 0;
+			background: linear-gradient(to top, RGBA(var(--color-dark), .1), RGBA(var(--color-dark), .1)), RGB(var(--btn-background));
 		}
 
-		&.btn-sm
+		&:active
 		{
-			height: 24px;
-			width: 24px;
-
-			i.mdi
-			{
-				font-size: 18px;
-			}
+			background: linear-gradient(to top, RGBA(var(--color-dark), .2), RGBA(var(--color-dark), .2)), RGB(var(--btn-background));
 		}
 	}
 
 	&.btn-text
 	{
-		height: 36px;
-		padding: 0 16px;
-	}
+		--btn-height: 36px;
+		--btn-padding: 6px 15px;
 
-	&.btn-contained
-	{
-		height: 36px;
-		padding: 0 16px;
+		background: transparent;
+		color: RGB(var(--btn-background, var(--color-primary)));
 
-		&.btn-large
+		&:hover,
+		&:focus
 		{
-			height: 54px;
-			padding: 0 24px;
+			background: RGBA(var(--btn-background, var(--color-primary)), .1);
+		}
+
+		&:active
+		{
+			background: RGBA(var(--btn-background, var(--color-primary)), .2);
 		}
 	}
 
-	&.btn-pill
+	&.btn-icon
 	{
-		display: flex;
-		height: 54px;
-		margin: 0;
-		width: 100%;
+		--btn-padding: 6px;
 	}
+}
 
-	@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
+{
+	.btn-#{$type}
 	{
-		&.btn-#{$type}.btn-icon,
-		&.btn-#{$type}.btn-text
-		{
-			--btn-bg-active: #{rgba(theme-color-var($type, null, true), .2)};
-			--btn-bg-hover: #{rgba(theme-color-var($type, null, true), .1)};
-			--btn-color: #{theme-color-var($type)};
-		}
-
-		&.btn-#{$type}.btn-contained
-		{
-			--btn-bg: #{theme-color-var($type)};
-			--btn-bg-active: #{theme-color-var($type, darker-2)};
-			--btn-bg-hover: #{theme-color-var($type, darker-1)};
-			--btn-color: #{theme-color-var($type, text)};
-		}
+		--btn-background: var(--color-#{$type});
+		--btn-foreground: var(--color-#{$type}-foreground);
 	}
 }

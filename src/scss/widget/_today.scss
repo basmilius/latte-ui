@@ -33,7 +33,7 @@ div.widget-today
 		right: 0;
 		bottom: 0;
 		content: "";
-		background: radial-gradient(circle, theme-color-alpha(charocoal, 0.8, darker-3), theme-color-var(charocoal));
+		background: radial-gradient(circle, rgba(0, 0, 0, .8), RGB(var(--color-charocoal)));
 		border-radius: inherit;
 	}
 
@@ -46,7 +46,7 @@ div.widget-today
 		align-items: center;
 		flex-flow: column;
 		justify-content: center;
-		color: theme-color-var(charocoal, text);
+		color: RGB(var(--color-charocoal-foreground));
 	}
 
 	div.date
@@ -60,7 +60,7 @@ div.widget-today
 
 		span.day
 		{
-			color: theme-color-var(primary, lighter-3);
+			color: RGB(var(--color-primary));
 			font-size: 1.3rem;
 			font-weight: 500;
 		}

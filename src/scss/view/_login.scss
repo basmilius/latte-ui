@@ -46,7 +46,7 @@ main.auth-ui
 		{
 			background:
 			{
-				color: theme-color-var(primary);
+				color: RGB(var(--color-primary));
 				image: url(/resource/image/wallpaper/1.jpg);
 				position: left center;
 				repeat: no-repeat;
@@ -57,7 +57,7 @@ main.auth-ui
 
 		&::after
 		{
-			background: linear-gradient(to bottom right, theme-color-alpha(primary, 0.7, lighter-3), theme-color-alpha(primary, 0.85, darker-3));
+			background: linear-gradient(to bottom right, RGBA(var(--color-primary), .7), RGBA(var(--color-primary), .85));
 			z-index: -1;
 		}
 

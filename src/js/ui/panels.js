@@ -19,7 +19,7 @@ export function initializePanel(panel)
 
 	const toggle = document.createElement("button");
 	toggle.setAttribute("type", "button");
-	toggle.classList.add("panel-toggle", "btn", "btn-icon", "btn-dark");
+	toggle.classList.add("panel-toggle", "btn", "btn-text", "btn-icon", "btn-dark");
 
 	if (!hasRightItems)
 		toggle.classList.add("ml-auto");

@@ -10,15 +10,17 @@
 	--outline-color-secondary-rgb: 243, 246, 251;
 
 	--drawer-background-primary: var(--color-dark);
-	--drawer-background-secondary: #ffffff;
+	--drawer-background-secondary: 255, 255, 255;
+	--drawer-elevation: #{elevation-generate(1)};
+	--drawer-foreground-primary: var(--color-dark-foreground);
 	--drawer-outline-primary: rgba(255, 255, 255, .05);
 	--drawer-outline-secondary: rgba(0, 0, 0, .05);
 
 	--toolbar-background: #ffffff;
-	--toolbar-action-background: var(--color-dark);
-	--toolbar-action-foreground: var(--color-dark-text);
+	--toolbar-action-background: rgb(var(--color-dark));
+	--toolbar-action-foreground: rgb(var(--color-dark-foreground));
 	--toolbar-elevation: #{elevation-generate(2)};
-	--toolbar-foreground: var(--color-dark);
+	--toolbar-foreground: rgb(var(--color-dark));
 
 	--dropdown-background: #ffffff;
 	--dropdown-elevation: #{elevation-generate(16)};

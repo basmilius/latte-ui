@@ -56,13 +56,13 @@ nav.nav.nav-tabs
 
 		&:hover
 		{
-			border-color: theme-color-var(primary);
+			border-color: RGB(var(--color-primary));
 			opacity: .8;
 		}
 
 		&.is-active
 		{
-			border-color: theme-color-var(primary);
+			border-color: RGB(var(--color-primary));
 			opacity: 1;
 		}
 	}

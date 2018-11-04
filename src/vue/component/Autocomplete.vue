@@ -2,7 +2,7 @@
 
 	<div class="latte-autocomplete" v-click-away="onBlur">
 		<div class="form-control" :disabled="disabled">
-			<span class="badge badge-primary" v-for="val in values"><span>{{ val.label }}</span><button class="btn btn-icon" @click="removeValue(val.value)"><i class="mdi mdi-close"></i></button></span>
+			<span class="badge badge-primary" v-for="val in values"><span>{{ val.label }}</span><button class="btn" @click="removeValue(val.value)"><i class="mdi mdi-window-close"></i></button></span>
 			<input type="search" :name="name" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 		</div>
 		<div class="dropdown" :class="{'is-open': shouldOpenSuggestions}" role="combobox">

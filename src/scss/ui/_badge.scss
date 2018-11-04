@@ -35,32 +35,22 @@
 		width: 100%;
 	}
 
-	button.btn.btn-icon
+	button.btn
 	{
+		--btn-background: var(--badge-bg);
+
 		height: 20px;
 		margin: -6px -10px -6px 6px;
 		width: 20px;
+		background: var(--btn-background);
 		border-radius: inherit;
 		color: inherit;
 		overflow: hidden;
 		vertical-align: middle;
 
-		&::before
+		&:hover
 		{
-			position: absolute;
-			display: block;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			content: "";
-			background: currentColor;
-			opacity: .1;
-		}
-
-		&:hover::before
-		{
-			opacity: .2;
+			--btn-background: var(--badge-bg-hover);
 		}
 
 		i.mdi
@@ -85,13 +75,13 @@ a.badge:hover
 	cursor: pointer;
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $theme-color-types
 {
 	.badge-#{$type}
 	{
-		--badge-bg: #{theme-color-alpha($type, .1, darker-1)};
-		--badge-bg-hover: #{theme-color-alpha($type, .2, darker-1)};
-		--badge-color: #{theme-color-var($type)};
+		--badge-bg: RGBA(var(--color-#{$type}), .1);
+		--badge-bg-hover: RGBA(var(--color-#{$type}), .2);
+		--badge-color: RGB(var(--color-#{$type}));
 	}
 }
 

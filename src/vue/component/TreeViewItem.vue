@@ -2,7 +2,7 @@
 
 	<div class="tree-view-item">
 		<div class="tree-view-item-label" :class="{'is-expanded': isExpanded}" @click="click(id)">
-			<button class="btn btn-icon btn-dark btn-sm" @click="toggle" v-if="children.length > 0"><i class="mdi mdi-chevron-right"></i></button>
+			<button class="btn btn-text btn-icon btn-dark btn-sm" @click="toggle" v-if="children.length > 0"><i class="mdi mdi-chevron-right"></i></button>
 			<i :class="['tree-view-item-label-icon', 'mdi', 'mdi-' + icon]"></i>
 			<span class="tree-view-item-label-label">{{ name }}</span>
 		</div>

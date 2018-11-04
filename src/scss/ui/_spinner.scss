@@ -68,10 +68,10 @@ i.mdi.spinner::after
 	border-radius: 999px;
 }
 
-@each $type, $color in $theme-colors
+@each $type in $theme-color-types
 {
 	.spinner.spinner-#{$type}
 	{
-		color: theme-color-var($type);
+		color: RGB(var(--color-#{$type}));
 	}
 }

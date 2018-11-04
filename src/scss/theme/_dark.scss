@@ -4,13 +4,20 @@
 	--main-foreground: rgba(255, 255, 255, .87);
 	--main-placeholder: rgba(255, 255, 255, .42);
 
+	--color-dark: 255, 255, 255;
+	--color-light: 25, 26, 28;
+	--color-dark-foreground: 25, 26, 28;
+	--color-light-foreground: 255, 255, 255;
+
 	--outline-color: #25262a;
 	--outline-color-rgb: 37, 38, 42;
 	--outline-color-secondary: #25262a;
 	--outline-color-secondary-rgb: 37, 38, 42;
 
-	--drawer-background-primary: #131315;
-	--drawer-background-secondary: #202124;
+	--drawer-background-primary: 19, 19, 21;
+	--drawer-background-secondary: 32, 33, 36;
+	--drawer-elevation: #{elevation-generate(1, black)}, 0 0 0 1px var(--outline-color);
+	--drawer-foreground-primary: 255, 255, 255;
 	--drawer-outline-primary: var(--outline-color);
 	--drawer-outline-secondary: var(--outline-color);
 
@@ -31,42 +38,4 @@
 	--panel-spinner-background: rgba(0, 0, 0, .6);
 
 	--nav-section-foreground: rgba(255, 255, 255, .2);
-
-	.btn-dark
-	{
-		&.btn-icon,
-		&.btn-text
-		{
-			--btn-bg-active: #{rgba(theme-color-var(light, null, true), .2)};
-			--btn-bg-hover: #{rgba(theme-color-var(light, null, true), .1)};
-			--btn-color: #{theme-color-var(light)};
-		}
-
-		&.btn-contained
-		{
-			--btn-bg: #{theme-color-var(light)};
-			--btn-bg-active: #{theme-color-var(light, darker-2)};
-			--btn-bg-hover: #{theme-color-var(light, darker-1)};
-			--btn-color: #{theme-color-var(light, text)};
-		}
-	}
-
-	.btn-light
-	{
-		&.btn-icon,
-		&.btn-text
-		{
-			--btn-bg-active: #{rgba(theme-color-var(dark, null, true), .2)};
-			--btn-bg-hover: #{rgba(theme-color-var(dark, null, true), .1)};
-			--btn-color: #{theme-color-var(dark)};
-		}
-
-		&.btn-contained
-		{
-			--btn-bg: transparent;
-			--btn-bg-active: #{theme-color-var(dark, darker-2)};
-			--btn-bg-hover: #{theme-color-var(dark, darker-1)};
-			--btn-color: #{theme-color-var(dark, text)};
-		}
-	}
 }

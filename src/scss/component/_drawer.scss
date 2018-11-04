@@ -16,16 +16,15 @@ div#drawer
 	bottom: 0;
 	align-items: stretch;
 	justify-content: flex-start;
+	box-shadow: var(--drawer-elevation);
 	z-index: 1000001;
-
-	@include elevation(1);
 
 	nav#drawer-primary
 	{
 		position: relative;
 		padding: 1rem 0 0;
 		width: $drawer-primary-width;
-		background: var(--drawer-background-primary);
+		background: RGB(var(--drawer-background-primary));
 		border-top: 1px solid var(--drawer-outline-primary);
 		overflow: auto;
 
@@ -46,20 +45,20 @@ div#drawer
 			align-items: center;
 			flex: 0 0 auto;
 			justify-content: center;
-			color: rgba(theme-color-var(dark, text, true), .7);
-			transition: all 90ms $ease-standard-curve;
+			color: RGBA(var(--drawer-foreground-primary), .7);
+			transition: all 90ms var(--ease-swift-out);
 			will-change: background, color;
 
 			&:hover
 			{
-				background: rgba(theme-color-var(dark, text, true), .07);
-				color: theme-color-var(dark, text);
+				background: RGBA(var(--drawer-foreground-primary), .07);
+				color: RGB(var(--drawer-foreground-primary));
 			}
 
 			&.active
 			{
-				background: theme-color-var(primary);
-				color: theme-color-var(primary, text);
+				background: RGB(var(--color-primary));
+				color: RGB(var(--color-primary-foreground));
 			}
 
 			i.mdi
@@ -77,7 +76,7 @@ div#drawer
 		position: relative;
 		padding: 2rem 0;
 		width: $drawer-secondary-width;
-		background: var(--drawer-background-secondary);
+		background: RGB(var(--drawer-background-secondary));
 		border-top: 1px solid var(--drawer-outline-secondary);
 		overflow: auto;
 
@@ -97,7 +96,7 @@ div#drawer
 	@include compact
 	{
 		left: -($drawer-width + 2px);
-		transition: left 300ms $ease-swift-out;
+		transition: left 300ms var(--ease-swift-out);
 		will-change: left;
 
 		&.is-nav-open
