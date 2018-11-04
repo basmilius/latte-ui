@@ -11,6 +11,8 @@
 {
 	--btn-background: var(--color-primary);
 	--btn-foreground: var(--color-primary-foreground);
+	--btn-font-size: 1rem;
+	--btn-icon-size: 24px;
 
 	position: relative;
 	display: inline-flex;
@@ -23,6 +25,8 @@
 	border: 0;
 	border-radius: var(--border-radius);
 	cursor: pointer;
+	font-size: var(--btn-font-size);
+	font-weight: 500;
 	text-align: center;
 	vertical-align: middle;
 
@@ -46,7 +50,7 @@
 		height: 1em;
 		width: 1em;
 		line-height: 1em;
-		font-size: 24px;
+		font-size: var(--btn-icon-size);
 	}
 
 	i.mdi + span
@@ -77,6 +81,14 @@
 		{
 			background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
 		}
+
+		&.btn-sm
+		{
+			--btn-height: 24px;
+			--btn-icon-size: 18px;
+			--btn-font-size: .9rem;
+			--btn-padding: 0 9px;
+		}
 	}
 
 	&.btn-text
@@ -97,11 +109,24 @@
 		{
 			background: RGBA(var(--btn-background, var(--color-primary)), .2);
 		}
+
+		&.btn-sm
+		{
+			--btn-height: 24px;
+			--btn-icon-size: 18px;
+			--btn-font-size: .9rem;
+			--btn-padding: 0 9px;
+		}
 	}
 
 	&.btn-icon
 	{
 		--btn-padding: 6px;
+
+		&.btn-sm
+		{
+			--btn-padding: 3px;
+		}
 	}
 
 	&.btn-pill
