@@ -39,7 +39,7 @@
 		}
 	}
 
-	.btn + .btn
+	.btn:not(.btn-text) + .btn:not(.btn-text)
 	{
 		box-shadow: -1px 0 RGBA(var(--btn-foreground), .1);
 	}
