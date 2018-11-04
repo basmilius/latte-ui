@@ -186,6 +186,16 @@ a.panel
 {
 	margin-bottom: -2px;
 	z-index: 1;
+
+	&:first-child
+	{
+		margin-left: -6px;
+	}
+
+	&:last-child
+	{
+		margin-right: -6px;
+	}
 }
 
 .panel-header .nav.nav-tabs .nav-link
