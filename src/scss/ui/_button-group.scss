@@ -19,11 +19,7 @@
 	.btn
 	{
 		margin: 0;
-
-		&:not(.btn-icon)
-		{
-			border-radius: 0;
-		}
+		border-radius: 0;
 
 		&:first-child
 		{
@@ -36,11 +32,16 @@
 			border-top-right-radius: var(--border-radius);
 			border-bottom-right-radius: var(--border-radius);
 		}
+
+		&.btn-text
+		{
+			border-radius: var(--border-radius);
+		}
 	}
 
 	.btn + .btn
 	{
-		box-shadow: -1px 0 RGBA(var(--color-dark), .1);
+		box-shadow: -1px 0 RGBA(var(--btn-foreground), .1);
 	}
 
 	+ .btn-group

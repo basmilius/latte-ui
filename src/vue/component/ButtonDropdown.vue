@@ -1,8 +1,8 @@
 <template>
 
 	<button class="btn" :class="buttonClasses" :data-tooltip="ariaLabel" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel" @pointerup.passive="toggle($event)" v-click-away="closeByClickAway">
-		<img v-if="icon.substr(0, 6) === 'avatar'" class="avatar avatar-in-button" :src="icon.substr(7)" :alt="ariaLabel"/>
-		<i v-if="icon !== ''" :class="iconClasses"></i>
+		<img v-if="avatarUrl !== null" class="avatar avatar-in-button" :src="avatarUrl" :alt="ariaLabel"/>
+		<i v-else-if="icon !== ''" :class="iconClasses"></i>
 		<i v-if="iconBefore !== ''" :class="iconBeforeClasses"></i>
 		<span v-if="label !== ''">{{ label }}</span>
 		<i v-if="iconAfter !== ''" :class="iconAfterClasses"></i>
@@ -142,6 +142,14 @@
 		},
 
 		computed: {
+
+			avatarUrl()
+			{
+				if (this.icon.substr(0, 6) === "avatar")
+					return this.icon.substr(7);
+
+				return null;
+			},
 
 			buttonClasses()
 			{

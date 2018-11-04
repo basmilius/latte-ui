@@ -19,7 +19,7 @@
 	margin: 0;
 	padding: var(--btn-padding, 0);
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: center;
 	border: 0;
 	border-radius: var(--border-radius);
 	cursor: pointer;
@@ -29,6 +29,14 @@
 	& + .btn
 	{
 		margin-left: 6px;
+	}
+
+	&[disabled],
+	&.disabled
+	{
+		filter: grayscale(100%);
+		opacity: .5;
+		pointer-events: none;
 	}
 
 	i.mdi
@@ -46,6 +54,11 @@
 		margin-left: 6px;
 	}
 
+	span + i.mdi
+	{
+		margin-left: 6px;
+	}
+
 	&.btn-contained
 	{
 		--btn-height: 36px;
@@ -57,12 +70,12 @@
 		&:hover,
 		&:focus
 		{
-			background: linear-gradient(to top, RGBA(var(--color-dark), .1), RGBA(var(--color-dark), .1)), RGB(var(--btn-background));
+			background: linear-gradient(to top, RGBA(var(--btn-foreground), .1), RGBA(var(--btn-foreground), .1)), RGB(var(--btn-background));
 		}
 
 		&:active
 		{
-			background: linear-gradient(to top, RGBA(var(--color-dark), .2), RGBA(var(--color-dark), .2)), RGB(var(--btn-background));
+			background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
 		}
 	}
 
@@ -89,6 +102,14 @@
 	&.btn-icon
 	{
 		--btn-padding: 6px;
+	}
+
+	&.btn-pill
+	{
+		display: flex;
+		height: 54px;
+		margin: 0;
+		width: 100%;
 	}
 }
 
