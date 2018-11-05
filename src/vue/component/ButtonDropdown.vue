@@ -37,6 +37,12 @@
 				type: String
 			},
 
+			autoClose: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
+
 			buttonClass: {
 				default: "btn-text btn-icon btn-dark",
 				required: false,
@@ -254,7 +260,7 @@
 
 			closeByClickAway()
 			{
-				if (this.isClickAwayAvailable === false)
+				if (this.isClickAwayAvailable === false || this.autoClose === false)
 					return;
 
 				this.close();
