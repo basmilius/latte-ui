@@ -33,7 +33,7 @@
 					<template v-for="(filter, filterKey) of filters">
 						<span class="badge mr-1" :class="filter.class">
 							<span>{{ filter.label }}</span>
-							<button class="btn btn-text btn-icon" @click="removeFilter($event, filterKey)"><i class="mdi mdi-window-close"></i></button>
+							<button class="btn" @click="removeFilter($event, filterKey)"><i class="mdi mdi-window-close"></i></button>
 						</span>
 					</template>
 
