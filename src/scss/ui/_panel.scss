@@ -140,7 +140,7 @@ a.panel
 {
 	position: relative;
 	display: block;
-	color: #808080;
+	color: rgba(var(--color-dark), .75);
 	font-size: 1.1em;
 	font-weight: 700;
 }
@@ -149,7 +149,7 @@ a.panel
 {
 	position: relative;
 	display: block;
-	color: #b3b3b3;
+	color: rgba(var(--color-dark), .5);
 	font-weight: 600;
 }
 
