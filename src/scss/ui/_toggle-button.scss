@@ -9,16 +9,17 @@
 
 .toggle-button
 {
+	--toggle-button-color-private: var(--toggle-button-color, var(--color-primary));
+	--toggle-button-foreground-private: var(--toggle-button-foreground, var(--color-primary-foreground));
+
 	position: relative;
 	display: inline-block;
 	height: 24px;
-	margin-right: .5em;
 	width: 36px;
 	appearance: none;
 	flex: 0 0 auto;
-	border: 2px solid currentColor;
+	border: 2px solid var(--form-field-outline);
 	border-radius: 12px;
-	color: var(--form-field-outline);
 	cursor: pointer;
 	outline: none;
 	transition: all 240ms var(--ease-swift-out);
@@ -33,7 +34,7 @@
 		margin: 3px;
 		width: 14px;
 		content: "";
-		background: currentColor;
+		background: var(--form-field-outline);
 		border-radius: 7px;
 		transform: translate3d(0, 0, 0);
 		transition: inherit;
@@ -42,13 +43,13 @@
 
 	&:checked
 	{
-		background: currentColor;
+		background: RGB(var(--toggle-button-color-private));
+		border-color: RGB(var(--toggle-button-color-private));
 
 		&::before
 		{
+			background: RGB(var(--toggle-button-foreground-private));
 			transform: translate3d(12px, 0, 0);
-
-			@include elevation(0);
 		}
 	}
 }
@@ -57,11 +58,7 @@
 {
 	.toggle-button-#{$type}:checked
 	{
-		color: RGB(var(--color-#{$type}));
-
-		&::before
-		{
-			color: RGB(var(--color-#{$type}-foreground));
-		}
+		--toggle-button-color: var(--color-#{$type});
+		--toggle-button-foreground: var(--color-#{$type}-foreground);
 	}
 }

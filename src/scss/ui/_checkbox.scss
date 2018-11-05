@@ -9,17 +9,17 @@
 
 input[type=checkbox].checkbox
 {
+	--checkbox-color-private: var(--checkbox-color, var(--color-primary));
+
 	position: relative;
 	display: inline-block;
 	appearance: none;
 	height: 24px;
-	margin-right: .5em;
 	width: 24px;
 	flex: 0 0 auto;
 	background: transparent;
 	border: 2px solid var(--form-field-outline);
 	border-radius: var(--border-radius);
-	color: var(--color-primary);
 	cursor: pointer;
 	outline: none;
 	transition: transform 210ms var(--ease-swift-out);
@@ -28,7 +28,7 @@ input[type=checkbox].checkbox
 
 	&:active
 	{
-		transform: scale3d(0.7, 0.7, 0.7);
+		transform: scale3d(.85, .85, .85);
 	}
 
 	&::before,
@@ -62,7 +62,7 @@ input[type=checkbox].checkbox
 	&:checked::before,
 	&:checked::after
 	{
-		background: currentColor;
+		background: RGB(var(--checkbox-color-private));
 	}
 
 	&:last-child
@@ -72,7 +72,7 @@ input[type=checkbox].checkbox
 
 	&:focus
 	{
-		border-color: currentColor;
+		border-color: RGB(var(--checkbox-color-private));
 	}
 }
 
@@ -80,6 +80,6 @@ input[type=checkbox].checkbox
 {
 	input[type=checkbox].checkbox-#{$type}
 	{
-		color: RGB(var(--color-#{$type}));
+		--checkbox-color: var(--color-#{$type});
 	}
 }

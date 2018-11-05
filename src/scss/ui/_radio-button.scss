@@ -9,15 +9,17 @@
 
 input[type=radio].radio-button
 {
+	--radio-button-color-private: var(--radio-button-color, var(--color-primary));
+
 	position: relative;
 	display: inline-block;
-	height: 24px;
-	margin-right: .5em;
-	width: 24px;
 	appearance: none;
+	height: 24px;
+	width: 24px;
+	flex: 0 0 auto;
+	background: transparent;
 	border: 2px solid var(--form-field-outline);
 	border-radius: 12px;
-	color: var(--color-primary);
 	cursor: pointer;
 	outline: none;
 	transition: transform 210ms var(--ease-swift-out);
@@ -26,7 +28,7 @@ input[type=radio].radio-button
 
 	&:active
 	{
-		transform: scale3d(0.7, 0.7, 0.7);
+		transform: scale3d(.85, .85, .85);
 	}
 
 	&::before
@@ -37,7 +39,7 @@ input[type=radio].radio-button
 		margin: 3px;
 		width: 14px;
 		content: "";
-		background: currentColor;
+		background: RGB(var(--radio-button-color-private));
 		border-radius: 7px;
 		transform: scale3d(0, 0, 0);
 		transition: transform 130ms var(--ease-standard-curve);
@@ -50,7 +52,7 @@ input[type=radio].radio-button
 
 	&:focus
 	{
-		border-color: currentColor;
+		border-color: RGB(var(--radio-button-color-private));
 	}
 }
 
@@ -58,6 +60,6 @@ input[type=radio].radio-button
 {
 	.radio-button.radio-button-#{$type}
 	{
-		color: RGB(var(--color-#{$type}));
+		--radio-button-color: var(--color-#{$type});
 	}
 }

@@ -106,8 +106,13 @@
 		--badge-bg-hover: RGBA(var(--color-primary), .2);
 		--badge-color: RGB(var(--color-primary));
 
-		&.is-hover,
-		&:hover
+		--checkbox-color: var(--color-primary);
+		--radio-button-color: var(--color-primary);
+		--toggle-button-color: var(--color-primary);
+		--toggle-button-foreground: var(--color-primary-foreground);
+
+		&:not(.active).is-hover,
+		&:not(.active):hover
 		{
 			background: RGB(var(--color-primary));
 			color: RGB(var(--color-primary-foreground));
@@ -115,16 +120,12 @@
 			--badge-bg: RGBA(var(--color-primary-foreground), .2);
 			--badge-bg-hover: RGBA(var(--color-primary-foreground), .1);
 			--badge-color: RGB(var(--color-primary-foreground));
-		}
 
-		&.active
-		{
-			background: transparent;
-			color: RGB(var(--color-primary));
-
-			--badge-bg: RGBA(var(--color-primary), .1);
-			--badge-bg-hover: RGBA(var(--color-primary), .2);
-			--badge-color: RGB(var(--color-primary));
+			--checkbox-color: var(--color-primary-foreground);
+			--radio-button-color: var(--color-primary-foreground);
+			--toggle-button-color: var(--color-primary-foreground);
+			--toggle-button-foreground: var(--color-primary);
+			--form-field-outline: RGBA(var(--color-primary-foreground), .3);
 		}
 
 		span.badge
