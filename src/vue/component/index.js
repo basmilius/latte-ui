@@ -21,6 +21,7 @@ import Password from "./Password.vue";
 import PdfViewer from "./PdfViewer.vue";
 import TreeView from "./TreeView.vue";
 import TreeViewItem from "./TreeViewItem.vue";
+import Uploader from "./Uploader.vue";
 import UploadUserPhoto from "./UploadUserPhoto.vue";
 
 Vue.component("latte-autocomplete", Autocomplete);
@@ -46,4 +47,5 @@ Vue.component("latte-password", Password);
 Vue.component("latte-pdf-viewer", PdfViewer);
 Vue.component("latte-tree-view", TreeView);
 Vue.component("latte-tree-view-item", TreeViewItem);
+Vue.component("latte-uploader", Uploader);
 Vue.component("latte-upload-user-photo", UploadUserPhoto);

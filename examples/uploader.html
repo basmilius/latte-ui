@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Upload with crop &mdash; @bybas/latte-ui</title>
+	<title>Uploader &mdash; @bybas/latte-ui</title>
 	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
 	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
 	<link rel="stylesheet" href="../dist/latte.css"/>
@@ -23,7 +23,7 @@
 		<div class="toolbar" data-ui-is-nav-open role="toolbar">
 			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
 
-			<span class="toolbar-title">Upload with crop</span>
+			<span class="toolbar-title">Uploader</span>
 
 			<div class="d-flex align-items-center ml-auto">
 				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
@@ -48,6 +48,40 @@
 		<div class="content">
 			<div class="row">
 				<div class="col-12 col-lg-6">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Simple uploader</span></div>
+						<div class="panel-body">
+
+							<latte-uploader :is-multiple="true">
+								<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="drop-here" slot-scope="slot">
+									<i class="mdi mdi-image mdi-24px"></i>
+									<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
+									<span v-else>Drop file here to upload&hellip;</span>
+								</div>
+								<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="let-go">
+									<i class="mdi mdi-image-plus mdi-24px"></i>
+									<span>Let go to upload!</span>
+								</div>
+							</latte-uploader>
+
+						</div>
+						<div class="panel-body">
+
+							<latte-uploader :is-multiple="false" style="height: 180px; width: 180px; --border-radius: 999px;">
+								<div class="d-flex align-items-center flex-column justify-content-center px-3" slot="drop-here" slot-scope="slot">
+									<i class="mdi mdi-image mdi-24px"></i>
+									<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
+									<span v-else>Drop file here to upload&hellip;</span>
+								</div>
+								<div class="d-flex align-items-center flex-column justify-content-center px-3" slot="let-go">
+									<i class="mdi mdi-image-plus mdi-24px"></i>
+									<span>Let go to upload!</span>
+								</div>
+							</latte-uploader>
+
+						</div>
+					</div>
 
 				</div>
 			</div>
