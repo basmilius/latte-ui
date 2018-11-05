@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Simple Overlay &mdash; @bybas/latte-ui</title>
+	<title>Upload with crop &mdash; @bybas/latte-ui</title>
 	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
 	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
 	<link rel="stylesheet" href="../dist/latte.css"/>
@@ -18,10 +18,12 @@
 <body>
 	<main id="app">
 
+		<latte-notifications></latte-notifications>
+
 		<div class="toolbar" data-ui-is-nav-open role="toolbar">
 			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
 
-			<span class="toolbar-title">Simple Overlay</span>
+			<span class="toolbar-title">Upload with crop</span>
 
 			<div class="d-flex align-items-center ml-auto">
 				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
@@ -45,39 +47,10 @@
 
 		<div class="content">
 			<div class="row">
-				<div class="col-12 col-lg-4">
-
-					<div class="panel">
-						<div class="panel-body">
-							<button class="btn btn-contained btn-primary" onclick="Latte.overlays.open('example')"><span>Open</span></button>
-						</div>
-					</div>
+				<div class="col-12 col-lg-6">
 
 				</div>
 			</div>
-
-			<latte-overlay name="example" :opened="true">
-
-				<div class="panel" style="width: 540px">
-					<div class="panel-header">
-						<span class="panel-title">Simple overlay</span>
-						<button class="btn btn-text btn-icon btn-dark ml-auto" onclick="Latte.overlays.close('example')"><i class="mdi mdi-window-close"></i></button>
-					</div>
-					<nav class="nav nav-tabs">
-						<a class="nav-link is-active"><span>General</span></a>
-						<a class="nav-link"><span>Appearance</span></a>
-						<a class="nav-link"><span>Security</span></a>
-					</nav>
-					<div class="panel-body">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium dignissimos eveniet pariatur possimus! Doloremque dolores nam totam? Aliquam asperiores doloribus est fugiat minima necessitatibus pariatur praesentium qui rem, voluptatibus. Laudantium?
-					</div>
-					<div class="panel-footer">
-						<button class="btn btn-text btn-dark ml-auto" onclick="Latte.overlays.close('example')"><span>Cancel</span></button>
-						<button class="btn btn-contained btn-primary" onclick="Latte.overlays.close('example')"><i class="mdi mdi-check-circle"></i><span>Save</span></button>
-					</div>
-				</div>
-
-			</latte-overlay>
 		</div>
 
 	</main>

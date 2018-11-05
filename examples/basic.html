@@ -21,7 +21,7 @@
 		<latte-notifications></latte-notifications>
 
 		<div class="toolbar" data-ui-is-nav-open role="toolbar">
-			<button class="nav-toggler" aria-label="Open/Sluit Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
 
 			<span class="toolbar-title">Basic UI</span>
 
@@ -29,7 +29,7 @@
 				<a class="btn btn-text btn-primary"><i class="mdi mdi-plus-circle"></i><span>Project</span></a>
 				<div class="divider divider-vertical" role="separator"></div>
 
-				<latte-button-dropdown aria-label="Mijn Profiel" icon="account-circle" type="list" v-cloak>
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
 					<nav class="nav nav-list">
 						<a class="nav-link" href="#"><i class="mdi mdi-account-edit"></i><span>Edit profile</span></a>
 						<a class="nav-link" href="#"><i class="mdi mdi-key"></i><span>Change password</span></a>
