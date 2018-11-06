@@ -1,5 +1,7 @@
 "use strict";
 
+import "./OutsideEvent";
+
 import { initialize as initializeSDK } from "./sdk.js";
 
 import { createRootComponent } from "./ui/root";

@@ -55,7 +55,7 @@
 
 	export default {
 
-		name: "latte-date-picker",
+		name: "latte-datepicker",
 
 		props: {
 

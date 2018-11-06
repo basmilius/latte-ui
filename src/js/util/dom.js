@@ -3,7 +3,7 @@
 export function closest(element, selector)
 {
 	for (; element && element !== document; element = element.parentNode)
-		if (element.matches(selector))
+		if (element === selector || (typeof selector === "string" && element.matches(selector)))
 			return element;
 
 	return null;

@@ -30,6 +30,11 @@
 	@include make-typography-vars;
 }
 
+main#app.is-popup-opened
+{
+	pointer-events: none;
+}
+
 html body
 {
 	margin: 0;

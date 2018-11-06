@@ -1,6 +1,6 @@
 <template>
 
-	<button class="btn" :class="buttonClasses" :data-tooltip="ariaLabel" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel" @pointerup.passive="toggle($event)" v-click-away="closeByClickAway">
+	<button class="btn" :class="buttonClasses" :data-tooltip="ariaLabel" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel" @click.passive="toggle">
 		<img v-if="avatarUrl !== null" class="avatar avatar-in-button" :src="avatarUrl" :alt="ariaLabel"/>
 		<i v-else-if="icon !== ''" :class="iconClasses"></i>
 		<i v-if="iconBefore !== ''" :class="iconBeforeClasses"></i>
@@ -19,18 +19,14 @@
 <script>
 
 	import { dispatch, on } from "../../js/actions";
-	import { timeout } from "../../js/core";
+	import { getMainElement } from "../../js/core";
+	import { live } from "../../js/util/dom";
 
 	export default {
 
 		name: "latte-button-dropdown",
 
 		props: {
-
-			appendToRoot: {
-				default: true,
-				type: Boolean
-			},
 
 			ariaLabel: {
 				default: "",
@@ -104,13 +100,16 @@
 			if (!this.popup)
 				return;
 
+			this.popup.removeOutsideEventListener("pointerdown", this.cb.onOutsideClick);
 			this.popup.remove();
 		},
 
 		data()
 		{
 			return {
-				isClickAwayAvailable: true,
+				cb: {
+					onOutsideClick: evt => this.onOutsideClick(evt)
+				},
 				isOpen: this.openAtStart,
 				popup: null,
 				popupPosition: {
@@ -131,20 +130,18 @@
 			on("latte:context-menu", () => this.close());
 			on("latte:overlay", () => this.close());
 
-			if (this.appendToRoot)
-			{
-				timeout(10, () =>
-				{
-					this.popup = this.$el.querySelector(":scope > div.dropdown");
-					this.$el.removeChild(this.popup);
-					document.body.appendChild(this.popup);
+			this.popup = this.$el.querySelector(":scope > div.dropdown");
+			this.popup.addOutsideEventListener("pointerdown", this.cb.onOutsideClick);
 
-					window.addEventListener("resize", () => this.shouldUpdate(), {passive: true});
-					window.addEventListener("scroll", () => this.shouldUpdate(), {passive: true});
+			live(this.popup, "[href],[data-close]", "click", () => this.close());
 
-					this.calculatePosition();
-				})
-			}
+			this.$el.removeChild(this.popup);
+			document.body.appendChild(this.popup);
+
+			window.addEventListener("resize", () => this.shouldUpdate(), {passive: true});
+			window.addEventListener("scroll", () => this.shouldUpdate(), {passive: true});
+
+			this.$nextTick(() => this.calculatePosition());
 		},
 
 		computed: {
@@ -172,13 +169,9 @@
 
 			dropdownClasses()
 			{
-				let classes = ['dropdown'];
-
-				if (this.appendToRoot)
-					classes.push("dropdown-at-root");
-
-				let aboveUnder = this.y > (window.innerHeight / 2) ? 'above' : 'under';
-				let position = this.x > (window.innerWidth / 2) ? 'right' : 'left';
+				let classes = ["dropdown", "dropdown-at-root"];
+				let aboveUnder = this.y > (window.innerHeight / 2) ? "above" : "under";
+				let position = this.x > (window.innerWidth / 2) ? "right" : "left";
 
 				classes.push(`dropdown-${position}-${aboveUnder}`);
 				classes.push(`dropdown-${this.type}`);
@@ -191,17 +184,17 @@
 
 			iconClasses()
 			{
-				return ['mdi', `mdi-${this.icon}`];
+				return ["mdi", `mdi-${this.icon}`];
 			},
 
 			iconAfterClasses()
 			{
-				return ['mdi', `mdi-${this.iconAfter}`];
+				return ["mdi", `mdi-${this.iconAfter}`];
 			},
 
 			iconBeforeClasses()
 			{
-				return ['mdi', `mdi-${this.iconBefore}`];
+				return ["mdi", `mdi-${this.iconBefore}`];
 			}
 
 		},
@@ -210,9 +203,6 @@
 
 			calculatePosition()
 			{
-				if (!this.appendToRoot)
-					return;
-
 				if (this.popup === null)
 					return;
 
@@ -237,9 +227,6 @@
 
 			shouldUpdate()
 			{
-				if (!this.appendToRoot)
-					return;
-
 				let rect = this.$el.getBoundingClientRect();
 				this.x = rect.left;
 				this.y = rect.top;
@@ -249,7 +236,6 @@
 
 			close()
 			{
-				this.isClickAwayAvailable = false;
 				this.isOpen = false;
 
 				this.$emit("close");
@@ -258,23 +244,14 @@
 				dispatch("latte:tooltip:hide");
 			},
 
-			closeByClickAway()
-			{
-				if (this.isClickAwayAvailable === false || this.autoClose === false)
-					return;
-
-				this.close();
-			},
-
-			open(e)
+			open(evt)
 			{
 				this.isOpen = true;
-				this.$nextTick(() => this.isClickAwayAvailable = true);
 
-				if (e)
+				if (evt)
 				{
-					this.x = e.clientX;
-					this.y = e.clientY;
+					this.x = evt.clientX;
+					this.y = evt.clientY;
 				}
 
 				this.$emit("open");
@@ -283,12 +260,20 @@
 				dispatch("latte:tooltip:hide");
 			},
 
-			toggle(e)
+			toggle(evt)
 			{
 				if (this.isOpen)
 					this.close();
 				else
-					this.open(e);
+					this.open(evt);
+			},
+
+			onOutsideClick()
+			{
+				if (!this.isOpen)
+					return;
+
+				this.$nextTick(() => this.close());
 			}
 
 		},
@@ -304,6 +289,14 @@
 				this.popup.classList.forEach(className => classes.push(className));
 				this.popup.classList.remove(...classes);
 				this.popup.classList.add(...this.dropdownClasses);
+			},
+
+			isOpen()
+			{
+				if (this.isOpen)
+					getMainElement().classList.add("is-popup-opened");
+				else
+					getMainElement().classList.remove("is-popup-opened");
 			},
 
 			popupPosition: {

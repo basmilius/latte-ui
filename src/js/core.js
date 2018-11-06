@@ -1,5 +1,7 @@
 "use strict";
 
+let main = undefined;
+
 export function deepMerge(target, ...sources)
 {
 	if (sources.length === 0)
@@ -29,6 +31,11 @@ export function deepMerge(target, ...sources)
 	}
 
 	return deepMerge(target, ...sources);
+}
+
+export function getMainElement()
+{
+	return main || (main = document.querySelector("main#app"));
 }
 
 export function handleError(err, fn = undefined)
@@ -150,6 +157,8 @@ function shuffleString(str)
 export default {
 
 	deepMerge,
+
+	getMainElement,
 
 	handleError,
 
