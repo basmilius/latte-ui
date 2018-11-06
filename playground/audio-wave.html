@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>Audio Wave</title>
+</head>
+<body>
+	<canvas id="sample-canvas" height="360" width="1024"></canvas>
+	<button onclick="play()">Play</button>
+
+	<script type="text/javascript">
+		class BMAudio extends EventTarget
+		{
+
+			get currentTime()
+			{
+				return this.context.currentTime;
+			}
+
+			get duration()
+			{
+				return this.buffer === null ? 0 : this.buffer.duration;
+			}
+
+			get length()
+			{
+				return this.buffer === null ? 0 : this.buffer.length;
+			}
+
+			get manipulator()
+			{
+				return this._manipulator;
+			}
+
+			constructor()
+			{
+				super();
+
+				this.context = new AudioContext();
+
+				this.analyser = null;
+				this.buffer = null;
+				this.source = null;
+
+				this._manipulator = new BMAudioManipulator(this);
+			}
+
+			loadFromUrl(url)
+			{
+				return new Promise((resolve, reject) =>
+				{
+					fetch(url, {mode: "no-cors"})
+						.then(r => r.arrayBuffer())
+						.then(r => this.context.decodeAudioData(r))
+						.then(r => resolve(this.onAudioBuffer(r)))
+						.catch(err => reject(err));
+				});
+			}
+
+			play()
+			{
+				this.source.start();
+			}
+
+			stop()
+			{
+				this.source.stop();
+			}
+
+			onAudioBuffer(buffer)
+			{
+				const analyser = this.context.createAnalyser();
+				// analyser.minDecibels = -90;
+				analyser.maxDecibels = -10;
+				analyser.smoothingTimeConstant = 0.9;
+				analyser.fftSize = 128;
+
+				const source = this.context.createBufferSource();
+				source.buffer = buffer;
+				source.connect(analyser);
+				analyser.connect(this.context.destination);
+
+				this.analyser = analyser;
+				this.buffer = source.buffer;
+				this.source = source;
+
+				return source;
+			}
+
+		}
+
+		class BMAudioManipulator
+		{
+
+			get detune()
+			{
+				return this.audio.source.detune;
+			}
+
+			get playbackRate()
+			{
+				return this.audio.source.playbackRate;
+			}
+
+			constructor(audio)
+			{
+				this.audio = audio;
+			}
+
+		}
+
+		function play()
+		{
+			const audio = new BMAudio();
+			audio.loadFromUrl("./audio/1.mp3").then(() =>
+			{
+				audio.play();
+
+				draw();
+
+				function draw()
+				{
+					const dataArray = new Uint8Array(audio.analyser.frequencyBinCount);
+					audio.analyser.getByteFrequencyData(dataArray);
+
+					const canvas = document.getElementById("sample-canvas");
+					const rect = canvas.getBoundingClientRect();
+					canvas.width = rect.width;
+					canvas.height = rect.height;
+
+					const context = canvas.getContext("2d");
+					context.fillStyle = "#252628";
+
+					const barWidth = rect.width / audio.analyser.frequencyBinCount;
+
+					for (let i = 0; i < audio.analyser.frequencyBinCount; i++)
+					{
+						const barHeight = (rect.height * dataArray[i]) / 256;
+
+						context.fillRect(i * barWidth, rect.height - barHeight, barWidth - 1, barHeight);
+					}
+
+					requestAnimationFrame(draw);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
