@@ -183,10 +183,9 @@
 				if (this.suggestions.length === 0 || !this.shouldOpenSuggestions)
 					return;
 
-				if (this.currentSuggestion > -1)
-					return;
+				if (this.currentSuggestion === -1)
+					this.onKeyPressDown();
 
-				this.onKeyPressDown();
 				this.onSelectSuggestion();
 
 				evt.preventDefault();
