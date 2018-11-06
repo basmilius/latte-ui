@@ -30,7 +30,7 @@
 		padding: 9px 6px;
 		align-items: center;
 		flex: 0 0 auto;
-		flex-flow: column;
+		flex-flow: row;
 		justify-content: center;
 		color: var(--main-foreground);
 		font-weight: 500;
@@ -46,7 +46,7 @@
 
 		i.mdi + span
 		{
-			margin-top: .3rem;
+			margin-left: 15px;
 		}
 
 		&:hover
