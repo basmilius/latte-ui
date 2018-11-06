@@ -111,6 +111,12 @@
 		--toggle-button-color: var(--color-primary);
 		--toggle-button-foreground: var(--color-primary-foreground);
 
+		&.active
+		{
+			background: transparent;
+			color: RGB(var(--color-primary));
+		}
+
 		&:not(.active).is-hover,
 		&:not(.active):hover
 		{
