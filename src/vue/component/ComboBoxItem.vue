@@ -14,12 +14,6 @@
 
 		props: {
 
-			active: {
-				default: false,
-				required: false,
-				type: Boolean
-			},
-
 			value: {
 				required: true
 			}
@@ -29,6 +23,13 @@
 		beforeDestroy()
 		{
 			this.$parent.unregisterOption(this);
+		},
+
+		data()
+		{
+			return {
+				active: false
+			};
 		},
 
 		mounted()
