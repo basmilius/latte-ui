@@ -81,6 +81,19 @@ export function querySelectorAll(selector, root = document)
 	return elements;
 }
 
+export function relativeCoordsTo(element, evt)
+{
+	if (!evt.clientX || !evt.clientY)
+		return undefined;
+
+	const rect = element.getBoundingClientRect();
+
+	return {
+		x: evt.clientX - rect.left,
+		y: evt.clientY - rect.top
+	};
+}
+
 export function toDOM(str)
 {
 	const temp = document.createElement("div");
@@ -109,6 +122,8 @@ export default {
 	printDocument,
 
 	querySelectorAll,
+
+	relativeCoordsTo,
 
 	toDOM
 
