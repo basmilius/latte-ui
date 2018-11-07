@@ -1,0 +1,63 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.ripple-container
+{
+	--ripple-alpha-private: var(--ripple-alpha, 0.05);
+	--ripple-color-private: var(--ripple-color, var(--color-dark));
+	--ripple-scale-private: var(--ripple-scale, 6);
+
+	--ripple-duration-private: 0ms;
+
+	position: absolute;
+	display: block;
+	contain: paint;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: transparent;
+	border-radius: inherit;
+	overflow: hidden;
+	pointer-events: none;
+	transition: background 180ms var(--ease-swift-out);
+	will-change: background;
+
+	&.is-background-visible
+	{
+		background: rgba(var(--ripple-color-private), var(--ripple-alpha-private));
+	}
+
+	div.ripple
+	{
+		position: absolute;
+		display: block;
+		height: 36px;
+		width: 36px;
+		background: rgba(var(--ripple-color-private), var(--ripple-alpha-private));
+		border-radius: 18px;
+		opacity: 0;
+		transition: opacity 180ms linear, transform var(--ripple-duration-private) var(--ease-swift-out);
+
+		&.is-visible
+		{
+			opacity: 1;
+		}
+
+		&.is-hiding
+		{
+			opacity: 0;
+		}
+
+		&.is-scaling
+		{
+			transform: scale3d(var(--ripple-scale-private), var(--ripple-scale-private), var(--ripple-scale-private));
+		}
+	}
+}
