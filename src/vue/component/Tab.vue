@@ -38,6 +38,15 @@
 		mounted()
 		{
 			this.$parent.updateChildren();
+		},
+
+		watch: {
+
+			active()
+			{
+				this.$emit("active", this.active);
+			}
+
 		}
 
 	}

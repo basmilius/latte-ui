@@ -12,10 +12,20 @@
 
 		name: "latte-tab-container",
 
+		props: {
+
+			initialTab: {
+				default: 0,
+				required: false,
+				type: Number
+			}
+
+		},
+
 		data()
 		{
 			return {
-				current: 0,
+				current: this.initialTab,
 				tabs: []
 			};
 		},
@@ -54,7 +64,13 @@
 
 			current()
 			{
+				this.$emit("change", this.current);
 				this.updateCurrent();
+			},
+
+			initialTab()
+			{
+				this.current = this.initialTab;
 			},
 
 			tabs()
