@@ -1,12 +1,14 @@
 <template>
 
-	<div class="drop-container uploader" :class="containerClasses" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop">
-		<slot name="drop-here" :uploader="this" v-if="!isDraggingOver">Drop here to upload</slot>
-		<slot name="let-go" :uploader="this" v-else>Let go to upload</slot>
-
-		<template v-if="!isMultiple && previewMode === 'photo' && files.length === 0">
-			<img src="" alt="">
+	<div class="drop-container uploader uploader-photo" :class="containerClasses" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop">
+		<template v-if="files.length === 1">
+			<img :src="urls[0]" alt="Photo" class="preview-image single"/>
 		</template>
+
+		<slot class="uploader-info" name="drop-here" :uploader="this" v-if="!isDraggingOver">Drop here to upload</slot>
+		<slot class="uploader-info" name="let-go" :uploader="this" v-else>Let go to upload</slot>
+
+		<input ref="fileInput" class="d-none" type="file" accept="image/*" :name="name" @change="onFilesSelected"/>
 	</div>
 
 </template>
@@ -25,11 +27,10 @@
 				type: Boolean
 			},
 
-			previewMode: {
+			name: {
 				default: "photo",
 				required: false,
-				type: String,
-				validator: value => ["photo", "list"].contains(value)
+				type: String
 			}
 
 		},
@@ -47,7 +48,8 @@
 			return {
 				isDragging: false,
 				isDraggingOver: false,
-				files: []
+				files: [],
+				urls: []
 			};
 		},
 
@@ -68,26 +70,6 @@
 					classes.push("is-dragging-over");
 
 				return classes;
-			},
-
-			isImage()
-			{
-				if (this.files.length === 0)
-					return false;
-
-				return this.files[0].type.startsWith("image/");
-			},
-
-			isPreviewAvailable()
-			{
-				if (this.files.length === 0)
-					return false;
-
-				// TODO(Bas): Handle multiple files.
-				if (this.files.length === 1)
-					return true;
-
-				return false;
 			}
 
 		},
@@ -125,14 +107,27 @@
 				evt.preventDefault();
 				window.dispatchEvent(new CustomEvent("dragend"));
 
-				this.files = evt.dataTransfer.files;
+				this.$refs.fileInput.files = evt.dataTransfer.files;
 				this.isDragging = false;
 				this.isDraggingOver = false;
+			},
+
+			onFilesSelected()
+			{
+				this.files = [...this.$refs.fileInput.files];
 			}
 
 		},
 
-		watch: {}
+		watch: {
+
+			files()
+			{
+				this.urls.forEach(url => URL.revokeObjectURL(url));
+				this.urls = this.files.map(file => URL.createObjectURL(file));
+			}
+
+		}
 
 	}
 
@@ -175,6 +170,29 @@
 
 	div.uploader
 	{
+		z-index: 0;
+	}
+
+	div.uploader div.uploader-info
+	{
+		z-index: 1;
+	}
+
+	div.uploader img.preview-image.single
+	{
+		position: absolute;
+		display: block;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border-radius: inherit;
+		object-fit: cover;
+		object-position: center center;
+		pointer-events: none;
+		z-index: 0;
 	}
 
 </style>
