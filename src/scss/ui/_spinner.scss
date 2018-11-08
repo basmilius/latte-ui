@@ -53,6 +53,12 @@ i.mdi.spinner::before
 	opacity: .25;
 }
 
+span.spinner.spinner-double::before,
+i.mdi.spinner.spinner-double::before
+{
+	border: .1em solid transparent;
+}
+
 span.spinner::after,
 i.mdi.spinner::after
 {
@@ -66,6 +72,13 @@ i.mdi.spinner::after
 	border: .1em solid transparent;
 	border-top-color: currentColor;
 	border-radius: 999px;
+}
+
+span.spinner.spinner-double::after,
+i.mdi.spinner.spinner-double::after
+{
+	border-top-color: currentColor;
+	border-bottom-color: currentColor;
 }
 
 @each $type in $theme-color-types
