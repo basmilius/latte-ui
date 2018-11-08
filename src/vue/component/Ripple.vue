@@ -68,8 +68,16 @@
 			this.container.classList.add("ripple-container");
 			this.$el.prepend(this.container);
 
-			this.$el.addEventListener("pointercancel", evt => this.onPointerCancel(evt), {passive: true});
-			this.$el.addEventListener("pointerout", evt => this.onPointerCancel(evt), {passive: true});
+			if (window.TouchEvent)
+			{
+				this.$el.addEventListener("touchmove", evt => this.onPointerCancel(evt), {passive: true});
+			}
+			else
+			{
+				this.$el.addEventListener("pointercancel", evt => this.onPointerCancel(evt), {passive: true});
+				this.$el.addEventListener("pointerout", evt => this.onPointerCancel(evt), {passive: true});
+			}
+
 			this.$el.addEventListener("pointerdown", evt => this.onPointerDown(evt), {passive: true});
 			this.$el.addEventListener("pointerup", evt => this.onPointerUp(evt), {passive: true});
 		},
