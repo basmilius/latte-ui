@@ -4,13 +4,13 @@ import "./OutsideEvent";
 
 import * as Components from "../vue/component";
 
-import { initialize as initializeSDK } from "./sdk.js";
 import { createRootComponent } from "./ui/root";
 import { initializeForms } from "./ui/forms";
 import { initializeNotices } from "./ui/notices";
 import { initializePanels } from "./ui/panels";
 import { initializeTooltips } from "./ui/tooltip";
 
+import "./sdk";
 import "../vue/mixin";
 import "../vue/directive";
 
@@ -20,8 +20,6 @@ import "../vue/view";
 import "../vue/widget";
 
 moment.locale(window["LatteMomentLocale"] || "en");
-
-initializeSDK();
 
 window.addEventListener("DOMContentLoaded", () =>
 {

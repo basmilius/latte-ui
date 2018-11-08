@@ -14,27 +14,24 @@ import operators from "./operators";
 import overlays from "./ui/overlays";
 import panels from "./ui/panels";
 
-export function initialize()
+Array.prototype.contains = function (needle)
 {
-	Array.prototype.contains = function (needle)
-	{
-		return this.indexOf(needle) > -1;
-	};
+	return this.indexOf(needle) > -1;
+};
 
-	window.Latte = {
-		actions,
-		api,
-		clipboard,
-		cookie,
-		core,
-		dom,
-		i18n,
-		json,
-		messages,
-		notices,
-		operators,
-		overlays,
-		panels,
-		vue: Vue
-	};
-}
+window.Latte = {
+	actions,
+	api,
+	clipboard,
+	cookie,
+	core,
+	dom,
+	i18n,
+	json,
+	messages,
+	notices,
+	operators,
+	overlays,
+	panels,
+	vue: Vue
+};
