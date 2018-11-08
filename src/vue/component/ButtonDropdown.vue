@@ -135,13 +135,16 @@
 
 			live(this.popup, "[href],[data-close]", "click", () => this.close());
 
-			this.$el.removeChild(this.popup);
-			document.body.appendChild(this.popup);
+			this.$nextTick(() =>
+			{
+				this.$el.removeChild(this.popup);
+				document.body.appendChild(this.popup);
 
-			window.addEventListener("resize", () => this.shouldUpdate(), {passive: true});
-			window.addEventListener("scroll", () => this.shouldUpdate(), {passive: true});
+				window.addEventListener("resize", () => this.shouldUpdate(), {passive: true});
+				window.addEventListener("scroll", () => this.shouldUpdate(), {passive: true});
 
-			this.$nextTick(() => this.calculatePosition());
+				this.calculatePosition();
+			});
 		},
 
 		computed: {

@@ -51,8 +51,8 @@
 			</td>
 
 			<template v-for="(column, columnKey) in columns">
-				<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :key="columnKey" :ref="createRowColumn(row, column, rowKey, columnKey)" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-					<div></div>
+				<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+					<component :is="createRowColumn(row, column)"></component>
 				</td>
 			</template>
 
@@ -60,7 +60,7 @@
 				<div class="column-content flex-row align-items-center pl-0">
 					<latte-button-dropdown icon="dots-vertical" :small="true">
 						<nav class="nav nav-list">
-							<div v-for="(action, actionKey) in actions" :id="createAction(action, row, rowKey)" :key="actionKey"></div>
+							<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
 						</nav>
 					</latte-button-dropdown>
 				</div>
@@ -79,7 +79,7 @@
 		<tr v-if="pagination.length > 0">
 			<th :colspan="columns.length + (actions.length > 0 ? 1 : 0) + (showSelections ? 1 : 0)">
 				<div class="column-content">
-					<latte-pagination :pagination="pagination" @navigate="loadPage($event)"></latte-pagination>
+					<latte-pagination :pagination="pagination" @navigate="loadPage"></latte-pagination>
 				</div>
 			</th>
 		</tr>
@@ -160,6 +160,13 @@
 		data()
 		{
 			return {
+				defaults: {
+					column: {
+						is_searchable: false,
+						is_sortable: false
+					}
+				},
+				isLoading: false,
 				actions: [],
 				columns: [],
 				data: [],
@@ -234,40 +241,25 @@
 				evt.stopPropagation();
 			},
 
-			createAction(action, row, rowKey)
+			createAction(action, row)
 			{
-				const id = `row-action-${action.icon}-${rowKey}`;
+				return Vue.extend({
 
-				this.$nextTick(() =>
-				{
-					let Action = Vue.extend({
+					template: action.template,
 
-						template: action.template,
+					data()
+					{
+						return {
+							action: action,
+							row: row
+						};
+					}
 
-						data()
-						{
-							return {
-								action: action,
-								row: row
-							};
-						}
-
-					});
-
-					new Action({
-
-						el: this.$el.querySelector(`#${id}`),
-						parent: this
-
-					});
 				});
-
-				return id;
 			},
 
-			createRowColumn(row, column, rowKey, columnKey)
+			createRowColumn(row, column)
 			{
-				const id = `row-${column["field"]}-${rowKey}-${columnKey}`;
 				const $this = this;
 				const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
@@ -276,81 +268,50 @@
 
 				column.template = column.template.replace(`<slot name="badges"></slot>`, badgesHTML);
 
-				this.$nextTick(() =>
-				{
-					let Column = Vue.extend({
+				return Vue.extend({
 
-						template: column.template,
+					template: column.template,
 
-						data()
+					data()
+					{
+						return {
+							column: column,
+							row: row,
+							uniqueId: $this.uniqueId
+						};
+					},
+
+					methods: {
+
+						addFilter(property, value, label = undefined, filterClass = "primary")
 						{
-							return {
-								column: column,
-								row: row,
-								uniqueId: $this.uniqueId
-							};
+							label = label || value;
+
+							$this.addFilter({property, value, label, class: filterClass});
 						},
 
-						methods: {
+						applyFilter(evt, filter, filterClass)
+						{
+							filter.class = `badge-${filterClass}`;
+							$this.addFilter(filter);
 
-							addFilter(property, value, label = undefined, filterClass = "primary")
-							{
-								label = label || value;
+							evt.preventDefault();
+							evt.stopPropagation();
+						},
 
-								$this.addFilter({property, value, label, class: filterClass});
-							},
+						moment()
+						{
+							return moment(...arguments);
+						},
 
-							applyFilter(evt, filter, filterClass)
-							{
-								filter.class = `badge-${filterClass}`;
-								$this.addFilter(filter);
-
-								evt.preventDefault();
-								evt.stopPropagation();
-							},
-
-							handle(event, data)
-							{
-								$this.handle(event, data);
-							},
-
-							moment()
-							{
-								return moment(...arguments);
-							},
-
-							utc()
-							{
-								return moment.utc(...arguments);
-							}
-
+						utc()
+						{
+							return moment.utc(...arguments);
 						}
 
-					});
+					}
 
-					new Column({
-						el: this.$refs[id][0].children[0],
-						parent: this
-					})
 				});
-
-				return id;
-			},
-
-			handle(event, data)
-			{
-				this.$emit(event, data);
-			},
-
-			isLoading(loading = false)
-			{
-				if (this.panel === null)
-					return;
-
-				if (loading)
-					this.panel.classList.add("is-loading");
-				else
-					this.panel.classList.remove("is-loading");
 			},
 
 			loadFromUrl()
@@ -358,7 +319,7 @@
 				this.data = [];
 				this.pagination = [];
 
-				this.isLoading(true);
+				this.isLoading = true;
 
 				let url = `${this.url}/data?offset=${(this.page - 1) * this.limit}&limit=${this.limit}`;
 
@@ -412,13 +373,13 @@
 				this.data = response.data.data;
 				this.pagination = response.data.pagination;
 
-				this.isLoading(false);
+				this.isLoading = false;
 			},
 
 			onReceivedSetupResponse(response)
 			{
 				this.actions = response.data.actions;
-				this.columns = response.data.columns;
+				this.columns = response.data.columns.map(column => Object.assign({}, this.defaults.column, column));
 
 				if (typeof response.data.sorting !== "undefined")
 				{
@@ -458,6 +419,19 @@
 		},
 
 		watch: {
+
+			isLoading()
+			{
+				this.$emit("loading", this.isLoading);
+
+				if (this.panel === null)
+					return;
+
+				if (this.isLoading)
+					this.panel.classList.add("is-loading");
+				else
+					this.panel.classList.remove("is-loading");
+			},
 
 			selection()
 			{
