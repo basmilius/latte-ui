@@ -1,6 +1,6 @@
 <template>
 
-	<button class="btn" :class="buttonClasses" :data-tooltip="ariaLabel" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel" @click.passive="toggle">
+	<button class="btn" :class="buttonClasses" :data-tooltip="tooltip" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel" @click.passive="toggle">
 		<img v-if="avatarUrl !== null" class="avatar avatar-in-button" :src="avatarUrl" :alt="ariaLabel"/>
 		<i v-else-if="icon !== ''" :class="iconClasses"></i>
 		<i v-if="iconBefore !== ''" :class="iconBeforeClasses"></i>
@@ -30,6 +30,7 @@
 
 			ariaLabel: {
 				default: "",
+				required: false,
 				type: String
 			},
 
@@ -85,6 +86,12 @@
 				default: false,
 				required: false,
 				type: Boolean
+			},
+
+			tooltip: {
+				default: "",
+				required: false,
+				type: String
 			},
 
 			type: {

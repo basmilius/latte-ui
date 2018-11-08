@@ -8,7 +8,7 @@
 				<div class="column-content flex-row align-items-center justify-content-start">
 					<span>{{ column.label }}</span>
 
-					<button v-if="show.sorting && column.is_sortable" class="btn btn-text btn-icon btn-dark btn-sm ml-1" @click="sortBy(column.field)">
+					<button v-if="show.sorting && column.is_sortable" :aria-label="i18n.sortOn.replace('@0', column.label)" class="btn btn-text btn-icon btn-dark btn-sm ml-1" @click="sortBy(column.field)">
 						<i class="mdi latte-sorting none" v-if="sort.by !== column.field"></i>
 						<i class="mdi latte-sorting down" v-else-if="sort.order === 'ASC'"></i>
 						<i class="mdi latte-sorting up" v-else-if="sort.order === 'DESC'"></i>
@@ -58,7 +58,7 @@
 
 			<td class="actions" v-if="actions.length > 0">
 				<div class="column-content flex-row align-items-center pl-0">
-					<latte-button-dropdown icon="dots-vertical" :small="true">
+					<latte-button-dropdown :aria-label="i18n.more" icon="dots-vertical" :small="true">
 						<nav class="nav nav-list">
 							<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
 						</nav>
@@ -94,6 +94,7 @@
 	import { handleError } from "../../js/core";
 	import { closest } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
+	import { forObject } from "../../js/i18n";
 
 	export default {
 
@@ -157,6 +158,11 @@
 
 		},
 
+		created()
+		{
+			this.i18n = forObject(this.i18n, "root");
+		},
+
 		data()
 		{
 			return {
@@ -165,6 +171,10 @@
 						is_searchable: false,
 						is_sortable: false
 					}
+				},
+				i18n: {
+					more: "More options",
+					sortOn: "Sort by @0"
 				},
 				isLoading: false,
 				actions: [],
