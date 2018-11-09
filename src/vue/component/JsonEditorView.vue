@@ -3,11 +3,11 @@
 	<div class="json-editor json-editor-view">
 		<div class="json-editor json-editor-block" v-for="(item, index) in flowData" :key="key(item)" :class="[item.type, {'hide-block': hideMyBlock[index]}]">
 			<div class="key">
-				<button class="btn btn-light toggle" v-if="item.type === 'object' || item.type === 'array'" @click="toggleBlock(index)"><i :class="['mdi', {'mdi-chevron-down': !hideMyBlock[index]}, {'mdi-chevron-right': hideMyBlock[index]}]"></i></button>
+				<button class="btn btn-text btn-icon btn-dark toggle" v-if="item.type === 'object' || item.type === 'array'" @click="toggleBlock(index)"><i :class="['mdi', {'mdi-chevron-down': !hideMyBlock[index]}, {'mdi-chevron-right': hideMyBlock[index]}]"></i></button>
 				<input type="text" v-model="item.name" class="form-control" v-if="typeof item.name === 'string'" @blur="keyInputBlur(item, $event)"/>
 				<span class="json-editor json-editor-o" v-if="item.type === 'array'">{{ "[" + item.childParams.length + "]" }}</span>
 				<span class="json-editor json-editor-o" v-if="item.type === 'object'">{{ "{" + (item.childParams.length || 0) + "}" }}</span>
-				<button class="btn btn-light trash" @click="deleteItem(parsedData, item, index)" v-if="item.type === 'object' || item.type === 'array'"><i class="mdi mdi-delete"></i></button>
+				<button class="btn btn-text btn-icon btn-dark trash" @click="deleteItem(parsedData, item, index)" v-if="item.type === 'object' || item.type === 'array'"><i class="mdi mdi-delete"></i></button>
 			</div>
 			<div class="value">
 				<template v-if="item.type === 'object'">
@@ -23,12 +23,12 @@
 						<option :value="true">TRUE</option>
 						<option :value="false">FALSE</option>
 					</select>
-					<button class="btn btn-light trash" @click="deleteItem(parsedData, item, index)"><i class="mdi mdi-delete"></i></button>
+					<button class="btn btn-text btn-icon btn-dark trash" @click="deleteItem(parsedData, item, index)"><i class="mdi mdi-delete"></i></button>
 				</template>
 			</div>
 		</div>
 		<latte-json-editor-iaf v-if="isAddingItem" @confirm="newItem" @cancel="cancelNewItem"></latte-json-editor-iaf>
-		<button class="btn btn-light" @click="addItem" v-if="!isAddingItem"><i class="mdi mdi-plus-circle"></i></button>
+		<button class="btn btn-text btn-icon btn-dark" @click="addItem" v-if="!isAddingItem"><i class="mdi mdi-plus-circle"></i></button>
 	</div>
 
 </template>

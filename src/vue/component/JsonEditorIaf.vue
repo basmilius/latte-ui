@@ -16,8 +16,8 @@
 			</select>
 		</template>
 
-		<button class="btn btn-primary ml-3" @click="confirm"><i class="mdi mdi-check-circle"></i></button>
-		<button class="btn btn-light ml-1" @click="cancel"><i class="mdi mdi-close-circle"></i></button>
+		<button class="btn btn-text btn-icon btn-primary ml-3" @click="confirm"><i class="mdi mdi-check-circle"></i></button>
+		<button class="btn btn-text btn-icon btn-dark ml-1" @click="cancel"><i class="mdi mdi-close-circle"></i></button>
 	</div>
 
 </template>
