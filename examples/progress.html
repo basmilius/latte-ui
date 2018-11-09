@@ -53,14 +53,38 @@
 						<div class="panel-header"><span class="panel-title">Basic</span></div>
 						<div class="panel-body">
 
-							<latte-progress class="mt-0" :min="0" :max="100" :value="30"></latte-progress>
-							<span class="spinner spinner-primary ml-3" style="font-size: 48px;"></span>
+							<latte-progress class="mt-0" mode="bar" :min="0" :max="100" :value="50" v-model="any.progress"></latte-progress>
 
 						</div>
 						<div class="panel-body">
 
-							<latte-progress class="mt-0" :is-indeterminate="true"></latte-progress>
-							<span class="spinner spinner-primary ml-3" style="font-size: 48px;"></span>
+							<latte-progress class="mt-0" mode="bar" :is-indeterminate="true"></latte-progress>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Change</span></div>
+						<div class="panel-body">
+
+							<input type="range" class="mt-5" min="0" max="100" value="50" v-model="any.progress"/>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-6">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Basic</span></div>
+						<div class="panel-body">
+
+							<latte-progress class="mt-0" mode="ring" :min="0" :max="100" :value="50" v-model="any.progress"></latte-progress>
+
+						</div>
+						<div class="panel-body">
+
+							<latte-progress class="mt-0" mode="ring" :is-indeterminate="true"></latte-progress>
 
 						</div>
 					</div>

@@ -19,6 +19,13 @@ export function createRootComponent()
 			window.addEventListener("hashchange", onHashChange, false);
 		},
 
+		data()
+		{
+			return {
+				any: {}
+			};
+		},
+
 		mounted()
 		{
 			installServiceWorker();

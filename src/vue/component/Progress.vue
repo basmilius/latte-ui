@@ -1,10 +1,10 @@
 <template>
 
-	<!--<div class="progress progress-bar" :class="{'is-indeterminate': isIndeterminate}">-->
-	<!--<div class="progress-value"></div>-->
-	<!--</div>-->
+	<div class="progress progress-bar" :class="{'is-indeterminate': isIndeterminate}" v-if="isBar">
+		<div class="progress-value" :style="barStyle"></div>
+	</div>
 
-	<svg class="progress progress-ring" :class="{'is-determinate': !isIndeterminate, 'is-indeterminate': isIndeterminate}" style="height: 48px; width: 48px" viewBox="0 0 24 24">
+	<svg class="progress progress-ring" :class="{'is-determinate': !isIndeterminate, 'is-indeterminate': isIndeterminate}" style="height: 48px; width: 48px" viewBox="0 0 24 24" v-else-if="isRing">
 		<defs>
 			<linearGradient id="wave">
 				<stop offset="0%" stop-color="transparent"></stop>
@@ -12,13 +12,15 @@
 				<stop offset="100%" stop-color="transparent"></stop>
 			</linearGradient>
 		</defs>
-		<circle class="progress-track" r="11" cx="12" cy="12" x="0" y="0" fill="transparent" stroke-width="3" shape-rendering="geometricPrecision"></circle>
-		<circle class="progress-value" r="11" cx="12" cy="12" x="0" y="0" fill="transparent" stroke-width="3" shape-rendering="geometricPrecision"></circle>
+		<circle class="progress-track" r="11" cx="12" cy="12" x="0" y="0" fill="transparent" stroke-width="3"></circle>
+		<circle class="progress-value" r="11" cx="12" cy="12" x="0" y="0" fill="transparent" stroke-width="3" :stroke-dasharray="ringStyle"></circle>
 	</svg>
 
 </template>
 
 <script>
+
+	const DASH_CAP = 69;
 
 	export default {
 
@@ -33,15 +35,22 @@
 			},
 
 			max: {
-				default: 0,
+				default: 100,
 				required: false,
 				type: Number
 			},
 
 			min: {
-				default: 100,
+				default: 0,
 				required: false,
 				type: Number
+			},
+
+			mode: {
+				default: "bar",
+				required: false,
+				type: String,
+				validator: value => ["bar", "ring"].contains(value)
 			},
 
 			value: {
@@ -50,12 +59,114 @@
 				type: Number
 			}
 
+		},
+
+		data()
+		{
+			return {
+				bar: 0,
+				ring: 0
+			};
+		},
+
+		mounted()
+		{
+			this.renderProgress();
+		},
+
+		computed: {
+
+			isBar()
+			{
+				return this.mode === "bar";
+			},
+
+			isRing()
+			{
+				return this.mode === "ring";
+			},
+
+			barStyle()
+			{
+				if (this.isIndeterminate)
+					return {};
+
+				return {
+					width: `${this.bar}%`
+				};
+			},
+
+			ringStyle()
+			{
+				if (this.isIndeterminate)
+					return "";
+
+				return `${this.ring} 999`;
+			}
+
+		},
+
+		methods: {
+
+			renderProgress()
+			{
+				if (this.isIndeterminate)
+					return;
+
+				const max = this.max - this.min;
+				const value = Math.max(this.min, Math.min(this.max, this.value)) - this.min;
+				const p = value / max;
+
+				if (this.isBar)
+					this.renderProgressBar(p);
+				else if (this.isRing)
+					this.renderProgressRing(p);
+			},
+
+			renderProgressBar(p)
+			{
+				this.bar = p * 100;
+			},
+
+			renderProgressRing(p)
+			{
+				this.ring = p * DASH_CAP;
+			}
+
+		},
+
+		watch: {
+
+			isIndeterminate()
+			{
+				this.renderProgress();
+			},
+
+			max()
+			{
+				this.renderProgress();
+			},
+
+			mode()
+			{
+				this.renderProgress();
+			},
+
+			min()
+			{
+				this.renderProgress();
+			},
+
+			value()
+			{
+				this.renderProgress();
+			}
+
 		}
 
 	}
 
 </script>
-
 
 <style lang="scss">
 
@@ -76,6 +187,17 @@
 			width: 100%;
 			background: var(--progress-track-private);
 			border-radius: var(--border-radius);
+
+			div.progress-value
+			{
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				height: inherit;
+				background: var(--progress-color-private);
+				border-radius: var(--border-radius);
+			}
 
 			&.is-indeterminate
 			{
@@ -100,6 +222,7 @@
 		&.progress-ring
 		{
 			border-radius: 999px;
+			transform: rotate3d(0, 0, 1, -90deg);
 
 			circle.progress-track
 			{
@@ -110,14 +233,6 @@
 			{
 				transform-origin: center center;
 				stroke: var(--progress-color-private);
-			}
-
-			&.is-determinate
-			{
-				circle.progress-value
-				{
-					stroke-dasharray: unquote("70 999");
-				}
 			}
 
 			&.is-indeterminate
