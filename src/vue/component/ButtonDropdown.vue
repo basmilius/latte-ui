@@ -140,7 +140,7 @@
 			this.popup = this.$el.querySelector(":scope > div.dropdown");
 			this.popup.addOutsideEventListener("pointerdown", this.cb.onOutsideClick);
 
-			live(this.popup, "[href],[data-close]", "click", () => this.close());
+			live(this.popup, "[href],[data-close]", "pointerup", () => this.close());
 
 			this.$nextTick(() =>
 			{
