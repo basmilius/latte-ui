@@ -1,0 +1,107 @@
+.progress
+{
+	--progress-color-private: var(--progress-color, rgb(var(--color-primary)));
+	--progress-track-private: var(--progress-track, rgba(var(--color-dark), .1));
+	--progress-wave-private: var(--progress-wave, rgb(var(--color-primary-foreground), .3));
+
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: middle;
+
+	&.progress-bar
+	{
+		height: 6px;
+		width: 100%;
+		background: var(--progress-track-private);
+		border-radius: var(--border-radius);
+
+		div.progress-value
+		{
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			height: inherit;
+			background: var(--progress-color-private);
+			border-radius: var(--border-radius);
+		}
+
+		&.is-indeterminate
+		{
+			background: var(--progress-color-private);
+
+			&::after
+			{
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				height: inherit;
+				margin-left: -20%;
+				width: 40%;
+				content: "";
+				animation: wave-animation 1200ms infinite linear;
+				background: linear-gradient(to right, transparent, var(--progress-wave-private), transparent);
+			}
+		}
+	}
+
+	&.progress-ring
+	{
+		border-radius: 999px;
+		transform: rotate3d(0, 0, 1, -90deg);
+
+		circle.progress-track
+		{
+			stroke: var(--progress-track-private);
+		}
+
+		circle.progress-value
+		{
+			transform-origin: center center;
+			stroke: var(--progress-color-private);
+		}
+
+		&.is-indeterminate
+		{
+			circle.progress-track
+			{
+				stroke: var(--progress-color-private);
+			}
+
+			circle.progress-value
+			{
+				animation: wave-ring-animation 700ms infinite linear;
+				stroke: url(#wave);
+				stroke-dasharray: unquote("70 999");
+			}
+		}
+	}
+}
+
+@keyframes wave-animation
+{
+	from
+	{
+		left: -20%;
+	}
+
+	to
+	{
+		left: 120%;
+	}
+}
+
+@keyframes wave-ring-animation
+{
+	from
+	{
+		transform: rotate3d(0, 0, 1, 0deg);
+	}
+
+	to
+	{
+		transform: rotate3d(0, 0, 1, 360deg);
+	}
+}
