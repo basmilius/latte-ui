@@ -40,7 +40,7 @@
 			if (lattejs === null)
 				return;
 
-			lattePath = lattejs.getAttribute("src").replace("latte.js", "");
+			lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
 		},
 
 		data()
