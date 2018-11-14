@@ -14,7 +14,6 @@ div.dropdown
 	background: var(--dropdown-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--dropdown-elevation);
-	overflow: hidden;
 
 	&.dropdown-at-root
 	{
@@ -119,6 +118,7 @@ div.dropdown
 		position: relative;
 		display: block;
 		max-height: 55vh;
+		border-radius: inherit;
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
