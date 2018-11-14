@@ -2,7 +2,7 @@
 
 import { dispatch, on } from "../actions";
 import { getCookie, setCookie } from "../util/cookies";
-import { timeout } from "../core";
+import { interval } from "../core";
 
 export function createRootComponent()
 {
@@ -28,6 +28,7 @@ export function createRootComponent()
 
 		mounted()
 		{
+			initializeTick();
 			installServiceWorker();
 			onHashChange();
 			removeQueryString();
@@ -49,6 +50,11 @@ export function createRootComponent()
 		}
 
 	});
+}
+
+function initializeTick()
+{
+	interval(100, () => dispatch("latte:tick", window.performance.now()));
 }
 
 function installServiceWorker()

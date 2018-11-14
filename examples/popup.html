@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Popup &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+
+			<span class="toolbar-title">Popup</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<div id="drawer" data-ui-is-nav-open role="menu">
+			<nav class="nav" id="drawer-primary">
+				<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+				<div class="divider divider-horizontal mt-auto" role="separator"></div>
+				<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+			</nav>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Basic popup</span></div>
+						<div class="panel-body">
+
+							<button ref="btn" class="btn btn-contained btn-primary"><span>More info</span><i class="mdi mdi-arrow-down-bold-circle"></i></button>
+
+							<latte-popup :associate-with="$refs.btn">
+								<div class="panel-body" style="width: 300px">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquid dolores ea, harum in magni maxime minus nemo nesciunt nisi quo reiciendis rerum sunt suscipit unde! Cum doloremque harum quibusdam.
+								</div>
+							</latte-popup>
+
+						</div>
+						<div class="panel-body">
+
+							<button class="btn btn-contained btn-primary" ref="btn2"><i class="mdi mdi-skull"></i><span>Destroy Earth</span></button>
+
+							<latte-popup :associate-with="$refs.btn2" :margin-y="12" :with-arrow="false">
+								<div class="panel-body" style="width: 300px">
+									<strong>Are you sure that you want to destroy the world?</strong>
+									<span>Everything will be lost, including icecream and donuts!!!</span>
+								</div>
+								<div class="panel-footer">
+									<button class="btn btn-text btn-dark ml-auto"><span>Cancel</span></button>
+									<button class="btn btn-contained btn-error"><i class="mdi mdi-delete-circle"></i><span>Yes, I'm sure</span></button>
+								</div>
+							</latte-popup>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

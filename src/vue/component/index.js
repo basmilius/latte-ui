@@ -19,6 +19,7 @@ export { default as Overlay } from "./Overlay.vue";
 export { default as Pagination } from "./Pagination.vue";
 export { default as Password } from "./Password.vue";
 export { default as PdfViewer } from "./PdfViewer.vue";
+export { default as Popup } from "./Popup.vue";
 export { default as Progress } from "./Progress.vue";
 export { default as Ripple } from "./Ripple.vue";
 export { default as Tab } from "./Tab.vue";
