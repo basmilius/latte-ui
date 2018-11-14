@@ -95,6 +95,9 @@ async function build()
 
 	console.log("[build]", "Copying images...");
 	await new Promise(resolve => ncp("src/image", "dist/image", () => resolve()));
+
+	console.log("[build]", "Copying sounds...");
+	await new Promise(resolve => ncp("src/sound", "dist/sound", () => resolve()));
 }
 
 build()

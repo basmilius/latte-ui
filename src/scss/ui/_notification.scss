@@ -170,7 +170,7 @@ div.notification > img.avatar
 	.notification-#{$type}
 	{
 		--notification-color: RGB(var(--color-#{$type}));
-		--notification-color-text: #RGB(var(--color-#{$type}-foreground));
+		--notification-color-text: RGB(var(--color-#{$type}-foreground));
 		--notification-icon: "#{if(map-has-key($notification-icons, $type), #{map-get($notification-icons, $type)}, #{map-get($notification-icons, default)})}";
 	}
 }

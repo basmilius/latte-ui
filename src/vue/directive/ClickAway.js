@@ -40,6 +40,8 @@ function update(el, binding)
 
 export default {
 
+	name: "click-away",
+
 	bind,
 
 	unbind,

@@ -22,11 +22,26 @@
 
 <script>
 
+	let lattePath = null;
+
 	import { on } from "../../js/actions";
 
 	export default {
 
 		name: "latte-notifications",
+
+		created()
+		{
+			if (lattePath !== null)
+				return;
+
+			const lattejs = document.querySelector(`script[src*="latte.js"]`);
+
+			if (lattejs === null)
+				return;
+
+			lattePath = lattejs.getAttribute("src").replace("latte.js", "");
+		},
 
 		data()
 		{
@@ -59,7 +74,7 @@
 				if (data.delay > -1)
 					setTimeout(() => this.remove(data.id), data.delay + 50);
 
-				const soundUri = data["sound"] || "/resource/sound/notification/pipes.ogg";
+				const soundUri = data["sound"] || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
 
 				if (soundUri === null)
 					return;

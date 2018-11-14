@@ -1,5 +1,7 @@
 export default {
 
+	name: "latte-context-menu",
+
 	bind(element)
 	{
 		let contextMenu = element.contextMenuInstance = element.querySelector(":scope > nav.latte-context-menu:not(.is-inline)");
