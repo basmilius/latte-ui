@@ -21,7 +21,7 @@
 		<tr class="search-row" v-if="show.search">
 			<th v-if="showSelections" style="width:42px"></th>
 			<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-				<input v-if="column.is_searchable" type="search" placeholder="Zoeken" v-model="params[column.field]" @keydown.enter="search"/>
+				<input v-if="column.is_searchable" type="search" placeholder="Zoeken" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 			</th>
 			<th></th>
 		</tr>
@@ -405,7 +405,7 @@
 				this.loadFromUrl();
 			},
 
-			search(evt)
+			search(field, value, evt)
 			{
 				if (evt)
 				{
@@ -413,6 +413,7 @@
 					evt.stopPropagation();
 				}
 
+				this.params[field] = value;
 				this.page = 1;
 				this.loadFromUrl();
 			},
