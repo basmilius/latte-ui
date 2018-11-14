@@ -83,6 +83,8 @@ export function createMessage(title, message, buttons, prompt = false)
 				timeout(0, () => overlay.classList.remove("is-open"));
 				timeout(270, () => overlay.classList.remove("is-visible"));
 
+				Latte.actions.dispatch("latte:overlay", {overlay, open: false});
+
 				resolve({
 					button: button.id,
 					input: (prompt ? promptInput.value : undefined)
@@ -100,6 +102,7 @@ export function createMessage(title, message, buttons, prompt = false)
 
 		document.body.appendChild(overlay);
 
+		Latte.actions.dispatch("latte:overlay", {overlay, open: true});
 		timeout(0, () => overlay.classList.add("is-visible"));
 		timeout(20, () => overlay.classList.add("is-open"));
 	});

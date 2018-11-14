@@ -2,7 +2,7 @@
 
 	<div :class="dropdownClasses" :style="dropdownStyles">
 		<div class="dropdown-content">
-			<slot></slot>
+			<slot v-bind="this"></slot>
 		</div>
 	</div>
 
