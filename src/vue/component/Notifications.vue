@@ -52,7 +52,16 @@
 
 		mounted()
 		{
-			on("latte:notification", data => this.createNotification(data));
+			on("latte:notification", data =>
+			{
+				if (data.title)
+					data.title = decodeURIComponent(data.title);
+
+				if (data.message)
+					data.message = decodeURIComponent(data.message);
+
+				this.createNotification(data);
+			});
 		},
 
 		methods: {
