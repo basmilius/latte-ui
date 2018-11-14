@@ -14,6 +14,7 @@ div.dropdown
 	background: var(--dropdown-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--dropdown-elevation);
+	overflow: hidden;
 
 	&.dropdown-at-root
 	{
