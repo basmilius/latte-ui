@@ -66,7 +66,7 @@
 
 							<latte-ripple as="button" class="btn btn-contained btn-primary" ref="btn2"><i class="mdi mdi-skull"></i><span>Destroy Earth</span></latte-ripple>
 
-							<latte-popup :associate-with="$refs.btn2" :margin-y="12" :with-arrow="false">
+							<latte-popup :associate-with="$refs.btn2" :margin-y="12" :persistent="true">
 								<div class="panel" slot-scope="popup">
 									<div class="panel-body" style="width: 300px">
 										<strong>Are you sure that you want to destroy the world?</strong>

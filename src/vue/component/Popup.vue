@@ -39,6 +39,12 @@
 				type: Number
 			},
 
+			persistent: {
+				default: false,
+				required: false,
+				type: Boolean
+			},
+
 			withArrow: {
 				default: true,
 				required: false,
@@ -206,6 +212,9 @@
 
 			onOutsideClick()
 			{
+				if (this.persistent)
+					return;
+
 				this.close();
 			},
 
@@ -237,14 +246,17 @@
 				dispatch("latte:tooltip:hide");
 
 				if (this.isOpen)
+				{
 					dispatch("latte:popup:open", this);
-				else
-					dispatch("latte:popup:close", this);
-
-				if (this.isOpen)
 					getMainElement().classList.add("is-popup-opened");
+					this.$emit("open");
+				}
 				else
+				{
+					dispatch("latte:popup:close", this);
 					getMainElement().classList.remove("is-popup-opened");
+					this.$emit("close");
+				}
 			},
 
 			rect()

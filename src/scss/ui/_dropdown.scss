@@ -45,6 +45,17 @@ div.dropdown
 		border-bottom-color: var(--dropdown-background);
 	}
 
+	&::before
+	{
+		position: absolute;
+		display: none;
+		margin: -1px 0 0 0;
+		content: "";
+		border: 9px solid transparent;
+		border-top-color: var(--outline-color-secondary);
+		border-bottom-color: var(--outline-color-secondary);
+	}
+
 	&.dropdown-left-above
 	{
 		&:not(.dropdown-at-root)
@@ -53,6 +64,7 @@ div.dropdown
 			left: 0;
 		}
 
+		&::before,
 		&::after
 		{
 			display: block;
@@ -70,6 +82,7 @@ div.dropdown
 			right: 0;
 		}
 
+		&::before,
 		&::after
 		{
 			display: block;
@@ -87,6 +100,7 @@ div.dropdown
 			left: 0;
 		}
 
+		&::before,
 		&::after
 		{
 			display: block;
@@ -104,6 +118,7 @@ div.dropdown
 			right: 0;
 		}
 
+		&::before,
 		&::after
 		{
 			display: block;
