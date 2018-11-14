@@ -11,7 +11,7 @@
 <script>
 
 	import { dispatch, on } from "../../js/actions";
-	import { getMainElement, timeout } from "../../js/core";
+	import { getMainElement } from "../../js/core";
 	import { live } from "../../js/util/dom";
 
 	export default {
@@ -23,8 +23,8 @@
 			associateWith: {
 				default: undefined,
 				required: false,
-				type: HTMLElement | undefined,
-				validator: val => val === undefined || val instanceof HTMLElement
+				type: HTMLElement | Vue | undefined,
+				validator: val => val === undefined || val instanceof Vue || val instanceof HTMLElement
 			},
 
 			marginX: {
@@ -99,6 +99,17 @@
 
 		computed: {
 
+			associatedElement()
+			{
+				if (this.associateWith === undefined)
+					return undefined;
+
+				if (this.associateWith instanceof Vue)
+					return this.associateWith.$el;
+
+				return this.associateWith;
+			},
+
 			dropdownClasses()
 			{
 				const classes = ["dropdown", "dropdown-at-root"];
@@ -130,14 +141,14 @@
 
 			bindEvents()
 			{
-				this.rect = this.associateWith.getBoundingClientRect();
-				this.associateWith.addEventListener("click", this.cb.onClick, {passive: true});
+				this.rect = this.associatedElement.getBoundingClientRect();
+				this.associatedElement.addEventListener("click", this.cb.onClick, {passive: true});
 			},
 
 			unbindEvents()
 			{
 				this.rect = null;
-				this.associateWith.removeEventListener("click", this.cb.onClick, {passive: true});
+				this.associatedElement.removeEventListener("click", this.cb.onClick, {passive: true});
 			},
 
 			close()
@@ -200,8 +211,8 @@
 
 			onResizeOrScroll()
 			{
-				if (this.associateWith !== undefined)
-					this.rect = this.associateWith.getBoundingClientRect();
+				if (this.associatedElement !== undefined)
+					this.rect = this.associatedElement.getBoundingClientRect();
 
 				this.calculatePosition();
 			}
@@ -217,9 +228,6 @@
 
 				if (n !== undefined)
 					this.bindEvents();
-
-				// Element isn't really bound at this point so a timeout to fix it.
-				timeout(100, () => this.onResizeOrScroll());
 			},
 
 			isOpen()
