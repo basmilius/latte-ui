@@ -16,9 +16,13 @@ $panel-gutter: 24px;
 	align-items: stretch;
 	flex-flow: column;
 	justify-content: flex-start;
-	background: var(--panel-background);
-	border-radius: var(--border-radius);
-	box-shadow: var(--panel-elevation);
+
+	&:not(.panel-blank)
+	{
+		background: var(--panel-background);
+		border-radius: var(--border-radius);
+		box-shadow: var(--panel-elevation);
+	}
 
 	+ .panel,
 	&.panel-gutter
