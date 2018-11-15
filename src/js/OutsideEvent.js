@@ -37,7 +37,8 @@ class OutsideEvent
 		if (evt.pageX === undefined)
 			return false;
 
-		const element = document.elementFromPoint(evt.pageX, evt.pageY);
+		const documentElement = document.documentElement;
+		const element = document.elementFromPoint(evt.pageX - documentElement.scrollLeft, evt.pageY - documentElement.scrollTop);
 
 		return closest(element, this.source) !== null;
 	}
