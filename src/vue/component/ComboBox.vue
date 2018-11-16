@@ -2,7 +2,7 @@
 
 	<div class="form-control combo-box" tabindex="0" @blur="close" @click="open" @keydown.down="onKeyPressDown" @keydown.enter="onKeyPressEnter" @keydown.esc="onKeyPressEscape" @keydown.up="onKeyPressUp">
 
-		<a class="nav-link combo-box-selection" v-if="selectedOptionTemplate !== null" v-html="selectedOptionTemplate"></a>
+		<a class="combo-box-selection" :class="selectedOptionClasses" v-if="selectedOptionTemplate !== null" v-html="selectedOptionTemplate"></a>
 		<div class="combo-box-empty" v-else>Select...</div>
 
 		<button class="btn btn-text btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi mdi-chevron-down"></i></button>
@@ -37,7 +37,8 @@
 				initialIndex: -1,
 				isDropdownOpened: false,
 				options: [],
-				selectedOptionIndex: -1
+				selectedOptionIndex: -1,
+				selectedOptionClasses: []
 			};
 		},
 
@@ -58,7 +59,11 @@
 				const option = this.selectedOption;
 
 				if (option !== null)
+				{
+					this.selectedOptionClasses = [...option.$el.classList];
+
 					return option.$el.innerHTML;
+				}
 
 				return null;
 			}
