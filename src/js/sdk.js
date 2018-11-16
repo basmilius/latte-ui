@@ -13,6 +13,7 @@ import notices from "./ui/notices";
 import operators from "./operators";
 import overlays from "./ui/overlays";
 import panels from "./ui/panels";
+import string from "./util/string";
 
 Array.prototype.contains = function (needle)
 {
@@ -33,5 +34,6 @@ window.Latte = {
 	operators,
 	overlays,
 	panels,
+	string,
 	vue: Vue
 };

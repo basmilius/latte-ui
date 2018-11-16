@@ -41,7 +41,9 @@ function onTranslationsLoaded(response)
 if (isInFrame)
 	onTranslationsLoaded(undefined);
 else
-	onTranslationsLoaded({data: window.LatteI18n || {}});
+	onTranslationsLoaded({data: window["LatteI18n"] || {}});
+
+Vue.filter("latte-i18n", (value, domain = "root", ...params) => Latte.i18n.translate(domain, value, params));
 
 export default {
 
