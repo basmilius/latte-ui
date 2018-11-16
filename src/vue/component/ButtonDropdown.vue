@@ -7,7 +7,7 @@
 		<span v-if="label !== ''">{{ label }}</span>
 		<i v-if="iconAfter !== ''" :class="iconAfterClasses"></i>
 
-		<latte-popup :associate-with="$refs.btn" :margin-x="-18">
+		<latte-popup :associate-with="$refs.btn" :margin-x="marginX" :margin-y="marginY">
 			<slot></slot>
 		</latte-popup>
 	</button>
@@ -55,6 +55,18 @@
 				default: "",
 				required: false,
 				type: String
+			},
+
+			marginX: {
+				default: -18,
+				required: false,
+				type: Number
+			},
+
+			marginY: {
+				default: 0,
+				required: false,
+				type: Number
 			},
 
 			small: {
