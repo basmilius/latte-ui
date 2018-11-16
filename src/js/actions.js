@@ -14,6 +14,17 @@ import { updateURLHash } from "./core.js";
 
 const actions = {};
 
+/**
+ * Dispatches an action.
+ *
+ * @param {String} action
+ * @param {*|undefined} data
+ * @param {Node|undefined} el
+ * @param {Event|undefined} evt
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function dispatch(action, data = undefined, el = undefined, evt = undefined)
 {
 	if (typeof actions[action] === "undefined")
@@ -22,6 +33,15 @@ export function dispatch(action, data = undefined, el = undefined, evt = undefin
 	actions[action].forEach(callback => callback(data, el, evt));
 }
 
+/**
+ * Registers an action listener.
+ *
+ * @param {String} action
+ * @param {Function} callback
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function on(action, callback)
 {
 	if (typeof actions[action] === "undefined")

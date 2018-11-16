@@ -2,6 +2,16 @@
 
 let main = undefined;
 
+/**
+ * Deep merges multiple objects.
+ *
+ * @param {*} target
+ * @param {Array<*>} sources
+ *
+ * @returns {*}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function deepMerge(target, ...sources)
 {
 	if (sources.length === 0)
@@ -33,11 +43,27 @@ export function deepMerge(target, ...sources)
 	return deepMerge(target, ...sources);
 }
 
+/**
+ * Gets the main#app element.
+ *
+ * @returns {HTMLMainElement}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function getMainElement()
 {
 	return main || (main = document.querySelector("main#app"));
 }
 
+/**
+ * Handles an Error.
+ *
+ * @param {Error} err
+ * @param {Function|undefined} fn
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function handleError(err, fn = undefined)
 {
 	Latte.messages.alert("Aw snap!", `<pre>${err.stack}</pre>`);
@@ -46,11 +72,30 @@ export function handleError(err, fn = undefined)
 		fn();
 }
 
+/**
+ * Returns TRUE when obj is an object.
+ *
+ * @param {*} obj
+ *
+ * @returns {Boolean}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function isObject(obj)
 {
 	return obj && typeof obj === "object" && !Array.isArray(obj);
 }
 
+/**
+ * Sets an interval.
+ *
+ * @param {Number} timeout
+ * @param {Function} func
+ *
+ * @returns {Number}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function interval(timeout, func)
 {
 	func();
@@ -58,6 +103,15 @@ export function interval(timeout, func)
 	return window.setInterval(func, timeout);
 }
 
+/**
+ * Returns TRUE when obj is iterable.
+ *
+ * @param {*} obj
+ *
+ * @returns {Boolean}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function isIterable(obj)
 {
 	if (obj === null)
@@ -66,6 +120,16 @@ export function isIterable(obj)
 	return typeof obj[Symbol.iterator] === "function";
 }
 
+/**
+ * Generates a random password-like string.
+ *
+ * @param {Number} length
+ * @param {String} availableSets
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function randomPassword(length = 9, availableSets = "luds")
 {
 	const sets = [];
@@ -97,16 +161,42 @@ export function randomPassword(length = 9, availableSets = "luds")
 	return shuffleString(password);
 }
 
+/**
+ * Registers a Latte module.
+ *
+ * @param {Function} func
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function register(func)
 {
 	func(window.Latte);
 }
 
+/**
+ * Sets a timeout.
+ *
+ * @param {Number} timeout
+ * @param {Function} func
+ *
+ * @returns {Number}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function timeout(timeout, func)
 {
 	return window.setTimeout(func, timeout);
 }
 
+/**
+ * Updates the URL hash.
+ *
+ * @param {Object} data
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function updateURLHash(data)
 {
 	let parts = [];
