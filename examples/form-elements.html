@@ -119,6 +119,34 @@
 				<div class="col-12 col-lg-4">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Autocomplete</span></div>
+						<div class="panel-body">
+
+							<latte-autocomplete :multi-select="true" url="https://latte.dev-preview.nl/api/users/suggestions">
+
+								<template slot="selection" slot-scope="selection">
+
+									<span class="badge badge-primary">
+										<span>{{ selection.label }}</span>
+										<button class="btn" @click="selection.remove()"><i class="mdi mdi-window-close"></i></button>
+									</span>
+
+								</template>
+
+								<template slot="suggestion" slot-scope="suggestion">
+
+									<i class="mdi mdi-circle"></i>
+									<span>{{ suggestion.label }} <span class="sub-label" v-if="suggestion.sub_label">{{ suggestion.sub_label }}</span></span>
+									<i class="mdi mdi-chevron-right"></i>
+
+								</template>
+
+							</latte-autocomplete>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Date picker</span></div>
 						<div class="panel-body">
 
@@ -138,9 +166,3 @@
 	<script defer type="text/javascript" src="../dist/latte.js"></script>
 </body>
 </html>
-<script>
-	import LatteDatePicker from "../src/vue/component/DatePicker";
-	export default {
-		components: {LatteDatePicker}
-	}
-</script>

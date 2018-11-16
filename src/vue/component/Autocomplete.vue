@@ -2,17 +2,39 @@
 
 	<div class="latte-autocomplete" v-click-away="onBlur">
 		<div class="form-control" :disabled="disabled">
-			<span class="badge badge-primary" v-for="val in values"><span>{{ val.label }}</span><button class="btn" @click="removeValue(val.value)"><i class="mdi mdi-window-close"></i></button></span>
+
+			<template v-for="selection in values">
+
+				<slot name="selection" v-bind="selection">
+
+					<span class="badge badge-primary">
+						<span>{{ selection.label }}</span>
+						<button class="btn" @click="selection.remove()"><i class="mdi mdi-window-close"></i></button>
+					</span>
+
+				</slot>
+
+			</template>
+
 			<input type="search" :name="name" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
+
 		</div>
 		<div class="dropdown" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
 			<nav class="nav nav-list">
 
 				<template v-for="(suggestion, index) in suggestionsFiltered">
+
 					<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
-						<span>{{ suggestion.label }} <span class="sub-label" v-if="suggestion.sub_label">{{ suggestion.sub_label }}</span></span>
-						<i class="mdi mdi-chevron-right"></i>
+
+						<slot name="suggestion" v-bind="suggestion">
+
+							<span>{{ suggestion.label }} <span class="sub-label" v-if="suggestion.sub_label">{{ suggestion.sub_label }}</span></span>
+							<i class="mdi mdi-chevron-right"></i>
+
+						</slot>
+
 					</a>
+
 				</template>
 
 			</nav>
@@ -147,7 +169,9 @@
 				if (this.values.filter(v => v.value === value && v.label === label).length > 0)
 					return;
 
-				this.values.push({label, value});
+				const remove = () => this.removeValue(value);
+
+				this.values.push({label, remove, value});
 			},
 
 			removeValue(value)
