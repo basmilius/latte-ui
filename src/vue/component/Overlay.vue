@@ -77,6 +77,16 @@
 				this.$emit("open", this);
 			}
 
+		},
+
+		watch: {
+
+			name(n, o)
+			{
+				remove(o);
+				register(n, this);
+			}
+
 		}
 
 	}
