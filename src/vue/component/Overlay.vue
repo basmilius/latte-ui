@@ -38,6 +38,12 @@
 			};
 		},
 
+		beforeDestroy()
+		{
+			document.body.removeChild(this.$el);
+			this.$el.parentNode.appendChild(this.$el);
+		},
+
 		destroyed()
 		{
 			remove(this.name);
