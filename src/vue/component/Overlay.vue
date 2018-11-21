@@ -34,14 +34,15 @@
 		{
 			return {
 				isOpen: false,
-				isVisible: false
+				isVisible: false,
+				parentRef: null
 			};
 		},
 
 		beforeDestroy()
 		{
 			document.body.removeChild(this.$el);
-			this.$el.parentNode.appendChild(this.$el);
+			this.parentRef.appendChild(this.$el);
 		},
 
 		destroyed()
@@ -53,7 +54,8 @@
 		{
 			register(this.name, this);
 
-			this.$el.parentNode.removeChild(this.$el);
+			this.parentRef = this.$el.parentNode;
+			this.parentRef.removeChild(this.$el);
 			document.body.appendChild(this.$el);
 
 			if (this.opened)
