@@ -2,7 +2,7 @@
 
 	<div class="datepicker">
 
-		<input readonly ref="input" type="datetime-local" class="form-control" :value="inputValue"/>
+		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="datetime-local" class="form-control" :value="inputValue"/>
 
 		<latte-popup :associate-with="$refs.input" ref="popup" style="width: 384px">
 
@@ -28,6 +28,24 @@
 		name: "latte-datetime-picker",
 
 		props: {
+
+			id: {
+				default: "date",
+				required: false,
+				type: String
+			},
+
+			name: {
+				default: "date",
+				required: false,
+				type: String
+			},
+
+			palceholder: {
+				default: "",
+				required: false,
+				type: String
+			},
 
 			value: {
 				default: () => new Date(),

@@ -2,7 +2,7 @@
 
 	<div class="datepicker">
 
-		<input readonly ref="input" type="date" class="form-control" :value="inputValue"/>
+		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="date" class="form-control" :value="inputValue"/>
 
 		<latte-popup :associate-with="$refs.input" ref="popup" style="width: 384px">
 			<latte-datepicker-calendar v-model="current"></latte-datepicker-calendar>
@@ -19,6 +19,24 @@
 		name: "latte-datepicker",
 
 		props: {
+
+			id: {
+				default: "date",
+				required: false,
+				type: String
+			},
+
+			name: {
+				default: "date",
+				required: false,
+				type: String
+			},
+
+			palceholder: {
+				default: "",
+				required: false,
+				type: String
+			},
 
 			value: {
 				default: () => new Date(),
