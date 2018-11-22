@@ -6,6 +6,7 @@ export { default as ComboBox } from "./ComboBox.vue";
 export { default as ComboBoxItem } from "./ComboBoxItem.vue";
 export { default as DataTable } from "./DataTable.vue";
 export { default as DatePicker } from "./DatePicker.vue";
+export { default as DatePickerCalendar } from "./DatePickerCalendar.vue";
 export { default as Draggable } from "./Draggable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";
