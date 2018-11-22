@@ -250,7 +250,8 @@
 
 			onReceiveValues(response)
 			{
-				this.values = response.data;
+				response.data.forEach(v => this.addValue(v.label, v.value));
+
 				this.isLoading = false;
 			},
 
