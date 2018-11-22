@@ -22,6 +22,11 @@
 			};
 		},
 
+		mounted()
+		{
+			this.$parent.updateTabBars();
+		},
+
 		methods: {
 
 			click(index)
