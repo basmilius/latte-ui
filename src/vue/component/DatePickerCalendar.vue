@@ -13,7 +13,7 @@
 			<button class="btn btn-icon btn-text btn-dark" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></button>
 		</div>
 
-		<div class="panel-body datepicker-calendar-dates pt-0" v-if="selectedView === 'dates'">
+		<div class="panel-body datepicker-calendar-dates pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
 			<span class="day">{{ moment().isoWeekday(1).format("dd") }}</span>
 			<span class="day">{{ moment().isoWeekday(2).format("dd") }}</span>
 			<span class="day">{{ moment().isoWeekday(3).format("dd") }}</span>
@@ -27,13 +27,13 @@
 			</button>
 		</div>
 
-		<div class="panel-body datepicker-calendar-months pt-0" v-if="selectedView === 'months'">
+		<div class="panel-body datepicker-calendar-months pt-0" :class="bodyClass" v-if="selectedView === 'months'">
 			<button :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)" v-for="(month, index) in months">
 				<span>{{ month }}</span>
 			</button>
 		</div>
 
-		<div class="panel-body datepicker-calendar-years pt-0" v-if="selectedView === 'years'">
+		<div class="panel-body datepicker-calendar-years pt-0" :class="bodyClass" v-if="selectedView === 'years'">
 			<button :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)" v-for="year in years">
 				<span>{{ year }}</span>
 			</button>
@@ -50,6 +50,12 @@
 		name: "latte-datepicker-calendar",
 
 		props: {
+
+			bodyClass: {
+				default: "",
+				required: false,
+				type: String
+			},
 
 			value: {
 				default: () => new Date(),
@@ -137,6 +143,9 @@
 			getClassesForDate(date)
 			{
 				const classes = ["btn"];
+
+				if (this.isToday(date))
+					classes.push("font-italic", "font-weight-bold");
 
 				if (this.isSelected(date))
 					classes.push("btn-contained", "btn-primary");
@@ -273,65 +282,3 @@
 	}
 
 </script>
-
-<style lang="scss" scoped>
-
-	div.datepicker-calendar
-	{
-		min-width: 380px;
-		z-index: 0;
-	}
-
-	div.datepicker-calendar-header
-	{
-		position: sticky;
-		top: 0;
-		background: var(--panel-background);
-		border: none;
-		border-top-left-radius: var(--border-radius);
-		border-top-right-radius: var(--border-radius);
-		z-index: 1;
-
-		div.btn-group .btn
-		{
-			text-transform: capitalize;
-		}
-	}
-
-	div.datepicker-calendar-dates
-	{
-		position: relative;
-		display: grid;
-		grid-template-columns: repeat(7, 1fr);
-
-		span.day
-		{
-			position: relative;
-			display: block;
-			margin-bottom: 6px;
-			font-size: .8rem;
-			font-weight: 500;
-			line-height: 30px;
-			text-align: center;
-			text-transform: capitalize;
-		}
-
-		button.btn
-		{
-			height: 42px;
-			margin: 0;
-			width: 100%;
-
-			&:not([disabled])
-			{
-				opacity: .8;
-			}
-
-			&[disabled]
-			{
-				opacity: .4;
-			}
-		}
-	}
-
-</style>

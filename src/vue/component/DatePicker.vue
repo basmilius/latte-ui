@@ -1,6 +1,6 @@
 <template>
 
-	<div class="datepicker" :class="{'is-open': isPickerOpened}">
+	<div class="datepicker">
 
 		<input readonly ref="input" type="date" class="form-control" :value="inputValue"/>
 

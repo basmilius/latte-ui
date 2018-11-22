@@ -7,276 +7,72 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.latte-datepicker-root
+div.datepicker-calendar
 {
-	position: relative;
-	display: block;
+	min-width: 380px;
+	overflow: auto;
+	z-index: 0;
 
-	div.latte-datepicker-picker
+	div.datepicker-calendar-header
 	{
-		position: absolute;
-		display: none;
-		margin: .25rem 0 0 0;
-		padding: 12px;
-		width: 339px;
-		background: var(--dropdown-background);
-		border-radius: var(--border-radius);
-		box-shadow: var(--dropdown-elevation);
-		user-select: none;
-		z-index: 500;
+		position: sticky;
+		top: 0;
+		background: var(--panel-background);
+		border: none;
+		border-top-left-radius: var(--border-radius);
+		border-top-right-radius: var(--border-radius);
+		z-index: 1;
 
-		&::after
+		div.btn-group .btn
 		{
-			position: absolute;
-			display: block;
-			top: -7px;
-			left: 28px;
-			margin: 0 1px;
-			content: "";
-			border: 7px solid transparent;
-			border-top: none;
-			border-bottom-color: var(--dropdown-background);
+			text-transform: capitalize;
 		}
 	}
 
-	&.is-open div.latte-datepicker-picker
-	{
-		display: block;
-	}
-
-	div.picker-top
+	div.datepicker-calendar-dates
 	{
 		position: relative;
-		display: flex;
-		align-items: center;
-		flex-flow: row nowrap;
-		justify-content: flex-start;
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
 
-		button.picker-top-nav
+		span.day
 		{
 			position: relative;
 			display: block;
-			height: 42px;
-			padding: 9px;
-			width: 42px;
-			flex: 0 0 42px;
-			background: transparent;
-			border: none;
-			border-radius: var(--border-radius);
-			color: var(--main-color);
-			cursor: pointer;
-			outline: none;
-
-			i.mdi
-			{
-				position: relative;
-				display: block;
-				height: 24px;
-				width: 24px;
-				font-size: 24px;
-				line-height: 24px;
-			}
-
-			&:hover
-			{
-				background: RGBA(var(--color-primary), .09);
-				color: var(--main-foreground);
-			}
-		}
-
-		span
-		{
-			position: relative;
-			display: block;
-			margin: 3px 0;
-			padding: 0 12px;
-			flex: 0 0 auto;
-			border-radius: var(--border-radius);
-			color: var(--main-placeholder);
-			cursor: pointer;
+			margin-bottom: 6px;
+			font-size: .8rem;
 			font-weight: 500;
-			line-height: 36px;
+			line-height: 30px;
 			text-align: center;
 			text-transform: capitalize;
-
-			&:hover
-			{
-				background: RGBA(var(--color-primary), .09);
-				color: var(--main-foreground);
-			}
-
-			&.month
-			{
-				margin-left: auto;
-			}
-
-			&.year
-			{
-				margin-right: auto;
-			}
 		}
-	}
 
-	div.picker-month-view
-	{
-		position: relative;
-		display: block;
-
-		div.picker-view-days
+		button.btn
 		{
-			position: relative;
-			display: grid;
-			margin: 9px 0;
-			grid-template-columns: repeat(7, 1fr);
+			height: 42px;
+			margin: 0;
+			width: 100%;
 
-			div.day
+			&:not([disabled])
 			{
-				position: relative;
-				display: block;
-				padding: 6px;
-				color: var(--main-color);
-				font:
-				{
-					size: .8rem;
-					weight: 600;
-				}
 				opacity: .7;
-				text-align: center;
-				text-transform: uppercase;
 			}
-		}
 
-		div.picker-view-dates
-		{
-			position: relative;
-			display: grid;
-			grid-gap: 3px;
-			grid-template-columns: repeat(7, 1fr);
-
-			div.date
+			&[disabled]
 			{
-				position: relative;
-				display: block;
-				border-radius: var(--border-radius);
-				color: var(--main-placeholder);
-				cursor: pointer;
-				font:
-				{
-					size: .9rem;
-					weight: 500;
-				}
-				line-height: 42px;
-				text-align: center;
-
-				&.is-other-month
-				{
-					opacity: .4;
-					pointer-events: none;
-				}
-
-				&:hover
-				{
-					background: RGBA(var(--color-primary), .12);
-				}
-
-				&.is-today
-				{
-					color: RGB(var(--color-primary));
-					font-style: italic;
-				}
-
-				&.is-selected
-				{
-					background: RGB(var(--color-primary));
-					color: RGB(var(--color-primary-foreground));
-				}
+				opacity: .3;
 			}
 		}
 	}
+}
 
-	div.picker-year-view
+div.timepicker-clock select.custom-select
+{
+	border-radius: 0;
+	box-shadow: none;
+
+	+ select.custom-select
 	{
-		position: relative;
-		display: block;
-		height: 242px;
-		overflow: auto;
-
-		div.picker-view-months
-		{
-			position: relative;
-			display: flex;
-			padding: 12px 0;
-			align-items: stretch;
-			flex-flow: column nowrap;
-			justify-content: flex-start;
-
-			div.month
-			{
-				position: relative;
-				display: block;
-				padding: 0 1rem;
-				border-radius: var(--border-radius);
-				color: var(--main-foreground);
-				font-weight: 500;
-				line-height: 39px;
-				opacity: .75;
-				text-align: center;
-				text-transform: capitalize;
-
-				&:hover
-				{
-					background: RGB(var(--color-primary));
-					color: RGB(var(--color-primary-foreground));
-				}
-
-				&.is-selected
-				{
-					color: RGB(var(--color-primary));
-				}
-			}
-		}
-	}
-
-	div.picker-years-view
-	{
-		position: relative;
-		display: block;
-		height: 242px;
-		overflow: auto;
-
-		div.picker-view-years
-		{
-			position: relative;
-			display: flex;
-			padding: 12px 0;
-			align-items: stretch;
-			flex-flow: column nowrap;
-			justify-content: flex-start;
-
-			div.year
-			{
-				position: relative;
-				display: block;
-				padding: 0 1rem;
-				border-radius: var(--border-radius);
-				color: var(--main-foreground);
-				font-weight: 500;
-				line-height: 39px;
-				opacity: .75;
-				text-align: center;
-				text-transform: capitalize;
-
-				&:hover
-				{
-					background: RGB(var(--color-primary));
-					color: RGB(var(--color-primary-foreground));
-				}
-
-				&.is-selected
-				{
-					color: RGB(var(--color-primary));
-				}
-			}
-		}
+		border-left: 2px solid var(--outline-color-secondary);
 	}
 }
