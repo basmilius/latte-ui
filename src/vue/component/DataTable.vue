@@ -158,6 +158,12 @@
 
 		},
 
+		beforeDestroy()
+		{
+			if (this.spinner !== null)
+				this.spinner.remove();
+		},
+
 		created()
 		{
 			this.i18n = forObject(this.i18n, "root");
@@ -190,6 +196,7 @@
 					by: "",
 					order: 'DESC'
 				},
+				spinner: null,
 				show: {
 					footer: this.showFooter,
 					header: this.showHeader,
@@ -372,7 +379,7 @@
 				if (this.panel.querySelectorAll("span.spinner").length > 0)
 					return;
 
-				let spinner = document.createElement("span");
+				let spinner = this.spinner = document.createElement("span");
 				spinner.classList.add("spinner", "spinner-primary");
 
 				this.panel.appendChild(spinner);
