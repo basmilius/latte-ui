@@ -103,6 +103,14 @@ a.panel
 	{
 		border-bottom: 2px solid var(--outline-color-secondary);
 	}
+
+	&.panel-header-sticky
+	{
+		position: sticky;
+		top: 0;
+		background: var(--panel-background);
+		z-index: 1;
+	}
 }
 
 .panel-rich-media

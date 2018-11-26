@@ -19,6 +19,65 @@ div.content
 	}
 }
 
+body.master-detail main#app
+{
+	> div#drawer
+	{
+		--drawer-elevation: 2px 0 var(--outline-color-secondary);
+	}
+
+	> div.toolbar
+	{
+		--toolbar-elevation: #{$drawer-primary-width} 2px var(--outline-color-secondary);
+	}
+
+	> div.content
+	{
+		padding: 0;
+
+		> div.panel
+		{
+			display: flex;
+			align-items: stretch;
+			flex-flow: row nowrap;
+			justify-content: flex-start;
+			height: calc(100vh - #{$toolbar-height});
+			border-radius: 0;
+		}
+
+		#detail,
+		#master
+		{
+			overflow: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+
+		@include compact
+		{
+			#detail
+			{
+				border-top: 2px solid var(--outline-color-secondary);
+			}
+		}
+
+		@include expanded
+		{
+			#detail
+			{
+				border-left: 2px solid var(--outline-color-secondary);
+			}
+		}
+	}
+
+	@include compact
+	{
+		> div.toolbar
+		{
+			--toolbar-elevation: 0 2px var(--outline-color-secondary);
+		}
+	}
+}
+
 @include expanded
 {
 	div#drawer + div.content

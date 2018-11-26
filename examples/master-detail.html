@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Master Detail &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body class="master-detail">
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+
+			<span class="toolbar-title">Master Detail</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<div id="drawer" class="has-secondary" data-ui-is-nav-open role="menu">
+			<nav class="nav" id="drawer-primary">
+				<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+				<div class="divider divider-horizontal mt-auto" role="separator"></div>
+				<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+			</nav>
+			<nav class="nav nav-list" id="drawer-secondary">
+				<div class="section">Projects</div>
+				<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projects</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Ongoing</span></a>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>Archive</span></a>
+				<div class="divider divider-horizontal" role="separator"></div>
+				<a href="#" target="_self" class="nav-link" role="menuitem"><span>New project</span></a>
+			</nav>
+		</div>
+
+		<div class="content">
+			<div class="panel">
+				<div class="row no-gutters">
+					<div class="col-12 col-lg-3" id="master">
+
+						<div class="panel-header panel-header-sticky">
+							<span class="panel-title">Master</span>
+						</div>
+						<div class="panel-body">
+							<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore doloremque dolorum facilis laboriosam magnam nam nulla quod vel vero voluptate! Architecto consequatur eligendi et excepturi ipsum iusto officiis sed, veniam.</div>
+							<div>Accusantium consequuntur laudantium optio possimus reiciendis. Consequatur, consequuntur cupiditate, delectus enim eum eveniet facilis fuga iusto laudantium nam natus obcaecati odio quasi quod repellat sed soluta tempore veniam, vitae voluptatibus.</div>
+							<div>Aliquam amet atque blanditiis consequuntur cum ea, earum eligendi et illo impedit incidunt minus natus neque odit placeat provident quidem reiciendis, repellat saepe sed sit voluptatem voluptatibus voluptatum? Dicta, magni.</div>
+							<div>Ad adipisci beatae earum eos est, eum libero neque nostrum officiis quos rerum veritatis vitae? Id in magnam molestias quidem? Adipisci rerum totam voluptas? Autem excepturi iste molestiae quae sequi!</div>
+							<div>Accusamus animi culpa distinctio dolore dolorem doloremque ducimus, est eveniet fugit, inventore nisi numquam obcaecati odit officia possimus provident recusandae reprehenderit sunt suscipit unde vel voluptatem, voluptatibus? Placeat saepe, voluptas!</div>
+							<div>Deleniti eaque eius fugiat hic ipsam laboriosam voluptatibus! Eos, sunt vel. Animi dignissimos excepturi fugiat libero necessitatibus nemo, nulla porro quas quisquam? Alias consequatur modi numquam obcaecati perspiciatis tenetur veniam!</div>
+							<div>Assumenda enim error est exercitationem, libero, maiores, officiis perferendis quo ratione recusandae repellendus sit tempore totam! Amet culpa esse hic iste officia optio quae, reiciendis rem similique, sit soluta voluptate!</div>
+							<div>Accusamus aliquid, beatae, delectus dolor dolorem eligendi exercitationem molestias, nemo quo reprehenderit temporibus ullam vitae voluptatem! Adipisci earum eos, explicabo, fuga id impedit neque numquam qui quibusdam, reiciendis veritatis vitae.</div>
+							<div>Consectetur corporis debitis deserunt distinctio impedit nam nulla reprehenderit sequi tempore temporibus. Accusantium ad alias aliquid consequuntur cum dolores ea, eveniet ex hic ipsam labore optio quae quibusdam sit vero?</div>
+							<div>Neque omnis quaerat ullam. Dicta, ducimus laudantium magnam molestiae odio optio perferendis ullam! Dignissimos, labore omnis! Adipisci aliquam at, ex expedita labore officiis omnis pariatur quasi reprehenderit sunt, tempore voluptates!</div>
+						</div>
+
+					</div>
+					<div class="col-12 col-lg-9" id="detail">
+
+						<div class="panel-header">
+							<span class="panel-title">Detail</span>
+						</div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet asperiores assumenda consequuntur delectus, exercitationem expedita harum inventore ipsa itaque laboriosam magnam maxime modi nesciunt provident quod sequi voluptatem voluptates!
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>
