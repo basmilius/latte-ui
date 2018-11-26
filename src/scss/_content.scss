@@ -43,6 +43,11 @@ body.master-detail main#app
 			justify-content: flex-start;
 			height: calc(100vh - #{$toolbar-height});
 			border-radius: 0;
+
+			> div.row
+			{
+				width: 100%;
+			}
 		}
 
 		#detail,
