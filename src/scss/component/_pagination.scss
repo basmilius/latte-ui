@@ -11,7 +11,6 @@ nav.pagination
 {
 	position: relative;
 	display: flex;
-	margin: -3px;
 	padding: 0;
 	align-items: center;
 	flex-flow: row nowrap;
@@ -26,7 +25,7 @@ nav.pagination
 		height: 30px;
 		width: 30px;
 		flex: 1 1 auto;
-		border-radius: 999px;
+		border-radius: var(--border-radius);
 		color: currentColor;
 		cursor: pointer;
 		font:
@@ -42,16 +41,17 @@ nav.pagination
 
 		i.mdi
 		{
-			height: 24px;
-			width: 24px;
-			font-size: 24px;
-			line-height: 24px;
+			height: 1em;
+			width: 1em;
+			font-size: 18px;
+			line-height: 1em;
+			vertical-align: middle;
 		}
 
 		&:hover
 		{
-			background: RGB(var(--color-dark));
-			color: RGB(var(--color-dark-foreground));
+			background: RGBA(var(--color-primary), .15);
+			color: RGB(var(--color-primary));
 			opacity: 1;
 		}
 
