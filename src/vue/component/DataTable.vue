@@ -404,7 +404,10 @@
 					this.sort.order = response.data.sorting.order;
 				}
 
-				this.loadFromUrl();
+				if (typeof response.data.initial_data !== "undefined")
+					this.onReceivedData(response.data.initial_data);
+				else
+					this.loadFromUrl();
 			},
 
 			reload()
