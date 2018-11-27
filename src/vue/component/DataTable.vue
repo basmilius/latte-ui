@@ -405,7 +405,7 @@
 				}
 
 				if (typeof response.data.initial_data !== "undefined")
-					this.onReceivedData(response.data.initial_data);
+					this.onReceivedData({data: response.data.initial_data});
 				else
 					this.loadFromUrl();
 			},
