@@ -14,6 +14,12 @@
 
 		props: {
 
+			badge: {
+				default: "",
+				required: false,
+				type: String
+			},
+
 			icon: {
 				default: "",
 				required: false,
