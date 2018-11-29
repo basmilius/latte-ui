@@ -95,7 +95,7 @@
 			window.addEventListener("resize", this.cb.onResizeOrScroll, {passive: true});
 			window.addEventListener("scroll", this.cb.onResizeOrScroll, {passive: true});
 
-			live(this.$el, "[href],[data-close]", "pointerup", () => this.close());
+			live(this.$el, "[href],[data-close]", "pointerup", () => this.$nextTick(() => this.close()));
 
 			on("latte:tick", () => this.onResizeOrScroll());
 			on("latte:context-menu", () => this.close());
