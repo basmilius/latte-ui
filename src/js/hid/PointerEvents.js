@@ -48,7 +48,7 @@ import { isTouchOnlyDevice } from "../util/dom";
 			overrideType = isATouchOnlyDevice ? events[type][1] : events[type][0];
 
 		if (overrideType in handlers)
-			handlers[type](this, listener, options);
+			handlers[overrideType](this, listener, options);
 		else
 			original.addEventListener.call(this, overrideType, listener, options);
 	};
