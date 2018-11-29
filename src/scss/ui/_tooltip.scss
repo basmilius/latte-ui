@@ -23,7 +23,7 @@ div.tooltip
 	pointer-events: none;
 	transition: opacity 240ms var(--ease-swift-out);
 	will-change: opacity;
-	z-index: 1000000000;
+	z-index: 2147483647;
 
 	&::before
 	{

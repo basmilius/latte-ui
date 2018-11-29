@@ -40,6 +40,8 @@ class OutsideEvent
 
 	isWithinSource(evt)
 	{
+
+
 		if (evt.pageX === undefined)
 			return false;
 

@@ -11,8 +11,9 @@
 <script>
 
 	import { dispatch, on } from "../../js/actions";
-	import { getMainElement } from "../../js/core";
+	import { getMainElement, timeout } from "../../js/core";
 	import { live } from "../../js/util/dom";
+	import { needsZIndex } from "../../js/z";
 
 	export default {
 
@@ -95,7 +96,7 @@
 			window.addEventListener("resize", this.cb.onResizeOrScroll, {passive: true});
 			window.addEventListener("scroll", this.cb.onResizeOrScroll, {passive: true});
 
-			live(this.$el, "[href],[data-close]", "pointerup", () => this.$nextTick(() => this.close()));
+			live(this.$el, "[href],[data-close]", "click", () => timeout(0, () => this.close()));
 
 			on("latte:tick", () => this.onResizeOrScroll());
 			on("latte:context-menu", () => this.close());
@@ -164,6 +165,7 @@
 
 			open()
 			{
+				needsZIndex(z => this.$el.style.setProperty("z-index", z));
 				this.isOpen = true;
 			},
 

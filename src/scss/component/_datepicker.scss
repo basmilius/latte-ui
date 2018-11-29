@@ -10,17 +10,11 @@
 div.datepicker-calendar
 {
 	min-width: 380px;
-	overflow: auto;
 	z-index: 0;
 
 	div.datepicker-calendar-header
 	{
-		position: sticky;
-		top: 0;
-		background: var(--panel-background);
 		border: none;
-		border-top-left-radius: var(--border-radius);
-		border-top-right-radius: var(--border-radius);
 		z-index: 1;
 
 		div.btn-group .btn

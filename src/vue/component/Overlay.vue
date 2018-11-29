@@ -9,8 +9,9 @@
 <script>
 
 	import { dispatch } from "../../js/actions";
-	import { open, register, remove } from "../../js/ui/overlays";
+	import { register, remove } from "../../js/ui/overlays";
 	import { timeout } from "../../js/core";
+	import { needsZIndex } from "../../js/z";
 
 	export default {
 
@@ -59,13 +60,16 @@
 			document.body.appendChild(this.$el);
 
 			if (this.opened)
-				open(this.name);
+				this.open(this.name);
 		},
 
 		methods: {
 
 			close()
 			{
+				if (!this.isVisible)
+					return;
+
 				this.isOpen = false;
 				timeout(270, () => this.isVisible = false);
 
@@ -79,7 +83,11 @@
 					return;
 
 				this.isVisible = true;
-				timeout(20, () => this.isOpen = true);
+				timeout(10, () =>
+				{
+					needsZIndex(z => this.$el.style.setProperty("z-index", z));
+					this.isOpen = true;
+				});
 
 				dispatch("latte:overlay", {overlay: this, open: true});
 				this.$emit("open", this);
@@ -93,6 +101,14 @@
 			{
 				remove(o);
 				register(n, this);
+			},
+
+			opened()
+			{
+				if (this.opened)
+					this.open();
+				else
+					this.close();
 			}
 
 		}

@@ -6,9 +6,9 @@
 
 		<latte-popup :associate-with="$refs.input" ref="popup" style="width: 384px">
 
-			<latte-datepicker-calendar body-class="pb-0" v-model="currentDate"></latte-datepicker-calendar>
+			<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
 
-			<latte-timepicker-clock class="mt-0" v-model="currentTime">
+			<latte-timepicker-clock class="mt-0" v-if="calendarView === 'dates'" v-model="currentTime">
 
 				<button slot="after" class="btn btn-icon btn-text btn-primary ml-3" @click="select"><i class="mdi mdi-check"></i></button>
 				<button slot="after" class="btn btn-icon btn-text btn-dark" @click="close"><i class="mdi mdi-close"></i></button>
@@ -58,6 +58,7 @@
 		data()
 		{
 			return {
+				calendarView: "dates",
 				currentDate: new Date(),
 				currentTime: new Date()
 			};

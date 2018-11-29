@@ -26,7 +26,7 @@ div.latte-overlay
 	overflow-y: auto;
 	transition: all $anim-duration var(--ease-swift-out);
 	will-change: opacity;
-	z-index: 2000000;
+	z-index: 2000;
 
 	div.panel
 	{

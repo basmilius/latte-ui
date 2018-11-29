@@ -25,7 +25,7 @@
 	--dropdown-background: #ffffff;
 	--dropdown-elevation: #{elevation-generate(16)}, 0 0 0 1px var(--outline-color-secondary);
 
-	--form-field-outline: rgba(0, 0, 0, .05);
+	--form-field-outline: var(--outline-color);
 
 	--overlay-background: rgba(var(--color-dark), .85);
 

@@ -258,6 +258,8 @@
 
 			selectedView()
 			{
+				this.$emit("view", this.selectedView);
+
 				this.$nextTick(() =>
 				{
 					if (this.selectedView === "months")

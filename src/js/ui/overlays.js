@@ -1,6 +1,5 @@
 "use strict";
 
-let counter = 0;
 let registry = {};
 
 export function close(name)
@@ -21,10 +20,6 @@ export function open(name)
 {
 	let overlay = find(name);
 	overlay.open();
-
-	setTimeout(() => overlay.$el.style.zIndex = `${2000000 + counter}`, 1);
-
-	counter++;
 }
 
 export function register(name, overlay)

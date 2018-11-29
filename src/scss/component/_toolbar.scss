@@ -19,28 +19,17 @@ div.toolbar
 	justify-content: flex-start;
 	background: var(--toolbar-background);
 	box-shadow: var(--toolbar-elevation);
-	z-index: 1000002;
+	z-index: 1002;
 
 	button.nav-toggler
 	{
 		position: relative;
 		display: flex;
-		height: $toolbar-height;
-		margin-right: 1rem;
-		width: $drawer-primary-width;
 		align-items: center;
 		justify-content: center;
-		background: var(--toolbar-action-background);
 		border: none;
-		color: var(--toolbar-action-foreground);
 		cursor: pointer;
 		outline: none;
-
-		&:hover
-		{
-			background: RGB(var(--color-primary));
-			color: RGB(var(--color-primary-foreground));
-		}
 
 		i.mdi
 		{
@@ -50,8 +39,29 @@ div.toolbar
 			line-height: 1em;
 		}
 
+		@include compact
+		{
+			height: 36px;
+			width: 36px;
+			margin: ($toolbar-height - 36px) / 2;
+			margin-right: 0;
+			background: transparent;
+			border-radius: var(--border-radius);
+			color: RGB(var(--color-dark));
+
+			&:hover
+			{
+				background: RGBA(var(--color-dark), .1);
+			}
+		}
+
 		@include expanded
 		{
+			height: $toolbar-height;
+			margin-right: 1rem;
+			width: $drawer-primary-width;
+			background: RGB(var(--drawer-background-primary));
+			color: RGB(var(--drawer-foreground-primary));
 			pointer-events: none;
 
 			i.mdi
