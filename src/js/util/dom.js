@@ -33,6 +33,11 @@ export function downloadFile(fileName, url)
 	});
 }
 
+export function isTouchOnlyDevice()
+{
+	return "ontouchstart" in window;
+}
+
 export function live(root, selector, event, callback, options = {passive: true})
 {
 	if (event.indexOf(" ") > -1)

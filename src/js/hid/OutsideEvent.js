@@ -1,16 +1,20 @@
-import { closest } from "./util/dom";
+import { closest } from "../util/dom";
 
 class OutsideEvent
 {
 
 	constructor(source)
 	{
-		this.listeners = {};
+		this.listeners = [];
 		this.source = source;
 	}
 
 	addEventListener(type, listener, options = {})
 	{
+		listener.id = this.listeners.length;
+
+		this.listeners.push(listener);
+
 		const fn = evt =>
 		{
 			if (this.isWithinSource(evt))
@@ -24,12 +28,14 @@ class OutsideEvent
 
 	removeEventListener(type, listener, options = {})
 	{
-		const handler = this.listeners[listener];
+		const index = this.listeners.findIndex(l => l.id === listener.id);
 
-		if (handler === undefined)
+		if (index === -1)
 			return;
 
-		document.removeEventListener(type, handler, options);
+		document.removeEventListener(type, this.listeners[index], options);
+
+		this.listeners.splice(index, 1);
 	}
 
 	isWithinSource(evt)
@@ -37,7 +43,7 @@ class OutsideEvent
 		if (evt.pageX === undefined)
 			return false;
 
-		const documentElement = document.documentElement;
+		const documentElement = document.scrollingElement;
 		const element = document.elementFromPoint(evt.pageX - documentElement.scrollLeft, evt.pageY - documentElement.scrollTop);
 
 		return closest(element, this.source) !== null;

@@ -1,6 +1,7 @@
 "use strict";
 
-import "./OutsideEvent";
+import "./hid/OutsideEvent";
+import "./hid/PointerEvents";
 
 import * as Components from "../vue/component";
 import * as Directives from "../vue/directive";
