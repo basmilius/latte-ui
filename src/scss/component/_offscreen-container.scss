@@ -25,6 +25,7 @@ div.offscreen-content
 	justify-content: flex-start;
 	background: var(--panel-background);
 	color: var(--main-foreground);
+	pointer-events: all;
 	z-index: 1004;
 
 	&.offscreen-top
