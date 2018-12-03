@@ -37,14 +37,16 @@ async function build()
 
 	console.log("[build]", "Building css and js bundles...");
 
+	const outputOptions = {
+		file: "dist/latte.js",
+		format: "iife",
+		indent: false,
+		sourcemap: true
+	};
+
 	const bundle = await rollup.rollup({
 		input: "src/bundle.js",
-		output: {
-			file: "dist/latte.js",
-			format: "iife",
-			indent: false,
-			sourcemap: true
-		},
+		output: outputOptions,
 		plugins: [
 			vue({
 				compileTemplate: true,
@@ -54,16 +56,18 @@ async function build()
 			}),
 
 			postcss({
+				config: false,
+				extensions: [".scss"],
 				extract: true,
 				minimize: true,
 				plugins: [
 					autoprefixer(),
-
 					comments({
 						removeAll: true
 					})
 				],
-				sourceMap: true
+				sourceMap: false,
+				use: ["sass"]
 			}),
 
 			commonjs(),
@@ -87,11 +91,7 @@ async function build()
 		]
 	});
 
-	await bundle.write({
-		file: "dist/latte.js",
-		format: "iife",
-		sourcemap: true
-	});
+	await bundle.write(outputOptions);
 
 	console.log("[build]", "Copying images...");
 	await new Promise(resolve => ncp("src/image", "dist/image", () => resolve()));

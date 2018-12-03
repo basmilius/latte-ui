@@ -19,6 +19,32 @@ div.content
 	}
 }
 
+div.drawer-container
+{
+	@include expanded
+	{
+		div.offscreen-content
+		{
+			position: fixed;
+			top: $toolbar-height;
+			left: 0;
+			bottom: 0;
+			opacity: 1 !important;
+			transform: none !important;
+		}
+
+		div.offscreen-overlay
+		{
+			display: none;
+		}
+
+		div.content
+		{
+			margin-left: 300px;
+		}
+	}
+}
+
 body.master-detail main#app
 {
 	> div#drawer
@@ -80,18 +106,5 @@ body.master-detail main#app
 		{
 			--toolbar-elevation: 0 2px var(--outline-color-secondary);
 		}
-	}
-}
-
-@include expanded
-{
-	div#drawer + div.content
-	{
-		margin-left: $drawer-primary-width;
-	}
-
-	div#drawer.has-secondary + div.content
-	{
-		margin-left: $drawer-width;
 	}
 }

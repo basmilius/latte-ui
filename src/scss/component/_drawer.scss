@@ -9,11 +9,9 @@
 
 div#drawer
 {
-	position: fixed;
+	position: relative;
 	display: flex;
-	top: $toolbar-height;
-	left: 0;
-	bottom: 0;
+	height: 100%;
 	align-items: stretch;
 	justify-content: flex-start;
 	box-shadow: var(--drawer-elevation);
@@ -95,13 +93,9 @@ div#drawer
 
 	@include compact
 	{
-		left: -($drawer-width + 2px);
-		transition: left 300ms var(--ease-swift-out);
-		will-change: left;
+	}
 
-		&.is-nav-open
-		{
-			left: 0;
-		}
+	@include expanded
+	{
 	}
 }

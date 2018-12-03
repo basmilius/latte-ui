@@ -4,14 +4,13 @@ const rollup = require("rollup");
 
 const autoprefixer = require("autoprefixer");
 const babel = require("rollup-plugin-babel");
-const comments = require("postcss-discard-comments");
 const commonjs = require("rollup-plugin-commonjs");
 const vue = require("rollup-plugin-vue").default;
 
 const watcher = rollup.watch({
 	input: "src/bundle.js",
 	sourcemap: false,
-	treeshake: true,
+	treeshake: false,
 	output: {
 		file: "dist/latte.js",
 		format: "iife",
@@ -20,6 +19,7 @@ const watcher = rollup.watch({
 	},
 	plugins: [
 		vue({
+			css: true,
 			compileTemplate: true,
 			template: {
 				isProduction: true
@@ -27,16 +27,15 @@ const watcher = rollup.watch({
 		}),
 
 		postcss({
+			config: false,
+			extensions: [".scss"],
 			extract: true,
 			minimize: true,
 			plugins: [
-				autoprefixer(),
-
-				comments({
-					removeAll: true
-				})
+				autoprefixer()
 			],
-			sourceMap: false
+			sourceMap: false,
+			use: ["sass"]
 		}),
 
 		commonjs(),
