@@ -10,7 +10,7 @@
 
 <script>
 
-	import { getMainElement, timeout } from "../../js/core";
+	import { getMainElement } from "../../js/core";
 	import { closest } from "../../js/util/dom";
 
 	function getPosition(evt)
@@ -268,6 +268,9 @@
 					return;
 
 				const position = getPosition(evt);
+
+				if (this.isOpen && this.isWithinElement(position, this.content))
+					return; // Don't handle events inside content, for now.
 
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
