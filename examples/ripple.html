@@ -20,8 +20,8 @@
 
 		<latte-notifications></latte-notifications>
 
-		<div class="toolbar" data-ui-is-nav-open role="toolbar">
-			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$ui.toggleNav()"><i class="mdi mdi-menu"></i></button>
+		<div class="toolbar" role="toolbar">
+			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
 
 			<span class="toolbar-title">Ripple</span>
 
@@ -37,17 +37,19 @@
 			</div>
 		</div>
 
-		<div id="drawer" data-ui-is-nav-open role="menu">
-			<nav class="nav" id="drawer-primary">
-				<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
-				<div class="divider divider-horizontal mt-auto" role="separator"></div>
-				<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
-			</nav>
-		</div>
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary">
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				</nav>
+			</div>
+		</latte-offscreen-container>
 
 		<div class="content">
 			<div class="row">
-				<div class="col-12 col-lg-6">
+				<div class="col-12 col-lg-6 mb-panel-gutter">
 
 					<div class="panel">
 						<latte-ripple as="div" class="panel-header">

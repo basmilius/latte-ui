@@ -16,7 +16,6 @@ import { initializePanels } from "./ui/panels";
 import { initializeTooltips } from "./ui/tooltip";
 
 import "./sdk";
-import "../vue/mixin";
 
 Object.values(Directives).forEach(d => Vue.directive(d.name, d));
 Object.values(Components).forEach(c => Vue.component(c.name, c));

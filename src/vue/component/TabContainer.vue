@@ -46,7 +46,9 @@
 			updateCurrent()
 			{
 				this.tabs.forEach(t => t.active = false);
-				this.tabs[this.current].active = true;
+
+				if (this.tabs[this.current])
+					this.tabs[this.current].active = true;
 			},
 
 			updateTabBars()

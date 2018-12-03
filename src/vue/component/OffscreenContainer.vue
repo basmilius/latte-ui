@@ -1,15 +1,9 @@
 <template>
 
-	<div class="offscreen-container" :class="containerClasses">
-
-		<div class="offscreen-overlay" :class="overlayClasses" :style="overlayStyles"></div>
-
+	<div class="offscreen-overlay" :class="overlayClasses" :style="overlayStyles">
 		<div class="offscreen-content" :class="contentClasses" :style="contentStyles">
-			<slot name="offscreen"></slot>
+			<slot></slot>
 		</div>
-
-		<slot></slot>
-
 	</div>
 
 </template>
@@ -22,8 +16,8 @@
 	function getPosition(evt)
 	{
 		return {
-			x: Math.round(evt.changedTouches[0].pageX),
-			y: Math.round(evt.changedTouches[0].pageY)
+			x: Math.round(evt.changedTouches[0].clientX),
+			y: Math.round(evt.changedTouches[0].clientY)
 		};
 	}
 
@@ -64,9 +58,10 @@
 
 		mounted()
 		{
+			this.overlay = this.$el;
 			this.content = this.$el.querySelector("div.offscreen-content");
-			this.overlay = this.$el.querySelector("div.offscreen-overlay");
 
+			window.addEventListener("resize", () => this.close());
 			window.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: false});
 			window.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: false});
 			window.addEventListener("touchmove", evt => this.onPointerMove(evt), {passive: false});
@@ -78,19 +73,6 @@
 			isOpen()
 			{
 				return this.current > 0.0;
-			},
-
-			containerClasses()
-			{
-				const classes = [];
-
-				if (this.isDragging)
-					classes.push("is-dragging");
-
-				if (this.touchEnabled)
-					classes.push("is-touch");
-
-				return classes;
 			},
 
 			contentClasses()
@@ -153,7 +135,7 @@
 			overlayStyles()
 			{
 				return {
-					opacity: this.current
+					background: `rgba(0, 0, 0, ${this.current * .85})`
 				};
 			}
 
@@ -211,7 +193,7 @@
 
 				if (this.position === "top")
 				{
-					if (this.currentPosition.y > this.previousPosition.y)
+					if (this.currentPosition.y >= this.previousPosition.y)
 						this.current = 1;
 					else
 						this.current = 0;
@@ -219,7 +201,7 @@
 
 				if (this.position === "left")
 				{
-					if (this.currentPosition.x > this.previousPosition.x)
+					if (this.currentPosition.x >= this.previousPosition.x)
 						this.current = 1;
 					else
 						this.current = 0;
@@ -227,7 +209,7 @@
 
 				if (this.position === "right")
 				{
-					if (this.currentPosition.x < this.previousPosition.x)
+					if (this.currentPosition.x <= this.previousPosition.x)
 						this.current = 1;
 					else
 						this.current = 0;
@@ -235,7 +217,7 @@
 
 				if (this.position === "bottom")
 				{
-					if (this.currentPosition.y < this.previousPosition.y)
+					if (this.currentPosition.y <= this.previousPosition.y)
 						this.current = 1;
 					else
 						this.current = 0;
@@ -244,10 +226,7 @@
 
 			isWithinElement(position, element)
 			{
-				const documentElement = document.scrollingElement;
-				const target = document.elementFromPoint(position.x - documentElement.scrollLeft, position.y - documentElement.scrollTop);
-
-				return closest(target, element) !== null;
+				return closest(document.elementFromPoint(position.x, position.y), element) !== null;
 			},
 
 			isWithinTriggerBounds(position)

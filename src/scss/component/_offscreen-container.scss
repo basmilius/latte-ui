@@ -1,9 +1,3 @@
-div.offscreen-container
-{
-	position: relative;
-	display: block;
-}
-
 div.offscreen-overlay
 {
 	position: fixed;
@@ -13,6 +7,7 @@ div.offscreen-overlay
 	right: 0;
 	bottom: 0;
 	background: var(--overlay-background);
+	pointer-events: all;
 	z-index: 1003;
 
 	&:not(.is-open)
@@ -71,10 +66,4 @@ div.offscreen-content:not(.is-dragging),
 div.offscreen-overlay:not(.is-dragging)
 {
 	transition: all 300ms var(--ease-swift-out);
-}
-
-div.offscreen-container.is-dragging,
-div.offscreen-container.is-dragging *
-{
-	touch-action: none;
 }

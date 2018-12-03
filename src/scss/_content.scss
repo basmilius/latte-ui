@@ -31,6 +31,7 @@ div.drawer-container
 			bottom: 0;
 			opacity: 1 !important;
 			transform: none !important;
+			transition: none !important;
 		}
 
 		div.offscreen-overlay
@@ -38,16 +39,26 @@ div.drawer-container
 			display: none;
 		}
 
-		div.content
+		&.has-primary + div.content
 		{
-			margin-left: 300px;
+			margin-left: $drawer-primary-width;
+		}
+
+		&.has-secondary + div.content
+		{
+			margin-left: $drawer-secondary-width;
+		}
+
+		&.has-primary.has-secondary + div.content
+		{
+			margin-left: $drawer-width;
 		}
 	}
 }
 
 body.master-detail main#app
 {
-	> div#drawer
+	div#drawer
 	{
 		--drawer-elevation: 2px 0 var(--outline-color-secondary);
 	}
@@ -85,6 +96,11 @@ body.master-detail main#app
 
 		@include compact
 		{
+			> div.panel
+			{
+				height: unset;
+			}
+
 			#detail
 			{
 				border-top: 2px solid var(--outline-color-secondary);

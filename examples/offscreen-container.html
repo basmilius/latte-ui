@@ -20,104 +20,100 @@
 
 		<latte-notifications></latte-notifications>
 
-		<latte-offscreen-container class="drawer-container" ref="drawer" position="left" :touch-enabled="true">
+		<div class="toolbar" role="toolbar">
+			<button class="nav-toggler" aria-label="Toggle Drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
 
-			<template slot="offscreen" v-cloak>
+			<span class="toolbar-title">Offscreen Container</span>
 
-				<div id="drawer" class="has-secondary" role="menu">
-					<nav class="nav" id="drawer-primary">
-						<a href="#" class="nav-item" aria-label="Home" role="menuitem" data-tooltip="Home" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
-						<a href="#" class="nav-item" aria-label="Partners" role="menuitem" data-tooltip="Partners" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
-						<a href="#" class="nav-item" aria-label="Contacts" role="menuitem" data-tooltip="Contacts" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
-						<a href="#" class="nav-item active" aria-label="Projects" role="menuitem" data-tooltip="Projects" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
-						<a href="#" class="nav-item" aria-label="Finance" role="menuitem" data-tooltip="Finance" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
-						<a href="#" class="nav-item" aria-label="Hosting" role="menuitem" data-tooltip="Hosting" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-cloud"></i></a>
-						<div class="divider divider-horizontal mt-auto" role="separator"></div>
-						<a href="#" class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
 					</nav>
-					<nav class="nav nav-list" id="drawer-secondary">
-						<div class="section">Projects</div>
-						<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projects</span></a>
-						<a href="#" target="_self" class="nav-link" role="menuitem"><span>Ongoing</span></a>
-						<a href="#" target="_self" class="nav-link" role="menuitem"><span>Archive</span></a>
-						<div class="divider divider-horizontal" role="separator"></div>
-						<a href="#" target="_self" class="nav-link" role="menuitem"><span>New project</span></a>
-					</nav>
-				</div>
-
-			</template>
-
-			<div class="toolbar" role="toolbar">
-				<button class="nav-toggler" aria-label="Toggle Drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
-
-				<span class="toolbar-title">Offscreen Container</span>
-
-				<div class="d-flex align-items-center ml-auto">
-					<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
-						<nav class="nav nav-list">
-							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
-							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
-							<div class="divider divider-horizontal"></div>
-							<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
-						</nav>
-					</latte-button-dropdown>
-				</div>
+				</latte-button-dropdown>
 			</div>
+		</div>
 
-			<div class="content">
-				<div class="row">
-					<div class="col-12 col-lg-6">
+		<latte-offscreen-container class="drawer-container has-primary has-secondary" ref="drawer" position="left" :touch-enabled="true" v-cloak>
 
-						<div class="panel">
-							<div class="panel-header"><span class="panel-title">Panel</span></div>
-							<div class="panel-body">
-
-								<button class="btn btn-text btn-primary" @click="$refs.drawer.open()">Open</button>
-
-							</div>
-							<div class="panel-body">
-
-								<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'top'">Top</button>
-								<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'left'">Left</button>
-								<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'right'">Right</button>
-								<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'bottom'">Bottom</button>
-
-							</div>
-						</div>
-
-						<div class="panel">
-							<div class="panel-header"><span class="panel-title">Hi</span></div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
-							</div>
-						</div>
-
-						<div class="panel">
-							<div class="panel-header"><span class="panel-title">Hi</span></div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
-							</div>
-						</div>
-
-						<div class="panel">
-							<div class="panel-header"><span class="panel-title">Hi</span></div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
-							</div>
-						</div>
-
-						<div class="panel">
-							<div class="panel-header"><span class="panel-title">Hi</span></div>
-							<div class="panel-body">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
-							</div>
-						</div>
-
-					</div>
-				</div>
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a href="#" class="nav-item" aria-label="Home" role="menuitem" data-tooltip="Home" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<a href="#" class="nav-item" aria-label="Partners" role="menuitem" data-tooltip="Partners" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-account-group"></i></a>
+					<a href="#" class="nav-item" aria-label="Contacts" role="menuitem" data-tooltip="Contacts" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-phone"></i></a>
+					<a href="#" class="nav-item active" aria-label="Projects" role="menuitem" data-tooltip="Projects" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-clipboard-text"></i></a>
+					<a href="#" class="nav-item" aria-label="Finance" role="menuitem" data-tooltip="Finance" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-finance"></i></a>
+					<a href="#" class="nav-item" aria-label="Hosting" role="menuitem" data-tooltip="Hosting" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-cloud"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a href="#" class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				</nav>
+				<nav class="nav nav-list" id="drawer-secondary">
+					<div class="section">Projects</div>
+					<a href="#" target="_self" class="nav-link active" role="menuitem"><span>Projects</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><span>Ongoing</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><span>Archive</span></a>
+					<div class="divider divider-horizontal" role="separator"></div>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><span>New project</span></a>
+				</nav>
 			</div>
 
 		</latte-offscreen-container>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Panel</span></div>
+						<div class="panel-body">
+
+							<button class="btn btn-text btn-primary" @click="$refs.drawer.open()">Open</button>
+
+						</div>
+						<div class="panel-body">
+
+							<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'top'">Top</button>
+							<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'left'">Left</button>
+							<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'right'">Right</button>
+							<button class="btn btn-text btn-primary" @click="$refs.drawer.position = 'bottom'">Bottom</button>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum deserunt dolorem ea eaque esse et fugit, iste iusto labore laudantium mollitia possimus qui repellendus suscipit tenetur unde ut velit.
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
 
 	</main>
 
