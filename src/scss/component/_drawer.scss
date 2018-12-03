@@ -21,7 +21,9 @@ div#drawer
 	{
 		position: relative;
 		padding: 1rem 0 0;
+		height: 100%;
 		width: $drawer-primary-width;
+		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-primary));
 		border-top: 1px solid var(--drawer-outline-primary);
 		overflow: auto;
@@ -73,7 +75,9 @@ div#drawer
 	{
 		position: relative;
 		padding: 2rem 0;
+		height: 100%;
 		width: $drawer-secondary-width;
+		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-secondary));
 		border-top: 1px solid var(--drawer-outline-secondary);
 		overflow: auto;

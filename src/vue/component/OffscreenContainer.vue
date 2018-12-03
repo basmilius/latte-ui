@@ -290,8 +290,6 @@
 				if (!this.isDragging)
 					return;
 
-				evt.preventDefault();
-
 				this.previousPosition = this.currentPosition;
 				this.currentPosition = getPosition(evt);
 
