@@ -2,14 +2,6 @@ div.offscreen-container
 {
 	position: relative;
 	display: block;
-	height: 100vh;
-	width: 100%;
-	pointer-events: all;
-
-	&.is-touch
-	{
-		touch-action: none;
-	}
 }
 
 div.offscreen-overlay
@@ -31,7 +23,7 @@ div.offscreen-overlay
 
 div.offscreen-content
 {
-	position: absolute;
+	position: fixed;
 	display: flex;
 	align-items: stretch;
 	flex-flow: column nowrap;
@@ -79,4 +71,10 @@ div.offscreen-content:not(.is-dragging),
 div.offscreen-overlay:not(.is-dragging)
 {
 	transition: all 300ms var(--ease-swift-out);
+}
+
+div.offscreen-container.is-dragging,
+div.offscreen-container.is-dragging *
+{
+	touch-action: none;
 }

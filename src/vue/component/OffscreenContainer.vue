@@ -21,7 +21,10 @@
 
 	function getPosition(evt)
 	{
-		return {x: Math.round(evt.pageX), y: Math.round(evt.pageY)};
+		return {
+			x: Math.round(evt.changedTouches[0].pageX),
+			y: Math.round(evt.changedTouches[0].pageY)
+		};
 	}
 
 	export default {
@@ -64,10 +67,10 @@
 			this.content = this.$el.querySelector("div.offscreen-content");
 			this.overlay = this.$el.querySelector("div.offscreen-overlay");
 
-			this.$el.addEventListener("pointercancel", evt => this.onPointerCancel(evt));
-			this.$el.addEventListener("pointerdown", evt => this.onPointerDown(evt));
-			this.$el.addEventListener("pointermove", evt => this.onPointerMove(evt));
-			this.$el.addEventListener("pointerup", evt => this.onPointerUp(evt));
+			window.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: false});
+			window.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: false});
+			window.addEventListener("touchmove", evt => this.onPointerMove(evt), {passive: false});
+			window.addEventListener("touchend", evt => this.onPointerUp(evt), {passive: false});
 		},
 
 		computed: {
@@ -80,6 +83,9 @@
 			containerClasses()
 			{
 				const classes = [];
+
+				if (this.isDragging)
+					classes.push("is-dragging");
 
 				if (this.touchEnabled)
 					classes.push("is-touch");
@@ -269,8 +275,9 @@
 				if (!this.touchEnabled)
 					return;
 
-				this.isDragging = false;
+				evt.preventDefault();
 
+				this.isDragging = false;
 				this.currentPosition = getPosition(evt);
 
 				this.checkState();
@@ -285,6 +292,8 @@
 
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
+
+				evt.preventDefault();
 
 				this.isDragging = true;
 
@@ -304,6 +313,8 @@
 				if (!this.isDragging)
 					return;
 
+				evt.preventDefault();
+
 				this.previousPosition = this.currentPosition;
 				this.currentPosition = getPosition(evt);
 
@@ -317,6 +328,8 @@
 
 				if (!this.isDragging)
 					return;
+
+				evt.preventDefault();
 
 				this.currentPosition = getPosition(evt);
 				this.isDragging = false;

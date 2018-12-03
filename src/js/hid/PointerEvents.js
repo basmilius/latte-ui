@@ -11,6 +11,7 @@ import { isTouchOnlyDevice } from "../util/dom";
 	const events = {
 		click: ["click", "tap"],
 		pointerdown: ["mousedown", "touchstart"],
+		pointermove: ["mousemove", "touchmove"],
 		pointerover: ["mouseover", "touchstart"],
 		pointerout: ["mouseout", "touchend"],
 		pointerup: ["mouseup", "touchend"]
