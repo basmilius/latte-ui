@@ -21,6 +21,8 @@ div.content
 
 div.drawer-container
 {
+	min-height: 100vh;
+
 	@include expanded
 	{
 		div.offscreen-content
