@@ -10,7 +10,7 @@
 
 <script>
 
-	import { getMainElement } from "../../js/core";
+	import { getMainElement, timeout } from "../../js/core";
 	import { closest } from "../../js/util/dom";
 
 	function getPosition(evt)
@@ -272,8 +272,6 @@
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
 
-				evt.preventDefault();
-
 				this.isDragging = true;
 
 				this.previous = this.current;
@@ -308,12 +306,15 @@
 				if (!this.isDragging)
 					return;
 
-				evt.preventDefault();
+				const isSameLocation = this.currentPosition.x === this.startPosition.x && this.currentPosition.y === this.startPosition.y;
+
+				if (!isSameLocation)
+					evt.preventDefault();
 
 				this.currentPosition = getPosition(evt);
 				this.isDragging = false;
 
-				if (this.previous === 1 && this.currentPosition.x === this.startPosition.x && this.currentPosition.y === this.startPosition.y && !this.isWithinElement(this.currentPosition, this.content))
+				if (this.previous === 1 && isSameLocation && !this.isWithinElement(this.currentPosition, this.content))
 					this.current = 0.0;
 				else
 					this.checkState();
