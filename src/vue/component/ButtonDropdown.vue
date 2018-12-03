@@ -7,6 +7,8 @@
 		<span v-if="label !== ''">{{ label }}</span>
 		<i v-if="iconAfter !== ''" :class="iconAfterClasses"></i>
 
+		<slot name="extra"></slot>
+
 		<latte-popup :associate-with="$refs.btn" :margin-x="marginX" :margin-y="marginY">
 			<slot></slot>
 		</latte-popup>
@@ -19,6 +21,7 @@
 	export default {
 
 		name: "latte-button-dropdown",
+
 		props: {
 
 			ariaLabel: {
@@ -83,15 +86,6 @@
 
 		},
 
-		data()
-		{
-			return {}
-		},
-
-		mounted()
-		{
-		},
-
 		computed: {
 
 			avatarUrl()
@@ -130,11 +124,7 @@
 				return ["mdi", `mdi-${this.iconBefore}`];
 			}
 
-		},
-
-		methods: {},
-
-		watch: {}
+		}
 
 	}
 
