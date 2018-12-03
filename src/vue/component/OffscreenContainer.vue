@@ -13,11 +13,16 @@
 	import { getMainElement } from "../../js/core";
 	import { closest } from "../../js/util/dom";
 
+	const TRIGGER_SIZE = 30;
+
 	function getPosition(evt)
 	{
+		if (evt.changedTouches === undefined)
+			return {x: evt.clientX, y: evt.clientY};
+
 		return {
-			x: Math.round(evt.changedTouches[0].clientX),
-			y: Math.round(evt.changedTouches[0].clientY)
+			x: evt.changedTouches[0].clientX,
+			y: evt.changedTouches[0].clientY
 		};
 	}
 
@@ -52,7 +57,8 @@
 				overlay: null,
 				currentPosition: {x: 0, y: 0},
 				previousPosition: {x: 0, y: 0},
-				startPosition: {x: 0, y: 0}
+				startPosition: {x: 0, y: 0},
+				timer: null
 			};
 		},
 
@@ -62,6 +68,9 @@
 			this.content = this.$el.querySelector("div.offscreen-content");
 
 			window.addEventListener("resize", () => this.close());
+
+			window.addEventListener("mousewheel", evt => this.onMouseWheel(evt), {passive: false});
+
 			window.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: false});
 			window.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: false});
 			window.addEventListener("touchmove", evt => this.onPointerMove(evt), {passive: false});
@@ -105,29 +114,35 @@
 
 			contentStyles()
 			{
+				let touchAction;
 				let transform;
 
 				switch (this.position)
 				{
 					case "top":
+						touchAction = "pan-x";
 						transform = `translate3d(0, calc((${this.current} * 100%) - 100%), 0)`;
 						break;
 
 					case "left":
+						touchAction = "pan-y";
 						transform = `translate3d(calc((${this.current} * 100%) - 100%), 0, 0)`;
 						break;
 
 					case "right":
+						touchAction = "pan-y";
 						transform = `translate3d(calc((-100% * ${this.current}) + 100%), 0, 0)`;
 						break;
 
 					case "bottom":
+						touchAction = "pan-x";
 						transform = `translate3d(0, calc((-100% * ${this.current}) + 100%), 0)`;
 						break;
 
 				}
 
 				return {
+					touchAction,
 					transform
 				};
 			},
@@ -146,13 +161,13 @@
 			close()
 			{
 				this.current = 0.0;
-				this.previous = 0.0;
+				this.previous = 1.0;
 			},
 
 			open()
 			{
 				this.current = 1.0;
-				this.previous = 1.0;
+				this.previous = 0.0;
 			},
 
 			toggle()
@@ -224,6 +239,23 @@
 				}
 			},
 
+			isContentDragAvailable(position)
+			{
+				if (this.current < 1)
+					return true;
+
+				if (!this.isWithinElement(position, this.content))
+					return true;
+
+				if (this.position === "left" || this.position === "right")
+					return Math.abs(position.x - this.currentPosition.x) > TRIGGER_SIZE;
+
+				if (this.position === "top" || this.position === "bottom")
+					return Math.abs(position.y - this.currentPosition.y) > TRIGGER_SIZE;
+
+				return true;
+			},
+
 			isWithinElement(position, element)
 			{
 				return closest(document.elementFromPoint(position.x, position.y), element) !== null;
@@ -236,25 +268,40 @@
 				switch (this.position)
 				{
 					case "top":
-						return position.y - rect.top < 24;
+						return position.y - rect.top < TRIGGER_SIZE;
 
 					case "left":
-						return position.x - rect.left < 24;
+						return position.x - rect.left < TRIGGER_SIZE;
 
 					case "right":
-						return position.x > rect.left + rect.width - 24;
+						return position.x > rect.left + rect.width - TRIGGER_SIZE;
 
 					case "bottom":
-						return position.y > rect.top + rect.height - 24;
+						return position.y > rect.top + rect.height - TRIGGER_SIZE;
 				}
+			},
+
+			onMouseWheel(evt)
+			{
+				if (!this.isOpen)
+					return;
+
+				const {deltaX, deltaY} = evt;
+
+				if (Math.abs(deltaX) > 20 && (this.position === "left" || this.position === "right"))
+					this.close();
+
+				if (Math.abs(deltaY) > 20 && (this.position === "top" || this.position === "bottom"))
+					this.close();
+
+				if (!this.isWithinElement(getPosition(evt), this.content))
+					evt.preventDefault();
 			},
 
 			onPointerCancel(evt)
 			{
 				if (!this.touchEnabled)
 					return;
-
-				evt.preventDefault();
 
 				this.isDragging = false;
 				this.currentPosition = getPosition(evt);
@@ -268,9 +315,6 @@
 					return;
 
 				const position = getPosition(evt);
-
-				if (this.isOpen && this.isWithinElement(position, this.content))
-					return; // Don't handle events inside content, for now.
 
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
@@ -293,8 +337,13 @@
 				if (!this.isDragging)
 					return;
 
+				const position = getPosition(evt);
+
+				if (!this.isContentDragAvailable(position))
+					return;
+
 				this.previousPosition = this.currentPosition;
-				this.currentPosition = getPosition(evt);
+				this.currentPosition = position;
 
 				this.checkState();
 			},
@@ -309,7 +358,7 @@
 
 				const isSameLocation = this.currentPosition.x === this.startPosition.x && this.currentPosition.y === this.startPosition.y;
 
-				if (!isSameLocation)
+				if (!isSameLocation && evt.cancelable)
 					evt.preventDefault();
 
 				this.currentPosition = getPosition(evt);
