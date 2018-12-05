@@ -29,7 +29,7 @@
 				default: "photo",
 				required: false,
 				type: String,
-				validator: value => ["photo", "list"].contains(value)
+				validator: value => ["photo", "list"].includes(value)
 			}
 
 		},

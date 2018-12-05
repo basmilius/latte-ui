@@ -13,7 +13,7 @@
 				<latte-button-dropdown icon="dots-vertical" :small="true" type="list">
 					<nav class="nav nav-list">
 						<slot name="widget_menu"></slot>
-						<a class="nav-link" @click="removeWidget()"><i class="mdi mdi-delete"></i> <span>Delete widget</span></a>
+						<a class="nav-link" @click="removeWidget()"><i class="mdi mdi-delete"></i> <span>{{ "Delete"|i18n }}</span></a>
 					</nav>
 				</latte-button-dropdown>
 			</div>
@@ -31,7 +31,7 @@
 
 <script>
 
-	import { forObject } from "../../js/i18n";
+	import { translate } from "../../js/i18n";
 	import { confirm, Buttons } from "../../js/ui/messages";
 
 	export default {
@@ -57,23 +57,17 @@
 		{
 			return {
 				i18n: {
-					delete: "Delete",
 					widgetDeleteConfirmationTitle: "Are you sure?",
 					widgetDeleteConfirmationBody: "This widget will be deleted permanently!"
 				}
 			};
 		},
 
-		mounted()
-		{
-			this.i18n = forObject(this.i18n);
-		},
-
 		methods: {
 
 			removeWidget()
 			{
-				confirm(this.i18n.widgetDeleteConfirmationTitle, this.i18n.widgetDeleteConfirmationBody).then(r =>
+				confirm(translate("widgets", "Delete this widget?"), translate("widgets", "It will be deleted permanently and is not recoverable.")).then(r =>
 				{
 					if (r.button !== Buttons.OK)
 						return;

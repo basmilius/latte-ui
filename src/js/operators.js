@@ -1,5 +1,15 @@
 "use strict";
 
+/**
+ * Implementation of the <=> operator.
+ *
+ * @param {*} a
+ * @param {*} b
+ *
+ * @returns {Number|null}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function spaceship(a, b)
 {
 	if ((a === null || b === null) || typeof a !== typeof b)

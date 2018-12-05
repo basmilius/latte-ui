@@ -4,6 +4,7 @@ import { createElement } from "../util/dom.js";
 import { timeout } from "../core.js";
 import { spaceship } from "../operators";
 import { translate } from "../i18n.js";
+import { needsZIndex } from "../z";
 
 export const Buttons = {
 	OK: 1,
@@ -15,7 +16,9 @@ export const Buttons = {
 	REMOVE: 64,
 	CREATE: 128,
 	GO: 256,
-	PROCEED: 512
+	PROCEED: 512,
+	ALLOW: 1024,
+	DENY: 2048
 };
 
 export const ButtonsDescribed = [
@@ -25,10 +28,12 @@ export const ButtonsDescribed = [
 	{id: Buttons.NO, icon: null, label: "No", classes: ["btn-text", "btn-dark"], weight: 0},
 	{id: Buttons.UPDATE, icon: "check-circle", label: "Update", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.SAVE, icon: "check-circle", label: "Save", classes: ["btn-contained", "btn-primary"], weight: 1},
-	{id: Buttons.REMOVE, icon: "alert-circle", label: "Remove", classes: "error", weight: 1},
+	{id: Buttons.REMOVE, icon: "alert-circle", label: "Remove", classes: ["btn-contained", "btn-error"], weight: 1},
 	{id: Buttons.CREATE, icon: "check-circle", label: "Create", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.GO, icon: "arrow-right-bold-circle", label: "Go", classes: ["btn-contained", "btn-primary"], weight: 1},
-	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", classes: ["btn-contained", "btn-primary"], weight: 1}
+	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.ALLOW, icon: "check-circle", label: "Allow", classes: ["btn-contained", "btn-primary"], weight: 1},
+	{id: Buttons.DENY, icon: "close-circle", label: "Deny", classes: ["btn-text", "btn-dark"], weight: 0}
 ];
 
 export function createMessage(title, message, buttons, prompt = false)
@@ -41,7 +46,8 @@ export function createMessage(title, message, buttons, prompt = false)
 		const panelContent = createElement("div", el => el.classList.add("panel-body"));
 		const panelFooter = createElement("div", el => el.classList.add("panel-footer", "justify-content-end"));
 
-		overlay.style.setProperty("z-index", "7000000");
+		needsZIndex(z => overlay.style.setProperty("z-index", z));
+
 		overlay.setAttribute("role", "dialog");
 
 		let promptInput;

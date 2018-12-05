@@ -9,12 +9,12 @@ export function closest(element, selector)
 	return null;
 }
 
-export function createElement(element, func = undefined)
+export function createElement(element, fn = undefined)
 {
 	const el = document.createElement(element);
 
-	if (func !== undefined)
-		func(el);
+	if (fn !== undefined)
+		fn(el);
 
 	return el;
 }
@@ -77,15 +77,6 @@ export function printDocument(url)
 	});
 }
 
-export function querySelectorAll(selector, root = document)
-{
-	const elements = [];
-
-	root.querySelectorAll(selector).forEach(r => elements.push(r));
-
-	return elements;
-}
-
 export function relativeCoordsTo(element, evt)
 {
 	if (!evt.clientX || !evt.clientY)
@@ -125,8 +116,6 @@ export default {
 	live,
 
 	printDocument,
-
-	querySelectorAll,
 
 	relativeCoordsTo,
 

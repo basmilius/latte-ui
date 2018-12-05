@@ -1,10 +1,8 @@
 "use strict";
 
-import { querySelectorAll } from "../util/dom.js";
-
 export function initializeForms()
 {
-	querySelectorAll(`form[method="post"]`).forEach(form => initializeForm(form));
+	document.querySelectorAll(`form[method="post"]`).forEach(form => initializeForm(form));
 }
 
 function initializeForm(form)

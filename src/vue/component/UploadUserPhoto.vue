@@ -7,12 +7,12 @@
 				<span class="spinner spinner-primary above-parent" v-if="isLoading"></span>
 			</div>
 			<div class="col d-flex align-self-center mt-3 mt-lg-0 ml-0 ml-lg-auto" style="flex-grow:0">
-				<button type="button" class="btn btn-contained btn-primary" @click="selectFile"><i class="mdi mdi-plus-circle"></i><span>{{ i18n.select }}</span></button>
+				<button type="button" class="btn btn-contained btn-primary" @click="selectFile"><i class="mdi mdi-plus-circle"></i><span>{{ "Select"|i18n("file-manager") }}</span></button>
 				<button type="button" class="btn btn-text btn-icon btn-dark" @click="remove" v-if="currentFile !== null && previewUrl === null"><i class="mdi mdi-delete"></i></button>
 				<button type="button" class="btn btn-text btn-icon btn-dark" @click="cancel" v-if="previewUrl !== null"><i class="mdi mdi-close"></i></button>
 			</div>
 		</div>
-		<div class="drop-here" :class="{'is-droppable': isDroppable}">{{ i18n.dropHere }}</div>
+		<div class="drop-here" :class="{'is-droppable': isDroppable}">{{ "Place photo here to upload."|i18n("file-manager") }}</div>
 		<input ref="file_id" type="hidden" :name="name + '_id'" :value="fileId"/>
 		<input ref="file_input" class="d-none" type="file" accept="image/*" :name="name + '_file'" :id="name" @change="onFileSelected"/>
 	</div>
@@ -22,7 +22,7 @@
 <script>
 
 	import { id, request } from "../../js/api";
-	import { forObject } from "../../js/i18n";
+	import { translate } from "../../js/i18n";
 	import { create } from "../../js/ui/notices";
 
 	export default {
@@ -60,13 +60,6 @@
 		data()
 		{
 			return {
-				i18n: {
-					cancel: "Cancel",
-					dropHere: "Place photo here to upload.",
-					invalidFile: "Invalid file type. Input is cleared.",
-					remove: "Remove",
-					select: "Select"
-				},
 				currentFile: null,
 				isDroppable: false,
 				isLoading: true,
@@ -80,8 +73,6 @@
 			window.addEventListener("dragleave", evt => this.onDragLeave(evt));
 			window.addEventListener("dragend", evt => this.onDragLeave(evt));
 			window.addEventListener("dragover", evt => this.onDragOver(evt));
-
-			this.i18n = forObject(this.i18n, "admin-file-manager");
 
 			this.loadFile();
 		},
@@ -189,7 +180,7 @@
 				{
 					this.$refs.file_input.value = "";
 
-					create(this.i18n.invalidFile, "error", true);
+					create(translate("file-manager", "Invalid file selected."), "error", true);
 
 					return;
 				}

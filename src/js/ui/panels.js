@@ -1,11 +1,8 @@
 "use strict";
 
-import { closest, querySelectorAll } from "../util/dom.js";
-
 export function initializePanels()
 {
-	querySelectorAll("div.panel > table").forEach(table => closest(table, "div.panel").classList.add("panel-table"));
-	querySelectorAll("div.panel.panel-toggleable").forEach(panel => initializePanel(panel));
+	document.querySelectorAll("div.panel.panel-toggleable").forEach(panel => initializePanel(panel));
 }
 
 export function initializePanel(panel)

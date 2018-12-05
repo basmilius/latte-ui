@@ -3,11 +3,10 @@
 import { on } from "../actions.js";
 import { id } from "../api.js"
 import { isIterable } from "../core.js";
-import { querySelectorAll } from "../util/dom.js";
 
 export function initializeNotices()
 {
-	let notices = querySelectorAll("div.notice");
+	let notices = Array.from(document.querySelectorAll("div.notice"));
 	notices = notices.filter(notice => notice.querySelector("button.notice-dismiss") !== null);
 	notices = notices.map(notice => notice.querySelector("button.notice-dismiss"));
 

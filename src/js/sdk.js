@@ -15,11 +15,6 @@ import overlays from "./ui/overlays";
 import panels from "./ui/panels";
 import string from "./util/string";
 
-Array.prototype.contains = function (needle)
-{
-	return this.indexOf(needle) > -1;
-};
-
 window.Latte = {
 	actions,
 	api,

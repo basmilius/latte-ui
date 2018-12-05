@@ -28,9 +28,7 @@ export function id()
  */
 export function request(url, options = {})
 {
-	let completeOptions = Object.assign({}, {credentials: "same-origin"}, options);
-
-	return fetch(url, completeOptions);
+	return fetch(url, Object.assign({}, {credentials: "same-origin"}, options));
 }
 
 /**

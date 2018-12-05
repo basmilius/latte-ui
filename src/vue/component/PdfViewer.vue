@@ -8,11 +8,11 @@
 		<span class="spinner"></span>
 
 		<nav class="nav nav-list latte-context-menu">
-			<a class="nav-link" :href="source" target="_blank"><i class="mdi mdi-open-in-new"></i> <span>{{ i18n.openInNewTab }}</span></a>
-			<a class="nav-link" @click="download"><i class="mdi mdi-download"></i> <span>{{ i18n.download }}</span></a>
-			<a class="nav-link" @click="print"><i class="mdi mdi-printer"></i> <span>{{ i18n.print }}</span></a>
+			<a class="nav-link" :href="source" target="_blank"><i class="mdi mdi-open-in-new"></i> <span>{{ "Open in new tab"|i18n("pdf-viewer") }}</span></a>
+			<a class="nav-link" @click="download"><i class="mdi mdi-download"></i> <span>{{ "Download"|i18n("pdf-viewer") }}</span></a>
+			<a class="nav-link" @click="print"><i class="mdi mdi-printer"></i> <span>{{ "Print"|i18n("pdf-viewer") }}</span></a>
 			<div class="divider divider-horizontal"></div>
-			<a class="nav-link" @click="load"><i class="mdi mdi-reload"></i> <span>{{ i18n.reload }}</span></a>
+			<a class="nav-link" @click="load"><i class="mdi mdi-reload"></i> <span>{{ "Reload"|i18n("pdf-viewer") }}</span></a>
 			<slot name="menu"></slot>
 		</nav>
 	</div>
@@ -26,8 +26,6 @@
 </template>
 
 <script>
-
-	import { forObject } from "../../js/i18n";
 
 	export default {
 
@@ -45,12 +43,6 @@
 		data()
 		{
 			return {
-				i18n: {
-					download: "Download",
-					openInNewTab: "Open in new tab",
-					print: "Print",
-					reload: "Reload"
-				},
 				isLoading: false,
 				pages: 0,
 				pdf: null,
@@ -61,7 +53,6 @@
 		mounted()
 		{
 			this.load();
-			this.i18n = forObject(this.i18n);
 		},
 
 		computed: {

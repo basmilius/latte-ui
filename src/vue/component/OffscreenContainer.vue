@@ -36,7 +36,7 @@
 				default: "left",
 				required: false,
 				type: String,
-				validator: val => ["top", "left", "right", "bottom"].contains(val)
+				validator: val => ["top", "left", "right", "bottom"].includes(val)
 			},
 
 			touchEnabled: {

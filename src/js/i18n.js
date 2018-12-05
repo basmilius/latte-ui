@@ -1,19 +1,16 @@
 "use strict";
 
-import { dispatch } from "./actions";
-
-const isInFrame = window.top !== window;
-let translations = null;
-
-export function forObject(obj, domain = "root")
-{
-	for (let key in obj)
-		if (obj.hasOwnProperty(key))
-			obj[key] = translate(domain, obj[key]);
-
-	return obj;
-}
-
+/**
+ * Replaces params in a string.
+ *
+ * @param {String} string
+ * @param {Array} params
+ *
+ * @returns {*}
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function replace(string, params = [])
 {
 	for (let i = 0; i < params.length; i++)
@@ -22,32 +19,31 @@ export function replace(string, params = [])
 	return string;
 }
 
+/**
+ * Translates a string.
+ *
+ * @param {String} domain
+ * @param {String} string
+ * @param {Array} params
+ *
+ * @returns {String}
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function translate(domain, string, params = [])
 {
+	const translations = window.LatteI18n || {};
+
 	if (translations === null || typeof translations[domain] === "undefined" || typeof translations[domain][string] === "undefined")
 		return replace(string, params);
 
 	return replace(translations[domain][string], params);
 }
 
-function onTranslationsLoaded(response)
-{
-	if (typeof response !== "undefined")
-		translations = response.data;
-
-	dispatch("latte:i18n:translations-loaded", translations);
-}
-
-if (isInFrame)
-	onTranslationsLoaded(undefined);
-else
-	onTranslationsLoaded({data: window["LatteI18n"] || {}});
-
-Vue.filter("latteI18n", (value, domain = "root", ...params) => Latte.i18n.translate(domain, value, params));
+Vue.filter("i18n", (value, domain = "root", ...params) => Latte.i18n.translate(domain, value, params));
 
 export default {
-
-	forObject,
 
 	replace,
 

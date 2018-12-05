@@ -50,7 +50,7 @@
 				default: "bar",
 				required: false,
 				type: String,
-				validator: value => ["bar", "ring"].contains(value)
+				validator: value => ["bar", "ring"].includes(value)
 			},
 
 			value: {
