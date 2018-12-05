@@ -121,22 +121,22 @@
 				{
 					case "top":
 						touchAction = "pan-x";
-						transform = `translate3d(0, calc((${this.current} * 100%) - 100%), 0)`;
+						transform = `translate3d(0, ${(this.current - 1) * 100}%, 0)`;
 						break;
 
 					case "left":
 						touchAction = "pan-y";
-						transform = `translate3d(calc((${this.current} * 100%) - 100%), 0, 0)`;
+						transform = `translate3d(${(this.current - 1) * 100}%, 0, 0)`;
 						break;
 
 					case "right":
 						touchAction = "pan-y";
-						transform = `translate3d(calc((-100% * ${this.current}) + 100%), 0, 0)`;
+						transform = `translate3d(${(this.current - 1) * -100}%, 0, 0)`;
 						break;
 
 					case "bottom":
 						touchAction = "pan-x";
-						transform = `translate3d(0, calc((-100% * ${this.current}) + 100%), 0)`;
+						transform = `translate3d(0, ${(this.current - 1) * -100}%, 0)`;
 						break;
 
 				}

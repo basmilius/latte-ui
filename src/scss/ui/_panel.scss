@@ -258,11 +258,8 @@ div.panel-explanation
 	{
 		position: relative;
 		display: block;
-		height: 1em;
-		width: 1em;
 		color: RGB(var(--color-primary));
-		font-size: 2.4em;
-		line-height: 1em;
+		font-size: 36px;
 
 		@include media-breakpoint-down(lg)
 		{

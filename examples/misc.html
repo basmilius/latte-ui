@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Ripple &mdash; @bybas/latte-ui</title>
+	<title>Misc &mdash; @bybas/latte-ui</title>
 	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
 	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
 	<link rel="stylesheet" href="../dist/latte.css"/>
@@ -20,9 +20,9 @@
 
 		<latte-notifications></latte-notifications>
 
-		<div class="toolbar" role="toolbar">
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
 			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
-			<span class="toolbar-title">Ripple</span>
+			<span class="toolbar-title">Misc</span>
 
 			<div class="d-flex align-items-center ml-auto">
 				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<latte-offscreen-container ref="drawer" class="drawer-container has-primary">
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
 			<div id="drawer" role="menu">
 				<nav class="nav" id="drawer-primary">
 					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
@@ -48,39 +48,13 @@
 
 		<div class="content">
 			<div class="row">
-				<div class="col-12 col-lg-6 mb-panel-gutter">
-
-					<div class="panel">
-						<latte-ripple as="div" class="panel-header">
-							<span class="panel-title">Ripple me!</span>
-						</latte-ripple>
-
-						<latte-ripple as="div" class="panel-body" style="--ripple-color: 255, 0, 255; --ripple-scale: 20">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid, blanditiis deserunt ipsam rem repellendus suscipit. Aperiam dolor dolorem ipsam itaque iusto magnam nihil, quas repudiandae sapiente sint totam voluptates?
-						</latte-ripple>
-
-						<latte-ripple as="latte-uploader" class="m-3">
-							<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="drop-here" slot-scope="slot">
-								<i class="mdi mdi-image mdi-24px"></i>
-								<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
-								<span v-else>Drop file here to upload&hellip;</span>
-							</div>
-							<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="let-go">
-								<i class="mdi mdi-image-plus mdi-24px"></i>
-								<span>Let go to upload!</span>
-							</div>
-						</latte-ripple>
-					</div>
-
-				</div>
 				<div class="col-12 col-lg-6">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Other components</span></div>
+						<div class="panel-header"><span class="panel-title">undraw.co svg</span></div>
 						<div class="panel-body">
-
-							<latte-ripple as="button" class="btn btn-contained btn-primary" style="--ripple-alpha: 0.1; --ripple-color: 255, 255, 255"><i class="mdi mdi-check-circle"></i><span>Save changes</span></latte-ripple>
-
+							<latte-svg-undraw url="https://cdn.mili.us/assets/undraw.co/trip.svg" color="rgb(0,120,255)" style="width: 300px"></latte-svg-undraw>
+							<latte-svg-undraw url="https://cdn.mili.us/assets/undraw.co/alien-science.svg" color="green" style="width: 300px"></latte-svg-undraw>
 						</div>
 					</div>
 
@@ -90,7 +64,7 @@
 
 	</main>
 
-	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
 	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
 	<script defer type="text/javascript" src="../dist/latte.js"></script>
 </body>

@@ -13,55 +13,24 @@ div.toolbar
 	display: flex;
 	top: 0;
 	height: $toolbar-height;
-	max-width: 100vw;
-	padding: 0 1rem 0 0;
+	padding: 0 17px;
 	align-items: center;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	background: var(--toolbar-background);
 	box-shadow: var(--toolbar-elevation);
-	overflow: hidden;
+	color: var(--toolbar-color);
+	overflow: auto; // For now...
 	z-index: 1002;
 
-	button.nav-toggler
+	@include expanded
 	{
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border: none;
-		cursor: pointer;
-		outline: none;
-
-		i.mdi
+		button.nav-toggle
 		{
-			height: 1em;
-			width: 1em;
-			font-size: 24px;
-			line-height: 1em;
-		}
-
-		@include compact
-		{
-			height: 36px;
-			width: 36px;
-			margin: ($toolbar-height - 36px) / 2;
-			margin-right: 0;
-			background: transparent;
-			border-radius: var(--border-radius);
-			color: RGB(var(--color-dark));
-
-			&:hover
-			{
-				background: RGBA(var(--color-dark), .1);
-			}
-		}
-
-		@include expanded
-		{
+			--border-radius: 0;
 			height: $toolbar-height;
-			margin-right: 1rem;
-			width: $drawer-primary-width;
+			margin: 0 1rem 0 -17px;
+			padding: 0 17px;
 			background: RGB(var(--drawer-background-primary));
 			color: RGB(var(--drawer-foreground-primary));
 			pointer-events: none;
@@ -73,8 +42,8 @@ div.toolbar
 
 			i.mdi::before
 			{
-				height: inherit;
-				width: inherit;
+				height: 1em;
+				width: 1em;
 				content: " ";
 				background:
 				{
@@ -112,7 +81,6 @@ div.toolbar
 		position: relative;
 		display: block;
 		margin: 0 1rem;
-		color: var(--toolbar-color);
 		font:
 		{
 			size: 1.25rem;

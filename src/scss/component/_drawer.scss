@@ -25,7 +25,6 @@ div#drawer
 		width: $drawer-primary-width;
 		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-primary));
-		border-top: 1px solid var(--drawer-outline-primary);
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
@@ -63,10 +62,7 @@ div#drawer
 
 			i.mdi
 			{
-				height: 24px;
-				width: 24px;
 				font-size: 24px;
-				line-height: 24px;
 			}
 		}
 	}
@@ -79,7 +75,6 @@ div#drawer
 		width: $drawer-secondary-width;
 		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-secondary));
-		border-top: 1px solid var(--drawer-outline-secondary);
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
@@ -92,6 +87,42 @@ div#drawer
 		a.nav-link
 		{
 			height: 45px;
+		}
+	}
+}
+
+div.drawer-container.offscreen-overlay
+{
+	min-height: 100vh;
+
+	@include expanded
+	{
+		z-index: 1001;
+
+		div.offscreen-content
+		{
+			position: fixed;
+			top: $toolbar-height;
+			left: 0;
+			bottom: 0;
+			opacity: 1 !important;
+			transform: none !important;
+			transition: none !important;
+		}
+
+		&.has-primary + div.content
+		{
+			margin-left: $drawer-primary-width;
+		}
+
+		&.has-secondary + div.content
+		{
+			margin-left: $drawer-secondary-width;
+		}
+
+		&.has-primary.has-secondary + div.content
+		{
+			margin-left: $drawer-width;
 		}
 	}
 }

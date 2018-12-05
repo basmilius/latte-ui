@@ -19,45 +19,6 @@ div.content
 	}
 }
 
-div.drawer-container
-{
-	min-height: 100vh;
-
-	@include expanded
-	{
-		div.offscreen-content
-		{
-			position: fixed;
-			top: $toolbar-height;
-			left: 0;
-			bottom: 0;
-			opacity: 1 !important;
-			transform: none !important;
-			transition: none !important;
-		}
-
-		div.offscreen-overlay
-		{
-			display: none;
-		}
-
-		&.has-primary + div.content
-		{
-			margin-left: $drawer-primary-width;
-		}
-
-		&.has-secondary + div.content
-		{
-			margin-left: $drawer-secondary-width;
-		}
-
-		&.has-primary.has-secondary + div.content
-		{
-			margin-left: $drawer-width;
-		}
-	}
-}
-
 body.master-detail main#app
 {
 	div#drawer

@@ -26,7 +26,6 @@ div.offscreen-content
 	background: var(--panel-background);
 	color: var(--main-foreground);
 	pointer-events: all;
-	z-index: 1004;
 
 	&.offscreen-top
 	{
