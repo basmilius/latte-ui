@@ -15,6 +15,8 @@ import { initializeNotices } from "./ui/notices";
 import { initializePanels } from "./ui/panels";
 import { initializeTooltips } from "./ui/tooltip";
 
+window.LatteMomentLocale = window.LatteMomentLocale || "en";
+
 import "./sdk";
 
 Object.values(Directives).forEach(d => Vue.directive(d.name, d));
@@ -22,7 +24,7 @@ Object.values(Components).forEach(c => Vue.component(c.name, c));
 Object.values(Views).forEach(v => Vue.component(v.name, v));
 Object.values(Widgets).forEach(w => Vue.component(w.name, w));
 
-moment.locale(window["LatteMomentLocale"] || "en");
+moment.locale(window.LatteMomentLocale);
 
 window.addEventListener("DOMContentLoaded", () =>
 {

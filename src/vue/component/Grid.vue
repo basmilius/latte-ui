@@ -229,7 +229,7 @@
 				if (typeof this.$refs.grid === "undefined")
 					return;
 
-				this.width = this.$refs["grid"].offsetWidth;
+				this.width = this.$refs.grid.offsetWidth;
 			},
 
 			resizeEvent(eventType, id, x, y, height, width)

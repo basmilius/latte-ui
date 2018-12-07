@@ -4,7 +4,7 @@
 		<div class="dropdown-content profile-popover" v-if="!isLoading">
 
 			<div class="panel-header">
-				<img :src="user['photo']['thumb_128']" :alt="user.name" class="avatar mr-3" style="font-size: 36px"/>
+				<img :src="user.photo.thumb_128" :alt="user.name" class="avatar mr-3" style="font-size: 36px"/>
 				<span class="panel-title">{{ user.name }}</span>
 			</div>
 

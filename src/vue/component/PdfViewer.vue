@@ -27,6 +27,8 @@
 
 <script>
 
+	window.pdfjsLib = window.pdfjsLib || undefined;
+
 	export default {
 
 		name: "latte-pdf-viewer",
@@ -59,7 +61,7 @@
 
 			hasSupport()
 			{
-				return window["pdfjsLib"] !== undefined;
+				return pdfjsLib !== undefined;
 			}
 
 		},
@@ -74,7 +76,7 @@
 				this.isLoading = true;
 				this.rendered = 0;
 
-				window["pdfjsLib"].getDocument(this.source).then(pdf => this.onPDFLoaded(pdf));
+				pdfjsLib.getDocument(this.source).then(pdf => this.onPDFLoaded(pdf));
 			},
 
 			download()

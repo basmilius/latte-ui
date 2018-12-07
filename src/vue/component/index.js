@@ -15,6 +15,7 @@ export { default as JsonEditor } from "./JsonEditor.vue";
 export { default as JsonEditorIaf } from "./JsonEditorIaf.vue";
 export { default as JsonEditorView } from "./JsonEditorView.vue";
 export { default as JsonEditorViewArray } from "./JsonEditorViewArray.vue";
+export { default as MegaMenu } from "./MegaMenu.vue";
 export { default as Moment } from "./Moment.vue";
 export { default as Notifications } from "./Notifications.vue";
 export { default as OffscreenContainer } from "./OffscreenContainer.vue";

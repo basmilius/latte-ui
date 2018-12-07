@@ -22,10 +22,12 @@
 		name: "latte-pagination",
 
 		props: {
+
 			pagination: {
 				type: Array,
 				required: true
 			}
+
 		},
 
 		methods: {

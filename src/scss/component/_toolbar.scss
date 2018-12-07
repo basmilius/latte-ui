@@ -23,6 +23,11 @@ div.toolbar
 	overflow: auto; // For now...
 	z-index: 1002;
 
+	&.toolbar-flat
+	{
+		--toolbar-elevation: 0 2px var(--outline-color-secondary);
+	}
+
 	@include expanded
 	{
 		button.nav-toggle

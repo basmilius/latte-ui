@@ -3,7 +3,7 @@
 	<div id="notification-center">
 
 		<div v-for="notification in notifications" class="notification" :ref="'notification_' + notification.id" :class="getNotificationClasses(notification)" :style="{'top': notification.top + 'px'}">
-			<img class="avatar" :src="notification['avatar']" v-if="notification['avatar']"/>
+			<img class="avatar" :src="notification.avatar" v-if="notification.avatar"/>
 			<div class="notification-icon" v-if="notification.type"><i class="mdi"></i></div>
 			<div class="notification-content">
 				<div class="notification-body">
@@ -83,7 +83,7 @@
 				if (data.delay > -1)
 					setTimeout(() => this.remove(data.id), data.delay + 50);
 
-				const soundUri = data["sound"] || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
+				const soundUri = data.sound || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
 
 				if (soundUri === null)
 					return;

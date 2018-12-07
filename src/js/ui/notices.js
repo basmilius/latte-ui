@@ -63,7 +63,7 @@ export function create(message, type, dismissible = true)
 
 export function isEntityNotice(entity)
 {
-	return entity["@type"] && entity["@type"] === "Latte\\Framework\\Entity\\Notice";
+	return entity["@type"] === "Latte\\Framework\\Entity\\Notice";
 }
 
 export function remove(noticeId)

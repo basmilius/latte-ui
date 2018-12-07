@@ -97,10 +97,10 @@
 
 				if (this.currentFile !== null)
 				{
-					if (typeof this.currentFile["variants"] !== "undefined" && typeof this.currentFile["variants"][3] !== "undefined")
-						return this.currentFile["variants"][3]["path"];
+					if (typeof this.currentFile.variants !== "undefined" && typeof this.currentFile.variants[3] !== "undefined")
+						return this.currentFile.variants[3].path;
 					else
-						return this.currentFile["path"];
+						return this.currentFile.path;
 				}
 
 				return this.noPicture;
@@ -112,7 +112,7 @@
 
 			cancel()
 			{
-				window.URL.revokeObjectURL(this.previewUrl);
+				URL.revokeObjectURL(this.previewUrl);
 
 				this.$refs.file_input.value = "";
 				this.previewUrl = null;
@@ -185,13 +185,13 @@
 					return;
 				}
 
-				let previewUrl = window.URL.createObjectURL(this.$refs.file_input.files[0]);
+				let previewUrl = URL.createObjectURL(this.$refs.file_input.files[0]);
 
 				if (this.previewUrl === previewUrl)
 					return;
 
 				if (this.previewUrl !== null)
-					window.URL.revokeObjectURL(this.previewUrl);
+					URL.revokeObjectURL(this.previewUrl);
 
 				this.isLoading = true;
 				this.previewUrl = previewUrl;

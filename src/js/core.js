@@ -6,7 +6,7 @@ let main = undefined;
  * Deep merges multiple objects.
  *
  * @param {*} target
- * @param {Array<*>} sources
+ * @param {*} sources
  *
  * @returns {*}
  * @author Bas Milius <bas@mili.us>

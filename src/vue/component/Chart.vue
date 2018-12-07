@@ -98,7 +98,7 @@
 				if (response.success !== true)
 					return;
 
-				const canvas = this.$refs["chart"];
+				const canvas = this.$refs.chart;
 				const chart = this.chartData = response.data;
 				const tooltipOptions = {
 					tooltips: {

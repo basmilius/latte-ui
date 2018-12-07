@@ -21,7 +21,7 @@
 		<tr class="search-row" v-if="show.search">
 			<th v-if="showSelections" style="width:42px"></th>
 			<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-				<input v-if="column.is_searchable" type="search" placeholder="Zoeken" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+				<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 			</th>
 			<th></th>
 		</tr>
@@ -225,7 +225,7 @@
 			addFilter(filter)
 			{
 				for (let f of this.filters)
-					if (f["property"] === filter["property"] && f["value"] === filter["value"])
+					if (f.property === filter.property && f["value"] === filter["value"])
 						return;
 
 				this.page = 1;
@@ -338,7 +338,7 @@
 
 				for (let filter of this.filters)
 					if (!isNullOrWhitespace(filter.value.toString()))
-						url += `&filter[${filter["property"]}]=${filter["value"]}`;
+						url += `&filter[${filter.property}]=${filter["value"]}`;
 
 				request(url)
 					.then(r => r.json())

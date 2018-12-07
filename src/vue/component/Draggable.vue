@@ -108,7 +108,7 @@
 
 			isCloning()
 			{
-				return this.options && this.options.group && this.options.group['pull'] === 'clone';
+				return this.options && this.options.group && this.options.group.pull === 'clone';
 			},
 
 			realList()
@@ -292,12 +292,12 @@
 				if (!relatedContext.element)
 					return 0;
 
-				let domChildren = [].concat(_toConsumableArray(event.to.children)).filter(el => el.style['display'] !== 'none');
+				let domChildren = [].concat(_toConsumableArray(event.to.children)).filter(el => el.style.display !== 'none');
 				let currentDomIndex = domChildren.indexOf(event.related);
 				let currentIndex = relatedContext.component.getVmIndex(currentDomIndex);
 				let draggedInList = domChildren.indexOf(draggingElement) !== -1;
 
-				return draggedInList || !event['willInsertAfter'] ? currentIndex : currentIndex + 1;
+				return draggedInList || !event.willInsertAfter ? currentIndex : currentIndex + 1;
 			},
 
 			onDragMove(event, originalEvent)

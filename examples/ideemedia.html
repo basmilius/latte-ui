@@ -13,16 +13,12 @@
 		{
 			--branding-logo: url(//cdn.ideemedia.cloud/web-delivery/image/our-branding/ideemedia.svg);
 			--color-primary: 220, 12, 21;
+			--divider-size: 2px;
 		}
 
 		body
 		{
 			background: url(https://www.toptal.com/designers/subtlepatterns/patterns/crossword.png) repeat top left;
-		}
-
-		section#primary-content
-		{
-			min-height: 100vh;
 		}
 
 		div.toolbar
@@ -31,59 +27,14 @@
 			padding: 0 30px;
 		}
 
-		div.toolbar.is-nav-open
+		div.toolbar button#nav-toggle i.mdi::before
 		{
-			--toolbar-elevation: 0 2px var(--outline-color-secondary)
+			transition: transform 480ms var(--ease-swift-out);
 		}
 
-		div.toolbar div.divider.divider-vertical
+		div.toolbar button#nav-toggle i.mdi.is-open::before
 		{
-			height: 18px;
-			width: 2px;
-		}
-
-		div#primary-nav
-		{
-			position: fixed;
-			top: 84px;
-			left: 0;
-			right: 0;
-			box-shadow: var(--dropdown-elevation);
-			transition: all 480ms var(--ease-swift-out);
-			will-change: box-shadow, transform;
-			z-index: 900;
-		}
-
-		div#primary-nav:not(.is-open)
-		{
-			box-shadow: none;
-			pointer-events: none;
-			transform: translate3d(0, calc(-100% - 6px), 0);
-			visibility: collapse;
-		}
-
-		div#primary-nav nav.nav.nav-list div.divider
-		{
-			margin: 9px 0;
-		}
-
-		div#primary-nav nav.nav.nav-list .nav-link
-		{
-			height: unset;
-			padding: 9px 0;
-		}
-
-		div#primary-nav nav.nav.nav-list .nav-link:not(.active):hover
-		{
-			background: transparent;
-			color: rgb(var(--color-primary));
-		}
-
-		div#primary-nav nav.nav.nav-list div.section
-		{
-			margin: 9px 0;
-			color: inherit;
-			font-weight: 600;
+			transform: rotate3d(1, 0, 0, 180deg);
 		}
 
 		footer#bm-footer
@@ -94,98 +45,77 @@
 	</style>
 </head>
 <body>
-	<main id="app">
+	<main class="d-flex flex-column" id="app">
 
-		<id-site inline-template>
-			<section class="d-flex flex-column" id="primary-content">
-				<div class="toolbar" :class="{'is-nav-open': isNavOpen}">
-					<div class="container d-flex align-items-center">
-						<a href="#"><i class="mdi mdi-branding-logo" style="font-size: 36px"></i></a>
-						<div class="divider divider-vertical mx-4"></div>
-						<div class="d-flex align-items-center">
-							<span class="toolbar-title m-0">Welkom</span>
-							<button class="btn btn-icon btn-text btn-dark ml-1" @click="isNavOpen = isNavOpen !== true"><i class="mdi" :class="{'mdi-chevron-down': !isNavOpen, 'mdi-chevron-up': isNavOpen}"></i></button>
-						</div>
+		<div class="toolbar" :class="{'toolbar-flat': any.isOpen}">
+			<div class="container d-flex align-items-center">
+				<a href="#" style="height: 36px"><i class="mdi mdi-branding-logo" style="font-size: 36px"></i></a>
+				<div class="divider divider-vertical mx-4"></div>
+				<div class="d-flex align-items-center">
+					<span class="toolbar-title m-0">Welkom</span>
+					<button class="btn btn-icon btn-text btn-dark ml-1" @click="$refs.megaMenu.toggle()" id="nav-toggle"><i class="mdi mdi-chevron-down" :class="{'is-open': any.isOpen}"></i></button>
+				</div>
 
-						<a href="#" class="btn btn-contained btn-primary ml-auto mr-3 px-4" style="border-radius: 99px"><span>Bel ons</span></a>
-						<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Facebook" data-tooltip-class="tooltip-bottom tooltip-contain"><i class="mdi mdi-facebook-box"></i></a>
-						<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Google Maps" data-tooltip-class="tooltip-bottom tooltip-contain"><i class="mdi mdi-google-maps"></i></a>
+				<a href="#" class="btn btn-contained btn-primary ml-auto mr-3 px-4" style="border-radius: 99px"><span>Bel ons</span></a>
+				<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Facebook" data-tooltip-class="tooltip-bottom tooltip-contain"><i class="mdi mdi-facebook-box"></i></a>
+				<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Google Maps" data-tooltip-class="tooltip-bottom tooltip-contain"><i class="mdi mdi-google-maps"></i></a>
+			</div>
+		</div>
+
+		<latte-mega-menu ref="megaMenu" @open="$set(any, 'isOpen', $event)" style="top: 84px" v-cloak>
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-3">
+
+						<nav class="nav nav-list p-0">
+							<div class="section">IdeeMedia</div>
+							<a href="#" class="nav-link"><span>Welkom</span></a>
+							<a href="#" class="nav-link"><span>Over ons</span></a>
+							<a href="#" class="nav-link"><span>Knappe koppen</span></a>
+							<a href="#" class="nav-link"><span>Contact</span></a>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg mt-3 mt-lg-0">
+
+						<nav class="nav nav-list p-0">
+							<div class="section">Meesterwerken</div>
+							<a href="#" class="nav-link"><span>Nieuwe website voor het Gerrit Komrij College</span></a>
+							<a href="#" class="nav-link"><span>Communicatieplatform Spreek je Buurtaal</span></a>
+							<a href="#" class="nav-link"><span>Vernieuwde app voor Marveld Recreatie</span></a>
+							<div class="divider divider-horizontal"></div>
+							<a href="#" class="nav-link"><span>Bekijk alles</span></a>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg-3 mt-3 mt-lg-0">
+
+						<nav class="nav nav-list p-0">
+							<div class="section">Oplossingen</div>
+							<a href="#" class="nav-link"><span>Android en/of iOS app</span></a>
+							<a href="#" class="nav-link"><span>Responsive website</span></a>
+							<a href="#" class="nav-link"><span>Printing en ontwerp</span></a>
+							<a href="#" class="nav-link"><span>Hulp voor starters</span></a>
+						</nav>
+
 					</div>
 				</div>
+			</div>
+		</latte-mega-menu>
 
-				<div class="panel" id="primary-nav" :class="{'is-open': isNavOpen}">
-					<div class="panel-body py-5">
-						<div class="container">
-							<div class="row">
-								<div class="col-12 col-lg-3">
+		<div class="container my-3">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto assumenda, consectetur delectus error eveniet ipsa labore laboriosam minima odio officia officiis quas quia quos rem tempora unde, vel vero.
+		</div>
 
-									<nav class="nav nav-list p-0">
-										<div class="section">IdeeMedia</div>
-										<a href="#" class="nav-link"><span>Welkom</span></a>
-										<a href="#" class="nav-link"><span>Over ons</span></a>
-										<a href="#" class="nav-link"><span>Knappe koppen</span></a>
-										<a href="#" class="nav-link"><span>Contact</span></a>
-									</nav>
-
-								</div>
-								<div class="col-12 col-lg mt-3 mt-lg-0">
-
-									<nav class="nav nav-list p-0">
-										<div class="section">Meesterwerken</div>
-										<a href="#" class="nav-link"><span>Nieuwe website voor het Gerrit Komrij College</span></a>
-										<a href="#" class="nav-link"><span>Communicatieplatform Spreek je Buurtaal</span></a>
-										<a href="#" class="nav-link"><span>Vernieuwde app voor Marveld Recreatie</span></a>
-										<div class="divider divider-horizontal"></div>
-										<a href="#" class="nav-link"><span>Bekijk alles</span></a>
-									</nav>
-
-								</div>
-								<div class="col-12 col-lg-3 mt-3 mt-lg-0">
-
-									<nav class="nav nav-list p-0">
-										<div class="section">Oplossingen</div>
-										<a href="#" class="nav-link"><span>Android en/of iOS app</span></a>
-										<a href="#" class="nav-link"><span>Responsive website</span></a>
-										<a href="#" class="nav-link"><span>Printing en ontwerp</span></a>
-										<a href="#" class="nav-link"><span>Hulp voor starters</span></a>
-									</nav>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="container my-3">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto assumenda, consectetur delectus error eveniet ipsa labore laboriosam minima odio officia officiis quas quia quos rem tempora unde, vel vero.
-				</div>
-
-				<footer class="text-center mt-auto py-5" id="bm-footer">
-					Copyright &copy; 2018 IdeeMedia &mdash; Alle rechten voorbehouden.<br/>
-					0544 46 46 38 &mdash; hallo@ideemedia.nl &mdash; Nieuwestraat 22
-				</footer>
-			</section>
-		</id-site>
+		<footer class="text-center mt-auto py-5" id="bm-footer">
+			Copyright &copy; 2018 IdeeMedia &mdash; Alle rechten voorbehouden.<br/>
+			0544 46 46 38 &mdash; hallo@ideemedia.nl &mdash; Nieuwestraat 22
+		</footer>
 
 	</main>
 
 	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
 	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
 	<script defer type="text/javascript" src="../dist/latte.js"></script>
-	<script defer type="text/javascript">
-		window.addEventListener("DOMContentLoaded", () =>
-		{
-			Vue.component("id-site", {
-
-				data()
-				{
-					return {
-						isNavOpen: false
-					}
-				}
-
-			});
-		});
-	</script>
 </body>
 </html>
