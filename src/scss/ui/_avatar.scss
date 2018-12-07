@@ -48,7 +48,7 @@ div.avatar-strip
 	}
 }
 
-$sizes: 24 36 48 96 144;
+$sizes: 24 30 36 48 96 144;
 
 @each $size in $sizes
 {
