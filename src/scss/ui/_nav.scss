@@ -136,14 +136,13 @@
 			flex: 0 0 0;
 		}
 
-		img.avatar
+		.avatar
 		{
-			height: 36px;
 			margin: 0 -6px;
-			width: 36px;
+			font-size: 36px;
 		}
 
-		img.avatar + span
+		.avatar + span
 		{
 			margin-left: 2rem;
 		}
