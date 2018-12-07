@@ -59,6 +59,7 @@
 			box-shadow: none;
 			pointer-events: none;
 			transform: translate3d(0, calc(-100% - 6px), 0);
+			visibility: collapse;
 		}
 
 		div#primary-nav nav.nav.nav-list div.divider
@@ -102,7 +103,7 @@
 						<a href="#"><i class="mdi mdi-branding-logo" style="font-size: 36px"></i></a>
 						<div class="divider divider-vertical mx-4"></div>
 						<div class="d-flex align-items-center">
-							<span class="toolbar-title m-0">Hallo</span>
+							<span class="toolbar-title m-0">Welkom</span>
 							<button class="btn btn-icon btn-text btn-dark ml-1" @click="isNavOpen = isNavOpen !== true"><i class="mdi" :class="{'mdi-chevron-down': !isNavOpen, 'mdi-chevron-up': isNavOpen}"></i></button>
 						</div>
 
@@ -120,14 +121,14 @@
 
 									<nav class="nav nav-list p-0">
 										<div class="section">IdeeMedia</div>
-										<a href="#" class="nav-link"><span>Hallo</span></a>
+										<a href="#" class="nav-link"><span>Welkom</span></a>
 										<a href="#" class="nav-link"><span>Over ons</span></a>
 										<a href="#" class="nav-link"><span>Knappe koppen</span></a>
 										<a href="#" class="nav-link"><span>Contact</span></a>
 									</nav>
 
 								</div>
-								<div class="col-12 col-lg">
+								<div class="col-12 col-lg mt-3 mt-lg-0">
 
 									<nav class="nav nav-list p-0">
 										<div class="section">Meesterwerken</div>
@@ -139,7 +140,7 @@
 									</nav>
 
 								</div>
-								<div class="col-12 col-lg-3">
+								<div class="col-12 col-lg-3 mt-3 mt-lg-0">
 
 									<nav class="nav nav-list p-0">
 										<div class="section">Oplossingen</div>
