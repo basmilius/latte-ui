@@ -16,7 +16,7 @@ div.dropdown
 	box-shadow: var(--dropdown-elevation);
 	z-index: 0;
 
-	&.dropdown-at-root
+	&.dropdown-fixed
 	{
 		position: fixed;
 		display: block;
@@ -66,13 +66,17 @@ div.dropdown
 		{
 			display: block;
 			left: 27px;
-			bottom: -8px;
 			border-bottom: none;
 		}
 
 		&::before
 		{
 			bottom: -9px;
+		}
+
+		&::after
+		{
+			bottom: -8px;
 		}
 	}
 
@@ -83,13 +87,17 @@ div.dropdown
 		{
 			display: block;
 			right: 27px;
-			bottom: -8px;
 			border-bottom: none;
 		}
 
 		&::before
 		{
 			bottom: -9px;
+		}
+
+		&::after
+		{
+			bottom: -8px;
 		}
 	}
 

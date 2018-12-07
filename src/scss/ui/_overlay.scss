@@ -60,8 +60,15 @@ div.latte-overlay
 		}
 	}
 
-	@include media-breakpoint-down(md)
+	@include compact
 	{
-		padding: 24px;
+		padding: 0;
+
+		div.panel
+		{
+			height: 100% !important;
+			width: 100% !important;
+			border-radius: 0;
+		}
 	}
 }

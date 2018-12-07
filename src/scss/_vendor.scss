@@ -34,6 +34,15 @@ html
 	display: none !important;
 }
 
+$mdi-sizes: 18 24 36 48;
+@each $mdi-size in $mdi-sizes
+{
+	.mdi-#{$mdi-size}px
+	{
+		font-size: $mdi-size * 1px;
+	}
+}
+
 i.mdi.mdi-branding-logo
 {
 	flex: 0 0 1em;

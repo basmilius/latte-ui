@@ -19,11 +19,7 @@ $elevation-ambient-opacity: .06 !default;
 $content-gutter: 24px !default;
 $drawer-primary-width: 70px;
 $drawer-secondary-width: 230px;
-$drawer-width: $drawer-primary-width + $drawer-secondary-width;
 $toolbar-height: 60px !default;
-
-$drawer-animation-duration: 360ms !default;
-$drawer-animation-ease: $ease-swift-out !default;
 
 @mixin compact()
 {

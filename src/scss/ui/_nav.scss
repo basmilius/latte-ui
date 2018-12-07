@@ -96,7 +96,7 @@
 	.nav-link
 	{
 		color: var(--main-foreground);
-		transition: all 90ms $ease-standard-curve;
+		transition: all 90ms var(--ease-standard-curve);
 		will-change: background, color;
 
 		--badge-bg: RGBA(var(--color-primary), .1);

@@ -58,7 +58,7 @@
 			{
 				let aboveUnder = this.associatedElementPosition.y > (window.innerHeight / 2) ? "above" : "under";
 				let position = this.associatedElementPosition.x > (window.innerWidth / 2) ? "right" : "left";
-				let classes = ["dropdown", "dropdown-at-root", `dropdown-${position}-${aboveUnder}`];
+				let classes = ["dropdown", "dropdown-fixed", `dropdown-${position}-${aboveUnder}`];
 
 				if (this.isOpen === true)
 					classes.push("is-open");

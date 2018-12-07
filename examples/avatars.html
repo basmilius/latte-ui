@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Avatars &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+			<span class="toolbar-title">Avatars</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				</nav>
+			</div>
+		</latte-offscreen-container>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Basic</span></div>
+						<div class="panel-body">
+							<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar avatar-24px">
+							<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar avatar-36px">
+							<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar avatar-48px">
+							<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar avatar-96px">
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Strip</span></div>
+						<div class="panel-body">
+							<div class="avatar-strip avatar-36px">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="avatar-strip avatar-36px with-hover">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+								<img src="//intranet.ideemedia.cloud/storage/b3087d51/2018/12/ee690c60-f7c0-11e8-a426-525400806242-thumb-64.webp" alt="Bas" class="avatar">
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

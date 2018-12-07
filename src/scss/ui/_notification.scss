@@ -21,7 +21,7 @@ div#notification-center
 	position: fixed;
 	display: block;
 	top: 0;
-	right: 24px;
+	right: $notification-gutter;
 	width: 360px;
 	z-index: 2147483640;
 
@@ -48,7 +48,7 @@ div.notification
 	&.is-hidden
 	{
 		opacity: 0;
-		transform: translate3d(calc(100% + 24px), 0, 0);
+		transform: translate3d(calc(100% + #{$notification-gutter}), 0, 0);
 	}
 }
 

@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-img.avatar
+.avatar
 {
 	position: relative;
 	display: inline-block;
@@ -15,46 +15,44 @@ img.avatar
 	width: 1em;
 	margin: 0;
 	padding: 0;
-	background: var(--panel-background);
-	border-radius: 999px;
+	border-radius: 1em;
 	object-fit: cover;
 	object-position: center center;
+}
 
-	&.avatar-very-small
+div.avatar-strip
+{
+	position: relative;
+	display: flex;
+
+	.avatar
 	{
-		font-size: 24px;
+		position: relative;
+		display: block;
+		height: 1em;
+		margin-left: -.3em;
+		width: 1em;
+		box-shadow: 0 0 0 .1em var(--avatar-strip-background, var(--panel-background));
+		transition: all 180ms var(--ease-swift-out);
+
+		&:first-child
+		{
+			margin-left: 0;
+		}
 	}
 
-	&.avatar-in-button
+	&.with-hover:hover .avatar:not(:first-child)
 	{
-		margin: -3px;
-		font-size: 30px;
+		margin-left: .1em;
 	}
+}
 
-	&.avatar-table
-	{
-		margin: -3px;
-		font-size: 30px;
-	}
+$sizes: 24 36 48 96 144;
 
-	&.avatar-small
+@each $size in $sizes
+{
+	.avatar-#{$size}px
 	{
-		font-size: 48px;
-	}
-
-	&.avatar-medium
-	{
-		font-size: 96px;
-	}
-
-	&.avatar-large
-	{
-		font-size: 144px;
-	}
-
-	&.avatar-fluid
-	{
-		height: auto;
-		width: 100%;
+		font-size: $size * 1px;
 	}
 }

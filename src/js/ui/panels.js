@@ -2,6 +2,7 @@
 
 export function initializePanels()
 {
+	document.querySelectorAll("div.panel > table").forEach(t => t.parentNode.classList.add("panel-table"));
 	document.querySelectorAll("div.panel.panel-toggleable").forEach(panel => initializePanel(panel));
 }
 

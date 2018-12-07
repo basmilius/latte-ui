@@ -119,7 +119,7 @@
 
 			dropdownClasses()
 			{
-				const classes = ["dropdown", "dropdown-at-root"];
+				const classes = ["dropdown", "dropdown-fixed"];
 
 				if (this.withArrow)
 				{

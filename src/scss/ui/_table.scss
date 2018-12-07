@@ -72,7 +72,7 @@ table.table
 		flex-flow: column;
 		justify-content: center;
 		vertical-align: middle;
-		transition: background 90ms $ease-swift-out;
+		transition: background 90ms var(--ease-swift-out);
 
 		*
 		{
