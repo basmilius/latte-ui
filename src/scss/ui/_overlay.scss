@@ -66,9 +66,26 @@ div.latte-overlay
 
 		div.panel
 		{
-			height: 100% !important;
+			min-height: 100% !important;
 			width: 100% !important;
 			border-radius: 0;
+			z-index: 0;
+
+			div.panel-header:first-child
+			{
+				position: sticky;
+				top: 0;
+				background: var(--panel-background);
+				z-index: 2;
+			}
+
+			div.panel-footer:last-child
+			{
+				position: sticky;
+				bottom: 0;
+				background: var(--panel-background);
+				z-index: 2;
+			}
 		}
 	}
 }
