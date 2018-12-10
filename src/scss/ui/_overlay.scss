@@ -28,6 +28,8 @@ div.latte-overlay
 	will-change: opacity;
 	z-index: 2000;
 
+	-webkit-overflow-scrolling: touch;
+
 	div.panel
 	{
 		opacity: 1;
