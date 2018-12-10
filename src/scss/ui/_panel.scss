@@ -341,4 +341,6 @@ div.panel.panel-explained
 {
 	display: block;
 	overflow: auto;
+
+	-webkit-overflow-scrolling: touch;
 }
