@@ -56,6 +56,9 @@
 
 		beforeDestroy()
 		{
+			if (this.isOpen)
+				getMainElement().classList.remove("is-popup-opened");
+
 			document.body.removeChild(this.$el);
 
 			this.$el.removeOutsideEventListener("pointerdown", this.cb.onOutsideClick);
