@@ -42,13 +42,18 @@ div.notification
 	background: var(--panel-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--panel-elevation-hover);
-	transition: all 360ms var(--ease-swift-out);
+	transition: all 420ms var(--ease-swift-out);
 	will-change: top, opacity, transform;
 
-	&.is-hidden
+	&.is-opening
 	{
 		opacity: 0;
-		transform: translate3d(calc(100% + #{$notification-gutter}), 0, 0);
+		transform: translate3d(0, -50%, 0);
+	}
+
+	&.is-closing
+	{
+		opacity: 0;
 	}
 }
 

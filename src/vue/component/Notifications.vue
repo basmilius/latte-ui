@@ -2,19 +2,23 @@
 
 	<div id="notification-center">
 
-		<div v-for="notification in notifications" class="notification" :ref="'notification_' + notification.id" :class="getNotificationClasses(notification)" :style="{'top': notification.top + 'px'}">
-			<img class="avatar" :src="notification.avatar" v-if="notification.avatar"/>
-			<div class="notification-icon" v-if="notification.type"><i class="mdi"></i></div>
-			<div class="notification-content">
-				<div class="notification-body">
-					<span class="notification-title" v-if="notification.title">{{ notification.title }}</span>
-					<span class="notification-text" v-if="notification.message">{{ notification.message }}</span>
-				</div>
-				<div class="notification-actions" v-if="notification.actions">
-					<button v-for="a in notification.actions" @click="remove(notification.id)" :data-action="a.action" v-bind="makeParams(a.params || {})" class="btn btn-text" :class="'btn-' + (a.type || 'primary')"><span>{{ a.label }}</span></button>
+		<template v-for="notification in notifications">
+
+			<div class="notification" :key="notification.id" :class="getNotificationClasses(notification)" :style="getNotificationStyles(notification)" ref="notification">
+				<img class="avatar" :src="notification.avatar" v-if="notification.avatar"/>
+				<div class="notification-icon" v-if="notification.type"><i class="mdi"></i></div>
+				<div class="notification-content">
+					<div class="notification-body">
+						<span class="notification-title" v-if="notification.title">{{ notification.title }}</span>
+						<span class="notification-text" v-if="notification.message">{{ notification.message }}</span>
+					</div>
+					<div class="notification-actions" v-if="notification.actions">
+						<button v-for="a in notification.actions" @click="remove(notification.id)" :data-action="a.action" v-bind="makeParams(a.params || {})" class="btn btn-text" :class="'btn-' + (a.type || 'primary')"><span>{{ a.label }}</span></button>
+					</div>
 				</div>
 			</div>
-		</div>
+
+		</template>
 
 	</div>
 
@@ -25,6 +29,7 @@
 	let lattePath = null;
 
 	import { on } from "../../js/actions";
+	import { needsZIndex } from "../../js/z";
 
 	export default {
 
@@ -46,6 +51,7 @@
 		data()
 		{
 			return {
+				lastTop: 0,
 				notifications: []
 			};
 		},
@@ -74,14 +80,17 @@
 					data.id = 0;
 
 				data.delay = data.delay || 3000;
-				data.shown = false;
-				data.top = 0;
+				data.closing = false;
+				data.opening = true;
+				data.top = this.lastTop;
 
-				this.notifications.unshift(data);
-				setTimeout(() => this.show(data.id), 50);
+				needsZIndex(z => data.z = z);
+
+				this.notifications.push(data);
+				this.show(data.id);
 
 				if (data.delay > -1)
-					setTimeout(() => this.remove(data.id), data.delay + 50);
+					setTimeout(() => this.remove(data.id), data.delay);
 
 				const soundUri = data.sound || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
 
@@ -93,20 +102,33 @@
 				audio.setAttribute("preload", "auto");
 				audio.volume = 1;
 				audio.currentTime = 0;
-				audio.play().then();
+				audio.play().catch(() =>
+				{
+				});
 			},
 
 			getNotificationClasses(notification)
 			{
 				const classes = [];
 
-				if (!notification.shown)
-					classes.push("is-hidden");
+				if (notification.closing)
+					classes.push("is-closing");
+
+				if (notification.opening)
+					classes.push("is-opening");
 
 				if (notification.type)
 					classes.push(`notification-${notification.type}`);
 
 				return classes;
+			},
+
+			getNotificationStyles(notification)
+			{
+				return {
+					top: `${notification.top}px`,
+					zIndex: notification.z
+				};
 			},
 
 			makeParams(params)
@@ -127,32 +149,39 @@
 				if (!n)
 					return;
 
-				n.shown = false;
+				n.closing = true;
 
-				setTimeout(() => this.notifications = this.notifications.filter(n => n.id !== id), 360);
+				setTimeout(() => this.notifications = this.notifications.filter(n => n.id !== id), 420);
 			},
 
 			show(id)
 			{
 				let n = this.notifications.find(n => n.id === id);
-				n.shown = true;
 
-				this.updatePositions();
+				requestAnimationFrame(() =>
+				{
+					this.updatePositions();
+					n.opening = false;
+				});
 			},
 
 			updatePositions()
 			{
-				let notifications = this.notifications.filter(n => n.shown);
 				let top = 84;
 
-				for (let i = notifications.length - 1; i >= 0; i--)
+				for (let i = 0; i < this.notifications.length; i++)
 				{
-					let notification = notifications[i];
+					let notification = this.notifications[i];
+
+					if (notification.closing)
+						continue;
 
 					notification.top = top;
 
-					top += this.$refs[`notification_${notification.id}`][0].getBoundingClientRect().height + 24;
+					top += this.$refs.notification[0].getBoundingClientRect().height + 24;
 				}
+
+				this.lastTop = top;
 			}
 
 		},
