@@ -15,7 +15,7 @@
 
 	export default {
 
-		name: "latte-uploader",
+		name: "latte-uploader-noop",
 
 		props: {
 

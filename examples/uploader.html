@@ -51,10 +51,10 @@
 				<div class="col-12 col-lg-6">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Simple uploader</span></div>
+						<div class="panel-header"><span class="panel-title">Photo uploader</span></div>
 						<div class="panel-body">
 
-							<latte-uploader :is-multiple="true">
+							<latte-uploader-photo :is-multiple="true">
 								<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="drop-here" slot-scope="slot">
 									<i class="mdi mdi-image mdi-24px"></i>
 									<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
@@ -64,12 +64,12 @@
 									<i class="mdi mdi-image-plus mdi-24px"></i>
 									<span>Let go to upload!</span>
 								</div>
-							</latte-uploader>
+							</latte-uploader-photo>
 
 						</div>
 						<div class="panel-body">
 
-							<latte-uploader :is-multiple="false" style="height: 180px; width: 180px; --border-radius: 999px;">
+							<latte-uploader-photo current-photo="https://intranet.ideemedia.cloud/storage/b3087d51/2018/12/eb89ba46-fd23-11e8-a426-525400806242-thumb-64.jpg" :is-multiple="false" style="height: 180px; width: 180px; --border-radius: 999px;">
 								<div class="d-flex align-items-center flex-column justify-content-center px-3" slot="drop-here" slot-scope="slot">
 									<i class="mdi mdi-image mdi-24px"></i>
 									<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
@@ -79,7 +79,7 @@
 									<i class="mdi mdi-image-plus mdi-24px"></i>
 									<span>Let go to upload!</span>
 								</div>
-							</latte-uploader>
+							</latte-uploader-photo>
 
 						</div>
 					</div>

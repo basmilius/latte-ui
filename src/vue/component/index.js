@@ -35,4 +35,3 @@ export { default as TreeView } from "./TreeView.vue";
 export { default as TreeViewItem } from "./TreeViewItem.vue";
 export { default as Uploader } from "./Uploader.vue";
 export { default as UploaderPhoto } from "./UploaderPhoto.vue";
-export { default as UploadUserPhoto } from "./UploadUserPhoto.vue";

@@ -1,0 +1,41 @@
+/*!
+ * Copyright © 2018 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte Framework package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.uploader
+{
+	z-index: 0;
+
+	div.uploader-info
+	{
+		z-index: 1;
+	}
+
+	&.is-dragging img.preview-image,
+	&.is-dragging-over img.preview-image
+	{
+		opacity: .2;
+	}
+
+	img.preview-image.single
+	{
+		position: absolute;
+		display: block;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border-radius: inherit;
+		object-fit: cover;
+		object-position: center center;
+		pointer-events: none;
+		z-index: 0;
+	}
+}

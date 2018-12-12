@@ -7,53 +7,49 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.latte-drop-container
+div.drop-container
 {
 	position: relative;
-	display: block;
-	z-index: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	border: 2px dashed var(--outline-color-secondary);
+	border-radius: var(--border-radius);
+	text-align: center;
 
-	div.drop-here
+	&.is-dragging > *
 	{
-		position: absolute;
-		display: flex;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		align-items: center;
-		justify-content: center;
-		background: RGBA(var(--color-primary), .5);
-		color: RGB(var(--color-primary));
-		font:
-		{
-			size: 1.25rem;
-			weight: 500;
-		}
-		opacity: 0;
-		outline: 2px dashed RGBA(var(--color-primary) .24);
-		outline-offset: 3px;
 		pointer-events: none;
-		transition: opacity 90ms var(--ease-swift-out);
-		z-index: 10;
+	}
 
-		&.is-droppable
-		{
-			opacity: 1;
-		}
+	&.is-dragging
+	{
+		background-color: rgba(var(--color-dark), .05);
+		border-color: rgba(var(--color-dark), .1);
+	}
+
+	&.is-dragging-over
+	{
+		background-color: rgba(var(--color-primary), .3);
+		border-color: rgba(var(--color-primary), .1);
 	}
 
 	span.spinner
 	{
 		position: absolute;
-		display: inline-flex;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: rgba(255, 255, 255, .9);
-		color: RGB(var(--color-primary));
-		font-size: 2.5rem;
-		z-index: 2;
+		background: var(--panel-spinner-background);
+		border-radius: inherit;
+		font-size: 2rem;
+		z-index: 1;
+	}
+
+	&:not(.is-loading) span.spinner
+	{
+		display: none;
 	}
 }
