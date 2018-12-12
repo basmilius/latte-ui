@@ -29,7 +29,6 @@ export function createRootComponent()
 		mounted()
 		{
 			initializeTick();
-			installServiceWorker();
 			onHashChange();
 			removeQueryString();
 		},
@@ -55,28 +54,6 @@ export function createRootComponent()
 function initializeTick()
 {
 	interval(100, () => dispatch("latte:tick", window.performance.now()));
-}
-
-function installServiceWorker()
-{
-	if (!("LatteSW" in window))
-		return;
-
-	if (!("serviceWorker" in navigator))
-		return;
-
-	if (!window.isSecureContext)
-		return;
-
-	navigator.serviceWorker.getRegistration().then(registration =>
-	{
-		if (registration !== undefined)
-			return registration.update();
-
-		navigator.serviceWorker.register("/service-worker.js")
-			.then(() => console.debug("Service Worker installed!"))
-			.catch(err => console.error("Service Worker not installed due to an error.", err));
-	});
 }
 
 function onHashChange()
