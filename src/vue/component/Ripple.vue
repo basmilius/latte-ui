@@ -16,7 +16,7 @@
 
 <script>
 
-	import { relativeCoordsTo } from "../../js/util/dom";
+	import { raf, relativeCoordsTo } from "../../js/util/dom";
 	import { timeout } from "../../js/core";
 
 	export default {
@@ -153,8 +153,8 @@
 				ripple.classList.add("is-scaling");
 				ripple.classList.add("is-visible");
 
-				timeout(this.rippleDuration, () => ripple.classList.add("is-hiding"));
-				timeout(this.rippleDuration + 180, () => ripple.remove());
+				raf(() => ripple.classList.add("is-hiding"), this.rippleDuration);
+				raf(() => ripple.remove(), this.rippleDuration + 180);
 			}
 
 		},

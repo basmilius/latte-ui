@@ -1,4 +1,4 @@
-import { timeout } from "../../js/core";
+import { raf } from "../../js/util/dom";
 
 const handler = "latte:clickaway-handler";
 
@@ -12,7 +12,7 @@ function bind(el, binding)
 	if (typeof callback !== "function")
 		return;
 
-	timeout(0, () => initialMactroTaskEnded = true);
+	raf(() => initialMactroTaskEnded = true);
 
 	el[handler] = function (evt)
 	{

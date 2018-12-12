@@ -77,6 +77,14 @@ export function printDocument(url)
 	});
 }
 
+export function raf(fn, delay = undefined)
+{
+	if (delay !== undefined)
+		return setTimeout(() => requestAnimationFrame(fn), delay);
+
+	requestAnimationFrame(fn);
+}
+
 export function relativeCoordsTo(element, evt)
 {
 	if (!evt.clientX || !evt.clientY)
@@ -116,6 +124,8 @@ export default {
 	live,
 
 	printDocument,
+
+	raf,
 
 	relativeCoordsTo,
 

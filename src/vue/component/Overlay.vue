@@ -12,6 +12,7 @@
 	import { register, remove } from "../../js/ui/overlays";
 	import { timeout } from "../../js/core";
 	import { needsZIndex } from "../../js/z";
+	import { raf } from "../../js/util/dom";
 
 	export default {
 
@@ -70,8 +71,8 @@
 				if (!this.isVisible)
 					return;
 
-				this.isOpen = false;
-				timeout(270, () => this.isVisible = false);
+				raf(() => this.isOpen = false);
+				raf(() => this.isVisible = false, 270);
 
 				dispatch("latte:overlay", {overlay: this, open: false});
 				this.$emit("close", this);
@@ -82,11 +83,15 @@
 				if (this.isVisible)
 					return;
 
-				this.isVisible = true;
-				timeout(10, () =>
+				raf(() =>
 				{
-					needsZIndex(z => this.$el.style.setProperty("z-index", z));
-					this.isOpen = true;
+					this.isVisible = true;
+
+					raf(() =>
+					{
+						needsZIndex(z => this.$el.style.setProperty("z-index", z));
+						this.isOpen = true;
+					});
 				});
 
 				dispatch("latte:overlay", {overlay: this, open: true});

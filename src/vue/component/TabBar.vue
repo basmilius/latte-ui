@@ -18,7 +18,7 @@
 
 <script>
 
-	import { timeout } from "../../js/core";
+	import { raf } from "../../js/util/dom";
 
 	export default {
 
@@ -49,7 +49,7 @@
 			this.$parent.$on("change", current => this.onTabChange(current));
 			this.$parent.updateTabBars();
 
-			window.addEventListener("load", () => timeout(100, () => this.updateIndicator()));
+			window.addEventListener("load", () => raf(() => this.updateIndicator(), 50));
 		},
 
 		computed: {

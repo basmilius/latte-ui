@@ -12,7 +12,7 @@
 
 	import { dispatch, on } from "../../js/actions";
 	import { getMainElement, timeout } from "../../js/core";
-	import { live } from "../../js/util/dom";
+	import { live, raf } from "../../js/util/dom";
 	import { needsZIndex } from "../../js/z";
 
 	export default {
@@ -228,7 +228,7 @@
 				if (this.associatedElement !== undefined)
 					this.rect = this.associatedElement.getBoundingClientRect();
 
-				this.calculatePosition();
+				raf(() => this.calculatePosition());
 			}
 
 		},

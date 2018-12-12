@@ -1,9 +1,9 @@
 "use strict";
 
-import { createElement } from "../util/dom.js";
-import { timeout } from "../core.js";
+import { createElement, raf } from "../util/dom";
+import { timeout } from "../core";
 import { spaceship } from "../operators";
-import { translate } from "../i18n.js";
+import { translate } from "../i18n";
 import { needsZIndex } from "../z";
 
 export const Buttons = {
@@ -86,8 +86,8 @@ export function createMessage(title, message, buttons, prompt = false)
 
 			el.addEventListener("click", () =>
 			{
-				timeout(0, () => overlay.classList.remove("is-open"));
-				timeout(270, () => overlay.classList.remove("is-visible"));
+				raf(() => overlay.classList.remove("is-open"));
+				raf(() => overlay.classList.remove("is-visible"), 270);
 
 				Latte.actions.dispatch("latte:overlay", {overlay, open: false});
 
@@ -109,8 +109,13 @@ export function createMessage(title, message, buttons, prompt = false)
 		document.body.appendChild(overlay);
 
 		Latte.actions.dispatch("latte:overlay", {overlay, open: true});
-		timeout(0, () => overlay.classList.add("is-visible"));
-		timeout(20, () => overlay.classList.add("is-open"));
+
+		raf(() =>
+		{
+			overlay.classList.add("is-visible");
+
+			raf(() => overlay.classList.add("is-open"));
+		});
 	});
 }
 
