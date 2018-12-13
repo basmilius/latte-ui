@@ -63,12 +63,13 @@ function onHashChange()
 	if (!hash || hash.length === 0)
 		return;
 
-	const params = {};
+	const raw = hash.split("&");
+	const parameters = {};
 
-	const data = new URLSearchParams(hash);
-
-	data.forEach((value, key) =>
+	for (let item of raw)
 	{
+		const kv = item.split("=", 2);
+		let value = kv[1] || null;
 		let vars = {};
 
 		if (value.indexOf("/") > -1)
@@ -83,10 +84,10 @@ function onHashChange()
 			}
 		}
 
-		params[key] = {value, vars};
-	});
+		parameters[kv[0]] = {value, vars};
+	}
 
-	dispatch("latte:hash-change", params)
+	dispatch("latte:hash-change", parameters);
 }
 
 function removeQueryString()
