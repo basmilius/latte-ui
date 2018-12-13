@@ -45,6 +45,8 @@
 
 <script>
 
+	import { raf } from "../../js/util/dom";
+
 	export default {
 
 		name: "latte-datepicker-calendar",
@@ -260,7 +262,7 @@
 			{
 				this.$emit("view", this.selectedView);
 
-				this.$nextTick(() =>
+				raf(() =>
 				{
 					if (this.selectedView === "months")
 						this.$el.querySelector(`[data-month="${this.selectedMonth}"]`).scrollIntoViewIfNeeded();

@@ -62,9 +62,6 @@
 			document.body.removeChild(this.$el);
 
 			this.$el.removeOutsideEventListener("pointerdown", this.cb.onOutsideClick);
-
-			window.removeEventListener("resize", this.cb.onResizeOrScroll);
-			window.removeEventListener("scroll", this.cb.onResizeOrScroll);
 		},
 
 		data()
@@ -72,8 +69,7 @@
 			return {
 				cb: {
 					onClick: evt => this.onClick(evt),
-					onOutsideClick: evt => this.onOutsideClick(evt),
-					onResizeOrScroll: evt => this.onResizeOrScroll(evt)
+					onOutsideClick: evt => this.onOutsideClick(evt)
 				},
 				isOpen: false,
 				popupX: 0,
@@ -95,9 +91,6 @@
 				this.$parent.$forceUpdate();
 
 			this.$el.addOutsideEventListener("pointerdown", this.cb.onOutsideClick);
-
-			window.addEventListener("resize", this.cb.onResizeOrScroll, {passive: true});
-			window.addEventListener("scroll", this.cb.onResizeOrScroll, {passive: true});
 
 			live(this.$el, "[href],[data-close]", "pointerup", () => timeout(25, () => this.close()));
 
@@ -182,26 +175,29 @@
 
 			calculatePosition()
 			{
-				const pcr = this.$el.getBoundingClientRect();
-				const px = this.x > (window.innerWidth / 2) ? "right" : "left";
-				const py = this.y > (window.innerHeight / 2) ? "above" : "under";
+				raf(() =>
+				{
+					const pcr = this.$el.getBoundingClientRect();
+					const px = this.x > (window.innerWidth / 2) ? "right" : "left";
+					const py = this.y > (window.innerHeight / 2) ? "above" : "under";
 
-				const l = this.x;
-				const t = this.y;
-				const h = this.rect !== null ? this.rect.height : 0;
-				const w = this.rect !== null ? this.rect.width : 0;
+					const l = this.x;
+					const t = this.y;
+					const h = this.rect !== null ? this.rect.height : 0;
+					const w = this.rect !== null ? this.rect.width : 0;
 
-				let x = l + this.marginX;
-				let y = t + h + this.marginY;
+					let x = l + this.marginX;
+					let y = t + h + this.marginY;
 
-				if (px === "right")
-					x = (l + w) - (pcr.width + this.marginX);
+					if (px === "right")
+						x = (l + w) - (pcr.width + this.marginX);
 
-				if (py === "above")
-					y = t - (pcr.height + this.marginY);
+					if (py === "above")
+						y = t - (pcr.height + this.marginY);
 
-				this.popupX = Math.round(x);
-				this.popupY = Math.round(y + (this.isOpen ? 0 : py === "above" ? -24 : 24));
+					this.popupX = Math.round(x);
+					this.popupY = Math.round(y + (this.isOpen ? 0 : py === "above" ? -24 : 24));
+				});
 			},
 
 			setPosition(x, y)
@@ -228,7 +224,7 @@
 				if (this.associatedElement !== undefined)
 					this.rect = this.associatedElement.getBoundingClientRect();
 
-				raf(() => this.calculatePosition());
+				this.calculatePosition();
 			}
 
 		},

@@ -29,6 +29,8 @@
 	let lattePath = null;
 
 	import { on } from "../../js/actions";
+	import { timeout } from "../../js/core";
+	import { raf } from "../../js/util/dom";
 	import { needsZIndex } from "../../js/z";
 
 	export default {
@@ -51,7 +53,7 @@
 		data()
 		{
 			return {
-				lastTop: 0,
+				lastTop: 84,
 				notifications: []
 			};
 		},
@@ -90,7 +92,7 @@
 				this.show(data.id);
 
 				if (data.delay > -1)
-					setTimeout(() => this.remove(data.id), data.delay);
+					timeout(data.delay, () => this.remove(data.id));
 
 				const soundUri = data.sound || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
 
@@ -151,37 +153,38 @@
 
 				n.closing = true;
 
-				setTimeout(() => this.notifications = this.notifications.filter(n => n.id !== id), 420);
+				this.updatePositions();
+				timeout(420, () => this.notifications = this.notifications.filter(n => n.id !== id));
 			},
 
 			show(id)
 			{
 				let n = this.notifications.find(n => n.id === id);
 
-				requestAnimationFrame(() =>
-				{
-					this.updatePositions();
-					n.opening = false;
-				});
+				this.updatePositions();
+				raf(() => n.opening = false);
 			},
 
 			updatePositions()
 			{
-				let top = 84;
-
-				for (let i = 0; i < this.notifications.length; i++)
+				raf(() =>
 				{
-					let notification = this.notifications[i];
+					let top = 84;
 
-					if (notification.closing)
-						continue;
+					for (let i = 0; i < this.notifications.length; i++)
+					{
+						let notification = this.notifications[i];
 
-					notification.top = top;
+						if (notification.closing)
+							continue;
 
-					top += this.$refs.notification[0].getBoundingClientRect().height + 24;
-				}
+						notification.top = top;
 
-				this.lastTop = top;
+						top += this.$refs.notification[0].getBoundingClientRect().height + 24;
+					}
+
+					this.lastTop = top;
+				});
 			}
 
 		},
@@ -190,7 +193,7 @@
 
 			notifications()
 			{
-				this.$nextTick(() => this.updatePositions());
+				this.updatePositions();
 			}
 
 		}

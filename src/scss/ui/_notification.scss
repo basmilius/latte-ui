@@ -48,7 +48,7 @@ div.notification
 	&.is-opening
 	{
 		opacity: 0;
-		transform: translate3d(0, -50%, 0);
+		transform: translate3d(0, 48px, 0);
 	}
 
 	&.is-closing

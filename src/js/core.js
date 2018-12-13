@@ -100,7 +100,7 @@ export function interval(timeout, func)
 {
 	func();
 
-	return window.setInterval(func, timeout);
+	return setInterval(func, timeout);
 }
 
 /**
@@ -186,7 +186,7 @@ export function register(func)
  */
 export function timeout(timeout, func)
 {
-	return window.setTimeout(func, timeout);
+	return setTimeout(func, timeout);
 }
 
 /**

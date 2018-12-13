@@ -4,7 +4,7 @@
 
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="datetime-local" class="form-control" :value="inputValue"/>
 
-		<latte-popup :associate-with="$refs.input" ref="popup" style="width: 384px">
+		<latte-popup :associate-with="$refs.input" :persistent="true" ref="popup" style="width: 384px">
 
 			<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
 

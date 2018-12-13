@@ -101,17 +101,17 @@
 
 			animatedIndicator()
 			{
-				this.$nextTick(() => this.updateIndicator());
+				raf(() => this.updateIndicator());
 			},
 
 			current()
 			{
-				this.$nextTick(() => this.updateIndicator());
+				raf(() => this.updateIndicator());
 			},
 
 			tabs()
 			{
-				this.$nextTick(() => this.updateIndicator());
+				raf(() => this.updateIndicator());
 			}
 
 		}
