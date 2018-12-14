@@ -16,11 +16,6 @@
 			--divider-size: 2px;
 		}
 
-		body
-		{
-			background: url(https://www.toptal.com/designers/subtlepatterns/patterns/crossword.png) repeat top left;
-		}
-
 		div.toolbar
 		{
 			height: 84px;
@@ -45,7 +40,7 @@
 	</style>
 </head>
 <body>
-	<main class="d-flex flex-column" id="app">
+	<main class="d-flex flex-column" id="app" style="min-height: 100vh">
 
 		<div class="toolbar" :class="{'toolbar-flat': any.isOpen}">
 			<div class="container d-flex align-items-center">
@@ -107,9 +102,71 @@
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto assumenda, consectetur delectus error eveniet ipsa labore laboriosam minima odio officia officiis quas quia quos rem tempora unde, vel vero.
 		</div>
 
-		<footer class="text-center mt-auto py-5" id="bm-footer">
-			Copyright &copy; 2018 IdeeMedia &mdash; Alle rechten voorbehouden.<br/>
-			0544 46 46 38 &mdash; hallo@ideemedia.nl &mdash; Nieuwestraat 22
+		<footer class="footer mt-auto">
+			<div class="container my-5">
+				<div class="row">
+					<div class="col-12 col-lg-3">
+
+						<h4>IdeeMedia</h4>
+						<p class="my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet consectetur cupiditate hic reprehenderit sit vero voluptate.</p>
+						<div class="btn-group">
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-facebook-box"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-linkedin-box"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-twitter-box"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-email"></i></button>
+						</div>
+
+					</div>
+					<div class="col-12 col-lg">
+
+						<strong>Nav</strong>
+
+						<nav class="nav nav-links my-4">
+							<a href="#" class="nav-link"><span>Nav item 1</span></a>
+							<a href="#" class="nav-link"><span>Nav item 2</span></a>
+							<a href="#" class="nav-link"><span>Nav item 3</span></a>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg">
+
+						<strong>Nav</strong>
+
+						<nav class="nav nav-links my-4">
+							<a href="#" class="nav-link"><span>Nav item 1</span></a>
+							<a href="#" class="nav-link"><span>Nav item 2</span></a>
+							<a href="#" class="nav-link"><span>Nav item 3</span></a>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg">
+
+						<strong>Nav</strong>
+
+						<nav class="nav nav-links my-4">
+							<a href="#" class="nav-link"><span>Nav item 1</span></a>
+							<a href="#" class="nav-link"><span>Nav item 2</span></a>
+							<a href="#" class="nav-link"><span>Nav item 3</span></a>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg-3">
+
+						<strong>Meesterwerken</strong>
+
+						<nav class="nav nav-links my-4">
+							<a href="#" class="nav-link"><span>Vernieuwde app voor Marveld Recreatie</span></a>
+							<a href="#" class="nav-link"><span>Nieuwe website Gerrit Komrij College</span></a>
+						</nav>
+
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 mt-3 text-center">
+						<small>Copyright &copy; IdeeMedia - Alle rechten voorbehouden.</small>
+					</div>
+				</div>
+			</div>
 		</footer>
 
 	</main>

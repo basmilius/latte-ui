@@ -87,6 +87,11 @@ a.panel
 	{
 		border-top: 2px solid var(--outline-color-secondary);
 	}
+
+	.divider
+	{
+		height: 24px;
+	}
 }
 
 .panel-header
@@ -110,6 +115,11 @@ a.panel
 		top: 0;
 		background: var(--panel-background);
 		z-index: 1;
+	}
+
+	.divider
+	{
+		height: 24px;
 	}
 }
 

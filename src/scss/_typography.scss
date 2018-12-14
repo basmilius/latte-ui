@@ -34,14 +34,14 @@ img.emoji
 		display: block;
 		margin: 0 0 1rem 0;
 		color: currentColor;
-		font-weight: 800;
+		font-weight: 500;
 		vertical-align: middle;
 	}
 }
 
-h1 { @include fluid-type(400px, 1024px, 22.128px, 48.828px); }
-h2 { @include fluid-type(400px, 1024px, 20.739px, 39.063px); }
-h3 { @include fluid-type(400px, 1024px, 19.436px, 31.25px); }
-h4 { @include fluid-type(400px, 1024px, 18.216px, 25px); }
-h5 { @include fluid-type(400px, 1024px, 17.072px, 20px); }
-h6 { @include fluid-type(400px, 1024px, 16px, 16px); }
+h1 { @include fluid-type(400px, 1024px, 22px, 33px); }
+h2 { @include fluid-type(400px, 1024px, 20px, 28px); }
+h3 { @include fluid-type(400px, 1024px, 19px, 25px); }
+h4 { @include fluid-type(400px, 1024px, 18px, 22px); }
+h5 { @include fluid-type(400px, 1024px, 17px, 19px); }
+h6 { @include fluid-type(400px, 1024px, 15px, 15px); }

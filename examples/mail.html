@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Master Detail &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body class="master-detail">
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" role="toolbar">
+			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+			<span class="toolbar-title">Mail</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+						<div class="divider divider-horizontal"></div>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary has-secondary">
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<a class="nav-item active" aria-label="Mail" role="menuitem" data-tooltip="Mail" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-email"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				</nav>
+				<nav class="nav nav-list" id="drawer-secondary">
+					<div class="section">Favorites</div>
+					<a href="#" target="_self" class="nav-link active" role="menuitem"><i class="mdi mdi-inbox"></i><span>Inbox</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-pencil"></i><span>Concepts</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-send"></i><span>Sent</span></a>
+					<div class="divider divider-horizontal" role="separator"></div>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-inbox"></i><span>Inbox</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-ninja"></i><span>Spam</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-pencil"></i><span>Concepts</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-send"></i><span>Sent</span></a>
+					<a href="#" target="_self" class="nav-link" role="menuitem"><i class="mdi mdi-email-alert"></i><span>Important</span></a>
+				</nav>
+			</div>
+		</latte-offscreen-container>
+
+		<div class="content">
+			<div class="panel">
+				<div class="row no-gutters">
+					<div class="col-12 col-lg-3" id="master">
+
+						<div class="panel-header panel-header-sticky">
+							<span class="panel-title">Inbox</span>
+							<button class="btn btn-text btn-primary ml-auto"><span>Date</span><i class="mdi latte-sorting down"></i></button>
+						</div>
+						<nav class="nav nav-list">
+							<template v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">
+
+								<a class="nav-link align-items-center py-3" style="height: auto">
+									<i class="avatar flex-grow-0 flex-shrink-0" style="font-size: 42px" :style="{'background-image': `url(//intranet.ideemedia.cloud/resource/image/simple-avatar/bm?seed=${i ^ 1000 * i ^ 5000})`}"></i>
+									<div class="d-flex flex-column" style="line-height: 1.4rem; min-width: 0; margin-left: 24px">
+										<div>Bas Milius</div>
+										<strong>Subject {{ i }}</strong>
+										<small style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</small>
+									</div>
+								</a>
+
+							</template>
+						</nav>
+
+					</div>
+					<div class="col-12 col-lg-9" id="detail">
+
+						<div class="panel-header panel-header-sticky">
+							<i class="avatar mr-3" style="font-size: 42px;background-image: url(//intranet.ideemedia.cloud/resource/image/simple-avatar/bm?seed=99999)"></i>
+							<span class="panel-title">Bas Milius</span>
+							<button class="btn btn-icon btn-text btn-dark ml-auto"><i class="mdi mdi-reply"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-reply-all"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-forward"></i></button>
+							<div class="divider divider-vertical"></div>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-dots-vertical"></i></button>
+						</div>
+						<div class="panel-body">
+							<h2 class="m-0">This is a subject</h2>
+						</div>
+						<div class="panel-body">
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid animi architecto blanditiis culpa debitis, deserunt eius hic illum molestias non obcaecati odio possimus, quisquam recusandae repellat repellendus vitae voluptate.</p>
+							<p>Asperiores consequatur doloribus earum eos esse expedita hic ipsa maiores molestias, nam, officia optio, quae quas quasi voluptas? Beatae id, molestiae! Labore laboriosam maiores reiciendis ut veniam. Iste nihil, odio.</p>
+							<p>Ab assumenda debitis dolore doloremque, error est excepturi expedita libero nam non nulla officiis praesentium quis recusandae ut? Aperiam consequuntur distinctio ducimus enim fugiat laudantium minus nam sint vitae voluptate!</p>
+							<p>Ad adipisci amet animi atque, autem beatae debitis doloribus eaque harum, hic illo impedit itaque iusto magni molestiae non perferendis, placeat quis ratione recusandae sequi ut veniam veritatis voluptas voluptatum.</p>
+							<p>Adipisci assumenda cupiditate delectus error facilis illum inventore labore minima nesciunt non officiis, pariatur perferendis ullam, ut, voluptatum. Cum distinctio dolorem dolores ea fugiat laudantium, nulla officia pariatur similique soluta.</p>
+							<p>Accusantium aspernatur cum debitis delectus deleniti dolores ducimus esse ex hic ipsam itaque libero, magnam necessitatibus nulla odit quae quaerat quisquam repudiandae saepe similique soluta veniam vero voluptate voluptatem, voluptatibus!</p>
+							<p>Alias doloremque ducimus eos est fuga impedit nobis placeat praesentium suscipit veniam. Amet doloremque fugit ipsum laboriosam, magni necessitatibus nulla repellat repudiandae voluptate voluptatibus. Assumenda eligendi molestiae numquam? Nesciunt, tempore.</p>
+							<p>Aliquam aliquid at, aut, consectetur culpa dolores est maxime minus mollitia nam necessitatibus nesciunt, nisi nobis non odio quis rem sapiente tenetur unde vel? Beatae culpa illo modi omnis veritatis?</p>
+							<p>Delectus eius est in ipsum iure omnis quaerat qui? Ad adipisci aperiam labore mollitia nisi nobis optio porro, voluptates? Beatae consectetur ex fugit ipsa minus nihil odio quidem tempora ullam.</p>
+							<p>A alias commodi ducimus eligendi laudantium maxime molestiae necessitatibus nostrum officia porro, repellat sed sit unde. Earum eligendi facilis labore, magnam nulla odio quae quo, reiciendis reprehenderit sunt tempora tenetur.</p>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

@@ -27,12 +27,12 @@
 		flex: 0 0 auto;
 	}
 
-	div.divider
+	.divider
 	{
 		margin: 9px 2rem;
 	}
 
-	div.section
+	.section
 	{
 		position: relative;
 		display: block;
@@ -86,6 +86,36 @@
 	i.mdi:last-child
 	{
 		margin-right: -3px;
+	}
+}
+
+.nav.nav-links
+{
+	.divider
+	{
+		margin: 9px 0;
+	}
+
+	.section
+	{
+		margin: 0;
+		padding: 9px 0;
+		color: inherit;
+		font-weight: 500;
+	}
+
+	.nav-link
+	{
+		height: unset;
+		margin: 0;
+		padding: 9px 0;
+		background: transparent;
+
+		&:hover
+		{
+			background: transparent;
+			color: RGB(var(--color-primary));
+		}
 	}
 }
 

@@ -73,36 +73,6 @@
 			transform: translate3d(0, -100%, 0);
 			visibility: collapse;
 		}
-
-		nav.nav.nav-list
-		{
-			div.divider
-			{
-				margin: 9px 0;
-			}
-
-			div.section
-			{
-				margin: 0;
-				padding: 9px 0;
-				color: inherit;
-				font-weight: 500;
-			}
-
-			a.nav-link
-			{
-				height: unset;
-				margin: 0;
-				padding: 9px 0;
-				background: transparent;
-
-				&:hover
-				{
-					background: transparent;
-					color: RGB(var(--color-primary));
-				}
-			}
-		}
 	}
 
 </style>

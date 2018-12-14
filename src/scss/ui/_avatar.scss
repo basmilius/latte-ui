@@ -54,6 +54,6 @@ $sizes: 24 30 36 48 96 144;
 {
 	.avatar-#{$size}px
 	{
-		font-size: $size * 1px;
+		font-size: $size * 1px !important;
 	}
 }
