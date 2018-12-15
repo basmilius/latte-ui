@@ -11,32 +11,32 @@
 
 	<table class="table table-hover mb-0">
 		<thead>
-		<tr v-if="show.header">
-			<th v-if="showSelections" style="width:42px"></th>
-			<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width && column.width !== null ? column.width + 'px' : 'auto'), 'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-				<div class="column-content flex-row align-items-center justify-content-start">
-					<span>{{ column.label }}</span>
+		<tr v-if="showHeader">
+			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+				<th v-if="isSelectionMode" style="width: 42px"></th>
+				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width && column.width !== null ? column.width + 'px' : 'auto'), 'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+					<div class="column-content flex-row align-items-center justify-content-start">
+						<span>{{ column.label }}</span>
 
-					<button v-if="show.sorting && column.is_sortable" :aria-label="'Sort by @0'|i18n('data-table', [column.label])" class="btn btn-text btn-icon btn-dark btn-sm ml-1" @click="sortBy(column.field)">
-						<i class="mdi latte-sorting none" v-if="sort.by !== column.field"></i>
-						<i class="mdi latte-sorting down" v-else-if="sort.order === 'ASC'"></i>
-						<i class="mdi latte-sorting up" v-else-if="sort.order === 'DESC'"></i>
-					</button>
-				</div>
-			</th>
-			<th v-if="actions.length > 0" :style="{'width': actionsWidth + 'px'}"></th>
+						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('data-table', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
+					</div>
+				</th>
+				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}"></th>
+			</slot>
 		</tr>
 
-		<tr class="search-row" v-if="show.search">
-			<th v-if="showSelections" style="width:42px"></th>
-			<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-				<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
-			</th>
-			<th></th>
+		<tr class="search-row" v-if="showSearch">
+			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+				<th v-if="isSelectionMode" style="width:42px"></th>
+				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+				</th>
+				<th v-if="hasActions"></th>
+			</slot>
 		</tr>
 
 		<tr v-if="filters.length > 0">
-			<td :colspan="columns.length + (actions.length > 0 ? 1 : 0) + (showSelections ? 1 : 0)">
+			<td :colspan="amountOfColumns">
 				<div class="column-content flex-row justify-content-start">
 
 					<template v-for="(filter, filterKey) of filters">
@@ -52,41 +52,27 @@
 		</thead>
 		<tbody>
 		<tr v-for="(row, rowKey) in data">
-			<td v-if="showSelections" style="width:42px;z-index:1">
-				<div class="column-content pr-0">
-					<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
-					<input type="checkbox" class="checkbox checkbox-primary mr-0" :id="uniqueId + ':' + row.id" :name="name + '[]'" :value="row.id" v-if="selectMode === 'multiple'" v-model="selection"/>
-				</div>
-			</td>
-
-			<template v-for="(column, columnKey) in columns">
-				<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
-					<component :is="createRowColumn(row, column)"></component>
+			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+				<td v-if="isSelectionMode" style="width:42px;z-index:1">
+					<div class="column-content pr-0">
+						<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
+						<input type="checkbox" class="checkbox checkbox-primary mr-0" :id="uniqueId + ':' + row.id" :name="name + '[]'" :value="row.id" v-if="selectMode === 'multiple'" v-model="selection"/>
+					</div>
 				</td>
-			</template>
 
-			<td class="actions" v-if="actions.length > 0">
-				<div class="column-content flex-row align-items-center pl-0">
-					<latte-button-dropdown :aria-label="'More options...'|i18n('data-table')" icon="dots-vertical" :small="true">
-						<nav class="nav nav-list">
-							<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
-						</nav>
-					</latte-button-dropdown>
-				</div>
-			</td>
+				<template v-for="(column, columnKey) in columns">
+					<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+						<component :is="createRowColumn(row, column)"></component>
+					</td>
+				</template>
+
+				<latte-data-table-actions :actions="actions" :row="row" v-if="hasActions"></latte-data-table-actions>
+			</slot>
 		</tr>
 		</tbody>
 		<tfoot>
-		<tr v-if="show.footer">
-			<th v-if="showSelections" style="width:42px"></th>
-			<th v-for="column in columns" :data-field="column.field">
-				<div class="column-content">{{ column.label }}</div>
-			</th>
-			<th></th>
-		</tr>
-
 		<tr v-if="pagination.length > 0">
-			<th :colspan="columns.length + (actions.length > 0 ? 1 : 0) + (showSelections ? 1 : 0)">
+			<th :colspan="amountOfColumns">
 				<div class="column-content">
 					<latte-pagination :pagination="pagination" @navigate="loadPage"></latte-pagination>
 				</div>
@@ -121,17 +107,17 @@
 				type: String
 			},
 
+			numColumns: {
+				default: null,
+				required: false,
+				type: Number | null
+			},
+
 			selectMode: {
 				default: "none",
 				required: false,
 				type: String,
 				validator: value => ["none", "single", "multiple"].indexOf(value) > -1
-			},
-
-			showFooter: {
-				default: false,
-				required: false,
-				type: Boolean
 			},
 
 			showHeader: {
@@ -188,18 +174,10 @@
 				page: 1,
 				pagination: [],
 				params: {},
-				panel: null,
 				selection: this.value,
 				sort: {
 					by: "",
 					order: 'DESC'
-				},
-				spinner: null,
-				show: {
-					footer: this.showFooter,
-					header: this.showHeader,
-					search: this.showSearch,
-					sorting: this.showSorting
 				},
 				uniqueId: id()
 			};
@@ -207,11 +185,8 @@
 
 		mounted()
 		{
-			this.panel = this.$el.closest("div.panel");
-
 			Latte.actions.on("data-tables:refresh", () => this.reload());
 
-			this.loadSpinner();
 			this.loadSetup();
 		},
 
@@ -222,7 +197,20 @@
 				return 52;
 			},
 
-			showSelections()
+			amountOfColumns()
+			{
+				if (this.numColumns !== null)
+					return this.numColumns + (this.hasActions ? 1 : 0) + (this.isSelectionMode ? 1 : 0);
+
+				return this.columns.length + (this.hasActions ? 1 : 0) + (this.isSelectionMode ? 1 : 0);
+			},
+
+			hasActions()
+			{
+				return this.actions.length > 0;
+			},
+
+			isSelectionMode()
 			{
 				return this.selectMode !== "none";
 			}
@@ -254,23 +242,6 @@
 
 				evt.preventDefault();
 				evt.stopPropagation();
-			},
-
-			createAction(action, row)
-			{
-				return Vue.extend({
-
-					template: action.template,
-
-					data()
-					{
-						return {
-							action: action,
-							row: row
-						};
-					}
-
-				});
 			},
 
 			createRowColumn(row, column)
@@ -331,9 +302,6 @@
 
 			loadFromUrl()
 			{
-				this.data = [];
-				this.pagination = [];
-
 				this.isLoading = true;
 
 				let url = `${this.url}/data?offset=${(this.page - 1) * this.limit}&limit=${this.limit}`;
@@ -363,24 +331,12 @@
 
 			loadSetup()
 			{
-				request(this.url)
+				this.isLoading = true;
+
+				request(`${this.url}?limit=${this.limit}`)
 					.then(r => r.json())
 					.then(this.onReceivedSetupResponse)
 					.catch(err => handleError(err));
-			},
-
-			loadSpinner()
-			{
-				if (this.panel === null)
-					return;
-
-				if (this.panel.querySelectorAll("span.spinner").length > 0)
-					return;
-
-				let spinner = this.spinner = document.createElement("span");
-				spinner.classList.add("spinner", "spinner-primary");
-
-				this.panel.appendChild(spinner);
 			},
 
 			onReceivedData(response)
@@ -396,13 +352,13 @@
 				this.actions = response.data.actions;
 				this.columns = response.data.columns.map(column => Object.assign({}, this.defaults.column, column));
 
-				if (typeof response.data.sorting !== "undefined")
+				if (response.data.sorting !== undefined)
 				{
 					this.sort.by = response.data.sorting.by;
 					this.sort.order = response.data.sorting.order;
 				}
 
-				if (typeof response.data.initial_data !== "undefined")
+				if (response.data.initial_data !== undefined)
 					this.onReceivedData({data: response.data.initial_data});
 				else
 					this.loadFromUrl();
@@ -442,14 +398,6 @@
 			isLoading()
 			{
 				this.$emit("loading", this.isLoading);
-
-				if (this.panel === null)
-					return;
-
-				if (this.isLoading)
-					this.panel.classList.add("is-loading");
-				else
-					this.panel.classList.remove("is-loading");
 			},
 
 			selection()
