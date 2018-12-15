@@ -1,3 +1,12 @@
+<!--
+  - Copyright © 2018 - Bas Milius <bas@mili.us>
+  -
+  - This file is part of the Latte UI package.
+  -
+  - For the full copyright and license information, please view the
+  - LICENSE file that was distributed with this source code.
+  -->
+
 <template>
 
 	<div class="form-control combo-box" tabindex="0" @blur="close" @click="open" @keydown.down="onKeyPressDown" @keydown.enter="onKeyPressEnter" @keydown.esc="onKeyPressEscape" @keydown.up="onKeyPressUp">

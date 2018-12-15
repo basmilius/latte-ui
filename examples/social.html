@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Social &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+			<span class="toolbar-title ml-auto mx-lg-auto">Empty</span>
+		</div>
+
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+				</nav>
+			</div>
+		</latte-offscreen-container>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-6">
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

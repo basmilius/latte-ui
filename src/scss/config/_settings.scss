@@ -1,7 +1,7 @@
 /*!
  * Copyright © 2018 - Bas Milius <bas@mili.us>
  *
- * This file is part of the Latte Framework package.
+ * This file is part of the Latte UI package.
  *
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
@@ -20,19 +20,3 @@ $content-gutter: 24px !default;
 $drawer-primary-width: 70px;
 $drawer-secondary-width: 230px;
 $toolbar-height: 60px !default;
-
-@mixin compact()
-{
-	@include media-breakpoint-down($compact-at)
-	{
-		@content;
-	}
-}
-
-@mixin expanded()
-{
-	@include media-breakpoint-up($expand-at)
-	{
-		@content;
-	}
-}

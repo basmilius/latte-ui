@@ -1,3 +1,12 @@
+<!--
+  - Copyright © 2018 - Bas Milius <bas@mili.us>
+  -
+  - This file is part of the Latte UI package.
+  -
+  - For the full copyright and license information, please view the
+  - LICENSE file that was distributed with this source code.
+  -->
+
 <template>
 
 	<div ref="item" class="latte-grid-item" :class="{'is-draggable': isDraggable, 'is-dragging': is_dragging, 'is-resizable': isResizable, 'is-resizing': is_resizing}" :style="style" role="gridcell">

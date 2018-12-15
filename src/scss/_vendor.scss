@@ -1,7 +1,7 @@
 /*!
  * Copyright © 2018 - Bas Milius <bas@mili.us>
  *
- * This file is part of the Latte Framework package.
+ * This file is part of the Latte UI package.
  *
  * For the full copyright and license information, please view the
  * LICENSE file that was distributed with this source code.
@@ -19,20 +19,8 @@ $link-hover-decoration: none;
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import "reboot";
 @import "../../node_modules/bootstrap/scss/grid";
 @import "../../node_modules/bootstrap/scss/utilities";
-
-html
-{
-	font-size: $font-size;
-	text-rendering: optimizeLegibility;
-}
-
-[v-cloak]
-{
-	display: none !important;
-}
 
 $mdi-sizes: 18 24 36 48;
 @each $mdi-size in $mdi-sizes
