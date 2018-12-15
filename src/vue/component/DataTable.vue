@@ -87,6 +87,7 @@
 
 	import { id, request } from "../../js/api";
 	import { handleError } from "../../js/core";
+	import { createElement } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
 
 	export default {
@@ -94,6 +95,12 @@
 		name: "latte-data-table",
 
 		props: {
+
+			addSpinnerToParent: {
+				default: false,
+				required: false,
+				type: Boolean
+			},
 
 			limit: {
 				default: 20,
@@ -179,6 +186,7 @@
 					by: "",
 					order: 'DESC'
 				},
+				spinner: null,
 				uniqueId: id()
 			};
 		},
@@ -187,6 +195,7 @@
 		{
 			Latte.actions.on("data-tables:refresh", () => this.reload());
 
+			this.addSpinner();
 			this.loadSetup();
 		},
 
@@ -231,6 +240,15 @@
 
 				this.filters.push(filter);
 				this.loadFromUrl();
+			},
+
+			addSpinner()
+			{
+				if (!this.addSpinnerToParent)
+					return;
+
+				this.spinner = createElement("span", span => span.classList.add("spinner", "spinner-primary"));
+				this.$el.parentNode.append(this.spinner);
 			},
 
 			removeFilter(evt, filterKey)
@@ -398,6 +416,16 @@
 			isLoading()
 			{
 				this.$emit("loading", this.isLoading);
+
+				if (!this.addSpinnerToParent)
+					return;
+
+				const parent = this.$el.parentNode;
+
+				if (this.isLoading)
+					parent.classList.add("is-loading");
+				else
+					parent.classList.remove("is-loading");
 			},
 
 			selection()
