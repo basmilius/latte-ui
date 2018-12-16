@@ -13,6 +13,7 @@ export { default as Chart } from "./Chart.vue";
 export { default as ChartPanel } from "./ChartPanel.vue";
 export { default as ComboBox } from "./ComboBox.vue";
 export { default as ComboBoxItem } from "./ComboBoxItem.vue";
+export { default as DataFragment } from "./DataFragment.vue";
 export { default as DataTable } from "./DataTable.vue";
 export { default as DataTableActions } from "./DataTableActions.vue";
 export { default as DatePicker } from "./DatePicker.vue";
