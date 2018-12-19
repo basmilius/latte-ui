@@ -35,29 +35,14 @@
 
 <script>
 
-	let lattePath = null;
-
 	import { on } from "../../js/actions";
 	import { timeout } from "../../js/core";
-	import { raf } from "../../js/util/dom";
+	import { getLattePath, raf } from "../../js/util/dom";
 	import { needsZIndex } from "../../js/z";
 
 	export default {
 
 		name: "latte-notifications",
-
-		created()
-		{
-			if (lattePath !== null)
-				return;
-
-			const lattejs = document.querySelector(`script[src*="latte.js"]`);
-
-			if (lattejs === null)
-				return;
-
-			lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
-		},
 
 		data()
 		{
@@ -103,6 +88,7 @@
 				if (data.delay > -1)
 					timeout(data.delay, () => this.remove(data.id));
 
+				const lattePath = getLattePath();
 				const soundUri = data.sound || (lattePath !== null ? `${lattePath}/sound/notification/pipes.ogg` : null);
 
 				if (soundUri === null)

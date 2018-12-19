@@ -9,6 +9,8 @@
 
 "use strict";
 
+let lattePath = null;
+
 export function closest(element, selector)
 {
 	for (; element && element !== document; element = element.parentNode)
@@ -40,6 +42,19 @@ export function downloadFile(fileName, url)
 		a.click();
 		a.remove();
 	});
+}
+
+export function getLattePath()
+{
+	if (lattePath !== null)
+		return lattePath;
+
+	const lattejs = document.querySelector(`script[src*="latte.js"]`);
+
+	if (lattejs === null)
+		throw new Error("Could not get latte.js path. The world ends here...");
+
+	return lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
 }
 
 export function isTouchOnlyDevice()

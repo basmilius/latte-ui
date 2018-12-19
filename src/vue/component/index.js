@@ -36,6 +36,7 @@ export { default as Password } from "./Password.vue";
 export { default as PdfViewer } from "./PdfViewer.vue";
 export { default as Popup } from "./Popup.vue";
 export { default as Progress } from "./Progress.vue";
+export { default as RichTextEditor } from "./RichTextEditor.vue";
 export { default as Ripple } from "./Ripple.vue";
 export { default as SVGUndraw } from "./SVGUndraw.vue";
 export { default as SortingButton } from "./SortingButton.vue";

@@ -159,6 +159,9 @@
 
 			unbindEvents()
 			{
+				if (this.associatedElement === undefined)
+					return;
+
 				this.rect = null;
 				this.associatedElement.removeEventListener("click", this.cb.onClick, {passive: true});
 			},

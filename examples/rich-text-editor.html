@@ -1,0 +1,60 @@
+<!--
+  ~ Copyright © 2018 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Rich Text Editor &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<span class="toolbar-title mx-auto">Rich Text Editor</span>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-6 mx-auto">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Clean</span></div>
+						<latte-rich-text-editor></latte-rich-text-editor>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Clean</span></div>
+						<latte-rich-text-editor></latte-rich-text-editor>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>
