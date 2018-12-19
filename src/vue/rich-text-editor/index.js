@@ -7,4 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
+export { default as RTEAlignmentPlugin } from "./RTEAlignmentPlugin.vue";
+export { default as RTEBasicFormattingPlugin } from "./RTEBasicFormattingPlugin.vue";
 export { default as RTEMentionsPlugin } from "./RTEMentionsPlugin.vue";

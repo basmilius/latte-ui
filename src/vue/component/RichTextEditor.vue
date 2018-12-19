@@ -13,7 +13,8 @@
 	{
 		div.panel-header.rte-toolbar
 		{
-			min-height: 54px;
+			min-height: 48px;
+			padding: 0 9px;
 			border: none;
 		}
 
@@ -53,17 +54,25 @@
 <template>
 
 	<div class="panel panel-blank rich-text-editor" :class="{'is-focused': isFocused}">
-		<div class="panel-header rte-toolbar">
-			<div class="btn-group">
-				<button class="btn btn-text btn-dark"><span>Proxima Nova</span></button>
-				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-chevron-down"></i></button>
-			</div>
-			<div class="divider divider-vertical mx-3"></div>
-			<div class="btn-group">
-				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-format-bold"></i></button>
-				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-format-italic"></i></button>
-				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-format-underline"></i></button>
-			</div>
+		<div class="panel-header rte-toolbar" v-for="(row, rowIndex) of toolbarRows" v-if="toolbar.enabled">
+
+			<template v-for="el of row">
+
+				<div class="divider divider-vertical" v-if="el.type === 'separator'"></div>
+				<div class="btn-group" v-else-if="el.type === 'group'">
+					<button class="btn btn-icon btn-text btn-dark m-0" @click="onToolbarActionClick($event, action.action)" :data-tooltip="action.action.label" v-for="action of el.actions"><i class="mdi" :class="[`mdi-${action.action.icon}`]"></i></button>
+				</div>
+				<button class="btn btn-icon btn-text btn-dark m-0" @click="onToolbarActionClick($event, el.action)" :data-tooltip="el.action.label" v-else-if="el.type === 'action'"><i class="mdi" :class="[`mdi-${el.action.icon}`]"></i></button>
+
+			</template>
+
+			<template v-if="rowIndex === 0">
+				<div class="divider divider-vertical ml-auto"></div>
+				<div class="btn-group">
+					<button class="btn btn-icon btn-text btn-dark m-0" data-tooltip="More..."><i class="mdi mdi-dots-vertical"></i></button>
+				</div>
+			</template>
+
 		</div>
 		<div class="rte-frame" style="min-height: 300px">
 			<div class="rte-frame-placeholder" v-if="isPlaceholderShown">Type something here&hellip;</div>
@@ -76,6 +85,8 @@
 
 <script>
 
+	const defaultPlugins = ["RTEBasicFormattingPlugin", "RTEAlignmentPlugin", "RTEMentionsPlugin"];
+
 	export default {
 
 		name: "latte-rich-text-editor",
@@ -83,7 +94,7 @@
 		props: {
 
 			plugins: {
-				default: () => ["RTEMentionsPlugin"],
+				default: () => defaultPlugins,
 				required: false,
 				type: Array
 			},
@@ -99,6 +110,11 @@
 		data()
 		{
 			return {
+				commands: [],
+				toolbar: {
+					enabled: true,
+					rows: []
+				},
 				html: this.value,
 				text: "",
 				isFocused: false
@@ -108,6 +124,14 @@
 		mounted()
 		{
 			this.initialize();
+
+			this.addToolbarAction("indent-increase", "format-indent-increase", "Indent", 0, {groupId: "indention"});
+			this.addToolbarAction("indent-decrease", "format-indent-decrease", "Outdent", 0, {groupId: "indention"});
+
+			this.addToolbarAction("extra-image", "image", "Insert image...", 0, {groupId: "extra"});
+			this.addToolbarAction("extra-link", "link", "Insert link...", 0, {groupId: "extra"});
+			this.addToolbarAction("extra-code", "code-braces", "Insert code...", 0, {groupId: "extra"});
+			this.addToolbarAction("extra-plus", "plus", "Insert...", 0, {groupId: "extra"});
 		},
 
 		computed: {
@@ -120,6 +144,47 @@
 			isPlaceholderShown()
 			{
 				return this.text.trim() === "";
+			},
+
+			toolbarRows()
+			{
+				const definitions = [];
+
+				for (let row of this.toolbar.rows)
+				{
+					let rd = [];
+
+					for (let action of row)
+					{
+						if (action.groupId)
+						{
+							let groupIndex = rd.findIndex(g => g.type === "group" && g.group.id === action.groupId);
+
+							if (groupIndex === -1)
+							{
+								if (rd.length > 0)
+									rd.push({type: "separator"});
+
+								groupIndex = rd.length;
+
+								rd.push({type: "group", actions: [], group: {id: action.groupId}});
+							}
+
+							rd[groupIndex].actions.push({type: "action", action});
+						}
+						else
+						{
+							if (rd.length > 0)
+								rd.push({type: "separator"});
+
+							rd.push({type: "action", action});
+						}
+					}
+
+					definitions.push(rd);
+				}
+
+				return definitions;
 			}
 
 		},
@@ -150,6 +215,29 @@
 				{
 					this.editableContent.appendChild(el);
 				}
+			},
+
+			addToolbarAction(id, icon, label, row = 0, options = {})
+			{
+				while (this.toolbar.rows[row] === undefined)
+					this.toolbar.rows.push([]);
+
+				this.toolbar.rows[row].push({id, icon, label, ...options});
+			},
+
+			executeCommand(id, ...params)
+			{
+				const command = this.commands.find(c => c.id === id);
+
+				if (!command)
+					return;
+
+				command.fn(...params);
+			},
+
+			registerCommand(id, fn)
+			{
+				this.commands.push({id, fn});
 			},
 
 			removeEmptyness()
@@ -245,6 +333,12 @@
 			onKeyUp(evt)
 			{
 				this.$emit("keyup", evt);
+			},
+
+			onToolbarActionClick(evt, action)
+			{
+				this.$emit("toolbar-action", evt, action);
+				this.$emit(`toolbar-action:${action.id}`, evt, action);
 			}
 
 		},
