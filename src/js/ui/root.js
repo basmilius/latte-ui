@@ -62,7 +62,13 @@ export function createRootComponent()
 
 function initializeTick()
 {
-	interval(100, () => dispatch("latte:tick", window.performance.now()));
+	interval(250, () =>
+	{
+		if (document.hidden === true)
+			return;
+
+		dispatch("latte:tick", window.performance.now());
+	});
 }
 
 function onHashChange()
