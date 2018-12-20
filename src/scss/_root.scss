@@ -15,6 +15,9 @@
 	--default-light: 255, 255, 255;
 	--default-dark: 25, 26, 28;
 
+	--content-gutter: 24px;
+	--toolbar-height: 60px;
+
 	@each $type, $color in $theme-colors
 	{
 		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};

@@ -11,7 +11,7 @@ div.content
 {
 	position: relative;
 	display: block;
-	padding: $content-gutter;
+	padding: var(--content-gutter);
 
 	> div.notice
 	{

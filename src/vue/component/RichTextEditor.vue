@@ -11,11 +11,35 @@
 
 	div.rich-text-editor
 	{
-		div.panel-header.rte-toolbar
+		display: flex;
+		align-items: stretch;
+		flex-flow: column nowrap;
+		justify-content: flex-start;
+		z-index: 0;
+
+		div.rte-toolbar
 		{
-			min-height: 48px;
-			padding: 0 9px;
-			border: none;
+			position: sticky;
+			top: var(--toolbar-height);
+			flex: 0 0 auto;
+			border-bottom: 1px solid var(--outline-color-secondary);
+			border-top-left-radius: var(--border-radius);
+			border-top-right-radius: var(--border-radius);
+			overflow: hidden;
+			z-index: 1;
+
+			div.panel-header
+			{
+				min-height: 48px;
+				padding: 0 9px;
+				background: var(--panel-background);
+				border: none;
+			}
+
+			button.btn.is-active
+			{
+				background: RGBA(var(--btn-background, var(--color-primary)), .05);
+			}
 		}
 
 		div.rte-frame
@@ -23,8 +47,11 @@
 			position: relative;
 			display: flex;
 			align-items: stretch;
+			flex: 1 1 auto;
 			justify-content: flex-start;
-			border-top: 2px solid var(--outline-color-secondary);
+			border-bottom-left-radius: var(--border-radius);
+			border-bottom-right-radius: var(--border-radius);
+			overflow: hidden;
 
 			div.rte-frame-placeholder
 			{
@@ -45,6 +72,7 @@
 				padding: 24px;
 				flex: 1 1 0;
 				outline: none;
+				overflow: auto;
 			}
 		}
 	}
@@ -53,30 +81,32 @@
 
 <template>
 
-	<div class="panel panel-blank rich-text-editor" :class="{'is-focused': isFocused}">
-		<div class="panel-header rte-toolbar" v-for="(row, rowIndex) of toolbarRows" v-if="toolbar.enabled">
+	<div class="panel panel-blank rich-text-editor" :class="{'is-focused': isFocused}" style="min-height: 300px">
+		<div class="rte-toolbar">
+			<div class="panel-header" v-for="(row, rowIndex) of toolbarRows" v-if="toolbar.enabled">
 
-			<template v-for="el of row">
+				<template v-for="el of row">
 
-				<div class="divider divider-vertical" v-if="el.type === 'separator'"></div>
-				<div class="btn-group" v-else-if="el.type === 'group'">
-					<button class="btn btn-icon btn-text btn-dark m-0" @click="onToolbarActionClick($event, action.action)" :data-tooltip="action.action.label" v-for="action of el.actions"><i class="mdi" :class="[`mdi-${action.action.icon}`]"></i></button>
-				</div>
-				<button class="btn btn-icon btn-text btn-dark m-0" @click="onToolbarActionClick($event, el.action)" :data-tooltip="el.action.label" v-else-if="el.type === 'action'"><i class="mdi" :class="[`mdi-${el.action.icon}`]"></i></button>
+					<div class="divider divider-vertical" v-if="el.type === 'separator'"></div>
+					<div class="btn-group" v-else-if="el.type === 'group'">
+						<button class="btn btn-icon btn-text btn-dark m-0" :class="{'is-active': a.action.isActive || false}" @click="onToolbarActionClick($event, a.action)" :data-tooltip="a.action.label" v-for="a of el.actions"><i class="mdi" :class="[`mdi-${a.action.icon}`]"></i></button>
+					</div>
+					<button class="btn btn-icon btn-text btn-dark m-0" :class="{'is-active': el.action.isActive || false}" @click="onToolbarActionClick($event, el.action)" :data-tooltip="el.action.label" v-else-if="el.type === 'action'"><i class="mdi" :class="[`mdi-${el.action.icon}`]"></i></button>
 
-			</template>
+				</template>
 
-			<template v-if="rowIndex === 0">
-				<div class="divider divider-vertical ml-auto"></div>
-				<div class="btn-group">
-					<button class="btn btn-icon btn-text btn-dark m-0" data-tooltip="More..."><i class="mdi mdi-dots-vertical"></i></button>
-				</div>
-			</template>
+				<template v-if="rowIndex === 0">
+					<div class="divider divider-vertical ml-auto"></div>
+					<div class="btn-group">
+						<button class="btn btn-icon btn-text btn-dark m-0" data-tooltip="More..."><i class="mdi mdi-dots-vertical"></i></button>
+					</div>
+				</template>
 
+			</div>
 		</div>
-		<div class="rte-frame" style="min-height: 300px">
+		<div class="rte-frame">
 			<div class="rte-frame-placeholder" v-if="isPlaceholderShown">Type something here&hellip;</div>
-			<div class="rte-frame-content" contenteditable ref="editableContent" @blur="onBlur" @focus="onFocus" @keydown="onKeyDown" @keyup="onKeyUp"></div>
+			<div class="rte-frame-content" contenteditable spellcheck="false" ref="editableContent" @blur="onBlur" @focus="onFocus" @keydown="onKeyDown" @keyup="onKeyUp"></div>
 		</div>
 		<component :is="plugin" :key="key" v-for="(plugin, key) of plugins"></component>
 	</div>
@@ -85,7 +115,10 @@
 
 <script>
 
+	import { closest } from "../../js/util/dom";
+
 	const defaultPlugins = ["RTEBasicFormattingPlugin", "RTEAlignmentPlugin", "RTEMentionsPlugin"];
+	const domObserverConfig = {attributes: true, childList: true, subtree: true};
 
 	export default {
 
@@ -107,6 +140,12 @@
 
 		},
 
+		destroyed()
+		{
+			if (this.domObserver !== null)
+				this.domObserver.disconnect();
+		},
+
 		data()
 		{
 			return {
@@ -117,7 +156,9 @@
 				},
 				html: this.value,
 				text: "",
-				isFocused: false
+				domObserver: null,
+				isFocused: false,
+				isMutationsAllowed: true
 			};
 		},
 
@@ -193,10 +234,13 @@
 
 			initialize()
 			{
-				this.editableContent.addEventListener("DOMSubtreeModified", () => this.onContentChanged());
 				this.editableContent.innerHTML = this.html;
 				this.text = this.editableContent.innerText;
 
+				this.domObserver = new MutationObserver(mutations => this.onContentChanged(mutations));
+				this.domObserver.observe(this.editableContent, domObserverConfig);
+
+				document.addEventListener("selectionchange", evt => this.onSelectionChanged(evt));
 				document.execCommand("defaultParagraphSeparator", false, "p");
 				document.execCommand("styleWithCSS", true);
 			},
@@ -232,7 +276,22 @@
 				if (!command)
 					return;
 
+				this.isMutationsAllowed = false;
+				this.editableContent.focus();
 				command.fn(...params);
+				this.isMutationsAllowed = true;
+				this.onContentChanged();
+			},
+
+			getToolbarAction(id)
+			{
+				let action;
+
+				for (let row of this.toolbar.rows)
+					if ((action = row.find(a => a.id === id)) !== null)
+						return action;
+
+				return undefined;
 			},
 
 			registerCommand(id, fn)
@@ -242,9 +301,12 @@
 
 			removeEmptyness()
 			{
-				this.$emit("remove-emptyness");
+				this.isMutationsAllowed = false;
 
+				this.$emit("remove-emptyness");
 				this.editableContent.querySelectorAll("p:empty").forEach(el => el.remove());
+
+				this.isMutationsAllowed = true;
 			},
 
 			setSelection(el, offset = 0, collapse = true)
@@ -335,6 +397,16 @@
 				this.$emit("keyup", evt);
 			},
 
+			onSelectionChanged(evt)
+			{
+				const selection = window.getSelection();
+
+				if (closest(selection.anchorNode, this.$el) === null)
+					return;
+
+				this.$emit("selection-changed", selection, evt);
+			},
+
 			onToolbarActionClick(evt, action)
 			{
 				this.$emit("toolbar-action", evt, action);
@@ -351,6 +423,14 @@
 					this.html = "<p><br></p>";
 
 				this.$emit("input", this.html);
+			},
+
+			isMutationsAllowed()
+			{
+				if (this.isMutationsAllowed)
+					this.domObserver.observe(this.editableContent, domObserverConfig);
+				else
+					this.domObserver.disconnect();
 			},
 
 			value()

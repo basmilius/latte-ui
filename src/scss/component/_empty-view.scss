@@ -20,7 +20,7 @@ div.latte-empty-view
 
 	&.is-full
 	{
-		min-height: calc(100vh - #{$toolbar-height + 48px});
+		min-height: calc(100vh - (var(--toolbar-height) + 48px));
 	}
 
 	div.empty-view-image

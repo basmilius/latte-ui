@@ -29,7 +29,7 @@ body.master-detail main#app
 			align-items: stretch;
 			flex-flow: row nowrap;
 			justify-content: flex-start;
-			height: calc(100vh - #{$toolbar-height});
+			height: calc(100vh - var(--toolbar-height));
 			border-radius: 0;
 
 			> div.row

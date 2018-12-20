@@ -22,7 +22,7 @@ main#dashboard
 {
 	position: relative;
 	display: block;
-	min-height: calc(100vh - #{$toolbar-height + $content-gutter * 2});
+	min-height: calc(100vh - (var(--toolbar-height) + (var(--content-gutter) * 2)));
 	width: auto;
 	padding: 0;
 	overflow: hidden;

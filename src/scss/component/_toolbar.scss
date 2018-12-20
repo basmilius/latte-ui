@@ -12,7 +12,7 @@ div.toolbar
 	position: sticky;
 	display: flex;
 	top: 0;
-	height: $toolbar-height;
+	height: var(--toolbar-height);
 	padding: 0 17px;
 	align-items: center;
 	flex-flow: row nowrap;
@@ -33,7 +33,7 @@ div.toolbar
 		button.nav-toggle
 		{
 			--border-radius: 0;
-			height: $toolbar-height;
+			height: var(--toolbar-height);
 			margin: 0 1rem 0 -17px;
 			padding: 0 17px;
 			background: RGB(var(--drawer-background-primary));
