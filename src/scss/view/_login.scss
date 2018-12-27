@@ -22,9 +22,8 @@ main.auth-ui
 		display: flex;
 		height: 100vh;
 		padding: 72px;
-		width: 540px;
 		align-items: flex-start;
-		flex: 0 0 auto;
+		flex: 1 1 40%;
 		flex-flow: column;
 		justify-content: center;
 		color: white;
@@ -47,7 +46,7 @@ main.auth-ui
 			background:
 			{
 				color: RGB(var(--color-primary));
-				image: url(/resource/image/wallpaper/1.jpg);
+				image: url(./image/wallpaper/1.jpg);
 				position: left center;
 				repeat: no-repeat;
 				size: cover;
@@ -57,7 +56,7 @@ main.auth-ui
 
 		&::after
 		{
-			background: linear-gradient(to bottom right, RGBA(var(--color-primary), .7), RGBA(var(--color-primary), .85));
+			background: var(--branding-logo) no-repeat center center / 192px, RGBA(var(--color-primary), .7);
 			z-index: -1;
 		}
 
@@ -72,7 +71,7 @@ main.auth-ui
 		position: relative;
 		display: flex;
 		align-items: stretch;
-		flex: 1 1 auto;
+		flex: 1 1 60%;
 		flex-flow: column;
 		justify-content: flex-start;
 		background: var(--panel-background);
@@ -96,14 +95,6 @@ main.auth-ui
 		}
 	}
 
-	@include media-breakpoint-down(lg)
-	{
-		section#intro-view
-		{
-			width: 300px;
-		}
-	}
-
 	@include media-breakpoint-down(md)
 	{
 		flex-flow: column;
@@ -112,6 +103,11 @@ main.auth-ui
 		{
 			height: 100px;
 			width: unset;
+
+			&::after
+			{
+				background: var(--branding-logo) no-repeat center center / 96px, RGBA(var(--color-primary), .7);
+			}
 		}
 
 		section#panel-view
