@@ -16,7 +16,7 @@
 		<span v-if="label !== ''">{{ label }}</span>
 		<i v-if="iconAfter !== ''" :class="iconAfterClasses"></i>
 
-		<slot name="extra"></slot>
+		<slot name="extra" v-bind="self"></slot>
 
 		<latte-popup :associate-with="$refs.btn" :margin-x="marginX" :margin-y="marginY" @close="onClose" @open="onOpen">
 			<slot></slot>
@@ -138,6 +138,11 @@
 			iconBeforeClasses()
 			{
 				return ["mdi", `mdi-${this.iconBefore}`];
+			},
+
+			self()
+			{
+				return this;
 			}
 
 		},
