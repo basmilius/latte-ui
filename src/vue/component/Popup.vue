@@ -11,7 +11,7 @@
 
 	<div :class="dropdownClasses" :style="dropdownStyles">
 		<div class="dropdown-content">
-			<slot v-bind="this"></slot>
+			<slot v-bind="self"></slot>
 		</div>
 	</div>
 
@@ -145,6 +145,11 @@
 				return {
 					"transform": `translate3d(${this.popupX}px, ${this.popupY}px, 0)`
 				};
+			},
+
+			self()
+			{
+				return this;
 			}
 
 		},
