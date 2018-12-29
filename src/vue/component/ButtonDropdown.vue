@@ -9,7 +9,7 @@
 
 <template>
 
-	<button ref="btn" class="btn" :class="buttonClass" :data-tooltip="tooltip" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel">
+	<button ref="btn" class="btn" :class="buttonClasses" :data-tooltip="tooltip" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel">
 		<img v-if="avatarUrl !== null" class="avatar avatar-24px" :src="avatarUrl" :alt="ariaLabel"/>
 		<i v-else-if="icon !== ''" :class="iconClasses"></i>
 		<i v-if="iconBefore !== ''" :class="iconBeforeClasses"></i>
@@ -18,7 +18,7 @@
 
 		<slot name="extra"></slot>
 
-		<latte-popup :associate-with="$refs.btn" :margin-x="marginX" :margin-y="marginY">
+		<latte-popup :associate-with="$refs.btn" :margin-x="marginX" :margin-y="marginY" @close="onClose" @open="onOpen">
 			<slot></slot>
 		</latte-popup>
 	</button>
@@ -95,6 +95,13 @@
 
 		},
 
+		data()
+		{
+			return {
+				isOpen: false
+			};
+		},
+
 		computed: {
 
 			avatarUrl()
@@ -131,6 +138,20 @@
 			iconBeforeClasses()
 			{
 				return ["mdi", `mdi-${this.iconBefore}`];
+			}
+
+		},
+
+		methods: {
+
+			onClose()
+			{
+				this.isOpen = false;
+			},
+
+			onOpen()
+			{
+				this.isOpen = true;
 			}
 
 		}
