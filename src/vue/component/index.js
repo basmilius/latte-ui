@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
+ * Copyright © 2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -22,6 +22,7 @@ export { default as DateTimePicker } from "./DateTimePicker.vue";
 export { default as Draggable } from "./Draggable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";
+export { default as Guide } from "./Guide.vue";
 export { default as JsonEditor } from "./JsonEditor.vue";
 export { default as JsonEditorIaf } from "./JsonEditorIaf.vue";
 export { default as JsonEditorView } from "./JsonEditorView.vue";

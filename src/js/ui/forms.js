@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 - Bas Milius <bas@mili.us>
+ * Copyright © 2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *

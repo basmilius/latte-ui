@@ -1,3 +1,12 @@
+<!--
+  ~ Copyright © 2019 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +40,6 @@
 		{
 			transform: rotate3d(1, 0, 0, 180deg);
 		}
-
-		footer#bm-footer
-		{
-			font-size: .9rem;
-			opacity: .75;
-		}
 	</style>
 </head>
 <body>
@@ -57,7 +60,7 @@
 			</div>
 		</div>
 
-		<latte-mega-menu ref="megaMenu" @open="$set(any, 'isOpen', $event)" style="top: 84px" v-cloak>
+		<latte-mega-menu ref="megaMenu" id="mega-menu" @open="$set(any, 'isOpen', $event)" style="top: 84px" v-cloak>
 			<div class="container">
 				<div class="row">
 					<div class="col-12 col-lg-3">
@@ -66,7 +69,7 @@
 							<div class="section">IdeeMedia</div>
 							<a href="#" class="nav-link"><span>Welkom</span></a>
 							<a href="#" class="nav-link"><span>Over ons</span></a>
-							<a href="#" class="nav-link"><span>Knappe koppen</span></a>
+							<a href="#" class="nav-link" id="team" @click.prevent="$refs.megaMenu.close()"><span>Knappe koppen</span></a>
 							<a href="#" class="nav-link"><span>Contact</span></a>
 						</nav>
 
@@ -107,7 +110,7 @@
 				<div class="row">
 					<div class="col-12 col-lg-3">
 
-						<h4>IdeeMedia</h4>
+						<img src="//cdn.ideemedia.cloud/web-delivery/image/our-branding/ideemedia.svg" alt="IdeeMedia" width="48"/>
 						<p class="my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet consectetur cupiditate hic reprehenderit sit vero voluptate.</p>
 						<div class="btn-group">
 							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-facebook-box"></i></button>
@@ -168,6 +171,8 @@
 				</div>
 			</div>
 		</footer>
+
+		<latte-guide :opened="true"></latte-guide>
 
 	</main>
 

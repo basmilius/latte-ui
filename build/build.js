@@ -1,3 +1,12 @@
+/*
+ * Copyright © 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
 const fs = require("fs");
 const ncp = require("ncp").ncp;
 const path = require("path");
