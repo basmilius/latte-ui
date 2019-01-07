@@ -12,7 +12,7 @@
 	<div class="latte-charts latte-charts-line" :class="{'is-loading':is_loading}">
 		<span class="spinner spinner-primary"></span>
 		<div class="latte-charts-title" v-if="title !== null">{{ titleTransformed }}</div>
-		<div class="latte-charts-chart" style="height:calc(100% - 75px)">
+		<div class="latte-charts-chart">
 			<canvas ref="chart"></canvas>
 		</div>
 	</div>
@@ -21,8 +21,10 @@
 
 <script>
 
+	import { dispatch } from "../../js/actions";
 	import { request } from "../../js/api";
 	import { deepMerge } from "../../js/core";
+	import { createElement } from "../../js/util/dom";
 
 	export default {
 
@@ -108,6 +110,81 @@
 				const chart = this.chartData = response.data;
 				const tooltipOptions = {
 					tooltips: {
+						enabled: false,
+						custom: model =>
+						{
+							console.log(model);
+
+							if (model.opacity === 0)
+							{
+								dispatch("latte:tooltip:hide");
+							}
+							else
+							{
+								function genDataRow(line, colors)
+								{
+									return createElement("tr", tr =>
+									{
+										tr.appendChild(createElement("td", td =>
+										{
+											td.appendChild(createElement("div", div =>
+											{
+												div.classList.add("column-content", "pr-0");
+												div.innerHTML = `<i class="mdi mdi-color" style="height: 18px; width: 18px; border-radius: 12px; background: ${colors.backgroundColor};"></i>`;
+											}));
+										}));
+
+										tr.appendChild(createElement("td", td =>
+										{
+											td.appendChild(createElement("div", div =>
+											{
+												div.classList.add("column-content");
+												div.innerHTML = line;
+											}));
+										}));
+									});
+								}
+
+								function genTitleRow(title)
+								{
+									return createElement("tr", tr => tr.appendChild(createElement("th", th =>
+									{
+										th.setAttribute("colspan", 2);
+										th.appendChild(createElement("div", div =>
+										{
+											div.classList.add("column-content", "font-weight-bold");
+											div.innerText = title;
+										}));
+									})));
+								}
+
+								const rect = canvas.getBoundingClientRect();
+								const table = createElement("table", table =>
+								{
+									table.classList.add("table", "table-compact");
+									table.style.setProperty("--outline-color-secondary", "rgba(255, 255, 255, .05)");
+
+									table.appendChild(createElement("thead", thead =>
+									{
+										model.title.forEach(title => thead.appendChild(genTitleRow(title)));
+									}));
+
+									table.appendChild(createElement("tbody", tbody =>
+									{
+										model.body.map(l => l.lines).forEach((line, i) => tbody.appendChild(genDataRow(line, model.labelColors[i])));
+									}));
+
+								});
+
+								dispatch("latte:tooltip", {
+									x: Math.floor(rect.left + model.caretX),
+									y: Math.floor(rect.top + model.caretY),
+									classes: ["p-0"],
+									content: table,
+									position: "vertical"
+								});
+							}
+						},
 						callbacks: {
 							label: this.onTooltipLabel.bind(this)
 						}

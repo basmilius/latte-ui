@@ -1,0 +1,121 @@
+{
+	"header": {
+		"execution_time": 1.6816449165344238,
+		"response_code": 200
+	},
+	"data": {
+		"data": {
+			"datasets": [
+				{
+					"data": [
+						null,
+						null,
+						479,
+						1081,
+						1395,
+						2934,
+						3919,
+						4201,
+						4805,
+						5040,
+						5446,
+						5530
+					],
+					"label": "Totaal aantal installaties",
+					"backgroundColor": "rgb(255, 255, 255)",
+					"borderColor": "rgb(255, 255, 255)",
+					"borderWidth": 2,
+					"fill": false,
+					"pointBorderWidth": 3
+				},
+				{
+					"data": [
+						null,
+						null,
+						479,
+						876,
+						590,
+						2093,
+						2048,
+						777,
+						1028,
+						567,
+						773,
+						351
+					],
+					"label": "Actieve installaties",
+					"backgroundColor": "rgb(42, 197, 105)",
+					"borderColor": "rgb(42, 197, 105)",
+					"borderWidth": 2,
+					"fill": false,
+					"pointBorderWidth": 3
+				},
+				{
+					"data": [
+						null,
+						null,
+						485,
+						602,
+						314,
+						1539,
+						985,
+						282,
+						604,
+						235,
+						406,
+						84
+					],
+					"label": "Aantal installaties deze maand",
+					"backgroundColor": "rgb(0, 202, 255)",
+					"borderColor": "rgb(0, 202, 255)",
+					"borderWidth": 2,
+					"fill": false,
+					"pointBorderWidth": 3
+				}
+			],
+			"labels": [
+				"feb 2018",
+				"mrt 2018",
+				"apr 2018",
+				"mei 2018",
+				"jun 2018",
+				"jul 2018",
+				"aug 2018",
+				"sep 2018",
+				"okt 2018",
+				"nov 2018",
+				"dec 2018",
+				"jan 2019"
+			]
+		},
+		"name": "Installaties",
+		"options": {
+			"responsive": true,
+			"tooltips": {
+				"mode": "index",
+				"intersect": false
+			},
+			"hover": {
+				"mode": "nearest",
+				"intersect": true
+			},
+			"layout": {
+				"padding": 24
+			},
+			"scales": {
+				"yAxes": [
+					{
+						"ticks": {
+							"beginAtZero": true
+						}
+					}
+				]
+			},
+			"legend": {
+				"display": false
+			}
+		},
+		"type": "line"
+	},
+	"success": true
+}
