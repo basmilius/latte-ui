@@ -33,10 +33,7 @@
 			},
 
 			initialParams: {
-				default: () =>
-				{
-					return {};
-				},
+				default: () => ({}),
 				required: false,
 				type: Object
 

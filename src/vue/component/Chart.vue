@@ -31,10 +31,7 @@
 		props: {
 
 			options: {
-				default: () =>
-				{
-					return {};
-				},
+				default: () => ({}),
 				required: false,
 				type: Object
 			},
