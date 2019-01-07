@@ -16,7 +16,6 @@ import "./hid/PointerEvents";
 import * as Components from "../vue/component";
 import * as Directives from "../vue/directive";
 import * as RTEPlugins from "../vue/rich-text-editor";
-import * as Views from "../vue/view";
 import * as Widgets from "../vue/widget";
 
 import { createRootComponent } from "./ui/root";
@@ -32,7 +31,6 @@ import "./sdk";
 Object.values(Directives).forEach(d => Vue.directive(d.name, d));
 Object.values(Components).forEach(c => Vue.component(c.name, c));
 Object.values(RTEPlugins).forEach(p => Vue.component(p.name, p));
-Object.values(Views).forEach(v => Vue.component(v.name, v));
 Object.values(Widgets).forEach(w => Vue.component(w.name, w));
 
 moment.locale(window.LatteMomentLocale);
