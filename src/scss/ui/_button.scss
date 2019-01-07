@@ -85,13 +85,26 @@
 		{
 			background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
 		}
+	}
 
-		&.btn-sm
+	&.btn-soft
+	{
+		--btn-height: 36px;
+		--btn-padding: 6px 15px;
+
+		background: RGBA(var(--btn-background, var(--color-primary)), .1);
+		color: RGB(var(--btn-background, var(--color-primary)));
+
+		&:hover,
+		&:focus
 		{
-			--btn-height: 24px;
-			--btn-icon-size: 18px;
-			--btn-font-size: .9rem;
-			--btn-padding: 0 9px;
+			background: RGB(var(--btn-background));
+			color: RGB(var(--btn-foreground));
+		}
+
+		&:active
+		{
+			background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
 		}
 	}
 
@@ -113,14 +126,14 @@
 		{
 			background: RGBA(var(--btn-background, var(--color-primary)), .2);
 		}
+	}
 
-		&.btn-sm
-		{
-			--btn-height: 24px;
-			--btn-icon-size: 18px;
-			--btn-font-size: .9rem;
-			--btn-padding: 0 9px;
-		}
+	&.btn-sm
+	{
+		--btn-height: 24px;
+		--btn-icon-size: 18px;
+		--btn-font-size: .9rem;
+		--btn-padding: 0 9px;
 	}
 
 	&.btn-icon
