@@ -153,7 +153,7 @@ function onTooltipElementHover(el)
 						x += adjustment;
 					}
 
-					if ((left + tooltipRect.width + offset) > window.innerWidth)
+					if ((x + tooltipRect.width + offset) > window.innerWidth)
 					{
 						adjustment = window.innerWidth - (x + tooltipRect.width + offset);
 						x += adjustment;
