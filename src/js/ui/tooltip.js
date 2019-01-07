@@ -25,13 +25,18 @@ export function initializeTooltips()
 	});
 
 	live(document.body, "[data-tooltip]", "pointerover", (el, evt) => onTooltipElementHover(el, evt));
-	live(document.body, "[data-tooltip]", "pointerout", (el, evt) => onTooltipElementLeave(el, evt));
+	live(document.body, "[data-tooltip]", "pointerout", (el, evt) => despawnTooltip(el, evt));
 
-	on("latte:tooltip", data => onSmartTooltip(data));
-	on("latte:tooltip:hide", () => onTooltipElementLeave());
+	on("latte:tooltip", data => spawnTooltip(data));
+	on("latte:tooltip:hide", () => despawnTooltip());
 }
 
-function onSmartTooltip(data)
+function despawnTooltip()
+{
+	tooltipElement.classList.add("is-hidden");
+}
+
+function spawnTooltip(data)
 {
 	let {x, y, content, position = "vertical"} = data;
 
@@ -65,7 +70,7 @@ function onSmartTooltip(data)
 
 	raf(() =>
 	{
-		const tRect = tooltipElement.getBoundingClientRect();
+		const tooltipRect = tooltipElement.getBoundingClientRect();
 
 		let top = 0;
 		let left = 0;
@@ -73,23 +78,30 @@ function onSmartTooltip(data)
 
 		if (tooltipElement.classList.contains("tooltip-top"))
 		{
-			top = y - tRect.height - offset;
-			left = x - (tRect.width / 2);
+			top = y - tooltipRect.height - offset;
+			left = x - (tooltipRect.width / 2);
 		}
 		else if (tooltipElement.classList.contains("tooltip-left"))
 		{
-			top = y - (tRect.height / 2);
-			left = x - tRect.width - offset;
+			top = y - (tooltipRect.height / 2);
+			left = x - tooltipRect.width - offset;
 		}
 		else if (tooltipElement.classList.contains("tooltip-right"))
 		{
-			top = y - (tRect.height / 2);
+			top = y - (tooltipRect.height / 2);
 			left = x + offset;
 		}
 		else if (tooltipElement.classList.contains("tooltip-bottom"))
 		{
 			top = y + offset;
-			left = x - (tRect.width / 2);
+			left = x - (tooltipRect.width / 2);
+		}
+
+		if (data.adjustCoordinates)
+		{
+			let coords = data.adjustCoordinates(left, top, tooltipRect);
+			top = coords.y;
+			left = coords.x;
 		}
 
 		tooltipElement.style.setProperty("transform", `translate3d(${Math.round(left)}px, ${Math.round(top)}px, 0)`);
@@ -107,89 +119,72 @@ function onTooltipElementHover(el)
 	if (el.classList.contains("tooltip-disabled"))
 		return;
 
-	tooltipElement.innerHTML = str;
-	tooltipElement.setAttribute("class", `tooltip ${classes}`);
+	const pos = el.getBoundingClientRect();
 
-	tooltipElement.style.removeProperty("--tooltip-arrow-top");
-	tooltipElement.style.removeProperty("--tooltip-arrow-left");
+	spawnTooltip({
+		x: pos.left + (pos.width / 2),
+		y: pos.top + (pos.height / 2),
+		classes: classes.split(" "),
+		content: str,
+		position: null,
 
-	const rect = el.getBoundingClientRect();
-	const tRect = tooltipElement.getBoundingClientRect();
-
-	let top = 0;
-	let left = 0;
-	let offset = 9;
-
-	if (tooltipElement.classList.contains("tooltip-top"))
-	{
-		top = rect.top - tRect.height - offset;
-		left = rect.left + ((rect.width / 2) - (tRect.width / 2));
-	}
-	else if (tooltipElement.classList.contains("tooltip-left"))
-	{
-		top = rect.top + ((rect.height / 2) - (tRect.height / 2));
-		left = rect.left - tRect.width - offset;
-	}
-	else if (tooltipElement.classList.contains("tooltip-right"))
-	{
-		top = rect.top + ((rect.height / 2) - (tRect.height / 2));
-		left = rect.left + rect.width + offset;
-	}
-	else if (tooltipElement.classList.contains("tooltip-bottom"))
-	{
-		top = rect.top + rect.height + offset;
-		left = rect.left + ((rect.width / 2) - (tRect.width / 2));
-	}
-
-	if (tooltipElement.classList.contains("tooltip-contain"))
-	{
-		let offset = 12;
-
-		if (tooltipElement.classList.contains("tooltip-top") || tooltipElement.classList.contains("tooltip-bottom"))
+		adjustCoordinates(x, y, tooltipRect)
 		{
-			let adj = 0;
+			if (tooltipElement.classList.contains("tooltip-top"))
+				y -= pos.height / 2;
+			else if (tooltipElement.classList.contains("tooltip-left"))
+				x -= pos.width / 2;
+			else if (tooltipElement.classList.contains("tooltip-right"))
+				x += pos.width / 2;
+			else if (tooltipElement.classList.contains("tooltip-bottom"))
+				y += pos.height / 2;
 
-			if (offset > left)
+			if (tooltipElement.classList.contains("tooltip-contain"))
 			{
-				adj = offset - left;
-				left += adj;
+				let offset = 12;
+
+				if (tooltipElement.classList.contains("tooltip-top") || tooltipElement.classList.contains("tooltip-bottom"))
+				{
+					let adjustment = 0;
+
+					if (offset > x)
+					{
+						adjustment = offset - x;
+						x += adjustment;
+					}
+
+					if ((left + tooltipRect.width + offset) > window.innerWidth)
+					{
+						adjustment = window.innerWidth - (x + tooltipRect.width + offset);
+						x += adjustment;
+					}
+
+					if (adjustment !== 0)
+						tooltipElement.style.setProperty("--tooltip-arrow-left", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+				}
+
+				if (tooltipElement.classList.contains("tooltip-left") || tooltipElement.classList.contains("tooltip-right"))
+				{
+					let adjustment = 0;
+
+					if (offset > y)
+					{
+						adjustment = offset - y;
+						y += adjustment;
+					}
+
+					if ((y + tooltipRect.height + offset) > window.innerHeight)
+					{
+						adjustment = window.innerHeight - (y + tooltipRect.height + offset);
+						y += adjustment;
+					}
+
+					if (adjustment !== 0)
+						tooltipElement.style.setProperty("--tooltip-arrow-top", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+				}
 			}
 
-			if ((left + tRect.width + offset) > window.innerWidth)
-			{
-				adj = window.innerWidth - (left + tRect.width + offset);
-				left += adj;
-			}
-
-			if (adj !== 0)
-				tooltipElement.style.setProperty("--tooltip-arrow-left", `calc((50% - .45em) - ${Math.floor(adj)}px)`);
+			return {x, y};
 		}
-
-		if (tooltipElement.classList.contains("tooltip-left") || tooltipElement.classList.contains("tooltip-right"))
-		{
-			let adj = 0;
-
-			if (offset > top)
-			{
-				adj = offset - top;
-				top += adj;
-			}
-
-			if ((top + tRect.height + offset) > window.innerHeight)
-			{
-				adj = window.innerHeight - (top + tRect.height + offset);
-				top += adj;
-			}
-
-			if (adj !== 0)
-				tooltipElement.style.setProperty("--tooltip-arrow-top", `calc((50% - .45em) - ${Math.floor(adj)}px)`);
-		}
-	}
-
-	tooltipElement.style.setProperty("transform", `translate3d(${Math.round(left)}px, ${Math.round(top)}px, 0)`);
-}
-
-function onTooltipElementLeave()
-{
-	tooltipElement.classList.add("is-hidden");
+	});
 }

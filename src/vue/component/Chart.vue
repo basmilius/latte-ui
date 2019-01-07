@@ -113,8 +113,6 @@
 						enabled: false,
 						custom: model =>
 						{
-							console.log(model);
-
 							if (model.opacity === 0)
 							{
 								dispatch("latte:tooltip:hide");
