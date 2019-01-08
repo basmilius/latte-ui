@@ -41,13 +41,18 @@ export function create(message, type, dismissible = true)
 	const noticeId = id();
 
 	const notice = document.createElement("div");
-	notice.classList.add("notice", `notice-${type}`, "with-button");
+	notice.classList.add("notice", `notice-${type}`);
 	notice.setAttribute("id", noticeId);
+
+	const p = document.createElement("p");
+	p.innerHTML = message;
+
+	notice.appendChild(p);
 
 	if (dismissible)
 	{
 		const dismiss = document.createElement("button");
-		dismiss.classList.add("btn", "btn-text", "btn-icon", "btn-dark", "notice-dismiss");
+		dismiss.classList.add("btn", "btn-text", "btn-icon", "notice-dismiss");
 
 		const icon = document.createElement("i");
 		icon.classList.add("mdi", "mdi-close");
@@ -57,11 +62,6 @@ export function create(message, type, dismissible = true)
 
 		notice.appendChild(dismiss);
 	}
-
-	const p = document.createElement("p");
-	p.innerHTML = message;
-
-	notice.appendChild(p);
 
 	const content = document.querySelector("main#app > div.content");
 
