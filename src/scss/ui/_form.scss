@@ -68,7 +68,7 @@ label.col-form-label
 	}
 	border: none;
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 2px var(--form-field-outline);
+	box-shadow: 0 0 0 1px var(--form-field-outline);
 	color: currentColor;
 	font-size: 1rem;
 	line-height: 26px;
@@ -85,7 +85,7 @@ label.col-form-label
 
 	&:focus
 	{
-		box-shadow: 0 0 0 2px RGBA(var(--color-primary), .75);
+		box-shadow: 0 0 0 1px RGBA(var(--color-primary), .75);
 	}
 
 	&[disabled]
@@ -131,7 +131,7 @@ label.col-form-label
 .form-control
 {
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 2px var(--form-field-outline);
+	box-shadow: 0 0 0 1px var(--form-field-outline);
 	transition: all 180ms var(--ease-standard-curve);
 	will-change: border-radius, box-shadow;
 
@@ -144,7 +144,7 @@ label.col-form-label
 	&:focus,
 	&:focus-within
 	{
-		box-shadow: 0 0 0 2px RGBA(var(--color-primary), .75);
+		box-shadow: 0 0 0 1px RGBA(var(--color-primary), .75);
 	}
 }
 

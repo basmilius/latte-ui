@@ -61,7 +61,7 @@ a.panel
 
 	+ .panel-body
 	{
-		border-top: 2px solid var(--outline-color-secondary);
+		border-top: var(--divider-size, 1px) solid var(--outline-color-secondary);
 	}
 }
 
@@ -85,7 +85,7 @@ a.panel
 
 	&:not(:first-child)
 	{
-		border-top: 2px solid var(--outline-color-secondary);
+		border-top: var(--divider-size, 1px) solid var(--outline-color-secondary);
 	}
 
 	.divider
@@ -106,7 +106,7 @@ a.panel
 
 	&:not(:last-child)
 	{
-		border-bottom: 2px solid var(--outline-color-secondary);
+		border-bottom: var(--divider-size, 1px) solid var(--outline-color-secondary);
 	}
 
 	&.panel-header-sticky
