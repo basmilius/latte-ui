@@ -171,6 +171,13 @@
 					column: {
 						is_searchable: false,
 						is_sortable: false
+					},
+					mock: {
+						field: "",
+						sorting: {
+							by: "",
+							order: ""
+						}
 					}
 				},
 				isLoading: false,
@@ -265,6 +272,8 @@
 			createRowColumn(row, column)
 			{
 				const $this = this;
+				const uniqueId = this.uniqueId;
+
 				const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
 											<span class="badge ml-2" :class="['badge-' + badge.type]" v-if="badge.filter === null">{{ badge.message }}</span>
@@ -278,11 +287,7 @@
 
 					data()
 					{
-						return {
-							column: column,
-							row: row,
-							uniqueId: $this.uniqueId
-						};
+						return {column, row, uniqueId};
 					},
 
 					methods: {

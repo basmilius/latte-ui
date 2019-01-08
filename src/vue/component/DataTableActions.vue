@@ -23,8 +23,6 @@
 
 <script>
 
-	const defaultRow = {};
-
 	export default {
 
 		name: "latte-data-table-actions",
@@ -38,7 +36,7 @@
 			},
 
 			row: {
-				default: () => defaultRow,
+				default: () => ({}),
 				required: true,
 				type: Object
 			}
@@ -55,10 +53,7 @@
 
 					data()
 					{
-						return {
-							action: action,
-							row: row
-						};
+						return {action, row};
 					}
 
 				});
