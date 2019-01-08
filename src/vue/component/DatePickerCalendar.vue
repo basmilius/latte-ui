@@ -216,11 +216,6 @@
 				return this.isSame(date, new Date());
 			},
 
-			moment()
-			{
-				return moment(...arguments);
-			},
-
 			navigate(dir)
 			{
 				this.selectedMonth += dir;

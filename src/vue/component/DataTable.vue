@@ -12,7 +12,7 @@
 	<table class="table table-hover mb-0">
 		<thead>
 		<tr v-if="showHeader">
-			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :moment="moment" :utc="utc" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width: 42px"></th>
 				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width && column.width !== null ? column.width + 'px' : 'auto'), 'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
 					<div class="column-content flex-row align-items-center justify-content-start">
@@ -26,7 +26,7 @@
 		</tr>
 
 		<tr class="search-row" v-if="showSearch">
-			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :moment="moment" :utc="utc" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width:42px"></th>
 				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
 					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
@@ -52,7 +52,7 @@
 		</thead>
 		<tbody>
 		<tr v-for="(row, rowKey) in data">
-			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :moment="moment" :utc="utc" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<td v-if="isSelectionMode" style="width:42px;z-index:1">
 					<div class="column-content pr-0">
 						<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
@@ -301,16 +301,6 @@
 
 							evt.preventDefault();
 							evt.stopPropagation();
-						},
-
-						moment()
-						{
-							return moment(...arguments);
-						},
-
-						utc()
-						{
-							return moment.utc(...arguments);
 						}
 
 					}
@@ -355,16 +345,6 @@
 					.then(r => r.json())
 					.then(this.onReceivedSetupResponse)
 					.catch(err => handleError(err));
-			},
-
-			moment()
-			{
-				return moment(...arguments);
-			},
-
-			utc()
-			{
-				return moment.utc(...arguments);
 			},
 
 			onReceivedData(response)

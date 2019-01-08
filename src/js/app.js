@@ -15,6 +15,7 @@ import "./hid/PointerEvents";
 
 import * as Components from "../vue/component";
 import * as Directives from "../vue/directive";
+import * as Mixins from "../vue/mixin"
 import * as RTEPlugins from "../vue/rich-text-editor";
 import * as Widgets from "../vue/widget";
 
@@ -29,6 +30,8 @@ window.LatteMomentLocale = window.LatteMomentLocale || "en";
 import "./sdk";
 
 Object.values(Directives).forEach(d => Vue.directive(d.name, d));
+Object.values(Mixins).forEach(m => Vue.mixin(m));
+
 Object.values(Components).forEach(c => Vue.component(c.name, c));
 Object.values(RTEPlugins).forEach(p => Vue.component(p.name, p));
 Object.values(Widgets).forEach(w => Vue.component(w.name, w));
