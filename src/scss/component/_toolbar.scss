@@ -61,11 +61,6 @@ div.toolbar
 		}
 	}
 
-	> *
-	{
-		flex: 0 0 auto;
-	}
-
 	div.divider
 	{
 		height: 24px;
@@ -89,12 +84,7 @@ div.toolbar
 		font:
 		{
 			size: 1.25rem;
-			weight: 700;
-		}
-
-		@at-root .toolbar-no-title &
-		{
-			display: none !important;
+			weight: 500;
 		}
 	}
 }
