@@ -58,7 +58,7 @@
 
 				this.svg = Vue.extend({
 
-					template: response.replace(new RegExp(` width="([0-9.]+)" height="([0-9.]+)" viewBox`, "g"), "").replace(/fill="#6c63ff"/g, ":fill=\"color\""),
+					template: response.replace(/fill="#6c63ff"/g, ":fill=\"color\""),
 
 					data()
 					{
