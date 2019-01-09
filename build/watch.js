@@ -66,7 +66,9 @@ watcher.on("event", evt =>
 	switch (evt.code)
 	{
 		case "START":
+			ncp("src/worklet", "dist/worklet");
 			ncp("src/image", "dist/image");
+			ncp("src/sound", "dist/sound");
 			console.log("watch", "Watching src/scss...");
 			break;
 

@@ -27,6 +27,7 @@ import { initializeTooltips } from "./ui/tooltip";
 
 window.LatteMomentLocale = window.LatteMomentLocale || "en";
 
+import "./houdini-apis";
 import "./sdk";
 
 Object.values(Directives).forEach(d => Vue.directive(d.name, d));

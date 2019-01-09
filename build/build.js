@@ -102,6 +102,9 @@ async function build()
 
 	await bundle.write(outputOptions);
 
+	console.log("[build]", "Copying worklets...");
+	await new Promise(resolve => ncp("src/worklet", "dist/worklet", () => resolve()));
+
 	console.log("[build]", "Copying images...");
 	await new Promise(resolve => ncp("src/image", "dist/image", () => resolve()));
 
