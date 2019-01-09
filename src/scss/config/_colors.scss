@@ -7,22 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$color-bt-dark: rgb(25, 26, 28) !default;
-$color-bt-dark-outline: rgb(42, 43, 49) !default;
-$color-bt-dark-secondary: rgb(32, 33, 36) !default;
-$color-bt-folder: rgb(48, 119, 145) !default;
-$color-bt-text: rgb(207, 208, 210) !default;
-$color-bt-text-secondary: rgb(186, 187, 189) !default;
-
 $theme-colors: (
-		blue: rgb(0, 120, 255),
-		teal-blue: rgb(0, 202, 255),
-		orange: rgb(255, 143, 0),
-		purple: rgb(90, 81, 222),
-		pink: rgb(255, 0, 79),
-		orchid: rgb(185, 89, 255),
-		charocoal: rgb(49, 57, 76),
-		primary: rgb(0, 120, 255),
+		primary: rgb(55, 125, 255),
 		error: rgb(254, 50, 75),
 		info: rgb(8, 122, 254),
 		success: rgb(23, 195, 123),

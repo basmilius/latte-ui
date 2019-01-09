@@ -126,7 +126,7 @@
 	.nav-link
 	{
 		color: var(--main-foreground);
-		transition: all 90ms var(--ease-standard-curve);
+		transition: all 150ms var(--ease-standard-curve);
 		will-change: background, color;
 
 		--badge-bg: RGBA(var(--color-primary), .1);
@@ -147,8 +147,8 @@
 		&:not(.active).is-hover,
 		&:not(.active):hover
 		{
-			background: RGB(var(--color-primary));
-			color: RGB(var(--color-primary-foreground));
+			background: RGBA(var(--color-primary), .075);
+			color: RGB(var(--color-primary));
 
 			--badge-bg: RGBA(var(--color-primary-foreground), .2);
 			--badge-bg-hover: RGBA(var(--color-primary-foreground), .1);
