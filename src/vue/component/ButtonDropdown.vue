@@ -9,7 +9,7 @@
 
 <template>
 
-	<button ref="btn" class="btn" :class="buttonClasses" :data-tooltip="tooltip" data-tooltip-class="tooltip-bottom tooltip-contain" :aria-label="ariaLabel">
+	<button ref="btn" class="btn" :class="buttonClasses" :data-tooltip="tooltip" data-tooltip-class="tooltip-bottom" :aria-label="ariaLabel">
 		<img v-if="avatarUrl !== null" class="avatar avatar-24px" :src="avatarUrl" :alt="ariaLabel"/>
 		<i v-else-if="icon !== ''" :class="iconClasses"></i>
 		<i v-if="iconBefore !== ''" :class="iconBeforeClasses"></i>

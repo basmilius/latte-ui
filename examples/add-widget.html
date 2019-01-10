@@ -32,8 +32,8 @@
 			<span class="toolbar-title">Dashboard</span>
 
 			<div class="d-flex align-items-center ml-auto">
-				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Manage modules..." data-tooltip-class="tooltip-bottom tooltip-contain" onclick="Latte.overlays.open('modules')"><i class="mdi mdi-power-plug"></i></button>
-				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Add widget..." data-tooltip-class="tooltip-bottom tooltip-contain" onclick="Latte.overlays.open('add-widget')"><i class="mdi mdi-plus-circle-outline"></i></button>
+				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Manage modules..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('modules')"><i class="mdi mdi-power-plug"></i></button>
+				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Add widget..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('add-widget')"><i class="mdi mdi-plus-circle-outline"></i></button>
 				<div class="divider divider-vertical"></div>
 				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
 					<nav class="nav nav-list">
@@ -49,9 +49,9 @@
 		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
 			<div id="drawer" role="menu">
 				<nav class="nav" id="drawer-primary">
-					<a class="nav-item active" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-home"></i></a>
+					<a class="nav-item active" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-home"></i></a>
 					<div class="divider divider-horizontal mt-auto" role="separator"></div>
-					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right tooltip-contain"><i class="mdi mdi-settings"></i></a>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-settings"></i></a>
 				</nav>
 			</div>
 		</latte-offscreen-container>
