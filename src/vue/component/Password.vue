@@ -114,6 +114,11 @@
 			show()
 			{
 				this.fieldType = this.show ? "text" : "password";
+			},
+
+			value()
+			{
+				this.password = this.value;
 			}
 
 		}
