@@ -37,7 +37,6 @@ div.notification
 	position: relative;
 	display: flex;
 	align-items: center;
-	flex-flow: row;
 	justify-content: flex-start;
 	background: var(--panel-background);
 	border-radius: var(--border-radius);
@@ -90,7 +89,7 @@ div.notification-actions
 {
 	position: relative;
 	display: flex;
-	padding: $notification-gutter ($notification-gutter - 16px);
+	padding: $notification-gutter ($notification-gutter - 15px);
 	align-items: center;
 	flex-flow: row wrap;
 	justify-content: flex-start;

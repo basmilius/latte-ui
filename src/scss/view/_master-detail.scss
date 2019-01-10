@@ -27,7 +27,6 @@ body.master-detail main#app
 		{
 			display: flex;
 			align-items: stretch;
-			flex-flow: row nowrap;
 			justify-content: flex-start;
 			height: calc(100vh - var(--toolbar-height));
 			border-radius: 0;

@@ -10,7 +10,7 @@
 .nav.nav-tabs
 {
 	align-items: stretch;
-	flex-flow: row;
+	flex-flow: row nowrap;
 	justify-content: flex-start;
 
 	--tabs-accent: var(--color-primary);
@@ -47,7 +47,6 @@
 		padding: 9px 6px;
 		align-items: center;
 		flex: 0 0 auto;
-		flex-flow: row;
 		justify-content: center;
 		color: var(--main-foreground);
 		font-weight: 500;

@@ -261,7 +261,6 @@ div.panel-explanation
 	display: flex;
 	padding: $panel-gutter;
 	align-items: flex-start;
-	flex-flow: row nowrap;
 	justify-content: flex-start;
 
 	> i.mdi
@@ -293,7 +292,6 @@ div.panel.panel-explained
 {
 	display: flex;
 	align-items: flex-start;
-	flex-flow: row nowrap;
 	justify-content: flex-start;
 
 	div.panel-explanation

@@ -13,6 +13,7 @@ import { createElement, live } from "../util/dom.js";
 import { on } from "../actions.js";
 import { raf } from "../util/dom";
 
+let tooltipContained = true;
 let tooltipElement = null;
 
 export function initializeTooltips()
@@ -104,6 +105,47 @@ function spawnTooltip(data)
 			left = coords.x;
 		}
 
+		if (tooltipContained)
+		{
+			let adjustment = 0;
+			let offset = 12;
+
+			if (tooltipElement.classList.contains("tooltip-top") || tooltipElement.classList.contains("tooltip-bottom"))
+			{
+				if (offset > left)
+				{
+					adjustment = offset - left;
+					left += adjustment;
+				}
+
+				if ((left + tooltipRect.width + offset) > window.innerWidth)
+				{
+					adjustment = window.innerWidth - (left + tooltipRect.width + offset);
+					left += adjustment;
+				}
+
+				if (adjustment !== 0)
+					tooltipElement.style.setProperty("--tooltip-arrow-left", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+			}
+			else if (tooltipElement.classList.contains("tooltip-left") || tooltipElement.classList.contains("tooltip-right"))
+			{
+				if (offset > top)
+				{
+					adjustment = offset - top;
+					top += adjustment;
+				}
+
+				if ((top + tooltipRect.height + offset) > window.innerHeight)
+				{
+					adjustment = window.innerHeight - (top + tooltipRect.height + offset);
+					top += adjustment;
+				}
+
+				if (adjustment !== 0)
+					tooltipElement.style.setProperty("--tooltip-arrow-top", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+			}
+		}
+
 		tooltipElement.style.setProperty("transform", `translate3d(${Math.round(left)}px, ${Math.round(top)}px, 0)`);
 	});
 }
@@ -128,7 +170,7 @@ function onTooltipElementHover(el)
 		content: str,
 		position: null,
 
-		adjustCoordinates(x, y, tooltipRect)
+		adjustCoordinates(x, y)
 		{
 			if (tooltipElement.classList.contains("tooltip-top"))
 				y -= pos.height / 2;
@@ -138,51 +180,6 @@ function onTooltipElementHover(el)
 				x += pos.width / 2;
 			else if (tooltipElement.classList.contains("tooltip-bottom"))
 				y += pos.height / 2;
-
-			if (tooltipElement.classList.contains("tooltip-contain"))
-			{
-				let offset = 12;
-
-				if (tooltipElement.classList.contains("tooltip-top") || tooltipElement.classList.contains("tooltip-bottom"))
-				{
-					let adjustment = 0;
-
-					if (offset > x)
-					{
-						adjustment = offset - x;
-						x += adjustment;
-					}
-
-					if ((x + tooltipRect.width + offset) > window.innerWidth)
-					{
-						adjustment = window.innerWidth - (x + tooltipRect.width + offset);
-						x += adjustment;
-					}
-
-					if (adjustment !== 0)
-						tooltipElement.style.setProperty("--tooltip-arrow-left", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
-				}
-
-				if (tooltipElement.classList.contains("tooltip-left") || tooltipElement.classList.contains("tooltip-right"))
-				{
-					let adjustment = 0;
-
-					if (offset > y)
-					{
-						adjustment = offset - y;
-						y += adjustment;
-					}
-
-					if ((y + tooltipRect.height + offset) > window.innerHeight)
-					{
-						adjustment = window.innerHeight - (y + tooltipRect.height + offset);
-						y += adjustment;
-					}
-
-					if (adjustment !== 0)
-						tooltipElement.style.setProperty("--tooltip-arrow-top", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
-				}
-			}
 
 			return {x, y};
 		}

@@ -50,7 +50,6 @@
 	padding: 0 2rem;
 	align-items: center;
 	flex: 0 0 auto;
-	flex-flow: row nowrap;
 	justify-content: flex-start;
 	cursor: pointer;
 	text-decoration: none;
@@ -67,7 +66,6 @@
 		position: relative;
 		display: flex;
 		align-items: center;
-		flex-flow: row nowrap;
 		justify-content: flex-start;
 		flex: 1 1 0;
 
@@ -149,16 +147,6 @@
 		{
 			background: RGBA(var(--color-primary), .075);
 			color: RGB(var(--color-primary));
-
-			--badge-bg: RGBA(var(--color-primary-foreground), .2);
-			--badge-bg-hover: RGBA(var(--color-primary-foreground), .1);
-			--badge-color: RGB(var(--color-primary-foreground));
-
-			--checkbox-color: var(--color-primary-foreground);
-			--radio-button-color: var(--color-primary-foreground);
-			--toggle-button-color: var(--color-primary-foreground);
-			--toggle-button-foreground: var(--color-primary);
-			--form-field-outline: RGBA(var(--color-primary-foreground), .3);
 		}
 
 		span.badge
