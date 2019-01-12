@@ -53,7 +53,7 @@ div#drawer
 				color: RGB(var(--drawer-foreground-primary));
 			}
 
-			&.active
+			&.is-active
 			{
 				background: RGB(var(--color-primary));
 				color: RGB(var(--color-primary-foreground));
