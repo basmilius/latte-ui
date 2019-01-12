@@ -50,7 +50,11 @@ export function createMessage(title, message, buttons, prompt = false)
 	return new Promise(resolve =>
 	{
 		const overlay = createElement("div", el => el.classList.add("latte-overlay", "is-visible"));
-		const panel = createElement("div", el => el.classList.add("panel", "panel-alert"));
+		const panel = createElement("div", el =>
+		{
+			el.classList.add("panel");
+			el.style.setProperty("width", "540px");
+		});
 		const panelTitle = createElement("div", el => el.classList.add("panel-header"));
 		const panelContent = createElement("div", el => el.classList.add("panel-body"));
 		const panelFooter = createElement("div", el => el.classList.add("panel-footer", "justify-content-end"));

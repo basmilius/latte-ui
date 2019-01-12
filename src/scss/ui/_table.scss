@@ -17,8 +17,6 @@ table.table
 
 	&.table-border
 	{
-		border-collapse: collapse;
-
 		td,
 		th
 		{
@@ -50,7 +48,7 @@ table.table
 
 	&:not(.table-border) thead tr:first-child th
 	{
-		border: none;
+		border: 0;
 	}
 
 	tbody tr:hover td,
@@ -68,7 +66,6 @@ table.table
 		height: 100%;
 		margin: 0;
 		padding: 12px 24px;
-		align-items: flex-start;
 		flex-flow: column;
 		justify-content: center;
 		vertical-align: middle;
@@ -94,7 +91,7 @@ table.table
 		height: 100%;
 		padding: 12px 24px;
 		background: transparent;
-		border: none;
+		border: 0;
 		border-radius: 0;
 		box-shadow: none;
 
@@ -111,7 +108,7 @@ table.table
 		height: 100%;
 		padding: 14px 16px 14px 16px;
 		background-color: transparent;
-		border: none;
+		border: 0;
 		border-radius: 0;
 		box-shadow: none;
 		overflow: hidden;
@@ -165,7 +162,7 @@ table.table
 			padding: 12px 24px;
 			width: 100%;
 			background: transparent;
-			border: none;
+			border: 0;
 			color: var(--main-foreground);
 			font-weight: 500;
 			outline: none;

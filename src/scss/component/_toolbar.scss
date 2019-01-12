@@ -13,18 +13,17 @@ div.toolbar
 	display: flex;
 	top: 0;
 	height: var(--toolbar-height);
-	padding: 0 17px;
+	padding: 0 var(--toolbar-gutter);
 	align-items: center;
-	justify-content: flex-start;
 	background: var(--toolbar-background);
 	box-shadow: var(--toolbar-elevation);
 	color: var(--toolbar-color);
-	overflow: auto; // For now...
+	overflow: auto;
 	z-index: 1002;
 
 	&.toolbar-flat
 	{
-		--toolbar-elevation: 0 2px var(--outline-color-secondary);
+		--toolbar-elevation: 0 var(--divider-size) var(--outline-color-secondary);
 	}
 
 	@include expanded
@@ -32,9 +31,10 @@ div.toolbar
 		button.nav-toggle
 		{
 			--border-radius: 0;
-			height: var(--toolbar-height);
-			margin: 0 1rem 0 -17px;
-			padding: 0 17px;
+			--btn-height: var(--toolbar-height);
+
+			margin: 0 var(--toolbar-gutter) 0 calc(0px - var(--toolbar-gutter));
+			width: var(--drawer-width-primary);
 			background: RGB(var(--drawer-background-primary));
 			color: RGB(var(--drawer-foreground-primary));
 			pointer-events: none;
@@ -46,9 +46,7 @@ div.toolbar
 
 			i.mdi::before
 			{
-				height: 1em;
-				width: 1em;
-				content: " ";
+				content: "";
 				background:
 				{
 					image: var(--branding-logo);
@@ -79,7 +77,7 @@ div.toolbar
 	{
 		position: relative;
 		display: block;
-		margin: 0 1rem;
+		margin: 0 var(--toolbar-gutter);
 		font:
 		{
 			size: 1.25rem;

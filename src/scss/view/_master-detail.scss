@@ -11,12 +11,12 @@ body.master-detail main#app
 {
 	div#drawer
 	{
-		--drawer-elevation: 2px 0 var(--outline-color-secondary);
+		--drawer-elevation: var(--divider-size) 0 var(--outline-color-secondary);
 	}
 
 	> div.toolbar
 	{
-		--toolbar-elevation: #{$drawer-primary-width} 2px var(--outline-color-secondary);
+		--toolbar-elevation: var(--drawer-width-primary) var(--divider-size) var(--outline-color-secondary);
 	}
 
 	> div.content
@@ -27,7 +27,6 @@ body.master-detail main#app
 		{
 			display: flex;
 			align-items: stretch;
-			justify-content: flex-start;
 			height: calc(100vh - var(--toolbar-height));
 			border-radius: 0;
 
@@ -53,7 +52,7 @@ body.master-detail main#app
 
 			#detail
 			{
-				border-top: 2px solid var(--outline-color-secondary);
+				border-top: var(--divider-size) solid var(--outline-color-secondary);
 			}
 		}
 
@@ -61,7 +60,7 @@ body.master-detail main#app
 		{
 			#detail
 			{
-				border-left: 2px solid var(--outline-color-secondary);
+				border-left: var(--divider-size) solid var(--outline-color-secondary);
 			}
 		}
 	}
@@ -70,7 +69,7 @@ body.master-detail main#app
 	{
 		> div.toolbar
 		{
-			--toolbar-elevation: 0 2px var(--outline-color-secondary);
+			--toolbar-elevation: 0 var(--divider-size) var(--outline-color-secondary);
 		}
 	}
 }

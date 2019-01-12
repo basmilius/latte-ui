@@ -37,7 +37,6 @@ div.notification
 	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
 	background: var(--panel-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--panel-elevation-hover);
@@ -80,9 +79,7 @@ div.notification-content
 {
 	position: relative;
 	display: flex;
-	align-items: flex-start;
 	flex-flow: column;
-	justify-content: flex-start;
 }
 
 div.notification-actions
@@ -92,7 +89,6 @@ div.notification-actions
 	padding: $notification-gutter ($notification-gutter - 15px);
 	align-items: center;
 	flex-flow: row wrap;
-	justify-content: flex-start;
 
 	&:not(:first-child)
 	{
@@ -106,9 +102,7 @@ div.notification-body
 	position: relative;
 	display: flex;
 	padding: $notification-gutter;
-	align-items: flex-start;
 	flex-flow: column;
-	justify-content: flex-start;
 }
 
 div.notification-icon

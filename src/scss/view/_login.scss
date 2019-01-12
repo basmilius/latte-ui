@@ -13,7 +13,6 @@ main.auth-ui
 	display: flex;
 	max-height: 100vh;
 	align-items: stretch;
-	justify-content: flex-start;
 
 	section#intro-view
 	{
@@ -21,7 +20,6 @@ main.auth-ui
 		display: flex;
 		height: 100vh;
 		padding: 72px;
-		align-items: flex-start;
 		flex: 1 1 40%;
 		flex-flow: column;
 		justify-content: center;
@@ -72,7 +70,6 @@ main.auth-ui
 		align-items: stretch;
 		flex: 1 1 60%;
 		flex-flow: column;
-		justify-content: flex-start;
 		background: var(--panel-background);
 		overflow: auto;
 

@@ -14,17 +14,16 @@ nav.pagination
 	padding: 0;
 	align-items: center;
 	flex-flow: row nowrap;
-	justify-content: flex-start;
 
 	a.pagination-item
 	{
 		position: relative;
 		display: block;
 		margin: 0;
-		padding: 0;
+		padding: 0 6px;
 		height: 30px;
-		width: 30px;
-		flex: 1 1 auto;
+		min-width: 30px;
+		flex: 0 0 auto;
 		border-radius: var(--border-radius);
 		color: currentColor;
 		cursor: pointer;
@@ -36,13 +35,11 @@ nav.pagination
 		line-height: 30px;
 		opacity: .75;
 		text-align: center;
-		text-decoration: none;
 		vertical-align: middle;
 
 		i.mdi
 		{
 			font-size: 18px;
-			vertical-align: middle;
 		}
 
 		&:hover

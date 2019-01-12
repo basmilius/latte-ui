@@ -13,7 +13,6 @@ div#drawer
 	display: flex;
 	height: 100%;
 	align-items: stretch;
-	justify-content: flex-start;
 	box-shadow: var(--drawer-elevation);
 	z-index: 1001;
 
@@ -22,7 +21,7 @@ div#drawer
 		position: relative;
 		padding: 1rem 0 0;
 		height: 100%;
-		width: $drawer-primary-width;
+		width: var(--drawer-width-primary);
 		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-primary));
 		overflow: auto;
@@ -39,8 +38,8 @@ div#drawer
 		{
 			position: relative;
 			display: flex;
-			height: $drawer-primary-width;
-			width: $drawer-primary-width;
+			height: var(--drawer-width-primary);
+			width: var(--drawer-width-primary);
 			align-items: center;
 			flex: 0 0 auto;
 			justify-content: center;
@@ -72,7 +71,7 @@ div#drawer
 		position: relative;
 		padding: 2rem 0;
 		height: 100%;
-		width: $drawer-secondary-width;
+		width: var(--drawer-width-secondary);
 		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-secondary));
 		overflow: auto;
@@ -122,17 +121,17 @@ div.drawer-container.offscreen-overlay
 
 		&.has-primary + div.content
 		{
-			margin-left: $drawer-primary-width;
+			margin-left: var(--drawer-width-primary);
 		}
 
 		&.has-secondary + div.content
 		{
-			margin-left: $drawer-secondary-width;
+			margin-left: var(--drawer-width-secondary);
 		}
 
 		&.has-primary.has-secondary + div.content
 		{
-			margin-left: $drawer-primary-width + $drawer-secondary-width;
+			margin-left: calc(var(--drawer-width-primary) + var(--drawer-width-secondary));
 		}
 	}
 }

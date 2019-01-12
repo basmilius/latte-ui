@@ -31,7 +31,6 @@ div.offscreen-content
 	display: flex;
 	align-items: stretch;
 	flex-flow: column nowrap;
-	justify-content: flex-start;
 	background: var(--panel-background);
 	color: var(--main-foreground);
 	pointer-events: all;

@@ -9,13 +9,28 @@
 
 :root
 {
+	--font-family-sans-serif: "proxima-nova", sans-serif;
+	--font-family-serif: Georgia, "Times New Roman", Times, serif;
+	--font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	--font-size: 15px;
+
+	--ease-acceleration-curve: cubic-bezier(0.4, 0.0, 1, 1);
+	--ease-deceleration-curve: cubic-bezier(0.0, 0.0, 0.2, 1);
+	--ease-sharp-curve: cubic-bezier(0.4, 0.0, 0.6, 1);
+	--ease-standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);
+	--ease-swift-out: cubic-bezier(.55, 0, .1, 1);
+
 	--branding-logo: url(/resource/image/branding/logo.svg);
-	--border-radius: #{$border-radius};
+	--border-radius: 6px;
 
 	--default-light: 255, 255, 255;
 	--default-dark: 25, 26, 28;
 
 	--content-gutter: 24px;
+	--divider-size: 1px;
+	--drawer-width-primary: 70px;
+	--drawer-width-secondary: 230px;
+	--toolbar-gutter: 15px;
 	--toolbar-height: 60px;
 
 	@each $type, $color in $theme-colors
@@ -23,14 +38,6 @@
 		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
 		--color-#{$type}-foreground: #{dark-or-light($color, var(--default-dark), var(--default-light))};
 	}
-
-	--ease-acceleration-curve: #{$ease-acceleration-curve};
-	--ease-deceleration-curve: #{$ease-deceleration-curve};
-	--ease-sharp-curve: #{$ease-sharp-curve};
-	--ease-standard-curve: #{$ease-standard-curve};
-	--ease-swift-out: #{$ease-swift-out};
-
-	@include make-typography-vars;
 }
 
 main#app.is-popup-opened

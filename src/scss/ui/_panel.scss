@@ -15,7 +15,6 @@ $panel-gutter: 24px;
 	display: flex;
 	align-items: stretch;
 	flex-flow: column;
-	justify-content: flex-start;
 
 	&:not(.panel-blank)
 	{
@@ -71,7 +70,6 @@ a.panel
 	display: flex;
 	align-items: stretch;
 	flex-flow: column;
-	justify-content: flex-start;
 }
 
 .panel-footer
@@ -81,7 +79,6 @@ a.panel
 	min-height: 60px;
 	padding: 0 $panel-gutter;
 	align-items: center;
-	justify-content: flex-start;
 
 	&:not(:first-child)
 	{
@@ -102,7 +99,6 @@ a.panel
 	padding: 0 $panel-gutter;
 	align-items: center;
 	flex: 0 0 auto;
-	justify-content: flex-start;
 
 	&:not(:last-child)
 	{
@@ -260,8 +256,6 @@ div.panel-explanation
 	position: relative;
 	display: flex;
 	padding: $panel-gutter;
-	align-items: flex-start;
-	justify-content: flex-start;
 
 	> i.mdi
 	{
@@ -282,17 +276,13 @@ div.panel-explanation
 		display: flex;
 		margin-left: 1.6em;
 		padding: .2em 0;
-		align-items: flex-start;
-		flex-flow: column;
-		justify-content: flex-start;
-	}
+			flex-flow: column;
+		}
 }
 
 div.panel.panel-explained
 {
 	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
 
 	div.panel-explanation
 	{

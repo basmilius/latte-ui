@@ -16,7 +16,6 @@ div.panel.widget
 	width: 100%;
 	align-items: stretch;
 	flex-flow: column;
-	justify-content: flex-start;
 	outline: none;
 
 	@at-root .is-resizing &
@@ -28,7 +27,7 @@ div.panel.widget
 	{
 		padding-right: 12px;
 		flex: 0 0 auto;
-		border: none;
+		border: 0;
 
 		.btn
 		{

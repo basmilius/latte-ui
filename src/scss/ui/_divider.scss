@@ -16,12 +16,12 @@ div.divider
 	&.divider-horizontal
 	{
 		margin: 9px 0;
-		height: var(--divider-size, 1px);
+		height: var(--divider-size);
 	}
 
 	&.divider-vertical
 	{
 		margin: 0 9px;
-		width: var(--divider-size, 1px);
+		width: var(--divider-size);
 	}
 }

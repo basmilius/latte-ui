@@ -19,7 +19,7 @@ body.full-center.oauth-authorize main#app
 		div.panel-footer
 		{
 			padding: 1.6rem;
-			border: none;
+			border: 0;
 		}
 
 		div.panel-footer
@@ -45,9 +45,7 @@ body.full-center.oauth-authorize main#app
 			display: flex;
 			margin: 0;
 			padding: 0;
-			align-items: flex-start;
 			flex-flow: column;
-			justify-content: flex-start;
 			list-style-type: none;
 
 			li

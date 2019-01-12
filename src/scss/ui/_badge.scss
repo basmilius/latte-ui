@@ -46,7 +46,6 @@
 		border-radius: inherit;
 		color: inherit;
 		overflow: hidden;
-		vertical-align: middle;
 
 		&:hover
 		{
@@ -55,10 +54,7 @@
 
 		i.mdi
 		{
-			height: inherit;
-			width: inherit;
 			font-size: inherit;
-			line-height: 20px;
 		}
 	}
 

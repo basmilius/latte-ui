@@ -48,43 +48,16 @@ i.mdi.spinner::before
 	height: 1em;
 	width: 1em;
 	content: "";
-	border: .1em solid currentColor;
-	border-radius: 999px;
-	opacity: .25;
-}
-
-span.spinner.spinner-double::before,
-i.mdi.spinner.spinner-double::before
-{
-	border: .1em solid transparent;
-}
-
-span.spinner::after,
-i.mdi.spinner::after
-{
-	position: relative;
-	display: block;
-	margin-left: -1em;
-	height: 1em;
-	width: 1em;
-	content: "";
 	animation: spinner-animation 700ms infinite linear;
-	border: .1em solid transparent;
-	border-top-color: currentColor;
-	border-radius: 999px;
-}
-
-span.spinner.spinner-double::after,
-i.mdi.spinner.spinner-double::after
-{
-	border-top-color: currentColor;
-	border-bottom-color: currentColor;
+	border: .1em solid RGBA(var(--spinner-color), .25);
+	border-top-color: RGB(var(--spinner-color));
+	border-radius: .5em;
 }
 
 @each $type in $theme-color-types
 {
 	.spinner.spinner-#{$type}
 	{
-		color: RGB(var(--color-#{$type}));
+		--spinner-color: var(--color-#{$type});
 	}
 }

@@ -12,8 +12,6 @@ body.full-center main#app
 	position: relative;
 	display: flex;
 	min-height: 100vh;
-	align-items: flex-start;
-	justify-content: flex-start;
 
 	> div.panel:only-child,
 	> .center-me
