@@ -13,12 +13,12 @@ const path = require("path");
 const postcss = require("rollup-plugin-postcss");
 const rollup = require("rollup");
 
-const autoprefixer = require("autoprefixer");
 const babel = require("rollup-plugin-babel");
 const buble = require("rollup-plugin-buble");
 const cleanup = require("rollup-plugin-cleanup");
-const comments = require("postcss-discard-comments");
 const commonjs = require("rollup-plugin-commonjs");
+const cssnano = require("cssnano");
+const nodeResolve = require("rollup-plugin-node-resolve");
 const replace = require("rollup-plugin-replace");
 const uglify = require("rollup-plugin-uglify").uglify;
 const vue = require("rollup-plugin-vue").default;
@@ -56,12 +56,10 @@ async function build()
 	const bundle = await rollup.rollup({
 		input: "src/bundle.js",
 		output: outputOptions,
+		treeshake: true,
 		plugins: [
-			vue({
-				compileTemplate: true,
-				template: {
-					isProduction: true
-				}
+			nodeResolve({
+				jsnext: true
 			}),
 
 			postcss({
@@ -70,13 +68,31 @@ async function build()
 				extract: true,
 				minimize: true,
 				plugins: [
-					autoprefixer(),
-					comments({
-						removeAll: true
+
+					cssnano({
+						preset: ["advanced", {
+							autoprefixer: {
+								add: true
+							},
+							discardComments: {
+								removeAll: true
+							}
+						}]
 					})
+
 				],
 				sourceMap: false,
 				use: ["sass"]
+			}),
+
+			vue({
+				compileTemplate: true,
+				template: {
+					compilerOptions: {
+						whitespace: "condense"
+					},
+					isProduction: true
+				}
 			}),
 
 			commonjs(),
@@ -89,13 +105,21 @@ async function build()
 
 			cleanup(),
 
-			uglify(),
+			uglify({
+				compress: {
+					drop_console: true,
+					passes: 1,
+					toplevel: true
+				},
+				mangle: {
+					toplevel: true
+				},
+				sourcemap: true
+			}),
 
 			replace({
-				values: {
-					"\\t": "",
-					"\\n": ""
-				}
+				"\\t": "",
+				"\\n": ""
 			})
 		]
 	});

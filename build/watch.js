@@ -11,9 +11,9 @@ const ncp = require("ncp").ncp;
 const postcss = require("rollup-plugin-postcss");
 const rollup = require("rollup");
 
-const autoprefixer = require("autoprefixer");
 const babel = require("rollup-plugin-babel");
 const commonjs = require("rollup-plugin-commonjs");
+const nodeResolve = require("rollup-plugin-node-resolve");
 const vue = require("rollup-plugin-vue").default;
 
 const watcher = rollup.watch({
@@ -27,12 +27,8 @@ const watcher = rollup.watch({
 		sourcemap: false
 	},
 	plugins: [
-		vue({
-			css: true,
-			compileTemplate: true,
-			template: {
-				isProduction: true
-			}
+		nodeResolve({
+			jsnext: true
 		}),
 
 		postcss({
@@ -40,11 +36,16 @@ const watcher = rollup.watch({
 			extensions: [".scss"],
 			extract: true,
 			minimize: true,
-			plugins: [
-				autoprefixer()
-			],
 			sourceMap: false,
 			use: ["sass"]
+		}),
+
+		vue({
+			css: true,
+			compileTemplate: true,
+			template: {
+				isProduction: true
+			}
 		}),
 
 		commonjs(),
@@ -69,7 +70,7 @@ watcher.on("event", evt =>
 			ncp("src/worklet", "dist/worklet");
 			ncp("src/image", "dist/image");
 			ncp("src/sound", "dist/sound");
-			console.log("watch", "Watching src/scss...");
+			console.log("watch", "Watching...");
 			break;
 
 		case "BUNDLE_START":
