@@ -37,7 +37,7 @@
 
 						<slot name="suggestion" v-bind="suggestion">
 
-							<div v-if="suggestion.sub_label">
+							<div class="flex-grow-1" v-if="suggestion.sub_label">
 								<span>{{ suggestion.label }}</span>
 								<span class="text-soft">{{ suggestion.sub_label }}</span>
 							</div>
