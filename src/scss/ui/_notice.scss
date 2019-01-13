@@ -22,22 +22,22 @@ div.notice
 	margin: -1px;
 	padding: 15px 24px;
 	align-items: center;
-	background: RGBA(var(--notice-color), .15);
-	border: 1px solid RGBA(var(--notice-color), .2);
+	background: RGBA(var(--notice-background), .15);
+	border: 1px solid RGBA(var(--notice-background), .2);
 	border-radius: var(--border-radius);
-	color: RGB(var(--notice-color));
+	color: RGB(var(--notice-background));
 	font-weight: 500;
 
 	&.notice-outline
 	{
 		background: transparent;
-		border: 1px dashed RGBA(var(--notice-color), .5);
+		border: 1px dashed RGBA(var(--notice-background), .5);
 	}
 
 	.btn
 	{
-		--btn-background: var(--notice-color);
-		--btn-foreground: var(--notice-color-foreground);
+		--btn-background: var(--notice-background);
+		--btn-foreground: var(--notice-foreground);
 	}
 
 	> i.mdi
@@ -69,7 +69,7 @@ div.notice
 		align-self: stretch;
 		flex: 1 1 auto;
 
-		--outline-color: RGBA(var(--notice-color), .2);
+		--outline-color: RGBA(var(--notice-background), .2);
 	}
 
 	+ div.notice
@@ -82,8 +82,8 @@ div.notice
 {
 	.notice-#{$type}
 	{
-		--notice-color: var(--color-#{$type});
-		--notice-color-foreground: var(--color-#{$type}-foreground);
+		--notice-background: var(--color-#{$type});
+		--notice-foreground: var(--color-#{$type}-foreground);
 		--notice-icon: "#{if(map-has-key($notice-icons, $type), #{map-get($notice-icons, $type)}, #{map-get($notice-icons, default)})}";
 	}
 }

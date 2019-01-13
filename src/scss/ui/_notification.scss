@@ -113,9 +113,9 @@ div.notification-icon
 	margin: $notification-gutter;
 	width: 60px;
 	align-self: flex-start;
-	background: var(--notification-color, black);
+	background: var(--notification-background, black);
 	border-radius: 30px;
-	color: var(--notification-color-text, white);
+	color: var(--notification-foreground, white);
 
 	i.mdi
 	{
@@ -164,8 +164,8 @@ div.notification > .avatar
 {
 	.notification-#{$type}
 	{
-		--notification-color: RGB(var(--color-#{$type}));
-		--notification-color-text: RGB(var(--color-#{$type}-foreground));
+		--notification-background: RGB(var(--color-#{$type}));
+		--notification-foreground: RGB(var(--color-#{$type}-foreground));
 		--notification-icon: "#{if(map-has-key($notification-icons, $type), #{map-get($notification-icons, $type)}, #{map-get($notification-icons, default)})}";
 	}
 }

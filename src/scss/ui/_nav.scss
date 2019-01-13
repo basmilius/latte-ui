@@ -134,14 +134,13 @@
 		transition: all 150ms var(--ease-standard-curve);
 		will-change: background, color;
 
-		--badge-bg: RGBA(var(--color-primary), .1);
-		--badge-bg-hover: RGBA(var(--color-primary), .2);
-		--badge-color: RGB(var(--color-primary));
-
-		--checkbox-color: var(--color-primary);
-		--radio-button-color: var(--color-primary);
-		--toggle-button-color: var(--color-primary);
-		--toggle-button-foreground: var(--color-primary-foreground);
+		--badge-color: var(--color-primary);
+		--checkbox-background: var(--color-primary);
+		--checkbox-foreground: var(--color-primary-foreground);
+		--radio-background: var(--color-primary);
+		--radio-foreground: var(--color-primary-foreground);
+		--toggle-background: var(--color-primary);
+		--toggle-foreground: var(--color-primary-foreground);
 
 		&.is-active
 		{

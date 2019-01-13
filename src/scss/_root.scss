@@ -26,6 +26,13 @@
 	--default-light: 255, 255, 255;
 	--default-dark: 25, 26, 28;
 
+	--checkbox-background: var(--color-primary);
+	--checkbox-foreground: var(--color-primary-foreground);
+	--radio-background: var(--color-primary);
+	--radio-foreground: var(--color-primary-foreground);
+	--toggle-background: var(--color-primary);
+	--toggle-foreground: var(--color-primary-foreground);
+
 	--content-gutter: 24px;
 	--divider-size: 1px;
 	--drawer-width-primary: 70px;

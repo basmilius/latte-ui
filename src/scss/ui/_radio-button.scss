@@ -9,8 +9,6 @@
 
 input[type=radio].radio-button
 {
-	--radio-button-color-private: var(--radio-button-color, var(--color-primary));
-
 	position: relative;
 	display: inline-block;
 	appearance: none;
@@ -22,14 +20,9 @@ input[type=radio].radio-button
 	border-radius: 12px;
 	cursor: pointer;
 	outline: none;
-	transition: transform 210ms var(--ease-swift-out);
+	transition: all 180ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: transform;
-
-	&:active
-	{
-		transform: scale3d(.85, .85, .85);
-	}
+	will-change: background, border-color, box-shadow;
 
 	&::before
 	{
@@ -39,27 +32,39 @@ input[type=radio].radio-button
 		margin: 3px;
 		width: 14px;
 		content: "";
-		background: RGB(var(--radio-button-color-private));
+		background: transparent;
 		border-radius: 7px;
-		transform: scale3d(0, 0, 0);
-		transition: transform 130ms var(--ease-standard-curve);
+		transition: inherit;
+		will-change: background;
 	}
 
-	&:checked::before
+	&:hover::before
 	{
-		transform: scale3d(1, 1, 1);
+		background: var(--form-field-outline);
 	}
 
 	&:focus
 	{
-		border-color: RGB(var(--radio-button-color-private));
+		border-color: RGB(var(--radio-background));
+	}
+
+	&:checked
+	{
+		background: RGB(var(--radio-foreground));
+		border-color: RGB(var(--radio-background));
+
+		&::before
+		{
+			background: RGB(var(--radio-background));
+		}
 	}
 }
 
 @each $type in $theme-color-types
 {
-	.radio-button.radio-button-#{$type}
+	.radio-button-#{$type}
 	{
-		--radio-button-color: var(--color-#{$type});
+		--radio-background: var(--color-#{$type});
+		--radio-foreground: var(--color-#{$type}-foreground);
 	}
 }

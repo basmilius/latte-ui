@@ -9,8 +9,6 @@
 
 input[type=checkbox].checkbox
 {
-	--checkbox-color-private: var(--checkbox-color, var(--color-primary));
-
 	position: relative;
 	display: inline-block;
 	appearance: none;
@@ -22,13 +20,13 @@ input[type=checkbox].checkbox
 	border-radius: var(--border-radius);
 	cursor: pointer;
 	outline: none;
-	transition: transform 210ms var(--ease-swift-out);
+	transition: all 180ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: transform;
+	will-change: background, border-color, box-shadow;
 
-	&:active
+	&:last-child
 	{
-		transform: scale3d(.85, .85, .85);
+		margin-right: 0;
 	}
 
 	&::before,
@@ -39,6 +37,8 @@ input[type=checkbox].checkbox
 		content: "";
 		background: transparent;
 		border-radius: 3px;
+		transition: inherit;
+		will-change: background;
 	}
 
 	&::before
@@ -59,27 +59,35 @@ input[type=checkbox].checkbox
 		transform: rotate(-50deg);
 	}
 
-	&:checked::before,
-	&:checked::after
+	&:hover::before,
+	&:hover::after
 	{
-		background: RGB(var(--checkbox-color-private));
-	}
-
-	&:last-child
-	{
-		margin-right: 0;
+		background: var(--form-field-outline);
 	}
 
 	&:focus
 	{
-		border-color: RGB(var(--checkbox-color-private));
+		border-color: RGB(var(--checkbox-background));
+	}
+
+	&:checked
+	{
+		background: RGB(var(--checkbox-background));
+		border-color: RGB(var(--checkbox-background));
+
+		&::before,
+		&::after
+		{
+			background: RGB(var(--checkbox-foreground));
+		}
 	}
 }
 
 @each $type in $theme-color-types
 {
-	input[type=checkbox].checkbox-#{$type}
+	.checkbox-#{$type}
 	{
-		--checkbox-color: var(--color-#{$type});
+		--checkbox-background: var(--color-#{$type});
+		--checkbox-foreground: var(--color-#{$type}-foreground);
 	}
 }

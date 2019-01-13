@@ -9,9 +9,6 @@
 
 .toggle-button
 {
-	--toggle-button-color-private: var(--toggle-button-color, var(--color-primary));
-	--toggle-button-foreground-private: var(--toggle-button-foreground, var(--color-primary-foreground));
-
 	position: relative;
 	display: inline-block;
 	height: 24px;
@@ -24,7 +21,7 @@
 	outline: none;
 	transition: all 240ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: background, border;
+	will-change: background, border, box-shadow;
 
 	&::before
 	{
@@ -41,14 +38,19 @@
 		will-change: color, transform;
 	}
 
+	&:focus
+	{
+		border-color: RGB(var(--toggle-background));
+	}
+
 	&:checked
 	{
-		background: RGB(var(--toggle-button-color-private));
-		border-color: RGB(var(--toggle-button-color-private));
+		background: RGB(var(--toggle-background));
+		border-color: RGB(var(--toggle-background));
 
 		&::before
 		{
-			background: RGB(var(--toggle-button-foreground-private));
+			background: RGB(var(--toggle-foreground));
 			transform: translate3d(12px, 0, 0);
 		}
 	}
@@ -56,9 +58,9 @@
 
 @each $type in $theme-color-types
 {
-	.toggle-button-#{$type}:checked
+	.toggle-button-#{$type}
 	{
-		--toggle-button-color: var(--color-#{$type});
-		--toggle-button-foreground: var(--color-#{$type}-foreground);
+		--toggle-background: var(--color-#{$type});
+		--toggle-foreground: var(--color-#{$type}-foreground);
 	}
 }

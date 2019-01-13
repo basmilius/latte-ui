@@ -9,10 +9,6 @@
 
 .badge
 {
-	--badge-bg-pvt: var(--badge-bg, transparent);
-	--badge-bg-hover-pvt: var(--badge-bg-hover, var(--badge-bg-pvt));
-	--badge-color-pvt: var(--badge-color, black);
-
 	position: relative;
 	display: inline-flex;
 	margin: -1px;
@@ -20,10 +16,10 @@
 	padding: 6px 12px;
 	align-items: center;
 	justify-content: center;
-	background: var(--badge-bg-pvt);
-	border: 1px solid var(--badge-bg-pvt);
+	background: RGBA(var(--badge-color), .1);
+	border: 1px solid RGBA(var(--badge-color), .1);
 	border-radius: 15px;
-	color: var(--badge-color-pvt) !important;
+	color: RGB(var(--badge-color)) !important;
 	font-size: .8em;
 	font-weight: 500;
 	line-height: 1em;
@@ -38,19 +34,17 @@
 
 	button.btn
 	{
-		--btn-background: var(--badge-bg);
-
 		height: 20px;
 		margin: -6px -10px -6px 6px;
 		width: 20px;
-		background: var(--btn-background);
+		background: RGBA(var(--badge-color), .1);
 		border-radius: inherit;
 		color: inherit;
 		overflow: hidden;
 
 		&:hover
 		{
-			--btn-background: var(--badge-bg-hover);
+			background: RGBA(var(--badge-color), .2);
 		}
 
 		i.mdi
@@ -68,7 +62,7 @@
 
 a.badge:hover
 {
-	background: var(--badge-bg-hover-pvt);
+	background: RGBA(var(--badge-color), .2);
 	cursor: pointer;
 }
 
@@ -76,9 +70,7 @@ a.badge:hover
 {
 	.badge-#{$type}
 	{
-		--badge-bg: RGBA(var(--color-#{$type}), .1);
-		--badge-bg-hover: RGBA(var(--color-#{$type}), .2);
-		--badge-color: RGB(var(--color-#{$type}));
+		--badge-color: var(--color-#{$type});
 	}
 }
 
