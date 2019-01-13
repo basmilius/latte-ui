@@ -22,8 +22,8 @@ div.notice
 	margin: -1px;
 	padding: 15px 24px;
 	align-items: center;
-	background: RGBA(var(--notice-background), .15);
-	border: 1px solid RGBA(var(--notice-background), .2);
+	background: RGBA(var(--notice-background), .1);
+	border: 1px solid RGBA(var(--notice-background), .1);
 	border-radius: var(--border-radius);
 	color: RGB(var(--notice-background));
 	font-weight: 500;
@@ -69,7 +69,7 @@ div.notice
 		align-self: stretch;
 		flex: 1 1 auto;
 
-		--outline-color: RGBA(var(--notice-background), .2);
+		--outline-color: RGBA(var(--notice-background), .1);
 	}
 
 	+ div.notice
