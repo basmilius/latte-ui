@@ -44,7 +44,7 @@
 {
 	position: relative;
 	display: flex;
-	min-height: 44px;
+	min-height: 45px;
 	margin: 0;
 	padding: 6px 30px;
 	align-items: center;
@@ -70,16 +70,22 @@
 		display: block;
 		flex: 1 1 0;
 
-		&.sub-label
+		+ span.badge
 		{
 			margin-left: 1rem;
-			opacity: .5;
 		}
 	}
 
-	i.mdi + span
+	.avatar
 	{
-		margin-left: 30px;
+		margin: 0 -3px;
+		font-size: 30px;
+	}
+
+	.avatar + *,
+	i.mdi + *
+	{
+		margin-left: 24px;
 	}
 
 	i.mdi:last-child
@@ -148,17 +154,6 @@
 		{
 			background: RGBA(var(--color-primary), .075);
 			color: RGB(var(--color-primary));
-		}
-
-		.avatar
-		{
-			margin: 0 -6px;
-			font-size: 36px;
-		}
-
-		.avatar + span
-		{
-			margin-left: 30px;
 		}
 	}
 }

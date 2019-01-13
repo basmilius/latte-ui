@@ -20,6 +20,12 @@
 	}
 }
 
+.text-soft
+{
+	color: var(--main-foreground);
+	opacity: .5;
+}
+
 h1 { @include fluid-type(400px, 1024px, 22px, 33px); }
 h2 { @include fluid-type(400px, 1024px, 20px, 28px); }
 h3 { @include fluid-type(400px, 1024px, 19px, 25px); }
