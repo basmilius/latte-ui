@@ -125,10 +125,7 @@
 			onPointerEnter()
 			{
 				if (this.timeout !== null)
-				{
 					clearTimeout(this.timeout);
-					this.timeout = null;
-				}
 
 				if (this.$parent && this.$parent.$options && this.$parent.$options.name === "latte-popup")
 					this.$parent.lattePersistent = true;
@@ -144,7 +141,7 @@
 
 				this.calculatePosition();
 
-				raf(() =>
+				this.timeout = raf(() =>
 				{
 					this.dropdown.style.removeProperty("transition");
 					this.isOpen = true;
@@ -154,11 +151,11 @@
 
 			onPointerLeave()
 			{
-				if (!this.isOpen)
-					return;
-
 				if (this.timeout !== null)
 					clearTimeout(this.timeout);
+
+				if (!this.isOpen)
+					return;
 
 				if (this.$parent && this.$parent.$options && this.$parent.$options.name === "latte-popup")
 					this.$parent.lattePersistent = false;
@@ -166,7 +163,7 @@
 				if (this.$parent && this.$parent.$options && this.$parent.$options.name === "latte-submenu")
 					this.$parent.onPointerLeave();
 
-				this.timeout = setTimeout(() =>
+				this.timeout = raf(() =>
 				{
 					this.isOpen = false;
 					this.calculatePosition();
