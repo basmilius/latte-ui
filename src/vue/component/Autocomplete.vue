@@ -37,7 +37,13 @@
 
 						<slot name="suggestion" v-bind="suggestion">
 
-							<span>{{ suggestion.label }} <span class="sub-label" v-if="suggestion.sub_label">{{ suggestion.sub_label }}</span></span>
+							<div v-if="suggestion.sub_label">
+								<span>{{ suggestion.label }}</span>
+								<span class="text-soft">{{ suggestion.sub_label }}</span>
+							</div>
+
+							<span v-else>{{ suggestion.label }}</span>
+
 							<i class="mdi mdi-chevron-right"></i>
 
 						</slot>
