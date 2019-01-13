@@ -1,0 +1,121 @@
+<!--
+  ~ Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Submenu &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<latte-notifications></latte-notifications>
+
+		<div class="toolbar" data-ui-is-nav-open role="toolbar">
+			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+			<span class="toolbar-title">Submenu</span>
+
+			<div class="d-flex align-items-center ml-auto">
+				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+					<nav class="nav nav-list">
+						<a class="nav-link"><i class="mdi mdi-content-cut"></i><span>Cut</span></a>
+						<a class="nav-link"><i class="mdi mdi-content-copy"></i><span>Copy</span></a>
+						<a class="nav-link"><i class="mdi mdi-content-paste"></i><span>Paste</span></a>
+						<div class="divider divider-horizontal"></div>
+						<latte-submenu icon="palette" label="Themes...">
+							<nav class="nav nav-list">
+								<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+								<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+							</nav>
+						</latte-submenu>
+						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+					</nav>
+				</latte-button-dropdown>
+			</div>
+		</div>
+
+		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
+			<div id="drawer" role="menu">
+				<nav class="nav" id="drawer-primary">
+					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-home"></i></a>
+					<div class="divider divider-horizontal mt-auto" role="separator"></div>
+					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-settings"></i></a>
+				</nav>
+			</div>
+		</latte-offscreen-container>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 d-flex justify-content-start">
+
+					<div class="dropdown">
+						<div class="dropdown-content">
+							<nav class="nav nav-list">
+
+								<a class="nav-link"><i class="mdi mdi-content-cut"></i><span>Cut</span></a>
+								<a class="nav-link"><i class="mdi mdi-content-copy"></i><span>Copy</span></a>
+								<a class="nav-link"><i class="mdi mdi-content-paste"></i><span>Paste</span></a>
+
+								<div class="divider divider-horizontal"></div>
+
+								<latte-submenu icon="palette" label="Themes...">
+									<nav class="nav nav-list">
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+
+										<div class="divider divider-horizontal"></div>
+
+										<latte-submenu icon="palette" label="Themes...">
+											<nav class="nav nav-list">
+												<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+												<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+											</nav>
+										</latte-submenu>
+									</nav>
+								</latte-submenu>
+								<latte-submenu icon="palette" label="Themes...">
+									<nav class="nav nav-list">
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+									</nav>
+								</latte-submenu>
+								<latte-submenu icon="palette" label="Themes...">
+									<nav class="nav nav-list">
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+										<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+									</nav>
+								</latte-submenu>
+
+							</nav>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

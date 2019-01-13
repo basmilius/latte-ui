@@ -85,7 +85,8 @@
 				popupY: 0,
 				rect: null,
 				x: 0,
-				y: 0
+				y: 0,
+				lattePersistent: false
 			};
 		},
 
@@ -145,6 +146,11 @@
 				return {
 					"transform": `translate3d(${this.popupX}px, ${this.popupY}px, 0)`
 				};
+			},
+
+			isPersistent()
+			{
+				return this.persistent || this.lattePersistent;
 			},
 
 			self()
@@ -230,7 +236,7 @@
 
 			onOutsideClick()
 			{
-				if (this.persistent)
+				if (this.isPersistent)
 					return;
 
 				this.close();

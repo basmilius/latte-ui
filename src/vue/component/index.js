@@ -41,6 +41,7 @@ export { default as RichTextEditor } from "./RichTextEditor.vue";
 export { default as Ripple } from "./Ripple.vue";
 export { default as SVGUndraw } from "./SVGUndraw.vue";
 export { default as SortingButton } from "./SortingButton.vue";
+export { default as Submenu } from "./Submenu.vue";
 export { default as Tab } from "./Tab.vue";
 export { default as TabBar } from "./TabBar.vue";
 export { default as TabContainer } from "./TabContainer.vue";
