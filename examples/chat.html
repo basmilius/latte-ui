@@ -95,7 +95,19 @@
 							</div>
 						</div>
 						<div class="panel-body">
-							MESSAGES
+
+							<div class="d-flex align-items-end justify-content-flex-start" :class="{'mt-3': i > 1}" v-for="i in [1, 2, 3, 4, 5]">
+								<i v-if="i !== 3" class="avatar message-bubble-avatar" style="background-image:url(//intranet.ideemedia.cloud/resource/image/simple-avatar/bm?seed=2002); font-size: 42px"></i>
+								<div class="message-bubble" :class="{'outgoing': i === 3, 'incoming': i !== 3}">
+									<div class="message-bubble-content">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, consequuntur odio qui quidem ratione ut? Adipisci assumenda culpa et expedita, illum maxime molestiae mollitia optio quis tempora? Enim, temporibus veritatis?
+									</div>
+									<div class="message-bubble-info">
+										5 minutes ago
+									</div>
+								</div>
+							</div>
+
 						</div>
 						<div class="panel-footer position-sticky mt-auto" style="bottom: 0; background: var(--panel-background)">
 							Hi!
