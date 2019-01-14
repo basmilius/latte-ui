@@ -53,7 +53,6 @@
 	color: RGB(var(--message-foreground));
 
 	--arrow-size: calc(var(--radius) * 2);
-	--arrow-size-l: calc(var(--radius) * 3);
 
 	&::before,
 	&::after
@@ -62,7 +61,7 @@
 		display: block;
 		bottom: 0;
 		content: "";
-		border-radius: inherit;
+		border-radius: 0 0 var(--radius) var(--radius);
 	}
 
 	&::before
@@ -74,7 +73,7 @@
 
 	&::after
 	{
-		height: var(--arrow-size-l);
+		height: var(--arrow-size);
 		width: var(--arrow-size);
 		background: var(--panel-background);
 	}
@@ -87,7 +86,7 @@
 
 	&::before
 	{
-		right: calc(100% - (var(--arrow-size) / 4));
+		right: calc(100% - (var(--arrow-size) / 2));
 	}
 
 	&::after
@@ -103,7 +102,7 @@
 
 	&::before
 	{
-		left: calc(100% - (var(--arrow-size) / 4));
+		left: calc(100% - (var(--arrow-size) / 3));
 	}
 
 	&::after
