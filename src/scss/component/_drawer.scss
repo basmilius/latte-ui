@@ -19,7 +19,7 @@ div#drawer
 	nav#drawer-primary
 	{
 		position: relative;
-		padding: 1rem 0 0;
+		padding: 0;
 		height: 100%;
 		width: var(--drawer-width-primary);
 		flex: 0 0 auto;
@@ -30,7 +30,7 @@ div#drawer
 
 		div.divider
 		{
-			margin: 0 1rem;
+			margin: 0 12px;
 			background: var(--drawer-outline-primary);
 		}
 
@@ -69,7 +69,7 @@ div#drawer
 	nav#drawer-secondary
 	{
 		position: relative;
-		padding: 2rem 0;
+		padding: 12px 0 24px 0;
 		height: 100%;
 		width: var(--drawer-width-secondary);
 		flex: 0 0 auto;
