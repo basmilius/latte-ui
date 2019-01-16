@@ -93,9 +93,9 @@
 	}
 }
 
-div.panel > .nav.nav-tabs
+.panel > .nav.nav-tabs
 {
-	padding: 0 18px;
+	padding: 0 24px;
 	border-bottom: 2px solid var(--outline-color-secondary);
 
 	div.nav-tabs-indicator
@@ -109,4 +109,25 @@ div.panel > .nav.nav-tabs
 		margin-bottom: -2px;
 		z-index: 1;
 	}
+}
+
+.panel-header .nav.nav-tabs
+{
+	margin-bottom: -2px;
+	z-index: 1;
+
+	&:first-child
+	{
+		margin-left: -6px;
+	}
+
+	&:last-child
+	{
+		margin-right: -6px;
+	}
+}
+
+.panel-header .nav.nav-tabs .nav-link
+{
+	min-height: 75px;
 }

@@ -87,3 +87,26 @@ div.notice
 		--notice-icon: "#{if(map-has-key($notice-icons, $type), #{map-get($notice-icons, $type)}, #{map-get($notice-icons, default)})}";
 	}
 }
+
+.panel > .notice
+{
+	margin: -1px 0;
+	padding: 18px 30px;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+
+	&:first-child
+	{
+		border-radius: inherit;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&:last-child
+	{
+		border-radius: inherit;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}

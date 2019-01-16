@@ -200,27 +200,6 @@ a.panel
 	margin-right: -12px;
 }
 
-.panel-header .nav.nav-tabs
-{
-	margin-bottom: -2px;
-	z-index: 1;
-
-	&:first-child
-	{
-		margin-left: -6px;
-	}
-
-	&:last-child
-	{
-		margin-right: -6px;
-	}
-}
-
-.panel-header .nav.nav-tabs .nav-link
-{
-	min-height: 75px;
-}
-
 .panel-rich-media-gutter + .panel-body
 {
 	padding-top: $panel-gutter / 2;
@@ -249,90 +228,6 @@ div.panel > span.spinner
 div.panel.is-loading > span.spinner
 {
 	display: flex;
-}
-
-div.panel-explanation
-{
-	position: relative;
-	display: flex;
-	padding: $panel-gutter;
-
-	> i.mdi
-	{
-		position: relative;
-		display: block;
-		color: RGB(var(--color-primary));
-		font-size: 36px;
-
-		@include media-breakpoint-down(lg)
-		{
-			font-size: 24px;
-		}
-	}
-
-	div.panel-explanation-content
-	{
-		position: relative;
-		display: flex;
-		margin-left: 1.6em;
-		padding: .2em 0;
-			flex-flow: column;
-		}
-}
-
-div.panel.panel-explained
-{
-	display: flex;
-
-	div.panel-explanation
-	{
-		width: 390px;
-		margin: 1.6em 0;
-		padding: 0 1.6em;
-		flex: 0 0 auto;
-		border-right: .1em solid var(--outline-color-secondary);
-	}
-
-	div.panel-content
-	{
-		flex: 1 1 auto;
-	}
-
-	&.large
-	{
-		div.panel-explanation
-		{
-			margin: 3.2em 0;
-			padding: 0 3.2em;
-		}
-
-		div.panel-content
-		{
-			padding: 3.2em;
-		}
-	}
-
-	@include media-breakpoint-down(lg)
-	{
-		flex-flow: column;
-
-		div.panel-explanation
-		{
-			margin: 0 1.6em;
-			padding: 1.6em 0;
-			width: calc(100% - 3.2em);
-			flex: 1 1 auto;
-			border-right: none;
-			border-bottom: .1em solid var(--outline-color-secondary);
-		}
-
-		&.large div.panel-explanation
-		{
-			margin: 0 3.2em;
-			padding: 3.2em 0;
-			width: calc(100% - 96px);
-		}
-	}
 }
 
 .panel-table
