@@ -16,11 +16,20 @@ $panel-gutter: 30px;
 	align-items: stretch;
 	flex-flow: column;
 
+	&:not(.panel-blank):not(.panel-outline)
+	{
+		box-shadow: var(--panel-elevation);
+	}
+
 	&:not(.panel-blank)
 	{
 		background: var(--panel-background);
 		border-radius: var(--border-radius);
-		box-shadow: var(--panel-elevation);
+	}
+
+	&.panel-outline
+	{
+		box-shadow: 0 0 0 1px var(--outline-color-secondary);
 	}
 
 	+ .panel,
@@ -60,7 +69,7 @@ a.panel
 
 	+ .panel-body
 	{
-		border-top: var(--divider-size, 1px) solid var(--outline-color-secondary);
+		border-top: var(--divider-size) solid var(--outline-color-secondary);
 	}
 }
 
@@ -82,7 +91,7 @@ a.panel
 
 	&:not(:first-child)
 	{
-		border-top: var(--divider-size, 1px) solid var(--outline-color-secondary);
+		border-top: var(--divider-size) solid var(--outline-color-secondary);
 	}
 
 	.divider
@@ -102,7 +111,7 @@ a.panel
 
 	&:not(:last-child)
 	{
-		border-bottom: var(--divider-size, 1px) solid var(--outline-color-secondary);
+		border-bottom: var(--divider-size) solid var(--outline-color-secondary);
 	}
 
 	&.panel-header-sticky

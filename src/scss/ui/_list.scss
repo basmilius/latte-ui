@@ -66,7 +66,7 @@ a.list-item
 
 .list-divided .list-item + .list-item
 {
-	border-top: var(--divider-size, 1px) solid var(--outline-color-secondary);
+	border-top: var(--divider-size) solid var(--outline-color-secondary);
 }
 
 .panel > .list
