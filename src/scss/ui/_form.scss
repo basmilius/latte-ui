@@ -56,7 +56,6 @@ label.col-form-label
 	--range-thumb-size: 24px;
 	--range-track-height: 6px;
 
-	position: relative;
 	appearance: none;
 	height: var(--range-thumb-size);
 	padding: 0;
@@ -163,7 +162,6 @@ label.col-form-label
 
 .custom-select
 {
-	position: relative;
 	display: block;
 	appearance: none;
 	padding: 8px 16px;

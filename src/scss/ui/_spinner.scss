@@ -21,7 +21,6 @@
 
 span.spinner
 {
-	position: relative;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -43,7 +42,6 @@ i.mdi.spinner
 span.spinner::before,
 i.mdi.spinner::before
 {
-	position: relative;
 	display: block;
 	height: 1em;
 	width: 1em;

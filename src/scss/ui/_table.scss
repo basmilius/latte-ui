@@ -9,7 +9,6 @@
 
 table.table
 {
-	position: relative;
 	width: 100%;
 
 	$border: 1px solid var(--outline-color-secondary);
@@ -37,7 +36,6 @@ table.table
 	tr td,
 	tr th
 	{
-		position: relative;
 		height: inherit;
 		margin: 0;
 		padding: 0;
@@ -61,7 +59,6 @@ table.table
 
 	.column-content
 	{
-		position: relative;
 		display: flex;
 		height: 100%;
 		margin: 0;
@@ -157,7 +154,6 @@ table.table
 
 		input
 		{
-			position: relative;
 			display: block;
 			padding: 12px 24px;
 			width: 100%;

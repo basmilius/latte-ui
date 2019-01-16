@@ -14,7 +14,6 @@
 	--btn-font-size: 1rem;
 	--btn-icon-size: 24px;
 
-	position: relative;
 	display: inline-flex;
 	appearance: none;
 	height: var(--btn-height, auto);
@@ -49,8 +48,6 @@
 
 	i.mdi
 	{
-		position: relative;
-		display: block;
 		font-size: var(--btn-icon-size);
 	}
 

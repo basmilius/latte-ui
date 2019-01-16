@@ -9,31 +9,24 @@
 
 div.dropdown
 {
-	position: relative;
+	position: fixed;
 	display: block;
+	top: 0;
+	left: 0;
 	background: var(--dropdown-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--dropdown-elevation);
-	z-index: 0;
+	opacity: 0;
+	pointer-events: none;
+	transition: 180ms var(--ease-swift-out);
+	transition-property: opacity, transform;
+	will-change: opacity, transform;
+	z-index: 3000;
 
-	&.dropdown-fixed
+	&.is-open
 	{
-		position: fixed;
-		display: block;
-		top: 0;
-		left: 0;
-		opacity: 0;
-		pointer-events: none;
-		transition: 180ms var(--ease-swift-out);
-		transition-property: opacity, transform;
-		will-change: opacity, transform;
-		z-index: 3000;
-
-		&.is-open
-		{
-			opacity: 1;
-			pointer-events: all;
-		}
+		opacity: 1;
+		pointer-events: all;
 	}
 
 	&::after

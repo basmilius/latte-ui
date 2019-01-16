@@ -125,7 +125,7 @@
 
 			dropdownClasses()
 			{
-				const classes = ["dropdown", "dropdown-fixed"];
+				const classes = ["dropdown"];
 
 				if (this.withArrow)
 				{

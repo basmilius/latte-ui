@@ -40,19 +40,14 @@ div.latte-autocomplete
 	div.dropdown
 	{
 		position: absolute;
-		margin: 0 -.95rem;
-		width: calc(100% + 1.9rem);
-		opacity: 0;
-		pointer-events: none;
+		margin: 0 -15px;
+		top: 100%;
+		width: calc(100% + 30px);
 		transform: translate3d(0, 24px, 0);
-		transition: all 180ms var(--ease-swift-out);
-		will-change: opacity, transform;
 		z-index: 5;
 
 		&.is-open
 		{
-			opacity: 1;
-			pointer-events: all;
 			transform: translate3d(0, 0, 0);
 		}
 	}

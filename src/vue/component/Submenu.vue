@@ -19,7 +19,7 @@
 			</a>
 		</slot>
 
-		<div ref="dropdown" class="dropdown dropdown-fixed" :class="{'is-open': isOpen}" :style="dropdownStyles" @pointerover="onPointerEnter" @pointerleave="onPointerLeave">
+		<div ref="dropdown" class="dropdown" :class="{'is-open': isOpen}" :style="dropdownStyles" @pointerover="onPointerEnter" @pointerleave="onPointerLeave">
 			<div class="dropdown-content">
 				<slot></slot>
 			</div>
