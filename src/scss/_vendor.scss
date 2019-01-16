@@ -27,8 +27,14 @@ $mdi-sizes: 18 24 36 48;
 {
 	.mdi-#{$mdi-size}px
 	{
-		font-size: $mdi-size * 1px;
+		font-size: $mdi-size * 1px !important;
 	}
+}
+
+:root
+{
+	--mdi-background: RGB(var(--color-primary));
+	--mdi-foreground: RGB(var(--color-primary-foreground));
 }
 
 i.mdi.mdi-branding-logo
@@ -96,6 +102,20 @@ i.mdi.latte-sorting
 		content: "\F143";
 		color: RGB(var(--color-primary));
 		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, -.27em, 0);
+	}
+}
+
+i.mdi.icon-rounded
+{
+	height: 2em;
+	padding: .5em;
+	width: 2em;
+
+	&.icon-rounded-bg
+	{
+		background: var(--mdi-background);
+		border-radius: 1em;
+		color: var(--mdi-foreground);
 	}
 }
 

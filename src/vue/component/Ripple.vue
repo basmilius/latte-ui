@@ -77,6 +77,8 @@
 			this.container.classList.add("ripple-container");
 			this.$el.prepend(this.container);
 
+			this.$el.classList.add("is-ripple");
+
 			if (window.TouchEvent)
 			{
 				this.$el.addEventListener("touchmove", evt => this.onPointerCancel(evt), {passive: true});

@@ -1,0 +1,133 @@
+<!--
+  ~ Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Lists &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+	</style>
+</head>
+<body>
+	<main id="app">
+
+		<div class="toolbar justify-content-center" role="toolbar">
+			<span class="toolbar-title">Lists</span>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="list">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<strong>List item {{ i }}</strong>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="list">
+							<a class="list-item" v-for="i in [1, 2, 3]">
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="list list-divided">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="list">
+							<latte-ripple as="a" class="list-item" v-for="i in [1, 2, 3]">
+								<img src="../dist/image/wallpaper/1.jpg" alt="Avatar" class="avatar avatar-36px list-item-prefix"/>
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+							</latte-ripple>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="list">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+								<img src="../dist/image/wallpaper/1.jpg" alt="Avatar" class="avatar avatar-36px list-item-suffix"/>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="list">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<img src="../dist/image/wallpaper/1.jpg" alt="Avatar" class="avatar avatar-36px list-item-prefix"/>
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+								<input type="checkbox" class="toggle-button toggle-button-primary list-item-suffix" :checked="i === 2"/>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="list">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<i class="mdi mdi-home list-item-prefix icon-rounded" :class="{'icon-rounded-bg': i === 1}"></i>
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

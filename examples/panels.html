@@ -29,31 +29,9 @@
 
 		<latte-notifications></latte-notifications>
 
-		<div class="toolbar" data-ui-is-nav-open role="toolbar">
-			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+		<div class="toolbar justify-content-center" role="toolbar">
 			<span class="toolbar-title">Panels</span>
-
-			<div class="d-flex align-items-center ml-auto">
-				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
-					<nav class="nav nav-list">
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
-						<div class="divider divider-horizontal"></div>
-						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
-					</nav>
-				</latte-button-dropdown>
-			</div>
 		</div>
-
-		<latte-offscreen-container ref="drawer" class="drawer-container has-primary" position="left">
-			<div id="drawer" role="menu">
-				<nav class="nav" id="drawer-primary">
-					<a class="nav-item" aria-label="Dashboard" role="menuitem" data-tooltip="Dashboard" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-home"></i></a>
-					<div class="divider divider-horizontal mt-auto" role="separator"></div>
-					<a class="nav-item" aria-label="Settings" role="menuitem" data-tooltip="Settings" data-tooltip-class="tooltip-primary tooltip-right"><i class="mdi mdi-settings"></i></a>
-				</nav>
-			</div>
-		</latte-offscreen-container>
 
 		<div class="content">
 			<div class="row">
@@ -175,6 +153,19 @@
 
 				</div>
 				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Panel with list</span></div>
+						<div class="list">
+							<div class="list-item" v-for="i in [1, 2, 3]">
+								<img src="../dist/image/wallpaper/1.jpg" alt="Avatar" class="avatar avatar-36px list-item-prefix"/>
+								<div class="list-item-caption">
+									<strong>List item {{ i }}</strong>
+									<span class="text-soft">Lorem ipsum dolor sot amet&hellip;</span>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="panel">
 						<div class="panel-rich-media panel-rich-media-gutter" style="height:240px;background-image:url(//i.scdn.co/image/9028f2793ba5a4f6166b12d7b61fafcbd86f4178)"></div>

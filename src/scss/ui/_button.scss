@@ -80,13 +80,13 @@
 		background: paint(btn-contained-background);
 		color: RGB(var(--btn-foreground));
 
-		&:hover,
-		&:focus
+		&:not(.is-ripple):hover,
+		&:not(.is-ripple):focus
 		{
 			--btn-contained-hover-state: .1;
 		}
 
-		&:active
+		&:not(.is-ripple):active
 		{
 			--btn-contained-hover-state: .2;
 		}
@@ -101,8 +101,8 @@
 		background: RGBA(var(--btn-background, var(--color-primary)), .1);
 		color: RGB(var(--btn-background, var(--color-primary)));
 
-		&:hover,
-		&:focus
+		&:not(.is-ripple):hover,
+		&:not(.is-ripple):focus
 		{
 			--spinner-background: var(--btn-foreground);
 
@@ -110,7 +110,7 @@
 			color: RGB(var(--btn-foreground));
 		}
 
-		&:active
+		&:not(.is-ripple):active
 		{
 			background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
 		}
@@ -125,13 +125,13 @@
 		background: transparent;
 		color: RGB(var(--btn-background, var(--color-primary)));
 
-		&:hover,
-		&:focus
+		&:not(.is-ripple):hover,
+		&:not(.is-ripple):focus
 		{
 			background: RGBA(var(--btn-background, var(--color-primary)), .1);
 		}
 
-		&:active
+		&:not(.is-ripple):active
 		{
 			background: RGBA(var(--btn-background, var(--color-primary)), .2);
 		}
