@@ -7,11 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$elevation-baseline-color: rgb(127, 127, 127) !default;
-$elevation-umbra-opacity: .1 !default;
-$elevation-penumbra-opacity: .07 !default;
-$elevation-ambient-opacity: .12 !default;
-
 $elevation-umbra-map: (
 		0: "0px 0px 0px 0px",
 		1: "0px 2px 1px -1px",
@@ -101,7 +96,7 @@ $elevation-ambient-map: (
 	@return box-shadow $duration $easing;
 }
 
-@function elevation-generate-rgb($z, $r: red($elevation-baseline-color), $g: green($elevation-baseline-color), $b: blue($elevation-baseline-color), $opacity-boost: 0)
+@function elevation-generate($z, $colorProperty: var(--default-elevation-color), $opacity-boost: 0)
 {
 	@if type-of($z) != number or not unitless($z)
 	{
@@ -117,43 +112,14 @@ $elevation-ambient-map: (
 	$penumbra-z-value: map-get($elevation-penumbra-map, $z);
 	$ambient-z-value: map-get($elevation-ambient-map, $z);
 
-	$umbra-color: rgba($r, $g, $b, $elevation-umbra-opacity + $opacity-boost);
-	$penumbra-color: rgba($r, $g, $b, $elevation-penumbra-opacity + $opacity-boost);
-	$ambient-color: rgba($r, $g, $b, $elevation-ambient-opacity + $opacity-boost);
+	$umbra-color: rgba($colorProperty, $elevation-umbra-opacity + $opacity-boost);
+	$penumbra-color: rgba($colorProperty, $elevation-penumbra-opacity + $opacity-boost);
+	$ambient-color: rgba($colorProperty, $elevation-ambient-opacity + $opacity-boost);
 
 	@return #{"#{$umbra-z-value} #{$umbra-color}"}, #{"#{$penumbra-z-value} #{$penumbra-color}"}, #{$ambient-z-value} $ambient-color;
 }
 
-@function elevation-generate($z, $color: $elevation-baseline-color, $opacity-boost: 0)
+@mixin elevation($z, $colorProperty: var(--default-elevation-color), $opacity-boost: 0)
 {
-	@return elevation-generate-rgb($z, red($color), green($color), blue($color), $opacity-boost);
-}
-
-@mixin elevation-rgb($z, $important: false, $additional-properties: null, $r: red($elevation-baseline-color), $g: green($elevation-baseline-color), $b: blue($elevation-baseline-color), $opacity-boost: 0)
-{
-	@if ($additional-properties != null)
-	{
-		box-shadow: elevation-generate-rgb($z, $r, $g, $b, $opacity-boost), $additional-properties if($important, !important, unquote(""));
-	} @else
-	{
-		box-shadow: elevation-generate-rgb($z, $r, $g, $b, $opacity-boost) if($important, !important, unquote(""));
-	}
-}
-
-@mixin elevation($z, $important: false, $additional-properties: null, $color: $elevation-baseline-color, $opacity-boost: 0)
-{
-	@include elevation-rgb($z, $important, $additional-properties, red($color), green($color), blue($color), $opacity-boost);
-}
-
-@mixin simple-elevation($z, $color: $elevation-baseline-color, $opacity-boost: 0)
-{
-	box-shadow: elevation-generate-rgb($z, red($color), green($color), blue($color), $opacity-boost);
-}
-
-@mixin theme-elevation($z, $important: false, $additional-properties: null, $color: primary, $opacity-boost: 0)
-{
-	$color: if($color == light, dark, $color);
-	$color: --color-#{$color};
-
-	@include elevation-rgb($z, $important, $additional-properties, var(#{$color}-r), var(#{$color}-g), var(#{$color}-b), $opacity-boost);
+	box-shadow: elevation-generate($z, $colorProperty, $opacity-boost);
 }

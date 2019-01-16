@@ -74,7 +74,7 @@
 	{
 		--btn-height: 36px;
 		--btn-padding: 6px 15px;
-		--spinner-color: var(--btn-foreground);
+		--spinner-background: var(--btn-foreground);
 
 		background: RGB(var(--btn-background));
 		background: paint(btn-contained-background);
@@ -96,7 +96,7 @@
 	{
 		--btn-height: 36px;
 		--btn-padding: 6px 15px;
-		--spinner-color: var(--btn-background);
+		--spinner-background: var(--btn-background);
 
 		background: RGBA(var(--btn-background, var(--color-primary)), .1);
 		color: RGB(var(--btn-background, var(--color-primary)));
@@ -104,7 +104,7 @@
 		&:hover,
 		&:focus
 		{
-			--spinner-color: var(--btn-foreground);
+			--spinner-background: var(--btn-foreground);
 
 			background: RGB(var(--btn-background));
 			color: RGB(var(--btn-foreground));
@@ -120,7 +120,7 @@
 	{
 		--btn-height: 36px;
 		--btn-padding: 6px 15px;
-		--spinner-color: var(--btn-background);
+		--spinner-background: var(--btn-background);
 
 		background: transparent;
 		color: RGB(var(--btn-background, var(--color-primary)));
