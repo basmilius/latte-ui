@@ -162,6 +162,8 @@
 		{
 			if (this.spinner !== null)
 				this.spinner.remove();
+
+			this.subscriptions.refresh.unsubscribe();
 		},
 
 		data()
@@ -179,6 +181,9 @@
 							order: ""
 						}
 					}
+				},
+				subscriptions: {
+					refresh: null
 				},
 				isLoading: false,
 				actions: [],
@@ -200,7 +205,7 @@
 
 		mounted()
 		{
-			Latte.actions.on("data-tables:refresh", () => this.reload());
+			this.subscriptions.refresh = Latte.actions.on("data-tables:refresh", () => this.reload());
 
 			this.addSpinner();
 			this.loadSetup();

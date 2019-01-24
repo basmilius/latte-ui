@@ -15,6 +15,59 @@ import { updateURLHash } from "./core.js";
 const actions = {};
 
 /**
+ * Class ActionSubscription
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @version 1.0.0
+ */
+class ActionSubscription
+{
+
+	/**
+	 * ActionSubscription Constructor.
+	 *
+	 * @param {String} action
+	 * @param {Function} callback
+	 *
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.0.0
+	 */
+	constructor(action, callback)
+	{
+		this.action = action;
+		this.callback = callback;
+		this.id = performance.now();
+	}
+
+	/**
+	 * Calls the handler callback.
+	 *
+	 * @param {*} data
+	 * @param {HTMLElement} el
+	 * @param {Event} evt
+	 *
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.0.0
+	 */
+	handle(data, el, evt)
+	{
+		this.callback(data, el, evt);
+	}
+
+	/**
+	 * Unsubscribes the action callback.
+	 *
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.0.0
+	 */
+	unsubscribe()
+	{
+		actions[this.action] = actions[this.action].filter(sub => sub.id !== this.id);
+	}
+
+}
+
+/**
  * Dispatches an action.
  *
  * @param {String} action
@@ -30,7 +83,7 @@ export function dispatch(action, data = undefined, el = undefined, evt = undefin
 	if (typeof actions[action] === "undefined")
 		return;
 
-	actions[action].forEach(callback => callback(data, el, evt));
+	actions[action].forEach(sub => sub.handle(data, el, evt));
 }
 
 /**
@@ -47,7 +100,11 @@ export function on(action, callback)
 	if (typeof actions[action] === "undefined")
 		actions[action] = [];
 
-	actions[action].push(callback);
+	const sub = new ActionSubscription(action, callback);
+
+	actions[action].push(sub);
+
+	return sub;
 }
 
 function onAction(element, evt)
@@ -58,7 +115,7 @@ function onAction(element, evt)
 	if (typeof actions[action] === "undefined")
 		return;
 
-	actions[action].forEach(callback => callback(actionData, element, evt));
+	actions[action].forEach(sub => sub.handle(actionData, element, evt));
 }
 
 export default {
