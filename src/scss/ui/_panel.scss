@@ -16,7 +16,7 @@ $panel-gutter: 30px;
 	align-items: stretch;
 	flex-flow: column;
 
-	&:not(.panel-blank):not(.panel-outline)
+	&:not(.panel-blank)
 	{
 		box-shadow: var(--panel-elevation);
 	}
@@ -29,7 +29,7 @@ $panel-gutter: 30px;
 
 	&.panel-outline
 	{
-		box-shadow: 0 0 0 1px var(--outline-color-secondary);
+		--panel-elevation: 0 0 0 var(--divider-size) var(--outline-color-secondary);
 	}
 
 	+ .panel,
@@ -56,7 +56,7 @@ a.panel
 
 	&:hover
 	{
-		box-shadow: var(--panel-elevation-hover);
+		--panel-elevation: var(--panel-elevation-hover);
 	}
 }
 
