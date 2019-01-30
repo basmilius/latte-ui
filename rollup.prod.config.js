@@ -20,14 +20,21 @@ const replace = require("rollup-plugin-replace");
 const uglify = require("rollup-plugin-uglify").uglify;
 const vue = require("rollup-plugin-vue");
 
+const pkg = require("./package.json");
+const external = Object.keys(pkg.dependencies);
+
 export default {
 	input: "src/js/app.js",
 	output: {
 		file: "dist/latte.js",
 		format: "iife",
 		indent: false,
-		sourcemap: true
+		sourcemap: true,
+		globals: {
+			"vue": "Vue"
+		}
 	},
+	external,
 	treeshake: true,
 	plugins: [
 

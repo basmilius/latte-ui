@@ -9,6 +9,8 @@
 
 "use strict";
 
+import Vue from "vue";
+
 import "../scss/app.scss";
 import "./z";
 import "./hid/OutsideEvent";

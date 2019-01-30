@@ -15,12 +15,19 @@ const cssnano = require("cssnano");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const vue = require("rollup-plugin-vue");
 
+const pkg = require("./package.json");
+const external = Object.keys(pkg.dependencies);
+
 export default {
 	input: "src/js/app.js",
 	output: {
 		file: "dist/latte.js",
-		format: "iife"
+		format: "iife",
+		globals: {
+			"vue": "Vue"
+		}
 	},
+	external,
 	plugins: [
 
 		nodeResolve({

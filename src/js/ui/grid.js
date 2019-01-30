@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import Vue from "vue";
+
 export const eventBus = new Vue({});
 
 export function bottom(layout)
