@@ -52,7 +52,7 @@ export function getLattePath()
 	const lattejs = document.querySelector(`script[src*="latte.js"]`);
 
 	if (lattejs === null)
-		throw new Error("Could not get latte.js path. The world ends here...");
+		return lattePath = "/"; // We're going to play it save.
 
 	return lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
 }
