@@ -9,6 +9,8 @@
 
 "use strict";
 
+import Vue from "vue";
+
 import actions from "./actions";
 import api from "./api";
 import clipboard from "./util/clipboard";

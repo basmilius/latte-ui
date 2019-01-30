@@ -85,6 +85,8 @@
 
 <script>
 
+	import Vue from "vue";
+
 	import { id, request } from "../../js/api";
 	import { handleError } from "../../js/core";
 	import { createElement } from "../../js/util/dom";

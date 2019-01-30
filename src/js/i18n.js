@@ -9,6 +9,8 @@
 
 "use strict";
 
+import Vue from "vue";
+
 /**
  * Replaces params in a string.
  *

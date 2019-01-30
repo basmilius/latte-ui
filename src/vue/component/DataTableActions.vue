@@ -23,6 +23,8 @@
 
 <script>
 
+	import Vue from "vue";
+
 	export default {
 
 		name: "latte-data-table-actions",

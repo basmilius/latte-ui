@@ -19,6 +19,8 @@
 
 <script>
 
+	import Vue from "vue";
+
 	import { dispatch, on } from "../../js/actions";
 	import { getMainElement, timeout } from "../../js/core";
 	import { live, raf } from "../../js/util/dom";

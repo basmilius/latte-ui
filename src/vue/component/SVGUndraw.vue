@@ -15,6 +15,8 @@
 
 <script>
 
+	import Vue from "vue";
+
 	import { handleError } from "../../js/core";
 	import { request } from "../../js/api";
 

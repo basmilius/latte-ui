@@ -9,6 +9,8 @@
 
 "use strict";
 
+import Vue from "vue";
+
 import { dispatch, on } from "../actions";
 import { getCookie, setCookie } from "../util/cookies";
 import { interval } from "../core";
