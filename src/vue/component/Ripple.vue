@@ -46,7 +46,6 @@
 				type: Boolean
 			},
 
-			// TODO(Bas): Implement centered ripple.
 			rippleCentered: {
 				default: false,
 				required: false,
@@ -54,9 +53,15 @@
 			},
 
 			rippleDuration: {
-				default: 330,
+				default: 180,
 				required: false,
 				type: Number
+			},
+
+			rippleOut: {
+				default: false,
+				required: false,
+				type: Boolean
 			}
 
 		},
@@ -71,10 +76,19 @@
 			};
 		},
 
+		destroyed()
+		{
+			this.container.remove();
+		},
+
 		mounted()
 		{
 			this.container = document.createElement("div");
 			this.container.classList.add("ripple-container");
+
+			if (this.rippleOut)
+				this.container.classList.add("is-ripple-out");
+
 			this.$el.prepend(this.container);
 
 			this.$el.classList.add("is-ripple");
@@ -112,11 +126,31 @@
 
 			createRipple(x, y)
 			{
+				const rect = this.$el.getBoundingClientRect();
+				const size = Math.max(rect.width, rect.height);
+
+				if (this.rippleCentered)
+				{
+					x = rect.width / 2;
+					y = rect.height / 2;
+				}
+
 				const ripple = document.createElement("div");
 				ripple.classList.add("ripple");
-				ripple.style.setProperty("top", `${y - 18}px`);
-				ripple.style.setProperty("left", `${x - 18}px`);
-				ripple.style.setProperty("--ripple-duration-private", `${this.rippleDuration + 180}ms`);
+				ripple.style.setProperty("top", `calc(${y}px - (var(--ripple-size) / 2))`);
+				ripple.style.setProperty("left", `calc(${x}px - (var(--ripple-size) / 2))`);
+				ripple.style.setProperty("--ripple-duration", `${this.rippleDuration + 180}ms`);
+
+				if (this.rippleOut)
+				{
+					ripple.style.setProperty("--ripple-scale", `${Math.max(size * .25, 12) / size}`);
+					ripple.style.setProperty("--ripple-size", `${size * 1.25}px`);
+				}
+				else
+				{
+					ripple.style.setProperty("--ripple-scale", `${Math.max(size * .25, 12) / size}`);
+					ripple.style.setProperty("--ripple-size", `${size * .75}px`);
+				}
 
 				this.container.appendChild(ripple);
 
@@ -140,10 +174,8 @@
 				this.preparedRipple = this.createRipple(x, y);
 			},
 
-			onPointerUp(evt)
+			onPointerUp()
 			{
-				const {x, y} = relativeCoordsTo(this.$el, evt);
-
 				if (this.backgroundTimeout !== null)
 					clearTimeout(this.backgroundTimeout);
 
@@ -159,8 +191,6 @@
 				const ripple = this.preparedRipple;
 				this.preparedRipple = null;
 
-				ripple.style.setProperty("top", `${y - 18}px`);
-				ripple.style.setProperty("left", `${x - 18}px`);
 				ripple.classList.add("is-scaling");
 				ripple.classList.add("is-visible");
 
@@ -174,10 +204,18 @@
 
 			isBackgroundVisible()
 			{
-				if (this.isBackgroundVisible && this.rippleBackground)
+				if (this.isBackgroundVisible && this.rippleBackground && !this.rippleOut)
 					this.container.classList.add("is-background-visible");
 				else
 					this.container.classList.remove("is-background-visible");
+			},
+
+			rippleOut()
+			{
+				if (this.rippleOut)
+					this.container.classList.add("is-ripple-out");
+				else
+					this.container.classList.remove("is-ripple-out");
 			}
 
 		}

@@ -14,6 +14,7 @@
 	--btn-font-size: 1rem;
 	--btn-icon-size: 24px;
 
+	position: relative;
 	display: inline-flex;
 	appearance: none;
 	height: var(--btn-height, auto);
@@ -72,6 +73,7 @@
 {
 	--btn-height: 36px;
 	--btn-padding: 6px 15px;
+	--ripple-color: var(--btn-foreground);
 	--spinner-background: var(--btn-foreground);
 
 	background: RGB(var(--btn-background));
@@ -94,6 +96,7 @@
 {
 	--btn-height: 36px;
 	--btn-padding: 6px 15px;
+	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
 	background: RGBA(var(--btn-background, var(--color-primary)), .1);
@@ -118,6 +121,7 @@
 {
 	--btn-height: 36px;
 	--btn-padding: 6px 15px;
+	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
 	background: transparent;
