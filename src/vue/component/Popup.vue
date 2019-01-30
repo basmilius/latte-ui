@@ -34,9 +34,7 @@
 
 			associateWith: {
 				default: undefined,
-				required: false,
-				type: HTMLElement | Vue | undefined,
-				validator: val => val === undefined || val instanceof Vue || val instanceof HTMLElement
+				required: false
 			},
 
 			marginX: {
