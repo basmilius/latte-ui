@@ -9,6 +9,7 @@
 
 "use strict";
 
+import "../scss/app.scss";
 import "./z";
 import "./hid/OutsideEvent";
 import "./hid/PointerEvents";

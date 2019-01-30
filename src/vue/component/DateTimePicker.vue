@@ -50,7 +50,7 @@
 				type: String
 			},
 
-			palceholder: {
+			placeholder: {
 				default: "",
 				required: false,
 				type: String

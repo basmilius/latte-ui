@@ -7,4 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import "./scss/app.scss";
+import devConfig from "./rollup.dev.config";
+import prodConfig from "./rollup.prod.config";
+
+export default cla => cla.configDebug === true ? devConfig : prodConfig;
