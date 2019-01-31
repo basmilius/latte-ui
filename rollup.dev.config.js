@@ -24,6 +24,7 @@ export default {
 		file: "dist/latte.js",
 		format: "iife",
 		globals: {
+			"moment": "moment",
 			"vue": "Vue"
 		}
 	},

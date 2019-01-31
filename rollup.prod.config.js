@@ -31,6 +31,7 @@ export default {
 		indent: false,
 		sourcemap: true,
 		globals: {
+			"moment": "moment",
 			"vue": "Vue"
 		}
 	},
