@@ -122,6 +122,17 @@ export function relativeCoordsTo(element, evt)
 	};
 }
 
+export function removeSavedFromQueryString()
+{
+	let queryString = window.location.search.substr(1);
+
+	if (queryString === "")
+		return;
+
+	if (queryString.substr(0, 6) === "saved=")
+		history.replaceState(null, '', window.location.pathname || window.location.path);
+}
+
 export function toDOM(str)
 {
 	const temp = document.createElement("div");
@@ -152,6 +163,8 @@ export default {
 	raf,
 
 	relativeCoordsTo,
+
+	removeSavedFromQueryString,
 
 	toDOM
 

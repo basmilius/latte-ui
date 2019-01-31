@@ -118,13 +118,42 @@ function onAction(element, evt)
 	actions[action].forEach(sub => sub.handle(actionData, element, evt));
 }
 
-export default {
+function onHashChange()
+{
+	const hash = location.hash.substr(1);
 
-	dispatch,
+	if (!hash || hash.length === 0)
+		return;
 
-	on
+	const raw = hash.split("&");
+	const parameters = {};
 
+	for (let item of raw)
+	{
+		const kv = item.split("=", 2);
+		let value = kv[1] || null;
+		let vars = {};
+
+		if (value.indexOf("/") > -1)
+		{
+			const ad = value.split("/");
+			value = ad.shift();
+
+			for (let d of ad)
+			{
+				const kv = d.split(":", 2);
+				vars[kv[0]] = kv[1];
+			}
+		}
+
+		parameters[kv[0]] = {value, vars};
+	}
+
+	dispatch("latte:hash-change", parameters);
 }
+
+window.addEventListener("hashchange", () => onHashChange(), false);
+window.addEventListener("load", () => onHashChange(), false);
 
 live(document.body, "[data-action]", "click", (element, evt) => onAction(element, evt), {passive: true});
 
@@ -141,3 +170,11 @@ on("latte:hash-change", parameters =>
 
 	dispatch(action.value, action.vars);
 });
+
+export default {
+
+	dispatch,
+
+	on
+
+}

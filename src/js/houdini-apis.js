@@ -24,10 +24,11 @@ function registerCSSProperties()
 	})
 }
 
-// From here we need to check if each Houdini API is available.
+export function initializeHoudiniApis()
+{
+	if (CSS && CSS.paintWorklet)
+		registerCSSPaintWorklets();
 
-if (CSS && CSS.paintWorklet)
-	registerCSSPaintWorklets();
-
-if (CSS && CSS.registerProperty)
-	registerCSSProperties();
+	if (CSS && CSS.registerProperty)
+		registerCSSProperties();
+}

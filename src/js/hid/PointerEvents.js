@@ -9,9 +9,8 @@
 
 import { isTouchOnlyDevice } from "../util/dom";
 
-(function ()
+export function registerPointerEventsPolyfill()
 {
-
 	if (typeof PointerEvent !== "undefined")
 		return; // Yay for this browser!
 
@@ -62,5 +61,4 @@ import { isTouchOnlyDevice } from "../util/dom";
 		else
 			original.addEventListener.call(this, overrideType, listener, options);
 	};
-
-})();
+}

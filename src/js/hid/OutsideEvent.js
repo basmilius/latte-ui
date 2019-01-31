@@ -60,18 +60,21 @@ class OutsideEvent
 
 }
 
-EventTarget.prototype.addOutsideEventListener = function (type, listener, options = {})
+export function registerOutsideEvents()
 {
-	if (this.outsideEvent === undefined)
-		this.outsideEvent = new OutsideEvent(this);
+	EventTarget.prototype.addOutsideEventListener = function (type, listener, options = {})
+	{
+		if (this.outsideEvent === undefined)
+			this.outsideEvent = new OutsideEvent(this);
 
-	this.outsideEvent.addEventListener(type, listener, options);
-};
+		this.outsideEvent.addEventListener(type, listener, options);
+	};
 
-EventTarget.prototype.removeOutsideEventListener = function (type, listener, options = {})
-{
-	if (this.outsideEvent === undefined)
-		this.outsideEvent = new OutsideEvent(this);
+	EventTarget.prototype.removeOutsideEventListener = function (type, listener, options = {})
+	{
+		if (this.outsideEvent === undefined)
+			this.outsideEvent = new OutsideEvent(this);
 
-	this.outsideEvent.removeEventListener(type, listener, options);
-};
+		this.outsideEvent.removeEventListener(type, listener, options);
+	};
+}

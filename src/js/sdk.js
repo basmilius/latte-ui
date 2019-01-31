@@ -26,7 +26,7 @@ import overlays from "./ui/overlays";
 import panels from "./ui/panels";
 import string from "./util/string";
 
-window.Latte = {
+export default {
 	actions,
 	api,
 	clipboard,
