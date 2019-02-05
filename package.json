@@ -31,28 +31,26 @@
 		"chokidar": "^2.0.4",
 		"cssnano": "^4.1.8",
 		"cssnano-preset-advanced": "^4.0.6",
-		"ncp": "^2.0.0",
 		"node-sass": "^4.11.0",
-		"nodemon": "^1.18.9",
-		"rollup": "^1.0.2",
+		"rollup": "^1.1.2",
 		"rollup-plugin-babel": "^4.3.2",
 		"rollup-plugin-buble": "^0.19.6",
 		"rollup-plugin-cleanup": "^3.1.1",
 		"rollup-plugin-commonjs": "^9.2.0",
 		"rollup-plugin-copy-glob": "^0.3.0",
 		"rollup-plugin-node-resolve": "^4.0.0",
-		"rollup-plugin-postcss": "^2.0.1",
+		"rollup-plugin-postcss": "^2.0.3",
 		"rollup-plugin-replace": "^2.1.0",
 		"rollup-plugin-uglify": "^6.0.2",
 		"rollup-plugin-vue": "^4.6.2",
-		"vue-template-compiler": "^2.6.0-beta.3"
+		"vue-template-compiler": "^2.6.2"
 	},
 	"dependencies": {
 		"@mdi/font": "^3.4.93",
 		"bootstrap": "^4.2.1",
 		"chart.js": "^2.7.3",
 		"moment": "^2.24.0",
-		"typescript": "^3.2.4",
-		"vue": "^2.6.0-beta.3"
+		"typescript": "^3.3.1",
+		"vue": "^2.6.2"
 	}
 }
