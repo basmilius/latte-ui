@@ -57,6 +57,11 @@ export function getLattePath()
 	return lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
 }
 
+export function isReady()
+{
+	return ["complete", "loaded", "interactive"].indexOf(document.readyState) > -1;
+}
+
 export function isTouchOnlyDevice()
 {
 	return "ontouchstart" in window || navigator.msMaxTouchPoints;
@@ -155,6 +160,10 @@ export default {
 	createElement,
 
 	downloadFile,
+
+	isReady,
+
+	isTouchOnlyDevice,
 
 	live,
 

@@ -13,7 +13,7 @@ import LatteSDK from "./js/sdk";
 
 import { dispatch, on } from "./js/actions";
 import { interval } from "./js/core";
-import { removeSavedFromQueryString } from "./js/util/dom";
+import { isReady, removeSavedFromQueryString } from "./js/util/dom";
 import { setCookie } from "./js/util/cookies";
 import { initializeHoudiniApis } from "./js/houdini-apis";
 import { initializeForms } from "./js/ui/forms";
@@ -48,7 +48,11 @@ export default {
 
 		interval(250, () => this.onTick());
 		on("latte:switch-theme", data => this.onSwitchTheme(data));
-		window.addEventListener("DOMContentLoaded", () => this.onDOMContentLoaded());
+
+		if (isReady())
+			this.onDOMContentLoaded();
+		else
+			window.addEventListener("DOMContentLoaded", () => this.onDOMContentLoaded());
 
 		removeSavedFromQueryString();
 
