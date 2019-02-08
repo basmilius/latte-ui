@@ -14,4 +14,4 @@ import LatteUI from "../index";
 
 Vue.use(LatteUI);
 
-new Vue({el: "main#app"});
+window.addEventListener("DOMContentLoaded", () => new Vue({el: "main#app"}));
