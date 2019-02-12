@@ -22,11 +22,14 @@ export default {
 	input: "src/js/app.js",
 	output: {
 		file: "dist/latte.js",
-		format: "iife",
+		format: "umd",
 		globals: {
 			"moment": "moment",
 			"vue": "Vue"
-		}
+		},
+		name: "LatteUI",
+		sourceMap: false,
+		treeshake: false
 	},
 	external,
 	plugins: [
@@ -60,7 +63,7 @@ export default {
 				})
 
 			],
-			sourceMap: true,
+			sourceMap: false,
 			use: ["sass"]
 		}),
 

@@ -26,9 +26,11 @@ const external = Object.keys(pkg.dependencies);
 export default {
 	input: "src/js/app.js",
 	output: {
+		compact: true,
 		file: "dist/latte.js",
-		format: "iife",
+		format: "umd",
 		indent: false,
+		name: "LatteUI",
 		sourcemap: true,
 		globals: {
 			"moment": "moment",

@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+$sizes: (33px, 28px, 25px, 22px, 19px, 15px);
+
 @for $heading from 1 through 6
 {
 	h#{$heading}
@@ -17,6 +19,8 @@
 		color: currentColor;
 		font-weight: 500;
 		vertical-align: middle;
+
+		@include font-size(nth($sizes, $heading));
 	}
 }
 
@@ -25,10 +29,3 @@
 	color: var(--main-foreground);
 	opacity: .5;
 }
-
-h1 { @include fluid-type(400px, 1024px, 22px, 33px); }
-h2 { @include fluid-type(400px, 1024px, 20px, 28px); }
-h3 { @include fluid-type(400px, 1024px, 19px, 25px); }
-h4 { @include fluid-type(400px, 1024px, 18px, 22px); }
-h5 { @include fluid-type(400px, 1024px, 17px, 19px); }
-h6 { @include fluid-type(400px, 1024px, 15px, 15px); }
