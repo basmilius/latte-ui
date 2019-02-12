@@ -98,15 +98,11 @@ div.notice
 
 	&:first-child
 	{
-		border-radius: inherit;
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
 	}
 
 	&:last-child
 	{
-		border-radius: inherit;
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
+		border-radius: 0 0 var(--border-radius) var(--border-radius);
 	}
 }

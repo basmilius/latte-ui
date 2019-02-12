@@ -36,6 +36,8 @@ export { default as Pagination } from "./Pagination.vue";
 export { default as Password } from "./Password.vue";
 export { default as PdfViewer } from "./PdfViewer.vue";
 export { default as Popup } from "./Popup.vue";
+export { default as Portal } from "./Portal.vue";
+export { default as PortalTarget } from "./PortalTarget.vue";
 export { default as Progress } from "./Progress.vue";
 export { default as RichTextEditor } from "./RichTextEditor.vue";
 export { default as Ripple } from "./Ripple.vue";
