@@ -54,6 +54,13 @@
 			transform: translate3d(12px, 0, 0);
 		}
 	}
+
+	&:disabled
+	{
+		cursor: not-allowed;
+		filter: grayscale(100%);
+		opacity: .5;
+	}
 }
 
 @each $type in $theme-color-types

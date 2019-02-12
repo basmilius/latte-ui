@@ -38,7 +38,7 @@ input[type=radio].radio-button
 		will-change: background;
 	}
 
-	&:hover::before
+	&:not(:disabled):hover::before
 	{
 		background: var(--form-field-outline);
 	}
@@ -57,6 +57,13 @@ input[type=radio].radio-button
 		{
 			background: RGB(var(--radio-background));
 		}
+	}
+
+	&:disabled
+	{
+		cursor: not-allowed;
+		filter: grayscale(100%);
+		opacity: .5;
 	}
 }
 

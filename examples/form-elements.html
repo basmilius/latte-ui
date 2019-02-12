@@ -60,6 +60,45 @@
 				<div class="col-12 col-lg-4">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Fields</span></div>
+						<div class="panel-body">
+
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Field" />
+							</div>
+
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Disabled field" disabled />
+							</div>
+
+							<div class="form-group">
+								<select class="custom-select">
+									<option value="0">Option 0</option>
+									<option value="1">Option 1</option>
+									<option value="2">Option 2</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<select class="custom-select" disabled>
+									<option value="0">Option 0</option>
+									<option value="1">Option 1</option>
+									<option value="2">Option 2</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<input type="range" class="custom-range" min="0" max="100" value="25"/>
+							</div>
+
+							<div class="form-group">
+								<input type="range" class="custom-range" min="0" max="100" value="25" disabled/>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Checkbox</span></div>
 						<div class="panel-body">
 
@@ -74,8 +113,13 @@
 							</label>
 
 							<label class="d-flex">
-								<input type="checkbox" class="checkbox mr-3"/>
+								<input type="checkbox" class="checkbox mr-3" disabled checked/>
 								<span>I accept the FREE gift that i'll receive when I give my personal data.</span>
+							</label>
+
+							<label class="d-flex">
+								<input type="checkbox" class="checkbox mr-3" disabled/>
+								<span>Opt out of any of these options.</span>
 							</label>
 
 						</div>
@@ -92,12 +136,17 @@
 
 							<label class="d-flex">
 								<input type="radio" name="lol" class="radio-button mr-3"/>
+								<span>Send my soul to Bas and accept the fact that he owns me</span>
+							</label>
+
+							<label class="d-flex">
+								<input type="radio" name="lol" class="radio-button mr-3" checked disabled/>
 								<span>Send 90% of my money to Bas</span>
 							</label>
 
 							<label class="d-flex">
-								<input type="radio" name="lol" class="radio-button mr-3" checked/>
-								<span>Send my soul to Bas and accept the fact that he owns me</span>
+								<input type="radio" name="lol" class="radio-button mr-3" disabled/>
+								<span>Non of the above options.</span>
 							</label>
 
 						</div>
@@ -118,8 +167,13 @@
 							</label>
 
 							<label class="d-flex">
-								<input type="checkbox" class="toggle-button mr-3"/>
+								<input type="checkbox" class="toggle-button mr-3" disabled/>
 								<span>Use Security Services by Bas</span>
+							</label>
+
+							<label class="d-flex">
+								<input type="checkbox" class="toggle-button mr-3" checked disabled/>
+								<span>Opt-in to data collection.</span>
 							</label>
 
 						</div>

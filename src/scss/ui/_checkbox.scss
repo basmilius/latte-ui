@@ -75,8 +75,8 @@ input[type=checkbox].checkbox
 		}
 	}
 
-	&:hover::before,
-	&:hover::after
+	&:not(:disabled):hover::before,
+	&:not(:disabled):hover::after
 	{
 		background: var(--form-field-outline);
 	}
@@ -97,6 +97,13 @@ input[type=checkbox].checkbox
 		{
 			background: RGB(var(--checkbox-foreground));
 		}
+	}
+
+	&:disabled
+	{
+		cursor: not-allowed;
+		filter: grayscale(100%);
+		opacity: .5;
 	}
 }
 
