@@ -34,6 +34,8 @@
 
 <script>
 
+	import moment from "moment";
+
 	export default {
 
 		name: "latte-timepicker-clock",

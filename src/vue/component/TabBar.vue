@@ -28,6 +28,7 @@
 <script>
 
 	import { raf } from "../../js/util/dom";
+	import { on } from "../../js/actions";
 
 	export default {
 
@@ -57,6 +58,8 @@
 		{
 			this.$parent.$on("change", current => this.onTabChange(current));
 			this.$parent.updateTabBars();
+
+			on("latte:tick", () => raf(() => this.updateIndicator()));
 
 			window.addEventListener("load", () => raf(() => this.updateIndicator(), 50));
 		},

@@ -32,6 +32,8 @@
 
 <script>
 
+	import moment from "moment";
+
 	export default {
 
 		name: "latte-datetime-picker",

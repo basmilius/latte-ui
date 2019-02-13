@@ -31,12 +31,23 @@ import * as Widgets from "./vue/widget";
 
 import "./scss/app.scss";
 
+export const DefaultOptions = {
+	tickInterval: 250
+};
+
+export const Latte = LatteSDK;
+
 export default {
 
 	install(Vue, options = {})
 	{
+		options = this.normalizeOptions(options);
+
 		self.LatteMomentLocale = self.LatteMomentLocale || navigator.language;
 		moment.locale(self.LatteMomentLocale);
+
+		Vue.prototype.$latte = LatteSDK;
+		Vue.prototype.$latteOptions = options;
 
 		registerOutsideEvents();
 		registerPointerEventsPolyfill();
@@ -46,7 +57,7 @@ export default {
 		this.registerMixins(Vue);
 		this.registerComponents(Vue);
 
-		interval(250, () => this.onTick());
+		interval(options.tickInterval, () => this.onTick());
 		on("latte:switch-theme", data => this.onSwitchTheme(data));
 
 		window.addEventListener("load", () => this.onDOMContentLoaded());
@@ -54,6 +65,11 @@ export default {
 		removeSavedFromQueryString();
 
 		self.Latte = LatteSDK;
+	},
+
+	normalizeOptions(options)
+	{
+		return Object.assign({}, DefaultOptions, options);
 	},
 
 	registerComponents(Vue)

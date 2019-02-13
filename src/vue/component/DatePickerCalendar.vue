@@ -54,6 +54,8 @@
 
 <script>
 
+	import moment from "moment";
+
 	import { raf } from "../../js/util/dom";
 
 	export default {

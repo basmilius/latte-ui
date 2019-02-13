@@ -70,9 +70,10 @@ export function create(message, type, dismissible = true)
 	return noticeId;
 }
 
+// This method is used in Latte Framework.
 export function isEntityNotice(entity)
 {
-	return entity["@type"] === "Latte\\Entity\\Notice";
+	return entity["@type"] === "Latte\\Data\\Model\\Notice";
 }
 
 export function remove(noticeId)
