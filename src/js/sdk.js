@@ -26,7 +26,13 @@ import overlays from "./ui/overlays";
 import panels from "./ui/panels";
 import string from "./util/string";
 
+import pkg from "../../package.json";
+
 export default {
+	author: pkg.author,
+	description: pkg.description,
+	name: pkg.name,
+	version: pkg.version,
 	actions,
 	api,
 	clipboard,

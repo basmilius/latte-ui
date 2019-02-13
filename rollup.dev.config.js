@@ -12,6 +12,7 @@ const postcss = require("rollup-plugin-postcss");
 const commonjs = require("rollup-plugin-commonjs");
 const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
+const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const vue = require("rollup-plugin-vue");
 
@@ -33,6 +34,8 @@ export default {
 	},
 	external,
 	plugins: [
+
+		json(),
 
 		nodeResolve({
 			jsnext: true,

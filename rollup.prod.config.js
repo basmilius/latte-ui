@@ -15,6 +15,7 @@ const cleanup = require("rollup-plugin-cleanup");
 const commonjs = require("rollup-plugin-commonjs");
 const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
+const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const replace = require("rollup-plugin-replace");
 const uglify = require("rollup-plugin-uglify").uglify;
@@ -40,6 +41,8 @@ export default {
 	external,
 	treeshake: true,
 	plugins: [
+
+		json(),
 
 		nodeResolve({
 			jsnext: true,

@@ -61,6 +61,12 @@
 			};
 		},
 
+		beforeCreate()
+		{
+			if (typeof Chart === "undefined")
+				throw new Error("[LatteUI] <latte-chart/> You must include chart.js on your page in order to use charts.")
+		},
+
 		mounted()
 		{
 			this.loadChart();

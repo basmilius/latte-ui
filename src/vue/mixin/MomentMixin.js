@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import moment from "moment";
+
 export default {
 
 	methods: {
