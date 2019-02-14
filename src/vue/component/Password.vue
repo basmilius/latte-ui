@@ -66,7 +66,8 @@
 		{
 			return {
 				fieldType: this.show ? "text" : "password",
-				password: this.value
+				password: this.value,
+				shouldShow: this.show
 			};
 		},
 
@@ -99,7 +100,7 @@
 
 			toggle()
 			{
-				this.show = !this.show;
+				this.shouldShow = !this.shouldShow;
 			}
 
 		},
@@ -111,9 +112,16 @@
 				this.$emit("input", this.password);
 			},
 
+			shouldShow()
+			{
+				this.fieldType = this.shouldShow ? "text" : "password";
+
+				this.$emit("visible", this.shouldShow);
+			},
+
 			show()
 			{
-				this.fieldType = this.show ? "text" : "password";
+				this.shouldShow = this.show;
 			},
 
 			value()
