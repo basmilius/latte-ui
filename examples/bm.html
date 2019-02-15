@@ -22,10 +22,10 @@
 		{
 			--branding-logo: url(//latte.dev-preview.nl/module/@bas/website/resource/image/logo.svg);
 			--color-primary: 55, 125, 255;
-			--toolbar-height: 133px;
+			--app-bar: 73px;
 		}
 
-		div.toolbar
+		div.app-bar.app-bar-main
 		{
 			top: -73px;
 		}
@@ -44,30 +44,32 @@
 <body>
 	<main class="d-flex flex-column" id="app">
 
-		<div class="toolbar">
-			<div class="container">
-				<div class="row mt-3">
-					<div class="col-2 d-flex align-self-center justify-content-start">
-						<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-github-circle"></i></button>
-						<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-linkedin-box"></i></button>
-						<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-facebook-box"></i></button>
-					</div>
-					<div class="col-8 text-center">
-						<i class="mdi mdi-branding-logo" style="font-size: 48px"></i>
-					</div>
-					<div class="col-2 d-flex align-self-center justify-content-end">
-						<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-branding-logo" style="--branding-logo: url(//cdn.ideemedia.cloud/web-delivery/image/our-branding/ideemedia.svg)"></i></button>
+		<div class="app-bar app-bar-main" role="toolbar">
+			<div class="app-bar-row" style="--app-bar-height: 73px">
+				<div class="container">
+					<div class="row">
+						<div class="col-2 d-flex align-self-center justify-content-start">
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-github-circle"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-linkedin-box"></i></button>
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-facebook-box"></i></button>
+						</div>
+						<div class="col-8 text-center">
+							<i class="mdi mdi-branding-logo" style="font-size: 48px"></i>
+						</div>
+						<div class="col-2 d-flex align-self-center justify-content-end">
+							<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-branding-logo" style="--branding-logo: url(//cdn.ideemedia.cloud/web-delivery/image/our-branding/ideemedia.svg)"></i></button>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-12 d-flex justify-content-center">
-						<nav class="nav nav-tabs">
-							<a href="#" class="nav-link is-active"><span>Home</span></a>
-							<a href="#" class="nav-link"><span>About</span></a>
-							<a href="#" class="nav-link"><span>Projects</span></a>
-							<a href="#" class="nav-link"><span>Contact</span></a>
-						</nav>
-					</div>
+			</div>
+			<div class="row">
+				<div class="col-12 d-flex justify-content-center">
+					<nav class="nav nav-tabs">
+						<a href="#" class="nav-link is-active"><span>Home</span></a>
+						<a href="#" class="nav-link"><span>About</span></a>
+						<a href="#" class="nav-link"><span>Projects</span></a>
+						<a href="#" class="nav-link"><span>Contact</span></a>
+					</nav>
 				</div>
 			</div>
 		</div>

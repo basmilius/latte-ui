@@ -34,12 +34,12 @@
 	--toggle-background: var(--color-primary);
 	--toggle-foreground: var(--color-primary-foreground);
 
+	--app-bar-gutter: 15px;
+	--app-bar-height: 60px;
 	--content-gutter: 24px;
 	--divider-size: 1px;
 	--drawer-width-primary: 70px;
 	--drawer-width-secondary: 230px;
-	--toolbar-gutter: 15px;
-	--toolbar-height: 60px;
 
 	@each $type, $color in $theme-colors
 	{

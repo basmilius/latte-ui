@@ -1,0 +1,178 @@
+<!--
+  ~ Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>App bar &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+
+	<style type="text/css">
+		:root
+		{
+			--branding-logo: url(../examples/image/logo.svg);
+		}
+
+		.app-bar-cutout
+		{
+			transition: all 300ms var(--ease-swift-out);
+			transition-property: --app-bar-alpha, --app-bar-cutout-offset;
+		}
+
+		.app-bar-cutout
+		{
+			--app-bar-cutout-offset: 90%;
+		}
+
+		.app-bar-cutout:hover
+		{
+			--app-bar-alpha: 0.3;
+			--app-bar-cutout-offset: 50%;
+			--app-bar-cutout-size: 28;
+		}
+	</style>
+</head>
+<body>
+
+	<main id="app">
+
+		<div class="app-bar app-bar-main" role="toolbar">
+			<nav class="app-bar-row">
+				<div class="app-bar-title mx-auto">App bar</div>
+			</nav>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-primary">
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<span class="app-bar-title">App bar</span>
+									<button class="btn btn-icon btn-text ml-auto"><i class="mdi mdi-share-variant"></i></button>
+									<div class="divider divider-vertical"></div>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-cutout app-bar-dark">
+								<button class="btn btn-contained btn-primary btn-fab"><i class="mdi mdi-plus"></i></button>
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-light">
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<span class="app-bar-title">App bar</span>
+									<button class="btn btn-icon btn-text ml-auto"><i class="mdi mdi-share-variant"></i></button>
+									<div class="divider divider-vertical"></div>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-primary">
+								<div class="app-bar-row">
+									<span class="app-bar-title">Phone</span>
+									<button class="btn btn-icon btn-text ml-auto"><i class="mdi mdi-magnify"></i></button>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-account-plus"></i></button>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+								<div class="app-bar-row app-bar-auto justify-content-center">
+									<nav class="nav nav-tabs">
+										<a class="nav-link is-active"><span>Speed dial</span></a>
+										<a class="nav-link"><span>Call history</span></a>
+										<a class="nav-link"><span>Contact</span></a>
+									</nav>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-primary" style="--color-primary: 29, 185, 84;">
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<span class="app-bar-title mx-auto">Spotify</span>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+								<div class="app-bar-row app-bar-auto justify-content-center">
+									<nav class="nav nav-tabs">
+										<a class="nav-link is-active"><span>Discover</span></a>
+										<a class="nav-link"><span>Your Library</span></a>
+										<a class="nav-link"><span>For You</span></a>
+									</nav>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="panel-header">Panel with app bar</div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cupiditate earum est, explicabo labore maxime sapiente sunt tempora. Dolore doloremque dolorum est hic nesciunt pariatur ratione temporibus vero voluptatem voluptatum.
+						</div>
+						<div class="app-bar app-bar-transparent">
+							<div class="app-bar-row">
+								<button class="btn btn-text btn-primary"><span>6 comments</span></button>
+								<button class="btn btn-icon btn-text ml-auto"><i class="mdi mdi-heart"></i></button>
+								<button class="btn btn-icon btn-text"><i class="mdi mdi-share"></i></button>
+								<button class="btn btn-icon btn-text"><i class="mdi mdi-comment"></i></button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>

@@ -7,13 +7,16 @@
  * LICENSE file that was distributed with this source code.
  */
 
-.btn
+:root
 {
 	--btn-background: var(--color-primary);
 	--btn-foreground: var(--color-primary-foreground);
 	--btn-font-size: 1rem;
 	--btn-icon-size: 24px;
+}
 
+.btn
+{
 	position: relative;
 	display: inline-flex;
 	appearance: none;
@@ -145,6 +148,15 @@
 	--btn-icon-size: 18px;
 	--btn-font-size: .9rem;
 	--btn-padding: 0 9px;
+}
+
+.btn-fab
+{
+	--border-radius: 28px;
+	--btn-height: 56px;
+	--btn-padding: 16px;
+
+	box-shadow: elevation-generate(8);
 }
 
 .btn-icon

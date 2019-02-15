@@ -27,12 +27,6 @@
 	--drawer-outline-primary: rgba(255, 255, 255, .05);
 	--drawer-outline-secondary: rgba(0, 0, 0, .05);
 
-	--toolbar-background: #ffffff;
-	--toolbar-action-background: rgb(var(--color-dark));
-	--toolbar-action-foreground: rgb(var(--color-dark-foreground));
-	--toolbar-elevation: #{elevation-generate(2)};
-	--toolbar-foreground: rgb(var(--color-dark));
-
 	--dropdown-background: #ffffff;
 	--dropdown-elevation: #{elevation-generate(16)}, 0 0 0 1px var(--outline-color-secondary);
 

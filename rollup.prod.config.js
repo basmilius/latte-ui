@@ -31,6 +31,7 @@ export default {
 		file: "dist/latte.js",
 		format: "umd",
 		indent: false,
+		intro: "var LatteRoot = null;",
 		name: "LatteUI",
 		sourcemap: true,
 		globals: {

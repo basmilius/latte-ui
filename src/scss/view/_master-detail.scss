@@ -14,9 +14,9 @@ body.master-detail main#app
 		--drawer-elevation: var(--divider-size) 0 var(--outline-color-secondary);
 	}
 
-	> div.toolbar
+	> div.app-bar
 	{
-		--toolbar-elevation: var(--drawer-width-primary) var(--divider-size) var(--outline-color-secondary);
+		--app-bar-elevation: var(--drawer-width-primary) var(--divider-size) var(--outline-color-secondary);
 	}
 
 	> div.content
@@ -27,7 +27,7 @@ body.master-detail main#app
 		{
 			display: flex;
 			align-items: stretch;
-			height: calc(100vh - var(--toolbar-height));
+			height: calc(100vh - var(--app-bar-height));
 			border-radius: 0;
 
 			> div.row
@@ -67,9 +67,9 @@ body.master-detail main#app
 
 	@include compact
 	{
-		> div.toolbar
+		> div.app-bar
 		{
-			--toolbar-elevation: 0 var(--divider-size) var(--outline-color-secondary);
+			--app-bar-elevation: 0 var(--divider-size) var(--outline-color-secondary);
 		}
 	}
 }

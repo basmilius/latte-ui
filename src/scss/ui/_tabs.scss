@@ -7,12 +7,18 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--tabs-accent: var(--color-primary);
+	--tabs-foreground: var(--main-foreground-rgb);
+	--tabs-height: 45px;
+}
+
 .nav.nav-tabs
 {
+	min-height: var(--tabs-height);
 	align-items: stretch;
 	flex-flow: row nowrap;
-
-	--tabs-accent: var(--color-primary);
 
 	&.is-over-outline
 	{
@@ -42,12 +48,11 @@
 		position: relative;
 		display: flex;
 		height: auto;
-		min-height: 45px;
 		padding: 9px 6px;
 		align-items: center;
 		flex: 0 0 auto;
 		justify-content: center;
-		color: var(--main-foreground);
+		color: RGB(var(--tabs-foreground));
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;

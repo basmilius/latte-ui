@@ -28,6 +28,7 @@ export default {
 			"moment": "moment",
 			"vue": "Vue"
 		},
+		intro: "const LatteRoot = '../src/';",
 		name: "LatteUI",
 		sourceMap: false,
 		treeshake: false

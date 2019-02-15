@@ -27,7 +27,7 @@
 		steps: [
 			{
 				focusElement: "button#nav-toggle",
-				popElement: "div.toolbar",
+				popElement: "div.app-bar-main",
 				infoWindow: {
 					title: "Let's get started!",
 					message: "Click here to start using this website"

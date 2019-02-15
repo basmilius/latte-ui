@@ -20,7 +20,7 @@
 		div.rte-toolbar
 		{
 			position: sticky;
-			top: var(--toolbar-height);
+			top: var(--app-bar-height);
 			flex: 0 0 auto;
 			border-bottom: 1px solid var(--outline-color-secondary);
 			border-top-left-radius: var(--border-radius);

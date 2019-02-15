@@ -27,22 +27,24 @@
 <body>
 	<main id="app">
 
-		<div class="toolbar" role="toolbar">
-			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
-			<span class="toolbar-title">Dashboard</span>
+		<div class="app-bar app-bar-main" role="toolbar">
+			<div class="app-bar-row">
+				<button class="btn btn-icon btn-text app-bar-drawer-branding" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+				<span class="app-bar-title">Dashboard</span>
 
-			<div class="d-flex align-items-center ml-auto">
-				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Manage modules..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('modules')"><i class="mdi mdi-power-plug"></i></button>
-				<button class="btn btn-text btn-icon btn-dark" data-tooltip="Add widget..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('add-widget')"><i class="mdi mdi-plus-circle-outline"></i></button>
-				<div class="divider divider-vertical"></div>
-				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
-					<nav class="nav nav-list">
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
-						<div class="divider divider-horizontal"></div>
-						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
-					</nav>
-				</latte-button-dropdown>
+				<div class="d-flex align-items-center ml-auto">
+					<button class="btn btn-text btn-icon btn-dark" data-tooltip="Manage modules..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('modules')"><i class="mdi mdi-power-plug"></i></button>
+					<button class="btn btn-text btn-icon btn-dark" data-tooltip="Add widget..." data-tooltip-class="tooltip-bottom" onclick="Latte.overlays.open('add-widget')"><i class="mdi mdi-plus-circle-outline"></i></button>
+					<div class="divider divider-vertical"></div>
+					<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+						<nav class="nav nav-list">
+							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+							<div class="divider divider-horizontal"></div>
+							<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+						</nav>
+					</latte-button-dropdown>
+				</div>
 			</div>
 		</div>
 

@@ -87,7 +87,7 @@ div#drawer
 
 div#drawer
 {
-	height: calc(100vh - var(--toolbar-height));
+	height: calc(100vh - var(--app-bar-height));
 }
 
 div.drawer-container div#drawer
@@ -106,7 +106,7 @@ div.drawer-container.offscreen-overlay
 		div.offscreen-content
 		{
 			position: fixed;
-			top: var(--toolbar-height);
+			top: var(--app-bar-height);
 			left: 0;
 			bottom: 0;
 			opacity: 1 !important;

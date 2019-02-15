@@ -30,18 +30,17 @@
 			background: white;
 		}
 
-		div.toolbar
+		div.app-bar
 		{
-			height: 84px;
-			padding: 0 30px;
+			--app-bar-height: 84px;
 		}
 
-		div.toolbar button#nav-toggle i.mdi::before
+		div.app-bar button#nav-toggle i.mdi::before
 		{
 			transition: transform 480ms var(--ease-swift-out);
 		}
 
-		div.toolbar button#nav-toggle i.mdi.is-open::before
+		div.app-bar button#nav-toggle i.mdi.is-open::before
 		{
 			transform: rotate3d(1, 0, 0, 180deg);
 		}
@@ -91,22 +90,24 @@
 <body>
 	<main class="d-flex flex-column" id="app" style="min-height: 100vh">
 
-		<div class="toolbar" :class="{'toolbar-flat': any.isOpen}">
-			<div class="container d-flex align-items-center">
-				<a href="#" style="height: 36px"><i class="mdi mdi-branding-logo" style="font-size: 36px"></i></a>
-				<div class="divider divider-vertical mx-4"></div>
-				<div class="d-flex align-items-center">
-					<span class="toolbar-title m-0">Welkom</span>
-					<button class="btn btn-icon btn-text btn-dark ml-1" @click="$refs.megaMenu.toggle()" id="nav-toggle"><i class="mdi mdi-chevron-down" :class="{'is-open': any.isOpen}"></i></button>
-				</div>
+		<div class="app-bar app-bar-main" :class="{'app-bar-flat': $latte.isOpen}">
+			<div class="app-bar-row">
+				<div class="container d-flex align-items-center">
+					<a href="#" style="height: 36px"><i class="mdi mdi-branding-logo" style="font-size: 36px"></i></a>
+					<div class="divider divider-vertical mx-4"></div>
+					<div class="d-flex align-items-center">
+						<span class="app-bar-title m-0">Welkom</span>
+						<button class="btn btn-icon btn-text btn-dark ml-1" @click="$refs.megaMenu.toggle()" id="nav-toggle"><i class="mdi mdi-chevron-down" :class="{'is-open': $latte.isOpen}"></i></button>
+					</div>
 
-				<a href="#" class="btn btn-contained btn-primary ml-auto mr-3 px-4" style="border-radius: 99px"><span>Bel ons</span></a>
-				<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Facebook" data-tooltip-class="tooltip-bottom"><i class="mdi mdi-facebook-box"></i></a>
-				<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Google Maps" data-tooltip-class="tooltip-bottom"><i class="mdi mdi-google-maps"></i></a>
+					<a href="#" class="btn btn-contained btn-primary ml-auto mr-3 px-4" style="border-radius: 99px"><span>Bel ons</span></a>
+					<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Facebook" data-tooltip-class="tooltip-bottom"><i class="mdi mdi-facebook-box"></i></a>
+					<a href="#" class="btn btn-icon btn-text btn-dark" data-tooltip="Vind ons op Google Maps" data-tooltip-class="tooltip-bottom"><i class="mdi mdi-google-maps"></i></a>
+				</div>
 			</div>
 		</div>
 
-		<latte-mega-menu ref="megaMenu" id="mega-menu" @open="$set(any, 'isOpen', $event)" style="top: 84px" v-cloak>
+		<latte-mega-menu ref="megaMenu" id="mega-menu" @open="$set($latte, 'isOpen', $event)" style="top: 84px" v-cloak>
 			<div class="container">
 				<div class="row">
 					<div class="col-12 col-lg-3">

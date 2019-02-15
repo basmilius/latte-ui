@@ -11,17 +11,32 @@ import { getLattePath } from "./util/dom";
 
 function registerCSSPaintWorklets()
 {
+	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/app-bar-cutout.js");
 	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/btn-contained-background.js");
 }
 
 function registerCSSProperties()
 {
 	CSS.registerProperty({
+		name: "--app-bar-alpha",
+		syntax: "<number>",
+		inherits: true,
+		initialValue: 1
+	});
+
+	CSS.registerProperty({
+		name: "--app-bar-cutout-offset",
+		syntax: "<length-percentage>",
+		inherits: true,
+		initialValue: "50%"
+	});
+
+	CSS.registerProperty({
 		name: "--btn-contained-hover-state",
 		syntax: "<number>",
 		inherits: false,
 		initialValue: 0
-	})
+	});
 }
 
 export function initializeHoudiniApis()

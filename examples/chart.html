@@ -29,19 +29,21 @@
 
 		<latte-notifications></latte-notifications>
 
-		<div class="toolbar" data-ui-is-nav-open role="toolbar">
-			<button class="btn btn-icon btn-text btn-dark nav-toggle" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
-			<span class="toolbar-title">Chart</span>
+		<div class="app-bar app-bar-main" role="toolbar">
+			<div class="app-bar-row">
+				<button class="btn btn-icon btn-text app-bar-drawer-branding" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
+				<span class="app-bar-title">Chart</span>
 
-			<div class="d-flex align-items-center ml-auto">
-				<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
-					<nav class="nav nav-list">
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
-						<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
-						<div class="divider divider-horizontal"></div>
-						<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
-					</nav>
-				</latte-button-dropdown>
+				<div class="d-flex align-items-center ml-auto">
+					<latte-button-dropdown aria-label="Dropdown Menu" icon="account-circle" type="list" v-cloak>
+						<nav class="nav nav-list">
+							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></a>
+							<a class="nav-link" data-action="latte:switch-theme" data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></a>
+							<div class="divider divider-horizontal"></div>
+							<a class="nav-link" href="#"><i class="mdi mdi-exit-to-app"></i><span>Sign off</span></a>
+						</nav>
+					</latte-button-dropdown>
+				</div>
 			</div>
 		</div>
 
