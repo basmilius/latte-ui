@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--auth-ui-background-image: unset;
+}
+
 main.auth-ui
 {
 	position: relative;
@@ -43,7 +48,7 @@ main.auth-ui
 			background:
 			{
 				color: RGB(var(--color-primary));
-				image: url(../image/wallpaper/1.jpg);
+				image: var(--auth-ui-background-image);
 				position: left center;
 				repeat: no-repeat;
 				size: cover;

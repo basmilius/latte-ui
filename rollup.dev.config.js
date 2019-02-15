@@ -7,6 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
+const path = require("path");
 const postcss = require("rollup-plugin-postcss");
 
 const commonjs = require("rollup-plugin-commonjs");
@@ -14,6 +15,7 @@ const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
+const postCssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
 
 const pkg = require("./package.json");
@@ -58,6 +60,10 @@ export default {
 			minimize: false,
 			plugins: [
 
+				postCssUrl({
+					url: "inline"
+				}),
+
 				cssnano({
 					preset: ["advanced", {
 						autoprefixer: {
@@ -74,7 +80,6 @@ export default {
 		commonjs(),
 
 		copy([
-			{files: "src/image/**/*", dest: "dist/image"},
 			{files: "src/sound/**/*", dest: "dist/sound"},
 			{files: "src/worklet/**/*", dest: "dist/worklet"}
 		])
