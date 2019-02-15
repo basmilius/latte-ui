@@ -32,6 +32,7 @@ import * as Widgets from "./vue/widget";
 import "./scss/app.scss";
 
 export const DefaultOptions = {
+	locale: self.LatteMomentLocale || navigator.language,
 	tickInterval: 250
 };
 
@@ -43,8 +44,10 @@ export default {
 	{
 		options = this.normalizeOptions(options);
 
-		self.LatteMomentLocale = self.LatteMomentLocale || navigator.language;
-		moment.locale(self.LatteMomentLocale);
+		moment.locale(options.locale);
+
+		if (typeof LatteRoot === "undefined")
+			self.LatteRoot = null;
 
 		Vue.prototype.$latte = LatteSDK;
 		Vue.prototype.$latteOptions = options;
