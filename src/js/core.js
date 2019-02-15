@@ -9,8 +9,6 @@
 
 "use strict";
 
-let main = undefined;
-
 /**
  * Deep merges multiple objects.
  *
@@ -61,7 +59,7 @@ export function deepMerge(target, ...sources)
  */
 export function getMainElement()
 {
-	return main || (main = document.querySelector("main#app"));
+	return document.querySelector("main#app");
 }
 
 /**
