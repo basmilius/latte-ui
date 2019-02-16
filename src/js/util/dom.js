@@ -116,6 +116,9 @@ export function raf(fn, delay = undefined)
 
 export function relativeCoordsTo(element, evt)
 {
+	if (evt instanceof TouchEvent)
+		evt = evt.touches.item(evt.touches.length - 1);
+
 	if (!evt.clientX || !evt.clientY)
 		return undefined;
 

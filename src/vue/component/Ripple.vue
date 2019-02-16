@@ -25,7 +25,7 @@
 
 <script>
 
-	import { createElement, raf, relativeCoordsTo } from "../../js/util/dom";
+	import { createElement, isTouchOnlyDevice, raf, relativeCoordsTo } from "../../js/util/dom";
 	import { pythagorean } from "../../js/math";
 
 	export default {
@@ -85,18 +85,19 @@
 
 			this.$el.classList.add("is-ripple");
 
-			if (window.TouchEvent)
+			if (isTouchOnlyDevice())
 			{
+				this.$el.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: true});
 				this.$el.addEventListener("touchmove", evt => this.onPointerCancel(evt), {passive: true});
+				this.$el.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: true});
+				this.$el.addEventListener("touchend", evt => this.onPointerUp(evt), {passive: true});
 			}
 			else
 			{
-				this.$el.addEventListener("pointercancel", evt => this.onPointerCancel(evt), {passive: true});
-				this.$el.addEventListener("pointerout", evt => this.onPointerCancel(evt), {passive: true});
+				this.$el.addEventListener("mouseleave", evt => this.onPointerUp(evt), {passive: true});
+				this.$el.addEventListener("mousedown", evt => this.onPointerDown(evt), {passive: true});
+				this.$el.addEventListener("mouseup", evt => this.onPointerUp(evt), {passive: true});
 			}
-
-			this.$el.addEventListener("pointerdown", evt => this.onPointerDown(evt), {passive: true});
-			this.$el.addEventListener("pointerup", evt => this.onPointerUp(evt), {passive: true});
 		},
 
 		computed: {
