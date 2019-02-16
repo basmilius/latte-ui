@@ -25,8 +25,8 @@
 
 <script>
 
-	import { raf, relativeCoordsTo } from "../../js/util/dom";
-	import { timeout } from "../../js/core";
+	import { createElement, raf, relativeCoordsTo } from "../../js/util/dom";
+	import { pythagorean } from "../../js/math";
 
 	export default {
 
@@ -38,12 +38,6 @@
 				default: "div",
 				required: false,
 				type: String
-			},
-
-			rippleBackground: {
-				default: true,
-				required: false,
-				type: Boolean
 			},
 
 			rippleCentered: {
@@ -69,10 +63,8 @@
 		data()
 		{
 			return {
-				isBackgroundVisible: false,
-				backgroundTimeout: null,
 				container: null,
-				preparedRipple: null
+				currentRipple: null
 			};
 		},
 
@@ -127,7 +119,8 @@
 			createRipple(x, y)
 			{
 				const rect = this.$el.getBoundingClientRect();
-				const size = Math.max(rect.width, rect.height);
+				const size = pythagorean(rect.width, rect.height);
+				const sizeHalf = size / 2;
 
 				if (this.rippleCentered)
 				{
@@ -135,22 +128,27 @@
 					y = rect.height / 2;
 				}
 
-				const ripple = document.createElement("div");
-				ripple.classList.add("ripple");
-				ripple.style.setProperty("top", `calc(${y}px - (var(--ripple-size) / 2))`);
-				ripple.style.setProperty("left", `calc(${x}px - (var(--ripple-size) / 2))`);
-				ripple.style.setProperty("--ripple-duration", `${this.rippleDuration + 180}ms`);
+				const ripple = createElement("div", ripple =>
+				{
+					ripple.classList.add("ripple");
 
-				if (this.rippleOut)
+					ripple.style.setProperty("--ripple-duration", `${this.rippleDuration + 180}ms`);
+					ripple.style.setProperty("--ripple-scale", `${(this.rippleCentered ? 12 : Math.max(size * .1, 24)) / size}`);
+					ripple.style.setProperty("--ripple-size", `${size}px`);
+					ripple.style.setProperty("--ripple-x", `${x - sizeHalf}px`);
+					ripple.style.setProperty("--ripple-y", `${y - sizeHalf}px`);
+				});
+
+				raf(() =>
 				{
-					ripple.style.setProperty("--ripple-scale", `${Math.max(size * .25, 12) / size}`);
-					ripple.style.setProperty("--ripple-size", `${size * 1.25}px`);
-				}
-				else
-				{
-					ripple.style.setProperty("--ripple-scale", `${Math.max(size * .25, 12) / size}`);
-					ripple.style.setProperty("--ripple-size", `${size * .75}px`);
-				}
+					ripple.style.setProperty("--ripple-scale", "1");
+
+					if (this.rippleCentered)
+						return;
+
+					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
+				});
 
 				this.container.appendChild(ripple);
 
@@ -159,56 +157,37 @@
 
 			onPointerCancel()
 			{
-				if (this.preparedRipple !== null)
-					this.preparedRipple.remove();
+				if (this.currentRipple !== null)
+					this.currentRipple.remove();
 
-				this.isBackgroundVisible = false;
-				this.preparedRipple = null;
+				this.currentRipple = null;
 			},
 
 			onPointerDown(evt)
 			{
+				if (this.currentRipple !== null)
+					this.onPointerCancel();
+
 				const {x, y} = relativeCoordsTo(this.$el, evt);
 
-				this.isBackgroundVisible = true;
-				this.preparedRipple = this.createRipple(x, y);
+				this.currentRipple = this.createRipple(x, y);
 			},
 
 			onPointerUp()
 			{
-				if (this.backgroundTimeout !== null)
-					clearTimeout(this.backgroundTimeout);
-
-				this.backgroundTimeout = timeout(this.rippleDuration, () =>
-				{
-					this.backgroundTimeout = null;
-					this.isBackgroundVisible = false;
-				});
-
-				if (this.preparedRipple === null)
+				if (this.currentRipple === null)
 					return;
 
-				const ripple = this.preparedRipple;
-				this.preparedRipple = null;
+				const ripple = this.currentRipple;
+				this.currentRipple = null;
 
-				ripple.classList.add("is-scaling");
-				ripple.classList.add("is-visible");
-
-				raf(() => ripple.classList.add("is-hiding"), this.rippleDuration);
-				raf(() => ripple.remove(), this.rippleDuration + 180);
+				raf(() => ripple.style.setProperty("opacity", "0"), 180);
+				raf(() => ripple.remove(), 360);
 			}
 
 		},
 
 		watch: {
-
-			isBackgroundVisible()
-			{
-				if (this.isBackgroundVisible && this.rippleBackground && !this.rippleOut)
-					this.container.classList.add("is-background-visible");
-				else
-					this.container.classList.remove("is-background-visible");
-			},
 
 			rippleOut()
 			{

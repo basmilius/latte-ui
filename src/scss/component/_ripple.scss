@@ -16,6 +16,11 @@
 	--ripple-size: 36px;
 }
 
+*.is-ripple
+{
+	user-select: none;
+}
+
 div.ripple-container
 {
 	position: absolute;
@@ -25,17 +30,9 @@ div.ripple-container
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: transparent;
 	border-radius: inherit;
 	overflow: hidden;
 	pointer-events: none;
-	transition: background 180ms var(--ease-deceleration-curve);
-	will-change: background;
-
-	&.is-background-visible
-	{
-		background: rgba(var(--ripple-color), var(--ripple-alpha));
-	}
 
 	&.is-ripple-out
 	{
@@ -51,24 +48,10 @@ div.ripple-container
 		width: var(--ripple-size);
 		background: rgba(var(--ripple-color), var(--ripple-alpha));
 		border-radius: var(--ripple-size);
-		opacity: 0;
-		transform: scale3d(var(--ripple-scale), var(--ripple-scale), var(--ripple-scale));
+		opacity: 1;
+		transform: translate(var(--ripple-x), var(--ripple-y)) scale3d(var(--ripple-scale), var(--ripple-scale), var(--ripple-scale));
 		transform-origin: center center;
-		transition: opacity 180ms linear, transform var(--ripple-duration) var(--ease-deceleration-curve);
-
-		&.is-visible
-		{
-			opacity: 1;
-		}
-
-		&.is-hiding
-		{
-			opacity: 0;
-		}
-
-		&.is-scaling
-		{
-			transform: scale3d(1, 1, 1);
-		}
+		transition: opacity 180ms linear, all var(--ripple-duration) var(--ease-deceleration-curve);
+		will-change: top, left, opacity, transform;
 	}
 }

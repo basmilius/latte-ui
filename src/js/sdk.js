@@ -19,6 +19,7 @@ import core from "./core";
 import dom from "./util/dom";
 import i18n from "./i18n";
 import json from "./util/json";
+import math from "./math";
 import messages from "./ui/messages";
 import notices from "./ui/notices";
 import operators from "./operators";
@@ -41,6 +42,7 @@ export default {
 	dom,
 	i18n,
 	json,
+	math,
 	messages,
 	notices,
 	operators,

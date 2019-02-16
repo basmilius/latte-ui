@@ -84,7 +84,7 @@
 					</div>
 
 				</div>
-				<div class="col-12 col-lg-6">
+				<div class="col-12 col-lg-3">
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Other components</span></div>
@@ -94,6 +94,16 @@
 							<latte-ripple as="button" :ripple-centered="true" :ripple-out="true" class="btn btn-text btn-icon btn-primary"><i class="mdi mdi-dots-vertical"></i></latte-ripple>
 
 						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-3">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Nav</span></div>
+						<nav class="nav nav-list">
+							<latte-ripple as="a" :key="i" class="nav-link" v-for="i in [1, 2, 3, 4, 5]"><i class="mdi mdi-home"></i><span>Nav item {{ i }}</span></latte-ripple>
+						</nav>
 					</div>
 
 				</div>
