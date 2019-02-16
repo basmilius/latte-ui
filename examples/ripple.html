@@ -69,18 +69,6 @@
 						<latte-ripple as="div" class="panel-body" style="--ripple-color: 255, 0, 255; --ripple-scale: 20">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid, blanditiis deserunt ipsam rem repellendus suscipit. Aperiam dolor dolorem ipsam itaque iusto magnam nihil, quas repudiandae sapiente sint totam voluptates?
 						</latte-ripple>
-
-						<latte-ripple as="latte-uploader-photo" class="m-3">
-							<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="drop-here" slot-scope="slot">
-								<i class="mdi mdi-image mdi-24px"></i>
-								<span v-if="slot.uploader.isMultiple">Drop files here to upload&hellip;</span>
-								<span v-else>Drop file here to upload&hellip;</span>
-							</div>
-							<div class="d-flex align-items-center flex-column justify-content-center p-5" slot="let-go">
-								<i class="mdi mdi-image-plus mdi-24px"></i>
-								<span>Let go to upload!</span>
-							</div>
-						</latte-ripple>
 					</div>
 
 				</div>
@@ -91,7 +79,7 @@
 						<div class="panel-body">
 
 							<latte-ripple as="button" class="btn btn-contained btn-primary"><i class="mdi mdi-check-circle"></i><span>Save changes</span></latte-ripple>
-							<latte-ripple as="button" :ripple-centered="true" :ripple-out="true" class="btn btn-text btn-icon btn-primary"><i class="mdi mdi-dots-vertical"></i></latte-ripple>
+							<latte-ripple as="button" class="btn btn-text btn-icon btn-primary"><i class="mdi mdi-dots-vertical"></i></latte-ripple>
 
 						</div>
 					</div>

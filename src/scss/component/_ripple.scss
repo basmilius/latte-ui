@@ -9,9 +9,11 @@
 
 :root
 {
-	--ripple-alpha: 0.1;
+	--ripple-alpha: .1;
+	--ripple-center: false;
+	--ripple-clip: true;
 	--ripple-color: var(--color-dark);
-	--ripple-duration: 0ms;
+	--ripple-duration: 360ms;
 	--ripple-scale: 6;
 	--ripple-size: 36px;
 }

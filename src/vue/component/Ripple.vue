@@ -38,24 +38,6 @@
 				default: "div",
 				required: false,
 				type: String
-			},
-
-			rippleCentered: {
-				default: false,
-				required: false,
-				type: Boolean
-			},
-
-			rippleDuration: {
-				default: 180,
-				required: false,
-				type: Number
-			},
-
-			rippleOut: {
-				default: false,
-				required: false,
-				type: Boolean
 			}
 
 		},
@@ -63,6 +45,7 @@
 		data()
 		{
 			return {
+				clip: true,
 				container: null,
 				currentRipple: null
 			};
@@ -70,6 +53,7 @@
 
 		destroyed()
 		{
+			this.onPointerCancel();
 			this.container.remove();
 		},
 
@@ -78,11 +62,7 @@
 			this.container = document.createElement("div");
 			this.container.classList.add("ripple-container");
 
-			if (this.rippleOut)
-				this.container.classList.add("is-ripple-out");
-
 			this.$el.prepend(this.container);
-
 			this.$el.classList.add("is-ripple");
 
 			if (isTouchOnlyDevice())
@@ -120,10 +100,14 @@
 			createRipple(x, y)
 			{
 				const rect = this.$el.getBoundingClientRect();
-				const size = pythagorean(rect.width, rect.height);
+				const size = pythagorean(rect.width, rect.height) + 2; // Add two, just to be sure we cover everything.
 				const sizeHalf = size / 2;
 
-				if (this.rippleCentered)
+				const computedStyles = window.getComputedStyle(this.$el);
+				const isCentered = computedStyles.getPropertyValue("--ripple-center") !== "false";
+				this.clip = computedStyles.getPropertyValue("--ripple-clip") !== "false";
+
+				if (isCentered)
 				{
 					x = rect.width / 2;
 					y = rect.height / 2;
@@ -133,8 +117,7 @@
 				{
 					ripple.classList.add("ripple");
 
-					ripple.style.setProperty("--ripple-duration", `${this.rippleDuration + 180}ms`);
-					ripple.style.setProperty("--ripple-scale", `${(this.rippleCentered ? 12 : Math.max(size * .1, 24)) / size}`);
+					ripple.style.setProperty("--ripple-scale", `${(isCentered ? 12 : Math.max(size * .1, 24)) / size}`);
 					ripple.style.setProperty("--ripple-size", `${size}px`);
 					ripple.style.setProperty("--ripple-x", `${x - sizeHalf}px`);
 					ripple.style.setProperty("--ripple-y", `${y - sizeHalf}px`);
@@ -144,7 +127,7 @@
 				{
 					ripple.style.setProperty("--ripple-scale", "1");
 
-					if (this.rippleCentered)
+					if (isCentered)
 						return;
 
 					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
@@ -190,9 +173,9 @@
 
 		watch: {
 
-			rippleOut()
+			clip()
 			{
-				if (this.rippleOut)
+				if (!this.clip)
 					this.container.classList.add("is-ripple-out");
 				else
 					this.container.classList.remove("is-ripple-out");

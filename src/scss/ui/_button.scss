@@ -12,7 +12,9 @@
 	--btn-background: var(--color-primary);
 	--btn-foreground: var(--color-primary-foreground);
 	--btn-font-size: 1rem;
+	--btn-height: 36px;
 	--btn-icon-size: 24px;
+	--btn-padding: 6px 15px;
 }
 
 .btn
@@ -20,9 +22,9 @@
 	position: relative;
 	display: inline-flex;
 	appearance: none;
-	height: var(--btn-height, auto);
+	height: var(--btn-height);
 	margin: 0;
-	padding: var(--btn-padding, 0);
+	padding: var(--btn-padding);
 	align-items: center;
 	flex-shrink: 0;
 	justify-content: center;
@@ -74,8 +76,7 @@
 
 .btn-contained
 {
-	--btn-height: 36px;
-	--btn-padding: 6px 15px;
+	--ripple-alpha: .2;
 	--ripple-color: var(--btn-foreground);
 	--spinner-background: var(--btn-foreground);
 
@@ -97,8 +98,6 @@
 
 .btn-soft
 {
-	--btn-height: 36px;
-	--btn-padding: 6px 15px;
 	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
@@ -122,8 +121,6 @@
 
 .btn-text
 {
-	--btn-height: 36px;
-	--btn-padding: 6px 15px;
 	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
@@ -167,6 +164,13 @@
 	{
 		--btn-padding: 3px;
 	}
+}
+
+.btn-text.btn-icon
+{
+	--ripple-center: true;
+	--ripple-clip: false;
+	--ripple-duration: 240ms;
 }
 
 .btn-pill
