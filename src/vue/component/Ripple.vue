@@ -67,8 +67,8 @@
 
 			if (isTouchOnlyDevice())
 			{
-				this.$el.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: true});
-				this.$el.addEventListener("touchmove", evt => this.onPointerCancel(evt), {passive: true});
+				this.$el.addEventListener("touchcancel", evt => this.onPointerUp(evt), {passive: true});
+				this.$el.addEventListener("touchmove", evt => this.onPointerUp(evt), {passive: true});
 				this.$el.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: true});
 				this.$el.addEventListener("touchend", evt => this.onPointerUp(evt), {passive: true});
 			}
@@ -104,8 +104,8 @@
 				const sizeHalf = size / 2;
 
 				const computedStyles = window.getComputedStyle(this.$el);
-				const isCentered = computedStyles.getPropertyValue("--ripple-center") !== "false";
-				this.clip = computedStyles.getPropertyValue("--ripple-clip") !== "false";
+				const isCentered = computedStyles.getPropertyValue("--ripple-center").trim() !== "false";
+				this.clip = computedStyles.getPropertyValue("--ripple-clip").trim() !== "false";
 
 				if (isCentered)
 				{
