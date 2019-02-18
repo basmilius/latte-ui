@@ -14,7 +14,13 @@
 	width: 1em;
 	margin: 0;
 	padding: 0;
-	background: var(--panel-background);
+	background:
+	{
+		color: var(--panel-background);
+		position: center center;
+		repeat: no-repeat;
+		size: cover;
+	}
 	border-radius: 1em;
 	object-fit: cover;
 	object-position: center center;

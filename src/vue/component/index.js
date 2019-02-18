@@ -24,6 +24,7 @@ export { default as Draggable } from "./Draggable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";
 export { default as Guide } from "./Guide.vue";
+export { default as Initials } from "./Initials.vue";
 export { default as JsonEditor } from "./JsonEditor.vue";
 export { default as JsonEditorIaf } from "./JsonEditorIaf.vue";
 export { default as JsonEditorView } from "./JsonEditorView.vue";
