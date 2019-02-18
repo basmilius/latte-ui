@@ -98,8 +98,14 @@
 		data()
 		{
 			return {
-				isOpen: false
+				isOpen: false,
+				isRipple: false
 			};
+		},
+
+		created()
+		{
+			this.isRipple = this.$parent.$options.name === "latte-ripple";
 		},
 
 		computed: {
@@ -121,6 +127,9 @@
 
 				if (this.isOpen)
 					classes.push("is-open", "tooltip-disabled");
+
+				if (this.isRipple)
+					classes.push("is-ripple");
 
 				return classes;
 			},

@@ -47,14 +47,21 @@
 			return {
 				clip: true,
 				container: null,
-				currentRipple: null
+				observer: null,
+				ripples: []
 			};
 		},
 
 		destroyed()
 		{
-			this.onPointerCancel();
+			// Remove all ripples, we don't want any animation at this point.
+			while (this.ripples.length > 0)
+				this.ripples.shift().remove();
+
 			this.container.remove();
+
+			if (this.observer !== null)
+				this.observer.disconnect();
 		},
 
 		mounted()
@@ -64,6 +71,13 @@
 
 			this.$el.prepend(this.container);
 			this.$el.classList.add("is-ripple");
+
+			// TODO(Bas): Should probably find something that doesn't only work in Chrome :)
+			if (window.ResizeObserver)
+			{
+				this.observer = new ResizeObserver(entries => this.onResizeObserved(entries));
+				this.observer.observe(this.container);
+			}
 
 			if (isTouchOnlyDevice())
 			{
@@ -139,34 +153,49 @@
 				return ripple;
 			},
 
-			onPointerCancel()
-			{
-				if (this.currentRipple !== null)
-					this.currentRipple.remove();
-
-				this.currentRipple = null;
-			},
-
 			onPointerDown(evt)
 			{
-				if (this.currentRipple !== null)
-					this.onPointerCancel();
-
 				const {x, y} = relativeCoordsTo(this.$el, evt);
 
-				this.currentRipple = this.createRipple(x, y);
+				this.ripples.push(this.createRipple(x, y));
 			},
 
 			onPointerUp()
 			{
-				if (this.currentRipple === null)
+				if (this.ripples.length === 0)
 					return;
 
-				const ripple = this.currentRipple;
-				this.currentRipple = null;
+				const ripple = this.ripples.filter(r => !r.classList.contains("is-removing"))[0];
+
+				if (ripple === undefined)
+					return;
+
+				ripple.classList.add("is-removing");
 
 				raf(() => ripple.style.setProperty("opacity", "0"), 180);
-				raf(() => ripple.remove(), 360);
+
+				raf(() =>
+				{
+					this.ripples = this.ripples.filter(r => r !== ripple);
+					ripple.remove();
+				}, 360);
+			},
+
+			onResizeObserved()
+			{
+				if (this.ripples.length === 0)
+					return;
+
+				const rect = this.$el.getBoundingClientRect();
+				const size = pythagorean(rect.width, rect.height) + 2; // Add two, just to be sure we cover everything.
+				const sizeHalf = size / 2;
+
+				this.ripples.forEach(ripple =>
+				{
+					ripple.style.setProperty("--ripple-size", `${size}px`);
+					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
+				});
 			}
 
 		},
