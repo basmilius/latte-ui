@@ -74,6 +74,45 @@
 	}
 }
 
+.btn-action
+{
+	--btn-height: 60px;
+	--ripple-color: var(--btn-background);
+
+	justify-content: center;
+	align-items: center;
+	flex-flow: column;
+
+	i.mdi + span,
+	span + i.mdi
+	{
+		flex: 0 0 0;
+		height: var(--btn-icon-size);
+		margin-left: 0;
+		line-height: 1em;
+	}
+
+	span
+	{
+		margin-top: 3px;
+		font-size: .9rem;
+	}
+
+	background: transparent;
+	color: RGB(var(--btn-background));
+
+	&:not(.is-ripple):hover,
+	&:not(.is-ripple):focus
+	{
+		background: RGBA(var(--btn-background), .1);
+	}
+
+	&:not(.is-ripple):active
+	{
+		background: RGBA(var(--btn-background), .2);
+	}
+}
+
 .btn-contained
 {
 	--ripple-alpha: .2;
@@ -101,8 +140,8 @@
 	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
-	background: RGBA(var(--btn-background, var(--color-primary)), .1);
-	color: RGB(var(--btn-background, var(--color-primary)));
+	background: RGBA(var(--btn-background), .1);
+	color: RGB(var(--btn-background));
 
 	&:not(.is-ripple):hover,
 	&:not(.is-ripple):focus
@@ -125,17 +164,17 @@
 	--spinner-background: var(--btn-background);
 
 	background: transparent;
-	color: RGB(var(--btn-background, var(--color-primary)));
+	color: RGB(var(--btn-background));
 
 	&:not(.is-ripple):hover,
 	&:not(.is-ripple):focus
 	{
-		background: RGBA(var(--btn-background, var(--color-primary)), .1);
+		background: RGBA(var(--btn-background), .1);
 	}
 
 	&:not(.is-ripple):active
 	{
-		background: RGBA(var(--btn-background, var(--color-primary)), .2);
+		background: RGBA(var(--btn-background), .2);
 	}
 }
 

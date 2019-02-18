@@ -8,6 +8,7 @@
  */
 
 export { default as Autocomplete } from "./Autocomplete.vue";
+export { default as BottomNav } from "./BottomNav.vue";
 export { default as ButtonDropdown } from "./ButtonDropdown.vue";
 export { default as Chart } from "./Chart.vue";
 export { default as ChartPanel } from "./ChartPanel.vue";

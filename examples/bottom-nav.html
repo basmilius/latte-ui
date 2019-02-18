@@ -1,0 +1,78 @@
+<!--
+  ~ Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Bottom nav &mdash; @bybas/latte-ui</title>
+	<link rel="stylesheet" href="//cdn.mili.us/font/proxima-nova/proxima-nova.min.css"/>
+	<link rel="stylesheet" href="../node_modules/@mdi/font/css/materialdesignicons.min.css"/>
+	<link rel="stylesheet" href="../dist/latte.css"/>
+</head>
+<body>
+
+	<main id="app">
+
+		<div class="app-bar app-bar-main" role="toolbar">
+			<nav class="app-bar-row">
+				<div class="app-bar-title mx-auto">Bottom nav</div>
+			</nav>
+		</div>
+
+		<div class="content">
+			<div class="row">
+				<div class="col-12 col-lg-4">
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<latte-bottom-nav :value="3">
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-compass"></i><span>Discover</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-music-note"></i><span>My music</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-radio-tower"></i><span>Radio</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-shopping-music"></i><span>Store</span></latte-ripple>
+							</latte-bottom-nav>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-body">
+
+							<latte-bottom-nav class="bottom-nav-shifting bottom-nav-primary" :value="2">
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-compass"></i><span>Discover</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-music-note"></i><span>My music</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-radio-tower"></i><span>Radio</span></latte-ripple>
+								<latte-ripple as="a" class="btn btn-action"><i class="mdi mdi-shopping-music"></i><span>Store</span></latte-ripple>
+							</latte-bottom-nav>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+				</div>
+				<div class="col-12 col-lg-4">
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<script defer type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+	<script defer type="text/javascript" src="../node_modules/moment/min/moment-with-locales.min.js"></script>
+	<script defer type="text/javascript" src="../dist/latte.js"></script>
+</body>
+</html>
