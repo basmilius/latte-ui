@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.3.0-beta.3",
+	"version": "1.3.0",
 	"description": "UI Library of Latte Framework.",
 	"main": "src/index.js",
 	"scripts": {
@@ -22,7 +22,7 @@
 	"bugs": {
 		"url": "https://github.com/basmilius/latte-ui/issues"
 	},
-	"homepage": "https://github.com/basmilius/latte-ui#readme",
+	"homepage": "https://latte-ui.com",
 	"devDependencies": {
 		"@babel/core": "^7.2.2",
 		"@babel/polyfill": "^7.2.5",

@@ -28,9 +28,11 @@
 	{
 		--border-radius: 0;
 		--btn-background: var(--bottom-nav-foreground);
+		--ripple-color: var(--bottom-nav-foreground);
 		--ripple-center: true;
 		--ripple-clip: false;
 
+		min-width: unset;
 		flex: 1 1 0;
 		opacity: .5;
 		transition: all 240ms var(--ease-swift-out);

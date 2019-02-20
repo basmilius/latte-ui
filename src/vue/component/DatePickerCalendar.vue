@@ -54,8 +54,6 @@
 
 <script>
 
-	import moment from "moment";
-
 	import { raf } from "../../js/util/dom";
 
 	export default {
@@ -124,18 +122,18 @@
 			months()
 			{
 				return {
-					1: moment().month(0).format("MMMM"),
-					2: moment().month(1).format("MMMM"),
-					3: moment().month(2).format("MMMM"),
-					4: moment().month(3).format("MMMM"),
-					5: moment().month(4).format("MMMM"),
-					6: moment().month(5).format("MMMM"),
-					7: moment().month(6).format("MMMM"),
-					8: moment().month(7).format("MMMM"),
-					9: moment().month(8).format("MMMM"),
-					10: moment().month(9).format("MMMM"),
-					11: moment().month(10).format("MMMM"),
-					12: moment().month(11).format("MMMM")
+					1: this.moment().month(0).format("MMMM"),
+					2: this.moment().month(1).format("MMMM"),
+					3: this.moment().month(2).format("MMMM"),
+					4: this.moment().month(3).format("MMMM"),
+					5: this.moment().month(4).format("MMMM"),
+					6: this.moment().month(5).format("MMMM"),
+					7: this.moment().month(6).format("MMMM"),
+					8: this.moment().month(7).format("MMMM"),
+					9: this.moment().month(8).format("MMMM"),
+					10: this.moment().month(9).format("MMMM"),
+					11: this.moment().month(10).format("MMMM"),
+					12: this.moment().month(11).format("MMMM")
 				};
 			},
 

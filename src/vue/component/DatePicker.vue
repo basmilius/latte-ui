@@ -23,8 +23,6 @@
 
 <script>
 
-	import moment from "moment";
-
 	export default {
 
 		name: "latte-datepicker",
@@ -68,7 +66,7 @@
 
 			inputValue()
 			{
-				return moment(this.current).format("YYYY-MM-DD");
+				return this.moment(this.current).format("YYYY-MM-DD");
 			}
 
 		},

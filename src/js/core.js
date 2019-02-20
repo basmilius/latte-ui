@@ -9,6 +9,14 @@
 
 "use strict";
 
+let currentOptions = {};
+let dateFormatterOptions = {
+	day: "numeric",
+	month: "long",
+	weekday: "long",
+	year: "numeric"
+};
+
 /**
  * Deep merges multiple objects.
  *
@@ -48,6 +56,23 @@ export function deepMerge(target, ...sources)
 	}
 
 	return deepMerge(target, ...sources);
+}
+
+/**
+ * Formats a datetime.
+ *
+ * @param {Date} date
+ * @param {Object} options
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function formatDateTime(date, options = dateFormatterOptions)
+{
+	const f = new Intl.DateTimeFormat(currentOptions.locale, options);
+
+	return f.format(date);
 }
 
 /**
@@ -182,6 +207,19 @@ export function register(func)
 }
 
 /**
+ * Sets the used latte options for local use.
+ *
+ * @param {Object} options
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.3.0
+ */
+export function setOptions(options)
+{
+	currentOptions = options;
+}
+
+/**
  * Sets a timeout.
  *
  * @param {Number} timeout
@@ -254,6 +292,8 @@ function shuffleString(str)
 export default {
 
 	deepMerge,
+
+	formatDateTime,
 
 	getMainElement,
 

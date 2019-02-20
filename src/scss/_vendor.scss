@@ -15,13 +15,20 @@ $enable-shadows: false;
 $enable-responsive-font-sizes: true;
 $enable-transitions: false;
 
-$link-hover-decoration: none;
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities/background";
+@import "~bootstrap/scss/utilities/borders";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/embed";
+@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/sizing";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/visibility";
 
 $mdi-sizes: 18 24 36 48;
 @each $mdi-size in $mdi-sizes

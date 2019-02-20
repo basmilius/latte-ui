@@ -13,3 +13,7 @@ $expand-at: lg !default;
 $elevation-umbra-opacity: .05 !default;
 $elevation-penumbra-opacity: .035 !default;
 $elevation-ambient-opacity: .06 !default;
+
+$font-family-sans-serif: "proxima-nova", sans-serif !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base: $font-family-sans-serif !default;

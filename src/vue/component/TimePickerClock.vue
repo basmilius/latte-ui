@@ -34,8 +34,6 @@
 
 <script>
 
-	import moment from "moment";
-
 	export default {
 
 		name: "latte-timepicker-clock",
@@ -83,7 +81,7 @@
 
 			isAMPM()
 			{
-				return moment().localeData().longDateFormat("LT").endsWith("A");
+				return this.moment().localeData().longDateFormat("LT").endsWith("A");
 			}
 
 		},

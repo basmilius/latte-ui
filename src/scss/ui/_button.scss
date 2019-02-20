@@ -55,6 +55,11 @@
 	i.mdi
 	{
 		font-size: var(--btn-icon-size);
+
+		&::before
+		{
+			line-height: 1em;
+		}
 	}
 
 	i.mdi + span
@@ -77,11 +82,11 @@
 .btn-action
 {
 	--btn-height: 60px;
-	--ripple-color: var(--btn-background);
 
-	justify-content: center;
+	min-width: 90px;
 	align-items: center;
 	flex-flow: column;
+	justify-content: center;
 
 	i.mdi + span,
 	span + i.mdi
@@ -94,22 +99,8 @@
 
 	span
 	{
-		margin-top: 3px;
+		margin-top: 4px;
 		font-size: .9rem;
-	}
-
-	background: transparent;
-	color: RGB(var(--btn-background));
-
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
-	{
-		background: RGBA(var(--btn-background), .1);
-	}
-
-	&:not(.is-ripple):active
-	{
-		background: RGBA(var(--btn-background), .2);
 	}
 }
 

@@ -7,12 +7,10 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import moment from "moment";
-
 import LatteSDK from "./js/sdk";
 
 import { dispatch, on } from "./js/actions";
-import { interval } from "./js/core";
+import { interval, setOptions } from "./js/core";
 import { removeSavedFromQueryString } from "./js/util/dom";
 import { setCookie } from "./js/util/cookies";
 import { initializeHoudiniApis } from "./js/houdini-apis";
@@ -31,10 +29,10 @@ import * as Widgets from "./vue/widget";
 
 import "./scss/app.scss";
 
-export const DefaultOptions = {
-	locale: self.LatteMomentLocale || navigator.language,
+export const DefaultOptions = Object.assign({}, self.LatteOptions || {}, {
+	locale: navigator.language,
 	tickInterval: 250
-};
+});
 
 export const Latte = LatteSDK;
 
@@ -44,13 +42,13 @@ export default {
 	{
 		options = this.normalizeOptions(options);
 
-		moment.locale(options.locale);
-
-		if (typeof LatteRoot === "undefined")
+		if (typeof self.LatteRoot === "undefined")
 			self.LatteRoot = null;
 
 		Vue.prototype.$latte = LatteSDK;
 		Vue.prototype.$latteOptions = options;
+
+		setOptions(options);
 
 		registerOutsideEvents();
 		registerPointerEventsPolyfill();

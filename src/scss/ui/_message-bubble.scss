@@ -72,7 +72,7 @@
 
 	&::after
 	{
-		height: var(--arrow-size);
+		height: calc(var(--arrow-size) + 3px);
 		width: var(--arrow-size);
 		background: var(--panel-background);
 	}

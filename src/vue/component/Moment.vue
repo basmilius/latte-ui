@@ -39,7 +39,7 @@
 
 			formatted_moment()
 			{
-				return moment(this.unixTimestamp).format(this.format);
+				return this.moment(this.unixTimestamp).format(this.format);
 			}
 
 		}
