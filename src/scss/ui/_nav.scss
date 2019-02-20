@@ -52,6 +52,11 @@
 	cursor: pointer;
 	text-decoration: none;
 
+	&:hover
+	{
+		text-decoration: none;
+	}
+
 	i.mdi
 	{
 		position: relative;
