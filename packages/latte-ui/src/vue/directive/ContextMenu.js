@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { dispatch } from "../../js/actions";
+
 export default {
 
 	name: "latte-context-menu",
@@ -63,14 +65,12 @@ export default {
 			let x = event.pageX - document.scrollingElement.scrollLeft;
 			let y = event.pageY - document.scrollingElement.scrollTop;
 
-			// Place context menu on other side.
 			if ((x + rect.width + offset) > window.innerWidth)
 				x = x - rect.width;
 
 			if ((y + rect.height + offset) > window.innerHeight)
 				y = y - rect.height;
 
-			// Never leave win, but that's it.
 			if ((x + rect.width + offset) > window.innerWidth)
 				x = window.innerWidth - (rect.width + offset);
 
@@ -84,7 +84,7 @@ export default {
 
 			document.body.addEventListener("mousedown", contextMenuCloseHandler);
 			window.addEventListener("scroll", contextMenuCloseHandler, {passive: true});
-			document.dispatchEvent(new CustomEvent("latte:context-menu", {detail: {menu: contextMenu, open: true}}));
+			dispatch("latte:context-menu", {menu: contextMenu, open: true});
 		};
 
 		element.addEventListener("contextmenu", contextMenuHandler);
@@ -104,7 +104,7 @@ export default {
 		element.appendChild(element.contextMenuInstance);
 
 		element.removeEventListener("contextmenu", element.contextMenuHandler);
-		document.dispatchEvent(new CustomEvent("latte:context-menu", {detail: {menu: element.contextMenuInstance, open: false}}));
+		dispatch("latte:context-menu", {menu: element.contextMenuInstance, open: false});
 	}
 
 }

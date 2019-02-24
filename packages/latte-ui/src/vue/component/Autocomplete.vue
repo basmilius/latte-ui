@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="latte-autocomplete" v-click-away="onBlur">
+	<div class="latte-autocomplete">
 		<div class="form-control" :disabled="disabled">
 
 			<template v-for="selection in values">
@@ -135,6 +135,11 @@
 
 		},
 
+		beforeDestroy()
+		{
+			this.$el.removeOutsideEventListener("click", this.onBlur);
+		},
+
 		data()
 		{
 			return {
@@ -152,6 +157,7 @@
 
 		mounted()
 		{
+			this.$el.addOutsideEventListener("click", this.onBlur);
 			this.onValueChanged();
 		},
 
