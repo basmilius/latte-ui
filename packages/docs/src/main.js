@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 
-import { LatteUI } from "@bybas/latte-ui";
+import LatteUI from "@bybas/latte-ui";
 
 import "highlight.js/styles/github-gist.css";
 import "@mdi/font/css/materialdesignicons.css";
@@ -13,9 +13,7 @@ import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
-Vue.use(LatteUI, {
-	// Options for Latte and sub-components.
-});
+Vue.use(LatteUI);
 
 new Vue({
 

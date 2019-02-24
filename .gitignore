@@ -1,6 +1,9 @@
 .idea/
 node_modules/
 
+# Latte UI specific.
+packages/docs/dist/
+
 # OS files
 .DS_Store
 
