@@ -9,7 +9,7 @@
 
 "use strict";
 
-let lattePath = self.LatteRoot || null;
+let lattePath = null;
 
 export function closest(element, selector)
 {
@@ -163,6 +163,8 @@ export default {
 	createElement,
 
 	downloadFile,
+
+	getLattePath,
 
 	isReady,
 

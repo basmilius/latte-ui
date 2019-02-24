@@ -14,7 +14,7 @@
 		<tr v-if="showHeader">
 			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width: 42px"></th>
-				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width && column.width !== null ? column.width + 'px' : 'auto'), 'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
 
@@ -28,7 +28,7 @@
 		<tr class="search-row" v-if="showSearch">
 			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width:42px"></th>
-				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
 					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 				</th>
 				<th v-if="hasActions"></th>
@@ -61,7 +61,7 @@
 				</td>
 
 				<template v-for="(column, columnKey) in columns">
-					<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width && column.width !== null ? column.width + 'px' : 'auto') }">
+					<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
 						<component :is="createRowColumn(row, column)"></component>
 					</td>
 				</template>
@@ -244,9 +244,10 @@
 
 			addFilter(filter)
 			{
-				for (let f of this.filters)
-					if (f.property === filter.property && f["value"] === filter["value"])
-						return;
+				for (let i in this.filters)
+					if (this.filters.hasOwnProperty(i))
+						if (this.filters[i].property === filter.property && this.filters[i]["value"] === filter["value"])
+							return;
 
 				this.page = 1;
 
@@ -333,9 +334,10 @@
 					if (this.params.hasOwnProperty(key) && !isNullOrWhitespace(this.params[key]))
 						url += `&${key}=${encodeURIComponent(this.params[key])}`;
 
-				for (let filter of this.filters)
-					if (!isNullOrWhitespace(filter.value.toString()))
-						url += `&filter[${filter.property}]=${filter["value"]}`;
+				for (let i in this.filters)
+					if (this.filters.hasOwnProperty(i))
+						if (!isNullOrWhitespace(this.filters[i].value.toString()))
+							url += `&filter[${this.filters[i].property}]=${this.filters[i]["value"]}`;
 
 				request(url)
 					.then(r => r.json())

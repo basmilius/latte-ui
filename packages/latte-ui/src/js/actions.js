@@ -128,8 +128,12 @@ function onHashChange()
 	const raw = hash.split("&");
 	const parameters = {};
 
-	for (let item of raw)
+	for (let i in raw)
 	{
+		if (!raw.hasOwnProperty(i))
+			continue;
+
+		const item = raw[i];
 		const kv = item.split("=", 2);
 		let value = kv[1] || null;
 		let vars = {};
@@ -139,8 +143,12 @@ function onHashChange()
 			const ad = value.split("/");
 			value = ad.shift();
 
-			for (let d of ad)
+			for (let j in ad)
 			{
+				if (!ad.hasOwnProperty(j))
+					continue;
+
+				const d = ad[j];
 				const kv = d.split(":", 2);
 				vars[kv[0]] = kv[1];
 			}

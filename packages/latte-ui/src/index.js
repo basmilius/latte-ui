@@ -36,7 +36,7 @@ export const DefaultOptions = Object.assign({}, self.LatteOptions || {}, {
 
 export const Latte = LatteSDK;
 
-export default {
+export const LatteUI = {
 
 	install(Vue, options = {})
 	{
@@ -118,3 +118,5 @@ export default {
 	}
 
 };
+
+export default LatteUI;

@@ -1,15 +1,14 @@
 module.exports = {
-  runtimeCompiler: true,
-  publicPath: undefined,
-  outputDir: undefined,
-  assetsDir: 'assets',
-  productionSourceMap: undefined,
-  parallel: undefined,
-  css: undefined,
+	runtimeCompiler: true,
+	publicPath: undefined,
+	outputDir: undefined,
+	assetsDir: "assets",
+	productionSourceMap: undefined,
+	parallel: true,
+	pwa: {
+		name: "LatteUI",
+		themeColor: "#155cac",
+		msTileColor: "#155cac"
+	}
+};
 
-  pwa: {
-    name: 'LatteUI',
-    themeColor: '#155CAC',
-    msTileColor: '#155CAC'
-  }
-}

@@ -29,9 +29,10 @@ export function areEntitiesNotices(entities)
 	if (!isIterable(entities))
 		return false;
 
-	for (let entity of entities)
-		if (!isEntityNotice(entity))
-			return false;
+	for (let i in entities)
+		if (entities.hasOwnProperty(i))
+			if (!isEntityNotice(entities[i]))
+				return false;
 
 	return true;
 }

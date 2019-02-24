@@ -13,9 +13,7 @@
 
 		<slot></slot>
 
-		<slot v-for="slot in slots" :name="slot" :slot="slot"/>
-
-		<template v-for="slot in scopedSlots" :slot="slot" slot-scope="scope">
+		<template v-for="slot in scopedSlots" v-slot:[slot]="scope">
 			<slot :name="slot" v-bind="scope"/>
 		</template>
 
@@ -98,12 +96,7 @@
 
 			scopedSlots()
 			{
-				return Object.keys(this.$scopedSlots);
-			},
-
-			slots()
-			{
-				return Object.keys(this.$slots)
+				return Object.keys(this.$scopedSlots)
 					.filter(k => k !== "default");
 			}
 

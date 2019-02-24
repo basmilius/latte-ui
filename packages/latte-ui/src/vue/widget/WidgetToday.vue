@@ -10,16 +10,18 @@
 <template>
 
 	<latte-widget class="widget-today" v-bind="$props" :custom-body="true" @remove="onRemove">
-		<div class="widget-today-datetime" slot="content">
-			<div class="date">
-				<span class="day text-capitalize">{{ currentDay }}</span>
-				<span class="date">{{ currentDate }}</span>
-				<span class="monthyear text-capitalize">{{ currentMonth }} {{ currentYear }} &mdash; Week {{ currentWeekNumber }}</span>
+		<template v-slot:content>
+			<div class="widget-today-datetime">
+				<div class="date">
+					<span class="day text-capitalize">{{ currentDay }}</span>
+					<span class="date">{{ currentDate }}</span>
+					<span class="monthyear text-capitalize">{{ currentMonth }} {{ currentYear }} &mdash; Week {{ currentWeekNumber }}</span>
+				</div>
+				<div class="time">
+					<span id="hours">{{ currentTimeHours }}</span><span class="dots">:</span><span id="minutes">{{ currentTimeMinutes }}</span><span id="seconds"><span class="dots">:</span>{{ currentTimeSeconds }}</span>
+				</div>
 			</div>
-			<div class="time">
-				<span id="hours">{{ currentTimeHours }}</span><span class="dots">:</span><span id="minutes">{{ currentTimeMinutes }}</span><span id="seconds"><span class="dots">:</span>{{ currentTimeSeconds }}</span>
-			</div>
-		</div>
+		</template>
 	</latte-widget>
 
 </template>

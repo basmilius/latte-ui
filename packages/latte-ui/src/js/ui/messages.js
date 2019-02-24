@@ -10,7 +10,6 @@
 "use strict";
 
 import { createElement, raf } from "../util/dom";
-import { timeout } from "../core";
 import { spaceship } from "../operators";
 import { translate } from "../i18n";
 import { needsZIndex } from "../z";
@@ -88,8 +87,9 @@ export function createMessage(title, message, buttons, prompt = false)
 			panelContent.appendChild(formGroup);
 		}
 
-		for (const button of buttons)
+		for (const i in buttons)
 		{
+			const button = buttons[i];
 			const el = createElement("button", el => el.classList.add("btn", "btn-contained", ...button.classes));
 
 			if (button.icon !== null)
@@ -151,9 +151,10 @@ function buttonsToButtons(buttons)
 {
 	let actualButtons = [];
 
-	for (let button of ButtonsDescribed)
-		if ((buttons & button.id) === button.id)
-			actualButtons.push(button);
+	for (let i in ButtonsDescribed)
+		if (ButtonsDescribed.hasOwnProperty(i))
+			if ((buttons & ButtonsDescribed[i].id) === ButtonsDescribed[i].id)
+				actualButtons.push(ButtonsDescribed[i]);
 
 	actualButtons = actualButtons.sort((a, b) => spaceship(a.weight, b.weight));
 	actualButtons.forEach(button => button.label = translate("root", button.label));

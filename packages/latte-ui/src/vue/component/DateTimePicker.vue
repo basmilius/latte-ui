@@ -19,8 +19,10 @@
 
 			<latte-timepicker-clock class="mt-0" v-if="calendarView === 'dates'" v-model="currentTime">
 
-				<button slot="after" class="btn btn-icon btn-text btn-primary ml-3" @click="select"><i class="mdi mdi-check"></i></button>
-				<button slot="after" class="btn btn-icon btn-text btn-dark" @click="close"><i class="mdi mdi-close"></i></button>
+				<template v-slot:after>
+					<button class="btn btn-icon btn-text btn-primary ml-3" @click="select"><i class="mdi mdi-check"></i></button>
+					<button class="btn btn-icon btn-text btn-dark" @click="close"><i class="mdi mdi-close"></i></button>
+				</template>
 
 			</latte-timepicker-clock>
 

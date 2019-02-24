@@ -7,7 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-const path = require("path");
 const postcss = require("rollup-plugin-postcss");
 
 const commonjs = require("rollup-plugin-commonjs");
@@ -30,7 +29,6 @@ export default {
 			"moment": "moment",
 			"vue": "Vue"
 		},
-		intro: "self.LatteRoot = '../src/';",
 		name: "LatteUI",
 		sourceMap: false,
 		treeshake: false

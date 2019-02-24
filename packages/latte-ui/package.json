@@ -1,11 +1,11 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.4.0-beta.0",
+	"version": "1.4.0-beta.1",
 	"description": "UI Library of Latte Framework.",
 	"main": "src/index.js",
 	"scripts": {
 		"build": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-		"watch": "rollup -c --configDebug --watch.chokidar"
+		"serve": "rollup -c --configDebug --watch.chokidar"
 	},
 	"repository": {
 		"type": "git",
