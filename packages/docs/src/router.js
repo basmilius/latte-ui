@@ -155,6 +155,10 @@ const router = new Router({
 			]
 		},
 		{
+			path: "/tests",
+			component: () => import("./views/Tests.vue")
+		},
+		{
 			path: "*",
 			component: () => import("./views/NotFound.vue")
 		}

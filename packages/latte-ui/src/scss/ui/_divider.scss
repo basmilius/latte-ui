@@ -9,6 +9,7 @@
 
 div.divider
 {
+	flex-shrink: 0;
 	background: var(--outline-color);
 
 	&.divider-horizontal

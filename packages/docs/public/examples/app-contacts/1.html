@@ -1,3 +1,4 @@
+
 <main style="--color-primary: 48, 63, 159" class="preview-mobile-screen">
 
 	<div class="app-bar app-bar-main app-bar-primary">
@@ -9,15 +10,53 @@
 	</div>
 
 	<div class="list my-3">
-		<latte-ripple as="a" class="list-item" v-for="i of range(1, 10)" :key="i">
-			<i class="mdi mdi-star-outline list-item-prefix text-warning" v-if="i === 1"></i>
-			<i class="mdi mdi-alpha-a list-item-prefix" v-else-if="i === 2"></i>
-			<i class="mdi mdi-alpha-b list-item-prefix" v-else-if="i === 5"></i>
-			<i class="mdi mdi-alpha-c list-item-prefix" v-else-if="i === 9"></i>
-			<i class="mdi list-item-prefix" v-else></i>
-			<latte-initials class="avatar list-item-prefix" :initials="'B' + i" style="font-size: 42px"></latte-initials>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi mdi-star-outline list-item-prefix text-warning"></i>
+			<latte-initials class="avatar list-item-prefix" initials="BM" style="font-size: 42px"></latte-initials>
 			<div class="list-item-caption">
-				<strong>Contact {{ i }}</strong>
+				<strong>Bas Milius</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="FN" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Fleur Nijhuis</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi mdi-alpha-a list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="AC" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Ali Connors</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="AP" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Amber Potter</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="AS" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Anthony Sinclair</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi mdi-alpha-b list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="BA" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Beth Allison</strong>
+			</div>
+		</latte-ripple>
+		<latte-ripple as="a" class="list-item">
+			<i class="mdi list-item-prefix"></i>
+			<latte-initials class="avatar list-item-prefix" initials="BC" style="font-size: 42px"></latte-initials>
+			<div class="list-item-caption">
+				<strong>Brenda Cutter</strong>
 			</div>
 		</latte-ripple>
 	</div>

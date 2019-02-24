@@ -43,7 +43,7 @@
 
 					<latte-ripple as="router-link" to="/docs" class="nav-link"><span>Getting started</span></latte-ripple>
 
-					<div class="divider divider-horizontal flex-shrink-0"></div>
+					<div class="divider divider-horizontal"></div>
 
 					<span class="section">Layout</span>
 					<latte-ripple as="router-link" to="/docs/layout/grid-system" class="nav-link"><span>Grid system</span></latte-ripple>
@@ -51,7 +51,7 @@
 					<latte-ripple as="router-link" to="/docs/layout/utilities" class="nav-link"><span>Utilities</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/variables" class="nav-link"><span>Variables</span></latte-ripple>
 
-					<div class="divider divider-horizontal flex-shrink-0"></div>
+					<div class="divider divider-horizontal"></div>
 
 					<span class="section">Components</span>
 					<latte-ripple as="router-link" to="/docs/components/app-bar" class="nav-link"><span>App bar</span></latte-ripple>
@@ -76,6 +76,11 @@
 					<latte-ripple as="router-link" to="/docs/components/ripple" class="nav-link"><span>Ripple</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/tabs" class="nav-link"><span>Tabs</span></latte-ripple>
+
+					<div class="divider divider-horizontal"></div>
+
+					<span class="section">JavaScript</span>
+					<latte-ripple as="router-link" to="/docs/js/actions" class="nav-link"><span>Actions</span></latte-ripple>
 
 				</nav>
 			</div>

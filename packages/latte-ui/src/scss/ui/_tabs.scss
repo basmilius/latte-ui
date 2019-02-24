@@ -56,8 +56,8 @@
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;
-		transition: all 90ms var(--ease-swift-out);
-		will-change: border-color, opacity;
+		transition: all 180ms var(--ease-swift-out);
+		will-change: box-shadow, opacity;
 
 		+ .nav-link
 		{
