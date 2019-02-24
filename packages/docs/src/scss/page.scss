@@ -1,0 +1,42 @@
+div.page
+{
+	position: relative;
+	display: block;
+	min-height: calc(100vh - var(--app-bar-height) - (var(--content-gutter) * 2));
+}
+
+div.page-header
+{
+	position: relative;
+	display: block;
+	margin: calc(0px - var(--content-gutter)) calc(0px - var(--content-gutter)) 24px calc(0px - var(--content-gutter));
+	background: var(--panel-background);
+	border-bottom: 1px solid var(--outline-color-secondary);
+
+	div.page-header-content
+	{
+		position: relative;
+		display: block;
+		padding: 60px 30px;
+
+		&.tall
+		{
+			padding: 120px 30px;
+		}
+	}
+
+	h1
+	{
+		margin: 0;
+		font-size: 1.7rem;
+		font-weight: 700;
+	}
+
+	p
+	{
+		margin: 0;
+		font-size: 1.1rem;
+		font-weight: 400;
+		opacity: .9;
+	}
+}

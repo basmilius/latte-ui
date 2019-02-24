@@ -1,0 +1,262 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--btn-background: var(--color-primary);
+	--btn-foreground: var(--color-primary-foreground);
+	--btn-font-size: 1rem;
+	--btn-height: 36px;
+	--btn-icon-size: 24px;
+	--btn-padding: 6px 15px;
+}
+
+.btn
+{
+	position: relative;
+	display: inline-flex;
+	appearance: none;
+	height: var(--btn-height);
+	margin: 0;
+	padding: var(--btn-padding);
+	align-items: center;
+	flex-shrink: 0;
+	justify-content: center;
+	border: 0;
+	border-radius: var(--border-radius);
+	cursor: pointer;
+	font-size: var(--btn-font-size);
+	font-weight: 500;
+	text-align: center;
+	transition: 150ms var(--ease-swift-out);
+	transition-property: background, color, --btn-contained-hover-state;
+	vertical-align: middle;
+	will-change: background, color, --btn-contained-hover-state;
+
+	& + .btn
+	{
+		margin-left: 6px;
+	}
+
+	&:disabled,
+	&.disabled
+	{
+		filter: grayscale(100%);
+		opacity: .5;
+		pointer-events: none;
+	}
+
+	i.mdi
+	{
+		font-size: var(--btn-icon-size);
+
+		&::before
+		{
+			line-height: 1em;
+		}
+	}
+
+	i.mdi + span
+	{
+		margin-left: 12px;
+	}
+
+	span + i.mdi
+	{
+		margin-left: 12px;
+	}
+
+	.avatar
+	{
+		margin: -3px;
+		font-size: 30px;
+	}
+}
+
+.btn-action
+{
+	--btn-height: 60px;
+
+	min-width: 90px;
+	align-items: center;
+	flex-flow: column;
+	justify-content: center;
+
+	i.mdi + span,
+	span + i.mdi
+	{
+		flex: 0 0 0;
+		height: var(--btn-icon-size);
+		margin-left: 0;
+		line-height: 1em;
+	}
+
+	span
+	{
+		margin-top: 4px;
+		font-size: .9rem;
+	}
+}
+
+.btn-contained
+{
+	--ripple-alpha: .2;
+	--ripple-color: var(--btn-foreground);
+	--spinner-background: var(--btn-foreground);
+
+	background: RGB(var(--btn-background));
+	background: paint(btn-contained-background);
+	color: RGB(var(--btn-foreground));
+
+	&:not(.is-ripple):hover,
+	&:not(.is-ripple):focus
+	{
+		--btn-contained-hover-state: .1;
+	}
+
+	&:not(.is-ripple):active
+	{
+		--btn-contained-hover-state: .2;
+	}
+}
+
+.btn-soft
+{
+	--ripple-color: var(--btn-background);
+	--spinner-background: var(--btn-background);
+
+	background: RGBA(var(--btn-background), .1);
+	color: RGB(var(--btn-background));
+
+	&:not(.is-ripple):hover,
+	&:not(.is-ripple):focus
+	{
+		--spinner-background: var(--btn-foreground);
+
+		background: RGB(var(--btn-background));
+		color: RGB(var(--btn-foreground));
+	}
+
+	&:not(.is-ripple):active
+	{
+		background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
+	}
+}
+
+.btn-text
+{
+	--ripple-color: var(--btn-background);
+	--spinner-background: var(--btn-background);
+
+	background: transparent;
+	color: RGB(var(--btn-background));
+
+	&:not(.is-ripple):hover,
+	&:not(.is-ripple):focus
+	{
+		background: RGBA(var(--btn-background), .1);
+	}
+
+	&:not(.is-ripple):active
+	{
+		background: RGBA(var(--btn-background), .2);
+	}
+}
+
+.btn-sm
+{
+	--btn-height: 24px;
+	--btn-icon-size: 18px;
+	--btn-font-size: .9rem;
+	--btn-padding: 0 9px;
+}
+
+.btn-fab
+{
+	--border-radius: 28px;
+	--btn-height: 56px;
+	--btn-padding: 16px;
+
+	box-shadow: elevation-generate(8);
+}
+
+.btn-icon
+{
+	--btn-padding: 6px;
+
+	&.btn-sm
+	{
+		--btn-padding: 3px;
+	}
+}
+
+.btn-text.btn-icon
+{
+	--ripple-center: true;
+	--ripple-clip: false;
+	--ripple-duration: 240ms;
+}
+
+.btn-pill
+{
+	--btn-height: 54px;
+	display: flex;
+	margin-left: 0 !important;
+	width: 100%;
+	flex: 1 1 auto;
+}
+
+.panel > .btn-pill
+{
+	border-radius: inherit;
+
+	&:first-child
+	{
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&:last-child
+	{
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}
+
+.panel > .btn-group
+{
+	border-radius: inherit;
+	overflow: hidden;
+
+	&:first-child
+	{
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	&:last-child
+	{
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	.btn
+	{
+		border-radius: 0 !important;
+	}
+}
+
+@each $type in $theme-color-types
+{
+	.btn-#{$type}
+	{
+		--btn-background: var(--color-#{$type});
+		--btn-foreground: var(--color-#{$type}-foreground);
+	}
+}

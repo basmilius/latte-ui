@@ -1,0 +1,103 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.tooltip
+{
+	$tooltip-arrow: 6px;
+
+	position: fixed;
+	display: block;
+	top: 0;
+	left: 0;
+	max-width: 360px;
+	padding: 12px 18px;
+	background: var(--tooltip-background);
+	border-radius: var(--border-radius);
+	color: var(--tooltip-foreground);
+	pointer-events: none;
+	transition: opacity 240ms var(--ease-swift-out), transform 60ms var(--ease-swift-out);
+	will-change: opacity;
+	z-index: 2147483647;
+
+	&::before
+	{
+		position: absolute;
+		display: block;
+		content: "";
+		color: var(--tooltip-background);
+		border: $tooltip-arrow solid transparent;
+		transition: inherit;
+		will-change: border, color;
+		z-index: -1;
+	}
+
+	&::before
+	{
+		top: var(--tooltip-arrow-top, 0);
+		left: var(--tooltip-arrow-left, 0);
+	}
+
+	&.tooltip-top
+	{
+		--tooltip-arrow-top: 100%;
+		--tooltip-arrow-left: calc(50% - #{$tooltip-arrow});
+	}
+
+	&.tooltip-left
+	{
+		--tooltip-arrow-top: calc(50% - #{$tooltip-arrow});
+		--tooltip-arrow-left: 100%;
+	}
+
+	&.tooltip-right
+	{
+		--tooltip-arrow-top: calc(50% - #{$tooltip-arrow});
+		--tooltip-arrow-left: #{-($tooltip-arrow * 2)};
+	}
+
+	&.tooltip-bottom
+	{
+		--tooltip-arrow-top: #{-($tooltip-arrow * 2)};
+		--tooltip-arrow-left: calc(50% - #{$tooltip-arrow});
+	}
+
+	&.tooltip-top::before
+	{
+		border-top: $tooltip-arrow solid currentColor;
+	}
+
+	&.tooltip-left::before
+	{
+		border-left: $tooltip-arrow solid currentColor;
+	}
+
+	&.tooltip-right::before
+	{
+		border-right: $tooltip-arrow solid currentColor;
+	}
+
+	&.tooltip-bottom::before
+	{
+		border-bottom: $tooltip-arrow solid currentColor;
+	}
+
+	&.is-hidden
+	{
+		opacity: 0;
+	}
+}
+
+@each $type in $theme-color-types
+{
+	.tooltip.tooltip-#{$type}
+	{
+		--tooltip-background: rgb(var(--color-#{$type}));
+		--tooltip-foreground: rgb(var(--color-#{$type}-foreground));
+	}
+}

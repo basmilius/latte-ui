@@ -1,0 +1,35 @@
+{
+	"name": "latte-ui-docs",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "vue-cli-service serve",
+		"build": "vue-cli-service build"
+	},
+	"dependencies": {
+		"@bybas/latte-ui": "latest",
+		"highlight.js": "^9.14.2",
+		"moment": "latest",
+		"register-service-worker": "^1.6.1",
+		"vue": "^2.6.6",
+		"vue-router": "^3.0.2"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "^3.4.0",
+		"@vue/cli-plugin-pwa": "^3.4.0",
+		"@vue/cli-service": "^3.4.0",
+		"node-sass": "^4.11.0",
+		"sass-loader": "^7.1.0",
+		"vue-template-compiler": "^2.6.6"
+	},
+	"postcss": {
+		"plugins": {
+			"autoprefixer": {}
+		}
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	]
+}

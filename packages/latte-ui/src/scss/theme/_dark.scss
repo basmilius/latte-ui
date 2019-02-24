@@ -1,0 +1,55 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+[data-theme="dark"]
+{
+	--main-background: #191a1c;
+	--main-background-rgb: 25, 26, 28;
+	--main-foreground: rgba(255, 255, 255, .87);
+	--main-foreground-rgb: 255, 255, 255;
+	--main-placeholder: rgba(255, 255, 255, .42);
+
+	--color-dark: 255, 255, 255;
+	--color-light: 25, 26, 28;
+	--color-dark-foreground: 25, 26, 28;
+	--color-light-foreground: 255, 255, 255;
+
+	--outline-color: #25262a;
+	--outline-color-rgb: 37, 38, 42;
+	--outline-color-secondary: #25262a;
+	--outline-color-secondary-rgb: 37, 38, 42;
+
+	--app-bar-background: 32, 33, 36;
+	--app-bar-foreground: 255, 255, 255;
+	--app-bar-elevation: #{elevation-generate(2, black)}, 0 0 0 1px var(--outline-color);
+
+	--drawer-background-primary: 19, 19, 21;
+	--drawer-background-secondary: 32, 33, 36;
+	--drawer-elevation: #{elevation-generate(1, black)}, 0 0 0 1px var(--outline-color);
+	--drawer-foreground-primary: 255, 255, 255;
+	--drawer-outline-primary: var(--outline-color);
+	--drawer-outline-secondary: var(--outline-color);
+
+	--dropdown-background: #202124;
+	--dropdown-elevation: #{elevation-generate(16, black)}, 0 0 0 1px var(--outline-color);
+
+	--form-field-outline: rgba(255, 255, 255, .05);
+
+	--overlay-background: rgba(0, 0, 0, .85);
+
+	--panel-background: #202124;
+	--panel-elevation: #{elevation-generate(3, black)}, 0 0 0 1px var(--outline-color);
+	--panel-elevation-hover: #{elevation-generate(9, black)}, 0 0 0 1px var(--outline-color);
+	--panel-spinner-background: rgba(0, 0, 0, .6);
+
+	--tooltip-background: rgba(0, 0, 0, .9);
+	--tooltip-foreground: rgb(255, 255, 255);
+
+	--nav-section-foreground: rgba(255, 255, 255, .2);
+}

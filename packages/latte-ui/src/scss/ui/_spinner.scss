@@ -1,0 +1,61 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+@keyframes spinner-animation
+{
+	from
+	{
+		transform: rotate(0deg);
+	}
+	to
+	{
+		transform: rotate(360deg);
+	}
+}
+
+span.spinner
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	vertical-align: middle;
+
+	+ span
+	{
+		margin-left: 1rem;
+	}
+}
+
+i.mdi.spinner
+{
+	display: inline-flex;
+	vertical-align: middle;
+}
+
+span.spinner::before,
+i.mdi.spinner::before
+{
+	display: block;
+	height: 1em;
+	width: 1em;
+	content: "";
+	animation: spinner-animation 700ms infinite linear;
+	border: .1em solid RGBA(var(--spinner-background), .25);
+	border-top-color: RGB(var(--spinner-background));
+	border-radius: .5em;
+}
+
+@each $type in $theme-color-types
+{
+	.spinner-#{$type}
+	{
+		--spinner-background: var(--color-#{$type});
+	}
+}

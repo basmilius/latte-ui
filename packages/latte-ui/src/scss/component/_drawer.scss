@@ -1,0 +1,132 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div#drawer
+{
+	position: relative;
+	display: flex;
+	height: 100%;
+	align-items: stretch;
+	box-shadow: var(--drawer-elevation);
+	z-index: 1001;
+
+	nav#drawer-primary
+	{
+		position: relative;
+		padding: 0;
+		height: 100%;
+		width: var(--drawer-width-primary);
+		flex: 0 0 auto;
+		background: RGB(var(--drawer-background-primary));
+		overflow: auto;
+
+		-webkit-overflow-scrolling: touch;
+
+		div.divider
+		{
+			margin: 0 12px;
+			background: var(--drawer-outline-primary);
+		}
+
+		a.nav-item
+		{
+			position: relative;
+			display: flex;
+			height: var(--drawer-width-primary);
+			width: var(--drawer-width-primary);
+			align-items: center;
+			flex: 0 0 auto;
+			justify-content: center;
+			color: RGBA(var(--drawer-foreground-primary), .7);
+			transition: all 90ms var(--ease-swift-out);
+			will-change: background, color;
+
+			&:hover
+			{
+				background: RGBA(var(--drawer-foreground-primary), .07);
+				color: RGB(var(--drawer-foreground-primary));
+			}
+
+			&.is-active
+			{
+				background: RGB(var(--color-primary));
+				color: RGB(var(--color-primary-foreground));
+			}
+
+			i.mdi
+			{
+				font-size: 24px;
+			}
+		}
+	}
+
+	nav#drawer-secondary
+	{
+		position: relative;
+		padding: 12px 0 24px 0;
+		height: 100%;
+		width: var(--drawer-width-secondary);
+		flex: 0 0 auto;
+		background: RGB(var(--drawer-background-secondary));
+		overflow: auto;
+
+		-webkit-overflow-scrolling: touch;
+
+		div.section:first-child
+		{
+			margin-top: .75rem;
+		}
+	}
+}
+
+div#drawer
+{
+	height: calc(100vh - var(--app-bar-height));
+}
+
+div.drawer-container div#drawer
+{
+	height: 100%;
+}
+
+div.drawer-container.offscreen-overlay
+{
+	min-height: 100vh;
+
+	@include expanded
+	{
+		z-index: 1001;
+
+		div.offscreen-content
+		{
+			position: fixed;
+			top: var(--app-bar-height);
+			left: 0;
+			bottom: 0;
+			opacity: 1 !important;
+			transform: none !important;
+			transition: none !important;
+		}
+
+		&.has-primary + div.content
+		{
+			margin-left: var(--drawer-width-primary);
+		}
+
+		&.has-secondary + div.content
+		{
+			margin-left: var(--drawer-width-secondary);
+		}
+
+		&.has-primary.has-secondary + div.content
+		{
+			margin-left: calc(var(--drawer-width-primary) + var(--drawer-width-secondary));
+		}
+	}
+}

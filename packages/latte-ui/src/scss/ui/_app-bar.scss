@@ -1,0 +1,189 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--app-bar-alpha: 1;
+	--app-bar-background: var(--color-light);
+	--app-bar-foreground: var(--color-light-foreground);
+	--app-bar-elevation: #{elevation-generate(2)};
+	--app-bar-gutter: 15px;
+	--app-bar-height: 60px;
+
+	--app-bar-cutout-offset: 50%;
+	--app-bar-cutout-position: top;
+}
+
+.app-bar
+{
+	position: relative;
+	display: flex;
+	flex-flow: column;
+	background: RGBA(var(--app-bar-background), var(--app-bar-alpha));
+	box-shadow: var(--app-bar-elevation);
+	color: RGB(var(--app-bar-foreground));
+
+	--btn-background: var(--app-bar-foreground);
+	--btn-foreground: var(--app-bar-background);
+	--outline-color: RGBA(var(--app-bar-foreground), .1);
+	--spinner-background: var(--app-bar-foreground);
+	--tabs-accent: var(--app-bar-foreground);
+	--tabs-foreground: var(--app-bar-foreground);
+
+	&.app-bar-cutout
+	{
+		background: paint(app-bar-cutout);
+
+		> .btn-fab
+		{
+			position: absolute;
+			left: var(--app-bar-cutout-offset);
+			transform: translate3d(-50%, -50%, 0);
+			z-index: 1;
+		}
+	}
+
+	&.app-bar-flat
+	{
+		--app-bar-elevation: none;
+	}
+
+	&.app-bar-main
+	{
+		position: sticky;
+		top: 0;
+		z-index: 1002;
+	}
+
+	&.app-bar-transparent
+	{
+		--app-bar-alpha: 0;
+		--app-bar-elevation: none;
+	}
+}
+
+.app-bar-row
+{
+	position: relative;
+	display: flex;
+	min-height: var(--app-bar-height);
+	padding: 0 var(--app-bar-gutter);
+	align-items: center;
+	justify-content: flex-start;
+
+	&.app-bar-auto
+	{
+		min-height: unset;
+	}
+}
+
+.app-bar-title
+{
+	margin: 0 var(--app-bar-gutter);
+	font:
+	{
+		size: 1.2rem;
+		weight: 500;
+	}
+}
+
+.app-bar div.divider
+{
+	height: 24px;
+
+	&:first-child
+	{
+		display: none;
+	}
+}
+
+.panel > .app-bar
+{
+	--app-bar-elevation: none;
+
+	&:not(:last-child)
+	{
+		border-bottom: var(--divider-size) solid var(--outline-color-secondary);
+	}
+
+	&:last-child:not(:only-child)
+	{
+		border-top: var(--divider-size) solid var(--outline-color-secondary);
+	}
+
+	.app-bar-title:first-child
+	{
+		margin-left: 0;
+	}
+
+	.app-bar-row
+	{
+		padding: 0 30px;
+
+		.btn-text:first-child
+		{
+			margin-left: -15px;
+		}
+
+		.btn-text:last-child
+		{
+			margin-right: -15px;
+		}
+
+		.btn-icon:first-child
+		{
+			margin-left: -6px;
+		}
+
+		.btn-icon:last-child
+		{
+			margin-right: -6px;
+		}
+	}
+}
+
+@include expanded
+{
+	.btn.app-bar-drawer-branding
+	{
+		--border-radius: 0;
+		--btn-height: var(--app-bar-height);
+
+		margin: 0 var(--app-bar-gutter) 0 calc(0px - var(--app-bar-gutter));
+		width: var(--drawer-width-primary);
+		background: RGB(var(--drawer-background-primary));
+		pointer-events: none;
+
+		i.mdi
+		{
+			font-size: 36px;
+		}
+
+		i.mdi::before
+		{
+			content: "";
+			background:
+			{
+				image: var(--branding-logo);
+				position: center center;
+				repeat: no-repeat;
+				size: contain;
+			}
+		}
+	}
+}
+
+@each $type in $theme-color-types
+{
+	.app-bar-#{$type}
+	{
+		--app-bar-background: var(--color-#{$type});
+		--app-bar-foreground: var(--color-#{$type}-foreground);
+	}
+}

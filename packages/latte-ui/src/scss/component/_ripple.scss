@@ -1,0 +1,59 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--ripple-alpha: .1;
+	--ripple-center: false;
+	--ripple-clip: true;
+	--ripple-color: var(--color-dark);
+	--ripple-duration: 360ms;
+	--ripple-scale: 6;
+	--ripple-size: 36px;
+}
+
+*.is-ripple
+{
+	user-select: none;
+}
+
+div.ripple-container
+{
+	position: absolute;
+	display: block;
+	contain: paint;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: inherit;
+	overflow: hidden;
+	pointer-events: none;
+
+	&.is-ripple-out
+	{
+		contain: unset;
+		overflow: visible;
+	}
+
+	div.ripple
+	{
+		position: absolute;
+		display: block;
+		height: var(--ripple-size);
+		width: var(--ripple-size);
+		background: rgba(var(--ripple-color), var(--ripple-alpha));
+		border-radius: var(--ripple-size);
+		opacity: 1;
+		transform: translate(var(--ripple-x), var(--ripple-y)) scale3d(var(--ripple-scale), var(--ripple-scale), var(--ripple-scale));
+		transform-origin: center center;
+		transition: opacity 180ms linear, transform var(--ripple-duration) var(--ease-deceleration-curve);
+		will-change: opacity, transform;
+	}
+}

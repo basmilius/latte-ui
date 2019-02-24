@@ -1,0 +1,135 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+@function breakpoint-next($name)
+{
+	$breakpoints: map-keys($grid-breakpoints);
+	$num: index($breakpoints, $name);
+
+	@return if($num < length($breakpoints), nth($breakpoints, $num + 1), null);
+}
+
+@function breakpoint-min($name)
+{
+	$min: map-get($grid-breakpoints, $name);
+
+	@return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name)
+{
+	$next: breakpoint-next($name);
+
+	@return if($next, breakpoint-min($next) - .02px, null);
+}
+
+@function breakpoint-infix($name)
+{
+	@return if(breakpoint-min($name) == null, "", "-#{$name}");
+}
+
+@mixin media-breakpoint-up($name)
+{
+	$min: breakpoint-min($name);
+
+	@if $min
+	{
+		@media (min-width: $min)
+		{
+			@content;
+		}
+	} @else
+	{
+		@content;
+	}
+}
+
+@mixin media-breakpoint-down($name)
+{
+	$max: breakpoint-max($name);
+
+	@if $max
+	{
+		@media (max-width: $max)
+		{
+			@content;
+		}
+	} @else
+	{
+		@content;
+	}
+}
+
+@mixin media-breakpoint-between($lower, $upper)
+{
+	$min: breakpoint-min($lower);
+	$max: breakpoint-max($upper);
+
+	@if $min != null and $max != null
+	{
+		@media (min-width: $min) and (max-width: $max)
+		{
+			@content;
+		}
+	} @else if $max != null
+	{
+		@include media-breakpoint-down($upper)
+		{
+			@content;
+		}
+	} @else
+	{
+		@include media-breakpoint-up($lower)
+		{
+			@content;
+		}
+	}
+}
+
+@mixin media-breakpoint-only($name)
+{
+	$min: breakpoint-min($name);
+	$max: breakpoint-max($name);
+
+	@if $min != null and $max != null
+	{
+		@media (min-width: $min) and (max-width: $max)
+		{
+			@content;
+		}
+	} @else if $max != null
+	{
+		@include media-breakpoint-up($name)
+		{
+			@content;
+		}
+	} @else if ($min != null)
+	{
+		@include media-breakpoint-down($name)
+		{
+			@content;
+		}
+	}
+}
+
+@mixin compact()
+{
+	@include media-breakpoint-down($compact-at)
+	{
+		@content;
+	}
+}
+
+@mixin expanded()
+{
+	@include media-breakpoint-up($expand-at)
+	{
+		@content;
+	}
+}

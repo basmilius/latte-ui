@@ -1,0 +1,76 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.badge
+{
+	display: inline-flex;
+	margin: -1px;
+	min-width: 33px;
+	padding: 6px 12px;
+	align-items: center;
+	justify-content: center;
+	background: RGBA(var(--badge-color), .1);
+	border: 1px solid RGBA(var(--badge-color), .1);
+	border-radius: 15px;
+	color: RGB(var(--badge-color)) !important;
+	font-size: .8em;
+	font-weight: 500;
+	line-height: 1em;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+
+	&.badge-fill
+	{
+		width: 100%;
+	}
+
+	button.btn
+	{
+		height: 20px;
+		margin: -6px -10px -6px 6px;
+		padding: 0;
+		width: 20px;
+		background: RGBA(var(--badge-color), .1);
+		border-radius: inherit;
+		color: inherit;
+		overflow: hidden;
+
+		&:hover
+		{
+			background: RGBA(var(--badge-color), .2);
+		}
+
+		i.mdi
+		{
+			font-size: inherit;
+		}
+	}
+
+	span.spinner
+	{
+		margin: -6px -6px -6px -10px;
+		font-size: 20px;
+	}
+}
+
+a.badge:hover
+{
+	background: RGBA(var(--badge-color), .2);
+	cursor: pointer;
+}
+
+@each $type in $theme-color-types
+{
+	.badge-#{$type}
+	{
+		--badge-color: var(--color-#{$type});
+	}
+}
+

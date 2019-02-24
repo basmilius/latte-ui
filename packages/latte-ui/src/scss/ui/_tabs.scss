@@ -1,0 +1,138 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--tabs-accent: var(--color-primary);
+	--tabs-foreground: var(--main-foreground-rgb);
+	--tabs-height: 45px;
+}
+
+.nav.nav-tabs
+{
+	min-height: var(--tabs-height);
+	align-items: stretch;
+	flex-flow: row nowrap;
+
+	&.is-over-outline
+	{
+		margin-bottom: -2px;
+		z-index: 1;
+	}
+
+	div.nav-tabs-indicator
+	{
+		position: absolute;
+		display: block;
+		left: 0;
+		bottom: 0;
+		height: 2px;
+		background: RGB(var(--tabs-accent));
+		transition: all 330ms var(--ease-swift-out);
+		will-change: width, transform;
+	}
+
+	&.is-over-outline div.nav-tabs-indicator
+	{
+		bottom: -2px;
+	}
+
+	.nav-link
+	{
+		position: relative;
+		display: flex;
+		height: auto;
+		padding: 9px 6px;
+		align-items: center;
+		flex: 0 0 auto;
+		justify-content: center;
+		color: RGB(var(--tabs-foreground));
+		font-weight: 500;
+		line-height: 24px;
+		opacity: .6;
+		transition: all 90ms var(--ease-swift-out);
+		will-change: border-color, opacity;
+
+		+ .nav-link
+		{
+			margin-left: 18px;
+		}
+
+		i.mdi, span
+		{
+			flex: 0 0 auto;
+		}
+
+		i.mdi + span
+		{
+			margin-left: 15px;
+		}
+
+		&:hover
+		{
+			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
+			opacity: .8;
+		}
+
+		&.is-active
+		{
+			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
+			opacity: 1;
+		}
+
+		&.no-indicator
+		{
+			box-shadow: none;
+		}
+	}
+
+	&.tabs-fill .nav-link
+	{
+		flex: 1 1 0;
+	}
+}
+
+.panel > .nav.nav-tabs
+{
+	padding: 0 24px;
+	border-bottom: 2px solid var(--outline-color-secondary);
+
+	div.nav-tabs-indicator
+	{
+		bottom: -2px;
+	}
+
+	.nav-link
+	{
+		height: 54px;
+		margin-bottom: -2px;
+		z-index: 1;
+	}
+}
+
+.panel-header .nav.nav-tabs
+{
+	margin-bottom: -2px;
+	z-index: 1;
+
+	&:first-child
+	{
+		margin-left: -6px;
+	}
+
+	&:last-child
+	{
+		margin-right: -6px;
+	}
+}
+
+.panel-header .nav.nav-tabs .nav-link
+{
+	min-height: 75px;
+}

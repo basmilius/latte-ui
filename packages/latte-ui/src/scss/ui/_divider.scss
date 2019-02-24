@@ -1,0 +1,25 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.divider
+{
+	background: var(--outline-color);
+
+	&.divider-horizontal
+	{
+		margin: 9px 0;
+		height: var(--divider-size);
+	}
+
+	&.divider-vertical
+	{
+		margin: 0 9px;
+		width: var(--divider-size);
+	}
+}

@@ -1,0 +1,22 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+@function lerp($x, $a, $b) {
+	@return $a + $x * ($b - $a);
+}
+
+@function lerp-shadow($x, $shadow1, $shadow2) {
+	$new-x: round(lerp($x, nth($shadow1, 1), nth($shadow2, 1))) + 0px;
+	$new-y: round(lerp($x, nth($shadow1, 2), nth($shadow2, 2))) + 0px;
+	$new-blur: round(lerp($x, nth($shadow1, 3), nth($shadow2, 3))) + 0px;
+	$new-spread: round(lerp($x, nth($shadow1, 4), nth($shadow2, 4))) + 0px;
+	$new-color: nth($shadow1, 5); // No need to lerp the color.
+
+	@return ($new-x $new-y $new-blur $new-spread $new-color);
+}
