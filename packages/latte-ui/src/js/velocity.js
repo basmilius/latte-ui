@@ -26,6 +26,7 @@ export class Velocity
 	constructor(vp1 = 0.8, vp2 = 0.2)
 	{
 		this.onUpdate = defaultUpdateHandler;
+
 		this.amplitude = undefined;
 		this.frame = undefined;
 		this.max = undefined;
