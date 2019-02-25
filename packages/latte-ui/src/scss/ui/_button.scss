@@ -39,6 +39,11 @@
 	vertical-align: middle;
 	will-change: background, color, --btn-contained-hover-state;
 
+	&:hover
+	{
+		text-decoration: none;
+	}
+
 	& + .btn
 	{
 		margin-left: 6px;
