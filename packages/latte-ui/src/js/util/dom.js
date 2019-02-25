@@ -44,6 +44,22 @@ export function downloadFile(fileName, url)
 	});
 }
 
+export function getCoords(evt)
+{
+	if (window.TouchEvent && evt instanceof TouchEvent)
+	{
+		if (evt.touches.length > 0)
+			evt = evt.touches.item(evt.touches.length - 1);
+		else
+			evt = evt.changedTouches.item(evt.changedTouches.length - 1);
+	}
+
+	if (!evt.clientX || !evt.clientY)
+		return undefined;
+
+	return {x: evt.clientX, y: evt.clientY};
+}
+
 export function getLattePath()
 {
 	if (lattePath !== null)
@@ -116,17 +132,16 @@ export function raf(fn, delay = undefined)
 
 export function relativeCoordsTo(element, evt)
 {
-	if (window.TouchEvent && evt instanceof TouchEvent)
-		evt = evt.touches.item(evt.touches.length - 1);
+	const coords = getCoords(evt);
 
-	if (!evt.clientX || !evt.clientY)
+	if (!coords)
 		return undefined;
 
 	const rect = element.getBoundingClientRect();
 
 	return {
-		x: evt.clientX - rect.left,
-		y: evt.clientY - rect.top
+		x: coords.x - rect.left,
+		y: coords.y - rect.top
 	};
 }
 
@@ -163,6 +178,8 @@ export default {
 	createElement,
 
 	downloadFile,
+
+	getCoords,
 
 	getLattePath,
 

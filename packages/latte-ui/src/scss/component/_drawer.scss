@@ -95,7 +95,7 @@ div.drawer-container div#drawer
 	height: 100%;
 }
 
-div.drawer-container.offscreen-overlay
+div.drawer-container.sheet-overlay
 {
 	min-height: 100vh;
 
@@ -103,7 +103,7 @@ div.drawer-container.offscreen-overlay
 	{
 		z-index: 1001;
 
-		div.offscreen-content
+		div.sheet-content
 		{
 			position: fixed;
 			top: var(--app-bar-height);

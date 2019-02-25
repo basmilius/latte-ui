@@ -9,6 +9,11 @@
 
 import { Velocity } from "./velocity";
 
+export function clamp(value, min, max)
+{
+	return Math.min(Math.max(val, min), max);
+}
+
 export function pseudoRandom(seed)
 {
 	const x = Math.sin(seed) * 10000;
@@ -22,6 +27,8 @@ export function pythagorean(a, b)
 }
 
 export default {
+
+	clamp,
 
 	pythagorean,
 

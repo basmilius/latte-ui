@@ -7,15 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { defaultOnUpdateHandler } from "./easing";
 import { raf } from "./util/dom";
 
 function currentTime()
 {
 	return Date.now();
-}
-
-function defaultUpdateHandler(value)
-{
 }
 
 const timeConstant = 325;
@@ -25,7 +22,7 @@ export class Velocity
 
 	constructor(vp1 = 0.8, vp2 = 0.2)
 	{
-		this.onUpdate = defaultUpdateHandler;
+		this.onUpdate = defaultOnUpdateHandler;
 
 		this.amplitude = undefined;
 		this.frame = undefined;

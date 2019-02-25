@@ -9,8 +9,8 @@
 
 <template>
 
-	<div class="offscreen-overlay" :class="overlayClasses" :style="overlayStyles">
-		<div class="offscreen-content" :class="contentClasses" :style="contentStyles">
+	<div class="sheet-overlay" :class="overlayClasses" :style="overlayStyles">
+		<div class="sheet-content" :class="contentClasses" :style="contentStyles">
 			<slot></slot>
 		</div>
 	</div>
@@ -20,24 +20,13 @@
 <script>
 
 	import { getMainElement } from "../../js/core";
-	import { closest, isTouchOnlyDevice } from "../../js/util/dom";
+	import { closest, getCoords, isTouchOnlyDevice, raf } from "../../js/util/dom";
 
-	const TRIGGER_SIZE = 30;
-
-	function getPosition(evt)
-	{
-		if (evt.changedTouches === undefined)
-			return {x: evt.clientX, y: evt.clientY};
-
-		return {
-			x: evt.changedTouches[0].clientX,
-			y: evt.changedTouches[0].clientY
-		};
-	}
+	const TRIGGER_SIZE = 24;
 
 	export default {
 
-		name: "latte-offscreen-container",
+		name: "latte-sheet",
 
 		props: {
 
@@ -74,7 +63,7 @@
 		mounted()
 		{
 			this.overlay = this.$el;
-			this.content = this.$el.querySelector("div.offscreen-content");
+			this.content = this.$el.querySelector("div.sheet-content");
 
 			window.addEventListener("resize", () => this.close());
 
@@ -104,7 +93,7 @@
 			{
 				const classes = [];
 
-				classes.push(`offscreen-${this.position}`);
+				classes.push(`sheet-${this.position}`);
 
 				if (this.isDragging)
 					classes.push("is-dragging");
@@ -222,37 +211,39 @@
 				if (!(this.current > 0 && this.current < 1 && !this.isDragging))
 					return;
 
-				if (this.position === "top")
+				this.current = this.getEnd();
+			},
+
+			getEnd()
+			{
+				switch (this.position)
 				{
-					if (this.currentPosition.y >= this.previousPosition.y)
-						this.current = 1;
-					else
-						this.current = 0;
+					case "top":
+						if (this.currentPosition.y >= this.previousPosition.y)
+							return 1;
+						else
+							return 0;
+
+					case "left":
+						if (this.currentPosition.x >= this.previousPosition.x)
+							return 1;
+						else
+							return 0;
+
+					case "right":
+						if (this.currentPosition.x <= this.previousPosition.x)
+							return 1;
+						else
+							return 0;
+
+					case "bottom":
+						if (this.currentPosition.y <= this.previousPosition.y)
+							return 1;
+						else
+							return 0;
 				}
 
-				if (this.position === "left")
-				{
-					if (this.currentPosition.x >= this.previousPosition.x)
-						this.current = 1;
-					else
-						this.current = 0;
-				}
-
-				if (this.position === "right")
-				{
-					if (this.currentPosition.x <= this.previousPosition.x)
-						this.current = 1;
-					else
-						this.current = 0;
-				}
-
-				if (this.position === "bottom")
-				{
-					if (this.currentPosition.y <= this.previousPosition.y)
-						this.current = 1;
-					else
-						this.current = 0;
-				}
+				return -1;
 			},
 
 			isContentDragAvailable(position)
@@ -310,7 +301,7 @@
 				if (Math.abs(deltaY) > 20 && (this.position === "top" || this.position === "bottom"))
 					this.close();
 
-				if (!this.isWithinElement(getPosition(evt), this.content))
+				if (!this.isWithinElement(getCoords(evt), this.content))
 					evt.preventDefault();
 			},
 
@@ -320,7 +311,7 @@
 					return;
 
 				this.isDragging = false;
-				this.currentPosition = getPosition(evt);
+				this.currentPosition = getCoords(evt);
 
 				this.checkState();
 			},
@@ -330,7 +321,7 @@
 				if (!this.touchEnabled)
 					return;
 
-				const position = getPosition(evt);
+				const position = getCoords(evt);
 
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
@@ -353,7 +344,7 @@
 				if (!this.isDragging)
 					return;
 
-				const position = getPosition(evt);
+				const position = getCoords(evt);
 
 				if (!this.isContentDragAvailable(position))
 					return;
@@ -377,7 +368,7 @@
 				if (!isSameLocation && evt.cancelable)
 					evt.preventDefault();
 
-				this.currentPosition = getPosition(evt);
+				this.currentPosition = getCoords(evt);
 				this.isDragging = false;
 
 				if (this.previous === 1 && isSameLocation && !this.isWithinElement(this.currentPosition, this.content))

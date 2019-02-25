@@ -37,7 +37,7 @@
 			</div>
 		</div>
 
-		<latte-offscreen-container ref="drawer" class="drawer-container has-secondary">
+		<latte-sheet ref="drawer" class="drawer-container has-secondary">
 			<div id="drawer" role="menu" @click="$refs.drawer.close()">
 				<nav class="nav nav-list py-3" id="drawer-secondary">
 
@@ -84,7 +84,7 @@
 
 				</nav>
 			</div>
-		</latte-offscreen-container>
+		</latte-sheet>
 
 		<div class="content">
 

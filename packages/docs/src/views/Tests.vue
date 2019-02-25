@@ -18,7 +18,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-12">
+				<div class="col-12 d-flex flex-wrap justify-content-center">
 
 				</div>
 			</div>

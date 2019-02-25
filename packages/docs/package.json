@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"@bybas/latte-ui": "./packages/latte-ui",
+		"animejs": "^3.0.1",
 		"highlight.js": "^9.14.2",
 		"moment": "^2.24.0",
 		"register-service-worker": "^1.6.2",

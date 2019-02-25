@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.offscreen-overlay
+div.sheet-overlay
 {
 	position: fixed;
 	display: block;
@@ -25,7 +25,7 @@ div.offscreen-overlay
 	}
 }
 
-div.offscreen-content
+div.sheet-content
 {
 	position: fixed;
 	display: flex;
@@ -35,28 +35,28 @@ div.offscreen-content
 	color: var(--main-foreground);
 	pointer-events: all;
 
-	&.offscreen-top
+	&.sheet-top
 	{
 		top: 0;
 		left: 0;
 		right: 0;
 	}
 
-	&.offscreen-left
+	&.sheet-left
 	{
 		top: 0;
 		left: 0;
 		bottom: 0;
 	}
 
-	&.offscreen-right
+	&.sheet-right
 	{
 		top: 0;
 		right: 0;
 		bottom: 0;
 	}
 
-	&.offscreen-bottom
+	&.sheet-bottom
 	{
 		left: 0;
 		right: 0;
@@ -69,8 +69,8 @@ div.offscreen-content
 	}
 }
 
-div.offscreen-content:not(.is-dragging),
-div.offscreen-overlay:not(.is-dragging)
+div.sheet-content:not(.is-dragging),
+div.sheet-overlay:not(.is-dragging)
 {
 	transition: all 300ms var(--ease-swift-out);
 }

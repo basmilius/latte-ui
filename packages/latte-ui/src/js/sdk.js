@@ -34,6 +34,7 @@ export default {
 	description: pkg.description,
 	name: pkg.name,
 	version: pkg.version,
+
 	actions,
 	api,
 	clipboard,
