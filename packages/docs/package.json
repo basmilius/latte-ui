@@ -1,13 +1,13 @@
 {
 	"name": "latte-ui-docs",
-	"version": "1.4.0-beta.2",
+	"version": "1.4.0-beta.3",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"@bybas/latte-ui": "../latte-ui",
+		"@bybas/latte-ui": "./packages/latte-ui",
 		"highlight.js": "^9.14.2",
 		"moment": "^2.24.0",
 		"register-service-worker": "^1.6.2",

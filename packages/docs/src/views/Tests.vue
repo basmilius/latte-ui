@@ -20,10 +20,6 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Nothing atm</span></div>
-					</div>
-
 				</div>
 			</div>
 		</div>
@@ -40,9 +36,8 @@
 
 		components: {
 			PageHeader
-		},
+		}
 
-		name: "Tests"
 	}
 
 </script>

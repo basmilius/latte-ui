@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { Velocity } from "./velocity";
+
 export function pseudoRandom(seed)
 {
 	const x = Math.sin(seed) * 10000;
@@ -21,6 +23,8 @@ export function pythagorean(a, b)
 
 export default {
 
-	pythagorean
+	pythagorean,
+
+	Velocity
 
 };

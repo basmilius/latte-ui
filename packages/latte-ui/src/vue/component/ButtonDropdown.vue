@@ -70,7 +70,7 @@
 			},
 
 			marginX: {
-				default: -18,
+				default: -9,
 				required: false,
 				type: Number
 			},
