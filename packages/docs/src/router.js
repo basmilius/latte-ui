@@ -75,10 +75,6 @@ const router = new Router({
 							component: () => import("./views/docs/components/Notification.vue")
 						},
 						{
-							path: "offscreen-container",
-							component: () => import("./views/docs/components/OffscreenContainer.vue")
-						},
-						{
 							path: "overlay",
 							component: () => import("./views/docs/components/Overlay.vue")
 						},
@@ -105,6 +101,10 @@ const router = new Router({
 						{
 							path: "ripple",
 							component: () => import("./views/docs/components/Ripple.vue")
+						},
+						{
+							path: "sheet",
+							component: () => import("./views/docs/components/Sheet.vue")
 						},
 						{
 							path: "spinner",

@@ -66,7 +66,6 @@
 					<latte-ripple as="router-link" to="/docs/components/nav" class="nav-link"><span>Nav</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/notice" class="nav-link"><span>Notice</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/notification" class="nav-link"><span>Notification</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/offscreen-container" class="nav-link"><span>Offscreen container</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/overlay" class="nav-link"><span>Overlay</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/pagination" class="nav-link"><span>Pagination</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/panel" class="nav-link"><span>Panel</span></latte-ripple>
@@ -74,6 +73,7 @@
 					<latte-ripple as="router-link" to="/docs/components/portal" class="nav-link"><span>Portal</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/progress" class="nav-link"><span>Progress</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/ripple" class="nav-link"><span>Ripple</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/sheet" class="nav-link"><span>Sheet</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/tabs" class="nav-link"><span>Tabs</span></latte-ripple>
 
@@ -184,7 +184,7 @@
 					--drawer-width-secondary: 0;
 				}
 
-				.offscreen-overlay
+				.sheet-overlay
 				{
 					display: none;
 				}

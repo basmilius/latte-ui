@@ -1,9 +1,9 @@
 <template>
 
-	<div class="page" id="components-drawer">
+	<div class="page" id="components-sheet">
 
 		<PageHeader>
-			<h1>Offscreen Container</h1>
+			<h1>Sheet</h1>
 		</PageHeader>
 
 	</div>
@@ -16,7 +16,7 @@
 
 	export default {
 
-		name: "Drawer",
+		name: "Sheet",
 
 		components: {
 			PageHeader
