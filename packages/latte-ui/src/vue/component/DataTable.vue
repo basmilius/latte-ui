@@ -87,8 +87,9 @@
 
 	import Vue from "vue";
 
-	import { id, request } from "../../js/api";
 	import { handleError } from "../../js/core";
+	import { on } from "../../js/core/action";
+	import { id, request } from "../../js/core/api";
 	import { createElement } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
 
@@ -207,7 +208,7 @@
 
 		mounted()
 		{
-			this.subscriptions.refresh = Latte.actions.on("data-tables:refresh", () => this.reload());
+			this.subscriptions.refresh = on("data-tables:refresh", () => this.reload());
 
 			this.addSpinner();
 			this.loadSetup();
@@ -371,7 +372,7 @@
 
 			onReceivedSetupResponse(response)
 			{
-				this.actions = response.data.actions;
+				this.actions = response.data.action;
 				this.columns = response.data.columns.map(column => Object.assign({}, this.defaults.column, column));
 
 				if (response.data.sorting !== undefined)

@@ -44,6 +44,9 @@
 
 <script>
 
+	import { alert } from "../../js/ui/message";
+	import { translate } from "../../js/i18n";
+
 	export default {
 
 		name: "latte-json-editor-view",
@@ -131,7 +134,7 @@
 
 				if (!oj.name)
 				{
-					Latte.messages.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
+					alert(translate("root", "Invalid key"), translate("root", "Invalid key specified!"));
 					return;
 				}
 
@@ -144,7 +147,7 @@
 			{
 				if (item.name.length <= 0)
 				{
-					Latte.messages.alert(Latte.i18n.translate("root", "Invalid key"), Latte.i18n.translate("root", "Invalid key specified!"));
+					alert(translate("root", "Invalid key"), translate("root", "Invalid key specified!"));
 					item.name = "null";
 					e.target.focus();
 				}

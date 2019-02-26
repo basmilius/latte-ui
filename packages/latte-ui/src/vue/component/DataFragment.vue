@@ -17,8 +17,8 @@
 
 <script>
 
-	import { request } from "../../js/api";
 	import { handleError } from "../../js/core";
+	import { request } from "../../js/core/api";
 
 	export default {
 

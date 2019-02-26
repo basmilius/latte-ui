@@ -21,10 +21,10 @@
 
 	import Vue from "vue";
 
-	import { dispatch, on } from "../../js/actions";
 	import { getMainElement } from "../../js/core";
+	import { dispatch, on } from "../../js/core/action";
 	import { live, raf } from "../../js/util/dom";
-	import { needsZIndex } from "../../js/z";
+	import { applyZ } from "../../js/z";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 
 	export default {
@@ -180,7 +180,7 @@
 
 			open()
 			{
-				needsZIndex(z => this.$el.style.setProperty("z-index", z));
+				applyZ(z => this.$el.style.setProperty("z-index", z));
 				this.isOpen = true;
 			},
 

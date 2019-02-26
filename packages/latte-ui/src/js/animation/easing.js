@@ -7,5 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-export { default as Widget } from "./Widget.vue";
-export { default as WidgetToday } from "./WidgetToday.vue";
+export function defaultOnUpdateHandler()
+{
+}

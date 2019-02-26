@@ -9,8 +9,8 @@
 
 <script>
 
-	import { combinePassengers } from "../../js/ui/portal-utils";
-	import wormhole from "../../js/ui/wormhole";
+	import { combinePassengers } from "../../js/util/portal/util";
+	import wormhole from "../../js/util/portal/wormhole";
 
 	export default {
 

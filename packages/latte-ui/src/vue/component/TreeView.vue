@@ -17,7 +17,7 @@
 
 <script>
 
-	import { request } from "../../js/api";
+	import { request } from "../../js/core/api";
 
 	export default {
 

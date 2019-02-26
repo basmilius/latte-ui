@@ -7,11 +7,14 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { getLattePath } from "./util/dom";
+import { getLattePath } from "../util/dom";
 
 function registerCSSPaintWorklets()
 {
+	// noinspection JSIgnoredPromiseFromCall
 	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/app-bar-cutout.js");
+
+	// noinspection JSIgnoredPromiseFromCall
 	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/btn-contained-background.js");
 }
 

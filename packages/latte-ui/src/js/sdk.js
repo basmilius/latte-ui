@@ -7,26 +7,16 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 import Vue from "vue";
 
-import actions from "./actions";
-import api from "./api";
-import clipboard from "./util/clipboard";
-import cookie from "./util/cookies";
+import action from "./core/action";
+import api from "./core/api";
 import core from "./core";
-import dom from "./util/dom";
 import i18n from "./i18n";
-import json from "./util/json";
 import math from "./math";
-import messages from "./ui/messages";
-import notices from "./ui/notices";
 import operators from "./operators";
-import overlays from "./ui/overlays";
-import panels from "./ui/panels";
-import string from "./util/string";
-import touch from "./util/touch";
+import ui from "./ui";
+import util from "./util"
 
 import pkg from "../../package.json";
 
@@ -36,22 +26,14 @@ export default {
 	name: pkg.name,
 	version: pkg.version,
 
-	actions,
+	action,
 	api,
-	clipboard,
-	cookie,
 	core,
-	dom,
 	i18n,
-	json,
 	math,
-	messages,
-	notices,
 	operators,
-	overlays,
-	panels,
-	string,
-	touch,
+	ui,
+	util,
 
 	vue: Vue
 };

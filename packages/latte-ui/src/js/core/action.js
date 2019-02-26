@@ -7,10 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
-import { live } from "./util/dom.js";
-import { updateURLHash } from "./core.js";
+import { live } from "../util/dom.js";
 
 const actions = {};
 
@@ -107,6 +104,83 @@ export function on(action, callback)
 	return sub;
 }
 
+/**
+ * Updates the URL hash.
+ *
+ * @param {Object} data
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function updateURLHash(data)
+{
+	let parts = [];
+
+	for (let key in data)
+	{
+		if (!data.hasOwnProperty(key))
+			continue;
+
+		let str = key;
+		let d = data[key];
+
+		if (d.value)
+			str += `=${d.value}`;
+
+		for (let vk in d.vars)
+			if (d.vars.hasOwnProperty(vk))
+				str += `/${vk}:${d.vars[vk]}`;
+
+		parts.push(str);
+	}
+
+	const hash = parts.join("&");
+
+	if (hash.length > 0)
+		location.hash = hash;
+	else
+		history.replaceState({}, document.title, location.pathname + location.search);
+}
+
+/**
+ * Removes saved= from the query string.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function removeSavedFromQueryString()
+{
+	let queryString = window.location.search.substr(1);
+
+	if (queryString === "")
+		return;
+
+	if (queryString.substr(0, 6) === "saved=")
+		history.replaceState(null, '', window.location.pathname || window.location.path);
+}
+
+function init()
+{
+	window.addEventListener("hashchange", () => onHashChange(), false);
+	window.addEventListener("load", () => onHashChange(), false);
+
+	live(document.body, "[data-action]", "click", onAction, {passive: true});
+
+	on("latte:hash-change", parameters =>
+	{
+		const action = parameters.action;
+
+		delete parameters.action;
+
+		updateURLHash(parameters);
+
+		if (action === undefined || action === null)
+			return;
+
+		dispatch(action.value, action.vars);
+	});
+}
+
 function onAction(element, evt)
 {
 	const action = element.dataset.action;
@@ -160,25 +234,6 @@ function onHashChange()
 	dispatch("latte:hash-change", parameters);
 }
 
-window.addEventListener("hashchange", () => onHashChange(), false);
-window.addEventListener("load", () => onHashChange(), false);
-
-live(document.body, "[data-action]", "click", (element, evt) => onAction(element, evt), {passive: true});
-
-on("latte:hash-change", parameters =>
-{
-	const action = parameters.action;
-
-	delete parameters.action;
-
-	updateURLHash(parameters);
-
-	if (action === undefined || action === null)
-		return;
-
-	dispatch(action.value, action.vars);
-});
-
 export default {
 
 	dispatch,
@@ -186,3 +241,5 @@ export default {
 	on
 
 }
+
+init();

@@ -7,73 +7,9 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
+import { alert } from "../ui/message";
 
-let currentOptions = {};
-let dateFormatterOptions = {
-	day: "numeric",
-	month: "long",
-	weekday: "long",
-	year: "numeric"
-};
-
-/**
- * Deep merges multiple objects.
- *
- * @param {*} target
- * @param {*} sources
- *
- * @returns {*}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function deepMerge(target, ...sources)
-{
-	if (sources.length === 0)
-		return target;
-
-	const source = sources.shift();
-
-	if (!isObject(target) || !isObject(source))
-		return deepMerge(target, ...sources);
-
-	for (const key in source)
-	{
-		if (!source.hasOwnProperty(key))
-			continue;
-
-		if (isObject(source[key]))
-		{
-			if (!target[key])
-				Object.assign(target, {[key]: source[key]});
-
-			deepMerge(target[key], source[key]);
-		}
-		else
-		{
-			Object.assign(target, {[key]: source[key]});
-		}
-	}
-
-	return deepMerge(target, ...sources);
-}
-
-/**
- * Formats a datetime.
- *
- * @param {Date} date
- * @param {Object} options
- *
- * @returns {String}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function formatDateTime(date, options = dateFormatterOptions)
-{
-	const f = new Intl.DateTimeFormat(currentOptions.locale, options);
-
-	return f.format(date);
-}
+export let currentOptions = {};
 
 /**
  * Gets the main#app element.
@@ -98,24 +34,10 @@ export function getMainElement()
  */
 export function handleError(err, fn = undefined)
 {
-	Latte.messages.alert("Aw snap!", `<pre>${err.stack}</pre>`);
+	alert("Aw snap!", `<pre>${err.stack}</pre>`);
 
 	if (fn)
 		fn();
-}
-
-/**
- * Returns TRUE when obj is an object.
- *
- * @param {*} obj
- *
- * @returns {Boolean}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function isObject(obj)
-{
-	return obj && typeof obj === "object" && !Array.isArray(obj);
 }
 
 /**
@@ -133,23 +55,6 @@ export function interval(timeout, func)
 	func();
 
 	return setInterval(func, timeout);
-}
-
-/**
- * Returns TRUE when obj is iterable.
- *
- * @param {*} obj
- *
- * @returns {Boolean}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function isIterable(obj)
-{
-	if (obj === null)
-		return false;
-
-	return typeof obj[Symbol.iterator] === "function";
 }
 
 /**
@@ -234,44 +139,6 @@ export function timeout(timeout, func)
 	return setTimeout(func, timeout);
 }
 
-/**
- * Updates the URL hash.
- *
- * @param {Object} data
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function updateURLHash(data)
-{
-	let parts = [];
-
-	for (let key in data)
-	{
-		if (!data.hasOwnProperty(key))
-			continue;
-
-		let str = key;
-		let d = data[key];
-
-		if (d.value)
-			str += `=${d.value}`;
-
-		for (let vk in d.vars)
-			if (d.vars.hasOwnProperty(vk))
-				str += `/${vk}:${d.vars[vk]}`;
-
-		parts.push(str);
-	}
-
-	const hash = parts.join("&");
-
-	if (hash.length > 0)
-		location.hash = hash;
-	else
-		history.replaceState({}, document.title, location.pathname + location.search);
-}
-
 function shuffleString(str)
 {
 	const a = str.split("");
@@ -290,27 +157,10 @@ function shuffleString(str)
 }
 
 export default {
-
-	deepMerge,
-
-	formatDateTime,
-
 	getMainElement,
-
 	handleError,
-
 	interval,
-
-	isObject,
-
-	isIterable,
-
 	randomPassword,
-
 	register,
-
-	timeout,
-
-	updateURLHash
-
+	timeout
 }

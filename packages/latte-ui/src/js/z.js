@@ -17,7 +17,7 @@ let currentZ = 2000;
  * @author Bas Milius <bas@mili.us>
  * @since 1.0.0
  */
-export function needsZIndex(fn)
+export function applyZ(fn)
 {
 	fn(currentZ);
 	currentZ++;

@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 export function initializeForms()
 {
 	document.querySelectorAll(`form[method="post"]`).forEach(form => initializeForm(form));

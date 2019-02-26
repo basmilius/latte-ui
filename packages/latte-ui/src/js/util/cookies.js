@@ -7,8 +7,15 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
+/**
+ * Gets a cookie.
+ *
+ * @param {String} name
+ *
+ * @returns {*}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function getCookie(name)
 {
 	name = `${name}=`;
@@ -30,6 +37,16 @@ export function getCookie(name)
 	return undefined;
 }
 
+/**
+ * Sets a cookie.
+ *
+ * @param {String} name
+ * @param {*} value
+ * @param {Number} days
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function setCookie(name, value, days = 21)
 {
 	const date = new Date();
@@ -39,9 +56,6 @@ export function setCookie(name, value, days = 21)
 }
 
 export default {
-
 	getCookie,
-
 	setCookie
-
 }

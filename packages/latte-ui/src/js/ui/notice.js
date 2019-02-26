@@ -7,11 +7,9 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
-import { on } from "../actions.js";
-import { id } from "../api.js"
-import { isIterable } from "../core.js";
+import { on } from "../core/action";
+import { id } from "../core/api"
+import { isIterable } from "../util/object";
 
 export function initializeNotices()
 {

@@ -21,9 +21,9 @@
 
 <script>
 
-	import { dispatch } from "../../js/actions";
-	import { request } from "../../js/api";
-	import { deepMerge } from "../../js/core";
+	import { dispatch } from "../../js/core/action";
+	import { request } from "../../js/core/api";
+	import { deepMerge } from "../../js/util/object";
 	import { createElement } from "../../js/util/dom";
 
 	export default {
@@ -237,14 +237,10 @@
 				const value = dataset.data[tooltip.index];
 				const valueFormatted = Intl !== undefined && Intl.NumberFormat !== undefined ? new Intl.NumberFormat(navigator.language)["format"](value) : value;
 
-				switch (this.chartOptions.tooltips.transform || "default")
-				{
-					case "percentage":
-						return `${dataset.label}: ${value}%`;
-
-					default:
-						return `${dataset.label}: ${valueFormatted}`;
-				}
+				if ((this.chartOptions.tooltips.transform || "default") === "percentage")
+					return `${dataset.label}: ${value}%`;
+				else
+					return `${dataset.label}: ${valueFormatted}`;
 			}
 
 		},

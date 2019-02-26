@@ -7,8 +7,15 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
+/**
+ * Returns TRUE if str is valid json.
+ *
+ * @param {String} str
+ *
+ * @returns {Boolean}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function isJson(str)
 {
 	try
@@ -17,14 +24,12 @@ export function isJson(str)
 
 		return true;
 	}
-	catch(err)
+	catch (err)
 	{
 		return false;
 	}
 }
 
 export default {
-
 	isJson
-
 }

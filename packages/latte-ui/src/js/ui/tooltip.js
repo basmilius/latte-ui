@@ -7,10 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 import { createElement, live } from "../util/dom.js";
-import { on } from "../actions.js";
+import { on } from "../core/action.js";
 import { raf } from "../util/dom";
 import { onlyMouse, onlyTouch } from "../util/touch";
 

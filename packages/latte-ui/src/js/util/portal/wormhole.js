@@ -8,7 +8,7 @@
  */
 
 import Vue from "vue"
-import { combinePassengers, freeze, stableSort } from "./portal-utils";
+import { combinePassengers, freeze, stableSort } from "./util";
 
 const transports = {};
 

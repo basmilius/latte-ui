@@ -175,14 +175,14 @@ const router = new Router({
 
 router.beforeEach((to, from, next) =>
 {
-	Latte.actions.dispatch("latte-docs:navigate", {to, from});
+	Latte.action.dispatch("latte-docs:navigate", {to, from});
 	window.scrollTo({top: 0});
 	next();
 });
 
 router.afterEach((to, from) =>
 {
-	Latte.actions.dispatch("latte-docs:navigated", {to, from});
+	Latte.action.dispatch("latte-docs:navigated", {to, from});
 });
 
 export default router;

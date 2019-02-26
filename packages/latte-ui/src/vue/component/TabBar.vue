@@ -28,7 +28,7 @@
 <script>
 
 	import { raf } from "../../js/util/dom";
-	import { on } from "../../js/actions";
+	import { on } from "../../js/core/action";
 
 	export default {
 

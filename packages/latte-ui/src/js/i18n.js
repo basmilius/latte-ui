@@ -7,9 +7,9 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 import Vue from "vue";
+
+import { currentOptions } from "./core";
 
 /**
  * Replaces params in a string.
@@ -44,7 +44,7 @@ export function replace(string, params = [])
  */
 export function translate(domain, string, params = [])
 {
-	const translations = window.LatteI18n || {};
+	const translations = currentOptions.i18n;
 
 	if (translations === null || typeof translations[domain] === "undefined" || typeof translations[domain][string] === "undefined")
 		return replace(string, params);
@@ -52,12 +52,9 @@ export function translate(domain, string, params = [])
 	return replace(translations[domain][string], params);
 }
 
-Vue.filter("i18n", (value, domain = "root", ...params) => Latte.i18n.translate(domain, value, params));
+Vue.filter("i18n", (value, domain = "root", ...params) => translate(domain, value, params));
 
 export default {
-
 	replace,
-
 	translate
-
 }

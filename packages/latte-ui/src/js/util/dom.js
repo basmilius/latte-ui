@@ -7,10 +7,18 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 let lattePath = null;
 
+/**
+ * Returns the closest element that matches selector.
+ *
+ * @param {HTMLElement|Node} element
+ * @param {String} selector
+ *
+ * @returns {HTMLElement|SVGElement|null}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function closest(element, selector)
 {
 	for (; element && element !== document; element = element.parentNode)
@@ -20,9 +28,19 @@ export function closest(element, selector)
 	return null;
 }
 
-export function createElement(element, fn = undefined)
+/**
+ * Creates a dom element.
+ *
+ * @param {String} tag
+ * @param {Function} fn
+ *
+ * @returns {HTMLElement}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function createElement(tag, fn = undefined)
 {
-	const el = document.createElement(element);
+	const el = document.createElement(tag);
 
 	if (fn !== undefined)
 		fn(el);
@@ -30,6 +48,15 @@ export function createElement(element, fn = undefined)
 	return el;
 }
 
+/**
+ * Downloads an url as a file.
+ *
+ * @param {String} fileName
+ * @param {String} url
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function downloadFile(fileName, url)
 {
 	createElement("a", a =>
@@ -44,22 +71,40 @@ export function downloadFile(fileName, url)
 	});
 }
 
+/**
+ * Gets coords of a touch or mouse event.
+ *
+ * @param {MouseEvent|TouchEvent|PointerEvent} evt
+ *
+ * @returns {{x: Number, y: Number}|undefined}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function getCoords(evt)
 {
+	let e = evt;
+
 	if (window.TouchEvent && evt instanceof TouchEvent)
 	{
 		if (evt.touches.length > 0)
-			evt = evt.touches.item(evt.touches.length - 1);
+			e = evt.touches.item(evt.touches.length - 1);
 		else
-			evt = evt.changedTouches.item(evt.changedTouches.length - 1);
+			e = evt.changedTouches.item(evt.changedTouches.length - 1);
 	}
 
-	if (!evt.clientX || !evt.clientY)
+	if (!e.clientX || !e.clientY)
 		return undefined;
 
-	return {x: evt.clientX, y: evt.clientY};
+	return {x: e.clientX, y: e.clientY};
 }
 
+/**
+ * Gets the latte.css and latte.js root path.
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function getLattePath()
 {
 	if (lattePath !== null)
@@ -73,11 +118,30 @@ export function getLattePath()
 	return lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
 }
 
+/**
+ * Returns TRUE when the document is ready.
+ *
+ * @returns {Boolean}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function isReady()
 {
 	return ["complete", "loaded", "interactive"].indexOf(document.readyState) > -1;
 }
 
+/**
+ * Adds a live event.
+ *
+ * @param {HTMLElement} root
+ * @param {String} selector
+ * @param {String} event
+ * @param {Function} callback
+ * @param {Object} options
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function live(root, selector, event, callback, options = {passive: true})
 {
 	if (event.indexOf(" ") > -1)
@@ -107,6 +171,14 @@ export function live(root, selector, event, callback, options = {passive: true})
 	}, options);
 }
 
+/**
+ * Prints a document.
+ *
+ * @param {String} url
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function printDocument(url)
 {
 	const wnd = window.open(url);
@@ -117,6 +189,16 @@ export function printDocument(url)
 	});
 }
 
+/**
+ * Request animation frame.
+ *
+ * @param {Function} fn
+ * @param {Number|undefined} delay
+ *
+ * @returns {Number}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function raf(fn, delay = undefined)
 {
 	if (delay !== undefined)
@@ -125,6 +207,16 @@ export function raf(fn, delay = undefined)
 	requestAnimationFrame(fn);
 }
 
+/**
+ * Gets coords of a touch or mouseevent relative to an element.
+ *
+ * @param {HTMLElement} element
+ * @param {MouseEvent|TouchEvent|PointerEvent} evt
+ *
+ * @returns {{x: Number, y: Number}|undefined}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function relativeCoordsTo(element, evt)
 {
 	const coords = getCoords(evt);
@@ -140,17 +232,15 @@ export function relativeCoordsTo(element, evt)
 	};
 }
 
-export function removeSavedFromQueryString()
-{
-	let queryString = window.location.search.substr(1);
-
-	if (queryString === "")
-		return;
-
-	if (queryString.substr(0, 6) === "saved=")
-		history.replaceState(null, '', window.location.pathname || window.location.path);
-}
-
+/**
+ * Converts a string containing html code to dom elements.
+ *
+ * @param {String} str
+ *
+ * @returns {DocumentFragment}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function toDOM(str)
 {
 	const temp = document.createElement("div");
@@ -167,29 +257,15 @@ export function toDOM(str)
 }
 
 export default {
-
 	closest,
-
 	createElement,
-
 	downloadFile,
-
 	getCoords,
-
 	getLattePath,
-
 	isReady,
-
 	live,
-
 	printDocument,
-
 	raf,
-
 	relativeCoordsTo,
-
-	removeSavedFromQueryString,
-
 	toDOM
-
 }

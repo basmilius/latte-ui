@@ -7,8 +7,14 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
+/**
+ * Adds text to the clipboard.
+ *
+ * @param {String} text
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function copy(text)
 {
 	navigator.clipboard.writeText(text)
@@ -16,6 +22,13 @@ export function copy(text)
 		.catch(err => console.error(err));
 }
 
+/**
+ * Gets text from the clipboard.
+ *
+ * @returns {Promise<*>}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
 export function paste()
 {
 	return navigator.clipboard.readText()
@@ -23,9 +36,6 @@ export function paste()
 }
 
 export default {
-
 	copy,
-
 	paste
-
 }

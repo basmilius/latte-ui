@@ -17,10 +17,9 @@
 
 <script>
 
-	import { dispatch } from "../../js/actions";
-	import { register, remove } from "../../js/ui/overlays";
-	import { timeout } from "../../js/core";
-	import { needsZIndex } from "../../js/z";
+	import { dispatch } from "../../js/core/action";
+	import { register, remove } from "../../js/ui/overlay";
+	import { applyZ } from "../../js/z";
 	import { raf } from "../../js/util/dom";
 
 	export default {
@@ -98,7 +97,7 @@
 
 					raf(() =>
 					{
-						needsZIndex(z => this.$el.style.setProperty("z-index", z));
+						applyZ(z => this.$el.style.setProperty("z-index", z));
 						this.isOpen = true;
 					});
 				});

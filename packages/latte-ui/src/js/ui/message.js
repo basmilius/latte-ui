@@ -7,12 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
+import { dispatch } from "../core/action";
 import { createElement, raf } from "../util/dom";
 import { spaceship } from "../operators";
 import { translate } from "../i18n";
-import { needsZIndex } from "../z";
+import { applyZ } from "../z";
 
 export const Buttons = {
 	OK: 1,
@@ -58,7 +57,7 @@ export function createMessage(title, message, buttons, prompt = false)
 		const panelContent = createElement("div", el => el.classList.add("panel-body"));
 		const panelFooter = createElement("div", el => el.classList.add("panel-footer", "justify-content-end"));
 
-		needsZIndex(z => overlay.style.setProperty("z-index", z));
+		applyZ(z => overlay.style.setProperty("z-index", z));
 
 		overlay.setAttribute("role", "dialog");
 
@@ -101,8 +100,9 @@ export function createMessage(title, message, buttons, prompt = false)
 			{
 				raf(() => overlay.classList.remove("is-open"));
 				raf(() => overlay.classList.remove("is-visible"), 270);
+				raf(() => overlay.remove(), 300);
 
-				Latte.actions.dispatch("latte:overlay", {overlay, open: false});
+				dispatch("latte:overlay", {overlay, open: false});
 
 				resolve({
 					button: button.id,
@@ -121,7 +121,7 @@ export function createMessage(title, message, buttons, prompt = false)
 
 		document.body.appendChild(overlay);
 
-		Latte.actions.dispatch("latte:overlay", {overlay, open: true});
+		dispatch("latte:overlay", {overlay, open: true});
 
 		raf(() =>
 		{
@@ -163,17 +163,10 @@ function buttonsToButtons(buttons)
 }
 
 export default {
-
 	Buttons,
-
 	ButtonsDescribed,
-
 	createMessage,
-
 	alert,
-
 	confirm,
-
 	prompt
-
 }

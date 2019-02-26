@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 /**
  * Implementation of the <=> operator.
  *
@@ -36,7 +34,5 @@ export function spaceship(a, b)
 }
 
 export default {
-
 	spaceship
-
 }

@@ -154,8 +154,8 @@
 
 		mounted()
 		{
-			this.$latte.actions.on("latte-docs:navigate", () => this.isLoading = true);
-			this.$latte.actions.on("latte-docs:navigated", () => this.isLoading = false);
+			this.$latte.action.on("latte-docs:navigate", () => this.isLoading = true);
+			this.$latte.action.on("latte-docs:navigated", () => this.isLoading = false);
 		}
 
 	}

@@ -7,5 +7,4 @@
  * LICENSE file that was distributed with this source code.
  */
 
-export { default as LatteApisMixin } from "./LatteApisMixin";
 export { default as MomentMixin } from "./MomentMixin";

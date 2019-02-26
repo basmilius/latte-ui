@@ -33,7 +33,7 @@
 
 	import { getMainElement } from "../../js/core";
 	import { raf } from "../../js/util/dom";
-	import { needsZIndex } from "../../js/z";
+	import { applyZ } from "../../js/z";
 
 	export default {
 
@@ -137,7 +137,7 @@
 					return;
 
 				this.dropdown.style.setProperty("transition", "unset");
-				needsZIndex(z => this.dropdown.style.setProperty("z-index", z));
+				applyZ(z => this.dropdown.style.setProperty("z-index", z));
 
 				this.calculatePosition();
 

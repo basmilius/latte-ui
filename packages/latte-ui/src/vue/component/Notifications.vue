@@ -21,8 +21,8 @@
 						<span class="notification-title" v-if="notification.title">{{ notification.title }}</span>
 						<span class="notification-text" v-if="notification.message">{{ notification.message }}</span>
 					</div>
-					<div class="notification-actions" v-if="notification.actions">
-						<button v-for="a in notification.actions" @click="remove(notification.id)" :data-action="a.action" v-bind="makeParams(a.params || {})" class="btn btn-text" :class="'btn-' + (a.type || 'primary')"><span>{{ a.label }}</span></button>
+					<div class="notification-actions" v-if="notification.action">
+						<button v-for="a in notification.action" @click="remove(notification.id)" :data-action="a.action" v-bind="makeParams(a.params || {})" class="btn btn-text" :class="'btn-' + (a.type || 'primary')"><span>{{ a.label }}</span></button>
 					</div>
 				</div>
 			</div>
@@ -35,10 +35,10 @@
 
 <script>
 
-	import { on } from "../../js/actions";
 	import { timeout } from "../../js/core";
+	import { on } from "../../js/core/action";
 	import { getLattePath, raf } from "../../js/util/dom";
-	import { needsZIndex } from "../../js/z";
+	import { applyZ } from "../../js/z";
 
 	export default {
 
@@ -80,7 +80,7 @@
 				data.opening = true;
 				data.top = this.lastTop;
 
-				needsZIndex(z => data.z = z);
+				applyZ(z => data.z = z);
 
 				this.notifications.push(data);
 				this.show(data.id);

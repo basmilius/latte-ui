@@ -61,7 +61,7 @@
 
 <script>
 
-	import { id, request } from "../../js/api";
+	import { id, request } from "../../js/core/api";
 
 	function areArraysEqual(a, b)
 	{

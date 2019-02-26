@@ -9,7 +9,7 @@
 
 <script>
 
-	import wormhole from "../../js/ui/wormhole";
+	import wormhole from "../../js/util/portal/wormhole";
 	import { default as PortalTarget } from "./PortalTarget.vue";
 
 	let portalId = 0;

@@ -9,26 +9,22 @@
 
 import LatteSDK from "./js/sdk";
 
-import { dispatch, on } from "./js/actions";
+import { dispatch, on, removeSavedFromQueryString } from "./js/core/action";
 import { interval, setOptions } from "./js/core";
-import { removeSavedFromQueryString } from "./js/util/dom";
 import { setCookie } from "./js/util/cookies";
-import { initializeHoudiniApis } from "./js/houdini-apis";
-import { initializeForms } from "./js/ui/forms";
-import { initializeNotices } from "./js/ui/notices";
-import { initializePanels } from "./js/ui/panels";
-import { initializeTooltips } from "./js/ui/tooltip";
+import { initializeHoudiniApis } from "./js/houdini";
 import { registerOutsideEvents } from "./js/hid/OutsideEvent";
 
 import * as Components from "./vue/component";
 import * as Directives from "./vue/directive";
 import * as Mixins from "./vue/mixin"
 import * as RTEPlugins from "./vue/rich-text-editor";
-import * as Widgets from "./vue/widget";
 
 import "./scss/app.scss";
+import { initializeUI } from "./js/ui";
 
 export const DefaultOptions = Object.assign({}, self.LatteOptions || {}, {
+	i18n: {},
 	locale: navigator.language,
 	tickInterval: 250
 });
@@ -75,7 +71,6 @@ export const LatteUI = {
 	{
 		Object.values(Components).forEach(c => Vue.component(c.name, c));
 		Object.values(RTEPlugins).forEach(p => Vue.component(p.name, p));
-		Object.values(Widgets).forEach(w => Vue.component(w.name, w));
 	},
 
 	registerDirectives(Vue)
@@ -90,10 +85,7 @@ export const LatteUI = {
 
 	onDOMContentLoaded()
 	{
-		initializeForms();
-		initializeNotices();
-		initializePanels();
-		initializeTooltips();
+		initializeUI();
 	},
 
 	onSwitchTheme(data)

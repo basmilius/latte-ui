@@ -18,7 +18,16 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-12 d-flex flex-wrap justify-content-center">
+				<div class="col-12">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Question dialog</span></div>
+						<div class="panel-body">
+
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showQuestion"><span>Open question</span></latte-ripple>
+
+						</div>
+					</div>
 
 				</div>
 			</div>
@@ -36,6 +45,20 @@
 
 		components: {
 			PageHeader
+		},
+
+		methods: {
+
+			showQuestion()
+			{
+				this.$latte.ui.question.create("map-marker-outline", "Allow <strong>Maps</strong> to access this device's location?", [
+					{id: 1, label: "Allow all the time"},
+					{id: 2, label: "Allow when the app in use"},
+					{id: 4, label: "Deny"},
+					{id: 8, label: "Deny & don't ask again"}
+				]).then(result => console.log(result));
+			}
+
 		}
 
 	}

@@ -8,7 +8,7 @@
  */
 
 import { defaultOnUpdateHandler } from "./easing";
-import { raf } from "./util/dom";
+import { raf } from "../util/dom";
 
 function currentTime()
 {

@@ -39,9 +39,6 @@ export function isNullOrWhitespace(str)
 }
 
 export default {
-
 	commaCommaAnd,
-
 	isNullOrWhitespace
-
 };

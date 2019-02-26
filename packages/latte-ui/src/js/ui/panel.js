@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-"use strict";
-
 export function initializePanels()
 {
 	document.querySelectorAll("div.panel > table").forEach(t => t.parentNode.classList.add("panel-table"));
@@ -86,11 +84,7 @@ export function open(panel)
 }
 
 export default {
-
 	close,
-
 	initializePanel,
-
 	open
-
 }
