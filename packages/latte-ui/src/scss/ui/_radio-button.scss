@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--radio-background: var(--color-primary);
+	--radio-foreground: var(--color-primary-foreground);
+}
+
 input[type=radio].radio-button
 {
 	position: relative;

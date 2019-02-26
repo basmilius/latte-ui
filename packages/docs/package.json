@@ -1,6 +1,6 @@
 {
 	"name": "latte-ui-docs",
-	"version": "1.4.0-beta.3",
+	"version": "1.4.0-beta.4",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
@@ -9,7 +9,7 @@
 	"dependencies": {
 		"@bybas/latte-ui": "./packages/latte-ui",
 		"animejs": "^3.0.1",
-		"highlight.js": "^9.14.2",
+		"highlight.js": "^9.15.5",
 		"moment": "^2.24.0",
 		"register-service-worker": "^1.6.2",
 		"vue": "^2.6.7",

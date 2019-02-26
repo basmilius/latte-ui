@@ -23,7 +23,8 @@
 
 <script>
 
-	import { createElement, isTouchOnlyDevice, raf, relativeCoordsTo } from "../../js/util/dom";
+	import { createElement, raf, relativeCoordsTo } from "../../js/util/dom";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { pythagorean } from "../../js/math";
 
 	export default {
@@ -77,19 +78,14 @@
 				this.observer.observe(this.container);
 			}
 
-			if (isTouchOnlyDevice())
-			{
-				this.$el.addEventListener("touchcancel", evt => this.onPointerUp(evt), {passive: true});
-				this.$el.addEventListener("touchmove", evt => this.onPointerUp(evt), {passive: true});
-				this.$el.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: true});
-				this.$el.addEventListener("touchend", evt => this.onPointerUp(evt), {passive: true});
-			}
-			else
-			{
-				this.$el.addEventListener("mouseleave", evt => this.onPointerUp(evt), {passive: true});
-				this.$el.addEventListener("mousedown", evt => this.onPointerDown(evt), {passive: true});
-				this.$el.addEventListener("mouseup", evt => this.onPointerUp(evt), {passive: true});
-			}
+			this.$el.addEventListener("touchcancel", onlyTouch(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("touchmove", onlyTouch(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: true});
+			this.$el.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: true});
+
+			this.$el.addEventListener("mouseleave", onlyMouse(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: true});
+			this.$el.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: true});
 		},
 
 		computed: {

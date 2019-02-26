@@ -78,11 +78,6 @@ export function isReady()
 	return ["complete", "loaded", "interactive"].indexOf(document.readyState) > -1;
 }
 
-export function isTouchOnlyDevice()
-{
-	return "ontouchstart" in window || navigator.msMaxTouchPoints;
-}
-
 export function live(root, selector, event, callback, options = {passive: true})
 {
 	if (event.indexOf(" ") > -1)
@@ -184,8 +179,6 @@ export default {
 	getLattePath,
 
 	isReady,
-
-	isTouchOnlyDevice,
 
 	live,
 

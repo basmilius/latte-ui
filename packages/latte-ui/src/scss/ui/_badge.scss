@@ -10,14 +10,13 @@
 .badge
 {
 	display: inline-flex;
-	margin: -1px;
 	min-width: 33px;
 	padding: 6px 12px;
 	align-items: center;
 	justify-content: center;
 	background: RGBA(var(--badge-color), .1);
-	border: 1px solid RGBA(var(--badge-color), .1);
-	border-radius: 15px;
+	box-shadow: 0 0 0 1px RGBA(var(--badge-color), .2);
+	border-radius: 1em;
 	color: RGB(var(--badge-color)) !important;
 	font-size: .8em;
 	font-weight: 500;
@@ -25,6 +24,11 @@
 	text-align: center;
 	text-decoration: none;
 	vertical-align: middle;
+
+	+ .badge
+	{
+		margin-left: 6px;
+	}
 
 	&.badge-fill
 	{
@@ -63,6 +67,7 @@
 a.badge:hover
 {
 	background: RGBA(var(--badge-color), .2);
+	box-shadow: 0 0 0 1px RGBA(var(--badge-color), .3);
 	cursor: pointer;
 }
 

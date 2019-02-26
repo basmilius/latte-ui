@@ -35,6 +35,10 @@ const router = new Router({
 							component: () => import("./views/docs/components/Avatar.vue")
 						},
 						{
+							path: "badge",
+							component: () => import("./views/docs/components/Badge.vue")
+						},
+						{
 							path: "bottom-nav",
 							component: () => import("./views/docs/components/BottomNav.vue")
 						},
@@ -120,6 +124,10 @@ const router = new Router({
 					path: "layout",
 					component: () => import("./components/NestedRouterView.vue"),
 					children: [
+						{
+							path: "color",
+							component: () => import("./views/docs/layout/Color.vue")
+						},
 						{
 							path: "grid-system",
 							component: () => import("./views/docs/layout/GridSystem.vue")

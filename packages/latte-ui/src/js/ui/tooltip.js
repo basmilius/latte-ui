@@ -12,6 +12,7 @@
 import { createElement, live } from "../util/dom.js";
 import { on } from "../actions.js";
 import { raf } from "../util/dom";
+import { onlyMouse, onlyTouch } from "../util/touch";
 
 let tooltipContained = true;
 let tooltipElement = null;
@@ -25,8 +26,11 @@ export function initializeTooltips()
 		document.body.appendChild(div);
 	});
 
-	live(document.body, "[data-tooltip]", "pointerover", (el, evt) => onTooltipElementHover(el, evt));
-	live(document.body, "[data-tooltip]", "pointerout", (el, evt) => despawnTooltip(el, evt));
+	live(document.body, "[data-tooltip]", "mouseover", onlyMouse(onTooltipElementHover));
+	live(document.body, "[data-tooltip]", "mouseout", onlyMouse(despawnTooltip));
+
+	live(document.body, "[data-tooltip]", "touchstart", onlyTouch(onTooltipElementHover));
+	live(document.body, "[data-tooltip]", "touchend", onlyTouch(despawnTooltip));
 
 	on("latte:tooltip", data => spawnTooltip(data));
 	on("latte:tooltip:hide", () => despawnTooltip());

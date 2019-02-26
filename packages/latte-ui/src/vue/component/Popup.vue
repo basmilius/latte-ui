@@ -22,9 +22,10 @@
 	import Vue from "vue";
 
 	import { dispatch, on } from "../../js/actions";
-	import { getMainElement, timeout } from "../../js/core";
+	import { getMainElement } from "../../js/core";
 	import { live, raf } from "../../js/util/dom";
 	import { needsZIndex } from "../../js/z";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 
 	export default {
 
@@ -69,17 +70,11 @@
 				getMainElement().classList.remove("is-popup-opened");
 
 			document.body.removeChild(this.$el);
-
-			this.$el.removeOutsideEventListener("pointerdown", this.cb.onOutsideClick);
 		},
 
 		data()
 		{
 			return {
-				cb: {
-					onClick: evt => this.onClick(evt),
-					onOutsideClick: evt => this.onOutsideClick(evt)
-				},
 				isOpen: false,
 				popupX: 0,
 				popupY: 0,
@@ -100,9 +95,10 @@
 			if (this.$parent && this.$parent.$forceUpdate)
 				this.$parent.$forceUpdate();
 
-			this.$el.addOutsideEventListener("pointerdown", this.cb.onOutsideClick);
+			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick));
+			this.$el.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick));
 
-			live(this.$el, "[href],[data-close]", "pointerup", () => timeout(25, () => this.close()));
+			live(this.$el, "[href],[data-close]", "click", () => raf(() => this.close()));
 
 			on("latte:tick", () => this.onResizeOrScroll());
 			on("latte:context-menu", () => this.close());
@@ -165,7 +161,7 @@
 			bindEvents()
 			{
 				this.rect = this.associatedElement.getBoundingClientRect();
-				this.associatedElement.addEventListener("click", this.cb.onClick, {passive: true});
+				this.associatedElement.addEventListener("click", this.onClick, {passive: true});
 			},
 
 			unbindEvents()
@@ -174,7 +170,7 @@
 					return;
 
 				this.rect = null;
-				this.associatedElement.removeEventListener("click", this.cb.onClick, {passive: true});
+				this.associatedElement.removeEventListener("click", this.onClick, {passive: true});
 			},
 
 			close()

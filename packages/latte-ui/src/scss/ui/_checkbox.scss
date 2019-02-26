@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--checkbox-background: var(--color-primary);
+	--checkbox-foreground: var(--color-primary-foreground);
+}
+
 input[type=checkbox].checkbox
 {
 	position: relative;

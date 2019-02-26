@@ -7,5 +7,17 @@
  * LICENSE file that was distributed with this source code.
  */
 
-@import "gradient";
-@import "responsive";
+.radius-default
+{
+	border-radius: var(--border-radius) !important;
+}
+
+.radius-circle
+{
+	border-radius: 999px !important;
+}
+
+.radius-none
+{
+	border-radius: 0 !important;
+}

@@ -116,8 +116,12 @@
 	--spinner-background: var(--btn-foreground);
 
 	background: RGB(var(--btn-background));
-	background: paint(btn-contained-background);
 	color: RGB(var(--btn-foreground));
+
+	@supports(background: paint(btn-contained-background))
+	{
+		background: paint(btn-contained-background);
+	}
 
 	&:not(.is-ripple):hover,
 	&:not(.is-ripple):focus
@@ -146,11 +150,16 @@
 
 		background: RGB(var(--btn-background));
 		color: RGB(var(--btn-foreground));
+
+		@supports(background: paint(btn-contained-background))
+		{
+			background: paint(btn-contained-background);
+		}
 	}
 
 	&:not(.is-ripple):active
 	{
-		background: linear-gradient(to top, RGBA(var(--btn-foreground), .2), RGBA(var(--btn-foreground), .2)), RGB(var(--btn-background));
+		--btn-contained-hover-state: .2;
 	}
 }
 
@@ -231,29 +240,6 @@
 	{
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
-	}
-}
-
-.panel > .btn-group
-{
-	border-radius: inherit;
-	overflow: hidden;
-
-	&:first-child
-	{
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	&:last-child
-	{
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-	}
-
-	.btn
-	{
-		border-radius: 0 !important;
 	}
 }
 

@@ -6,6 +6,8 @@ import LatteUI, { Latte } from "@bybas/latte-ui";
 
 import "highlight.js/styles/github-gist.css";
 import "@mdi/font/css/materialdesignicons.css";
+
+import "./scss/app.scss";
 import "./scss/page.scss";
 
 import "./registerServiceWorker";

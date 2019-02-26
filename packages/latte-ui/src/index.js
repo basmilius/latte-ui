@@ -19,7 +19,6 @@ import { initializeNotices } from "./js/ui/notices";
 import { initializePanels } from "./js/ui/panels";
 import { initializeTooltips } from "./js/ui/tooltip";
 import { registerOutsideEvents } from "./js/hid/OutsideEvent";
-import { registerPointerEventsPolyfill } from "./js/hid/PointerEvents";
 
 import * as Components from "./vue/component";
 import * as Directives from "./vue/directive";
@@ -51,7 +50,6 @@ export const LatteUI = {
 		setOptions(options);
 
 		registerOutsideEvents();
-		registerPointerEventsPolyfill();
 		initializeHoudiniApis();
 
 		this.registerDirectives(Vue);

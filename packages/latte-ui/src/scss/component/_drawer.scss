@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--drawer-width-primary: 70px;
+	--drawer-width-secondary: 230px;
+}
+
 div#drawer
 {
 	position: relative;

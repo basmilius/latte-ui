@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--divider-size: 1px;
+}
+
 div.divider
 {
 	flex-shrink: 0;

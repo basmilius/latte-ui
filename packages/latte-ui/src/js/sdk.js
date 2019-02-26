@@ -26,6 +26,7 @@ import operators from "./operators";
 import overlays from "./ui/overlays";
 import panels from "./ui/panels";
 import string from "./util/string";
+import touch from "./util/touch";
 
 import pkg from "../../package.json";
 
@@ -50,5 +51,7 @@ export default {
 	overlays,
 	panels,
 	string,
+	touch,
+
 	vue: Vue
 };

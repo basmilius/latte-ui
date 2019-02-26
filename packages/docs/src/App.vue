@@ -46,6 +46,7 @@
 					<div class="divider divider-horizontal"></div>
 
 					<span class="section">Layout</span>
+					<latte-ripple as="router-link" to="/docs/layout/color" class="nav-link"><span>Color</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/grid-system" class="nav-link"><span>Grid system</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/typography" class="nav-link"><span>Typography</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/utilities" class="nav-link"><span>Utilities</span></latte-ripple>
@@ -56,6 +57,7 @@
 					<span class="section">Components</span>
 					<latte-ripple as="router-link" to="/docs/components/app-bar" class="nav-link"><span>App bar</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/avatar" class="nav-link"><span>Avatar</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/badge" class="nav-link"><span>Badge</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/bottom-nav" class="nav-link"><span>Bottom nav</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/button" class="nav-link"><span>Button</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/chat" class="nav-link"><span>Chat</span></latte-ripple>
@@ -159,99 +161,3 @@
 	}
 
 </script>
-
-<style lang="scss">
-
-	:root
-	{
-		--color-primary: 21, 92, 172 !important;
-	}
-
-	body
-	{
-		--content-gutter: 9px;
-		--drawer-width-secondary: 240px;
-
-		@media (min-width: 992px)
-		{
-			--app-bar-height: 60px;
-			--content-gutter: 24px;
-
-			:not(.is-docs)
-			{
-				.content
-				{
-					--drawer-width-secondary: 0;
-				}
-
-				.sheet-overlay
-				{
-					display: none;
-				}
-			}
-
-			.is-docs footer.footer
-			{
-				margin-left: var(--drawer-width-secondary);
-			}
-		}
-	}
-
-	div.app-bar-main
-	{
-		--ripple-center: true;
-		--ripple-clip: false;
-		--ripple-color: 255, 255, 255;
-		--tabs-accent: 255, 255, 255;
-		--tabs-height: var(--app-bar-height);
-
-		.nav-tabs
-		{
-			overflow: hidden;
-
-			.nav-link.is-not-really-active:not([href="/"])
-			{
-				box-shadow: inset 0 -2px RGB(var(--tabs-accent)) !important;
-				opacity: 1 !important;
-			}
-		}
-	}
-
-	span.spinner#app-spinner
-	{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(255, 255, 255, .8);
-		font-size: 2.5rem;
-		pointer-events: none;
-		transition: opacity 210ms var(--ease-swift-out);
-		z-index: 5000;
-
-		&.is-hidden
-		{
-			opacity: 0;
-		}
-	}
-
-	footer.footer nav.nav.nav-links .nav-link
-	{
-		min-height: 36px;
-	}
-
-	@media (max-width: 991px)
-	{
-		footer.footer .footer-nav
-		{
-			text-align: center;
-		}
-
-		footer.footer .footer-nav nav.nav.nav-links .nav-link
-		{
-			justify-content: center;
-		}
-	}
-
-</style>

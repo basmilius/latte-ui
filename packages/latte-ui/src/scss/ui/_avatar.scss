@@ -12,8 +12,6 @@
 	display: inline-block;
 	height: 1em;
 	width: 1em;
-	margin: 0;
-	padding: 0;
 	background:
 	{
 		color: var(--panel-background);
@@ -26,7 +24,7 @@
 	object-position: center center;
 }
 
-div.avatar-strip
+.avatar-strip
 {
 	position: relative;
 	display: flex;

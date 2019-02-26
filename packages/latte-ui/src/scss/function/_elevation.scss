@@ -118,8 +118,3 @@ $elevation-ambient-map: (
 
 	@return #{"#{$umbra-z-value} #{$umbra-color}"}, #{"#{$penumbra-z-value} #{$penumbra-color}"}, #{$ambient-z-value} $ambient-color;
 }
-
-@mixin elevation($z, $colorProperty: var(--default-elevation-color), $opacity-boost: 0)
-{
-	box-shadow: elevation-generate($z, $colorProperty, $opacity-boost);
-}

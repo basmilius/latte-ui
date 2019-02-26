@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--toggle-background: var(--color-primary);
+	--toggle-foreground: var(--color-primary-foreground);
+}
+
 .toggle-button
 {
 	position: relative;

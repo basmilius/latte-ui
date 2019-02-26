@@ -15,26 +15,12 @@
 	--ease-standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);
 	--ease-swift-out: cubic-bezier(.55, 0, .1, 1);
 
-	--branding-logo: url(/resource/image/branding/logo.svg);
+	--branding-logo: url(../image/logo.svg);
 	--border-radius: 6px;
 
 	--default-light: 255, 255, 255;
 	--default-dark: 25, 26, 28;
 	--default-elevation-color: 127, 127, 127;
-
-	--checkbox-background: var(--color-primary);
-	--checkbox-foreground: var(--color-primary-foreground);
-	--radio-background: var(--color-primary);
-	--radio-foreground: var(--color-primary-foreground);
-	--toggle-background: var(--color-primary);
-	--toggle-foreground: var(--color-primary-foreground);
-
-	--app-bar-gutter: 15px;
-	--app-bar-height: 60px;
-	--content-gutter: 24px;
-	--divider-size: 1px;
-	--drawer-width-primary: 70px;
-	--drawer-width-secondary: 230px;
 
 	@each $type, $color in $theme-colors
 	{

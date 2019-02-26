@@ -151,6 +151,7 @@
 		&.is-active
 		{
 			background: transparent;
+			box-shadow: inset 3px 0 RGB(var(--color-primary));
 			color: RGB(var(--color-primary));
 		}
 

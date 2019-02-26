@@ -20,7 +20,8 @@
 <script>
 
 	import { getMainElement } from "../../js/core";
-	import { closest, getCoords, isTouchOnlyDevice, raf } from "../../js/util/dom";
+	import { closest, getCoords } from "../../js/util/dom";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 
 	const TRIGGER_SIZE = 24;
 
@@ -67,19 +68,14 @@
 
 			window.addEventListener("resize", () => this.close());
 
-			if (isTouchOnlyDevice())
-			{
-				window.addEventListener("touchcancel", evt => this.onPointerCancel(evt), {passive: false});
-				window.addEventListener("touchstart", evt => this.onPointerDown(evt), {passive: false});
-				window.addEventListener("touchmove", evt => this.onPointerMove(evt), {passive: false});
-				window.addEventListener("touchend", evt => this.onPointerUp(evt), {passive: false});
-			}
-			else
-			{
-				window.addEventListener("mousewheel", evt => this.onMouseWheel(evt), {passive: false});
-				window.addEventListener("mousedown", evt => this.onPointerDown(evt), {passive: false});
-				window.addEventListener("mouseup", evt => this.onPointerUp(evt), {passive: false});
-			}
+			window.addEventListener("touchcancel", onlyTouch(this.onPointerCancel), {passive: false});
+			window.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: false});
+			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
+			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
+
+			window.addEventListener("mousewheel", onlyMouse(this.onMouseWheel), {passive: false});
+			window.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: false});
+			window.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: false});
 		},
 
 		computed: {
