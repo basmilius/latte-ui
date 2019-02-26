@@ -21,6 +21,17 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Message dialog</span></div>
+						<div class="panel-body">
+
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showAlert"><span>Show alert</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showConfirm"><span>Show confirm</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showPrompt"><span>Show prompt</span></latte-ripple>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Question dialog</span></div>
 						<div class="panel-body">
 
@@ -48,6 +59,21 @@
 		},
 
 		methods: {
+
+			showAlert()
+			{
+				this.$latte.ui.message.alert("Hello", "Hello world from the new Vue based message dialog!").then(result => console.log(result));
+			},
+
+			showConfirm()
+			{
+				this.$latte.ui.message.confirm("Hello", "Hello world from the new Vue based message dialog!").then(result => console.log(result));
+			},
+
+			showPrompt()
+			{
+				this.$latte.ui.message.prompt("Hello", "Hello world from the new Vue based message dialog!").then(result => console.log(result));
+			},
 
 			showQuestion()
 			{

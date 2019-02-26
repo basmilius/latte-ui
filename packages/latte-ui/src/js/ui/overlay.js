@@ -40,15 +40,9 @@ export function remove(name)
 }
 
 export default {
-
 	close,
-
 	find,
-
 	open,
-
 	register,
-
 	remove
-
 }

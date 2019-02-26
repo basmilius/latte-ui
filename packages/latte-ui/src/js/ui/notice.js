@@ -82,13 +82,8 @@ export function remove(noticeId)
 }
 
 export default {
-
 	areEntitiesNotices,
-
 	create,
-
 	isEntityNotice,
-
 	remove
-
 }

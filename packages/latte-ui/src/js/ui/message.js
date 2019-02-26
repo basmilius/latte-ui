@@ -7,11 +7,124 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import Vue from "vue";
+
 import { dispatch } from "../core/action";
 import { createElement, raf } from "../util/dom";
 import { spaceship } from "../operators";
 import { translate } from "../i18n";
 import { applyZ } from "../z";
+import { getMainElement } from "../core";
+
+const MessagePanel = Vue.extend({
+
+	props: {
+
+		buttons: {
+			default: () => [],
+			required: true,
+			type: Array
+		},
+
+		message: {
+			default: "",
+			required: true,
+			type: String
+		},
+
+		prompt: {
+			default: false,
+			required: true,
+			type: Boolean
+		},
+
+		resolver: {
+			required: true,
+			type: Function
+		},
+
+		title: {
+			default: "",
+			required: true,
+			type: String
+		}
+
+	},
+
+	data()
+	{
+		return {
+			isOpen: false,
+			promptResult: "",
+			z: 0
+		};
+	},
+
+	render(h)
+	{
+		return h("div", {attrs: {role: "dialog"}, class: ["latte-overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
+			h("div", {class: ["panel"], style: {width: "540px"}}, [
+				h("div", {class: ["panel-header"]}, [
+					h("span", {class: ["panel-title"]}, this.title)
+				]),
+				h("div", {class: ["panel-body"]}, [
+					h("p", {domProps: {innerHTML: this.message}}),
+					!this.prompt ? undefined : h("div", {class: ["form-group"]}, [
+						h("input", {attrs: {type: "text"}, class: ["form-control"], props: {value: this.promptResult}, on: {input: v => this.promptResult = v.target.value}})
+					])
+				]),
+				h("div", {class: ["panel-footer", "justify-content-end"]}, this.buttons.map(button => h("latte-ripple", {
+					class: ["btn", ...button.classes],
+					on: {
+						click: () => this.close(button.id)
+					},
+					props: {
+						as: "button"
+					}
+				}, [
+					button.icon !== null ? h("i", {class: ["mdi", `mdi-${button.icon}`]}) : undefined,
+					h("span", {}, button.label)
+				])))
+			])
+		]);
+	},
+
+	methods: {
+
+		close(buttonId)
+		{
+			raf(() => this.isOpen = false);
+			raf(() => this.$emit("delete-me"), 300);
+
+			this.resolve({
+				button: buttonId,
+				input: this.promptResult
+			});
+		},
+
+		open()
+		{
+			applyZ(z => this.z = z);
+			raf(() => raf(() => this.isOpen = true));
+		},
+
+		resolve(result)
+		{
+			this.resolver(result);
+		}
+
+	},
+
+	watch: {
+
+		isOpen()
+		{
+			dispatch("latte:overlay", {overlay: this.$el, open: this.isOpen});
+		}
+
+	}
+
+});
 
 export const Buttons = {
 	OK: 1,
@@ -43,108 +156,46 @@ export const ButtonsDescribed = [
 	{id: Buttons.DENY, icon: "close-circle", label: "Deny", classes: ["btn-text", "btn-dark"], weight: 0}
 ];
 
-export function createMessage(title, message, buttons, prompt = false)
+export function create(title, message, buttons, prompt = false)
 {
 	return new Promise(resolve =>
 	{
-		const overlay = createElement("div", el => el.classList.add("latte-overlay", "is-visible"));
-		const panel = createElement("div", el =>
-		{
-			el.classList.add("panel");
-			el.style.setProperty("width", "540px");
+		const mount = createElement("div");
+		const dialog = new MessagePanel({
+			propsData: {
+				buttons: buttonsToButtons(buttons),
+				message,
+				prompt,
+				resolver: resolve,
+				title
+			}
 		});
-		const panelTitle = createElement("div", el => el.classList.add("panel-header"));
-		const panelContent = createElement("div", el => el.classList.add("panel-body"));
-		const panelFooter = createElement("div", el => el.classList.add("panel-footer", "justify-content-end"));
 
-		applyZ(z => overlay.style.setProperty("z-index", z));
+		getMainElement().appendChild(mount);
+		dialog.$mount(mount);
 
-		overlay.setAttribute("role", "dialog");
-
-		let promptInput;
-
-		buttons = buttonsToButtons(buttons);
-
-		panelTitle.appendChild(createElement("span", span =>
+		dialog.open();
+		dialog.$on("delete-me", () =>
 		{
-			span.classList.add("panel-title");
-			span.innerHTML = title;
-		}));
-		panelContent.appendChild(createElement("p", p => p.innerHTML = message));
-
-		if (prompt)
-		{
-			const formGroup = createElement("div", el => el.classList.add("form-group", "mb-0"));
-
-			promptInput = createElement("input", el =>
-			{
-				el.classList.add("form-control");
-				el.setAttribute("type", "text");
-				formGroup.appendChild(el);
-			});
-
-			panelContent.appendChild(formGroup);
-		}
-
-		for (const i in buttons)
-		{
-			const button = buttons[i];
-			const el = createElement("button", el => el.classList.add("btn", "btn-contained", ...button.classes));
-
-			if (button.icon !== null)
-				el.appendChild(createElement("i", i => i.classList.add("mdi", `mdi-${button.icon}`)));
-
-			el.appendChild(createElement("span", span => span.innerHTML = button.label));
-
-			el.addEventListener("click", () =>
-			{
-				raf(() => overlay.classList.remove("is-open"));
-				raf(() => overlay.classList.remove("is-visible"), 270);
-				raf(() => overlay.remove(), 300);
-
-				dispatch("latte:overlay", {overlay, open: false});
-
-				resolve({
-					button: button.id,
-					input: (prompt ? promptInput.value : undefined)
-				});
-			});
-
-			panelFooter.appendChild(el);
-		}
-
-		panel.appendChild(panelTitle);
-		panel.appendChild(panelContent);
-		panel.appendChild(panelFooter);
-
-		overlay.appendChild(panel);
-
-		document.body.appendChild(overlay);
-
-		dispatch("latte:overlay", {overlay, open: true});
-
-		raf(() =>
-		{
-			overlay.classList.add("is-visible");
-
-			raf(() => overlay.classList.add("is-open"));
+			dialog.$destroy();
+			getMainElement().removeChild(dialog.$el);
 		});
 	});
 }
 
 export function alert(title, message)
 {
-	return createMessage(title, message, Buttons.OK);
+	return create(title, message, Buttons.OK);
 }
 
 export function confirm(title, message)
 {
-	return createMessage(title, message, Buttons.OK | Buttons.CANCEL);
+	return create(title, message, Buttons.OK | Buttons.CANCEL);
 }
 
 export function prompt(title, message)
 {
-	return createMessage(title, message, Buttons.OK | Buttons.CANCEL, true);
+	return create(title, message, Buttons.OK | Buttons.CANCEL, true);
 }
 
 function buttonsToButtons(buttons)
@@ -165,7 +216,7 @@ function buttonsToButtons(buttons)
 export default {
 	Buttons,
 	ButtonsDescribed,
-	createMessage,
+	create,
 	alert,
 	confirm,
 	prompt
