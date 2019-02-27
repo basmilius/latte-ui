@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="latte-overlay" role="dialog" :class="{'is-visible': isVisible, 'is-open': isOpen}" v-if="isVisible" v-cloak>
+	<div class="overlay" role="dialog" :class="overlayClasses" v-if="isVisible">
 		<slot></slot>
 	</div>
 
@@ -29,15 +29,29 @@
 		props: {
 
 			name: {
+				default: "",
 				required: true,
 				type: String
 			},
 
 			opened: {
 				default: false,
+				required: false,
+				type: Boolean
+			},
+
+			responsive: {
+				default: true,
+				required: false,
 				type: Boolean
 			}
 
+		},
+
+		beforeDestroy()
+		{
+			document.body.removeChild(this.$el);
+			this.parentRef.appendChild(this.$el);
 		},
 
 		data()
@@ -47,12 +61,6 @@
 				isVisible: false,
 				parentRef: null
 			};
-		},
-
-		beforeDestroy()
-		{
-			document.body.removeChild(this.$el);
-			this.parentRef.appendChild(this.$el);
 		},
 
 		destroyed()
@@ -70,6 +78,26 @@
 
 			if (this.opened)
 				this.open(this.name);
+		},
+
+		computed: {
+
+			overlayClasses()
+			{
+				const classes = [];
+
+				if (this.isOpen)
+					classes.push("is-open");
+
+				if (this.responsive)
+					classes.push("is-responsive");
+
+				if (this.isVisible)
+					classes.push("is-visible");
+
+				return classes;
+			}
+
 		},
 
 		methods: {

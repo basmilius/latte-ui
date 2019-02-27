@@ -31,7 +31,6 @@ export { default as JsonEditorView } from "./JsonEditorView.vue";
 export { default as JsonEditorViewArray } from "./JsonEditorViewArray.vue";
 export { default as MegaMenu } from "./MegaMenu.vue";
 export { default as Moment } from "./Moment.vue";
-export { default as Notifications } from "./Notifications.vue";
 export { default as Overlay } from "./Overlay.vue";
 export { default as Pagination } from "./Pagination.vue";
 export { default as Password } from "./Password.vue";

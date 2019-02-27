@@ -38,7 +38,7 @@ const MessagePanel = Vue.extend({
 			type: Boolean
 		},
 
-		resolver: {
+		resolve: {
 			required: true,
 			type: Function
 		},
@@ -62,7 +62,7 @@ const MessagePanel = Vue.extend({
 
 	render(h)
 	{
-		return h("div", {attrs: {role: "dialog"}, class: ["latte-overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
+		return h("div", {attrs: {role: "dialog"}, class: ["overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
 			h("div", {class: ["panel"], style: {width: "540px"}}, [
 				h("div", {class: ["panel-header"]}, [
 					h("span", {class: ["panel-title"]}, this.title)
@@ -106,11 +106,6 @@ const MessagePanel = Vue.extend({
 		{
 			applyZ(z => this.z = z);
 			raf(() => raf(() => this.isOpen = true));
-		},
-
-		resolve(result)
-		{
-			this.resolver(result);
 		}
 
 	},
@@ -166,7 +161,7 @@ export function create(title, message, buttons, prompt = false)
 				buttons: buttonsToButtons(buttons),
 				message,
 				prompt,
-				resolver: resolve,
+				resolve,
 				title
 			}
 		});

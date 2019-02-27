@@ -32,6 +32,18 @@
 					</div>
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Notification</span></div>
+						<div class="panel-body">
+
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showNotificationBasic"><span>Basic</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showNotificationIcon"><span>Icon</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showNotificationAvatar"><span>Avatar</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showNotificationButtons"><span>Buttons</span></latte-ripple>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Question dialog</span></div>
 						<div class="panel-body">
 
@@ -73,6 +85,46 @@
 			showPrompt()
 			{
 				this.$latte.ui.message.prompt("Hello", "Hello world from the new Vue based message dialog!").then(result => console.log(result));
+			},
+
+			showNotificationAvatar()
+			{
+				this.$latte.ui.notification.create({
+					avatar: "https://latte.dev-preview.nl/module/@bas/website/resource/image/photos/2.jpg",
+					message: "<strong>Bas</strong> is now online"
+				});
+			},
+
+			showNotificationBasic()
+			{
+				this.$latte.ui.notification.create({
+					title: "I'm a notification",
+					message: "Lorem ipsum dolor sit amet consectetur..."
+				});
+			},
+
+			async showNotificationButtons()
+			{
+				const result = await this.$latte.ui.notification.create({
+					duration: 0,
+					avatar: "https://latte.dev-preview.nl/module/@bas/website/resource/image/photos/2.jpg",
+					title: "Incoming call",
+					message: "<strong>Bas</strong> is calling...",
+					buttons: [
+						{id: 1, icon: "phone", label: "Answer", color: "success"},
+						{id: 2, icon: "phone-hangup", label: "Deny", color: "error"}
+					]
+				});
+
+				console.log(result);
+			},
+
+			showNotificationIcon()
+			{
+				this.$latte.ui.notification.create({
+					icon: "map-marker-outline",
+					message: "<strong>Maps</strong> is using your devices's location"
+				});
 			},
 
 			showQuestion()

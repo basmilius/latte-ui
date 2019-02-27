@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.latte-overlay
+div.overlay
 {
 	$anim-duration: 210ms;
 	$anim-delay: $anim-duration / 2;
@@ -62,29 +62,32 @@ div.latte-overlay
 
 	@include compact
 	{
-		padding: 0;
-
-		div.panel
+		&.is-responsive
 		{
-			min-height: 100% !important;
-			width: 100% !important;
-			border-radius: 0;
-			z-index: 0;
+			padding: 0;
 
-			div.panel-header:first-child
+			div.panel
 			{
-				position: sticky;
-				top: 0;
-				background: var(--panel-background);
-				z-index: 2;
-			}
+				min-height: 100% !important;
+				width: 100% !important;
+				border-radius: 0;
+				z-index: 0;
 
-			div.panel-footer:last-child
-			{
-				position: sticky;
-				bottom: 0;
-				background: var(--panel-background);
-				z-index: 2;
+				div.panel-header:first-child
+				{
+					position: sticky;
+					top: 0;
+					background: var(--panel-background);
+					z-index: 2;
+				}
+
+				div.panel-footer:last-child
+				{
+					position: sticky;
+					bottom: 0;
+					background: var(--panel-background);
+					z-index: 2;
+				}
 			}
 		}
 	}

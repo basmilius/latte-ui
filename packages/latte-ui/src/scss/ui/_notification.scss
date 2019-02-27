@@ -8,13 +8,6 @@
  */
 
 $notification-gutter: 24px;
-$notification-icons: (
-		error: "\F028",
-		info: "\F2FC",
-		success: "\F5E0",
-		warning: "\F026",
-		default: "\F09A"
-);
 
 div#notification-center
 {
@@ -123,11 +116,6 @@ div.notification-icon
 		display: block;
 		margin: 18px;
 		font-size: 24px;
-
-		&::before
-		{
-			content: var(--notification-icon);
-		}
 	}
 
 	&:first-child
@@ -166,6 +154,5 @@ div.notification > .avatar
 	{
 		--notification-background: RGB(var(--color-#{$type}));
 		--notification-foreground: RGB(var(--color-#{$type}-foreground));
-		--notification-icon: "#{if(map-has-key($notification-icons, $type), #{map-get($notification-icons, $type)}, #{map-get($notification-icons, default)})}";
 	}
 }

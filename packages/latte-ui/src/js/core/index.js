@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { alert } from "../ui/message";
-
 export let currentOptions = {};
 
 /**
@@ -34,7 +32,7 @@ export function getMainElement()
  */
 export function handleError(err, fn = undefined)
 {
-	alert("Aw snap!", `<pre>${err.stack}</pre>`);
+	Latte.ui.message.alert("Aw snap!", `<pre>${err.stack}</pre>`);
 
 	if (fn)
 		fn();

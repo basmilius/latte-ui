@@ -46,7 +46,7 @@ const QuestionPanel = Vue.extend({
 			type: Object
 		},
 
-		resolver: {
+		resolve: {
 			required: true,
 			type: Function
 		}
@@ -63,7 +63,7 @@ const QuestionPanel = Vue.extend({
 
 	render(h)
 	{
-		return h("div", {attrs: {role: "dialog"}, class: ["latte-overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
+		return h("div", {attrs: {role: "dialog"}, class: ["overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
 			h("div", {class: ["panel"], style: {width: this.options.width}}, [
 				h("div", {class: ["panel-header", "justify-content-center", "border-bottom-0", "py-4"]}, [
 					h("i", {class: ["mdi", `mdi-${this.icon}`, "text-primary"], style: {fontSize: "36px"}})
@@ -98,11 +98,6 @@ const QuestionPanel = Vue.extend({
 		{
 			applyZ(z => this.z = z);
 			raf(() => raf(() => this.isOpen = true));
-		},
-
-		resolve(result)
-		{
-			this.resolver(result);
 		}
 
 	},
@@ -131,7 +126,7 @@ export function create(icon, message, buttons, options = {})
 				icon,
 				message,
 				options,
-				resolver: resolve
+				resolve
 			}
 		});
 

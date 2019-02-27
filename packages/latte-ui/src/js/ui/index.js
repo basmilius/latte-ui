@@ -10,6 +10,7 @@
 import { initializeForms } from "./form";
 import message from "./message";
 import notice, { initializeNotices } from "./notice";
+import notification, { initializeNotifications } from "./notification";
 import overlay from "./overlay";
 import panel, { initializePanels } from "./panel";
 import question from "./question";
@@ -19,6 +20,7 @@ export function initializeUI()
 {
 	initializeForms();
 	initializeNotices();
+	initializeNotifications();
 	initializePanels();
 	initializeTooltips();
 }
@@ -26,6 +28,7 @@ export function initializeUI()
 export default {
 	message,
 	notice,
+	notification,
 	overlay,
 	panel,
 	question

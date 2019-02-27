@@ -29,6 +29,24 @@ export function closest(element, selector)
 }
 
 /**
+ * Conditional render for vue components.
+ *
+ * @param {Boolean} condition
+ * @param {Function} fn
+ *
+ * @returns {*}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function conditionalRender(condition, fn)
+{
+	if (!condition)
+		return undefined;
+
+	return fn();
+}
+
+/**
  * Creates a dom element.
  *
  * @param {String} tag
@@ -69,6 +87,21 @@ export function downloadFile(fileName, url)
 		a.click();
 		a.remove();
 	});
+}
+
+/**
+ * Renders each object with fn.
+ *
+ * @param {Array} objects
+ * @param {Function} fn
+ *
+ * @return {Array}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function eachRender(objects, fn)
+{
+	return objects.map(o => fn(o));
 }
 
 /**
