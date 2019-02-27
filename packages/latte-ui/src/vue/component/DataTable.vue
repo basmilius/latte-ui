@@ -231,7 +231,7 @@
 
 			hasActions()
 			{
-				return this.actions.length > 0;
+				return this.actions && this.actions.length > 0;
 			},
 
 			isSelectionMode()
@@ -372,7 +372,7 @@
 
 			onReceivedSetupResponse(response)
 			{
-				this.actions = response.data.action;
+				this.actions = response.data.actions;
 				this.columns = response.data.columns.map(column => Object.assign({}, this.defaults.column, column));
 
 				if (response.data.sorting !== undefined)

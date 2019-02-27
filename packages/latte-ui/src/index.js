@@ -23,11 +23,11 @@ import * as RTEPlugins from "./vue/rich-text-editor";
 import "./scss/app.scss";
 import { initializeUI } from "./js/ui";
 
-export const DefaultOptions = Object.assign({}, self.LatteOptions || {}, {
+export const DefaultOptions = Object.assign({}, {
 	i18n: {},
 	locale: navigator.language,
 	tickInterval: 250
-});
+}, self.LatteOptions || {});
 
 export const Latte = LatteSDK;
 
@@ -59,7 +59,10 @@ export const LatteUI = {
 
 		removeSavedFromQueryString();
 
-		self.Latte = LatteSDK;
+		if (window)
+			window.Latte = LatteSDK;
+		else
+			self.Latte = LatteSDK;
 	},
 
 	normalizeOptions(options)
