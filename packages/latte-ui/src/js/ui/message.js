@@ -70,7 +70,19 @@ const MessagePanel = Vue.extend({
 				h("div", {class: ["panel-body"]}, [
 					h("p", {domProps: {innerHTML: this.message}}),
 					!this.prompt ? undefined : h("div", {class: ["form-group"]}, [
-						h("input", {attrs: {type: "text"}, class: ["form-control"], props: {value: this.promptResult}, on: {input: v => this.promptResult = v.target.value}})
+						h("input", {
+							attrs: {
+								type: "text"
+							},
+							class: ["form-control"],
+							props: {
+								value: this.promptResult
+							},
+							on: {
+								input: v => this.promptResult = v.target.value,
+								keydown: v => v.key === "Enter" && this.promptResult.trim() !== "" ? this.close(this.buttons[this.buttons.length - 1].id) : undefined
+							}
+						})
 					])
 				]),
 				h("div", {class: ["panel-footer", "justify-content-end"]}, this.buttons.map(button => h("latte-ripple", {
@@ -106,6 +118,9 @@ const MessagePanel = Vue.extend({
 		{
 			applyZ(z => this.z = z);
 			raf(() => raf(() => this.isOpen = true));
+
+			if (this.prompt)
+				raf(() => this.$el.querySelector("input").focus(), 300);
 		}
 
 	},

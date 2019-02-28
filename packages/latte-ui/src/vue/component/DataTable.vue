@@ -71,10 +71,10 @@
 		</tr>
 		</tbody>
 		<tfoot>
-		<tr v-if="pagination.length > 0">
+		<tr v-if="total > limit">
 			<th :colspan="amountOfColumns">
 				<div class="column-content">
-					<latte-pagination :pagination="pagination" @navigate="loadPage"></latte-pagination>
+					<latte-pagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></latte-pagination>
 				</div>
 			</th>
 		</tr>
@@ -105,7 +105,7 @@
 				type: Boolean
 			},
 
-			limit: {
+			defaultLimit: {
 				default: 20,
 				required: false,
 				type: Number
@@ -193,7 +193,8 @@
 				columns: [],
 				data: [],
 				filters: [],
-				page: 1,
+				limit: this.defaultLimit,
+				offset: 0,
 				pagination: [],
 				params: {},
 				selection: this.value,
@@ -202,6 +203,7 @@
 					order: 'DESC'
 				},
 				spinner: null,
+				total: 0,
 				uniqueId: id()
 			};
 		},
@@ -250,7 +252,7 @@
 						if (this.filters[i].property === filter.property && this.filters[i]["value"] === filter["value"])
 							return;
 
-				this.page = 1;
+				this.offset = 0;
 
 				filter.class = filter.class || "badge-info";
 
@@ -269,7 +271,7 @@
 
 			removeFilter(evt, filterKey)
 			{
-				this.page = 1;
+				this.offset = 0;
 
 				this.filters.splice(filterKey, 1);
 				this.loadFromUrl();
@@ -326,7 +328,7 @@
 			{
 				this.isLoading = true;
 
-				let url = `${this.url}/data?offset=${(this.page - 1) * this.limit}&limit=${this.limit}`;
+				let url = `${this.url}/data?offset=${this.offset}&limit=${this.limit}`;
 
 				if (this.sort.by.trim() !== "")
 					url += `&sort=${this.sort.order}&by=${this.sort.by}`;
@@ -346,26 +348,27 @@
 					.catch(err => handleError(err));
 			},
 
-			loadPage(page)
-			{
-				this.page = page;
-				this.loadFromUrl();
-			},
-
 			loadSetup()
 			{
 				this.isLoading = true;
 
-				request(`${this.url}?limit=${this.limit}`)
+				request(`${this.url}?offset=${this.offset}&limit=${this.limit}`)
 					.then(r => r.json())
 					.then(this.onReceivedSetupResponse)
 					.catch(err => handleError(err));
+			},
+
+			navigateToOffset(offset)
+			{
+				this.offset = offset;
+				this.loadFromUrl();
 			},
 
 			onReceivedData(response)
 			{
 				this.data = response.data.data;
 				this.pagination = response.data.pagination;
+				this.total = response.data.total || 0;
 
 				this.isLoading = false;
 			},
@@ -401,7 +404,14 @@
 				}
 
 				this.params[field] = value;
-				this.page = 1;
+				this.offset = 0;
+				this.loadFromUrl();
+			},
+
+			setLimit(limit)
+			{
+				this.limit = limit;
+				this.offset = 0;
 				this.loadFromUrl();
 			},
 

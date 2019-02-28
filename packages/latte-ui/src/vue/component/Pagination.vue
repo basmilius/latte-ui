@@ -9,16 +9,50 @@
 
 <template>
 
-	<nav class="pagination ml-auto" role="navigation">
-		<template v-for="entry in pagination">
-			<a @click="navigate(entry.page)" class="pagination-item" :class="{'is-current': entry.is_current, 'is-disabled': entry.is_disabled}" role="menuitem">
-				<template v-if="entry.is_dots">&hellip;</template>
-				<template v-else-if="entry.label === 'first'"><i class="mdi mdi-chevron-double-left"></i></template>
-				<template v-else-if="entry.label === 'prev'"><i class="mdi mdi-chevron-left"></i></template>
-				<template v-else-if="entry.label === 'next'"><i class="mdi mdi-chevron-right"></i></template>
-				<template v-else-if="entry.label === 'last'"><i class="mdi mdi-chevron-double-right"></i></template>
-				<template v-else>{{ entry.label }}</template>
-			</a>
+	<nav class="pagination" role="navigation">
+
+		<template v-if="controllerBar">
+			<div class="d-flex align-items-center mr-auto">
+
+				<button ref="entriesButton" class="btn btn-sm btn-text btn-dark btn-small pr-1" style="--btn-height: 30px">
+					<span>{{ "@0 entries"|i18n("latte-ui", limit) }}</span>
+					<i class="mdi mdi-menu-swap"></i>
+				</button>
+
+				<latte-popup :associate-with="$refs.entriesButton" :margin-y="9">
+					<nav class="nav nav-list">
+						<a class="nav-link" data-close @click="$emit('limit', 5)"><span>{{ "@0 entries"|i18n("latte-ui", 5) }}</span></a>
+						<a class="nav-link" data-close @click="$emit('limit', 10)"><span>{{ "@0 entries"|i18n("latte-ui", 10) }}</span></a>
+						<a class="nav-link" data-close @click="$emit('limit', 20)"><span>{{ "@0 entries"|i18n("latte-ui", 20) }}</span></a>
+						<a class="nav-link" data-close @click="$emit('limit', 50)"><span>{{ "@0 entries"|i18n("latte-ui", 50) }}</span></a>
+						<a class="nav-link" data-close @click="$emit('limit', 100)"><span>{{ "@0 entries"|i18n("latte-ui", 100) }}</span></a>
+					</nav>
+				</latte-popup>
+
+				<span class="ml-3">{{ "Showing @0 - @1 of @2"|i18n("latte-ui", offset + 1, Math.min(offset + limit, total), total) }}</span>
+
+			</div>
+		</template>
+
+		<template v-if="visiblePages.length > 0">
+			<div class="d-flex align-items-center">
+
+				<template v-if="navigationControls && currentPage > 1">
+					<button class="pagination-item" @click="navigate(1)"><i class="mdi mdi-chevron-double-left"></i></button>
+					<button class="pagination-item" @click="navigate(currentPage - 1)"><i class="mdi mdi-chevron-left"></i></button>
+				</template>
+
+				<template v-for="page of visiblePages">
+					<button class="pagination-item" @click="askForPage" v-if="page === '...'">&hellip;</button>
+					<button class="pagination-item" :class="{'is-active': currentPage === page}" @click="navigate(page)" v-else>{{ page }}</button>
+				</template>
+
+				<template v-if="navigationControls && currentPage < totalPages">
+					<button class="pagination-item" @click="navigate(currentPage + 1)"><i class="mdi mdi-chevron-right"></i></button>
+					<button class="pagination-item" @click="navigate(totalPages)"><i class="mdi mdi-chevron-double-right"></i></button>
+				</template>
+
+			</div>
 		</template>
 	</nav>
 
@@ -26,24 +60,130 @@
 
 <script>
 
+	import { prompt, Buttons } from "../../js/ui/message";
+	import { translate } from "../../js/i18n";
+	import { clamp } from "../../js/math";
+
 	export default {
 
 		name: "latte-pagination",
 
 		props: {
 
-			pagination: {
-				type: Array,
-				required: true
+			controllerBar: {
+				default: false,
+				required: false,
+				type: Boolean
+			},
+
+			limit: {
+				default: 10,
+				required: true,
+				type: Number
+			},
+
+			navigationControls: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
+
+			offset: {
+				default: 0,
+				required: false,
+				type: Number
+			},
+
+			sizeEnd: {
+				default: 2,
+				required: false,
+				type: Number,
+				validator: num => num >= 0
+			},
+
+			sizeMid: {
+				default: 1,
+				required: false,
+				type: Number,
+				validator: num => num >= 0
+			},
+
+			total: {
+				default: 0,
+				required: true,
+				type: Number
+			}
+
+		},
+
+		computed: {
+
+			currentPage()
+			{
+				return Math.min(this.totalPages, Math.floor(this.offset / this.limit) + 1);
+			},
+
+			totalPages()
+			{
+				return Math.ceil(this.total / this.limit);
+			},
+
+			visiblePages()
+			{
+				const current = this.currentPage;
+				const total = this.totalPages;
+
+				if (this.totalPages === 0)
+					return [];
+
+				let dots = false;
+				let pages = [];
+
+				for (let n = 1; n <= total; n++)
+				{
+					if (current === n)
+					{
+						dots = true;
+						pages.push(n);
+					}
+					else if (n <= this.sizeEnd || (n >= current - this.sizeMid && n <= current + this.sizeMid) || n > total - this.sizeEnd)
+					{
+						dots = true;
+						pages.push(n);
+					}
+					else if (dots)
+					{
+						dots = false;
+						pages.push("...");
+					}
+				}
+
+				return pages;
 			}
 
 		},
 
 		methods: {
 
+			askForPage()
+			{
+				prompt(translate("latte-ui", "Navigate to page..."), translate("latte-ui", "To which page do you want to go?")).then(r =>
+				{
+					if (r.button !== Buttons.OK)
+						return;
+
+					const page = parseInt(r.input);
+
+					if (isNaN(page))
+						return;
+
+					this.navigate(clamp(page, 1, this.totalPages));
+				});
+			},
+
 			navigate(page)
 			{
-				this.$emit("navigate", page);
+				this.$emit("navigate", (page - 1) * this.limit);
 			}
 
 		}

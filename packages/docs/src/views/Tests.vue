@@ -21,6 +21,17 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Pagination</span></div>
+						<div class="panel-body">
+
+							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
+							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar :navigation-controls="false" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
+							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Message dialog</span></div>
 						<div class="panel-body">
 
@@ -68,6 +79,14 @@
 
 		components: {
 			PageHeader
+		},
+
+		data()
+		{
+			return {
+				paginationLimit: 10,
+				paginationOffset: 0
+			};
 		},
 
 		methods: {
