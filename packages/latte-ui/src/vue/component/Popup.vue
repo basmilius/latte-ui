@@ -69,13 +69,14 @@
 			if (this.isOpen)
 				getMainElement().classList.remove("is-popup-opened");
 
-			document.body.removeChild(this.$el);
+			this.$el.clearOutsideEventListeners();
 		},
 
 		data()
 		{
 			return {
 				isOpen: false,
+				parentRef: null,
 				popupX: 0,
 				popupY: 0,
 				rect: null,
@@ -87,23 +88,28 @@
 
 		mounted()
 		{
-			// Move our element to body.
-			this.$el.parentNode.removeChild(this.$el);
+			// Move the popup to <body>.
+			this.parentRef = this.$el.parentNode;
+
+			if (this.parentRef)
+				this.parentRef.removeChild(this.$el);
+			else
+				this.bindEvents();
+
 			document.body.appendChild(this.$el);
 
-			// Update associate-with by updating our parent.
+			// Update associate-with prop by updating our parent.
 			if (this.$parent && this.$parent.$forceUpdate)
 				this.$parent.$forceUpdate();
 
-			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick));
-			this.$el.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick));
+			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick), {passive: true});
+			this.$el.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick), {passive: true});
 
 			live(this.$el, "[href],[data-close]", "click", () => raf(() => this.close()));
 
-			on("latte:tick", () => this.onResizeOrScroll());
+			on("latte:tick", () => this.onTick());
 			on("latte:context-menu", () => this.close());
 			on("latte:overlay", () => this.close());
-			on("latte:popup:hide", () => this.close());
 		},
 
 		computed: {
@@ -175,6 +181,9 @@
 
 			close()
 			{
+				if (!this.isOpen)
+					return;
+
 				this.isOpen = false;
 			},
 
@@ -232,13 +241,13 @@
 
 			onOutsideClick()
 			{
-				if (this.isPersistent)
+				if (!this.isOpen || this.isPersistent)
 					return;
 
 				this.close();
 			},
 
-			onResizeOrScroll()
+			onTick()
 			{
 				if (this.associatedElement !== undefined)
 					this.rect = this.associatedElement.getBoundingClientRect();

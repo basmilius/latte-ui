@@ -38,7 +38,7 @@ export function onlyMouse(fn)
 		if (isTouchDevice())
 			return undefined;
 
-		return fn.call(this, ...arguments);
+		return fn.apply(this, arguments);
 	};
 }
 
@@ -58,7 +58,7 @@ export function onlyTouch(fn)
 		if (!isTouchDevice())
 			return undefined;
 
-		return fn.call(this, ...arguments);
+		return fn.apply(this, arguments);
 	};
 }
 

@@ -9,7 +9,7 @@
 
 <template>
 
-	<nav class="pagination" role="navigation">
+	<nav class="pagination" :class="{'pagination-bar': controllerBar}" role="navigation">
 
 		<template v-if="controllerBar">
 			<div class="d-flex align-items-center mr-auto">
@@ -38,7 +38,7 @@
 			<div class="d-flex align-items-center">
 
 				<template v-if="navigationControls && currentPage > 1">
-					<button class="pagination-item" @click="navigate(1)"><i class="mdi mdi-chevron-double-left"></i></button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(1)"><i class="mdi mdi-chevron-double-left"></i></button>
 					<button class="pagination-item" @click="navigate(currentPage - 1)"><i class="mdi mdi-chevron-left"></i></button>
 				</template>
 
@@ -49,7 +49,7 @@
 
 				<template v-if="navigationControls && currentPage < totalPages">
 					<button class="pagination-item" @click="navigate(currentPage + 1)"><i class="mdi mdi-chevron-right"></i></button>
-					<button class="pagination-item" @click="navigate(totalPages)"><i class="mdi mdi-chevron-double-right"></i></button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(totalPages)"><i class="mdi mdi-chevron-double-right"></i></button>
 				</template>
 
 			</div>
@@ -139,22 +139,30 @@
 				let dots = false;
 				let pages = [];
 
-				for (let n = 1; n <= total; n++)
+				if (this.totalPages === (this.sizeEnd + this.sizeMid + 2))
 				{
-					if (current === n)
-					{
-						dots = true;
+					for(let n = 1; n <= total; n++)
 						pages.push(n);
-					}
-					else if (n <= this.sizeEnd || (n >= current - this.sizeMid && n <= current + this.sizeMid) || n > total - this.sizeEnd)
+				}
+				else
+				{
+					for (let n = 1; n <= total; n++)
 					{
-						dots = true;
-						pages.push(n);
-					}
-					else if (dots)
-					{
-						dots = false;
-						pages.push("...");
+						if (current === n)
+						{
+							dots = true;
+							pages.push(n);
+						}
+						else if (n <= this.sizeEnd || (n >= current - this.sizeMid && n <= current + this.sizeMid) || n > total - this.sizeEnd)
+						{
+							dots = true;
+							pages.push(n);
+						}
+						else if (dots)
+						{
+							dots = false;
+							pages.push("...");
+						}
 					}
 				}
 

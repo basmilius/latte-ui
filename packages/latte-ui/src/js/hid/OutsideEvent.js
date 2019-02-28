@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { closest } from "../util/dom";
+import { closest, getCoords } from "../util/dom";
 
 class OutsideEvent
 {
@@ -29,10 +29,15 @@ class OutsideEvent
 			if (this.isWithinSource(evt))
 				return;
 
-			listener(evt);
+			listener.apply(this.source, evt);
 		};
 
 		document.addEventListener(type, fn, options);
+	}
+
+	clearListeners()
+	{
+		this.listeners = [];
 	}
 
 	removeEventListener(type, listener, options = {})
@@ -49,13 +54,9 @@ class OutsideEvent
 
 	isWithinSource(evt)
 	{
-		if (evt.pageX === undefined)
-			return false;
+		const coords = getCoords(evt);
 
-		const documentElement = document.scrollingElement;
-		const element = document.elementFromPoint(evt.pageX - documentElement.scrollLeft, evt.pageY - documentElement.scrollTop);
-
-		return closest(element, this.source) !== null;
+		return coords !== undefined && closest(document.elementFromPoint(coords.x, coords.y), this.source) !== null;
 	}
 
 }
@@ -68,6 +69,14 @@ export function registerOutsideEvents()
 			this.outsideEvent = new OutsideEvent(this);
 
 		this.outsideEvent.addEventListener(type, listener, options);
+	};
+
+	EventTarget.prototype.clearOutsideEventListeners = function ()
+	{
+		if (this.outsideEvent === undefined)
+			this.outsideEvent = new OutsideEvent(this);
+
+		this.outsideEvent.clearListeners();
 	};
 
 	EventTarget.prototype.removeOutsideEventListener = function (type, listener, options = {})

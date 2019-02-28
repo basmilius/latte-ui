@@ -13,7 +13,7 @@ let lattePath = null;
  * Returns the closest element that matches selector.
  *
  * @param {HTMLElement|Node} element
- * @param {String} selector
+ * @param {String|HTMLElement} selector
  *
  * @returns {HTMLElement|SVGElement|null}
  * @author Bas Milius <bas@mili.us>

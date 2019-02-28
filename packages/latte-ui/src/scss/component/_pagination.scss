@@ -42,6 +42,13 @@ nav.pagination
 			font-size: 18px;
 		}
 
+		&:hover
+		{
+			background: RGBA(var(--color-primary), .15);
+			color: RGB(var(--color-primary));
+			opacity: 1;
+		}
+
 		&.is-active
 		{
 			background: RGB(var(--color-primary));
@@ -52,18 +59,30 @@ nav.pagination
 		}
 	}
 
-	a.pagination-item:hover,
-	button.pagination-item:hover
-	{
-		background: RGBA(var(--color-primary), .15);
-		color: RGB(var(--color-primary));
-		opacity: 1;
-	}
-
 	span.pagination-item:not(.is-current)
 	{
 		cursor: default;
 		opacity: .5;
 		pointer-events: none;
+	}
+
+	@include compact
+	{
+		&.pagination-bar
+		{
+			flex-flow: column;
+
+			> div.d-flex:nth-child(1)
+			{
+				margin: 0 !important;
+				justify-content: center;
+			}
+
+			> div.d-flex:nth-child(2)
+			{
+				margin: .5rem 0 0 0 !important;
+				justify-content: center;
+			}
+		}
 	}
 }
