@@ -67,6 +67,10 @@ const router = new Router({
 							component: () => import("./views/docs/components/List.vue")
 						},
 						{
+							path: "message",
+							component: () => import("./views/docs/components/Message.vue")
+						},
+						{
 							path: "nav",
 							component: () => import("./views/docs/components/Nav.vue")
 						},
@@ -101,6 +105,10 @@ const router = new Router({
 						{
 							path: "progress",
 							component: () => import("./views/docs/components/Progress.vue")
+						},
+						{
+							path: "question",
+							component: () => import("./views/docs/components/Question.vue")
 						},
 						{
 							path: "ripple",

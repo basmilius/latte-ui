@@ -11,7 +11,7 @@
 			<component :is="component" v-if="component !== null"></component>
 
 		</div>
-		<div label="Code" class="code-example-code">
+		<div label="Code" class="code-example-code" v-if="showCode">
 
 			<CodeSnippet lang="html" v-if="code">{{ code }}</CodeSnippet>
 
@@ -39,6 +39,12 @@
 		},
 
 		props: {
+
+			showCode: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
 
 			title: {
 				default: "Example",
@@ -74,10 +80,10 @@
 			{
 				this.isLoading = true;
 
-				Latte.api.request(this.url)
+				this.$latte.api.request(this.url)
 					.then(r => r.text())
 					.then(r => this.onSnippetLoaded(r))
-					.catch(err => Latte.core.handleError(err));
+					.catch(err => this.$latte.core.handleError(err));
 			},
 
 			onSnippetLoaded(code)

@@ -41,7 +41,7 @@
 
 			goToElement(el)
 			{
-				const panel = Latte.dom.closest(el, "div.panel");
+				const panel = this.$latte.util.dom.closest(el, "div.panel");
 
 				if (panel !== null)
 					el = panel;

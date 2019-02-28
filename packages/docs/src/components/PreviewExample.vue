@@ -70,10 +70,10 @@
 			{
 				this.isLoading = true;
 
-				await Latte.api.request(this.url)
+				await this.$latte.api.request(this.url)
 					.then(r => r.text())
 					.then(r => this.onPreviewLoaded(r))
-					.catch(err => Latte.core.handleError(err));
+					.catch(err => this.$latte.core.handleError(err));
 
 				this.isLoading = false;
 			},
@@ -91,7 +91,7 @@
 						{
 							const arr = [];
 
-							for(let i = from; i <= to; i++)
+							for (let i = from; i <= to; i++)
 								arr.push(i);
 
 							return arr;

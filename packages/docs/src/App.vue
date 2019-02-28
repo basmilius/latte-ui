@@ -65,6 +65,7 @@
 					<latte-ripple as="router-link" to="/docs/components/dropdown-button" class="nav-link"><span>Dropdown button</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/form-elements" class="nav-link"><span>Form elements</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/list" class="nav-link"><span>List</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/message" class="nav-link"><span>Message</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/nav" class="nav-link"><span>Nav</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/notice" class="nav-link"><span>Notice</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/notification" class="nav-link"><span>Notification</span></latte-ripple>
@@ -74,6 +75,7 @@
 					<latte-ripple as="router-link" to="/docs/components/popup" class="nav-link"><span>Popup</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/portal" class="nav-link"><span>Portal</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/progress" class="nav-link"><span>Progress</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/question" class="nav-link"><span>Question</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/ripple" class="nav-link"><span>Ripple</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/sheet" class="nav-link"><span>Sheet</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>

@@ -74,3 +74,10 @@ div.sheet-overlay:not(.is-dragging)
 {
 	transition: all 300ms var(--ease-swift-out);
 }
+
+.is-popup-opened div.sheet-overlay,
+.is-popup-opened div.sheet-content
+{
+	pointer-events: none !important;
+	touch-action: none !important;
+}

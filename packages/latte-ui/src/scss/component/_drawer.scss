@@ -81,6 +81,7 @@ div#drawer
 		flex: 0 0 auto;
 		background: RGB(var(--drawer-background-secondary));
 		overflow: auto;
+		z-index: 0;
 
 		-webkit-overflow-scrolling: touch;
 
