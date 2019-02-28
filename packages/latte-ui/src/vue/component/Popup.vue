@@ -76,7 +76,6 @@
 		{
 			return {
 				isOpen: false,
-				parentRef: null,
 				popupX: 0,
 				popupY: 0,
 				rect: null,
@@ -89,10 +88,8 @@
 		mounted()
 		{
 			// Move the popup to <body>.
-			this.parentRef = this.$el.parentNode;
-
-			if (this.parentRef)
-				this.parentRef.removeChild(this.$el);
+			if (this.$el.parentNode)
+				this.$el.parentNode.removeChild(this.$el);
 			else
 				this.bindEvents();
 

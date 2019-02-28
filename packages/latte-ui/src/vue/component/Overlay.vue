@@ -21,6 +21,7 @@
 	import { register, remove } from "../../js/ui/overlay";
 	import { applyZ } from "../../js/z";
 	import { raf } from "../../js/util/dom";
+	import { getMainElement } from "../../js/core";
 
 	export default {
 
@@ -48,18 +49,11 @@
 
 		},
 
-		beforeDestroy()
-		{
-			document.body.removeChild(this.$el);
-			this.parentRef.appendChild(this.$el);
-		},
-
 		data()
 		{
 			return {
 				isOpen: false,
-				isVisible: false,
-				parentRef: null
+				isVisible: false
 			};
 		},
 
@@ -72,9 +66,10 @@
 		{
 			register(this.name, this);
 
-			this.parentRef = this.$el.parentNode;
-			this.parentRef.removeChild(this.$el);
-			document.body.appendChild(this.$el);
+			if (this.$el.parentNode)
+				this.$el.parentNode.removeChild(this.$el);
+
+			getMainElement().appendChild(this.$el);
 
 			if (this.opened)
 				this.open(this.name);

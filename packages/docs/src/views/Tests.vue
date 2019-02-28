@@ -16,9 +16,30 @@
 			<p>These are some development tests.</p>
 		</PageHeader>
 
+		<latte-overlay name="sample-overlay">
+			<div class="panel" style="width: 420px">
+				<div class="panel-header"><span class="panel-title">Overlay</span></div>
+				<div class="panel-body">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eum fuga illo, illum, impedit iure minima, mollitia numquam possimus quis ratione reiciendis similique soluta suscipit tempora? Beatae esse magni minus!
+				</div>
+				<div class="panel-footer">
+					<button class="btn btn-contained btn-primary" @click="$latte.ui.overlay.close('sample-overlay')"><span>Close</span></button>
+				</div>
+			</div>
+		</latte-overlay>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Overlay</span></div>
+						<div class="panel-body">
+
+							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="$latte.ui.overlay.open('sample-overlay')"><span>Show overlay</span></latte-ripple>
+
+						</div>
+					</div>
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Pagination</span></div>
