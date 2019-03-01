@@ -7,20 +7,20 @@
 				<div class="row align-items-center">
 					<div class="col-12 col-lg-6">
 
-						<latte-svg-undraw class="illustration" color="rgb(var(--color-primary))" url="https://cdn.mili.us/assets/undraw.co/wireframing.svg"></latte-svg-undraw>
+						<div class="page-header-content text-center" id="logo-container">
+							<img src="../assets/logo.svg" alt="Latte UI" id="logo"/>
+						</div>
 
 					</div>
 					<div class="col-12 col-lg-6 mt-3 mt-lg-0">
 
 						<div class="page-header-content tall text-center">
-							<h1>Beautiful interfaces</h1>
-							<p>Create them with Latte UI.</p>
-							<p class="mt-3 text-error">
-								This website is a work in progress.
-							</p>
+							<h1>Latte UI</h1>
+							<p>An easy to use UI library build on top of Vue.js</p>
+							<p>This website is a work in progress</p>
 							<div class="d-flex justify-content-center" id="hero-actions">
-								<button class="btn btn-contained btn-primary mt-5" @click="$router.push('/docs')"><i class="mdi mdi-book-open-variant"></i><span>Documentation</span></button>
-								<a href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-dark mt-5"><i class="mdi mdi-github-circle"></i><span>GitHub</span></a>
+								<latte-ripple as="button" class="btn btn-contained btn-primary mt-5" @click="$router.push('/docs')"><i class="mdi mdi-book-open-variant"></i><span>Documentation</span></latte-ripple>
+								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-dark mt-5"><i class="mdi mdi-github-circle"></i><span>GitHub</span></latte-ripple>
 							</div>
 						</div>
 
@@ -139,6 +139,24 @@ yarn add @bybas/latte-ui
 	{
 		--btn-height: 48px;
 		--btn-padding: 0 24px;
+	}
+
+	#logo
+	{
+		width: 100%;
+	}
+
+	@media (max-width: 991px)
+	{
+		#logo-container
+		{
+			padding-bottom: 0;
+		}
+
+		#logo
+		{
+			width: 50%;
+		}
 	}
 
 </style>
