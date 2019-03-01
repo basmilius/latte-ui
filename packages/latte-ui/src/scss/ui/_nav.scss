@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--nav-item-height: 45px;
+}
+
 .nav
 {
 	position: relative;
@@ -44,7 +49,7 @@
 {
 	position: relative;
 	display: flex;
-	min-height: 45px;
+	min-height: var(--nav-item-height);
 	margin: 0;
 	padding: 6px 30px;
 	align-items: center;

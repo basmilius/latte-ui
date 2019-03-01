@@ -123,13 +123,13 @@
 		background: paint(btn-contained-background);
 	}
 
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
+	&:hover,
+	&:focus
 	{
 		--btn-contained-hover-state: .1;
 	}
 
-	&:not(.is-ripple):active
+	&:active
 	{
 		--btn-contained-hover-state: .2;
 	}
@@ -143,8 +143,8 @@
 	background: RGBA(var(--btn-background), .1);
 	color: RGB(var(--btn-background));
 
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
+	&:hover,
+	&:focus
 	{
 		--spinner-background: var(--btn-foreground);
 
@@ -157,7 +157,7 @@
 		}
 	}
 
-	&:not(.is-ripple):active
+	&:active
 	{
 		--btn-contained-hover-state: .2;
 	}
@@ -171,15 +171,20 @@
 	background: transparent;
 	color: RGB(var(--btn-background));
 
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
+	&:hover,
+	&:focus
 	{
 		background: RGBA(var(--btn-background), .1);
 	}
 
-	&:not(.is-ripple):active
+	&:active
 	{
 		background: RGBA(var(--btn-background), .2);
+	}
+
+	&.btn-icon.is-ripple
+	{
+		background: transparent;
 	}
 }
 

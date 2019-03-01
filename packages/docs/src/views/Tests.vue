@@ -16,27 +16,47 @@
 			<p>These are some development tests.</p>
 		</PageHeader>
 
-		<latte-overlay name="sample-overlay">
-			<div class="panel" style="width: 420px">
-				<div class="panel-header"><span class="panel-title">Overlay</span></div>
-				<div class="panel-body">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores eum fuga illo, illum, impedit iure minima, mollitia numquam possimus quis ratione reiciendis similique soluta suscipit tempora? Beatae esse magni minus!
-				</div>
-				<div class="panel-footer">
-					<button class="btn btn-contained btn-primary" @click="$latte.ui.overlay.close('sample-overlay')"><span>Close</span></button>
-				</div>
-			</div>
-		</latte-overlay>
-
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Overlay</span></div>
-						<div class="panel-body">
+					<div class="row mb-panel-gutter">
+						<div class="col-12 col-lg-6">
 
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="$latte.ui.overlay.open('sample-overlay')"><span>Show overlay</span></latte-ripple>
+							<div class="panel">
+								<nav class="nav nav-list py-3" style="--nav-item-height: 60px">
+									<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+
+									<latte-expandable>
+										<template v-slot:header="{isOpen}">
+											<latte-ripple as="a" class="nav-link">
+												<i class="mdi mdi-view-grid"></i>
+												<span>Components</span>
+												<i class="mdi mdi-chevron-up" v-if="isOpen"></i>
+												<i class="mdi mdi-chevron-down" v-else></i>
+											</latte-ripple>
+										</template>
+
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+									</latte-expandable>
+								</nav>
+							</div>
+
+						</div>
+						<div class="col-12 col-lg-6">
+
+							<div class="panel">
+								<nav class="nav nav-list py-3">
+									<a class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></a>
+								</nav>
+							</div>
 
 						</div>
 					</div>
