@@ -37,14 +37,26 @@
 											</latte-ripple>
 										</template>
 
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
-										<latte-ripple as="a" class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+									</latte-expandable>
+
+									<latte-expandable>
+										<template v-slot:header="{isOpen}">
+											<latte-ripple as="a" class="nav-link">
+												<i class="mdi mdi-language-javascript"></i>
+												<span>JavaScript</span>
+												<i class="mdi mdi-chevron-up" v-if="isOpen"></i>
+												<i class="mdi mdi-chevron-down" v-else></i>
+											</latte-ripple>
+										</template>
+
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
+										<latte-ripple as="a" class="nav-link"><i class="mdi"></i><span>Home</span></latte-ripple>
 									</latte-expandable>
 								</nav>
 							</div>
