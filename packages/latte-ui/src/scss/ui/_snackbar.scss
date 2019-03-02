@@ -16,16 +16,15 @@
 {
 	position: fixed;
 	display: flex;
-	min-height: 48px;
 	margin: var(--content-gutter);
 	max-width: 540px;
 	padding: 15px 24px;
 	align-items: center;
 	justify-content: flex-start;
-	background: RGB(var(--dark));
+	background: #{latte-rgb(var(--dark))};
 	border-radius: var(--border-radius);
 	box-shadow: var(--snackbar-elevation);
-	color: RGB(var(--light));
+	color: #{latte-rgb(var(--light))};
 	transition: 240ms var(--ease-swift-out);
 	transition-property: opacity, transform;
 	will-change: opacity, transform;
@@ -130,6 +129,21 @@
 		&:not(.is-open)
 		{
 			transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
+		}
+	}
+
+	.snackbar-top,
+	.snackbar-top-left,
+	.snackbar-top-right
+	{
+		top: 0;
+		left: 0;
+		right: 0;
+		transform: none;
+
+		&:not(.is-open)
+		{
+			transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
 		}
 	}
 }

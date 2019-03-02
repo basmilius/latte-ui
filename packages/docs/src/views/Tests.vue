@@ -83,7 +83,7 @@
 					},
 					duration: 10000,
 					location: location,
-					message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin elit non venenatis cursus."
+					message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 				});
 
 				console.log(result);

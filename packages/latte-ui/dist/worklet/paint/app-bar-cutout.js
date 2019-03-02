@@ -58,8 +58,8 @@ class AppBarCutout
 			offset + css / 2 + csg, geometry.height - csg
 		);
 		context.bezierCurveTo(
-			offset + (css / 2), geometry.height - (css / 2 + csg * 3) + 1,
-			offset - (css / 2), geometry.height - (css / 2 + csg * 3) + 1,
+			offset + (css / 2), geometry.height - (css / 2 + csg * 3),
+			offset - (css / 2), geometry.height - (css / 2 + csg * 3),
 			offset - (css / 2) - csg, geometry.height - csg
 		);
 		context.bezierCurveTo(
@@ -82,8 +82,8 @@ class AppBarCutout
 			offset - css / 2 - csg, csg
 		);
 		context.bezierCurveTo(
-			offset - (css / 2), css / 2 + csg * 3 - 1,
-			offset + (css / 2), css / 2 + csg * 3 - 1,
+			offset - (css / 2), css / 2 + csg * 3,
+			offset + (css / 2), css / 2 + csg * 3,
 			offset + (css / 2) + csg, csg
 		);
 		context.bezierCurveTo(

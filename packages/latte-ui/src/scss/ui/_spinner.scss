@@ -47,8 +47,8 @@ i.mdi.spinner::before
 	width: 1em;
 	content: "";
 	animation: spinner-animation 700ms infinite linear;
-	border: .1em solid RGBA(var(--spinner-background), .25);
-	border-top-color: RGB(var(--spinner-background));
+	border: .1em solid #{latte-rgba(var(--spinner-background), .25)};
+	border-top-color: #{latte-rgb(var(--spinner-background))};
 	border-radius: .5em;
 }
 

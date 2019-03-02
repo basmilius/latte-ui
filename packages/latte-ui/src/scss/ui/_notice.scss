@@ -22,16 +22,16 @@ div.notice
 	margin: -1px;
 	padding: 15px 24px;
 	align-items: center;
-	background: RGBA(var(--notice-background), .1);
-	border: 1px solid RGBA(var(--notice-background), .1);
+	background: #{latte-rgba(var(--notice-background), .1)};
+	border: 1px solid #{latte-rgba(var(--notice-background), .1)};
 	border-radius: var(--border-radius);
-	color: RGB(var(--notice-background));
+	color: #{latte-rgb(var(--notice-background))};
 	font-weight: 500;
 
 	&.notice-outline
 	{
 		background: transparent;
-		border: 1px dashed RGBA(var(--notice-background), .5);
+		border: 1px dashed #{latte-rgba(var(--notice-background), .5)};
 	}
 
 	.btn
@@ -69,7 +69,7 @@ div.notice
 		align-self: stretch;
 		flex: 1 1 auto;
 
-		--outline-color: RGBA(var(--notice-background), .1);
+		--outline-color: #{latte-rgba(var(--notice-background), .1)};
 	}
 
 	+ div.notice

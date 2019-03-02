@@ -236,7 +236,7 @@ div.panel > span.spinner
 	bottom: 0;
 	background: var(--panel-spinner-background);
 	border-radius: inherit;
-	color: RGB(var(--color-primary));
+	color: #{latte-rgb(var(--color-primary))};
 	font-size: 2rem;
 	z-index: 2;
 }

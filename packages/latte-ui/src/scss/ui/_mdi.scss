@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--mdi-background: #{latte-rgb(var(--color-primary))};
+	--mdi-foreground: #{latte-rgb(var(--color-primary-foreground))};
+}
+
 i.mdi.mdi-branding
 {
 	flex: 0 0 1em;
@@ -63,14 +69,14 @@ i.mdi.latte-sorting
 	&.down::before
 	{
 		content: "\F140";
-		color: RGB(var(--color-primary));
+		color: #{latte-rgb(var(--color-primary))};
 		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, .27em, 0);
 	}
 
 	&.up::before
 	{
 		content: "\F143";
-		color: RGB(var(--color-primary));
+		color: #{latte-rgb(var(--color-primary))};
 		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, -.27em, 0);
 	}
 }

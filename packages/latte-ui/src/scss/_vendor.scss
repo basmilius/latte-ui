@@ -28,12 +28,6 @@ $enable-transitions: false;
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/visibility";
 
-:root
-{
-	--mdi-background: RGB(var(--color-primary));
-	--mdi-foreground: RGB(var(--color-primary-foreground));
-}
-
 .illustration
 {
 	position: relative;

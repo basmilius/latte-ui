@@ -47,7 +47,7 @@ main.auth-ui
 		{
 			background:
 			{
-				color: RGB(var(--color-primary));
+				color: #{latte-rgb(var(--color-primary))};
 				image: var(--auth-ui-background-image);
 				position: left center;
 				repeat: no-repeat;
@@ -58,7 +58,7 @@ main.auth-ui
 
 		&::after
 		{
-			background: var(--branding-logo) no-repeat center center / 192px, RGBA(var(--color-primary), .7);
+			background: var(--branding-logo) no-repeat center center / 192px, #{latte-rgba(var(--color-primary), .7)};
 			z-index: -1;
 		}
 
@@ -107,7 +107,7 @@ main.auth-ui
 
 			&::after
 			{
-				background: var(--branding-logo) no-repeat center center / 96px, RGBA(var(--color-primary), .7);
+				background: var(--branding-logo) no-repeat center center / 96px, #{latte-rgba(var(--color-primary), .7)};
 			}
 		}
 

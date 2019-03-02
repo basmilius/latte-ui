@@ -152,7 +152,7 @@ div.notification > .avatar
 {
 	.notification-#{$type}
 	{
-		--notification-background: RGB(var(--color-#{$type}));
-		--notification-foreground: RGB(var(--color-#{$type}-foreground));
+		--notification-background: #{latte-rgb(var(--color-#{$type}))};
+		--notification-foreground: #{latte-rgb(var(--color-#{$type}-foreground))};
 	}
 }

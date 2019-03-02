@@ -51,7 +51,7 @@ div.tree-view
 				margin: 0 6px 0 0;
 				width: 24px;
 				flex: 0 0 24px;
-				color: RGB(var(--color-dark));
+				color: #{latte-rgb(var(--color-dark))};
 				font-size: 24px;
 				line-height: 24px;
 
@@ -73,7 +73,7 @@ div.tree-view
 
 			&:hover
 			{
-				background: RGBA(var(--color-dark), .05);
+				background: #{latte-rgba(var(--color-dark), .05)};
 			}
 
 			&.is-expanded button i.mdi

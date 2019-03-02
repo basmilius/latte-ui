@@ -25,13 +25,13 @@
 	position: relative;
 	display: flex;
 	flex-flow: column;
-	background: RGBA(var(--app-bar-background), var(--app-bar-alpha));
+	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
 	box-shadow: var(--app-bar-elevation);
-	color: RGB(var(--app-bar-foreground));
+	color: #{latte-rgb(var(--app-bar-foreground))};
 
 	--btn-background: var(--app-bar-foreground);
 	--btn-foreground: var(--app-bar-background);
-	--outline-color: RGBA(var(--app-bar-foreground), .1);
+	--outline-color: #{latte-rgba(var(--app-bar-foreground), .1)};
 	--spinner-background: var(--app-bar-foreground);
 	--tabs-accent: var(--app-bar-foreground);
 	--tabs-foreground: var(--app-bar-foreground);
@@ -157,7 +157,7 @@
 
 		margin: 0 var(--app-bar-gutter) 0 calc(0px - var(--app-bar-gutter));
 		width: var(--drawer-width-primary);
-		background: RGB(var(--drawer-background-primary));
+		background: #{latte-rgb(var(--drawer-background-primary))};
 		pointer-events: none;
 
 		i.mdi

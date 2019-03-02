@@ -11,7 +11,7 @@
 {
 	.bg-#{$type}
 	{
-		background-color: RGB(var(--color-#{$type}));
+		background-color: #{latte-rgb(var(--color-#{$type}))};
 	}
 }
 

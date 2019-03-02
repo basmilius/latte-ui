@@ -60,9 +60,9 @@ a.list-item
 	transition: all 150ms var(--ease-standard-curve);
 	will-change: background, color;
 
-	&:not(.is-ripple):hover
+	&:hover
 	{
-		background: RGBA(var(--color-primary), .075);
+		background: #{latte-rgba(var(--color-primary), .075)};
 	}
 }
 

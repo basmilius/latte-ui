@@ -33,7 +33,7 @@
 		left: 0;
 		bottom: 0;
 		height: 2px;
-		background: RGB(var(--tabs-accent));
+		background: #{latte-rgb(var(--tabs-accent))};
 		transition: all 330ms var(--ease-swift-out);
 		will-change: width, transform;
 	}
@@ -52,7 +52,7 @@
 		align-items: center;
 		flex: 0 0 auto;
 		justify-content: center;
-		color: RGB(var(--tabs-foreground));
+		color: #{latte-rgb(var(--tabs-foreground))};
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;
@@ -76,13 +76,13 @@
 
 		&:hover
 		{
-			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
+			box-shadow: inset 0 -2px #{latte-rgb(var(--tabs-accent))};
 			opacity: .8;
 		}
 
 		&.is-active
 		{
-			box-shadow: inset 0 -2px RGB(var(--tabs-accent));
+			box-shadow: inset 0 -2px #{latte-rgb(var(--tabs-accent))};
 			opacity: 1;
 		}
 

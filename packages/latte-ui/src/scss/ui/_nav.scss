@@ -138,7 +138,7 @@ button.nav-link
 		&:hover
 		{
 			background: transparent;
-			color: RGB(var(--color-primary));
+			color: #{latte-rgb(var(--color-primary))};
 		}
 	}
 }
@@ -165,15 +165,15 @@ button.nav-link
 		&.is-active
 		{
 			background: transparent;
-			box-shadow: inset 3px 0 RGB(var(--color-primary));
-			color: RGB(var(--color-primary));
+			box-shadow: inset 3px 0 #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--color-primary))};
 		}
 
 		&:not(.is-active).is-hover,
 		&:not(.is-active):hover
 		{
-			background: RGBA(var(--color-primary), .075);
-			color: RGB(var(--color-primary));
+			background: #{latte-rgba(var(--color-primary), .075)};
+			color: #{latte-rgb(var(--color-primary))};
 		}
 	}
 }

@@ -13,12 +13,11 @@ nav.pagination
 	display: flex;
 	padding: 0;
 	align-items: center;
-	flex-flow: row nowrap;
+	flex-flow: row;
 
 	.pagination-item
 	{
 		display: block;
-		margin: 0;
 		padding: 0 6px;
 		height: 30px;
 		min-width: 30px;
@@ -44,15 +43,15 @@ nav.pagination
 
 		&:hover
 		{
-			background: RGBA(var(--color-primary), .15);
-			color: RGB(var(--color-primary));
+			background: #{latte-rgba(var(--color-primary), .15)};
+			color: #{latte-rgb(var(--color-primary))};
 			opacity: 1;
 		}
 
 		&.is-active
 		{
-			background: RGB(var(--color-primary));
-			color: RGB(var(--color-primary-foreground));
+			background: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--color-primary-foreground))};
 			cursor: default;
 			opacity: 1;
 			pointer-events: none;

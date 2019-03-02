@@ -63,7 +63,7 @@ body.full-center.oauth-authorize main#app
 					height: 1em;
 					width: 1em;
 					content: "\F5E1";
-					color: RGB(var(--color-success));
+					color: #{latte-rgb(var(--color-success))};
 					font:
 					{
 						family: "Material Design Icons", sans-serif;
@@ -105,7 +105,7 @@ body.full-center.oauth-authorize main#app
 		margin: 1rem 0;
 		max-width: 420px;
 		width: calc(100vw - 48px);
-		color: RGB(var(--color-dark));
+		color: #{latte-rgb(var(--color-dark))};
 		font:
 		{
 			size: .7rem;

@@ -38,7 +38,7 @@
 
 	.btn:not(.btn-text) + .btn:not(.btn-text)
 	{
-		box-shadow: -1px 0 RGBA(var(--btn-foreground), .1);
+		box-shadow: -1px 0 #{latte-rgba(var(--btn-foreground), .1)};
 	}
 
 	+ .btn-group

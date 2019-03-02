@@ -47,9 +47,9 @@
 	display: flex;
 	padding: 18px 24px;
 	flex-flow: column;
-	background: RGB(var(--message-background));
+	background: #{latte-rgb(var(--message-background))};
 	border-radius: var(--radius);
-	color: RGB(var(--message-foreground));
+	color: #{latte-rgb(var(--message-foreground))};
 
 	--arrow-size: calc(var(--radius) * 2);
 
@@ -115,7 +115,7 @@
 	display: block;
 	min-height: 30px;
 	padding: 6px 24px;
-	color: RGBA(var(--main-foreground-rgb), .5);
+	color: #{latte-rgba(var(--main-foreground-rgb), .5)};
 	font-size: .9rem;
 	font-weight: 500;
 }

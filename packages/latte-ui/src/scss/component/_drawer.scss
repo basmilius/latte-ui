@@ -35,7 +35,7 @@ div#drawer
 		height: 100%;
 		width: var(--drawer-width-primary);
 		flex: 0 0 auto;
-		background: RGB(var(--drawer-background-primary));
+		background: #{latte-rgb(var(--drawer-background-primary))};
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
@@ -46,7 +46,7 @@ div#drawer
 			background: var(--drawer-outline-primary);
 		}
 
-		a.nav-item
+		.nav-item
 		{
 			position: relative;
 			display: flex;
@@ -55,20 +55,20 @@ div#drawer
 			align-items: center;
 			flex: 0 0 auto;
 			justify-content: center;
-			color: RGBA(var(--drawer-foreground-primary), .7);
+			color: #{latte-rgba(var(--drawer-foreground-primary), .7)};
 			transition: all 90ms var(--ease-swift-out);
 			will-change: background, color;
 
 			&:hover
 			{
-				background: RGBA(var(--drawer-foreground-primary), .07);
-				color: RGB(var(--drawer-foreground-primary));
+				background: #{latte-rgba(var(--drawer-foreground-primary), .07)};
+				color: #{latte-rgb(var(--drawer-foreground-primary))};
 			}
 
 			&.is-active
 			{
-				background: RGB(var(--color-primary));
-				color: RGB(var(--color-primary-foreground));
+				background: #{latte-rgb(var(--color-primary))};
+				color: #{latte-rgb(var(--color-primary-foreground))};
 			}
 
 			i.mdi
@@ -85,7 +85,7 @@ div#drawer
 		height: 100%;
 		width: var(--drawer-width-secondary);
 		flex: 0 0 auto;
-		background: RGB(var(--drawer-background-secondary));
+		background: #{latte-rgb(var(--drawer-background-secondary))};
 		overflow: auto;
 		z-index: 0;
 

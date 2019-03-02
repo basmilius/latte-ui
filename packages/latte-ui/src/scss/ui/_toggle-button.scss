@@ -46,17 +46,17 @@
 
 	&:focus
 	{
-		border-color: RGB(var(--toggle-background));
+		border-color: #{latte-rgb(var(--toggle-background))};
 	}
 
 	&:checked
 	{
-		background: RGB(var(--toggle-background));
-		border-color: RGB(var(--toggle-background));
+		background: #{latte-rgb(var(--toggle-background))};
+		border-color: #{latte-rgb(var(--toggle-background))};
 
 		&::before
 		{
-			background: RGB(var(--toggle-foreground));
+			background: #{latte-rgb(var(--toggle-foreground))};
 			transform: translate3d(12px, 0, 0);
 		}
 	}

@@ -19,9 +19,9 @@
 {
 	position: relative;
 	display: flex;
-	background: RGBA(var(--bottom-nav-background), var(--bottom-nav-alpha));
+	background: #{latte-rgba(var(--bottom-nav-background), var(--bottom-nav-alpha))};
 	box-shadow: var(--bottom-nav-elevation);
-	color: RGB(var(--bottom-nav-foreground));
+	color: #{latte-rgb(var(--bottom-nav-foreground))};
 	overflow: hidden;
 
 	.btn-action

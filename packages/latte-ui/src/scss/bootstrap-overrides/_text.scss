@@ -109,7 +109,7 @@
 {
 	.text-#{$type}
 	{
-		color: RGB(var(--color-#{$type})) !important;
+		color: #{latte-rgb(var(--color-#{$type}))} !important;
 	}
 }
 

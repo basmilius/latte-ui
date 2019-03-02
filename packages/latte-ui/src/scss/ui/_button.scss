@@ -114,8 +114,8 @@
 	--ripple-color: var(--btn-foreground);
 	--spinner-background: var(--btn-foreground);
 
-	background: RGB(var(--btn-background));
-	color: RGB(var(--btn-foreground));
+	background: #{latte-rgb(var(--btn-background))};
+	color: #{latte-rgb(var(--btn-foreground))};
 
 	@supports(background: paint(btn-contained-background))
 	{
@@ -139,16 +139,16 @@
 	--ripple-color: var(--btn-background);
 	--spinner-background: var(--btn-background);
 
-	background: RGBA(var(--btn-background), .1);
-	color: RGB(var(--btn-background));
+	background: #{latte-rgba(var(--btn-background), .1)};
+	color: #{latte-rgb(var(--btn-background))};
 
 	&:hover,
 	&:focus
 	{
 		--spinner-background: var(--btn-foreground);
 
-		background: RGB(var(--btn-background));
-		color: RGB(var(--btn-foreground));
+		background: #{latte-rgb(var(--btn-background))};
+		color: #{latte-rgb(var(--btn-foreground))};
 
 		@supports(background: paint(btn-contained-background))
 		{
@@ -168,17 +168,17 @@
 	--spinner-background: var(--btn-background);
 
 	background: transparent;
-	color: RGB(var(--btn-background));
+	color: #{latte-rgb(var(--btn-background))};
 
 	&:hover,
 	&:focus
 	{
-		background: RGBA(var(--btn-background), .1);
+		background: #{latte-rgba(var(--btn-background), .1)};
 	}
 
 	&:active
 	{
-		background: RGBA(var(--btn-background), .2);
+		background: #{latte-rgba(var(--btn-background), .2)};
 	}
 
 	&.btn-icon.is-ripple
@@ -201,7 +201,7 @@
 	--btn-height: 56px;
 	--btn-padding: 16px;
 
-	box-shadow: elevation-generate(8);
+	box-shadow: #{elevation-generate(8)};
 }
 
 .btn-icon

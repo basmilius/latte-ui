@@ -89,19 +89,19 @@ input[type=checkbox].checkbox
 
 	&:focus
 	{
-		border-color: RGB(var(--checkbox-background));
+		border-color: #{latte-rgb(var(--checkbox-background))};
 	}
 
 	&:checked,
 	&:indeterminate
 	{
-		background: RGB(var(--checkbox-background));
-		border-color: RGB(var(--checkbox-background));
+		background: #{latte-rgb(var(--checkbox-background))};
+		border-color: #{latte-rgb(var(--checkbox-background))};
 
 		&::before,
 		&::after
 		{
-			background: RGB(var(--checkbox-foreground));
+			background: #{latte-rgb(var(--checkbox-foreground))};
 		}
 	}
 

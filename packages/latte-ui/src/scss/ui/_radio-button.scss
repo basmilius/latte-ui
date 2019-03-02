@@ -51,17 +51,17 @@ input[type=radio].radio-button
 
 	&:focus
 	{
-		border-color: RGB(var(--radio-background));
+		border-color: #{latte-rgb(var(--radio-background))};
 	}
 
 	&:checked
 	{
-		background: RGB(var(--radio-foreground));
-		border-color: RGB(var(--radio-background));
+		background: #{latte-rgb(var(--radio-foreground))};
+		border-color: #{latte-rgb(var(--radio-background))};
 
 		&::before
 		{
-			background: RGB(var(--radio-background));
+			background: #{latte-rgb(var(--radio-background))};
 		}
 	}
 
