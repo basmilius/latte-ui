@@ -7,21 +7,25 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--snackbar-elevation: #{elevation-generate(8)};
+}
+
 .snackbar
 {
 	position: fixed;
 	display: flex;
 	min-height: 48px;
 	margin: var(--content-gutter);
-	max-width: 40vw;
-	padding: 12px 24px;
+	max-width: 540px;
+	padding: 15px 24px;
 	align-items: center;
 	justify-content: flex-start;
-	background: RGB(var(--default-dark));
+	background: RGB(var(--dark));
 	border-radius: var(--border-radius);
-	box-shadow: elevation-generate(8);
-	color: RGB(var(--default-light));
-	font-weight: 500;
+	box-shadow: var(--snackbar-elevation);
+	color: RGB(var(--light));
 	transition: 240ms var(--ease-swift-out);
 	transition-property: opacity, transform;
 	will-change: opacity, transform;

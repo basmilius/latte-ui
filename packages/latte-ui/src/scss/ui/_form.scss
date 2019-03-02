@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--form-field-outline: var(--outline-color);
+}
+
 div.form-group
 {
 	position: relative;

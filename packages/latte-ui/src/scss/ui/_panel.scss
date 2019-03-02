@@ -7,7 +7,14 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$panel-gutter: 30px;
+:root
+{
+	--panel-background: #ffffff;
+	--panel-elevation: #{elevation-generate(3)};
+	--panel-elevation-hover: #{elevation-generate(9)};
+	--panel-gutter: 30px;
+	--panel-spinner-background: rgba(255, 255, 255, .9);
+}
 
 .panel
 {
@@ -35,18 +42,18 @@ $panel-gutter: 30px;
 	+ .panel,
 	&.panel-gutter
 	{
-		margin-top: $panel-gutter;
+		margin-top: var(--panel-gutter);
 	}
 }
 
 .mt-panel-gutter
 {
-	margin-top: $panel-gutter;
+	margin-top: var(--panel-gutter);
 }
 
 .mb-panel-gutter
 {
-	margin-bottom: $panel-gutter;
+	margin-bottom: var(--panel-gutter);
 }
 
 a.panel
@@ -64,7 +71,7 @@ a.panel
 {
 	position: relative;
 	display: block;
-	padding: $panel-gutter;
+	padding: var(--panel-gutter);
 	flex: 1 1 auto;
 
 	+ .panel-body
@@ -86,7 +93,7 @@ a.panel
 	position: relative;
 	display: flex;
 	min-height: 60px;
-	padding: 0 $panel-gutter;
+	padding: 0 var(--panel-gutter);
 	align-items: center;
 
 	&:not(:first-child)
@@ -105,7 +112,7 @@ a.panel
 	position: relative;
 	display: flex;
 	min-height: 75px;
-	padding: 0 $panel-gutter;
+	padding: 0 var(--panel-gutter);
 	align-items: center;
 	flex: 0 0 auto;
 
@@ -157,8 +164,8 @@ a.panel
 
 	&.panel-rich-media-gutter
 	{
-		margin: $panel-gutter / 2;
-		width: calc(100% - #{$panel-gutter});
+		margin: calc(var(--panel-gutter) / 2);
+		width: calc(100% - var(--panel-gutter));
 		border-radius: inherit;
 	}
 }
@@ -211,12 +218,12 @@ a.panel
 
 .panel-rich-media-gutter + .panel-body
 {
-	padding-top: $panel-gutter / 2;
+	padding-top: calc(var(--panel-gutter) / 2);
 }
 
 .panel-rich-media-gutter + .panel-header
 {
-	margin-top: -($panel-gutter / 2);
+	margin-top: calc(var(--panel-gutter) / -2);
 }
 
 div.panel > span.spinner

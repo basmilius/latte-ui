@@ -96,7 +96,7 @@ $elevation-ambient-map: (
 	@return box-shadow $duration $easing;
 }
 
-@function elevation-generate($z, $colorProperty: var(--default-elevation-color), $opacity-boost: 0)
+@function elevation-generate($z, $colorProperty: var(--elevation-color), $opacity-boost: 0)
 {
 	@if type-of($z) != number or not unitless($z)
 	{

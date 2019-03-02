@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--dropdown-background: #ffffff;
+	--dropdown-elevation: #{elevation-generate(16)}, 0 0 0 1px var(--outline-color-secondary);
+}
+
 div.dropdown
 {
 	position: fixed;

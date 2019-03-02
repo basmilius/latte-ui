@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--overlay-background: rgba(var(--color-dark), .85);
+}
+
 div.overlay
 {
 	$anim-duration: 210ms;

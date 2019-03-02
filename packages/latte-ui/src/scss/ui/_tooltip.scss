@@ -7,6 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--tooltip-background: rgba(var(--color-dark), .9);
+	--tooltip-foreground: rgb(var(--color-dark-foreground));
+}
+
 div.tooltip
 {
 	$tooltip-arrow: 6px;

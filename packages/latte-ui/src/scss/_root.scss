@@ -18,14 +18,25 @@
 	--branding-logo: url(../image/logo.svg);
 	--border-radius: 6px;
 
-	--default-light: 255, 255, 255;
-	--default-dark: 25, 26, 28;
-	--default-elevation-color: 127, 127, 127;
+	--light: 255, 255, 255;
+	--dark: 25, 26, 28;
+	--elevation-color: 127, 127, 127;
+
+	--main-background: #f9f9f9;
+	--main-background-rgb: 249, 249, 249;
+	--main-foreground: rgba(0, 0, 0, .87);
+	--main-foreground-rgb: 0, 0, 0;
+	--main-placeholder: rgba(0, 0, 0, .42);
+
+	--outline-color: #e8ebf2;
+	--outline-color-rgb: 232, 235, 242;
+	--outline-color-secondary: #f3f6fb;
+	--outline-color-secondary-rgb: 243, 246, 251;
 
 	@each $type, $color in $theme-colors
 	{
 		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
-		--color-#{$type}-foreground: #{dark-or-light($color, var(--default-dark), var(--default-light))};
+		--color-#{$type}-foreground: #{dark-or-light($color, var(--dark), var(--light))};
 	}
 }
 

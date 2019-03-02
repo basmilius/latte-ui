@@ -20,6 +20,8 @@
 	--color-dark-foreground: 25, 26, 28;
 	--color-light-foreground: 255, 255, 255;
 
+	--elevation-color: 0, 0, 0;
+
 	--outline-color: #25262a;
 	--outline-color-rgb: 37, 38, 42;
 	--outline-color-secondary: #25262a;
@@ -47,6 +49,8 @@
 	--panel-elevation: #{elevation-generate(3, black)}, 0 0 0 1px var(--outline-color);
 	--panel-elevation-hover: #{elevation-generate(9, black)}, 0 0 0 1px var(--outline-color);
 	--panel-spinner-background: rgba(0, 0, 0, .6);
+
+	--snackbar-elevation: #{elevation-generate(8, black)}, 0 0 0 1px var(--outline-color);
 
 	--tooltip-background: rgba(0, 0, 0, .9);
 	--tooltip-foreground: rgb(255, 255, 255);
