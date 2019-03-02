@@ -15,7 +15,7 @@
 			<h1>Expandable</h1>
 		</PageHeader>
 
-		<div class="contained">
+		<div class="container">
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
