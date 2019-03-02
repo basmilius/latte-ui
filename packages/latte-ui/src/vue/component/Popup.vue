@@ -20,12 +20,12 @@
 <script>
 
 	import Vue from "vue";
-
-	import { getMainElement } from "../../js/core";
 	import { dispatch, on } from "../../js/core/action";
 	import { live, raf } from "../../js/util/dom";
-	import { applyZ } from "../../js/z";
+	import { applyZ } from "../../js/core/z";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
+	import { popupClosed, popupOpened } from "../../js/core/popup";
+	import { getMainElement } from "../../js/core";
 
 	export default {
 
@@ -67,7 +67,7 @@
 		beforeDestroy()
 		{
 			if (this.isOpen)
-				getMainElement().classList.remove("is-popup-opened");
+				popupClosed();
 
 			this.$el.clearOutsideEventListeners();
 		},
@@ -93,7 +93,7 @@
 			else
 				this.bindEvents();
 
-			document.body.appendChild(this.$el);
+			getMainElement().appendChild(this.$el);
 
 			// Update associate-with prop by updating our parent.
 			if (this.$parent && this.$parent.$forceUpdate)
@@ -274,13 +274,13 @@
 				if (this.isOpen)
 				{
 					dispatch("latte:popup:open", this);
-					getMainElement().classList.add("is-popup-opened");
+					popupOpened();
 					this.$emit("open");
 				}
 				else
 				{
 					dispatch("latte:popup:close", this);
-					getMainElement().classList.remove("is-popup-opened");
+					popupClosed();
 					this.$emit("close");
 				}
 			},

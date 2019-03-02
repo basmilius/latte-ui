@@ -22,3 +22,7 @@ export function applyZ(fn)
 	fn(currentZ);
 	currentZ++;
 }
+
+export default {
+	applyZ
+}

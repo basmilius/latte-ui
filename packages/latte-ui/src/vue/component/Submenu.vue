@@ -33,7 +33,7 @@
 
 	import { getMainElement } from "../../js/core";
 	import { raf } from "../../js/util/dom";
-	import { applyZ } from "../../js/z";
+	import { applyZ } from "../../js/core/z";
 
 	export default {
 

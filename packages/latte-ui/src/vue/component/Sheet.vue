@@ -19,9 +19,9 @@
 
 <script>
 
-	import { getMainElement } from "../../js/core";
 	import { closest, getCoords } from "../../js/util/dom";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
+	import { popupClosed, popupOpened } from "../../js/core/popup";
 
 	const TRIGGER_SIZE = 24;
 
@@ -380,9 +380,9 @@
 			isOpen()
 			{
 				if (this.isOpen)
-					getMainElement().classList.add("is-popup-opened");
+					popupOpened();
 				else
-					getMainElement().classList.remove("is-popup-opened");
+					popupClosed();
 			}
 
 		}

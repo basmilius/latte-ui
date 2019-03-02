@@ -19,7 +19,7 @@
 
 	import { dispatch } from "../../js/core/action";
 	import { register, remove } from "../../js/ui/overlay";
-	import { applyZ } from "../../js/z";
+	import { applyZ } from "../../js/core/z";
 	import { raf } from "../../js/util/dom";
 	import { getMainElement } from "../../js/core";
 

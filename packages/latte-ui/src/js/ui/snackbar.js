@@ -11,7 +11,7 @@ import Vue from "vue";
 import { on } from "../core/action";
 import { conditionalRender, createElement, raf } from "../util/dom";
 import { getMainElement } from "../core";
-import { applyZ } from "../z";
+import { applyZ } from "../core/z";
 
 let isSnackbarOpen = false;
 let snackbars = [];

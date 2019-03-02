@@ -7,6 +7,9 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import popup from "./popup";
+import z from "./z";
+
 export let currentOptions = {};
 
 /**
@@ -155,6 +158,9 @@ function shuffleString(str)
 }
 
 export default {
+	popup,
+	z,
+
 	getMainElement,
 	handleError,
 	interval,

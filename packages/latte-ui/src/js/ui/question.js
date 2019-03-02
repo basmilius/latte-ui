@@ -10,7 +10,7 @@
 import Vue from "vue";
 
 import { createElement, raf } from "../util/dom";
-import { applyZ } from "../z";
+import { applyZ } from "../core/z";
 import { dispatch } from "../core/action";
 import { getMainElement } from "../core";
 

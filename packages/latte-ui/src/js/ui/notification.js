@@ -13,7 +13,7 @@ import { on } from "../core/action";
 import { id } from "../core/api";
 import { conditionalRender, createElement, eachRender, getLattePath, raf } from "../util/dom";
 import { getMainElement } from "../core";
-import { applyZ } from "../z";
+import { applyZ } from "../core/z";
 
 const defaultOptions = {
 	duration: 3000,

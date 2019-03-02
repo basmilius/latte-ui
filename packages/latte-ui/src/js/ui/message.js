@@ -13,7 +13,7 @@ import { dispatch } from "../core/action";
 import { createElement, raf } from "../util/dom";
 import { spaceship } from "../operators";
 import { translate } from "../i18n";
-import { applyZ } from "../z";
+import { applyZ } from "../core/z";
 import { getMainElement } from "../core";
 
 const MessagePanel = Vue.extend({
