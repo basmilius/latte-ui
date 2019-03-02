@@ -66,7 +66,8 @@ const Notification = Vue.extend({
 	render(h)
 	{
 		return h("div", {class: this.notificationClasses, style: this.notificationStyles}, [
-			conditionalRender(this.options.avatar, () => h("img", {attrs: {src: this.options.avatar}, class: ["avatar"]})),
+			conditionalRender(this.options.avatar && typeof this.options.avatar === "function", () => this.options.avatar(h)),
+			conditionalRender(this.options.avatar && typeof this.options.avatar === "string", () => h("img", {attrs: {src: this.options.avatar}, class: ["avatar"]})),
 			conditionalRender(this.options.icon, () => h("div", {class: ["notification-icon"]}, [
 				h("i", {class: ["mdi", `mdi-${this.options.icon}`]})
 			])),

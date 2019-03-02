@@ -1,0 +1,131 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.snackbar
+{
+	position: fixed;
+	display: flex;
+	min-height: 48px;
+	margin: var(--content-gutter);
+	max-width: 40vw;
+	padding: 12px 24px;
+	align-items: center;
+	justify-content: flex-start;
+	background: RGB(var(--default-dark));
+	border-radius: var(--border-radius);
+	box-shadow: elevation-generate(8);
+	color: RGB(var(--default-light));
+	font-weight: 500;
+	transition: 240ms var(--ease-swift-out);
+	transition-property: opacity, transform;
+	will-change: opacity, transform;
+
+	&:not(.is-open)
+	{
+		opacity: 0;
+	}
+
+	@include compact
+	{
+		max-width: calc(100vw - (var(--content-gutter) * 2));
+		width: 100%;
+	}
+
+	.btn
+	{
+		margin-left: 15px;
+		margin-right: -15px;
+	}
+}
+
+.snackbar-bottom
+{
+	left: 50%;
+	bottom: 0;
+	transform: translate3d(calc(-50% - var(--content-gutter)), 0, 0);
+
+	&:not(.is-open)
+	{
+		transform: translate3d(calc(-50% - var(--content-gutter)), 3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+.snackbar-bottom-left
+{
+	left: 0;
+	bottom: 0;
+
+	&:not(.is-open)
+	{
+		transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+.snackbar-bottom-right
+{
+	right: 0;
+	bottom: 0;
+
+	&:not(.is-open)
+	{
+		transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+.snackbar-top
+{
+	top: 0;
+	left: 50%;
+	transform: translate3d(calc(-50% - var(--content-gutter)), 0, 0);
+
+	&:not(.is-open)
+	{
+		transform: translate3d(calc(-50% - var(--content-gutter)), -3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+.snackbar-top-left
+{
+	top: 0;
+	left: 0;
+
+	&:not(.is-open)
+	{
+		transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+.snackbar-top-right
+{
+	top: 0;
+	right: 0;
+
+	&:not(.is-open)
+	{
+		transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
+	}
+}
+
+@include compact
+{
+	.snackbar-bottom,
+	.snackbar-bottom-left,
+	.snackbar-bottom-right
+	{
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: none;
+
+		&:not(.is-open)
+		{
+			transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
+		}
+	}
+}

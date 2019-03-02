@@ -14,6 +14,7 @@ import notification, { initializeNotifications } from "./notification";
 import overlay from "./overlay";
 import panel, { initializePanels } from "./panel";
 import question from "./question";
+import snackbar, { initializeSnackbars } from "./snackbar";
 import { initializeTooltips } from "./tooltip";
 
 export function initializeUI()
@@ -22,6 +23,7 @@ export function initializeUI()
 	initializeNotices();
 	initializeNotifications();
 	initializePanels();
+	initializeSnackbars();
 	initializeTooltips();
 }
 
@@ -31,5 +33,6 @@ export default {
 	notification,
 	overlay,
 	panel,
-	question
+	question,
+	snackbar
 };

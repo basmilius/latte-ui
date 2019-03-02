@@ -32,7 +32,8 @@ div.notification
 	background: var(--panel-background);
 	border-radius: var(--border-radius);
 	box-shadow: var(--panel-elevation-hover);
-	transition: all 420ms var(--ease-swift-out);
+	transition: 420ms var(--ease-swift-out);
+	transition-property: top, opacity, transform;
 	will-change: top, opacity, transform;
 
 	&.is-opening
@@ -51,7 +52,7 @@ span.notification-title
 {
 	position: relative;
 	display: block;
-	color: #808080;
+	color: var(--main-foreground);
 	font-size: 1.1em;
 	font-weight: 700;
 }
