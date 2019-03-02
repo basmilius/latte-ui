@@ -59,6 +59,10 @@ const router = new Router({
 							component: () => import("./views/docs/components/DropdownButton.vue")
 						},
 						{
+							path: "expandable",
+							component: () => import("./views/docs/components/Expandable.vue")
+						},
+						{
 							path: "form-elements",
 							component: () => import("./views/docs/components/FormElements.vue")
 						},

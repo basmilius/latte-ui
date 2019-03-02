@@ -9,17 +9,20 @@
 
 <template>
 
-	<div class="page" id="components-badge">
+	<div class="page" id="component-expandable">
 
 		<PageHeader>
-			<h1>Badge</h1>
+			<h1>Expandable</h1>
 		</PageHeader>
 
-		<div class="container">
+		<div class="contained">
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
-					<CodeExample title="Badges" url="/snippets/components/badge/badge.html"></CodeExample>
+					<CodeExample title="Basic" url="/snippets/components/expandable/basic.html"></CodeExample>
+					<CodeExample title="Group" url="/snippets/components/expandable/group.html"></CodeExample>
+					<CodeExample title="Advanced" url="/snippets/components/expandable/advanced.html"></CodeExample>
+					<CodeExample title="Nav" url="/snippets/components/expandable/nav.html"></CodeExample>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -42,13 +45,14 @@
 
 	export default {
 
-		name: "Badge",
+		name: "Expandable",
 
 		components: {
 			CodeExample,
-			PageHeader,
-			TableOfContents
+			TableOfContents,
+			PageHeader
 		}
+
 	}
 
 </script>

@@ -1,0 +1,12 @@
+const {button, input} = await Latte.ui.message.prompt("Prompt", "This is a prompt message where you can enter something. What is your name?");
+
+switch (button)
+{
+	case Latte.ui.message.Buttons.CANCEL:
+		Latte.ui.message.alert("Result", "You clicked Cancel!");
+		break;
+
+	case Latte.ui.message.Buttons.OK:
+		Latte.ui.message.alert("Result", `You clicked OK and entered ${input}!`);
+		break;
+}

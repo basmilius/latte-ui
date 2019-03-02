@@ -63,6 +63,7 @@
 					<latte-ripple as="router-link" to="/docs/components/chat" class="nav-link"><span>Chat</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/datatable" class="nav-link"><span>Datatable</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/dropdown-button" class="nav-link"><span>Dropdown button</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/expandable" class="nav-link"><span>Expandable</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/form-elements" class="nav-link"><span>Form elements</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/list" class="nav-link"><span>List</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/message" class="nav-link"><span>Message</span></latte-ripple>

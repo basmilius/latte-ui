@@ -80,7 +80,6 @@
 	div.code-snippet
 	{
 		margin: 0;
-		padding: 12px;
 		background: var(--main-background);
 		border: 1px solid var(--outline-color-secondary);
 		border-radius: var(--border-radius);
@@ -89,10 +88,11 @@
 	div.code-snippet pre
 	{
 		margin: 0;
+		padding: 24px;
 		font-family: "Operator Mono", monospace;
 		font-size: 13px;
 		font-weight: 500;
-		tab-size: 30px;
+		tab-size: 36px;
 	}
 
 </style>
