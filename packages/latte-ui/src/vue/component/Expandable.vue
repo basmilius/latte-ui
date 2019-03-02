@@ -74,7 +74,7 @@
 				if (this.group !== expandable.group)
 					return;
 
-				this.close();
+				raf(() => this.close());
 			},
 
 			updateBody()

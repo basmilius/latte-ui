@@ -10,7 +10,7 @@
 <template>
 
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-		<circle :fill="color" cx="12" cy="12" r="12" opacity="0.1"></circle>
+		<rect :fill="color" height="24" width="24" opacity="0.1"></rect>
 		<text :fill="color" x="12" y="15.5" font-family="proxima-nova,Arial,Helvetica" font-size="10" font-weight="600" text-anchor="middle" text-rendering="geometricPrecision">{{ initials.toUpperCase() }}</text>
 	</svg>
 

@@ -7,17 +7,28 @@
  * LICENSE file that was distributed with this source code.
  */
 
-.radius-default
-{
-	border-radius: var(--border-radius) !important;
-}
-
 .radius-circle
 {
 	border-radius: 999px !important;
 }
 
+.radius-default
+{
+	border-radius: var(--border-radius) !important;
+}
+
+.radius-double
+{
+	border-radius: calc(var(--border-radius) * 2) !important;
+}
+
 .radius-none
 {
 	border-radius: 0 !important;
+}
+
+.radius-squircle
+{
+	border-radius: 0 !important;
+	mask: url(../image/squircle.svg);
 }

@@ -28,7 +28,9 @@ class AppBarCutout
 		if (offset.endsWith("%"))
 			offset = geometry.width * (parseFloat(offset) / 100);
 		else
-			offset = parseInt(offset);
+			offset = parseFloat(offset);
+
+		offset = Math.floor(offset);
 
 		if (position.trim() === "" || ["top", "bottom"].indexOf(position) === -1)
 			position = "top";
