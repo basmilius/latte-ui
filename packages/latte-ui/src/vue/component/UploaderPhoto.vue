@@ -136,6 +136,8 @@
 				this.$refs.fileInput.files = evt.dataTransfer.files;
 				this.isDragging = false;
 				this.isDraggingOver = false;
+
+				this.onFilesSelected();
 			},
 
 			onFilesSelected()
@@ -152,6 +154,8 @@
 				this.isLoading = true;
 				this.urls.forEach(url => URL.revokeObjectURL(url));
 				this.urls = this.files.map(file => URL.createObjectURL(file));
+
+				this.$emit("input", this.files);
 			}
 
 		}

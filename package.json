@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.5.0-beta.0",
+	"version": "1.5.0-beta.1",
 	"private": true,
 	"scripts": {
 		"build": "yarn workspace @bybas/latte-ui run build",
