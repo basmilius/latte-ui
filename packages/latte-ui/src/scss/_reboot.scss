@@ -148,11 +148,11 @@ a
 {
 	background-color: transparent;
 	color: var(--color-primary);
-	text-decoration: none;
+	text-decoration: underline;
 
 	&:hover
 	{
-		text-decoration: underline;
+		text-decoration: none;
 	}
 }
 

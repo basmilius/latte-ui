@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.5.0-beta.1",
+	"version": "1.5.0-beta.2",
 	"description": "UI Library of Latte Framework.",
 	"main": "src/index.js",
 	"scripts": {
@@ -33,7 +33,7 @@
 		"cssnano-preset-advanced": "^4.0.7",
 		"node-sass": "^4.11.0",
 		"postcss-url": "^8.0.0",
-		"rollup": "^1.4.0",
+		"rollup": "^1.6.0",
 		"rollup-plugin-babel": "^4.3.2",
 		"rollup-plugin-buble": "^0.19.6",
 		"rollup-plugin-commonjs": "^9.2.1",

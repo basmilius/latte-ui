@@ -123,6 +123,10 @@ const router = new Router({
 							component: () => import("./views/docs/components/Sheet.vue")
 						},
 						{
+							path: "snackbar",
+							component: () => import("./views/docs/components/Snackbar.vue")
+						},
+						{
 							path: "spinner",
 							component: () => import("./views/docs/components/Spinner.vue")
 						},

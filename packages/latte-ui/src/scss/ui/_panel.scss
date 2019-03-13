@@ -59,6 +59,7 @@
 a.panel
 {
 	cursor: pointer;
+	text-decoration: none;
 	transition: elevation-transition(150ms);
 
 	&:hover

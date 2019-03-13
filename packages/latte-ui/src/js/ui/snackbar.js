@@ -28,7 +28,7 @@ export const Locations = {
 const defaultOptions = {
 	action: null,
 	duration: 4000,
-	location: Locations.BOTTOM_RIGHT,
+	location: Locations.BOTTOM,
 	message: ""
 };
 
@@ -103,9 +103,6 @@ const Snackbar = Vue.extend({
 
 export function create(options = {})
 {
-	if (options.action && !options.duration)
-		options.duration = 0;
-
 	options = Object.assign({}, defaultOptions, options);
 
 	if (options.action)

@@ -79,6 +79,7 @@
 					<latte-ripple as="router-link" to="/docs/components/question" class="nav-link"><span>Question</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/ripple" class="nav-link"><span>Ripple</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/sheet" class="nav-link"><span>Sheet</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/components/snackbar" class="nav-link"><span>Snackbar</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/tabs" class="nav-link"><span>Tabs</span></latte-ripple>
 
