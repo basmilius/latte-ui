@@ -83,11 +83,6 @@
 					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/components/tabs" class="nav-link"><span>Tabs</span></latte-ripple>
 
-					<div class="divider divider-horizontal"></div>
-
-					<span class="section">JavaScript</span>
-					<latte-ripple as="router-link" to="/docs/js/actions" class="nav-link"><span>Actions</span></latte-ripple>
-
 				</nav>
 			</div>
 		</latte-sheet>
