@@ -54,8 +54,8 @@ yarn add @bybas/latte-ui
 						<div class="panel-body py-0">
 
 							<CodeSnippet lang="html">
-&lt;link href="//unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte.css" type="text/css"/&gt;
-&lt;script src="//unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="//unpkg.com/@bybas/latte-ui@1.4.0/dist/latte.css" type="text/css"/&gt;
+&lt;script src="//unpkg.com/@bybas/latte-ui@1.4.0/dist/latte.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
 
 						</div>
