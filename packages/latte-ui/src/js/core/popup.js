@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { getMainElement } from "./index";
-
 let counter = 0;
 
 export function isPopupOpened()
@@ -31,9 +29,9 @@ export function popupOpened()
 function update()
 {
 	if (counter > 0)
-		getMainElement().classList.add("is-popup-opened");
+		document.querySelector("main#app").classList.add("is-popup-opened");
 	else
-		getMainElement().classList.remove("is-popup-opened");
+		document.querySelector("main#app").classList.remove("is-popup-opened");
 }
 
 export default {
