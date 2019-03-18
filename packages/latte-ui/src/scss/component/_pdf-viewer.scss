@@ -9,13 +9,8 @@
 
 div.panel.pdf-viewer
 {
-	position: relative;
-	display: flex;
-	align-items: stretch;
-	flex-flow: column;
 	background: transparent;
-
-	--panel-elevation: none;
+	box-shadow: none;
 
 	div.page
 	{

@@ -50,7 +50,5 @@ export { default as Tab } from "./Tab.vue";
 export { default as TabBar } from "./TabBar.vue";
 export { default as TabContainer } from "./TabContainer.vue";
 export { default as TimePickerClock } from "./TimePickerClock.vue";
-export { default as TreeView } from "./TreeView.vue";
-export { default as TreeViewItem } from "./TreeViewItem.vue";
 export { default as Uploader } from "./Uploader.vue";
 export { default as UploaderPhoto } from "./UploaderPhoto.vue";

@@ -16,7 +16,6 @@ import { initializeHoudiniApis } from "./js/houdini";
 import { registerOutsideEvents } from "./js/hid/OutsideEvent";
 
 import * as Components from "./vue/component";
-import * as Directives from "./vue/directive";
 import * as Mixins from "./vue/mixin"
 import * as RTEPlugins from "./vue/rich-text-editor";
 
@@ -48,7 +47,6 @@ export const LatteUI = {
 		registerOutsideEvents();
 		initializeHoudiniApis();
 
-		this.registerDirectives(Vue);
 		this.registerMixins(Vue);
 		this.registerComponents(Vue);
 
@@ -74,11 +72,6 @@ export const LatteUI = {
 	{
 		Object.values(Components).forEach(c => Vue.component(c.name, c));
 		Object.values(RTEPlugins).forEach(p => Vue.component(p.name, p));
-	},
-
-	registerDirectives(Vue)
-	{
-		Object.values(Directives).forEach(d => Vue.directive(d.name, d));
 	},
 
 	registerMixins(Vue)

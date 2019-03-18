@@ -15,15 +15,6 @@
 		</div>
 
 		<span class="spinner"></span>
-
-		<nav class="nav nav-list latte-context-menu">
-			<a class="nav-link" :href="source" target="_blank"><i class="mdi mdi-open-in-new"></i> <span>{{ "Open in new tab"|i18n("pdf-viewer") }}</span></a>
-			<a class="nav-link" @click="download"><i class="mdi mdi-download"></i> <span>{{ "Download"|i18n("pdf-viewer") }}</span></a>
-			<a class="nav-link" @click="print"><i class="mdi mdi-printer"></i> <span>{{ "Print"|i18n("pdf-viewer") }}</span></a>
-			<div class="divider divider-horizontal"></div>
-			<a class="nav-link" @click="load"><i class="mdi mdi-reload"></i> <span>{{ "Reload"|i18n("pdf-viewer") }}</span></a>
-			<slot name="menu"></slot>
-		</nav>
 	</div>
 
 	<div class="panel" v-else>
