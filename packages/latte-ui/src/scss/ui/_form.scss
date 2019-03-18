@@ -160,7 +160,7 @@ label.col-form-label
 		color: transparent; // ...?
 	}
 
-	&:disabled
+	&[disabled]
 	{
 		cursor: not-allowed;
 		filter: grayscale(100%);
@@ -204,7 +204,7 @@ label.col-form-label
 		box-shadow: 0 0 0 1px #{latte-rgba(var(--color-primary), .75)};
 	}
 
-	&:disabled
+	&[disabled]
 	{
 		background-color: rgba(0, 0, 0, .025);
 	}
@@ -237,7 +237,7 @@ label.col-form-label
 		line-height: 1em;
 	}
 
-	&:disabled
+	&[disabled]
 	{
 		background: rgba(0, 0, 0, .025);
 		pointer-events: none;

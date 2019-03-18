@@ -47,12 +47,12 @@ div.datepicker-calendar
 			margin: 0;
 			width: 100%;
 
-			&:not(:disabled)
+			&:not([disabled])
 			{
 				opacity: .7;
 			}
 
-			&:disabled
+			&[disabled]
 			{
 				opacity: .3;
 			}

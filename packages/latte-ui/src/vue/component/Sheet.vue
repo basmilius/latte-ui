@@ -31,6 +31,13 @@
 
 		props: {
 
+			mode: {
+				default: "default",
+				required: false,
+				type: String,
+				validator: val => ["default", "push", "overlay"].indexOf(val) > -1
+			},
+
 			position: {
 				default: "left",
 				required: false,

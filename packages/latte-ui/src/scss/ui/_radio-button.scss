@@ -65,7 +65,7 @@ input[type=radio].radio-button
 		}
 	}
 
-	&:disabled
+	&[disabled]
 	{
 		cursor: not-allowed;
 		filter: grayscale(100%);

@@ -50,7 +50,7 @@
 		margin-left: 6px;
 	}
 
-	&:disabled,
+	&[disabled],
 	&.disabled
 	{
 		filter: grayscale(100%);
