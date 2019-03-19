@@ -72,6 +72,16 @@
 			this.$el.clearOutsideEventListeners();
 		},
 
+		destroyed()
+		{
+			const mainElement = getMainElement();
+
+			if (!(this.$el.parentNode && this.$el.parentNode === mainElement))
+				return;
+
+			mainElement.removeChild(this.$el);
+		},
+
 		data()
 		{
 			return {
@@ -87,7 +97,6 @@
 
 		mounted()
 		{
-			// Move the popup to <body>.
 			if (this.$el.parentNode)
 				this.$el.parentNode.removeChild(this.$el);
 			else
