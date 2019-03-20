@@ -24,4 +24,4 @@ new Vue({
 
 }).$mount("#app");
 
-console.log(`Using Latte UI ${Latte.version} by ${Latte.author}`);
+console.log(`Using Latte UI ${Latte.version} by ${Latte.author} and Vue.js ${Vue.version}.`);

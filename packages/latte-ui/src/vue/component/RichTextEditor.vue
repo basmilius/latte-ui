@@ -23,6 +23,7 @@
 			top: var(--app-bar-height);
 			background: var(--panel-background);
 			border-bottom: 1px solid var(--outline-color-secondary);
+			overflow: auto;
 			z-index: 1;
 
 			div.app-bar-row
