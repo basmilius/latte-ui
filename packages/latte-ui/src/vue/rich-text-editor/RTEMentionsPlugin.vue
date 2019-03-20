@@ -54,6 +54,11 @@
 			this.$parent.$on("remove-emptyness", () => this.onRemoveEmptyness());
 		},
 
+		render(h)
+		{
+			return h("div");
+		},
+
 		computed: {
 
 			mentionsFiltered()

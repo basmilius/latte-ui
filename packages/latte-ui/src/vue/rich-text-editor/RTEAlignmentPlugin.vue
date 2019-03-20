@@ -29,6 +29,11 @@
 			this.$parent.registerCommand("align-center", () => document.execCommand("justifyCenter"));
 			this.$parent.registerCommand("align-right", () => document.execCommand("justifyRight"));
 			this.$parent.registerCommand("align-justify", () => document.execCommand("justifyFull"));
+		},
+
+		render(h)
+		{
+			return h("div");
 		}
 
 	}

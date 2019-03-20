@@ -21,6 +21,11 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Rich text editor</span></div>
+						<latte-rich-text-editor></latte-rich-text-editor>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Pagination</span></div>
 						<div class="panel-body">
 
@@ -42,6 +47,37 @@
 							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP_LEFT)">Top left</latte-ripple>
 							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP)">Top center</latte-ripple>
 							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP_RIGHT)">Top right</latte-ripple>
+
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Submenu</span></div>
+						<div class="panel-body">
+
+							<latte-button-dropdown icon="dots-vertical">
+								<nav class="nav nav-list">
+									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+
+									<div class="divider divider-horizontal"></div>
+
+									<latte-submenu icon="dice-2" label="Submenu">
+										<nav class="nav nav-list">
+											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+										</nav>
+									</latte-submenu>
+
+									<div class="divider divider-horizontal"></div>
+
+									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
+								</nav>
+							</latte-button-dropdown>
 
 						</div>
 					</div>

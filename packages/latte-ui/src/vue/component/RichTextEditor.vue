@@ -17,23 +17,19 @@
 		justify-content: flex-start;
 		z-index: 0;
 
-		div.rte-toolbar
+		div.app-bar.rte-toolbar
 		{
 			position: sticky;
 			top: var(--app-bar-height);
-			flex: 0 0 auto;
+			background: var(--panel-background);
 			border-bottom: 1px solid var(--outline-color-secondary);
-			border-top-left-radius: var(--border-radius);
-			border-top-right-radius: var(--border-radius);
-			overflow: hidden;
 			z-index: 1;
 
-			div.panel-header
+			div.app-bar-row
 			{
-				min-height: 48px;
-				padding: 0 9px;
-				background: var(--panel-background);
-				border: none;
+				--app-bar-height: 48px;
+
+				padding: 0 18px;
 			}
 
 			button.btn.is-active
@@ -82,14 +78,14 @@
 <template>
 
 	<div class="panel panel-blank rich-text-editor" :class="{'is-focused': isFocused}" style="min-height: 300px">
-		<div class="rte-toolbar">
-			<div class="panel-header" v-for="(row, rowIndex) of toolbarRows" v-if="toolbar.enabled">
+		<div class="app-bar rte-toolbar">
+			<div class="app-bar-row" v-for="(row, rowIndex) of toolbarRows" v-if="toolbar.enabled">
 
 				<template v-for="el of row">
 
 					<div class="divider divider-vertical" v-if="el.type === 'separator'"></div>
 					<div class="btn-group" v-else-if="el.type === 'group'">
-						<button class="btn btn-icon btn-text btn-dark m-0" :class="{'is-active': a.action.isActive || false}" @click="onToolbarActionClick($event, a.action)" :data-tooltip="a.action.label" v-for="a of el.action"><i class="mdi" :class="[`mdi-${a.action.icon}`]"></i></button>
+						<button class="btn btn-icon btn-text btn-dark m-0" :class="{'is-active': a.action.isActive || false}" @click="onToolbarActionClick($event, a.action)" :data-tooltip="a.action.label" v-for="a of el.actions"><i class="mdi" :class="[`mdi-${a.action.icon}`]"></i></button>
 					</div>
 					<button class="btn btn-icon btn-text btn-dark m-0" :class="{'is-active': el.action.isActive || false}" @click="onToolbarActionClick($event, el.action)" :data-tooltip="el.action.label" v-else-if="el.type === 'action'"><i class="mdi" :class="[`mdi-${el.action.icon}`]"></i></button>
 
@@ -211,7 +207,7 @@
 								rd.push({type: "group", actions: [], group: {id: action.groupId}});
 							}
 
-							rd[groupIndex].action.push({type: "action", action});
+							rd[groupIndex].actions.push({type: "action", action});
 						}
 						else
 						{

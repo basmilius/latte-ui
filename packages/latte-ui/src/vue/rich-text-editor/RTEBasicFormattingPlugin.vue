@@ -29,6 +29,11 @@
 			this.$parent.registerCommand("underline", () => document.execCommand("underline"));
 		},
 
+		render(h)
+		{
+			return h("div");
+		},
+
 		methods: {
 
 			onSelectionChanged(selection)
