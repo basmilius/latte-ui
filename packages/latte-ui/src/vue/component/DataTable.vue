@@ -9,7 +9,7 @@
 
 <template>
 
-	<table class="table table-hover mb-0">
+	<table class="table table-hover mb-0" cellpadding="0" cellspacing="0">
 		<thead>
 		<tr v-if="showHeader">
 			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
@@ -21,7 +21,9 @@
 						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('data-table', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
 					</div>
 				</th>
-				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}"></th>
+				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
+					<div class="column-content"><span>&nbsp;</span></div>
+				</th>
 			</slot>
 		</tr>
 
