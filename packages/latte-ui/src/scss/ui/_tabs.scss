@@ -10,6 +10,7 @@
 :root
 {
 	--tabs-accent: var(--color-primary);
+	--tabs-accent-foreground: var(--color-primary-foreground);
 	--tabs-foreground: var(--main-foreground-rgb);
 	--tabs-height: 45px;
 }
@@ -19,12 +20,6 @@
 	min-height: var(--tabs-height);
 	align-items: stretch;
 	flex-flow: row nowrap;
-
-	&.is-over-outline
-	{
-		margin-bottom: -2px;
-		z-index: 1;
-	}
 
 	div.nav-tabs-indicator
 	{
@@ -38,19 +33,21 @@
 		will-change: width, transform;
 	}
 
-	&.is-over-outline div.nav-tabs-indicator
+	&.is-over-outline
 	{
-		bottom: -2px;
+		margin-bottom: -2px;
+		z-index: 1;
+
+		div.nav-tabs-indicator
+		{
+			bottom: -2px;
+		}
 	}
 
 	.nav-link
 	{
-		position: relative;
-		display: flex;
 		height: auto;
 		padding: 9px 6px;
-		align-items: center;
-		flex: 0 0 auto;
 		justify-content: center;
 		color: #{latte-rgb(var(--tabs-foreground))};
 		font-weight: 500;
@@ -130,9 +127,9 @@
 	{
 		margin-right: -6px;
 	}
-}
 
-.panel-header .nav.nav-tabs .nav-link
-{
-	min-height: 75px;
+	.nav-link
+	{
+		min-height: 75px;
+	}
 }
