@@ -16,13 +16,26 @@
 			<p>These are some development tests.</p>
 		</PageHeader>
 
+		<latte-swiper :view-padding="[0, 90, 12, 90]" :item-padding="12" style="margin: 0 calc(0px - var(--content-gutter))">
+			<div class="panel" v-for="i in cards">
+				<div class="panel-header py-4 flex-column">
+					<latte-initials initials="BM" class="avatar avatar-48px"></latte-initials>
+					<span class="panel-title mt-3">User {{ i }}</span>
+				</div>
+			</div>
+		</latte-swiper>
+
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Rich text editor</span></div>
-						<latte-rich-text-editor></latte-rich-text-editor>
+						<div class="panel-header"><span class="panel-title">Swiper</span></div>
+						<latte-swiper>
+							<div class="panel-body border-top-0" v-for="i in cards">
+								Card {{ i }}
+							</div>
+						</latte-swiper>
 					</div>
 
 					<div class="panel">
@@ -32,21 +45,6 @@
 							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
 							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar :navigation-controls="false" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
 							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
-
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Snackbar</span></div>
-						<div class="panel-body">
-
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.BOTTOM_LEFT)">Bottom left</latte-ripple>
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.BOTTOM)">Bottom center</latte-ripple>
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.BOTTOM_RIGHT)">Bottom right</latte-ripple>
-
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP_LEFT)">Top left</latte-ripple>
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP)">Top center</latte-ripple>
-							<latte-ripple as="button" class="btn btn-contained btn-primary" @click="showSnackbar($latte.ui.snackbar.Locations.TOP_RIGHT)">Top right</latte-ripple>
 
 						</div>
 					</div>
@@ -103,29 +101,13 @@
 		data()
 		{
 			return {
+				cards: [1, 2, 3, 4, 5],
 				paginationLimit: 10,
 				paginationOffset: 0
 			};
 		},
 
-		methods: {
-
-			async showSnackbar(location)
-			{
-				const result = await Latte.ui.snackbar.create({
-					action: {
-						color: "success",
-						label: "Dismiss"
-					},
-					duration: 10000,
-					location: location,
-					message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-				});
-
-				console.log(result);
-			}
-
-		}
+		methods: {}
 
 	}
 

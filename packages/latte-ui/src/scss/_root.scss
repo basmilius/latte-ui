@@ -40,8 +40,9 @@
 	}
 }
 
-main#app.is-popup-opened
+body.is-popup-opened
 {
+	overflow: hidden;
 	pointer-events: none;
 }
 

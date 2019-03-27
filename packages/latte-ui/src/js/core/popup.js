@@ -29,9 +29,9 @@ export function popupOpened()
 function update()
 {
 	if (counter > 0)
-		document.querySelector("main#app").classList.add("is-popup-opened");
+		document.body.classList.add("is-popup-opened");
 	else
-		document.querySelector("main#app").classList.remove("is-popup-opened");
+		document.body.classList.remove("is-popup-opened");
 }
 
 export default {
