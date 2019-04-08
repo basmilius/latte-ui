@@ -22,6 +22,8 @@
 
 					<CodeExample title="Grouped buttons" url="/snippets/components/button/group.html"></CodeExample>
 
+					<CodeExample class="darker" title="Pill buttons" url="/snippets/components/button/pill.html"></CodeExample>
+
 				</div>
 				<div class="col-12 col-lg-3">
 

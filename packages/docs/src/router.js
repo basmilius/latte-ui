@@ -131,6 +131,10 @@ const router = new Router({
 							component: () => import("./views/docs/components/Spinner.vue")
 						},
 						{
+							path: "swiper",
+							component: () => import("./views/docs/components/Swiper.vue")
+						},
+						{
 							path: "tabs",
 							component: () => import("./views/docs/components/Tabs.vue")
 						}
