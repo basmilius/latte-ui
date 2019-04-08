@@ -98,7 +98,6 @@
 	span + i.mdi
 	{
 		flex: 0 0 0;
-		height: var(--btn-icon-size);
 		margin-left: 0;
 		line-height: 1em;
 	}
@@ -107,6 +106,20 @@
 	{
 		margin-top: 4px;
 		font-size: .9rem;
+	}
+
+	&.flex-row
+	{
+		span
+		{
+			margin-top: 0;
+		}
+
+		i.mdi + span,
+		span + i.mdi
+		{
+			margin-left: .5rem;
+		}
 	}
 }
 
