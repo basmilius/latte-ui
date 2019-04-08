@@ -39,8 +39,6 @@ export default {
 		json(),
 
 		nodeResolve({
-			jsnext: true,
-			main: true,
 			browser: true
 		}),
 
