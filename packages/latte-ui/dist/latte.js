@@ -16930,6 +16930,8 @@
 		tickInterval: 250
 	}, self.LatteOptions || {});
 
+	let lastScroll = 0;
+
 	const LatteUI = {
 
 		install(Vue, options = {})
@@ -16953,7 +16955,8 @@
 			interval(options.tickInterval, () => this.onTick());
 			on("latte:switch-theme", data => this.onSwitchTheme(data));
 
-			window.addEventListener("load", () => this.onDOMContentLoaded());
+			window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
+			window.addEventListener("scroll", () => this.onWindowScroll(), {passive: true});
 
 			removeSavedFromQueryString();
 
@@ -17000,7 +17003,15 @@
 			if (document.hidden === true)
 				return;
 
+			if (Date.now() - lastScroll < 100)
+				return;
+
 			dispatch("latte:tick", window.performance.now());
+		},
+
+		onWindowScroll()
+		{
+			lastScroll = Date.now();
 		}
 
 	};

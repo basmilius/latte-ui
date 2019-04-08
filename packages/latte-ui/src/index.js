@@ -30,6 +30,8 @@ export const DefaultOptions = Object.assign({}, {
 
 export const Latte = LatteSDK;
 
+let lastScroll = 0;
+
 export const LatteUI = {
 
 	install(Vue, options = {})
@@ -53,7 +55,8 @@ export const LatteUI = {
 		interval(options.tickInterval, () => this.onTick());
 		on("latte:switch-theme", data => this.onSwitchTheme(data));
 
-		window.addEventListener("load", () => this.onDOMContentLoaded());
+		window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
+		window.addEventListener("scroll", () => this.onWindowScroll(), {passive: true});
 
 		removeSavedFromQueryString();
 
@@ -100,7 +103,15 @@ export const LatteUI = {
 		if (document.hidden === true)
 			return;
 
+		if (Date.now() - lastScroll < 100)
+			return;
+
 		dispatch("latte:tick", window.performance.now());
+	},
+
+	onWindowScroll()
+	{
+		lastScroll = Date.now();
 	}
 
 };
