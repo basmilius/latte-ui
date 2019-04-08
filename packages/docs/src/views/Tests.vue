@@ -16,16 +16,31 @@
 			<p>These are some development tests.</p>
 		</PageHeader>
 
-		<latte-swiper :view-padding="[0, 90, 12, 90]" :item-padding="12" style="margin: 0 calc(0px - var(--content-gutter))">
-			<div class="panel" v-for="i in cards">
-				<div class="panel-header py-4 flex-column">
-					<latte-initials initials="BM" class="avatar avatar-48px"></latte-initials>
-					<span class="panel-title mt-3">User {{ i }}</span>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<latte-swiper :view-padding="[12, 12]" :item-padding="12" :item-width="360" style="margin: 0 -24px">
+						<div class="panel" v-for="i in cards">
+							<div class="panel-header py-4 flex-column">
+								<latte-initials initials="BM" class="avatar avatar-48px"></latte-initials>
+								<span class="panel-title mt-3">User {{ i }}</span>
+							</div>
+						</div>
+					</latte-swiper>
 				</div>
 			</div>
-		</latte-swiper>
-
-		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<latte-swiper :view-padding="[0, 90, 12, 90]" :item-padding="12" style="margin: 0 -24px">
+						<div class="panel" v-for="i in cards">
+							<div class="panel-header py-4 flex-column">
+								<latte-initials initials="BM" class="avatar avatar-48px"></latte-initials>
+								<span class="panel-title mt-3">User {{ i }}</span>
+							</div>
+						</div>
+					</latte-swiper>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-12">
 

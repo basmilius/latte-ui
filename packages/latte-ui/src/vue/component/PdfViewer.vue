@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="panel pdf-viewer" role="presentation" style="min-height: 84px" v-latte-context-menu :class="{'is-loading': isLoading}" v-if="hasSupport">
+	<div class="panel pdf-viewer" role="presentation" style="min-height: 84px" :class="{'is-loading': isLoading}" v-if="hasSupport">
 		<div class="page" v-for="i in pages" :id="'page-' + i">
 			<canvas></canvas>
 		</div>
@@ -79,16 +79,6 @@
 				pdfjsLib.getDocument(this.source).then(pdf => this.onPDFLoaded(pdf));
 			},
 
-			download()
-			{
-				downloadFile("NULL.pdf", this.source)
-			},
-
-			print()
-			{
-				printDocument(this.source)
-			},
-
 			onPDFLoaded(pdf)
 			{
 				this.pdf = pdf;
@@ -121,12 +111,13 @@
 			{
 				let desiredWidth = pageElement.getBoundingClientRect().width;
 				let viewport = page.getViewport(1);
+				let viewScale = 1;
 				let scale = desiredWidth / viewport.width;
-				viewport = page.getViewport(scale);
+				viewport = page.getViewport(scale * viewScale);
 
 				let context = pageCanvas.getContext("2d");
-				pageElement.style.height = (pageCanvas.height = Math.round(viewport.height)) + 'px';
-				pageElement.style.width = (pageCanvas.width = Math.round(viewport.width)) + 'px';
+				pageElement.style.height = pageCanvas.style.height = ((pageCanvas.height = Math.round(viewport.height)) / viewScale) + 'px';
+				pageElement.style.width = pageCanvas.style.width = ((pageCanvas.width = Math.round(viewport.width)) / viewScale) + 'px';
 
 				let renderContext = {
 					canvasContext: context,

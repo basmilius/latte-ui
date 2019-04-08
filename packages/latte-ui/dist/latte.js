@@ -84,7 +84,7 @@
 	 * @author Bas Milius <bas@mili.us>
 	 * @since 1.0.0
 	 */
-	function downloadFile$1(fileName, url)
+	function downloadFile(fileName, url)
 	{
 		createElement("a", a =>
 		{
@@ -221,7 +221,7 @@
 	 * @author Bas Milius <bas@mili.us>
 	 * @since 1.0.0
 	 */
-	function printDocument$1(url)
+	function printDocument(url)
 	{
 		const wnd = window.open(url);
 		wnd.addEventListener("load", () =>
@@ -301,12 +301,12 @@
 	var dom = {
 		closest,
 		createElement,
-		downloadFile: downloadFile$1,
+		downloadFile,
 		getCoords,
 		getLattePath,
 		isReady,
 		live,
-		printDocument: printDocument$1,
+		printDocument,
 		raf,
 		relativeCoordsTo,
 		toDOM
@@ -2837,7 +2837,7 @@
 	};
 
 	var name = "@bybas/latte-ui";
-	var version = "1.5.0-beta.5";
+	var version = "1.5.0-dev";
 	var description = "UI Library of Latte Framework.";
 	var main = "src/index.js";
 	var scripts = {
@@ -11888,16 +11888,6 @@
 				pdfjsLib.getDocument(this.source).then(pdf => this.onPDFLoaded(pdf));
 			},
 
-			download()
-			{
-				downloadFile("NULL.pdf", this.source);
-			},
-
-			print()
-			{
-				printDocument(this.source);
-			},
-
 			onPDFLoaded(pdf)
 			{
 				this.pdf = pdf;
@@ -11930,12 +11920,13 @@
 			{
 				let desiredWidth = pageElement.getBoundingClientRect().width;
 				let viewport = page.getViewport(1);
+				let viewScale = 1;
 				let scale = desiredWidth / viewport.width;
-				viewport = page.getViewport(scale);
+				viewport = page.getViewport(scale * viewScale);
 
 				let context = pageCanvas.getContext("2d");
-				pageElement.style.height = (pageCanvas.height = Math.round(viewport.height)) + 'px';
-				pageElement.style.width = (pageCanvas.width = Math.round(viewport.width)) + 'px';
+				pageElement.style.height = pageCanvas.style.height = ((pageCanvas.height = Math.round(viewport.height)) / viewScale) + 'px';
+				pageElement.style.width = pageCanvas.style.width = ((pageCanvas.width = Math.round(viewport.width)) / viewScale) + 'px';
 
 				let renderContext = {
 					canvasContext: context,
@@ -11974,9 +11965,6 @@
 	    ? _c(
 	        "div",
 	        {
-	          directives: [
-	            { name: "latte-context-menu", rawName: "v-latte-context-menu" }
-	          ],
 	          staticClass: "panel pdf-viewer",
 	          class: { "is-loading": _vm.isLoading },
 	          staticStyle: { "min-height": "84px" },
@@ -14846,10 +14834,22 @@
 
 		props: {
 
+			center: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
+
 			itemPadding: {
 				default: 0,
 				required: false,
 				type: Number | Array
+			},
+
+			itemWidth: {
+				default: undefined,
+				required: false,
+				type: Number | undefined
 			},
 
 			viewPadding: {
@@ -14876,6 +14876,9 @@
 					swipeToEnd: false,
 					swipeToStart: false
 				},
+				offset: {
+					start: 0
+				},
 				rect: {
 					root: null,
 					body: null
@@ -14892,8 +14895,9 @@
 		mounted()
 		{
 			this.$el.addEventListener("touchstart", onlyTouch(this.onTouchStart), {passive: true});
-			this.$el.addEventListener("touchmove", onlyTouch(this.onTouchMove));
+			this.$el.addEventListener("touchmove", onlyTouch(this.onTouchMove), {passive: true});
 			this.$el.addEventListener("touchend", onlyTouch(this.onTouchEnd), {passive: true});
+			this.$el.addEventListener("wheel", onlyMouse(this.onMouseWheel));
 
 			this.observer.observe(this.$el, {
 				attributes: true,
@@ -14901,7 +14905,9 @@
 				childList: true,
 				subtree: true
 			});
+
 			this.update();
+			this.navigate(0);
 		},
 
 		computed: {
@@ -14909,7 +14915,7 @@
 			bodyStyle()
 			{
 				return {
-					transform: `translate3d(${this.position}px, 0, 0)`
+					transform: `translate3d(${this.position + this.offset.start}px, 0, 0)`
 				};
 			},
 
@@ -14937,12 +14943,30 @@
 
 		methods: {
 
+			centerize(containerWidth, itemWidth)
+			{
+				if (!this.center)
+					this.offset.start = 0;
+				else
+					this.offset.start = Math.round((containerWidth - itemWidth) / 2) - this.vPadding.left;
+			},
+
 			onDOMMutations()
 			{
 				if (!this.can.observe)
 					return;
 
 				this.update();
+			},
+
+			onMouseWheel(evt)
+			{
+				evt.preventDefault();
+
+				if (evt.deltaY > 0)
+					this.navigate(1);
+				else if (evt.deltaY < 0)
+					this.navigate(-1);
 			},
 
 			onTouchStart(evt)
@@ -14968,7 +14992,7 @@
 				this.currentPosition = coords;
 
 				let change = (this.startPosition.x - this.currentPosition.x);
-				let itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
 				let overflow = 0;
 				let position = this.positionBeforeTouch - change;
 				let width = this.viewCount * itemWidth;
@@ -14982,6 +15006,7 @@
 				if (position < -(width - itemWidth))
 					overflow = position - -(width - itemWidth);
 
+				this.centerize(this.rect.root.width, itemWidth);
 				this.position = clamp(position - (overflow / 1.5), min, max);
 			},
 
@@ -14992,7 +15017,7 @@
 
 				let index = 0;
 				let position = 0;
-				let itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
 				let width = this.viewCount * itemWidth;
 
 				if (this.position > 0)
@@ -15019,10 +15044,22 @@
 
 				index = Math.abs(Math.round(position / itemWidth));
 
+				this.centerize(this.rect.root.width, itemWidth);
 				this.position = position;
 
 				this.currentPosition = undefined;
 				this.startPosition = undefined;
+			},
+
+			navigate(change)
+			{
+				this.is.dragging = false;
+
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
+				let index = Math.abs(Math.round(this.position / itemWidth));
+
+				this.centerize(this.rect.root.width, itemWidth);
+				this.position = Math.max(0, Math.min(this.viewCount - 1, index + change)) * -itemWidth;
 			},
 
 			update()
@@ -15036,9 +15073,10 @@
 				this.viewCount = body.children.length;
 
 				let gutter = this.iPadding.left + this.iPadding.right + this.vPadding.left + this.vPadding.right;
+				let width = (this.itemWidth || this.rect.root.width) - gutter;
 
 				this.$el.style.setProperty("--swiper-item-padding", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);
-				this.$el.style.setProperty("--swiper-item-width", `${this.rect.root.width - gutter}px`);
+				this.$el.style.setProperty("--swiper-item-width", `${width}px`);
 				this.$el.style.setProperty("--swiper-view-padding", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);
 
 				raf(() => this.can.observe = true, 100);
@@ -15085,11 +15123,11 @@
 	  /* style */
 	  const __vue_inject_styles__$C = function (inject) {
 	    if (!inject) return
-	    inject("data-v-66dfb5ba_0", { source: "[data-v-66dfb5ba]:root {\n  --swiper-item-padding: 0;\n  --swiper-item-width: 100%;\n  --swiper-view-padding: 0;\n}\ndiv.swiper[data-v-66dfb5ba] {\n  position: relative;\n  display: block;\n  overflow: hidden;\n}\ndiv.swiper div.swiper-body[data-v-66dfb5ba] {\n    position: relative;\n    display: flex;\n    padding: var(--swiper-view-padding);\n    flex-flow: row nowrap;\n    transition: all 420ms var(--ease-deceleration-curve);\n    will-change: transform;\n}\ndiv.swiper div.swiper-body > *[data-v-66dfb5ba] {\n      margin: var(--swiper-item-padding);\n      flex: 0 0 var(--swiper-item-width);\n}\ndiv.swiper.is-dragging div.swiper-body[data-v-66dfb5ba] {\n    transition: none;\n}\n\n/*# sourceMappingURL=Swiper.vue.map */", map: {"version":3,"sources":["E:\\Programming\\latte-ui\\packages\\latte-ui\\src\\vue\\component\\Swiper.vue","Swiper.vue"],"names":[],"mappings":"AA8PA;EAEA,wBAAA;EACA,yBAAA;EACA,wBAAA;AAAA;AAGA;EAEA,kBAAA;EACA,cAAA;EACA,gBAAA;AAAA;AAJA;IAQA,kBAAA;IACA,aAAA;IACA,mCAAA;IACA,qBAAA;IACA,oDAAA;IACA,sBAAA;AAAA;AAbA;MAiBA,kCAAA;MACA,kCAAA;AAAA;AAlBA;IAwBA,gBAAA;AAAA;;ACvQA,qCAAqC","file":"Swiper.vue","sourcesContent":["<template>\n\n\t<div class=\"swiper\" :class=\"rootClasses\">\n\t\t<div class=\"swiper-body\" :style=\"bodyStyle\">\n\t\t\t<slot></slot>\n\t\t</div>\n\t</div>\n\n</template>\n\n<script>\n\n\timport { getCoords, raf } from \"../../js/util/dom\";\n\timport { onlyTouch } from \"../../js/util/touch\";\n\timport { clamp } from \"../../js/math\";\n\n\tfunction convertPadding(p)\n\t{\n\t\tif (typeof p === \"number\")\n\t\t\treturn {top: p, left: p, right: p, bottom: p};\n\t\telse if (p.length === 2)\n\t\t\treturn {top: p[0], left: p[1], right: p[1], bottom: p[0]};\n\t\telse if (p.length === 4)\n\t\t\treturn {top: p[0], left: p[3], right: p[1], bottom: p[2]};\n\t\telse\n\t\t\treturn {top: 0, left: 0, right: 0, bottom: 0};\n\t}\n\n\texport default {\n\n\t\tname: \"latte-swiper\",\n\n\t\tprops: {\n\n\t\t\titemPadding: {\n\t\t\t\tdefault: 0,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Number | Array\n\t\t\t},\n\n\t\t\tviewPadding: {\n\t\t\t\tdefault: 0,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Number | Array\n\t\t\t}\n\n\t\t},\n\n\t\tbeforeDestroy()\n\t\t{\n\t\t\tthis.observer.disconnect();\n\t\t},\n\n\t\tdata()\n\t\t{\n\t\t\treturn {\n\t\t\t\tcan: {\n\t\t\t\t\tobserve: true\n\t\t\t\t},\n\t\t\t\tis: {\n\t\t\t\t\tdragging: true,\n\t\t\t\t\tswipeToEnd: false,\n\t\t\t\t\tswipeToStart: false\n\t\t\t\t},\n\t\t\t\trect: {\n\t\t\t\t\troot: null,\n\t\t\t\t\tbody: null\n\t\t\t\t},\n\t\t\t\tobserver: new MutationObserver(mutations => this.onDOMMutations(mutations)),\n\t\t\t\tviewCount: 0,\n\t\t\t\tcurrentPosition: undefined,\n\t\t\t\tstartPosition: undefined,\n\t\t\t\tposition: 0,\n\t\t\t\tpositionBeforeTouch: 0\n\t\t\t}\n\t\t},\n\n\t\tmounted()\n\t\t{\n\t\t\tthis.$el.addEventListener(\"touchstart\", onlyTouch(this.onTouchStart), {passive: true});\n\t\t\tthis.$el.addEventListener(\"touchmove\", onlyTouch(this.onTouchMove));\n\t\t\tthis.$el.addEventListener(\"touchend\", onlyTouch(this.onTouchEnd), {passive: true});\n\n\t\t\tthis.observer.observe(this.$el, {\n\t\t\t\tattributes: true,\n\t\t\t\tcharacterData: true,\n\t\t\t\tchildList: true,\n\t\t\t\tsubtree: true\n\t\t\t});\n\t\t\tthis.update();\n\t\t},\n\n\t\tcomputed: {\n\n\t\t\tbodyStyle()\n\t\t\t{\n\t\t\t\treturn {\n\t\t\t\t\ttransform: `translate3d(${this.position}px, 0, 0)`\n\t\t\t\t};\n\t\t\t},\n\n\t\t\tiPadding()\n\t\t\t{\n\t\t\t\treturn convertPadding(this.itemPadding);\n\t\t\t},\n\n\t\t\trootClasses()\n\t\t\t{\n\t\t\t\tconst classes = [];\n\n\t\t\t\tif (this.is.dragging)\n\t\t\t\t\tclasses.push(\"is-dragging\");\n\n\t\t\t\treturn classes;\n\t\t\t},\n\n\t\t\tvPadding()\n\t\t\t{\n\t\t\t\treturn convertPadding(this.viewPadding);\n\t\t\t}\n\n\t\t},\n\n\t\tmethods: {\n\n\t\t\tonDOMMutations()\n\t\t\t{\n\t\t\t\tif (!this.can.observe)\n\t\t\t\t\treturn;\n\n\t\t\t\tthis.update();\n\t\t\t},\n\n\t\t\tonTouchStart(evt)\n\t\t\t{\n\t\t\t\tconst coords = getCoords(evt);\n\n\t\t\t\tthis.currentPosition = coords;\n\t\t\t\tthis.startPosition = coords;\n\t\t\t\tthis.positionBeforeTouch = this.position;\n\t\t\t\tthis.can.observe = false;\n\t\t\t\tthis.is.dragging = true;\n\t\t\t},\n\n\t\t\tonTouchMove(evt)\n\t\t\t{\n\t\t\t\tif (!this.is.dragging)\n\t\t\t\t\treturn;\n\n\t\t\t\tconst coords = getCoords(evt);\n\n\t\t\t\tthis.is.swipeToEnd = coords.x > this.currentPosition.x;\n\t\t\t\tthis.is.swipeToStart = !this.is.swipeToEnd;\n\t\t\t\tthis.currentPosition = coords;\n\n\t\t\t\tlet change = (this.startPosition.x - this.currentPosition.x);\n\t\t\t\tlet itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);\n\t\t\t\tlet overflow = 0;\n\t\t\t\tlet position = this.positionBeforeTouch - change;\n\t\t\t\tlet width = this.viewCount * itemWidth;\n\n\t\t\t\tlet max = itemWidth / 2;\n\t\t\t\tlet min = -width + (itemWidth / 2);\n\n\t\t\t\tif (position > 0)\n\t\t\t\t\toverflow = position;\n\n\t\t\t\tif (position < -(width - itemWidth))\n\t\t\t\t\toverflow = position - -(width - itemWidth);\n\n\t\t\t\tthis.position = clamp(position - (overflow / 1.5), min, max);\n\t\t\t},\n\n\t\t\tonTouchEnd()\n\t\t\t{\n\t\t\t\tthis.can.observe = true;\n\t\t\t\tthis.is.dragging = false;\n\n\t\t\t\tlet index = 0;\n\t\t\t\tlet position = 0;\n\t\t\t\tlet itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);\n\t\t\t\tlet width = this.viewCount * itemWidth;\n\n\t\t\t\tif (this.position > 0)\n\t\t\t\t{\n\t\t\t\t\tposition = 0;\n\t\t\t\t}\n\t\t\t\telse if (this.position < -(width - itemWidth))\n\t\t\t\t{\n\t\t\t\t\tposition = -(width - itemWidth);\n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tlet change = (this.startPosition.x - this.currentPosition.x);\n\n\t\t\t\t\tif (Math.abs(change) < (itemWidth * .2))\n\t\t\t\t\t\tindex = Math.abs(Math.round(this.position / itemWidth));\n\t\t\t\t\telse if (this.is.swipeToEnd)\n\t\t\t\t\t\tindex = Math.abs(Math.ceil(this.position / itemWidth));\n\t\t\t\t\telse if (this.is.swipeToStart)\n\t\t\t\t\t\tindex = Math.abs(Math.floor(this.position / itemWidth));\n\n\t\t\t\t\tposition = index * -itemWidth;\n\t\t\t\t}\n\n\t\t\t\tindex = Math.abs(Math.round(position / itemWidth));\n\n\t\t\t\tthis.position = position;\n\n\t\t\t\tthis.currentPosition = undefined;\n\t\t\t\tthis.startPosition = undefined;\n\t\t\t},\n\n\t\t\tupdate()\n\t\t\t{\n\t\t\t\tthis.can.observe = false;\n\n\t\t\t\tconst body = this.$el.querySelector(\".swiper-body\");\n\n\t\t\t\tthis.rect.root = this.$el.getBoundingClientRect();\n\t\t\t\tthis.rect.body = body.getBoundingClientRect();\n\t\t\t\tthis.viewCount = body.children.length;\n\n\t\t\t\tlet gutter = this.iPadding.left + this.iPadding.right + this.vPadding.left + this.vPadding.right;\n\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-item-padding\", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-item-width\", `${this.rect.root.width - gutter}px`);\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-view-padding\", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);\n\n\t\t\t\traf(() => this.can.observe = true, 100);\n\t\t\t}\n\n\t\t},\n\n\t\twatch: {\n\n\t\t\titemPadding()\n\t\t\t{\n\t\t\t\tthis.update();\n\t\t\t},\n\n\t\t\tviewPadding()\n\t\t\t{\n\t\t\t\tthis.update();\n\t\t\t}\n\n\t\t}\n\n\t}\n\n</script>\n\n<style lang=\"scss\" scoped>\n\n\t:root\n\t{\n\t\t--swiper-item-padding: 0;\n\t\t--swiper-item-width: 100%;\n\t\t--swiper-view-padding: 0;\n\t}\n\n\tdiv.swiper\n\t{\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\toverflow: hidden;\n\n\t\tdiv.swiper-body\n\t\t{\n\t\t\tposition: relative;\n\t\t\tdisplay: flex;\n\t\t\tpadding: var(--swiper-view-padding);\n\t\t\tflex-flow: row nowrap;\n\t\t\ttransition: all 420ms var(--ease-deceleration-curve);\n\t\t\twill-change: transform;\n\n\t\t\t> *\n\t\t\t{\n\t\t\t\tmargin: var(--swiper-item-padding);\n\t\t\t\tflex: 0 0 var(--swiper-item-width);\n\t\t\t}\n\t\t}\n\n\t\t&.is-dragging div.swiper-body\n\t\t{\n\t\t\ttransition: none;\n\t\t}\n\t}\n\n</style>\n",":root {\n  --swiper-item-padding: 0;\n  --swiper-item-width: 100%;\n  --swiper-view-padding: 0; }\n\ndiv.swiper {\n  position: relative;\n  display: block;\n  overflow: hidden; }\n  div.swiper div.swiper-body {\n    position: relative;\n    display: flex;\n    padding: var(--swiper-view-padding);\n    flex-flow: row nowrap;\n    transition: all 420ms var(--ease-deceleration-curve);\n    will-change: transform; }\n    div.swiper div.swiper-body > * {\n      margin: var(--swiper-item-padding);\n      flex: 0 0 var(--swiper-item-width); }\n  div.swiper.is-dragging div.swiper-body {\n    transition: none; }\n\n/*# sourceMappingURL=Swiper.vue.map */"]}, media: undefined });
+	    inject("data-v-9a4a26fc_0", { source: "[data-v-9a4a26fc]:root {\n  --swiper-item-padding: 0;\n  --swiper-item-width: 100%;\n  --swiper-view-padding: 0;\n}\ndiv.swiper[data-v-9a4a26fc] {\n  position: relative;\n  display: block;\n  overflow: hidden;\n}\ndiv.swiper div.swiper-body[data-v-9a4a26fc] {\n    position: relative;\n    display: flex;\n    padding: var(--swiper-view-padding);\n    flex-flow: row nowrap;\n    transition: all 420ms var(--ease-deceleration-curve);\n    will-change: transform;\n}\ndiv.swiper div.swiper-body > *[data-v-9a4a26fc] {\n      margin: var(--swiper-item-padding);\n      flex: 0 0 var(--swiper-item-width);\n}\ndiv.swiper.is-dragging div.swiper-body[data-v-9a4a26fc] {\n    transition: none;\n}\n\n/*# sourceMappingURL=Swiper.vue.map */", map: {"version":3,"sources":["E:\\Programming\\latte-ui\\packages\\latte-ui\\src\\vue\\component\\Swiper.vue","Swiper.vue"],"names":[],"mappings":"AAgTA;EAEA,wBAAA;EACA,yBAAA;EACA,wBAAA;AAAA;AAGA;EAEA,kBAAA;EACA,cAAA;EACA,gBAAA;AAAA;AAJA;IAQA,kBAAA;IACA,aAAA;IACA,mCAAA;IACA,qBAAA;IACA,oDAAA;IACA,sBAAA;AAAA;AAbA;MAiBA,kCAAA;MACA,kCAAA;AAAA;AAlBA;IAwBA,gBAAA;AAAA;;ACzTA,qCAAqC","file":"Swiper.vue","sourcesContent":["<template>\n\n\t<div class=\"swiper\" :class=\"rootClasses\">\n\t\t<div class=\"swiper-body\" :style=\"bodyStyle\">\n\t\t\t<slot></slot>\n\t\t</div>\n\t</div>\n\n</template>\n\n<script>\n\n\timport { getCoords, raf } from \"../../js/util/dom\";\n\timport { onlyMouse, onlyTouch } from \"../../js/util/touch\";\n\timport { clamp } from \"../../js/math\";\n\n\tfunction convertPadding(p)\n\t{\n\t\tif (typeof p === \"number\")\n\t\t\treturn {top: p, left: p, right: p, bottom: p};\n\t\telse if (p.length === 2)\n\t\t\treturn {top: p[0], left: p[1], right: p[1], bottom: p[0]};\n\t\telse if (p.length === 4)\n\t\t\treturn {top: p[0], left: p[3], right: p[1], bottom: p[2]};\n\t\telse\n\t\t\treturn {top: 0, left: 0, right: 0, bottom: 0};\n\t}\n\n\texport default {\n\n\t\tname: \"latte-swiper\",\n\n\t\tprops: {\n\n\t\t\tcenter: {\n\t\t\t\tdefault: true,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Boolean\n\t\t\t},\n\n\t\t\titemPadding: {\n\t\t\t\tdefault: 0,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Number | Array\n\t\t\t},\n\n\t\t\titemWidth: {\n\t\t\t\tdefault: undefined,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Number | undefined\n\t\t\t},\n\n\t\t\tviewPadding: {\n\t\t\t\tdefault: 0,\n\t\t\t\trequired: false,\n\t\t\t\ttype: Number | Array\n\t\t\t}\n\n\t\t},\n\n\t\tbeforeDestroy()\n\t\t{\n\t\t\tthis.observer.disconnect();\n\t\t},\n\n\t\tdata()\n\t\t{\n\t\t\treturn {\n\t\t\t\tcan: {\n\t\t\t\t\tobserve: true\n\t\t\t\t},\n\t\t\t\tis: {\n\t\t\t\t\tdragging: true,\n\t\t\t\t\tswipeToEnd: false,\n\t\t\t\t\tswipeToStart: false\n\t\t\t\t},\n\t\t\t\toffset: {\n\t\t\t\t\tstart: 0\n\t\t\t\t},\n\t\t\t\trect: {\n\t\t\t\t\troot: null,\n\t\t\t\t\tbody: null\n\t\t\t\t},\n\t\t\t\tobserver: new MutationObserver(mutations => this.onDOMMutations(mutations)),\n\t\t\t\tviewCount: 0,\n\t\t\t\tcurrentPosition: undefined,\n\t\t\t\tstartPosition: undefined,\n\t\t\t\tposition: 0,\n\t\t\t\tpositionBeforeTouch: 0\n\t\t\t}\n\t\t},\n\n\t\tmounted()\n\t\t{\n\t\t\tthis.$el.addEventListener(\"touchstart\", onlyTouch(this.onTouchStart), {passive: true});\n\t\t\tthis.$el.addEventListener(\"touchmove\", onlyTouch(this.onTouchMove), {passive: true});\n\t\t\tthis.$el.addEventListener(\"touchend\", onlyTouch(this.onTouchEnd), {passive: true});\n\t\t\tthis.$el.addEventListener(\"wheel\", onlyMouse(this.onMouseWheel));\n\n\t\t\tthis.observer.observe(this.$el, {\n\t\t\t\tattributes: true,\n\t\t\t\tcharacterData: true,\n\t\t\t\tchildList: true,\n\t\t\t\tsubtree: true\n\t\t\t});\n\n\t\t\tthis.update();\n\t\t\tthis.navigate(0);\n\t\t},\n\n\t\tcomputed: {\n\n\t\t\tbodyStyle()\n\t\t\t{\n\t\t\t\treturn {\n\t\t\t\t\ttransform: `translate3d(${this.position + this.offset.start}px, 0, 0)`\n\t\t\t\t};\n\t\t\t},\n\n\t\t\tiPadding()\n\t\t\t{\n\t\t\t\treturn convertPadding(this.itemPadding);\n\t\t\t},\n\n\t\t\trootClasses()\n\t\t\t{\n\t\t\t\tconst classes = [];\n\n\t\t\t\tif (this.is.dragging)\n\t\t\t\t\tclasses.push(\"is-dragging\");\n\n\t\t\t\treturn classes;\n\t\t\t},\n\n\t\t\tvPadding()\n\t\t\t{\n\t\t\t\treturn convertPadding(this.viewPadding);\n\t\t\t}\n\n\t\t},\n\n\t\tmethods: {\n\n\t\t\tcenterize(containerWidth, itemWidth)\n\t\t\t{\n\t\t\t\tif (!this.center)\n\t\t\t\t\tthis.offset.start = 0;\n\t\t\t\telse\n\t\t\t\t\tthis.offset.start = Math.round((containerWidth - itemWidth) / 2) - this.vPadding.left;\n\t\t\t},\n\n\t\t\tonDOMMutations()\n\t\t\t{\n\t\t\t\tif (!this.can.observe)\n\t\t\t\t\treturn;\n\n\t\t\t\tthis.update();\n\t\t\t},\n\n\t\t\tonMouseWheel(evt)\n\t\t\t{\n\t\t\t\tevt.preventDefault();\n\n\t\t\t\tif (evt.deltaY > 0)\n\t\t\t\t\tthis.navigate(1);\n\t\t\t\telse if (evt.deltaY < 0)\n\t\t\t\t\tthis.navigate(-1);\n\t\t\t},\n\n\t\t\tonTouchStart(evt)\n\t\t\t{\n\t\t\t\tconst coords = getCoords(evt);\n\n\t\t\t\tthis.currentPosition = coords;\n\t\t\t\tthis.startPosition = coords;\n\t\t\t\tthis.positionBeforeTouch = this.position;\n\t\t\t\tthis.can.observe = false;\n\t\t\t\tthis.is.dragging = true;\n\t\t\t},\n\n\t\t\tonTouchMove(evt)\n\t\t\t{\n\t\t\t\tif (!this.is.dragging)\n\t\t\t\t\treturn;\n\n\t\t\t\tconst coords = getCoords(evt);\n\n\t\t\t\tthis.is.swipeToEnd = coords.x > this.currentPosition.x;\n\t\t\t\tthis.is.swipeToStart = !this.is.swipeToEnd;\n\t\t\t\tthis.currentPosition = coords;\n\n\t\t\t\tlet change = (this.startPosition.x - this.currentPosition.x);\n\t\t\t\tlet itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);\n\t\t\t\tlet overflow = 0;\n\t\t\t\tlet position = this.positionBeforeTouch - change;\n\t\t\t\tlet width = this.viewCount * itemWidth;\n\n\t\t\t\tlet max = itemWidth / 2;\n\t\t\t\tlet min = -width + (itemWidth / 2);\n\n\t\t\t\tif (position > 0)\n\t\t\t\t\toverflow = position;\n\n\t\t\t\tif (position < -(width - itemWidth))\n\t\t\t\t\toverflow = position - -(width - itemWidth);\n\n\t\t\t\tthis.centerize(this.rect.root.width, itemWidth);\n\t\t\t\tthis.position = clamp(position - (overflow / 1.5), min, max);\n\t\t\t},\n\n\t\t\tonTouchEnd()\n\t\t\t{\n\t\t\t\tthis.can.observe = true;\n\t\t\t\tthis.is.dragging = false;\n\n\t\t\t\tlet index = 0;\n\t\t\t\tlet position = 0;\n\t\t\t\tlet itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);\n\t\t\t\tlet width = this.viewCount * itemWidth;\n\n\t\t\t\tif (this.position > 0)\n\t\t\t\t{\n\t\t\t\t\tposition = 0;\n\t\t\t\t}\n\t\t\t\telse if (this.position < -(width - itemWidth))\n\t\t\t\t{\n\t\t\t\t\tposition = -(width - itemWidth);\n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tlet change = (this.startPosition.x - this.currentPosition.x);\n\n\t\t\t\t\tif (Math.abs(change) < (itemWidth * .2))\n\t\t\t\t\t\tindex = Math.abs(Math.round(this.position / itemWidth));\n\t\t\t\t\telse if (this.is.swipeToEnd)\n\t\t\t\t\t\tindex = Math.abs(Math.ceil(this.position / itemWidth));\n\t\t\t\t\telse if (this.is.swipeToStart)\n\t\t\t\t\t\tindex = Math.abs(Math.floor(this.position / itemWidth));\n\n\t\t\t\t\tposition = index * -itemWidth;\n\t\t\t\t}\n\n\t\t\t\tindex = Math.abs(Math.round(position / itemWidth));\n\n\t\t\t\tthis.centerize(this.rect.root.width, itemWidth);\n\t\t\t\tthis.position = position;\n\n\t\t\t\tthis.currentPosition = undefined;\n\t\t\t\tthis.startPosition = undefined;\n\t\t\t},\n\n\t\t\tnavigate(change)\n\t\t\t{\n\t\t\t\tthis.is.dragging = false;\n\n\t\t\t\tlet itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);\n\t\t\t\tlet index = Math.abs(Math.round(this.position / itemWidth));\n\n\t\t\t\tthis.centerize(this.rect.root.width, itemWidth);\n\t\t\t\tthis.position = Math.max(0, Math.min(this.viewCount - 1, index + change)) * -itemWidth;\n\t\t\t},\n\n\t\t\tupdate()\n\t\t\t{\n\t\t\t\tthis.can.observe = false;\n\n\t\t\t\tconst body = this.$el.querySelector(\".swiper-body\");\n\n\t\t\t\tthis.rect.root = this.$el.getBoundingClientRect();\n\t\t\t\tthis.rect.body = body.getBoundingClientRect();\n\t\t\t\tthis.viewCount = body.children.length;\n\n\t\t\t\tlet gutter = this.iPadding.left + this.iPadding.right + this.vPadding.left + this.vPadding.right;\n\t\t\t\tlet width = (this.itemWidth || this.rect.root.width) - gutter;\n\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-item-padding\", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-item-width\", `${width}px`);\n\t\t\t\tthis.$el.style.setProperty(\"--swiper-view-padding\", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);\n\n\t\t\t\traf(() => this.can.observe = true, 100);\n\t\t\t}\n\n\t\t},\n\n\t\twatch: {\n\n\t\t\titemPadding()\n\t\t\t{\n\t\t\t\tthis.update();\n\t\t\t},\n\n\t\t\tviewPadding()\n\t\t\t{\n\t\t\t\tthis.update();\n\t\t\t}\n\n\t\t}\n\n\t}\n\n</script>\n\n<style lang=\"scss\" scoped>\n\n\t:root\n\t{\n\t\t--swiper-item-padding: 0;\n\t\t--swiper-item-width: 100%;\n\t\t--swiper-view-padding: 0;\n\t}\n\n\tdiv.swiper\n\t{\n\t\tposition: relative;\n\t\tdisplay: block;\n\t\toverflow: hidden;\n\n\t\tdiv.swiper-body\n\t\t{\n\t\t\tposition: relative;\n\t\t\tdisplay: flex;\n\t\t\tpadding: var(--swiper-view-padding);\n\t\t\tflex-flow: row nowrap;\n\t\t\ttransition: all 420ms var(--ease-deceleration-curve);\n\t\t\twill-change: transform;\n\n\t\t\t> *\n\t\t\t{\n\t\t\t\tmargin: var(--swiper-item-padding);\n\t\t\t\tflex: 0 0 var(--swiper-item-width);\n\t\t\t}\n\t\t}\n\n\t\t&.is-dragging div.swiper-body\n\t\t{\n\t\t\ttransition: none;\n\t\t}\n\t}\n\n</style>\n",":root {\n  --swiper-item-padding: 0;\n  --swiper-item-width: 100%;\n  --swiper-view-padding: 0; }\n\ndiv.swiper {\n  position: relative;\n  display: block;\n  overflow: hidden; }\n  div.swiper div.swiper-body {\n    position: relative;\n    display: flex;\n    padding: var(--swiper-view-padding);\n    flex-flow: row nowrap;\n    transition: all 420ms var(--ease-deceleration-curve);\n    will-change: transform; }\n    div.swiper div.swiper-body > * {\n      margin: var(--swiper-item-padding);\n      flex: 0 0 var(--swiper-item-width); }\n  div.swiper.is-dragging div.swiper-body {\n    transition: none; }\n\n/*# sourceMappingURL=Swiper.vue.map */"]}, media: undefined });
 
 	  };
 	  /* scoped */
-	  const __vue_scope_id__$C = "data-v-66dfb5ba";
+	  const __vue_scope_id__$C = "data-v-9a4a26fc";
 	  /* module identifier */
 	  const __vue_module_identifier__$C = undefined;
 	  /* functional template */

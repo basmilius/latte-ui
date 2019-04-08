@@ -11,7 +11,7 @@
 <script>
 
 	import { getCoords, raf } from "../../js/util/dom";
-	import { onlyTouch } from "../../js/util/touch";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { clamp } from "../../js/math";
 
 	function convertPadding(p)
@@ -32,10 +32,22 @@
 
 		props: {
 
+			center: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
+
 			itemPadding: {
 				default: 0,
 				required: false,
 				type: Number | Array
+			},
+
+			itemWidth: {
+				default: undefined,
+				required: false,
+				type: Number | undefined
 			},
 
 			viewPadding: {
@@ -62,6 +74,9 @@
 					swipeToEnd: false,
 					swipeToStart: false
 				},
+				offset: {
+					start: 0
+				},
 				rect: {
 					root: null,
 					body: null
@@ -78,8 +93,9 @@
 		mounted()
 		{
 			this.$el.addEventListener("touchstart", onlyTouch(this.onTouchStart), {passive: true});
-			this.$el.addEventListener("touchmove", onlyTouch(this.onTouchMove));
+			this.$el.addEventListener("touchmove", onlyTouch(this.onTouchMove), {passive: true});
 			this.$el.addEventListener("touchend", onlyTouch(this.onTouchEnd), {passive: true});
+			this.$el.addEventListener("wheel", onlyMouse(this.onMouseWheel));
 
 			this.observer.observe(this.$el, {
 				attributes: true,
@@ -87,7 +103,9 @@
 				childList: true,
 				subtree: true
 			});
+
 			this.update();
+			this.navigate(0);
 		},
 
 		computed: {
@@ -95,7 +113,7 @@
 			bodyStyle()
 			{
 				return {
-					transform: `translate3d(${this.position}px, 0, 0)`
+					transform: `translate3d(${this.position + this.offset.start}px, 0, 0)`
 				};
 			},
 
@@ -123,12 +141,30 @@
 
 		methods: {
 
+			centerize(containerWidth, itemWidth)
+			{
+				if (!this.center)
+					this.offset.start = 0;
+				else
+					this.offset.start = Math.round((containerWidth - itemWidth) / 2) - this.vPadding.left;
+			},
+
 			onDOMMutations()
 			{
 				if (!this.can.observe)
 					return;
 
 				this.update();
+			},
+
+			onMouseWheel(evt)
+			{
+				evt.preventDefault();
+
+				if (evt.deltaY > 0)
+					this.navigate(1);
+				else if (evt.deltaY < 0)
+					this.navigate(-1);
 			},
 
 			onTouchStart(evt)
@@ -154,7 +190,7 @@
 				this.currentPosition = coords;
 
 				let change = (this.startPosition.x - this.currentPosition.x);
-				let itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
 				let overflow = 0;
 				let position = this.positionBeforeTouch - change;
 				let width = this.viewCount * itemWidth;
@@ -168,6 +204,7 @@
 				if (position < -(width - itemWidth))
 					overflow = position - -(width - itemWidth);
 
+				this.centerize(this.rect.root.width, itemWidth);
 				this.position = clamp(position - (overflow / 1.5), min, max);
 			},
 
@@ -178,7 +215,7 @@
 
 				let index = 0;
 				let position = 0;
-				let itemWidth = this.rect.root.width - (this.vPadding.left + this.vPadding.right);
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
 				let width = this.viewCount * itemWidth;
 
 				if (this.position > 0)
@@ -205,10 +242,22 @@
 
 				index = Math.abs(Math.round(position / itemWidth));
 
+				this.centerize(this.rect.root.width, itemWidth);
 				this.position = position;
 
 				this.currentPosition = undefined;
 				this.startPosition = undefined;
+			},
+
+			navigate(change)
+			{
+				this.is.dragging = false;
+
+				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
+				let index = Math.abs(Math.round(this.position / itemWidth));
+
+				this.centerize(this.rect.root.width, itemWidth);
+				this.position = Math.max(0, Math.min(this.viewCount - 1, index + change)) * -itemWidth;
 			},
 
 			update()
@@ -222,9 +271,10 @@
 				this.viewCount = body.children.length;
 
 				let gutter = this.iPadding.left + this.iPadding.right + this.vPadding.left + this.vPadding.right;
+				let width = (this.itemWidth || this.rect.root.width) - gutter;
 
 				this.$el.style.setProperty("--swiper-item-padding", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);
-				this.$el.style.setProperty("--swiper-item-width", `${this.rect.root.width - gutter}px`);
+				this.$el.style.setProperty("--swiper-item-width", `${width}px`);
 				this.$el.style.setProperty("--swiper-view-padding", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);
 
 				raf(() => this.can.observe = true, 100);
