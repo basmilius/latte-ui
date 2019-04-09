@@ -4,9 +4,11 @@
 	"private": true,
 	"scripts": {
 		"build": "yarn workspace @bybas/latte-ui run build",
+		"build:all": "yarn run build && yarn run docs:build",
 		"serve": "yarn workspace @bybas/latte-ui run serve",
 		"docs:build": "yarn workspace latte-ui-docs run build",
 		"docs:serve": "yarn workspace latte-ui-docs run serve",
+		"install": "yarn install",
 		"publish": "yarn workspace @bybas/latte-ui publish --access public",
 		"publish:beta": "yarn workspace @bybas/latte-ui publish --access public --tag beta"
 	},
