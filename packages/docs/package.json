@@ -1,6 +1,6 @@
 {
 	"name": "latte-ui-docs",
-	"version": "1.5.0-dev",
+	"version": "1.5.0",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
