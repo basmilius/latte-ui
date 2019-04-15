@@ -67,6 +67,7 @@
 		{
 			return {
 				can: {
+					navigate: true,
 					observe: true
 				},
 				is: {
@@ -161,10 +162,17 @@
 			{
 				evt.preventDefault();
 
+				if (!this.can.navigate)
+					return;
+
+				this.can.navigate = false;
+
 				if (evt.deltaY > 0)
 					this.navigate(1);
 				else if (evt.deltaY < 0)
 					this.navigate(-1);
+
+				raf(() => this.can.navigate = true, 240);
 			},
 
 			onTouchStart(evt)

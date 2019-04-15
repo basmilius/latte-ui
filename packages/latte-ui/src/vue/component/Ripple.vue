@@ -7,20 +7,6 @@
   - LICENSE file that was distributed with this source code.
   -->
 
-<template>
-
-	<component :is="as" v-bind="$attrs" v-on="$listeners">
-
-		<slot></slot>
-
-		<template v-for="slot in scopedSlots" v-slot:[slot]="scope">
-			<slot :name="slot" v-bind="scope"/>
-		</template>
-
-	</component>
-
-</template>
-
 <script>
 
 	import { createElement, raf, relativeCoordsTo } from "../../js/util/dom";
@@ -88,14 +74,9 @@
 			this.$el.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: true});
 		},
 
-		computed: {
-
-			scopedSlots()
-			{
-				return Object.keys(this.$scopedSlots)
-					.filter(k => k !== "default");
-			}
-
+		render(h)
+		{
+			return h(this.as, {attrs: this.$attrs, on: this.$listeners, scopedSlots: this.$scopedSlots}, this.$slots.default);
 		},
 
 		methods: {
