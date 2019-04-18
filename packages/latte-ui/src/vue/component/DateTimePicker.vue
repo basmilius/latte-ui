@@ -13,19 +13,16 @@
 
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="datetime-local" class="form-control" :value="inputValue"/>
 
-		<latte-popup :associate-with="$refs.input" :persistent="true" ref="popup" style="width: 384px">
+		<latte-popup :associate-with="$refs.input" @close="onClose" ref="popup" style="width: 384px">
+			<div class="panel panel-blank">
+				<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
 
-			<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
+				<latte-timepicker-clock class="mx-4 my-3" style="min-height: unset" v-if="calendarView === 'dates'" v-model="currentTime"></latte-timepicker-clock>
 
-			<latte-timepicker-clock class="mt-0" v-if="calendarView === 'dates'" v-model="currentTime">
-
-				<template v-slot:after>
-					<button class="btn btn-icon btn-text btn-primary ml-3" @click="select"><i class="mdi mdi-check"></i></button>
-					<button class="btn btn-icon btn-text btn-dark" @click="close"><i class="mdi mdi-close"></i></button>
-				</template>
-
-			</latte-timepicker-clock>
-
+				<div class="btn-group" v-if="calendarView === 'dates'">
+					<latte-ripple as="button" class="btn btn-contained btn-pill btn-primary" @click="select"><i class="mdi mdi-check"></i></latte-ripple>
+				</div>
+			</div>
 		</latte-popup>
 
 	</div>
@@ -97,8 +94,6 @@
 
 			close()
 			{
-				this.currentDate = new Date(this.value.getTime());
-				this.currentTime = new Date(this.value.getTime());
 				this.$refs.popup.close();
 			},
 
@@ -106,6 +101,12 @@
 			{
 				this.$emit("input", this.current);
 				this.$refs.popup.close();
+			},
+
+			onClose()
+			{
+				this.currentDate = new Date(this.value.getTime());
+				this.currentTime = new Date(this.value.getTime());
 			}
 
 		},

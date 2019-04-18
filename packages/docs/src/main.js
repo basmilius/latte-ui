@@ -1,3 +1,4 @@
+import moment from "moment";
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -15,6 +16,7 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 Vue.use(LatteUI);
+moment.locale("nl");
 
 new Vue({
 

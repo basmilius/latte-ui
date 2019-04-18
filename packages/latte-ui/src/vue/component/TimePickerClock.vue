@@ -9,25 +9,19 @@
 
 <template>
 
-	<div class="panel panel-blank timepicker-clock">
-		<div class="panel-header">
+	<div class="timepicker-clock">
 
-			<select class="custom-select" v-model="selectedHour">
-				<option :value="hour" v-for="hour in hours">{{ hour.toString().padStart(2, "0") }}</option>
-			</select>
+		<input type="number" class="form-control timepicker-control" :min="isAMPM ? 1 : 0" :max="isAMPM ? 12 : 23" required v-model="selectedHour" />
 
-			<select class="custom-select" v-model="selectedMinute">
-				<option :value="minute" v-for="minute in minutes">{{ minute.toString().padStart(2, "0") }}</option>
-			</select>
+		<input type="number" class="form-control timepicker-control" :min="0" :max="59" required v-model="selectedMinute" />
 
-			<select class="custom-select" v-if="isAMPM" v-model="selectedMeridiem">
-				<option value="am">AM</option>
-				<option value="pm">PM</option>
-			</select>
+		<select class="custom-select timepicker-control" v-if="isAMPM" v-model="selectedMeridiem">
+			<option value="am">AM</option>
+			<option value="pm">PM</option>
+		</select>
 
-			<slot name="after"></slot>
+		<slot name="after"></slot>
 
-		</div>
 	</div>
 
 </template>
@@ -58,26 +52,6 @@
 		},
 
 		computed: {
-
-			hours()
-			{
-				const hours = [];
-
-				for (let hour = (this.isAMPM ? 1 : 0); hour <= (this.isAMPM ? 12 : 23); hour++)
-					hours.push(hour);
-
-				return hours;
-			},
-
-			minutes()
-			{
-				const minutes = [];
-
-				for (let minute = 0; minute <= 59; minute++)
-					minutes.push(minute);
-
-				return minutes;
-			},
 
 			isAMPM()
 			{
@@ -120,9 +94,9 @@
 				immediate: true,
 				handler()
 				{
-					this.selectedHour = this.value.getHours();
-					this.selectedMinute = this.value.getMinutes();
 					this.selectedMeridiem = this.value.getHours() >= 12 ? "pm" : "am";
+					this.selectedHour = this.isAMPM && this.value.getHours() > 12 ? this.value.getHours() - 12 : this.value.getHours();
+					this.selectedMinute = this.value.getMinutes();
 				}
 			}
 

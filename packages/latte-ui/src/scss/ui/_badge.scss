@@ -10,13 +10,12 @@
 .badge
 {
 	display: inline-flex;
-	min-width: 33px;
-	padding: 6px 12px;
+	padding: 6px 9px;
 	align-items: center;
 	justify-content: center;
 	background: #{latte-rgba(var(--badge-color), .1)};
 	box-shadow: 0 0 0 1px #{latte-rgba(var(--badge-color), .2)};
-	border-radius: 1em;
+	border-radius: var(--border-radius);
 	color: #{latte-rgb(var(--badge-color))};
 	font-size: .8em;
 	font-weight: 500;
@@ -35,10 +34,21 @@
 		width: 100%;
 	}
 
-	button.btn
+	&.badge-lg
+	{
+		padding: 9px 12px;
+		font-size: 1rem;
+
+		.btn
+		{
+			margin: -6px -4px -6px 9px;
+		}
+	}
+
+	.btn
 	{
 		height: 20px;
-		margin: -6px -10px -6px 6px;
+		margin: -6px -7px -6px 6px;
 		padding: 0;
 		width: 20px;
 		background: #{latte-rgba(var(--badge-color), .1)};

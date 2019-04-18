@@ -11,15 +11,15 @@
 
 	<div class="panel panel-blank datepicker-calendar">
 
-		<div class="panel-header datepicker-calendar-header">
-			<button class="btn btn-icon btn-text btn-dark" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></button>
+		<div class="panel-header datepicker-calendar-header" :class="[selectedView]">
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></latte-ripple>
 
 			<div class="btn-group mx-auto">
-				<button class="btn btn-text btn-dark" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></button>
-				<button class="btn btn-text btn-dark" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></button>
+				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
+				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
 			</div>
 
-			<button class="btn btn-icon btn-text btn-dark" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></button>
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></latte-ripple>
 		</div>
 
 		<div class="panel-body datepicker-calendar-dates pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
@@ -31,21 +31,21 @@
 			<span class="day">{{ moment().isoWeekday(6).format("dd") }}</span>
 			<span class="day">{{ moment().isoWeekday(7).format("dd") }}</span>
 
-			<button :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)" v-for="date of dates">
+			<latte-ripple as="button" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)" v-for="date of dates">
 				<span>{{ date.getDate() }}</span>
-			</button>
+			</latte-ripple>
 		</div>
 
-		<div class="panel-body datepicker-calendar-months pt-0" :class="bodyClass" v-if="selectedView === 'months'">
-			<button :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)" v-for="(month, index) in months">
+		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
+			<latte-ripple as="button" :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)" v-for="(month, index) in months">
 				<span>{{ month }}</span>
-			</button>
+			</latte-ripple>
 		</div>
 
-		<div class="panel-body datepicker-calendar-years pt-0" :class="bodyClass" v-if="selectedView === 'years'">
-			<button :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)" v-for="year in years">
+		<div class="panel-body datepicker-calendar-years" v-if="selectedView === 'years'">
+			<latte-ripple as="button" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)" v-for="year in years">
 				<span>{{ year }}</span>
-			</button>
+			</latte-ripple>
 		</div>
 
 	</div>

@@ -14,8 +14,17 @@ div.datepicker-calendar
 
 	div.datepicker-calendar-header
 	{
+		position: sticky;
+		top: 0;
+		background: var(--panel-background);
 		border: 0;
 		z-index: 1;
+
+		&.months,
+		&.years
+		{
+			box-shadow: elevation-generate(1);
+		}
 
 		div.btn-group .btn
 		{
@@ -60,13 +69,23 @@ div.datepicker-calendar
 	}
 }
 
-div.timepicker-clock select.custom-select
+div.timepicker-clock
 {
-	border-radius: 0;
-	box-shadow: none;
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	border: var(--divider-size) solid var(--outline-color);
+	border-radius: var(--border-radius);
+	overflow: hidden;
 
-	+ select.custom-select
+	.timepicker-control
 	{
-		border-left: 2px solid var(--outline-color-secondary);
+		border-radius: 0;
+		box-shadow: none;
+
+		+ .timepicker-control
+		{
+			border-left: var(--divider-size) solid var(--outline-color);
+		}
 	}
 }
