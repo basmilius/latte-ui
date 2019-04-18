@@ -31,7 +31,6 @@
 		{
 			return {
 				clip: true,
-				container: null,
 				observer: null,
 				ripples: []
 			};
@@ -39,29 +38,23 @@
 
 		destroyed()
 		{
+			if (this.observer !== null)
+				this.observer.disconnect();
+
 			// Remove all ripples, we don't want any animation at this point.
 			while (this.ripples.length > 0)
 				this.ripples.shift().remove();
-
-			this.container.remove();
-
-			if (this.observer !== null)
-				this.observer.disconnect();
 		},
 
 		mounted()
 		{
-			this.container = document.createElement("div");
-			this.container.classList.add("ripple-container");
-
-			this.$el.prepend(this.container);
 			this.$el.classList.add("is-ripple");
 
 			// TODO(Bas): Should probably find something that doesn't only work in Chrome :)
 			if (window.ResizeObserver)
 			{
 				this.observer = new ResizeObserver(entries => this.onResizeObserved(entries));
-				this.observer.observe(this.container);
+				this.observer.observe(this.$el);
 			}
 
 			this.$el.addEventListener("touchcancel", onlyTouch(this.onPointerUp), {passive: true});
@@ -76,7 +69,10 @@
 
 		render(h)
 		{
-			return h(this.as, {attrs: this.$attrs, on: this.$listeners, scopedSlots: this.$scopedSlots}, this.$slots.default);
+			return h(this.as, {attrs: {...this.$attrs}, on: this.$listeners, scopedSlots: this.$scopedSlots}, [
+				h("div", {class: ["ripple-container", !this.clip ? "is-ripple-out" : undefined]}),
+				...this.$slots.default
+			]);
 		},
 
 		methods: {
@@ -101,10 +97,14 @@
 				{
 					ripple.classList.add("ripple");
 
-					ripple.style.setProperty("--ripple-scale", `${(isCentered ? 12 : Math.max(size * .1, 24)) / size}`);
+					const minSize = isCentered ? 12 : Math.max(size * .1, 24);
+
+					ripple.style.setProperty("--ripple-scale", `${minSize / size}`);
 					ripple.style.setProperty("--ripple-size", `${size}px`);
 					ripple.style.setProperty("--ripple-x", `${x - sizeHalf}px`);
 					ripple.style.setProperty("--ripple-y", `${y - sizeHalf}px`);
+
+					this.$el.querySelector(".ripple-container").appendChild(ripple);
 				});
 
 				raf(() =>
@@ -117,8 +117,6 @@
 					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
 					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
 				});
-
-				this.container.appendChild(ripple);
 
 				return ripple;
 			},
@@ -166,18 +164,6 @@
 					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
 					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
 				});
-			}
-
-		},
-
-		watch: {
-
-			clip()
-			{
-				if (!this.clip)
-					this.container.classList.add("is-ripple-out");
-				else
-					this.container.classList.remove("is-ripple-out");
 			}
 
 		}

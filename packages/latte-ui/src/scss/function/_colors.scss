@@ -8,17 +8,6 @@
  */
 @import "math";
 
-@function dark-or-light($color, $dark, $light, $delta: 0.5)
-{
-	@if (luminance($color) < $delta)
-	{
-		@return $light;
-	} @else
-	{
-		@return $dark;
-	}
-}
-
 @function luminance ($color)
 {
 	$rgb: (
@@ -44,6 +33,17 @@
 	}
 
 	@return (map-get($rgb, "red") * .2126) + (map-get($rgb, "green") * .7152) + (map-get($rgb, "blue") * .0722);
+}
+
+@function dark-or-light($color, $dark, $light, $delta: 0.5)
+{
+	@if (luminance($color) < $delta)
+	{
+		@return $light;
+	} @else
+	{
+		@return $dark;
+	}
 }
 
 @function latte-rgb($r, $g: null, $b: null )

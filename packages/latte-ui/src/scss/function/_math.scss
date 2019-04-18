@@ -9,6 +9,11 @@
 
 @function pow($number, $exponent)
 {
+	@if round($exponent) != $exponent
+	{
+		$exponent: round($exponent);
+	}
+
 	$value: 1;
 
 	@if $exponent > 0

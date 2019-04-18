@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 
-import LatteUI, { Latte } from "@bybas/latte-ui";
+import LatteUI, { Latte } from "../../latte-ui/src/index";
 
 import "highlight.js/styles/github-gist.css";
 import "@mdi/font/css/materialdesignicons.css";
