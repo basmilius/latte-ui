@@ -31,21 +31,27 @@
 			<span class="day">{{ moment().isoWeekday(6).format("dd") }}</span>
 			<span class="day">{{ moment().isoWeekday(7).format("dd") }}</span>
 
-			<latte-ripple as="button" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)" v-for="date of dates">
-				<span>{{ date.getDate() }}</span>
-			</latte-ripple>
+			<template v-for="(date, index) of dates">
+				<latte-ripple as="button" :key="index" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
+					<span>{{ date.getDate() }}</span>
+				</latte-ripple>
+			</template>
 		</div>
 
 		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
-			<latte-ripple as="button" :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)" v-for="(month, index) in months">
-				<span>{{ month }}</span>
-			</latte-ripple>
+			<template v-for="(month, index) in months">
+				<latte-ripple as="button" :key="index" :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)">
+					<span>{{ month }}</span>
+				</latte-ripple>
+			</template>
 		</div>
 
 		<div class="panel-body datepicker-calendar-years" v-if="selectedView === 'years'">
-			<latte-ripple as="button" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)" v-for="year in years">
-				<span>{{ year }}</span>
-			</latte-ripple>
+			<template v-for="(year, index) in years">
+				<latte-ripple as="button" :key="index" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)">
+					<span>{{ year }}</span>
+				</latte-ripple>
+			</template>
 		</div>
 
 	</div>

@@ -13,7 +13,7 @@
 
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="datetime-local" class="form-control" :value="inputValue"/>
 
-		<latte-popup :associate-with="$refs.input" @close="onClose" ref="popup" style="width: 384px">
+		<latte-popup :associate-with="$refs.input" @close="onClose" @open="onOpen" ref="popup" style="width: 384px">
 			<div class="panel panel-blank">
 				<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
 
@@ -66,6 +66,7 @@
 		data()
 		{
 			return {
+				canReset: true,
 				calendarView: "dates",
 				currentDate: new Date(),
 				currentTime: new Date()
@@ -100,13 +101,22 @@
 			select()
 			{
 				this.$emit("input", this.current);
-				this.$refs.popup.close();
+				this.canReset = false;
+				this.close();
 			},
 
 			onClose()
 			{
+				if (!this.canReset)
+					return;
+
 				this.currentDate = new Date(this.value.getTime());
 				this.currentTime = new Date(this.value.getTime());
+			},
+
+			onOpen()
+			{
+				this.canReset = true;
 			}
 
 		},
