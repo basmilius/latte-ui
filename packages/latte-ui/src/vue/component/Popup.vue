@@ -7,16 +7,6 @@
   - LICENSE file that was distributed with this source code.
   -->
 
-<template>
-
-	<div :class="dropdownClasses" :style="dropdownStyles">
-		<div class="dropdown-content">
-			<slot v-bind="self"></slot>
-		</div>
-	</div>
-
-</template>
-
 <script>
 
 	import Vue from "vue";
@@ -118,6 +108,13 @@
 			on("latte:overlay", () => this.close());
 		},
 
+		render(h)
+		{
+			return h("div", {class: this.popupClasses, scopedSlots: this.$scopedSlots, style: this.popupStyles}, [
+				h("div", {class: "popup-body"}, this.$slots.default)
+			]);
+		},
+
 		computed: {
 
 			associatedElement()
@@ -131,16 +128,16 @@
 				return this.associateWith;
 			},
 
-			dropdownClasses()
+			popupClasses()
 			{
-				const classes = ["dropdown"];
+				const classes = ["popup"];
 
 				if (this.withArrow)
 				{
 					const aboveUnder = this.y > (window.innerHeight / 2) ? "above" : "under";
 					const position = this.x > (window.innerWidth / 2) ? "right" : "left";
 
-					classes.push(`dropdown-${position}-${aboveUnder}`);
+					classes.push(`popup-${position}-${aboveUnder}`);
 				}
 
 				if (this.isOpen === true)
@@ -149,7 +146,7 @@
 				return classes;
 			},
 
-			dropdownStyles()
+			popupStyles()
 			{
 				return {
 					"transform": `translate3d(${this.popupX}px, ${this.popupY}px, 0)`

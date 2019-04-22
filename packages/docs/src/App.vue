@@ -1,6 +1,8 @@
 <template>
 
-	<main id="app" :class="{'is-docs': $router.currentRoute.path.substr(0, 5) === '/docs'}">
+	<div id="app" :class="{'is-docs': $router.currentRoute.path.substr(0, 5) === '/docs'}">
+
+		<ReleaseNotesOverlay/>
 
 		<div class="app-bar app-bar-main app-bar-primary" role="toolbar">
 			<div class="app-bar-row">
@@ -135,16 +137,17 @@
 			</div>
 		</footer>
 
-	</main>
+	</div>
 
 </template>
 
 <script>
 
+	import ReleaseNotesOverlay from "./components/ReleaseNotesOverlay";
 	export default {
 
 		name: "App",
-
+		components: {ReleaseNotesOverlay},
 		data()
 		{
 			return {

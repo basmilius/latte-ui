@@ -76,8 +76,11 @@ const Notification = Vue.extend({
 					conditionalRender(this.options.message, () => h("span", {class: ["notification-text"], domProps: {innerHTML: this.options.message}}))
 				]),
 				conditionalRender(this.options.buttons && this.options.buttons.length > 0, () => h("div", {class: ["notification-actions"]}, [
-					...eachRender(this.options.buttons, button => h("button", {
+					...eachRender(this.options.buttons, button => h("latte-ripple", {
 						attrs: makeParams(button.params),
+						props: {
+							as: "button"
+						},
 						class: ["btn", "btn-text", `btn-${button.color || "dark"}`],
 						on: {
 							click: () => this.close(button.id)

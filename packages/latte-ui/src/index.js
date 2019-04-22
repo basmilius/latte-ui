@@ -10,7 +10,7 @@
 import LatteSDK from "./js/sdk";
 
 import { dispatch, on, removeSavedFromQueryString } from "./js/core/action";
-import { interval, setOptions } from "./js/core";
+import { getOptions, interval, setOptions } from "./js/core";
 import { setCookie } from "./js/util/cookies";
 import { initializeHoudiniApis } from "./js/houdini";
 import { registerOutsideEvents } from "./js/hid/OutsideEvent";
@@ -30,6 +30,7 @@ export const DefaultOptions = Object.assign({}, {
 
 export const Latte = LatteSDK;
 
+let foundMainElement = false;
 let lastScroll = 0;
 
 export const LatteUI = {
@@ -42,7 +43,20 @@ export const LatteUI = {
 			self.LatteRoot = null;
 
 		Vue.prototype.$latte = LatteSDK;
-		Vue.prototype.$latteOptions = options;
+
+		Vue.mixin({
+			mounted()
+			{
+				if (foundMainElement)
+					return;
+
+				foundMainElement = true;
+
+				setOptions(Object.assign({}, getOptions(), {
+					mainElement: this.$root.$el
+				}));
+			}
+		});
 
 		setOptions(options);
 

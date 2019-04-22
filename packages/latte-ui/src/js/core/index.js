@@ -15,13 +15,25 @@ export let currentOptions = {};
 /**
  * Gets the main#app element.
  *
- * @returns {HTMLMainElement}
+ * @returns {HTMLElement}
  * @author Bas Milius <bas@mili.us>
  * @since 1.0.0
  */
 export function getMainElement()
 {
-	return document.querySelector("main#app");
+	return currentOptions.mainElement || document.body; // Fallback to body then..!
+}
+
+/**
+ * Gets the used latte options for local use.
+ *
+ * @returns {Object}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.6.0
+ */
+export function getOptions()
+{
+	return currentOptions;
 }
 
 /**
@@ -162,6 +174,7 @@ export default {
 	z,
 
 	getMainElement,
+	getOptions,
 	handleError,
 	interval,
 	randomPassword,
