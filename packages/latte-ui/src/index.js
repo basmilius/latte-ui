@@ -45,7 +45,7 @@ export const LatteUI = {
 		Vue.prototype.$latte = LatteSDK;
 
 		Vue.mixin({
-			mounted()
+			created()
 			{
 				if (foundMainElement)
 					return;
