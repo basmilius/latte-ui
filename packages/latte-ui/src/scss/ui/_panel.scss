@@ -227,7 +227,7 @@ a.panel
 	margin-top: calc(var(--panel-gutter) / -2);
 }
 
-div.panel > span.spinner
+.panel > span.spinner
 {
 	position: absolute;
 	display: none;
@@ -242,7 +242,7 @@ div.panel > span.spinner
 	z-index: 2;
 }
 
-div.panel.is-loading > span.spinner
+.panel.is-loading > span.spinner
 {
 	display: flex;
 }

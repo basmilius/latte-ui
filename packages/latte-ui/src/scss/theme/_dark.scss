@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-[data-theme="dark"]
+:root[data-theme="dark"]
 {
 	--main-background: #191a1c;
 	--main-background-rgb: 25, 26, 28;
@@ -49,6 +49,9 @@
 	--panel-elevation: #{elevation-generate(3, black)}, 0 0 0 1px var(--outline-color);
 	--panel-elevation-hover: #{elevation-generate(9, black)}, 0 0 0 1px var(--outline-color);
 	--panel-spinner-background: rgba(0, 0, 0, .6);
+
+	--popup-background: #202124;
+	--popup-elevation: #{elevation-generate(16, black)}, 0 0 0 1px var(--outline-color);
 
 	--snackbar-elevation: #{elevation-generate(8, black)}, 0 0 0 1px var(--outline-color);
 

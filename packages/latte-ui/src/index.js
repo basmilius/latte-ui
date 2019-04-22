@@ -108,7 +108,7 @@ export const LatteUI = {
 		if (themeId === undefined)
 			return;
 
-		document.body.dataset.theme = themeId;
+		document.documentElement.dataset.theme = themeId;
 		setCookie("$ui:theme", themeId);
 	},
 
