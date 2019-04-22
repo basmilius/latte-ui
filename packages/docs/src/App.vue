@@ -125,7 +125,7 @@
 
 							<strong>About</strong>
 							<p class="mt-4">
-								Designed and developed with much <i class="mdi mdi-heart text-error"></i> by <a href="//basmilius.com" target="_blank">Bas Milius</a> and the contributors.
+								Designed and developed with much <i class="mdi mdi-heart text-error"></i> by <a href="//bas.dev" target="_blank">Bas Milius</a> and the contributors.
 							</p>
 							<p class="mt-4 text-soft">
 								Version {{ $latte.version }} &mdash; <a href="//github.com/basmilius/latte-ui/blob/master/LICENSE" target="_blank">MIT</a> licensed.
