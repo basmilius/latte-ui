@@ -7,27 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$notification-gutter: 24px;
-
-div#notification-center
-{
-	position: fixed;
-	display: block;
-	top: 0;
-	right: $notification-gutter;
-	width: 360px;
-
-	div.notification
-	{
-		position: absolute;
-		width: inherit;
-	}
-}
-
 div.notification
 {
 	position: relative;
 	display: flex;
+	width: 360px;
 	align-items: center;
 	background: var(--panel-background);
 	border-radius: var(--border-radius);
@@ -35,6 +19,18 @@ div.notification
 	transition: 420ms var(--ease-swift-out);
 	transition-property: top, opacity, transform;
 	will-change: top, opacity, transform;
+
+	@include compact
+	{
+		width: calc(100vw - 48px);
+	}
+
+	&.is-app-notification
+	{
+		position: fixed;
+		top: 0;
+		right: 24px;
+	}
 
 	&.is-opening
 	{
@@ -79,7 +75,7 @@ div.notification-actions
 {
 	position: relative;
 	display: flex;
-	padding: $notification-gutter ($notification-gutter - 15px);
+	padding: 24px 9px;
 	align-items: center;
 	flex-flow: row wrap;
 
@@ -94,7 +90,7 @@ div.notification-body
 {
 	position: relative;
 	display: flex;
-	padding: $notification-gutter;
+	padding: 24px;
 	flex-flow: column;
 }
 
@@ -103,7 +99,7 @@ div.notification-icon
 	position: relative;
 	display: block;
 	height: 60px;
-	margin: $notification-gutter;
+	margin: 24px;
 	width: 60px;
 	align-self: flex-start;
 	background: var(--notification-background, black);
@@ -132,7 +128,7 @@ div.notification-icon
 div.notification > .avatar
 {
 	position: relative;
-	margin: $notification-gutter;
+	margin: 24px;
 	align-self: flex-start;
 	flex: 0 0 auto;
 	font-size: 60px;

@@ -23,7 +23,6 @@ const defaultOptions = {
 const notifications = [];
 
 let lastY = 0;
-let notificationCenter = null;
 
 const Notification = Vue.extend({
 
@@ -96,7 +95,7 @@ const Notification = Vue.extend({
 
 		notificationClasses()
 		{
-			const classes = ["notification", `notification-${this.options.color || "primary"}`];
+			const classes = ["notification", `notification-${this.options.color || "primary"}`, "is-app-notification"];
 
 			if (this.closing)
 				classes.push("is-closing");
@@ -110,7 +109,7 @@ const Notification = Vue.extend({
 		notificationStyles()
 		{
 			return {
-				top: `calc(var(--app-bar-height) + 24px + ${this.y}px)`,
+				top: `calc(24px + ${this.y}px)`,
 				zIndex: this.z
 			};
 		}
@@ -166,8 +165,6 @@ const Notification = Vue.extend({
 
 export function create(options = {})
 {
-	createNotificationCenter();
-
 	options = Object.assign({}, defaultOptions, options);
 	options.id = options.id || id();
 
@@ -194,14 +191,14 @@ export function create(options = {})
 			}
 		});
 
-		notificationCenter.appendChild(mount);
+		getMainElement().appendChild(mount);
 		notification.$mount(mount);
 
 		notification.open();
 		notification.$on("delete-me", () =>
 		{
 			notification.$destroy();
-			notificationCenter.removeChild(notification.$el);
+			getMainElement().removeChild(notification.$el);
 		});
 	});
 }
@@ -209,18 +206,6 @@ export function create(options = {})
 export function initializeNotifications()
 {
 	on("latte:notification", data => create(data));
-}
-
-function createNotificationCenter()
-{
-	if (notificationCenter !== null)
-		return notificationCenter;
-
-	return notificationCenter = createElement("div", div =>
-	{
-		div.setAttribute("id", "notification-center");
-		getMainElement().appendChild(div);
-	});
 }
 
 function makeParams(params)
