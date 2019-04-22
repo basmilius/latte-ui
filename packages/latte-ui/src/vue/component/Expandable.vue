@@ -2,7 +2,7 @@
 
 	<div class="expandable">
 
-		<div class="expandable-header" @click="toggle()">
+		<div class="expandable-header" @click="toggle">
 			<slot name="header" v-bind:isOpen="isOpen">
 				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-menu-swap"></i></button>
 			</slot>
