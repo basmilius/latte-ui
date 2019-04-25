@@ -28,31 +28,33 @@
 			<input type="search" :name="name" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 
 		</div>
-		<div class="dropdown" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
-			<nav class="nav nav-list">
+		<div class="popup" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
+			<div class="popup-body">
+				<nav class="nav nav-list">
 
-				<template v-for="(suggestion, index) in suggestionsFiltered">
+					<template v-for="(suggestion, index) in suggestionsFiltered">
 
-					<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
+						<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
 
-						<slot name="suggestion" v-bind="suggestion">
+							<slot name="suggestion" v-bind="suggestion">
 
-							<div class="flex-grow-1" v-if="suggestion.sub_label">
-								<span>{{ suggestion.label }}</span>
-								<span class="text-soft">{{ suggestion.sub_label }}</span>
-							</div>
+								<div class="flex-grow-1" v-if="suggestion.sub_label">
+									<span>{{ suggestion.label }}</span>
+									<span class="text-soft">{{ suggestion.sub_label }}</span>
+								</div>
 
-							<span v-else>{{ suggestion.label }}</span>
+								<span v-else>{{ suggestion.label }}</span>
 
-							<i class="mdi mdi-chevron-right"></i>
+								<i class="mdi mdi-chevron-right"></i>
 
-						</slot>
+							</slot>
 
-					</a>
+						</a>
 
-				</template>
+					</template>
 
-			</nav>
+				</nav>
+			</div>
 		</div>
 		<span class="spinner spinner-primary" v-if="isLoading"></span>
 	</div>

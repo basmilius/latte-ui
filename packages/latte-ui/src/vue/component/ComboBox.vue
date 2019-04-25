@@ -16,16 +16,20 @@
 
 		<button class="btn btn-text btn-icon btn-dark form-control-suffix" type="button"><i class="mdi mdi-chevron-down"></i></button>
 
-		<div class="dropdown" :class="{'is-open': isDropdownOpened}" role="combobox">
-			<nav class="nav nav-list">
-				<slot></slot>
-			</nav>
+		<div class="popup" :class="{'is-open': isDropdownOpened}" role="combobox">
+			<div class="popup-body">
+				<nav class="nav nav-list">
+					<slot></slot>
+				</nav>
+			</div>
 		</div>
 	</div>
 
 </template>
 
 <script>
+
+	import { raf } from "../../js/util/dom";
 
 	export default {
 
@@ -154,7 +158,7 @@
 
 			onOptionSelect(option)
 			{
-				this.$nextTick(() => this.close());
+				raf(() => this.close(), 50);
 
 				this.selectedOptionIndex = this.options.findIndex(o => o === option);
 			}
@@ -209,7 +213,7 @@
 		pointer-events: none;
 	}
 
-	div.dropdown
+	div.popup
 	{
 		position: absolute;
 		top: 100%;

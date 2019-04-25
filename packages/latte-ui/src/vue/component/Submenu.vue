@@ -19,8 +19,8 @@
 			</a>
 		</slot>
 
-		<div ref="dropdown" class="dropdown" :class="{'is-open': isOpen}" :style="dropdownStyles" @pointerover="onPointerEnter" @pointerleave="onPointerLeave">
-			<div class="dropdown-content">
+		<div ref="popup" class="popup" :class="{'is-open': isOpen}" :style="popupStyles" @pointerover="onPointerEnter" @pointerleave="onPointerLeave">
+			<div class="popup-content">
 				<slot></slot>
 			</div>
 		</div>
@@ -58,7 +58,7 @@
 		data()
 		{
 			return {
-				dropdown: null,
+				popup: null,
 				isOpen: false,
 				timeout: null,
 				x: 0,
@@ -68,20 +68,20 @@
 
 		beforeDestroy()
 		{
-			this.dropdown.remove();
+			this.popup.remove();
 		},
 
 		mounted()
 		{
-			this.dropdown = this.$refs.dropdown;
-			this.dropdown.remove();
+			this.popup = this.$refs.popup;
+			this.popup.remove();
 
-			getMainElement().appendChild(this.dropdown);
+			getMainElement().appendChild(this.popup);
 		},
 
 		computed: {
 
-			dropdownStyles()
+			popupStyles()
 			{
 				return {
 					transform: `translate3d(${this.x}px, ${this.y}px, 0)`
@@ -95,7 +95,7 @@
 			calculatePosition()
 			{
 				const rect = this.$el.getBoundingClientRect();
-				const dropdownRect = this.dropdown.getBoundingClientRect();
+				const popupRect = this.popup.getBoundingClientRect();
 
 				let top = rect.top;
 				let left = rect.left;
@@ -104,14 +104,14 @@
 				let y = top - 15;
 				let mode = "right";
 
-				if (x + dropdownRect.width > window.innerWidth)
+				if (x + popupRect.width > window.innerWidth)
 				{
-					x = left - dropdownRect.width;
+					x = left - popupRect.width;
 					mode = "left";
 				}
 
-				if (y + dropdownRect.height > window.innerHeight)
-					y = top - dropdownRect.height + 59;
+				if (y + popupRect.height > window.innerHeight)
+					y = top - popupRect.height + 59;
 
 				if (mode === "right")
 					x -= this.isOpen ? 0 : 24;
@@ -136,14 +136,14 @@
 				if (this.isOpen)
 					return;
 
-				this.dropdown.style.setProperty("transition", "unset");
-				applyZ(z => this.dropdown.style.setProperty("z-index", z));
+				this.popup.style.setProperty("transition", "unset");
+				applyZ(z => this.popup.style.setProperty("z-index", z));
 
 				this.calculatePosition();
 
 				this.timeout = raf(() =>
 				{
-					this.dropdown.style.removeProperty("transition");
+					this.popup.style.removeProperty("transition");
 					this.isOpen = true;
 					this.calculatePosition();
 				}, 50);
