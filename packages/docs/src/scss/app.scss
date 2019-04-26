@@ -22,7 +22,7 @@ body
 		--app-bar-height: 60px;
 		--content-gutter: 24px;
 
-		:not(.is-docs)
+		#skeleton:not(.is-docs)
 		{
 			.content
 			{
@@ -35,7 +35,7 @@ body
 			}
 		}
 
-		.is-docs footer.footer
+		#skeleton.is-docs footer.footer
 		{
 			margin-left: var(--drawer-width-secondary);
 		}

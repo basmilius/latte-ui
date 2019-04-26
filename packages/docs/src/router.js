@@ -12,179 +12,189 @@ const router = new Router({
 	routes: [
 		{
 			path: "/",
-			component: Home
-		},
-		{
-			path: "/docs",
-			component: () => import("./components/NestedRouterView.vue"),
+			component: () => import("./views/Skeleton.vue"),
 			children: [
 				{
-					path: "",
-					component: () => import("./views/docs/GettingStarted.vue")
+					path: "/",
+					component: Home
 				},
 				{
-					path: "components",
+					path: "/docs",
 					component: () => import("./components/NestedRouterView.vue"),
 					children: [
 						{
-							path: "app-bar",
-							component: () => import("./views/docs/components/AppBar.vue")
+							path: "",
+							component: () => import("./views/docs/GettingStarted.vue")
 						},
 						{
-							path: "avatar",
-							component: () => import("./views/docs/components/Avatar.vue")
+							path: "components",
+							component: () => import("./components/NestedRouterView.vue"),
+							children: [
+								{
+									path: "app-bar",
+									component: () => import("./views/docs/components/AppBar.vue")
+								},
+								{
+									path: "avatar",
+									component: () => import("./views/docs/components/Avatar.vue")
+								},
+								{
+									path: "badge",
+									component: () => import("./views/docs/components/Badge.vue")
+								},
+								{
+									path: "bottom-nav",
+									component: () => import("./views/docs/components/BottomNav.vue")
+								},
+								{
+									path: "button",
+									component: () => import("./views/docs/components/Button.vue")
+								},
+								{
+									path: "chat",
+									component: () => import("./views/docs/components/Chat.vue")
+								},
+								{
+									path: "datatable",
+									component: () => import("./views/docs/components/Datatable.vue")
+								},
+								{
+									path: "dropdown-button",
+									component: () => import("./views/docs/components/DropdownButton.vue")
+								},
+								{
+									path: "expandable",
+									component: () => import("./views/docs/components/Expandable.vue")
+								},
+								{
+									path: "form-elements",
+									component: () => import("./views/docs/components/FormElements.vue")
+								},
+								{
+									path: "list",
+									component: () => import("./views/docs/components/List.vue")
+								},
+								{
+									path: "message",
+									component: () => import("./views/docs/components/Message.vue")
+								},
+								{
+									path: "nav",
+									component: () => import("./views/docs/components/Nav.vue")
+								},
+								{
+									path: "notice",
+									component: () => import("./views/docs/components/Notice.vue")
+								},
+								{
+									path: "notification",
+									component: () => import("./views/docs/components/Notification.vue")
+								},
+								{
+									path: "overlay",
+									component: () => import("./views/docs/components/Overlay.vue")
+								},
+								{
+									path: "pagination",
+									component: () => import("./views/docs/components/Pagination.vue")
+								},
+								{
+									path: "panel",
+									component: () => import("./views/docs/components/Panel.vue")
+								},
+								{
+									path: "popup",
+									component: () => import("./views/docs/components/Popup.vue")
+								},
+								{
+									path: "portal",
+									component: () => import("./views/docs/components/Portal.vue")
+								},
+								{
+									path: "progress",
+									component: () => import("./views/docs/components/Progress.vue")
+								},
+								{
+									path: "question",
+									component: () => import("./views/docs/components/Question.vue")
+								},
+								{
+									path: "ripple",
+									component: () => import("./views/docs/components/Ripple.vue")
+								},
+								{
+									path: "sheet",
+									component: () => import("./views/docs/components/Sheet.vue")
+								},
+								{
+									path: "snackbar",
+									component: () => import("./views/docs/components/Snackbar.vue")
+								},
+								{
+									path: "spinner",
+									component: () => import("./views/docs/components/Spinner.vue")
+								},
+								{
+									path: "swiper",
+									component: () => import("./views/docs/components/Swiper.vue")
+								},
+								{
+									path: "tabs",
+									component: () => import("./views/docs/components/Tabs.vue")
+								}
+							]
 						},
 						{
-							path: "badge",
-							component: () => import("./views/docs/components/Badge.vue")
-						},
-						{
-							path: "bottom-nav",
-							component: () => import("./views/docs/components/BottomNav.vue")
-						},
-						{
-							path: "button",
-							component: () => import("./views/docs/components/Button.vue")
-						},
-						{
-							path: "chat",
-							component: () => import("./views/docs/components/Chat.vue")
-						},
-						{
-							path: "datatable",
-							component: () => import("./views/docs/components/Datatable.vue")
-						},
-						{
-							path: "dropdown-button",
-							component: () => import("./views/docs/components/DropdownButton.vue")
-						},
-						{
-							path: "expandable",
-							component: () => import("./views/docs/components/Expandable.vue")
-						},
-						{
-							path: "form-elements",
-							component: () => import("./views/docs/components/FormElements.vue")
-						},
-						{
-							path: "list",
-							component: () => import("./views/docs/components/List.vue")
-						},
-						{
-							path: "message",
-							component: () => import("./views/docs/components/Message.vue")
-						},
-						{
-							path: "nav",
-							component: () => import("./views/docs/components/Nav.vue")
-						},
-						{
-							path: "notice",
-							component: () => import("./views/docs/components/Notice.vue")
-						},
-						{
-							path: "notification",
-							component: () => import("./views/docs/components/Notification.vue")
-						},
-						{
-							path: "overlay",
-							component: () => import("./views/docs/components/Overlay.vue")
-						},
-						{
-							path: "pagination",
-							component: () => import("./views/docs/components/Pagination.vue")
-						},
-						{
-							path: "panel",
-							component: () => import("./views/docs/components/Panel.vue")
-						},
-						{
-							path: "popup",
-							component: () => import("./views/docs/components/Popup.vue")
-						},
-						{
-							path: "portal",
-							component: () => import("./views/docs/components/Portal.vue")
-						},
-						{
-							path: "progress",
-							component: () => import("./views/docs/components/Progress.vue")
-						},
-						{
-							path: "question",
-							component: () => import("./views/docs/components/Question.vue")
-						},
-						{
-							path: "ripple",
-							component: () => import("./views/docs/components/Ripple.vue")
-						},
-						{
-							path: "sheet",
-							component: () => import("./views/docs/components/Sheet.vue")
-						},
-						{
-							path: "snackbar",
-							component: () => import("./views/docs/components/Snackbar.vue")
-						},
-						{
-							path: "spinner",
-							component: () => import("./views/docs/components/Spinner.vue")
-						},
-						{
-							path: "swiper",
-							component: () => import("./views/docs/components/Swiper.vue")
-						},
-						{
-							path: "tabs",
-							component: () => import("./views/docs/components/Tabs.vue")
+							path: "layout",
+							component: () => import("./components/NestedRouterView.vue"),
+							children: [
+								{
+									path: "color",
+									component: () => import("./views/docs/layout/Color.vue")
+								},
+								{
+									path: "grid-system",
+									component: () => import("./views/docs/layout/GridSystem.vue")
+								},
+								{
+									path: "typography",
+									component: () => import("./views/docs/layout/Typography.vue")
+								},
+								{
+									path: "utilities",
+									component: () => import("./views/docs/layout/Utilities.vue")
+								},
+								{
+									path: "variables",
+									component: () => import("./views/docs/layout/Variables.vue")
+								}
+							]
 						}
 					]
 				},
 				{
-					path: "layout",
+					path: "/examples",
 					component: () => import("./components/NestedRouterView.vue"),
 					children: [
 						{
-							path: "color",
-							component: () => import("./views/docs/layout/Color.vue")
+							path: "",
+							redirect: "/examples/app-contacts"
 						},
 						{
-							path: "grid-system",
-							component: () => import("./views/docs/layout/GridSystem.vue")
-						},
-						{
-							path: "typography",
-							component: () => import("./views/docs/layout/Typography.vue")
-						},
-						{
-							path: "utilities",
-							component: () => import("./views/docs/layout/Utilities.vue")
-						},
-						{
-							path: "variables",
-							component: () => import("./views/docs/layout/Variables.vue")
+							path: "app-contacts",
+							component: () => import("./views/examples/AppContacts.vue")
 						}
 					]
-				}
-			]
-		},
-		{
-			path: "/examples",
-			component: () => import("./components/NestedRouterView.vue"),
-			children: [
-				{
-					path: "",
-					redirect: "/examples/app-contacts"
 				},
 				{
-					path: "app-contacts",
-					component: () => import("./views/examples/AppContacts.vue")
+					path: "/tests",
+					component: () => import("./views/Tests.vue")
 				}
 			]
 		},
 		{
-			path: "/tests",
-			component: () => import("./views/Tests.vue")
+			path: "/example/music",
+			component: () => import("./views/examples/Music/MusicExample.vue")
 		},
 		{
 			path: "*",
