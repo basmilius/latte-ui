@@ -9,181 +9,212 @@
 
 <template>
 
-	<div class="drop-container uploader" :class="containerClasses" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop">
-		<slot name="drop-here" :uploader="this" v-if="!isDraggingOver">Drop here to upload</slot>
-		<slot name="let-go" :uploader="this" v-else>Let go to upload</slot>
+	<div class="uploader">
+		<input ref="fileInput" type="file" :accept="accept" :id="id" :multiple="multiple" :name="name" @change="onFilesUpdate"/>
 
-		<template v-if="!isMultiple && previewMode === 'photo' && files.length === 0">
-			<img src="" alt="">
-		</template>
+		<slot v-bind="{blobs, files, id, multiple, name, openDialog, removeFile}"></slot>
+
+		<div class="drop-target" :class="{'is-dragging': isDragging, 'is-dragging-over': isDraggingOver}">
+			<div class="drop-target-info" v-if="!isDraggingOver">{{ (multiple ? strings.placeFiles : strings.placeFile)|i18n(i18nDomain) }}</div>
+			<div class="drop-target-info" v-else>{{ (multiple ? strings.dropFiles : strings.dropFile)|i18n(i18nDomain) }}</div>
+		</div>
 	</div>
 
 </template>
 
 <script>
 
+	import { id } from "../../js/core/api";
+	import { closest } from "../../js/util/dom";
+
+	const defaultStrings = {
+		dropFile: "Drop here to upload!",
+		dropFiles: "Drop here to upload!",
+		placeFile: "Place your file here to upload",
+		placeFiles: "Place your file(s) here to upload"
+	};
+
+	function arrayToFileList(files)
+	{
+		if (files === undefined)
+			files = [];
+
+		const dataTransfer = new DataTransfer();
+		files.forEach(file => dataTransfer.items.add(file));
+
+		return dataTransfer.files;
+	}
+
 	export default {
 
-		name: "latte-uploader-noop",
+		name: "latte-uploader",
 
 		props: {
 
-			isMultiple: {
+			accept: {
+				default: undefined,
+				required: false,
+				type: String | undefined
+			},
+
+			droppable: {
+				default: true,
+				required: false,
+				type: Boolean
+			},
+
+			i18nDomain: {
+				default: "latte-ui",
+				required: false,
+				type: String
+			},
+
+			id: {
+				default: () => id(),
+				required: false,
+				type: String
+			},
+
+			multiple: {
 				default: false,
 				required: false,
 				type: Boolean
 			},
 
-			previewMode: {
-				default: "photo",
+			name: {
+				default: () => id(),
 				required: false,
-				type: String,
-				validator: value => ["photo", "list"].includes(value)
+				type: String
+			},
+
+			strings: {
+				default: () => defaultStrings,
+				required: false,
+				type: Object
 			}
 
 		},
 
-		created()
+		beforeDestroy()
 		{
-			window.addEventListener("dragend", evt => this.onDragEnd(evt));
-			window.addEventListener("dragleave", evt => this.onDragEnd(evt));
-			window.addEventListener("dragover", evt => this.onDragStart(evt));
-			window.addEventListener("drop", evt => this.onDragEnd(evt));
+			window.removeEventListener("dragend", this.fn.onDragEnd);
+			window.removeEventListener("dragleave", this.fn.onDragLeave);
+			window.removeEventListener("dragover", this.fn.onDragOver);
+			window.removeEventListener("drop", this.fn.onDrop);
 		},
 
 		data()
 		{
 			return {
+				blobs: [],
+				files: [],
+				fn: {
+					onDragEnd: evt => this.onDragEnd(evt),
+					onDragLeave: evt => this.onDragLeave(evt),
+					onDragOver: evt => this.onDragOver(evt),
+					onDrop: evt => this.onDrop(evt)
+				},
 				isDragging: false,
-				isDraggingOver: false,
-				files: []
+				isDraggingOver: false
 			};
 		},
 
 		mounted()
 		{
+			window.addEventListener("dragend", this.fn.onDragEnd);
+			window.addEventListener("dragleave", this.fn.onDragLeave);
+			window.addEventListener("dragover", this.fn.onDragOver);
+			window.addEventListener("drop", this.fn.onDrop);
 		},
 
 		computed: {
 
-			containerClasses()
+			fileInput()
 			{
-				const classes = [];
-
-				if (this.isDragging)
-					classes.push("is-dragging");
-
-				if (this.isDraggingOver)
-					classes.push("is-dragging-over");
-
-				return classes;
-			},
-
-			isImage()
-			{
-				if (this.files.length === 0)
-					return false;
-
-				return this.files[0].type.startsWith("image/");
-			},
-
-			isPreviewAvailable()
-			{
-				if (this.files.length === 0)
-					return false;
-
-				// TODO(Bas): Handle multiple files.
-				if (this.files.length === 1)
-					return true;
-
-				return false;
+				return this.$refs.fileInput;
 			}
 
 		},
 
 		methods: {
 
-			onDragEnd()
+			openDialog()
 			{
-				this.isDragging = false;
+				this.fileInput.click();
 			},
 
-			onDragEnter(evt)
+			removeFile(index)
+			{
+				this.files.splice(index, 1);
+				this.fileInput.files = arrayToFileList(this.files);
+			},
+
+			onDragEnd(evt)
 			{
 				evt.preventDefault();
 
-				this.isDraggingOver = true;
+				this.isDragging = false;
+				this.isDraggingOver = false;
 			},
 
 			onDragLeave(evt)
 			{
 				evt.preventDefault();
-
-				this.isDraggingOver = false;
 			},
 
-			onDragStart(evt)
+			onDragOver(evt)
 			{
 				evt.preventDefault();
 
 				this.isDragging = true;
+				this.isDraggingOver = closest(evt.target, this.$el) !== null;
 			},
 
 			onDrop(evt)
 			{
-				evt.preventDefault();
-				window.dispatchEvent(new CustomEvent("dragend"));
+				if (!this.isDragging)
+					return;
 
-				this.files = evt.dataTransfer.files;
+				evt.preventDefault();
+
 				this.isDragging = false;
 				this.isDraggingOver = false;
+
+				if (closest(evt.target, this.$el) === null)
+					return;
+
+				const files = Array.from(evt.dataTransfer.files);
+
+				if (!this.multiple && files.length > 1)
+					return;
+
+				if (this.multiple)
+					files.push(...this.files);
+
+				this.fileInput.files = arrayToFileList(files);
+				this.onFilesUpdate();
+			},
+
+			onFilesUpdate()
+			{
+				this.files = Array.from(this.fileInput.files);
 			}
 
 		},
 
-		watch: {}
+		watch: {
+
+			files()
+			{
+				while (this.blobs.length > 0)
+					URL.revokeObjectURL(this.blobs.shift());
+
+				this.files.forEach(file => this.blobs.push(URL.createObjectURL(file)));
+				this.$emit("change", this.files);
+			}
+
+		}
 
 	}
 
 </script>
-
-<style lang="scss">
-
-	div.drop-container
-	{
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: transparent;
-		border: 2px dashed var(--outline-color-secondary);
-		border-radius: var(--border-radius);
-		text-align: center;
-
-		&.is-dragging > *
-		{
-			pointer-events: none;
-		}
-
-		&.is-dragging
-		{
-			background-color: rgba(var(--color-dark), .05);
-			border-color: rgba(var(--color-dark), .1);
-		}
-
-		&.is-dragging-over
-		{
-			background-color: rgba(var(--color-primary), .3);
-			border-color: rgba(var(--color-primary), .1);
-		}
-	}
-
-</style>
-
-<style lang="scss" scoped>
-
-	div.uploader
-	{
-	}
-
-</style>
