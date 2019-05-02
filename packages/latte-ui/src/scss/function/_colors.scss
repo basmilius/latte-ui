@@ -26,7 +26,7 @@
 		} @else
 		{
 			$value: ($value + .055) / 1.055;
-			$value: pow($value, 2.4)
+			$value: pow($value, 2); // Second argument used to be 2.4, but dart-sass doesn't support it anymore.
 		}
 
 		$rgb: map-merge($rgb, ($name: $value));
