@@ -14,6 +14,7 @@ const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
+const typescript = require("rollup-plugin-typescript");
 const postCssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
 
@@ -40,6 +41,12 @@ export default {
 
 		nodeResolve({
 			browser: true
+		}),
+
+		typescript({
+			tsconfig: false,
+			experimentalDecorators: true,
+			module: 'es2015'
 		}),
 
 		vue({

@@ -17,6 +17,7 @@ const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const postCssUrl = require("postcss-url");
+const typescript = require("rollup-plugin-typescript");
 const uglify = require("rollup-plugin-uglify").uglify;
 const vue = require("rollup-plugin-vue");
 
@@ -72,6 +73,12 @@ export default {
 			],
 			sourceMap: true,
 			use: ["sass"]
+		}),
+
+		typescript({
+			tsconfig: false,
+			experimentalDecorators: true,
+			module: 'es2015'
 		}),
 
 		vue({
