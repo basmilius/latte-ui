@@ -34,7 +34,7 @@ html
 body
 {
 	margin: 0;
-	background-color: var(--main-background);
+	background: var(--main-background);
 	color: var(--main-foreground);
 	font-size: 15px;
 	line-height: 1.5;
@@ -53,23 +53,21 @@ hr
 	overflow: visible;
 }
 
-h1, h2, h3, h4, h5, h6
-{
-	margin-bottom: .5rem;
-	margin-top: 0;
-}
-
 p
 {
 	margin-bottom: 1rem;
 	margin-top: 0;
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
 }
 
 abbr[title],
 abbr[data-original-title]
 {
 	text-decoration: underline;
-	text-decoration: underline dotted;
 	cursor: help;
 	border-bottom: 0;
 	text-decoration-skip-ink: none;
@@ -146,7 +144,7 @@ sup
 
 a
 {
-	background-color: transparent;
+	background: transparent;
 	color: var(--color-primary);
 	text-decoration: underline;
 
@@ -383,26 +381,16 @@ i.mdi
 
 	&::before
 	{
-		height: inherit;
-		width: inherit;
+		height: 1em;
+		width: 1em;
 	}
 }
 
 img.emoji
 {
-	position: relative !important;
-	display: inline-block !important;
-	height: 1em !important;
-	margin: -.1em .07em 0 .07em !important;
-	padding: 0 !important;
-	width: 1em !important;
-	background: none !important;
-	border: 0 !important;
-	box-shadow: none !important;
-	vertical-align: -0.1em !important;
-}
-
-p:last-child
-{
-	margin-bottom: 0;
+	display: inline-block;
+	height: 1em;
+	margin: 0 .07em 0 .07em;
+	width: 1em;
+	vertical-align: -0.1em;
 }

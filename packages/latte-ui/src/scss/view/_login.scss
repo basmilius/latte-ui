@@ -75,25 +75,8 @@ main.auth-ui
 		align-items: stretch;
 		flex: 1 1 60%;
 		flex-flow: column;
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 		overflow: auto;
-
-		span.spinner
-		{
-			position: absolute;
-			display: none;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: var(--panel-spinner-background);
-			font-size: 2.5rem;
-		}
-
-		&.is-loading span.spinner
-		{
-			display: flex;
-		}
 	}
 
 	@include media-breakpoint-down(md)

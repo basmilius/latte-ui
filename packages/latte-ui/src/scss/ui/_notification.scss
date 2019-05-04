@@ -13,7 +13,7 @@ div.notification
 	display: flex;
 	width: 360px;
 	align-items: center;
-	background: var(--panel-background);
+	background: #{latte-rgb(var(--panel-background))};
 	border-radius: var(--border-radius);
 	box-shadow: var(--panel-elevation-hover);
 	transition: 420ms var(--ease-swift-out);
@@ -108,7 +108,6 @@ div.notification-icon
 
 	i.mdi
 	{
-		position: relative;
 		display: block;
 		margin: 18px;
 		font-size: 24px;
@@ -127,7 +126,6 @@ div.notification-icon
 
 div.notification > .avatar
 {
-	position: relative;
 	margin: 24px;
 	align-self: flex-start;
 	flex: 0 0 auto;

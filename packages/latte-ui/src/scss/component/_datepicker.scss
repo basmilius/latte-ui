@@ -16,7 +16,7 @@ div.datepicker-calendar
 	{
 		position: sticky;
 		top: 0;
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 		border: 0;
 		z-index: 1;
 

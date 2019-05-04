@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--spinner-color: var(--color-primary);
+}
+
 @keyframes spinner-animation
 {
 	from
@@ -19,7 +24,7 @@
 	}
 }
 
-span.spinner
+.spinner
 {
 	display: inline-flex;
 	align-items: center;
@@ -46,9 +51,9 @@ i.mdi.spinner::before
 	height: 1em;
 	width: 1em;
 	content: "";
-	animation: spinner-animation 700ms infinite linear;
-	border: .1em solid #{latte-rgba(var(--spinner-background), .25)};
-	border-top-color: #{latte-rgb(var(--spinner-background))};
+	animation: spinner-animation 540ms infinite linear;
+	border: .1em solid #{latte-rgba(var(--spinner-color), .25)};
+	border-top-color: #{latte-rgb(var(--spinner-color))};
 	border-radius: .5em;
 }
 
@@ -56,6 +61,37 @@ i.mdi.spinner::before
 {
 	.spinner-#{$type}
 	{
-		--spinner-background: var(--color-#{$type});
+		--spinner-color: var(--color-#{$type});
 	}
+}
+
+%inner-spinner
+{
+	& > .spinner
+	{
+		position: absolute;
+		display: none;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #{latte-rgba(var(--panel-background), .9)};
+		border-radius: inherit;
+		font-size: 2rem;
+		z-index: 2;
+	}
+
+	&.is-loading > .spinner
+	{
+		display: flex;
+	}
+}
+
+.form-group,
+.latte-autocomplete,
+.latte-charts,
+.panel,
+main.auth-ui section#panel-view
+{
+	@extend %inner-spinner;
 }

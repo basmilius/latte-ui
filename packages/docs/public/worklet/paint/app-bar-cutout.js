@@ -30,7 +30,7 @@ class AppBarCutout
 		else
 			offset = parseFloat(offset);
 
-		offset = Math.floor(offset);
+		offset = Math.round(offset);
 
 		if (position.trim() === "" || ["top", "bottom"].indexOf(position) === -1)
 			position = "top";

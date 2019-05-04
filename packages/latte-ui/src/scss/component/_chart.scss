@@ -12,24 +12,6 @@ div.latte-charts
 	position: relative;
 	display: block;
 
-	> span.spinner
-	{
-		position: absolute;
-		display: none;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: var(--panel-spinner-background);
-		font-size: 2rem;
-		z-index: 10;
-	}
-
-	&.is-loading > span.spinner
-	{
-		display: inline-flex;
-	}
-
 	div.latte-charts-chart
 	{
 		position: relative;

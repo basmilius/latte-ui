@@ -19,7 +19,7 @@ div.page-header
 	position: relative;
 	display: block;
 	margin: calc(0px - var(--content-gutter)) calc(0px - var(--content-gutter)) 24px calc(0px - var(--content-gutter));
-	background: var(--panel-background);
+	background: RGB(var(--panel-background));
 	border-bottom: 1px solid var(--outline-color-secondary);
 
 	div.page-header-content

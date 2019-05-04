@@ -30,7 +30,7 @@ class AppBarCutout
 		else
 			offset = parseFloat(offset);
 
-		offset = Math.floor(offset);
+		offset = Math.round(offset);
 
 		if (position.trim() === "" || ["top", "bottom"].indexOf(position) === -1)
 			position = "top";
@@ -58,8 +58,8 @@ class AppBarCutout
 			offset + css / 2 + csg, geometry.height - csg
 		);
 		context.bezierCurveTo(
-			offset + (css / 2), geometry.height - (css / 2 + csg * 3),
-			offset - (css / 2), geometry.height - (css / 2 + csg * 3),
+			offset + (css / 2), geometry.height - (css / 2 + csg * 3) + 1,
+			offset - (css / 2), geometry.height - (css / 2 + csg * 3) + 1,
 			offset - (css / 2) - csg, geometry.height - csg
 		);
 		context.bezierCurveTo(
@@ -82,8 +82,8 @@ class AppBarCutout
 			offset - css / 2 - csg, csg
 		);
 		context.bezierCurveTo(
-			offset - (css / 2), css / 2 + csg * 3,
-			offset + (css / 2), css / 2 + csg * 3,
+			offset - (css / 2), css / 2 + csg * 3 - 1,
+			offset + (css / 2), css / 2 + csg * 3 - 1,
 			offset + (css / 2) + csg, csg
 		);
 		context.bezierCurveTo(

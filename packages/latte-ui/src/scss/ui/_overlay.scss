@@ -33,7 +33,7 @@ div.overlay
 
 	-webkit-overflow-scrolling: touch;
 
-	div.panel
+	.panel
 	{
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
@@ -42,7 +42,7 @@ div.overlay
 		will-change: opacity, transform;
 	}
 
-	> div.panel
+	> .panel
 	{
 		margin: auto;
 	}
@@ -71,7 +71,7 @@ div.overlay
 		{
 			padding: 0;
 
-			div.panel
+			.panel
 			{
 				min-height: 100% !important;
 				width: 100% !important;
@@ -82,7 +82,7 @@ div.overlay
 				{
 					position: sticky;
 					top: 0;
-					background: var(--panel-background);
+					background: #{latte-rgb(var(--panel-background))};
 					z-index: 2;
 				}
 
@@ -90,7 +90,7 @@ div.overlay
 				{
 					position: sticky;
 					bottom: 0;
-					background: var(--panel-background);
+					background: #{latte-rgb(var(--panel-background))};
 					z-index: 2;
 				}
 			}

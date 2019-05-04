@@ -31,11 +31,10 @@
 
 	&::before
 	{
-		position: relative;
 		display: block;
-		height: 14px;
-		margin: 3px;
-		width: 14px;
+		height: 12px;
+		margin: 4px;
+		width: 12px;
 		content: "";
 		background: var(--form-field-outline);
 		border-radius: 7px;

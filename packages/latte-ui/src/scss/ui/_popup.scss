@@ -24,7 +24,7 @@
 	box-shadow: var(--popup-elevation);
 	opacity: 0;
 	pointer-events: none;
-	transition: 180ms var(--ease-swift-out);
+	transition: 210ms var(--ease-swift-out);
 	transition-property: opacity, transform;
 	will-change: opacity, transform;
 	z-index: 3000;

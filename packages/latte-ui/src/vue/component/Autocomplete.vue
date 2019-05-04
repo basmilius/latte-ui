@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="latte-autocomplete">
+	<div class="latte-autocomplete" :class="{'is-loading': isLoading}">
 		<div class="form-control" :disabled="disabled">
 
 			<template v-for="selection in values">
@@ -56,7 +56,7 @@
 				</nav>
 			</div>
 		</div>
-		<span class="spinner spinner-primary" v-if="isLoading"></span>
+		<span class="spinner spinner-primary"></span>
 	</div>
 
 </template>

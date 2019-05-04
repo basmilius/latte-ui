@@ -126,7 +126,7 @@
 .btn-contained
 {
 	--ripple-color: var(--btn-foreground);
-	--spinner-background: var(--btn-foreground);
+	--spinner-color: var(--btn-foreground);
 
 	background: #{latte-rgb(var(--btn-background))};
 	color: #{latte-rgb(var(--btn-foreground))};
@@ -151,7 +151,7 @@
 .btn-soft
 {
 	--ripple-color: var(--btn-background);
-	--spinner-background: var(--btn-background);
+	--spinner-color: var(--btn-background);
 
 	background: #{latte-rgba(var(--btn-background), .1)};
 	color: #{latte-rgb(var(--btn-background))};
@@ -159,7 +159,7 @@
 	&:hover,
 	&:focus
 	{
-		--spinner-background: var(--btn-foreground);
+		--spinner-color: var(--btn-foreground);
 
 		background: #{latte-rgb(var(--btn-background))};
 		color: #{latte-rgb(var(--btn-foreground))};
@@ -179,7 +179,7 @@
 .btn-text
 {
 	--ripple-color: var(--btn-background);
-	--spinner-background: var(--btn-background);
+	--spinner-color: var(--btn-background);
 
 	background: transparent;
 	color: #{latte-rgb(var(--btn-background))};

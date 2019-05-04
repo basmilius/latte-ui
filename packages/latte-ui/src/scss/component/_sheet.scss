@@ -31,7 +31,7 @@ div.sheet-content
 	display: flex;
 	align-items: stretch;
 	flex-flow: column nowrap;
-	background: var(--panel-background);
+	background: #{latte-rgb(var(--panel-background))};
 	color: var(--main-foreground);
 	pointer-events: all;
 

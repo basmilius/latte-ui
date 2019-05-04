@@ -22,15 +22,15 @@
 	--dark: 25, 26, 28;
 	--elevation-color: 127, 127, 127;
 
-	--main-background: #f9f9f9;
+	--main-background: rgb(249, 249, 249);
 	--main-background-rgb: 249, 249, 249;
 	--main-foreground: rgba(0, 0, 0, .87);
 	--main-foreground-rgb: 0, 0, 0;
 	--main-placeholder: rgba(0, 0, 0, .42);
 
-	--outline-color: #e8ebf2;
+	--outline-color: rgb(232, 235, 242);
 	--outline-color-rgb: 232, 235, 242;
-	--outline-color-secondary: #f3f6fb;
+	--outline-color-secondary: rgb(243, 246, 251);
 	--outline-color-secondary-rgb: 243, 246, 251;
 
 	@each $type, $color in $theme-colors
@@ -44,10 +44,4 @@ body.is-popup-opened
 {
 	overflow: hidden;
 	pointer-events: none;
-}
-
-html body
-{
-	margin: 0;
-	font-size: 1rem;
 }

@@ -19,7 +19,6 @@ $enable-transitions: false;
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/utilities/borders";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/embed";
 @import "~bootstrap/scss/utilities/flex";
@@ -27,11 +26,3 @@ $enable-transitions: false;
 @import "~bootstrap/scss/utilities/sizing";
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/visibility";
-
-.illustration
-{
-	position: relative;
-	display: block;
-	height: auto;
-	max-width: 100%;
-}

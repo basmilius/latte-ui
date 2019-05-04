@@ -13,14 +13,14 @@ footer.footer
 	display: block;
 	border-top: 2px solid var(--outline-color-secondary);
 
-	div.divider
+	.divider
 	{
 		--outline-color: var(--outline-color-secondary);
 
 		margin: 0;
 	}
 
-	nav.nav.nav-links a.nav-link
+	.nav.nav-links .nav-link
 	{
 		padding: 6px 0;
 		color: #{latte-rgba(var(--main-foreground-rgb), .6)};

@@ -9,11 +9,10 @@
 
 :root
 {
-	--panel-background: #ffffff;
+	--panel-background: 255, 255, 255;
 	--panel-elevation: #{elevation-generate(3)};
 	--panel-elevation-hover: #{elevation-generate(9)};
 	--panel-gutter: 30px;
-	--panel-spinner-background: rgba(255, 255, 255, .9);
 }
 
 .panel
@@ -30,7 +29,7 @@
 
 	&:not(.panel-blank)
 	{
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 		border-radius: var(--border-radius);
 	}
 
@@ -126,7 +125,7 @@ a.panel
 	{
 		position: sticky;
 		top: 0;
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 		z-index: 1;
 	}
 
@@ -225,26 +224,6 @@ a.panel
 .panel-rich-media-gutter + .panel-header
 {
 	margin-top: calc(var(--panel-gutter) / -2);
-}
-
-.panel > span.spinner
-{
-	position: absolute;
-	display: none;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: var(--panel-spinner-background);
-	border-radius: inherit;
-	color: #{latte-rgb(var(--color-primary))};
-	font-size: 2rem;
-	z-index: 2;
-}
-
-.panel.is-loading > span.spinner
-{
-	display: flex;
 }
 
 .panel-table

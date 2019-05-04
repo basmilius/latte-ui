@@ -23,7 +23,7 @@
 	user-select: none;
 }
 
-div.ripple-container
+.ripple-container
 {
 	position: absolute;
 	display: block;
@@ -42,7 +42,7 @@ div.ripple-container
 		overflow: visible;
 	}
 
-	div.ripple
+	.ripple
 	{
 		position: absolute;
 		display: block;

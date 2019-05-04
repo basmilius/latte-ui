@@ -125,7 +125,7 @@
 		position: relative;
 		display: flex;
 		flex-flow: column;
-		background: var(--panel-background);
+		background: RGB(var(--panel-background));
 	}
 
 	div#preview-panel
@@ -142,7 +142,7 @@
 		{
 			position: sticky;
 			top: var(--app-bar-height);
-			background: var(--panel-background);
+			background: RGB(var(--panel-background));
 			z-index: 1;
 		}
 

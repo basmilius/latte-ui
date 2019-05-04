@@ -93,7 +93,7 @@
 
 		</div>
 
-		<footer class="footer py-5" style="background: var(--panel-background)">
+		<footer class="footer py-5" style="background: rgb(var(--panel-background))">
 			<div class="content">
 				<div class="container">
 					<div class="row">

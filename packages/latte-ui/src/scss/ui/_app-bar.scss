@@ -32,7 +32,7 @@
 	--btn-background: var(--app-bar-foreground);
 	--btn-foreground: var(--app-bar-background);
 	--outline-color: #{latte-rgba(var(--app-bar-foreground), .1)};
-	--spinner-background: var(--app-bar-foreground);
+	--spinner-color: var(--app-bar-foreground);
 	--tabs-accent: var(--app-bar-foreground);
 	--tabs-foreground: var(--app-bar-foreground);
 
@@ -93,7 +93,7 @@
 	}
 }
 
-.app-bar div.divider
+.app-bar .divider
 {
 	height: 24px;
 
@@ -107,7 +107,7 @@
 {
 	--app-bar-elevation: none;
 
-	&:not(:last-child)
+	&:not(:last-child):not(:only-child)
 	{
 		border-bottom: var(--divider-size) solid var(--outline-color-secondary);
 	}
@@ -154,27 +154,17 @@
 	{
 		--border-radius: 0;
 		--btn-height: var(--app-bar-height);
+		--btn-icon-size: 36px;
 
 		margin: 0 var(--app-bar-gutter) 0 calc(0px - var(--app-bar-gutter));
 		width: var(--drawer-width-primary);
 		background: #{latte-rgb(var(--drawer-background-primary))};
 		pointer-events: none;
 
-		i.mdi
-		{
-			font-size: 36px;
-		}
-
 		i.mdi::before
 		{
 			content: "";
-			background:
-			{
-				image: var(--branding-logo);
-				position: center center;
-				repeat: no-repeat;
-				size: contain;
-			}
+			background: var(--branding-logo) no-repeat center center / contain;
 		}
 	}
 }

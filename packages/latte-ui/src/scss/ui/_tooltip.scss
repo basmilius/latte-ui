@@ -9,7 +9,7 @@
 
 :root
 {
-	--tooltip-background: rgba(var(--color-dark), .9);
+	--tooltip-background: rgba(var(--color-dark), .95);
 	--tooltip-foreground: rgb(var(--color-dark-foreground));
 }
 
@@ -27,7 +27,7 @@ div.tooltip
 	border-radius: var(--border-radius);
 	color: var(--tooltip-foreground);
 	pointer-events: none;
-	transition: opacity 240ms var(--ease-swift-out);
+	transition: opacity 210ms var(--ease-swift-out);
 	will-change: opacity;
 	z-index: 2147483647;
 

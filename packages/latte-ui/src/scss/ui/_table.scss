@@ -198,7 +198,7 @@ table.table
 		{
 			margin-top: -1px;
 			margin-bottom: -2px;
-			background: var(--panel-background);
+			background: #{latte-rgb(var(--panel-background))};
 			border-bottom: $border;
 		}
 	}

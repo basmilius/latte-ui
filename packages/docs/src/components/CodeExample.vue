@@ -133,7 +133,7 @@
 	div.code-example-code
 	{
 		padding: 30px;
-		background: var(--panel-background);
+		background: RGB(var(--panel-background));
 		border-bottom: 1px solid var(--outline-color-secondary);
 		z-index: 0;
 	}

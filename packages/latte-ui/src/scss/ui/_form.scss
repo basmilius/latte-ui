@@ -12,7 +12,7 @@
 	--form-field-outline: var(--outline-color);
 }
 
-div.form-group
+.form-group
 {
 	position: relative;
 	display: block;
@@ -25,25 +25,6 @@ div.form-group
 	+ div.form-group
 	{
 		margin-top: 1rem;
-	}
-
-	> span.spinner
-	{
-		position: absolute;
-		display: none;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: var(--panel-spinner-background);
-		color: var(--color-primary);
-		font-size: 2.5rem;
-		z-index: 2;
-	}
-
-	&.is-loading > span.spinner
-	{
-		display: inline-flex;
 	}
 }
 
@@ -84,7 +65,7 @@ label.col-form-label
 		width: var(--range-thumb-size);
 		margin-top: calc((var(--range-track-height) - var(--range-thumb-size)) / 2);
 		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid var(--panel-background);
+		border: 3px solid #{latte-rgb(var(--panel-background))};
 		border-radius: var(--range-thumb-size);
 		cursor: pointer;
 		transition: transform 120ms var(--ease-swift-out);
@@ -110,7 +91,7 @@ label.col-form-label
 		height: calc(var(--range-thumb-size) - 6px);
 		width: calc(var(--range-thumb-size) - 6px);
 		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid var(--panel-background);
+		border: 3px solid #{latte-rgb(var(--panel-background))};
 		border-radius: var(--range-thumb-size);
 		cursor: pointer;
 		transition: transform 120ms var(--ease-swift-out);
@@ -138,7 +119,7 @@ label.col-form-label
 		width: var(--range-thumb-size);
 		margin-top: 0;
 		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid var(--panel-background);
+		border: 3px solid #{latte-rgb(var(--panel-background))};
 		border-radius: var(--range-thumb-size);
 		cursor: pointer;
 		transition: transform 120ms var(--ease-swift-out);
@@ -211,7 +192,7 @@ label.col-form-label
 
 	option
 	{
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 	}
 }
 

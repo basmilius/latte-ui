@@ -74,7 +74,7 @@
 	{
 		height: calc(var(--arrow-size) + 3px);
 		width: var(--arrow-size);
-		background: var(--panel-background);
+		background: #{latte-rgb(var(--panel-background))};
 	}
 }
 

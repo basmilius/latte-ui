@@ -1,0 +1,71 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.border
+{
+	border: var(--divider-size) solid var(--outline-color) !important;
+}
+
+.border-top
+{
+	border-top: var(--divider-size) solid var(--outline-color) !important;
+}
+
+.border-right
+{
+	border-right: var(--divider-size) solid var(--outline-color) !important;
+}
+
+.border-bottom
+{
+	border-bottom: var(--divider-size) solid var(--outline-color) !important;
+}
+
+.border-left
+{
+	border-left: var(--divider-size) solid var(--outline-color) !important;
+}
+
+.border-0
+{
+	border: 0 !important;
+}
+
+.border-top-0
+{
+	border-top: 0 !important;
+}
+
+.border-right-0
+{
+	border-right: 0 !important;
+}
+
+.border-bottom-0
+{
+	border-bottom: 0 !important;
+}
+
+.border-left-0
+{
+	border-left: 0 !important;
+}
+
+@each $type in $theme-color-types
+{
+	.border-#{$type}
+	{
+		border-color: #{latte-rgb(var(--color-#{$type}))};
+	}
+}
+
+.border-white
+{
+	border-color: $white !important;
+}

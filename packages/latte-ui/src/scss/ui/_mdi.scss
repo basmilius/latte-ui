@@ -13,23 +13,10 @@
 	--mdi-foreground: #{latte-rgb(var(--color-primary-foreground))};
 }
 
-i.mdi.mdi-branding
+i.mdi.mdi-branding::before
 {
-	flex: 0 0 1em;
-
-	&::before
-	{
-		height: 1em;
-		width: 1em;
-		content: " ";
-		background:
-		{
-			image: var(--branding-logo);
-			position: center center;
-			repeat: no-repeat;
-			size: contain;
-		}
-	}
+	content: "";
+	background: var(--branding-logo) no-repeat center center / contain;
 }
 
 i.mdi.latte-sorting

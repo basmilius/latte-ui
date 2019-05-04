@@ -14,7 +14,7 @@
 	width: 1em;
 	background:
 	{
-		color: var(--panel-background);
+		color: #{latte-rgb(var(--panel-background))};
 		position: center center;
 		repeat: no-repeat;
 		size: cover;
@@ -36,7 +36,7 @@
 		height: 1em;
 		margin-left: -.3em;
 		width: 1em;
-		box-shadow: 0 0 0 .1em var(--avatar-strip-background, var(--panel-background));
+		box-shadow: 0 0 0 .1em var(--avatar-strip-background, #{latte-rgb(var(--panel-background))});
 		transition: all 180ms var(--ease-swift-out);
 
 		&:first-child
