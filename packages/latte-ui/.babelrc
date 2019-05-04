@@ -1,12 +1,13 @@
 {
-	"presets": [
-		[
-			"@babel/preset-env",
-			{
-				"corejs": "3",
-				"modules": false,
-				"useBuiltIns": "entry"
-			}
-		]
-	]
+	"presets": [["minify", {
+		"mangle": {
+			"exclude": ["Latte", "LatteUI"]
+		},
+		"unsafe": {
+			"typeConstructors": false
+		},
+		"keepFnName": false,
+		"removeConsole": true,
+		"removeDebugger": true
+	}]]
 }

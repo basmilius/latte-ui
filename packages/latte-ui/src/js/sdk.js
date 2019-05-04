@@ -18,13 +18,13 @@ import operators from "./operators";
 import ui from "./ui";
 import util from "./util"
 
-import pkg from "../../package.json";
+import { author, description, name, version } from "../../package.json";
 
 export default {
-	author: pkg.author,
-	description: pkg.description,
-	name: pkg.name,
-	version: pkg.version,
+	author: author,
+	description: description,
+	name: name,
+	version: version,
 
 	action,
 	api,

@@ -81,16 +81,7 @@
 
 				return this.title.replace(new RegExp("\\${([a-zA-Z0-9_.\\[\\]]+)}"), (match, contents) =>
 				{
-					return new Function(`
-						try
-						{
-							return new Intl.NumberFormat(navigator.language).format(this.${contents});
-						}
-						catch(err)
-						{
-							return "";
-						}
-					`).call(this);
+					return new Function(`return new Intl.NumberFormat(navigator.language).format(this.${contents});`).call(this);
 				});
 			}
 

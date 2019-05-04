@@ -9,15 +9,13 @@
 
 const postcss = require("rollup-plugin-postcss");
 
-const babel = require("rollup-plugin-babel");
-const buble = require("rollup-plugin-buble");
+const babelMinify = require("rollup-plugin-babel-minify");
 const commonjs = require("rollup-plugin-commonjs");
 const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
 const postCssUrl = require("postcss-url");
-const uglify = require("rollup-plugin-uglify").uglify;
 const vue = require("rollup-plugin-vue");
 
 const pkg = require("./package.json");
@@ -86,22 +84,29 @@ export default {
 
 		commonjs(),
 
-		babel({
-			exclude: /node_modules/
-		}),
-
-		buble(),
-
-		uglify({
-			compress: {
-				drop_console: true,
-				passes: 1,
-				toplevel: true
-			},
-			mangle: {
-				toplevel: true
-			},
-			sourcemap: true
+		babelMinify({
+			comments: false,
+			plugins: [
+				"transform-minify-booleans",
+				"minify-builtins",
+				"transform-inline-consecutive-adds",
+				"minify-constant-folding",
+				"minify-guarded-expressions",
+				"minify-infinity",
+				"transform-member-expression-literals",
+				"transform-merge-sibling-variables",
+				"minify-numeric-literals",
+				"transform-property-literals",
+				"transform-regexp-constructors",
+				"transform-remove-console",
+				"transform-remove-debugger",
+				"transform-remove-undefined",
+				"minify-replace",
+				"minify-simplify",
+				"transform-simplify-comparison-operators",
+				"minify-type-constructors",
+				"transform-undefined-to-void"
+			]
 		}),
 
 		copy([
