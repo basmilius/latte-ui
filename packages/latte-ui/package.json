@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.6.0-beta.6",
+	"version": "1.6.0-beta.7",
 	"description": "UI Library of Latte Framework.",
 	"main": "src/index.js",
 	"scripts": {
