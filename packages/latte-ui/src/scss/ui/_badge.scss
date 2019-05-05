@@ -9,6 +9,8 @@
 
 .badge
 {
+	--spinner-color: var(--badge-color);
+
 	display: inline-flex;
 	padding: 6px 9px;
 	align-items: center;
@@ -69,8 +71,8 @@
 
 	.spinner
 	{
-		margin: -6px -6px -6px -10px;
-		font-size: 20px;
+		margin: -6px .5rem -6px 0;
+		font-size: 18px;
 	}
 }
 
