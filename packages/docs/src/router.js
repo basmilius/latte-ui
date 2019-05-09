@@ -193,6 +193,10 @@ const router = new Router({
 			]
 		},
 		{
+			path: "/example/app",
+			component: () => import("./views/examples/App/AppExample.vue")
+		},
+		{
 			path: "/example/music",
 			component: () => import("./views/examples/Music/MusicExample.vue")
 		},

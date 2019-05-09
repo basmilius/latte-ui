@@ -19,12 +19,13 @@
 {
 	position: relative;
 	display: flex;
+	flex: 1 1 auto;
 	background: #{latte-rgba(var(--bottom-nav-background), var(--bottom-nav-alpha))};
 	box-shadow: var(--bottom-nav-elevation);
 	color: #{latte-rgb(var(--bottom-nav-foreground))};
 	overflow: hidden;
 
-	.btn-action
+	.btn
 	{
 		--border-radius: 0;
 		--btn-background: var(--bottom-nav-foreground);
@@ -32,9 +33,13 @@
 		--ripple-center: true;
 		--ripple-clip: false;
 
+		opacity: .5;
+	}
+
+	.btn-action
+	{
 		min-width: unset;
 		flex: 1 1 0;
-		opacity: .5;
 		transition: all 240ms var(--ease-swift-out);
 		will-change: opacity;
 
@@ -87,6 +92,41 @@
 					height: 1em;
 					opacity: 1;
 				}
+			}
+		}
+	}
+
+	&.bottom-nav-side
+	{
+		flex: 0 0 auto;
+		flex-flow: column;
+		justify-content: center;
+		width: 72px;
+
+		&::after
+		{
+			position: absolute;
+			display: block;
+			top: 0;
+			right: 0;
+			width: 2px;
+			height: var(--bottom-nav-ind-height);
+			content: "";
+			background: #{latte-rgb(var(--bottom-nav-foreground))};
+			transform: translate3d(0, var(--bottom-nav-ind-pos), 0);
+			transition: all 330ms var(--ease-swift-out);
+			will-change: height, transform;
+		}
+
+		.btn
+		{
+			--btn-height: 84px;
+
+			flex: 0 0 auto;
+
+			span
+			{
+				font-size: .8rem;
 			}
 		}
 	}

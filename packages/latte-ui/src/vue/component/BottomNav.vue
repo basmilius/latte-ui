@@ -1,6 +1,6 @@
 <template>
 
-	<nav class="bottom-nav" @click="onClick">
+	<nav class="bottom-nav" :class="{'bottom-nav-shifting': isShifting, 'bottom-nav-side': isSide}" @click="onClick">
 		<slot></slot>
 	</nav>
 
@@ -16,6 +16,18 @@
 
 		props: {
 
+			isShifting: {
+				default: false,
+				required: false,
+				type: Boolean
+			},
+
+			isSide: {
+				default: false,
+				required: false,
+				type: Boolean
+			},
+
 			value: {
 				default: 0,
 				required: false,
@@ -27,7 +39,18 @@
 		mounted()
 		{
 			this.deactivateItems();
-			this.activateItem(this.$el.children[this.value]);
+			this.activateItem(this.items[this.value]);
+		},
+
+		computed: {
+
+			items()
+			{
+				return Array.from(this.$el.children)
+					.filter(c => c.classList.contains("btn-action"))
+					.filter(c => !c.disabled);
+			}
+
 		},
 
 		methods: {
@@ -35,6 +58,12 @@
 			activateItem(item)
 			{
 				item.classList.add("is-active");
+
+				const rootRect = this.$el.getBoundingClientRect();
+				const itemRect = item.getBoundingClientRect();
+
+				this.$el.style.setProperty("--bottom-nav-ind-height", `${itemRect.height}px`);
+				this.$el.style.setProperty("--bottom-nav-ind-pos", `${itemRect.top - rootRect.top}px`);
 			},
 
 			deactivateItems()
@@ -45,6 +74,9 @@
 			onClick(evt)
 			{
 				const item = closest(evt.target, ".btn-action");
+
+				if (item === null)
+					return;
 
 				this.deactivateItems();
 				this.activateItem(item);
@@ -59,7 +91,7 @@
 			value()
 			{
 				this.deactivateItems();
-				this.activateItem(this.$el.children[this.value]);
+				this.activateItem(this.items[this.value]);
 			}
 
 		}
