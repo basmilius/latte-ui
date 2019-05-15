@@ -7,12 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
-class ButtonContainedBackgroundPaintWorklet
+class ButtonBackgroundPaintWorklet
 {
 
 	static get inputProperties()
 	{
-		return ["--btn-background", "--btn-foreground", "--btn-contained-hover-state"];
+		return ["--btn-background", "--btn-foreground", "--btn-hover-state"];
 	}
 
 	paint(context, geometry, properties)
@@ -22,9 +22,9 @@ class ButtonContainedBackgroundPaintWorklet
 		context.rect(0, 0, geometry.width, geometry.height);
 		context.fill();
 
-		if (properties.get("--btn-contained-hover-state") > 0)
+		if (properties.get("--btn-hover-state") > 0)
 		{
-			context.fillStyle = `rgba(${properties.get("--btn-foreground")}, ${properties.get("--btn-contained-hover-state")})`;
+			context.fillStyle = `rgba(${properties.get("--btn-foreground")}, ${properties.get("--btn-hover-state")})`;
 			context.beginPath();
 			context.rect(0, 0, geometry.width, geometry.height);
 			context.fill();
@@ -33,4 +33,4 @@ class ButtonContainedBackgroundPaintWorklet
 
 }
 
-registerPaint("btn-contained-background", ButtonContainedBackgroundPaintWorklet);
+registerPaint("btn-background", ButtonBackgroundPaintWorklet);

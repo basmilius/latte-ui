@@ -11,15 +11,21 @@ import { getLattePath } from "../util/dom";
 
 function registerCSSPaintWorklets()
 {
-	// noinspection JSIgnoredPromiseFromCall
-	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/app-bar-cutout.js");
+	document.body.classList.add("css-paint-api");
+
+	let path = getLattePath();
 
 	// noinspection JSIgnoredPromiseFromCall
-	CSS.paintWorklet.addModule(getLattePath() + "worklet/paint/btn-contained-background.js");
+	CSS.paintWorklet.addModule(`${path}worklet/paint/app-bar-cutout.js`);
+
+	// noinspection JSIgnoredPromiseFromCall
+	CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`);
 }
 
 function registerCSSProperties()
 {
+	document.body.classList.add("css-props-values");
+
 	CSS.registerProperty({
 		name: "--app-bar-alpha",
 		syntax: "<number>",
@@ -35,7 +41,7 @@ function registerCSSProperties()
 	});
 
 	CSS.registerProperty({
-		name: "--btn-contained-hover-state",
+		name: "--btn-hover-state",
 		syntax: "<number>",
 		inherits: false,
 		initialValue: 0

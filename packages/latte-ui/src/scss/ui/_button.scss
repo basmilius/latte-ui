@@ -13,6 +13,7 @@
 	--btn-foreground: var(--color-primary-foreground);
 	--btn-font-size: 1rem;
 	--btn-height: 36px;
+	--btn-hover-state: 0;
 	--btn-icon-size: 24px;
 	--btn-padding: 6px 15px;
 }
@@ -36,9 +37,9 @@
 	text-align: center;
 	text-decoration: none;
 	transition: 150ms var(--ease-swift-out);
-	transition-property: background, color, --btn-contained-hover-state;
+	transition-property: background, color, --btn-hover-state;
 	vertical-align: middle;
-	will-change: background, color, --btn-contained-hover-state;
+	will-change: background, color, --btn-hover-state;
 
 	&:hover
 	{
@@ -125,74 +126,84 @@
 
 .btn-contained
 {
+	--btn-bg: #{latte-rgb(var(--btn-background))};
 	--ripple-color: var(--btn-foreground);
 	--spinner-color: var(--btn-foreground);
 
-	background: #{latte-rgb(var(--btn-background))};
+	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-foreground))};
 
-	@supports(background: paint(btn-contained-background))
+	@at-root .css-paint-api &
 	{
-		background: paint(btn-contained-background);
+		--btn-bg: paint(btn-background);
 	}
 
 	&:hover,
 	&:focus
 	{
-		--btn-contained-hover-state: .1;
+		--btn-hover-state: .1;
 	}
 
 	&:active
 	{
-		--btn-contained-hover-state: .2;
+		--btn-hover-state: .2;
 	}
 }
 
 .btn-soft
 {
+	--btn-bg: #{latte-rgba(var(--btn-background), calc(1 - var(--btn-hover-state)))};
+	--btn-hover-state: .9;
 	--ripple-color: var(--btn-background);
 	--spinner-color: var(--btn-background);
 
-	background: #{latte-rgba(var(--btn-background), .1)};
+	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
+
+	@at-root .css-paint-api &
+	{
+		--btn-bg: paint(btn-background);
+	}
 
 	&:hover,
 	&:focus
 	{
+		--btn-hover-state: 0;
 		--spinner-color: var(--btn-foreground);
 
-		background: #{latte-rgb(var(--btn-background))};
 		color: #{latte-rgb(var(--btn-foreground))};
-
-		@supports(background: paint(btn-contained-background))
-		{
-			background: paint(btn-contained-background);
-		}
 	}
 
 	&:active
 	{
-		--btn-contained-hover-state: .2;
+		--btn-hover-state: .2;
 	}
 }
 
 .btn-text
 {
+	--btn-bg: #{latte-rgba(var(--btn-background), calc(1 - var(--btn-hover-state)))};
+	--btn-hover-state: 1;
 	--ripple-color: var(--btn-background);
 	--spinner-color: var(--btn-background);
 
-	background: transparent;
+	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
+
+	@at-root .css-paint-api &
+	{
+		--btn-bg: paint(btn-background);
+	}
 
 	&:hover,
 	&:focus
 	{
-		background: #{latte-rgba(var(--btn-background), .1)};
+		--btn-hover-state: .9;
 	}
 
 	&:active
 	{
-		background: #{latte-rgba(var(--btn-background), .2)};
+		--btn-hover-state: .8;
 	}
 
 	&.btn-icon.is-ripple
