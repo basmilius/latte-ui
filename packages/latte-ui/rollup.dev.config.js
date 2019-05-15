@@ -14,7 +14,7 @@ const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
-const postCssUrl = require("postcss-url");
+const postcssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
 
 const pkg = require("./package.json");
@@ -56,7 +56,7 @@ export default {
 			minimize: false,
 			plugins: [
 
-				postCssUrl({
+				postcssUrl({
 					url: "inline"
 				}),
 

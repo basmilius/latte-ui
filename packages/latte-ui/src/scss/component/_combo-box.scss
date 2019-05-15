@@ -1,0 +1,45 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+div.combo-box
+{
+	align-items: center;
+	padding: 0 16px 0 0;
+	z-index: unset;
+
+	a.combo-box-selection
+	{
+		flex: 1 1 auto;
+		pointer-events: none;
+	}
+
+	button.form-control-suffix
+	{
+		color: rgba(var(--color-dark), .5);
+		pointer-events: none;
+	}
+
+	div.popup
+	{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		transition: all 180ms var(--ease-swift-out);
+		will-change: opacity, transform;
+		z-index: 10;
+
+		&:not(.is-open)
+		{
+			opacity: 0;
+			pointer-events: none;
+			transform: translate3d(0, 1rem, 0);
+		}
+	}
+}

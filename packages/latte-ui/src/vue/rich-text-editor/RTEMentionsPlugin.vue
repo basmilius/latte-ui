@@ -150,13 +150,3 @@
 	}
 
 </script>
-
-<style lang="scss">
-
-	div.rich-text-editor span.rte-mention
-	{
-		color: RGB(var(--color-primary));
-		font-weight: 500;
-	}
-
-</style>

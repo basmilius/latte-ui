@@ -1,0 +1,43 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--swiper-item-padding: 0;
+	--swiper-item-width: 100%;
+	--swiper-view-padding: 0;
+}
+
+div.swiper
+{
+	position: relative;
+	display: block;
+	overflow: hidden;
+
+	div.swiper-body
+	{
+		position: relative;
+		display: flex;
+		padding: var(--swiper-view-padding);
+		flex-flow: row nowrap;
+		transition: all 420ms var(--ease-deceleration-curve);
+		will-change: transform;
+
+		> *
+		{
+			margin: var(--swiper-item-padding);
+			flex: 0 0 var(--swiper-item-width);
+		}
+	}
+
+	&.is-dragging div.swiper-body
+	{
+		transition: none;
+	}
+}

@@ -15,11 +15,21 @@ const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
-const postCssUrl = require("postcss-url");
+const postcssBanner = require("postcss-banner");
+const postcssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
 
 const pkg = require("./package.json");
 const external = Object.keys(pkg.dependencies);
+
+const banner = `/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * 
+ * This file is part of the Latte UI package.
+ * 
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */`;
 
 export default {
 	input: "src/js/app.js",
@@ -45,6 +55,13 @@ export default {
 			browser: true
 		}),
 
+		vue({
+			compileTemplate: true,
+			template: {
+				isProduction: true
+			}
+		}),
+
 		postcss({
 			config: false,
 			extensions: [".scss"],
@@ -52,7 +69,7 @@ export default {
 			minimize: true,
 			plugins: [
 
-				postCssUrl({
+				postcssUrl({
 					url: "inline"
 				}),
 
@@ -65,6 +82,12 @@ export default {
 							removeAll: true
 						}
 					}]
+				}),
+
+				postcssBanner({
+					banner: banner.substr(3, banner.length - 6),
+					important: true,
+					inline: true
 				})
 
 			],
@@ -72,19 +95,11 @@ export default {
 			use: ["sass"]
 		}),
 
-		vue({
-			compileTemplate: true,
-			template: {
-				compilerOptions: {
-					whitespace: "condense"
-				},
-				isProduction: true
-			}
-		}),
-
 		commonjs(),
 
 		babelMinify({
+			banner: banner,
+			bannerNewLine: true,
 			comments: false,
 			plugins: [
 				"transform-minify-booleans",
