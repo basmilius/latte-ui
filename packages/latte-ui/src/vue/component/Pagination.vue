@@ -21,11 +21,9 @@
 
 				<latte-popup :associate-with="$refs.entriesButton" :margin-y="9">
 					<nav class="nav nav-list">
-						<a class="nav-link" data-close @click="$emit('limit', 5)"><span>{{ "@0 entries"|i18n("latte-ui", 5) }}</span></a>
-						<a class="nav-link" data-close @click="$emit('limit', 10)"><span>{{ "@0 entries"|i18n("latte-ui", 10) }}</span></a>
-						<a class="nav-link" data-close @click="$emit('limit', 20)"><span>{{ "@0 entries"|i18n("latte-ui", 20) }}</span></a>
-						<a class="nav-link" data-close @click="$emit('limit', 50)"><span>{{ "@0 entries"|i18n("latte-ui", 50) }}</span></a>
-						<a class="nav-link" data-close @click="$emit('limit', 100)"><span>{{ "@0 entries"|i18n("latte-ui", 100) }}</span></a>
+						<template v-for="l of limits">
+							<latte-ripple as="a" class="nav-link" data-close @click="$emit('limit', l)"><span>{{ "@0 entries"|i18n("latte-ui", l) }}</span></latte-ripple>
+						</template>
 					</nav>
 				</latte-popup>
 
@@ -116,6 +114,13 @@
 
 		},
 
+		data()
+		{
+			return {
+				limits: [5, 10, 20, 50, 100]
+			};
+		},
+
 		computed: {
 
 			currentPage()
@@ -141,7 +146,7 @@
 
 				if (this.totalPages === (this.sizeEnd + this.sizeMid + 2))
 				{
-					for(let n = 1; n <= total; n++)
+					for (let n = 1; n <= total; n++)
 						pages.push(n);
 				}
 				else
