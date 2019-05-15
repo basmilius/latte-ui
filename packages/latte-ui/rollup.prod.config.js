@@ -9,7 +9,7 @@
 
 const postcss = require("rollup-plugin-postcss");
 
-const babelMinify = require("rollup-plugin-babel-minify");
+const babelMinify = require("./rollup/babel-minify").babelMinify;
 const commonjs = require("rollup-plugin-commonjs");
 const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");

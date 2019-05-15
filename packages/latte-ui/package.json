@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.6.0",
+	"version": "1.6.1",
 	"description": "UI Library of Latte Framework.",
 	"main": "src/index.js",
 	"scripts": {
@@ -24,6 +24,11 @@
 	},
 	"homepage": "https://latte-ui.com",
 	"devDependencies": {
+		"@babel/core": "^7.4.4",
+		"@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/preset-env": "^7.4.4",
+		"@comandeer/babel-plugin-banner": "^4.1.0",
 		"babel-plugin-minify-builtins": "^0.5.0",
 		"babel-plugin-minify-constant-folding": "^0.5.0",
 		"babel-plugin-minify-guarded-expressions": "^0.4.3",
@@ -44,6 +49,7 @@
 		"babel-plugin-transform-remove-undefined": "^0.5.0",
 		"babel-plugin-transform-simplify-comparison-operators": "^6.9.4",
 		"babel-plugin-transform-undefined-to-void": "^6.9.4",
+		"babel-preset-minify": "^0.5.0",
 		"chokidar": "^3.0.0",
 		"core-js": "^3.0.1",
 		"cssnano": "^4.1.10",
@@ -52,7 +58,6 @@
 		"postcss-banner": "^3.0.1",
 		"postcss-url": "^8.0.0",
 		"rollup": "^1.11.0",
-		"rollup-plugin-babel-minify": "^8.0.0",
 		"rollup-plugin-commonjs": "^9.3.4",
 		"rollup-plugin-copy-glob": "^0.3.0",
 		"rollup-plugin-json": "^4.0.0",
@@ -60,6 +65,7 @@
 		"rollup-plugin-postcss": "^2.0.3",
 		"rollup-plugin-url": "^2.2.1",
 		"rollup-plugin-vue": "^5.0.0",
+		"sourcemap-codec": "^1.4.4",
 		"vue-template-compiler": "^2.6.10"
 	},
 	"dependencies": {

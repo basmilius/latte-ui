@@ -193,7 +193,8 @@ export function live(root, selector, event, callback, options = {passive: true})
 		if (!qs)
 			return;
 
-		let el = evt.target, index;
+		let el = evt.target;
+		let index;
 
 		while (el && ((index = Array.prototype.indexOf.call(qs, el)) === -1))
 			el = el.parentElement;
