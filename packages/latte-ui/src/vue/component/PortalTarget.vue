@@ -153,7 +153,7 @@
 
 				if (this.firstRender && (typeof this.transition === "object" && !this.transition.appear))
 				{
-					data.props = {name: "__notranstition__portal-vue__"};
+					data.props = {name: ""};
 
 					return data;
 				}

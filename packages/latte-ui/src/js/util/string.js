@@ -32,7 +32,7 @@ export function commaCommaAnd(strs)
  */
 export function isNullOrWhitespace(str)
 {
-	if (typeof str === "undefined" || str === null)
+	if (!str)
 		return true;
 
 	return str.replace(/\s/g, '').length < 1;

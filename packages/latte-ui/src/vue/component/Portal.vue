@@ -9,8 +9,11 @@
 
 <script>
 
+	import Vue from "vue";
+
 	import wormhole from "../../js/util/portal/wormhole";
 	import { default as PortalTarget } from "./PortalTarget.vue";
+	import { extractAttributes } from "../../js/util/portal/util";
 
 	let portalId = 0;
 
@@ -98,7 +101,7 @@
 				this.$options.abstract = false;
 		},
 
-		render(ce)
+		render(h)
 		{
 			const children = this.$slots.default || this.$scopedSlots.default || [];
 
@@ -106,19 +109,11 @@
 			{
 				this.$options.abstract = true;
 
-				return children.length <= 1 && this.slim ? children[0] : ce(this.tag, {
-					class: ["latte-portal"]
-				}, this.normalizeChildren(children));
+				return children.length <= 1 && this.slim ? children[0] : h(this.tag, {class: ["latte-portal"]}, this.normalizeChildren(children));
 			}
 			else
 			{
-				return ce(this.tag, {
-					class: ["latte-portal"],
-					key: "latte-portal-placeholder",
-					style: {
-						display: "none"
-					}
-				}, []);
+				return h(this.tag, {class: ["latte-portal"], key: "latte-portal-placeholder", style: {display: "none"}}, []);
 			}
 		},
 
@@ -155,30 +150,26 @@
 				else
 					throw new Error("[LatteUI] <latte-portal/> value of targetEl must be of type String or HTMLElement.");
 
-				if (elm)
-				{
-					const newTarget = new Vue({
-
-						...PortalTarget,
-
-						parent: this,
-
-						propsData: {
-							attributes: extractAttributes(elm),
-							name: this.to,
-							tag: elm.tagName
-						}
-
-					});
-
-					newTarget.$mount(elm);
-
-					this.mountedComp = newTarget;
-				}
-				else
-				{
+				if (!elm)
 					throw new Error("[LatteUI] <latte-portal/>> The specified target was not found.");
-				}
+
+				const newTarget = new Vue({
+
+					...PortalTarget,
+
+					parent: this,
+
+					propsData: {
+						attributes: extractAttributes(elm),
+						name: this.to,
+						tag: elm.tagName
+					}
+
+				});
+
+				newTarget.$mount(elm);
+
+				this.mountedComp = newTarget;
 			},
 
 			normalizeChildren(children)

@@ -46,7 +46,7 @@ export function translate(domain, string, params = [])
 {
 	const translations = currentOptions.i18n;
 
-	if (translations === null || typeof translations[domain] === "undefined" || typeof translations[domain][string] === "undefined")
+	if (!translations[domain] || !translations[domain][string])
 		return replace(string, params);
 
 	return replace(translations[domain][string], params);

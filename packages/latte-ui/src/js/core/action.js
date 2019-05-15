@@ -65,6 +65,34 @@ class ActionSubscription
 }
 
 /**
+ * Initializes action stuff.
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.7.0
+ */
+export function initializeActions()
+{
+	window.addEventListener("hashchange", () => onHashChange(), false);
+	window.addEventListener("load", () => onHashChange(), false);
+
+	live(document.body, "[data-action]", "click", onAction, {passive: true});
+
+	on("latte:hash-change", parameters =>
+	{
+		const action = parameters.action;
+
+		delete parameters.action;
+
+		updateURLHash(parameters);
+
+		if (action === undefined || action === null)
+			return;
+
+		dispatch(action.value, action.vars);
+	});
+}
+
+/**
  * Dispatches an action.
  *
  * @param {String} action
@@ -77,7 +105,7 @@ class ActionSubscription
  */
 export function dispatch(action, data = undefined, el = undefined, evt = undefined)
 {
-	if (typeof actions[action] === "undefined")
+	if (!actions[action])
 		return;
 
 	actions[action].forEach(sub => sub.handle(data, el, evt));
@@ -94,7 +122,7 @@ export function dispatch(action, data = undefined, el = undefined, evt = undefin
  */
 export function on(action, callback)
 {
-	if (typeof actions[action] === "undefined")
+	if (!actions[action])
 		actions[action] = [];
 
 	const sub = new ActionSubscription(action, callback);
@@ -159,34 +187,12 @@ export function removeSavedFromQueryString()
 		history.replaceState(null, '', window.location.pathname || window.location.path);
 }
 
-function init()
-{
-	window.addEventListener("hashchange", () => onHashChange(), false);
-	window.addEventListener("load", () => onHashChange(), false);
-
-	live(document.body, "[data-action]", "click", onAction, {passive: true});
-
-	on("latte:hash-change", parameters =>
-	{
-		const action = parameters.action;
-
-		delete parameters.action;
-
-		updateURLHash(parameters);
-
-		if (action === undefined || action === null)
-			return;
-
-		dispatch(action.value, action.vars);
-	});
-}
-
 function onAction(element, evt)
 {
 	const action = element.dataset.action;
 	const actionData = element.dataset;
 
-	if (typeof actions[action] === "undefined")
+	if (!actions[action])
 		return;
 
 	actions[action].forEach(sub => sub.handle(actionData, element, evt));
@@ -235,11 +241,6 @@ function onHashChange()
 }
 
 export default {
-
 	dispatch,
-
 	on
-
 }
-
-init();

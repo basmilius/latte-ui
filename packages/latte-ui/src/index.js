@@ -9,7 +9,7 @@
 
 import LatteSDK from "./js/sdk";
 
-import { dispatch, on, removeSavedFromQueryString } from "./js/core/action";
+import { dispatch, initializeActions, on, removeSavedFromQueryString } from "./js/core/action";
 import { getOptions, interval, setOptions } from "./js/core";
 import { setCookie } from "./js/util/cookies";
 import { initializeHoudiniApis } from "./js/houdini";
@@ -26,7 +26,7 @@ export const DefaultOptions = Object.assign({}, {
 	i18n: {},
 	locale: navigator.language,
 	tickInterval: 250
-}, self.LatteOptions || {});
+}, self["LatteOptions"] || {});
 
 export const Latte = LatteSDK;
 
@@ -72,6 +72,7 @@ export const LatteUI = {
 		window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
 		window.addEventListener("scroll", () => this.onWindowScroll(), {passive: true});
 
+		initializeActions();
 		removeSavedFromQueryString();
 
 		if (window)

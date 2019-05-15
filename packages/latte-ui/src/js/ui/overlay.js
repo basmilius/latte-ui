@@ -17,7 +17,7 @@ export function close(name)
 
 export function find(name)
 {
-	if (typeof registry[name] === "undefined")
+	if (!registry[name])
 		throw new Error(`Overlay ${name} is not registred!`);
 
 	return registry[name];

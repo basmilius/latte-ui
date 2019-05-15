@@ -55,11 +55,7 @@ export function requestJson(url, options = {})
 }
 
 export default {
-
 	id,
-
 	request,
-
 	requestJson
-
 }

@@ -10,9 +10,7 @@
 import Vue from "vue"
 import { combinePassengers, freeze, stableSort } from "./util";
 
-const transports = {};
-
-export { transports }
+export const transports = {};
 
 export const Wormhole = Vue.extend({
 
