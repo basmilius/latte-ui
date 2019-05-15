@@ -173,32 +173,10 @@ const router = new Router({
 					]
 				},
 				{
-					path: "/examples",
-					component: () => import("./components/NestedRouterView.vue"),
-					children: [
-						{
-							path: "",
-							redirect: "/examples/app-contacts"
-						},
-						{
-							path: "app-contacts",
-							component: () => import("./views/examples/AppContacts.vue")
-						}
-					]
-				},
-				{
 					path: "/tests",
 					component: () => import("./views/Tests.vue")
 				}
 			]
-		},
-		{
-			path: "/example/app",
-			component: () => import("./views/examples/App/AppExample.vue")
-		},
-		{
-			path: "/example/music",
-			component: () => import("./views/examples/Music/MusicExample.vue")
 		},
 		{
 			path: "*",

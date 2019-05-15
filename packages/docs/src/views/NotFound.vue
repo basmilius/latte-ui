@@ -1,23 +1,22 @@
 <template>
 
-	<div class="container">
-		<div class="row py-5">
-			<div class="col-12 col-lg-5 align-self-center text-center text-lg-left">
+	<div class="d-flex vh-100 vw-100">
 
-				<h1 class="font-weight-bolder text-error mb-4">404</h1>
-				<p>
-					<strong>OOPS!</strong>
-					Something went wrong... We couldn't find the page you were looking for.
-				</p>
-				<button class="btn btn-soft btn-primary mt-4" @click="$router.push('/')"><i class="mdi mdi-home"></i><span>Go home</span></button>
-
+		<div class="panel m-auto pt-3" style="max-width: 100%; width: 420px">
+			<div class="panel-body text-center pb-0">
+				<img src="//cdn.mili.us/assets/emojione/svg/1f641.svg" alt="Slightly frowning face" height="96" width="96"/>
 			</div>
-			<div class="col-12 col-lg-7 align-self-center mt-5 mt-lg-0">
-
-				<latte-svg-undraw url="https://cdn.mili.us/assets/undraw.co/lost.svg" color="rgb(var(--color-primary))" class="illustration mx-5"></latte-svg-undraw>
-
+			<div class="panel-body border-top-0 text-center">
+				<h1 class="font-weight-bolder mb-1">404</h1>
+				<p>
+					<strong>OOPS!</strong> The requested page could not be found! Did you get the URL right?
+				</p>
+			</div>
+			<div class="panel-body border-top-0 pt-0">
+				<router-link as="router-link" tag="latte-ripple" to="/" class="btn btn-contained btn-pill btn-primary"><i class="mdi mdi-arrow-left-bold-circle"></i><span>Go Home</span></router-link>
 			</div>
 		</div>
+
 	</div>
 
 </template>
@@ -31,31 +30,3 @@
 	}
 
 </script>
-
-<style lang="scss" scoped>
-
-	div.row
-	{
-		min-height: calc(100vh - var(--app-bar-height) - (var(--content-gutter) * 2));
-	}
-
-	h1
-	{
-		font-size: 5rem;
-		line-height: 1em;
-	}
-
-	p
-	{
-		margin: 0;
-		font-size: 1.25rem;
-		opacity: .75;
-	}
-
-	.btn.btn-soft
-	{
-		--btn-height: 54px;
-		--btn-padding: 6px 24px;
-	}
-
-</style>
