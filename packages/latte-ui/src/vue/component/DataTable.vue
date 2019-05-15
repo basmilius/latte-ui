@@ -18,7 +18,7 @@
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
 
-						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('data-table', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
+						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
 					</div>
 				</th>
 				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
@@ -31,7 +31,7 @@
 			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width:42px"></th>
 				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
-					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('data-table')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 				</th>
 				<th v-if="hasActions"></th>
 			</slot>

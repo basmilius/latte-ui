@@ -11,7 +11,7 @@
 
 	<td class="actions">
 		<div class="column-content flex-row align-items-center pl-0">
-			<latte-button-dropdown :aria-label="'More options...'|i18n('data-table')" icon="dots-vertical">
+			<latte-button-dropdown :aria-label="'More options...'|i18n('latte-ui')" icon="dots-vertical">
 				<nav class="nav nav-list">
 					<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
 				</nav>
