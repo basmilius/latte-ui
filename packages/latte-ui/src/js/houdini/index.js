@@ -41,7 +41,14 @@ function registerCSSProperties()
 	});
 
 	CSS.registerProperty({
-		name: "--btn-hover-state",
+		name: "--btn-alpha",
+		syntax: "<number>",
+		inherits: false,
+		initialValue: 1
+	});
+
+	CSS.registerProperty({
+		name: "--btn-hover",
 		syntax: "<number>",
 		inherits: false,
 		initialValue: 0

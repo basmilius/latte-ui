@@ -12,19 +12,19 @@ class ButtonBackgroundPaintWorklet
 
 	static get inputProperties()
 	{
-		return ["--btn-background", "--btn-foreground", "--btn-hover-state"];
+		return ["--btn-background", "--btn-foreground", "--btn-alpha", "--btn-hover"];
 	}
 
 	paint(context, geometry, properties)
 	{
-		context.fillStyle = `rgb(${properties.get("--btn-background")})`;
+		context.fillStyle = `rgba(${properties.get("--btn-background")}, ${properties.get("--btn-alpha")})`;
 		context.beginPath();
 		context.rect(0, 0, geometry.width, geometry.height);
 		context.fill();
 
-		if (properties.get("--btn-hover-state") > 0)
+		if (properties.get("--btn-hover") > 0)
 		{
-			context.fillStyle = `rgba(${properties.get("--btn-foreground")}, ${properties.get("--btn-hover-state")})`;
+			context.fillStyle = `rgba(${properties.get("--btn-foreground")}, ${properties.get("--btn-hover")})`;
 			context.beginPath();
 			context.rect(0, 0, geometry.width, geometry.height);
 			context.fill();

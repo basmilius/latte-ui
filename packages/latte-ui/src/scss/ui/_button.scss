@@ -9,11 +9,12 @@
 
 :root
 {
+	--btn-alpha: 1;
 	--btn-background: var(--color-primary);
 	--btn-foreground: var(--color-primary-foreground);
 	--btn-font-size: 1rem;
 	--btn-height: 36px;
-	--btn-hover-state: 0;
+	--btn-hover: 0;
 	--btn-icon-size: 24px;
 	--btn-padding: 6px 15px;
 }
@@ -37,9 +38,9 @@
 	text-align: center;
 	text-decoration: none;
 	transition: 150ms var(--ease-swift-out);
-	transition-property: background, color, --btn-hover-state;
+	transition-property: background, color, --btn-alpha, --btn-hover;
 	vertical-align: middle;
-	will-change: background, color, --btn-hover-state;
+	will-change: background, color, --btn-alpha, --btn-hover;
 
 	&:hover
 	{
@@ -141,19 +142,19 @@
 	&:hover,
 	&:focus
 	{
-		--btn-hover-state: .1;
+		--btn-hover: .1;
 	}
 
 	&:active
 	{
-		--btn-hover-state: .2;
+		--btn-hover: .2;
 	}
 }
 
 .btn-soft
 {
-	--btn-bg: #{latte-rgba(var(--btn-background), calc(1 - var(--btn-hover-state)))};
-	--btn-hover-state: .9;
+	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
+	--btn-alpha: .1;
 	--ripple-color: var(--btn-background);
 	--spinner-color: var(--btn-background);
 
@@ -168,7 +169,8 @@
 	&:hover,
 	&:focus
 	{
-		--btn-hover-state: 0;
+		--btn-alpha: 1;
+		--btn-hover: .1;
 		--spinner-color: var(--btn-foreground);
 
 		color: #{latte-rgb(var(--btn-foreground))};
@@ -176,14 +178,15 @@
 
 	&:active
 	{
-		--btn-hover-state: .2;
+		--btn-alpha: 1;
+		--btn-hover: .2;
 	}
 }
 
 .btn-text
 {
-	--btn-bg: #{latte-rgba(var(--btn-background), calc(1 - var(--btn-hover-state)))};
-	--btn-hover-state: 1;
+	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
+	--btn-alpha: 0;
 	--ripple-color: var(--btn-background);
 	--spinner-color: var(--btn-background);
 
@@ -198,12 +201,12 @@
 	&:hover,
 	&:focus
 	{
-		--btn-hover-state: .9;
+		--btn-alpha: .1;
 	}
 
 	&:active
 	{
-		--btn-hover-state: .8;
+		--btn-alpha: .2;
 	}
 
 	&.btn-icon.is-ripple
