@@ -10,7 +10,7 @@
 				<nav class="nav nav-tabs px-5 d-none d-lg-flex">
 					<latte-ripple as="router-link" to="/" class="nav-link">Home</latte-ripple>
 					<latte-ripple as="router-link" to="/docs" class="nav-link">Documentation</latte-ripple>
-					<latte-ripple as="router-link" to="/examples" class="nav-link">Examples</latte-ripple>
+					<latte-ripple as="router-link" to="/tests" class="nav-link">Random tests</latte-ripple>
 				</nav>
 
 				<div class="d-flex align-items-center ml-auto">
@@ -31,7 +31,7 @@
 				<nav class="nav nav-tabs tabs-fill flex-grow-1">
 					<latte-ripple as="router-link" to="/" class="nav-link" style="flex-basis: 0">Home</latte-ripple>
 					<latte-ripple as="router-link" to="/docs" class="nav-link" style="flex-basis: 0">Documentation</latte-ripple>
-					<latte-ripple as="router-link" to="/examples" class="nav-link" style="flex-basis: 0">Examples</latte-ripple>
+					<latte-ripple as="router-link" to="/tests" class="nav-link" style="flex-basis: 0">Random tests</latte-ripple>
 				</nav>
 			</div>
 		</div>
