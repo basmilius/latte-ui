@@ -163,10 +163,6 @@ const router = new Router({
 								{
 									path: "utilities",
 									component: () => import("./views/docs/layout/Utilities.vue")
-								},
-								{
-									path: "variables",
-									component: () => import("./views/docs/layout/Variables.vue")
 								}
 							]
 						}

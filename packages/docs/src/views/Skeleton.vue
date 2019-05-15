@@ -49,7 +49,6 @@
 					<latte-ripple as="router-link" to="/docs/layout/grid-system" class="nav-link"><span>Grid system</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/typography" class="nav-link"><span>Typography</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/utilities" class="nav-link"><span>Utilities</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/layout/variables" class="nav-link"><span>Variables</span></latte-ripple>
 
 					<div class="divider divider-horizontal"></div>
 
