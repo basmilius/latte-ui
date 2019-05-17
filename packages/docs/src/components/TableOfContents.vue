@@ -2,10 +2,12 @@
 
 	<div class="panel">
 		<nav class="nav nav-list">
-			<div class="section">Table of contents</div>
+			<template v-for="element of elements">
+				<div class="divider divider-horizontal" v-if="element.isSeparator"></div>
 
-			<template v-for="heading of headings">
-				<latte-ripple as="a" class="nav-link" :class="{'pl-5': heading.type === 'h3'}" @click="goToElement(heading.el)"><span>{{ heading.title }}</span></latte-ripple>
+				<latte-ripple as="a" class="nav-link" :class="{'pl-5': element.type === 'h3'}" @click="goToElement(element.el)" v-else>
+					<span>{{ element.title }}</span>
+				</latte-ripple>
 			</template>
 		</nav>
 	</div>
@@ -21,19 +23,20 @@
 		data()
 		{
 			return {
-				headings: []
+				elements: []
 			};
 		},
 
 		mounted()
 		{
 			const page = document.querySelector("div.page");
-			const headings = Array.prototype.slice.call(page.querySelectorAll("h2,h3"));
+			const elements = Array.prototype.slice.call(page.querySelectorAll("h2,h3,.docs-separator"));
 
-			this.headings = headings.map(el => ({
+			this.elements = elements.map(el => ({
 				el,
 				title: el.textContent,
-				type: el.tagName.toLowerCase()
+				type: el.tagName.toLowerCase(),
+				isSeparator: el.classList.contains("docs-separator")
 			}));
 		},
 

@@ -49,3 +49,10 @@ div.page-header
 		opacity: .9;
 	}
 }
+
+.docs-separator
+{
+	--outline-color: var(--outline-color-secondary);
+
+	margin: 3rem 0 !important;
+}

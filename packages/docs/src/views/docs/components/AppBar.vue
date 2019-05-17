@@ -24,21 +24,21 @@
 					</CodeExample>
 
 					<CodeExample class="darker" title="Cutout" url="/snippets/components/app-bar/cutout.html">
-						<div class="notice notice-warning">
-							<i class="mdi mdi-alert"></i>
-							<p>
-								<strong>Note</strong>
-								This only works in browsers that support the CSS Paint API which is part of Houdini.
-							</p>
-						</div>
+						<template slot="header">
+							<span class="badge badge-warning">CSS Paint API</span>
+						</template>
 					</CodeExample>
 
 					<CodeExample class="darker" title="Panel" url="/snippets/components/app-bar/panel.html"></CodeExample>
 
+					<div class="divider divider-horizontal docs-separator"></div>
+
+					<Variables :vars="appBarVars"/>
+
 				</div>
 				<div class="col-12 col-lg-3">
 
-					<TableOfContents></TableOfContents>
+					<TableOfContents/>
 
 				</div>
 			</div>
@@ -53,15 +53,58 @@
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
 	import CodeExample from "../../../components/CodeExample";
+	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "AppBar",
 
 		components: {
+			Variables,
 			CodeExample,
 			PageHeader,
 			TableOfContents
+		},
+
+		data()
+		{
+			const computedStyle = window
+				.getComputedStyle(document.body);
+
+			return {
+				appBarVars: [
+					{
+						name: "--app-bar-alpha",
+						type: "int",
+						default: 1
+					},
+					{
+						name: "--app-bar-background",
+						type: "rgb",
+						default: computedStyle.getPropertyValue("--app-bar-background").split(",").map(c => parseInt(c))
+					},
+					{
+						name: "--app-bar-foreground",
+						type: "rgb",
+						default: computedStyle.getPropertyValue("--app-bar-foreground").split(",").map(c => parseInt(c))
+					},
+					{
+						name: "--app-bar-elevation",
+						type: "string",
+						default: computedStyle.getPropertyValue("--app-bar-elevation")
+					},
+					{
+						name: "--app-bar-gutter",
+						type: "string",
+						default: computedStyle.getPropertyValue("--app-bar-gutter")
+					},
+					{
+						name: "--app-bar-height",
+						type: "string",
+						default: computedStyle.getPropertyValue("--app-bar-height")
+					}
+				]
+			};
 		}
 
 	}

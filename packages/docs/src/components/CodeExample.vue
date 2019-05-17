@@ -1,7 +1,15 @@
 <template>
 
 	<div class="panel code-example-panel" :class="{'is-loading': isLoading}">
-		<div class="panel-header"><h2 class="panel-title mb-0">{{ title }}</h2></div>
+		<div class="panel-header">
+			<h2 class="panel-title mb-0">{{ title }}</h2>
+			<div class="ml-auto"></div>
+			<slot name="header"></slot>
+		</div>
+
+		<div class="panel-body" v-if="$slots.default">
+			<slot></slot>
+		</div>
 
 		<div class="code-example-preview">
 			<component :is="component" v-if="component !== null"></component>
@@ -9,10 +17,6 @@
 
 		<div class="code-example-code" v-if="showCode">
 			<CodeSnippet lang="html" v-if="code">{{ code }}</CodeSnippet>
-		</div>
-
-		<div class="panel-body" v-if="$slots.default">
-			<slot></slot>
 		</div>
 
 		<span class="spinner spinner-primary"></span>
@@ -129,7 +133,7 @@
 	{
 		padding: 30px;
 		background: RGB(var(--panel-background));
-		border-bottom: 1px solid var(--outline-color-secondary);
+		border-top: 1px solid var(--outline-color-secondary);
 		z-index: 0;
 	}
 
