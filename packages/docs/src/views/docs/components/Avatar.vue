@@ -11,9 +11,9 @@
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
 					<CodeExample title="Standalone" url="/snippets/components/avatar/avatar.html"></CodeExample>
+					<CodeExample title="Initials" url="/snippets/components/avatar/initials.html"></CodeExample>
 					<CodeExample title="Alternative corners" url="/snippets/components/avatar/radius.html"></CodeExample>
 					<CodeExample title="Strip" url="/snippets/components/avatar/strip.html"></CodeExample>
-					<CodeExample title="Initials" url="/snippets/components/avatar/strip.html"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
