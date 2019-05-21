@@ -17,3 +17,5 @@ declare interface CSS
 
 	registerProperty(options: CSSRegisterPropertyOptions): undefined;
 }
+
+declare function registerPaint(name: string, implementation: any): undefined;

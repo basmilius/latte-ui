@@ -72,9 +72,6 @@ export const LatteUI = {
 		window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
 		window.addEventListener("scroll", () => this.onWindowScroll(), {passive: true});
 
-		initializeActions();
-		removeSavedFromQueryString();
-
 		if (window)
 			window.Latte = LatteSDK;
 		else
@@ -99,7 +96,9 @@ export const LatteUI = {
 
 	onDOMContentLoaded()
 	{
+		initializeActions();
 		initializeUI();
+		removeSavedFromQueryString();
 	},
 
 	onSwitchTheme(data)

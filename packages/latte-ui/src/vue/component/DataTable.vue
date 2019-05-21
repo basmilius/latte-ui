@@ -9,7 +9,7 @@
 
 <template>
 
-	<table class="table table-hover mb-0" cellpadding="0" cellspacing="0">
+	<table class="table table-hover mb-0">
 		<thead>
 		<tr v-if="showHeader">
 			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">

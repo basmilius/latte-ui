@@ -465,10 +465,10 @@
 				if (this.innerWidth !== pos.width || this.innerHeight !== pos.height)
 					this.$emit("resize", this.id, pos.height, pos.width);
 
-				if (event.type === "resizeend" && (this.previousWidth !== this.innerWidth || this.previousHeight !== this.innerHeight))
+				if (evt.type === "resizeend" && (this.previousWidth !== this.innerWidth || this.previousHeight !== this.innerHeight))
 					this.$emit("resized", this.id, newSize.height, newSize.width);
 
-				eventBus.$emit("resizeEvent", event.type, this.id, this.innerX, this.innerY, pos.height, pos.width);
+				eventBus.$emit("resizeEvent", evt.type, this.id, this.innerX, this.innerY, pos.height, pos.width);
 			},
 
 			updateWidth(width, column)
