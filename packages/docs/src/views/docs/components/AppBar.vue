@@ -11,24 +11,18 @@
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
 					<CodeExample class="darker" title="Basic" url="/snippets/components/app-bar/basic.html"></CodeExample>
-
 					<CodeExample class="darker" title="Auto height" url="/snippets/components/app-bar/auto-height.html"></CodeExample>
-
 					<CodeExample class="darker" title="Flat & transparent" url="/snippets/components/app-bar/flat-transparent.html"></CodeExample>
-
 					<CodeExample class="darker" title="Multiple rows" url="/snippets/components/app-bar/rows.html"></CodeExample>
-
 					<CodeExample class="darker" title="Main app bar" url="/snippets/components/app-bar/main.html">
 						To make an app bar the primary one on your page, simply apply the <code>app-bar-main</code> class to it and it will
 						become sticky and gets a higher z-index.
 					</CodeExample>
-
 					<CodeExample class="darker" title="Cutout" url="/snippets/components/app-bar/cutout.html">
 						<template slot="header">
 							<span class="badge badge-warning">CSS Paint API</span>
 						</template>
 					</CodeExample>
-
 					<CodeExample class="darker" title="Panel" url="/snippets/components/app-bar/panel.html"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
@@ -60,10 +54,10 @@
 		name: "AppBar",
 
 		components: {
-			Variables,
 			CodeExample,
 			PageHeader,
-			TableOfContents
+			TableOfContents,
+			Variables
 		},
 
 		data()

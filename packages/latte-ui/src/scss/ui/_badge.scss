@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--badge-color: var(--color-primary);
+}
+
 .badge
 {
 	--spinner-color: var(--badge-color);
@@ -24,7 +29,9 @@
 	line-height: 1em;
 	text-align: center;
 	text-decoration: none;
+	transition: all 210ms var(--ease-swift-out);
 	vertical-align: middle;
+	will-change: background, box-shadow;
 
 	+ .badge
 	{

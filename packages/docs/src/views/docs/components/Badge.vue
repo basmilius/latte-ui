@@ -19,7 +19,14 @@
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
-					<CodeExample title="Badges" url="/snippets/components/badge/badge.html"></CodeExample>
+					<CodeExample title="Basic" url="/snippets/components/badge/basic.html"></CodeExample>
+					<CodeExample title="Clickable" url="/snippets/components/badge/clickable.html"></CodeExample>
+					<CodeExample title="Closable" url="/snippets/components/badge/closable.html"></CodeExample>
+					<CodeExample title="With spinner" url="/snippets/components/badge/with-spinner.html"></CodeExample>
+
+					<div class="divider divider-horizontal docs-separator"></div>
+
+					<Variables :vars="badgeVars"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -39,6 +46,7 @@
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
+	import Variables from "../../../components/Variables";
 
 	export default {
 
@@ -47,8 +55,22 @@
 		components: {
 			CodeExample,
 			PageHeader,
-			TableOfContents
+			TableOfContents,
+			Variables
+		},
+
+		data()
+		{
+			const computedStyle = window
+				.getComputedStyle(document.body);
+
+			return {
+				badgeVars: [
+					{name: "--badge-color", type: "rgb", default: computedStyle.getPropertyValue("--badge-color").split(",").map(c => parseInt(c))}
+				]
+			};
 		}
+
 	}
 
 </script>
