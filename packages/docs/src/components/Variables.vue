@@ -6,7 +6,7 @@
 			<thead>
 			<tr>
 				<th style="width: 270px">
-					<div class="column-content"><strong>Proeprty</strong></div>
+					<div class="column-content"><strong>Property</strong></div>
 				</th>
 				<th>
 					<div class="column-content"><strong>Default value</strong></div>
