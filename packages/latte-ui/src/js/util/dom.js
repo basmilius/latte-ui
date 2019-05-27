@@ -143,12 +143,12 @@ export function getLattePath()
 	if (lattePath !== null)
 		return lattePath;
 
-	const lattejs = document.querySelector(`script[src*="latte.js"]`);
+	const lattejs = document.querySelector(`script[src*="latte-ui"]`);
 
 	if (lattejs === null)
 		return lattePath = "/"; // We're going to play it save.
 
-	return lattePath = lattejs.getAttribute("src").split("latte.js")[0] || null;
+	return lattePath = lattejs.getAttribute("src").split(/latte-ui(\.app)?\.js/)[0] || null;
 }
 
 /**

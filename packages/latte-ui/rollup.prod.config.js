@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-const postcss = require("rollup-plugin-postcss");
+const deepMerge = require("./rollup/deep-merge");
 
 const babelMinify = require("./rollup/babel-minify").babelMinify;
 const commonjs = require("rollup-plugin-commonjs");
@@ -15,6 +15,7 @@ const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
+const postcss = require("rollup-plugin-postcss");
 const postcssBanner = require("postcss-banner");
 const postcssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
@@ -31,14 +32,28 @@ const banner = `/*!
  * LICENSE file that was distributed with this source code.
  */`;
 
-export default {
-	input: "src/js/app.js",
+const bundles = [
+	{
+		input: "src/js/index.js",
+		output: {
+			file: "dist/latte-ui.js",
+			name: "LatteUI"
+		}
+	},
+	{
+		input: "src/js/app.js",
+		output: {
+			file: "dist/latte-ui.app.js",
+			name: "LatteUI"
+		}
+	}
+];
+
+const defaultOptions = {
 	output: {
 		compact: true,
-		file: "dist/latte.js",
 		format: "umd",
 		indent: false,
-		name: "LatteUI",
 		sourcemap: true,
 		globals: {
 			"moment": "moment",
@@ -103,7 +118,7 @@ export default {
 			comments: false,
 			plugins: [
 				"transform-minify-booleans",
-				"minify-builtins",
+				// "minify-builtins",
 				"transform-inline-consecutive-adds",
 				"minify-constant-folding",
 				"minify-guarded-expressions",
@@ -132,3 +147,5 @@ export default {
 
 	]
 };
+
+export default bundles.map(bundle => deepMerge(defaultOptions, bundle));

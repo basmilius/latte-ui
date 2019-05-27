@@ -39,9 +39,6 @@ export const LatteUI = {
 	{
 		options = this.normalizeOptions(options);
 
-		if (typeof self.LatteRoot === "undefined")
-			self.LatteRoot = null;
-
 		Vue.prototype.$latte = LatteSDK;
 
 		Vue.mixin({

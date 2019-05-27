@@ -7,29 +7,43 @@
  * LICENSE file that was distributed with this source code.
  */
 
-const postcss = require("rollup-plugin-postcss");
+const deepMerge = require("./rollup/deep-merge");
 
 const commonjs = require("rollup-plugin-commonjs");
 const copy = require("rollup-plugin-copy-glob");
 const cssnano = require("cssnano");
 const json = require("rollup-plugin-json");
 const nodeResolve = require("rollup-plugin-node-resolve");
+const postcss = require("rollup-plugin-postcss");
 const postcssUrl = require("postcss-url");
 const vue = require("rollup-plugin-vue");
 
 const pkg = require("./package.json");
 const external = Object.keys(pkg.dependencies);
 
-export default {
-	input: "src/js/app.js",
+const bundles = [
+	{
+		input: "src/js/index.js",
+		output: {
+			file: "dist/latte-ui.js",
+			name: "LatteUI"
+		}
+	},
+	{
+		input: "src/js/app.js",
+		output: {
+			file: "dist/latte-ui.app.js",
+			name: "LatteUI"
+		}
+	}
+];
+const defaultOptions = {
 	output: {
-		file: "dist/latte.js",
 		format: "umd",
 		globals: {
 			"moment": "moment",
 			"vue": "Vue"
 		},
-		name: "LatteUI",
 		sourceMap: false,
 		treeshake: false
 	},
@@ -82,3 +96,5 @@ export default {
 
 	]
 };
+
+export default bundles.map(bundle => deepMerge(defaultOptions, bundle));
