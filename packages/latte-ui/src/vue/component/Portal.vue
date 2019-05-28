@@ -148,10 +148,10 @@
 				else if (target instanceof HTMLElement)
 					elm = target;
 				else
-					throw new Error("[LatteUI] <latte-portal/> value of targetEl must be of type String or HTMLElement.");
+					throw new Error("[LatteUI] <latte-portal> value of targetEl must be of type String or HTMLElement.");
 
 				if (!elm)
-					throw new Error("[LatteUI] <latte-portal/>> The specified target was not found.");
+					throw new Error("[LatteUI] <latte-portal> The specified target was not found.");
 
 				const newTarget = new Vue({
 

@@ -63,8 +63,8 @@
 
 		beforeCreate()
 		{
-			if (typeof Chart === "undefined")
-				throw new Error("[LatteUI] <latte-chart/> You must include chart.js on your page in order to use charts.")
+			if (typeof self.Chart === "undefined")
+				throw new Error("[LatteUI] <latte-chart> You must include chart.js on your page in order to use charts.")
 		},
 
 		mounted()
@@ -191,7 +191,7 @@
 				if (this.instance === null)
 				{
 					this.chartOptions = chart.options = deepMerge({}, tooltipOptions, chart.options, this.options);
-					this.instance = new Chart(canvas, chart);
+					this.instance = new self.Chart(canvas, chart);
 				}
 				else
 				{

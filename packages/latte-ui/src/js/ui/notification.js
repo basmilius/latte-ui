@@ -83,7 +83,7 @@ const Notification = Vue.extend({
 						},
 						class: ["btn", "btn-text", `btn-${button.color || "dark"}`],
 						on: {
-							click: () => this.close(button.id)
+							click: () => this.close.call(this, button.id)
 						}
 					}, [
 						conditionalRender(button.icon, () => h("i", {class: ["mdi", `mdi-${button.icon}`]})),

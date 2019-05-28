@@ -212,7 +212,7 @@
 				const noWrapper = !this.hasAttributes && this.slim;
 
 				if (noWrapper && this.children().length > 1)
-					throw new Error("[LatteUI] <latte-portal-target/> with slim option received more than one child element.");
+					throw new Error("[LatteUI] <latte-portal-target> with slim option received more than one child element.");
 
 				return noWrapper;
 			}

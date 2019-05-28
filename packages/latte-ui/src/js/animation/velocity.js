@@ -24,7 +24,12 @@ export class Velocity
 	{
 		this.onUpdate = defaultOnUpdateHandler;
 
+		/** @var {Number|undefined} */
 		this.amplitude = undefined;
+
+		/** @var {Number|undefined} */
+		this.velocity = undefined;
+
 		this.frame = undefined;
 		this.max = undefined;
 		this.min = undefined;
@@ -32,7 +37,6 @@ export class Velocity
 		this.reference = undefined;
 		this.target = 0;
 		this.time = 0;
-		this.velocity = undefined;
 		this.vp1 = vp1;
 		this.vp2 = vp2;
 

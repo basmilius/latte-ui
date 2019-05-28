@@ -7,10 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { closest } from "../util/dom";
+
 export function initializePanels()
 {
-	document.querySelectorAll("div.panel > table").forEach(t => t.parentNode.classList.add("panel-table"));
-	document.querySelectorAll("div.panel.panel-toggleable").forEach(panel => initializePanel(panel));
+	document.querySelectorAll(".panel > table").forEach(t => closest(t, ".panel").classList.add("panel-table"));
+	document.querySelectorAll(".panel.panel-toggleable").forEach(panel => initializePanel(panel));
 }
 
 export function initializePanel(panel)
