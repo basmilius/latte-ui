@@ -67,29 +67,34 @@ class ActionSubscription
 /**
  * Initializes action stuff.
  *
+ * @param {Boolean} hashActions
+ *
  * @author Bas Milius <bas@mili.us>
  * @since 1.7.0
  */
-export function initializeActions()
+export function initializeActions(hashActions = true)
 {
-	window.addEventListener("hashchange", () => onHashChange(), false);
-	window.addEventListener("load", () => onHashChange(), false);
+	if (hashActions)
+	{
+		window.addEventListener("hashchange", () => onHashChange(), false);
+		window.addEventListener("load", () => onHashChange(), false);
+
+		on("latte:hash-change", parameters =>
+		{
+			const action = parameters.action;
+
+			delete parameters.action;
+
+			updateURLHash(parameters);
+
+			if (action === undefined || action === null)
+				return;
+
+			dispatch(action.value, action.vars);
+		});
+	}
 
 	live(document.body, "[data-action]", "click", onAction, {passive: true});
-
-	on("latte:hash-change", parameters =>
-	{
-		const action = parameters.action;
-
-		delete parameters.action;
-
-		updateURLHash(parameters);
-
-		if (action === undefined || action === null)
-			return;
-
-		dispatch(action.value, action.vars);
-	});
 }
 
 /**
