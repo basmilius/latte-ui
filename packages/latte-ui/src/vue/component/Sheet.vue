@@ -266,6 +266,9 @@
 
 			isWithinTriggerBounds(position)
 			{
+				if (position === undefined)
+					return false;
+
 				const rect = this.$el.getBoundingClientRect();
 
 				switch (this.position)
@@ -334,10 +337,7 @@
 
 			onPointerMove(evt)
 			{
-				if (!this.touchEnabled)
-					return;
-
-				if (!this.isDragging)
+				if (!this.touchEnabled || !this.isDragging)
 					return;
 
 				const position = getCoords(evt);
@@ -353,10 +353,7 @@
 
 			onPointerUp(evt)
 			{
-				if (!this.touchEnabled)
-					return;
-
-				if (!this.isDragging)
+				if (!this.touchEnabled || !this.isDragging || this.currentPosition === undefined || this.startPosition === undefined)
 					return;
 
 				const isSameLocation = this.currentPosition.x === this.startPosition.x && this.currentPosition.y === this.startPosition.y;
