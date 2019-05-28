@@ -25,7 +25,8 @@ import { initializeUI } from "./js/ui";
 export const DefaultOptions = Object.assign({}, {
 	i18n: {},
 	locale: navigator.language,
-	tickInterval: 250
+	tickInterval: 250,
+	useHashActions: true
 }, self["LatteOptions"] || {});
 
 export const Latte = LatteSDK;
@@ -93,7 +94,9 @@ export const LatteUI = {
 
 	onDOMContentLoaded()
 	{
-		initializeActions();
+		if (getOptions().useHashActions === true)
+			initializeActions();
+
 		initializeUI();
 		removeSavedFromQueryString();
 	},
