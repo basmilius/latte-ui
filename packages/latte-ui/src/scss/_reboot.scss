@@ -154,22 +154,6 @@ a
 	}
 }
 
-a:not([href]):not([tabindex])
-{
-	text-decoration: none;
-
-	&:hover,
-	&:focus
-	{
-		text-decoration: none;
-	}
-
-	&:focus
-	{
-		outline: 0;
-	}
-}
-
 pre,
 code,
 kbd,
@@ -383,6 +367,7 @@ i.mdi
 	{
 		height: 1em;
 		width: 1em;
+		line-height: inherit;
 	}
 }
 

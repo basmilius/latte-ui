@@ -63,11 +63,6 @@
 	i.mdi
 	{
 		font-size: var(--btn-icon-size);
-
-		&::before
-		{
-			line-height: 1em;
-		}
 	}
 
 	i.mdi + span
@@ -134,7 +129,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-foreground))};
 
-	@at-root .css-paint-api &
+	@at-root .css-paint-api &:not(a[href])
 	{
 		--btn-bg: paint(btn-background);
 	}
@@ -161,7 +156,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
 
-	@at-root .css-paint-api &
+	@at-root .css-paint-api &:not(a[href])
 	{
 		--btn-bg: paint(btn-background);
 	}
@@ -193,7 +188,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
 
-	@at-root .css-paint-api &
+	@at-root .css-paint-api &:not(a[href])
 	{
 		--btn-bg: paint(btn-background);
 	}
