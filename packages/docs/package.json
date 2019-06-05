@@ -1,6 +1,6 @@
 {
 	"name": "latte-ui-docs",
-	"version": "1.7.0-beta.2",
+	"version": "1.7.0-beta.3",
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
@@ -9,17 +9,17 @@
 	"dependencies": {
 		"@mdi/font": "^3.6.95",
 		"animejs": "^3.0.1",
-		"highlight.js": "^9.15.6",
+		"highlight.js": "^9.15.8",
 		"moment": "^2.24.0",
 		"register-service-worker": "^1.6.2",
 		"vue": "^2.6.10",
 		"vue-router": "^3.0.6"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.6.0",
-		"@vue/cli-plugin-pwa": "^3.6.0",
-		"@vue/cli-service": "^3.6.0",
-		"node-sass": "^4.11.0",
+		"@vue/cli-plugin-babel": "^3.8.0",
+		"@vue/cli-plugin-pwa": "^3.8.0",
+		"@vue/cli-service": "^3.8.0",
+		"node-sass": "^4.12.0",
 		"sass-loader": "^7.1.0",
 		"vue-template-compiler": "^2.6.10"
 	},
