@@ -67,33 +67,11 @@ class ActionSubscription
 /**
  * Initializes action stuff.
  *
- * @param {Boolean} hashActions
- *
  * @author Bas Milius <bas@mili.us>
  * @since 1.7.0
  */
-export function initializeActions(hashActions = true)
+export function initializeActions()
 {
-	if (hashActions)
-	{
-		window.addEventListener("hashchange", () => onHashChange(), false);
-		window.addEventListener("load", () => onHashChange(), false);
-
-		on("latte:hash-change", parameters =>
-		{
-			const action = parameters.action;
-
-			delete parameters.action;
-
-			updateURLHash(parameters);
-
-			if (action === undefined || action === null)
-				return;
-
-			dispatch(action.value, action.vars);
-		});
-	}
-
 	live(document.body, "[data-action]", "click", onAction, {passive: true});
 }
 
@@ -138,44 +116,6 @@ export function on(action, callback)
 }
 
 /**
- * Updates the URL hash.
- *
- * @param {Object} data
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function updateURLHash(data)
-{
-	let parts = [];
-
-	for (let key in data)
-	{
-		if (!data.hasOwnProperty(key))
-			continue;
-
-		let str = key;
-		let d = data[key];
-
-		if (d.value)
-			str += `=${d.value}`;
-
-		for (let vk in d.vars)
-			if (d.vars.hasOwnProperty(vk))
-				str += `/${vk}:${d.vars[vk]}`;
-
-		parts.push(str);
-	}
-
-	const hash = parts.join("&");
-
-	if (hash.length > 0)
-		location.hash = hash;
-	else
-		history.replaceState({}, document.title, location.pathname + location.search);
-}
-
-/**
  * Removes saved= from the query string.
  *
  * @author Bas Milius <bas@mili.us>
@@ -201,48 +141,6 @@ function onAction(element, evt)
 		return;
 
 	actions[action].forEach(sub => sub.handle(actionData, element, evt));
-}
-
-function onHashChange()
-{
-	const hash = location.hash.substr(1);
-
-	if (!hash || hash.length === 0)
-		return;
-
-	const raw = hash.split("&");
-	const parameters = {};
-
-	for (let i in raw)
-	{
-		if (!raw.hasOwnProperty(i))
-			continue;
-
-		const item = raw[i];
-		const kv = item.split("=", 2);
-		let value = kv[1] || null;
-		let vars = {};
-
-		if (value.indexOf("/") > -1)
-		{
-			const ad = value.split("/");
-			value = ad.shift();
-
-			for (let j in ad)
-			{
-				if (!ad.hasOwnProperty(j))
-					continue;
-
-				const d = ad[j];
-				const kv = d.split(":", 2);
-				vars[kv[0]] = kv[1];
-			}
-		}
-
-		parameters[kv[0]] = {value, vars};
-	}
-
-	dispatch("latte:hash-change", parameters);
 }
 
 export default {

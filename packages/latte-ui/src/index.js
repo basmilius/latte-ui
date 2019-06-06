@@ -25,8 +25,7 @@ import { initializeUI } from "./js/ui";
 export const DefaultOptions = Object.assign({}, {
 	i18n: {},
 	locale: navigator.language,
-	tickInterval: 250,
-	useHashActions: true
+	tickInterval: 250
 }, self["LatteOptions"] || {});
 
 export const Latte = LatteSDK;
