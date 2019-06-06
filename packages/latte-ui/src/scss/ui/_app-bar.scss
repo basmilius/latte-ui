@@ -68,6 +68,13 @@
 	}
 }
 
+.app-bar-column
+{
+	position: relative;
+	display: flex;
+	flex-flow: column;
+}
+
 .app-bar-row
 {
 	position: relative;
@@ -83,14 +90,29 @@
 	}
 }
 
-.app-bar-title
+.app-bar-title,
+.app-bar-sub-title
 {
 	margin: 0 var(--app-bar-gutter);
-	font:
-	{
-		size: 1.2rem;
-		weight: 500;
-	}
+	font-weight: 500;
+	line-height: 1em;
+}
+
+.app-bar-title
+{
+	font-size: 1.2rem;
+}
+
+.app-bar-sub-title
+{
+	font-size: .8rem;
+	opacity: .5;
+}
+
+.app-bar-title + .app-bar-sub-title,
+.app-bar-sub-title + .app-bar-title
+{
+	margin-top: .3rem;
 }
 
 .app-bar .divider

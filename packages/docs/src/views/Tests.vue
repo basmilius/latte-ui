@@ -24,7 +24,23 @@
 						<div class="panel-header"><span class="panel-title">App Bar</span></div>
 						<div class="panel-body">
 
-							<div class="app-bar my-2" :class="`app-bar-${color}`" v-for="color of ['primary', 'light']">
+							<div class="app-bar app-bar-dark">
+								<div class="app-bar-row app-bar-auto py-2">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<div class="app-bar-column">
+										<small class="app-bar-sub-title">mTunes</small>
+										<span class="app-bar-title">Discover Music</span>
+									</div>
+									<div class="ml-auto">
+										<button class="btn btn-text btn-action"><i class="mdi mdi-home-outline"></i><span>Home</span></button>
+										<button class="btn btn-contained btn-primary btn-action"><i class="mdi mdi-compass-outline"></i><span>Discover</span></button>
+										<button class="btn btn-text btn-action"><i class="mdi mdi-heart-outline"></i><span>For You</span></button>
+									</div>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+							</div>
+
+							<div class="app-bar my-3" :class="`app-bar-${color}`" v-for="color of ['primary', 'light']">
 								<div class="app-bar-row">
 									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
 									<span class="app-bar-title">My app</span>
