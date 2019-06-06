@@ -13,6 +13,7 @@
 					<CodeExample class="darker" title="Basic" url="/snippets/components/app-bar/basic.html"></CodeExample>
 					<CodeExample class="darker" title="Auto height" url="/snippets/components/app-bar/auto-height.html"></CodeExample>
 					<CodeExample class="darker" title="Flat & transparent" url="/snippets/components/app-bar/flat-transparent.html"></CodeExample>
+					<CodeExample class="darker" title="Search" url="/snippets/components/app-bar/search.html"></CodeExample>
 					<CodeExample class="darker" title="Multiple rows" url="/snippets/components/app-bar/rows.html"></CodeExample>
 					<CodeExample class="darker" title="Main app bar" url="/snippets/components/app-bar/main.html">
 						To make an app bar the primary one on your page, simply apply the <code>app-bar-main</code> class to it and it will

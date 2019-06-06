@@ -21,6 +21,25 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">App Bar</span></div>
+						<div class="panel-body">
+
+							<div class="app-bar my-2" :class="`app-bar-${color}`" v-for="color of ['primary', 'light']">
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<span class="app-bar-title">My app</span>
+									<label class="form-control search-bar mx-5">
+										<i class="mdi mdi-magnify form-control-prefix"></i>
+										<input type="search" name="search" placeholder="Search for anything..." class="form-control-plain" />
+									</label>
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Uploader</span></div>
 						<div class="panel-body">
 							New uploader, this is the base component that can be extended through slots.

@@ -201,6 +201,7 @@ label.col-form-label
 {
 	position: relative;
 	display: block;
+	margin: 0;
 	padding: 8px 16px;
 	width: 100%;
 	background: transparent;
@@ -227,10 +228,13 @@ label.col-form-label
 
 .form-control
 {
+	display: flex;
+	align-items: center;
 	border-radius: var(--border-radius);
 	box-shadow: 0 0 0 1px var(--form-field-outline);
 	transition: all 180ms var(--ease-standard-curve);
 	will-change: border-radius, box-shadow;
+	z-index: 0;
 
 	&::placeholder
 	{
@@ -243,24 +247,6 @@ label.col-form-label
 	{
 		box-shadow: 0 0 0 1px #{latte-rgba(var(--color-primary), .75)};
 	}
-}
-
-.form-control > .form-control-plain
-{
-	margin: -8px -16px;
-}
-
-.form-control.form-control-sm > .form-control-plain
-{
-	margin: -4px -8px;
-	padding: 4px 8px;
-}
-
-div.form-control
-{
-	display: flex;
-	align-items: center;
-	z-index: 0;
 
 	> input.form-control-plain
 	{
@@ -273,17 +259,38 @@ div.form-control
 		margin: -6px 12px;
 		flex: 0 0 auto;
 		z-index: 1;
+
+		&.mdi
+		{
+			font-size: 24px;
+		}
 	}
 
 	.form-control-prefix
 	{
-		margin-left: -12px;
+		margin-left: -6px;
 	}
 
 	.form-control-suffix
 	{
-		margin-right: -12px;
+		margin-right: -6px;
 	}
+}
+
+input.form-control
+{
+	display: block;
+}
+
+.form-control > .form-control-plain
+{
+	margin: -8px -16px;
+}
+
+.form-control.form-control-sm > .form-control-plain
+{
+	margin: -4px -8px;
+	padding: 4px 8px;
 }
 
 .form-text

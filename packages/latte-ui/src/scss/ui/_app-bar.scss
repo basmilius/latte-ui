@@ -103,6 +103,25 @@
 	}
 }
 
+.app-bar .form-control
+{
+	flex: 1 1 0;
+	background: rgba(var(--app-bar-foreground), .075);
+	box-shadow: none;
+	color: #{latte-rgb(var(--app-bar-foreground))};
+
+	&:focus-within
+	{
+		background: rgba(var(--app-bar-foreground), .1);
+		box-shadow: none;
+	}
+
+	::placeholder
+	{
+		color: #{latte-rgba(var(--app-bar-foreground), .5)};
+	}
+}
+
 .panel > .app-bar
 {
 	--app-bar-elevation: none;
