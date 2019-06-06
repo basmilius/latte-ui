@@ -129,7 +129,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-foreground))};
 
-	@at-root .css-paint-api &:not(a[href])
+	@at-root .css-paint-api &:not([href])
 	{
 		--btn-bg: paint(btn-background);
 	}
@@ -156,7 +156,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
 
-	@at-root .css-paint-api &:not(a[href])
+	@at-root .css-paint-api &:not([href])
 	{
 		--btn-bg: paint(btn-background);
 	}
@@ -188,7 +188,7 @@
 	background: var(--btn-bg);
 	color: #{latte-rgb(var(--btn-background))};
 
-	@at-root .css-paint-api &:not(a[href])
+	@at-root .css-paint-api &:not([href])
 	{
 		--btn-bg: paint(btn-background);
 	}
