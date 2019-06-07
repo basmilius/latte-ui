@@ -14,7 +14,7 @@
 
 .divider
 {
-	flex-shrink: 0;
+	flex: 0 0 auto;
 	background: var(--outline-color);
 
 	&.divider-horizontal

@@ -36,6 +36,7 @@
 										<button class="btn btn-contained btn-primary btn-action"><i class="mdi mdi-compass-outline"></i><span>Discover</span></button>
 										<button class="btn btn-text btn-action"><i class="mdi mdi-heart-outline"></i><span>For You</span></button>
 									</div>
+									<div class="divider divider-vertical"></div>
 									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
 								</div>
 							</div>
@@ -99,48 +100,6 @@
 									</div>
 								</template>
 							</latte-uploader>
-
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Pagination</span></div>
-						<div class="panel-body">
-
-							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
-							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" controller-bar :navigation-controls="false" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
-							<latte-pagination class="my-3" :offset="paginationOffset" :limit="paginationLimit" :total="500" @navigate="paginationOffset = $event" @limit="paginationLimit = $event"></latte-pagination>
-
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Submenu</span></div>
-						<div class="panel-body">
-
-							<latte-button-dropdown icon="dots-vertical">
-								<nav class="nav nav-list">
-									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-
-									<div class="divider divider-horizontal"></div>
-
-									<latte-submenu icon="dice-2" label="Submenu">
-										<nav class="nav nav-list">
-											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-											<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-										</nav>
-									</latte-submenu>
-
-									<div class="divider divider-horizontal"></div>
-
-									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-									<button class="nav-link"><i class="mdi mdi-dice-1"></i><span>Nav item</span></button>
-								</nav>
-							</latte-button-dropdown>
 
 						</div>
 					</div>

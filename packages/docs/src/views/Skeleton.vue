@@ -92,11 +92,22 @@
 
 		</div>
 
-		<footer class="footer py-5" style="background: rgb(var(--panel-background))">
+		<footer class="footer py-5 bg-light">
 			<div class="content">
 				<div class="container">
 					<div class="row">
-						<div class="col-12 col-lg footer-nav">
+						<div class="col-12 col-lg-4 text-center text-lg-left">
+
+							<img src="../assets/bas.svg" alt="Bas' logo" height="54"/><br/>
+							<br/>
+							<p><strong>By Bas</strong></p>
+							<p>
+								Designed and developed with <img src="https://cdn.mili.us/assets/emojione/svg/2764.svg" alt="Heart" class="emoji"/> by <a href="https://bas.dev" target="_blank" rel="noopener">Bas Milius</a> and other contributors.
+							</p>
+
+						</div>
+						<div class="col-12 col-lg-2 d-none d-lg-block"></div>
+						<div class="col-12 col-lg mt-5 mt-lg-0 footer-nav text-center text-lg-left">
 
 							<strong>Develop</strong>
 							<nav class="nav nav-links mt-3">
@@ -106,24 +117,13 @@
 							</nav>
 
 						</div>
-						<div class="col-12 col-lg footer-nav mt-5 mt-lg-0">
+						<div class="col-12 col-lg mt-5 mt-lg-0 footer-nav text-center text-lg-left">
 
-							<strong>Design</strong>
+							<strong>Packages</strong>
 							<nav class="nav nav-links mt-3">
-								<router-link to="/design/blocks" class="nav-link">Blocks</router-link>
-								<router-link to="/design/adobe-xd" class="nav-link">Adobe XD</router-link>
+								<router-link to="/packages/blocks" class="nav-link">Blocks</router-link>
+								<router-link to="/packages/layouts" class="nav-link">Layouts</router-link>
 							</nav>
-
-						</div>
-						<div class="col-12 col-lg-5 mt-5 mt-lg-0 text-center text-lg-left">
-
-							<strong>About</strong>
-							<p class="mt-4">
-								Designed and developed with much <i class="mdi mdi-heart text-error"></i> by <a href="//bas.dev" target="_blank">Bas Milius</a> and the contributors.
-							</p>
-							<p class="mt-4 text-soft">
-								Version {{ $latte.version }} &mdash; <a href="//github.com/basmilius/latte-ui/blob/master/LICENSE" target="_blank">MIT</a> licensed.
-							</p>
 
 						</div>
 					</div>
