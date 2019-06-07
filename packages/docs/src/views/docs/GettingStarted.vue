@@ -40,8 +40,8 @@ npm i @bybas/latte-ui
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="html">
-&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte.css" type="text/css"/&gt;
-&lt;script src="https://unpkg.com/@bybas/latte-ui/dist/latte.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.app.css" type="text/css"/&gt;
+&lt;script src="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.app.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
 						</div>
 						<div class="panel-body">
@@ -49,8 +49,8 @@ npm i @bybas/latte-ui
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="html">
-&lt;link href="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte.css" type="text/css"/&gt;
-&lt;script src="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.app.css" type="text/css"/&gt;
+&lt;script src="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.app.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
 						</div>
 					</div>
