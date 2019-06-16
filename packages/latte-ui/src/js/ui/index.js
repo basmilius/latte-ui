@@ -11,7 +11,7 @@ import { initializeForms } from "./form";
 import message from "./message";
 import notice, { initializeNotices } from "./notice";
 import notification, { initializeNotifications } from "./notification";
-import overlay from "./overlay";
+import overlay, { initializeOverlays } from "./overlay";
 import panel, { initializePanels } from "./panel";
 import question from "./question";
 import snackbar, { initializeSnackbars } from "./snackbar";
@@ -22,6 +22,7 @@ export function initializeUI()
 	initializeForms();
 	initializeNotices();
 	initializeNotifications();
+	initializeOverlays();
 	initializePanels();
 	initializeSnackbars();
 	initializeTooltips();

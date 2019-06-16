@@ -57,6 +57,7 @@ a.list-item
 	--ripple-color: var(--color-primary);
 
 	cursor: pointer;
+	text-decoration: none;
 	transition: all 150ms var(--ease-standard-curve);
 	will-change: background, color;
 

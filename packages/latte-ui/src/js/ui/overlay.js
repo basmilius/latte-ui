@@ -7,7 +7,15 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { on } from "../core/action";
+
 let registry = {};
+
+export function initializeOverlays()
+{
+	on("latte:ui:overlay", data => open(data.name || undefined));
+	on("latte:ui:overlay:close", data => close(data.name || undefined));
+}
 
 export function close(name)
 {
@@ -17,7 +25,7 @@ export function close(name)
 
 export function find(name)
 {
-	if (!registry[name])
+	if (name === undefined || !registry[name])
 		throw new Error(`Overlay ${name} is not registred!`);
 
 	return registry[name];

@@ -93,7 +93,7 @@ export const LatteUI = {
 
 	onDOMContentLoaded()
 	{
-		initializeActions(getOptions().useHashActions === true);
+		initializeActions();
 		initializeUI();
 		removeSavedFromQueryString();
 	},
