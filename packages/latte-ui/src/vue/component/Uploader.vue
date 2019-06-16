@@ -24,6 +24,7 @@
 
 <script>
 
+	import { dispatch } from "../../js/core/action";
 	import { id } from "../../js/core/api";
 	import { closest } from "../../js/util/dom";
 
@@ -145,6 +146,7 @@
 
 			removeFile(index)
 			{
+				dispatch("latte:tooltip:hide");
 				this.files.splice(index, 1);
 				this.fileInput.files = arrayToFileList(this.files);
 			},
