@@ -31,6 +31,10 @@
 								<RgbDisplay :rgb="v.default"/>
 							</template>
 
+							<template v-else-if="v.type === 'none'">
+								<i>None</i>
+							</template>
+
 						</div>
 					</td>
 				</tr>

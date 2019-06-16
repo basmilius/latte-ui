@@ -40,8 +40,8 @@ npm i @bybas/latte-ui
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="html">
-&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.app.css" type="text/css"/&gt;
-&lt;script src="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.app.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
+&lt;script src="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
 						</div>
 						<div class="panel-body">
@@ -49,9 +49,12 @@ npm i @bybas/latte-ui
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="html">
-&lt;link href="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.app.css" type="text/css"/&gt;
-&lt;script src="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.app.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link href="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.css" type="text/css"/&gt;
+&lt;script src="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
+						</div>
+						<div class="panel-footer justify-content-end">
+							<a href="/download/starter-template.html" download="starter-template.html" class="btn btn-contained btn-primary"><i class="mdi mdi-download"></i><span>Starter template</span></a>
 						</div>
 					</div>
 
@@ -63,21 +66,23 @@ npm i @bybas/latte-ui
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="js">
+// Import LatteUI, ommit the next line if you're running in a browser.
 import LatteUI from "@bybas/latte-ui";
 
+// Register LatteUI with Vue.
 Vue.use(LatteUI);
 
+// Create your Vue instance.
 new Vue({
 	el: "#app"
 });
 							</CodeSnippet>
 						</div>
-						<div class="panel-body border-top-0 pt-0">
+						<div class="panel-body border-top-0 pt-0 d-none">
 							<div class="notice notice-info">
 								<i class="mdi mdi-information-outline"></i>
 								<p>
-									If you're using latte-ui from the CDN, this doesn't work. To get it working make sure that your
-									root element is &lt;main id="app"&gt;&lt;main&gt;. We hope to fix this in a future version.
+									Note for laravel-mix users. T.B.D.
 								</p>
 							</div>
 						</div>

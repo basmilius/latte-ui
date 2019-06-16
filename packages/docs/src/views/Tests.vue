@@ -20,89 +20,7 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">App Bar</span></div>
-						<div class="panel-body">
-
-							<div class="app-bar app-bar-dark">
-								<div class="app-bar-row app-bar-auto py-2">
-									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
-									<div class="app-bar-column">
-										<small class="app-bar-sub-title">mTunes</small>
-										<span class="app-bar-title">Discover Music</span>
-									</div>
-									<div class="ml-auto">
-										<button class="btn btn-text btn-action"><i class="mdi mdi-home-outline"></i><span>Home</span></button>
-										<button class="btn btn-contained btn-primary btn-action"><i class="mdi mdi-compass-outline"></i><span>Discover</span></button>
-										<button class="btn btn-text btn-action"><i class="mdi mdi-heart-outline"></i><span>For You</span></button>
-									</div>
-									<div class="divider divider-vertical"></div>
-									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
-								</div>
-							</div>
-
-							<div class="app-bar my-3" :class="`app-bar-${color}`" v-for="color of ['primary', 'light']">
-								<div class="app-bar-row">
-									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
-									<span class="app-bar-title">My app</span>
-									<label class="form-control search-bar mx-5">
-										<i class="mdi mdi-magnify form-control-prefix"></i>
-										<input type="search" name="search" placeholder="Search for anything..." class="form-control-plain" />
-									</label>
-									<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Uploader</span></div>
-						<div class="panel-body">
-							New uploader, this is the base component that can be extended through slots.
-						</div>
-						<div class="panel-body">
-
-							<latte-uploader accept="image/*" style="position: relative;">
-								<template v-slot="{blobs, files, openDialog}">
-									<div class="d-flex align-items-center">
-										<div class="radius-circle" style="height: 150px; width: 150px; overflow: hidden;">
-											<img :src="blobs[0]" :alt="files[0].name" v-if="files.length > 0" style="position: relative; height: 150px; width: 150px; object-fit: cover"/>
-											<latte-initials initials="BM" style="position: relative; height: 150px; width: 150px;" v-else></latte-initials>
-										</div>
-										<button class="btn btn-contained btn-primary ml-3" @click="openDialog"><span>Choose file</span></button>
-									</div>
-								</template>
-							</latte-uploader>
-
-						</div>
-						<div class="panel-body">
-
-							<latte-uploader accept="audio/*" :multiple="true">
-								<template v-slot="{blobs, files, openDialog, removeFile}">
-									<button class="btn btn-contained btn-primary mt-3" @click="openDialog"><span>Select files</span></button>
-									<table class="table" v-if="files.length > 0">
-										<tr v-for="(file, index) of files">
-											<td>
-												<audio controls :src="blobs[index]"></audio>
-											</td>
-											<td>{{ file.name }}</td>
-											<td>{{ file.size }}</td>
-											<td>{{ file.type }}</td>
-											<td>
-												<button class="btn btn-icon btn-text btn-error btn-small" @click="removeFile(index)"><i class="mdi mdi-window-close"></i></button>
-											</td>
-										</tr>
-									</table>
-									<div class="notice notice-info" v-else>
-										<i class="mdi mdi-information"></i>
-										<p>Select some files please :-)</p>
-									</div>
-								</template>
-							</latte-uploader>
-
-						</div>
-					</div>
+					<!-- Experiments go here...! -->
 
 				</div>
 			</div>
@@ -124,11 +42,7 @@
 
 		data()
 		{
-			return {
-				cards: [1, 2, 3, 4, 5],
-				paginationLimit: 10,
-				paginationOffset: 0
-			};
+			return {};
 		},
 
 		methods: {}
