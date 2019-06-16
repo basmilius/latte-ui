@@ -77,15 +77,15 @@
 				{
 					case 1:
 					case 2:
-						navigator.geolocation.getCurrentPosition(pos => this.$latte.ui.message.alert("Location", `Lat: ${pos.coords.latitude}; Long: ${pos.coords.longitude}`));
+						navigator.geolocation.getCurrentPosition(pos => this.$latte.ui.snackbar.create({message: `Lat: ${pos.coords.latitude}; Long: ${pos.coords.longitude}`}));
 						break;
 
 					case 4:
-						this.$latte.ui.message.alert("Permission denied", "You denied!");
+						await this.$latte.ui.snackbar.create({message: "You denied!"});
 						break;
 
 					case 8:
-						this.$latte.ui.message.alert("Permission denied", "You denied and asked to never show this question again!");
+						await this.$latte.ui.snackbar.create({message: "You denied and asked to never show this question again!"});
 						break;
 				}
 			}
