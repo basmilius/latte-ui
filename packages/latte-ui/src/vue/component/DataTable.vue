@@ -11,6 +11,7 @@
 
 	<table class="table table-hover mb-0">
 		<thead>
+
 		<tr v-if="showHeader">
 			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width: 42px"></th>
@@ -51,8 +52,10 @@
 				</div>
 			</td>
 		</tr>
+
 		</thead>
 		<tbody>
+
 		<tr v-for="(row, rowKey) in data">
 			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<td v-if="isSelectionMode" style="width:42px;z-index:1">
@@ -71,8 +74,10 @@
 				<latte-data-table-actions :actions="actions" :row="row" v-if="hasActions"></latte-data-table-actions>
 			</slot>
 		</tr>
+
 		</tbody>
 		<tfoot>
+
 		<tr v-if="total > limit">
 			<th :colspan="amountOfColumns">
 				<div class="column-content">
@@ -80,6 +85,7 @@
 				</div>
 			</th>
 		</tr>
+
 		</tfoot>
 	</table>
 
@@ -89,11 +95,54 @@
 
 	import Vue from "vue";
 
-	import { handleError } from "../../js/core";
 	import { on } from "../../js/core/action";
 	import { id, request } from "../../js/core/api";
-	import { createElement } from "../../js/util/dom";
+	import { closest, createElement } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
+	import { handleError } from "../../js/core";
+
+	const columnDefaults = {
+		is_searchable: false,
+		is_sortable: false,
+		width: 0
+	};
+
+	async function urlDataSource(url)
+	{
+		const response = await request(url)
+			.then(r => r.json())
+			.then(r => r.data)
+			.catch(err => handleError(err));
+
+		return {
+			actions: response.actions,
+			columns: response.columns,
+			initial_data: response.initial_data,
+			limit: response.limit,
+			offset: response.offset,
+
+			async requestData(offset, limit, filters, params, sorting)
+			{
+				let queryString = `offset=${offset}&limit=${limit}`;
+
+				if (sorting !== null)
+					queryString += `&sort=${sorting.order}&by=${sorting.by}`;
+
+				for (let key in filters)
+					if (filters.hasOwnProperty(key))
+						queryString += `&filter[${key}]=${filters[key]}`;
+
+				for (let key in params)
+					if (params.hasOwnProperty(key))
+						queryString += `&${key}=${params[key]}`;
+
+				return request(`${url}/data?${queryString}`)
+					.then(r => r.json())
+					.then(r => r.data)
+					.catch(err => handleError(err));
+			}
+		};
+	}
 
 	export default {
 
@@ -105,6 +154,12 @@
 				default: false,
 				required: false,
 				type: Boolean
+			},
+
+			dataSource: {
+				default: null,
+				required: true,
+				type: Function | String | null
 			},
 
 			defaultLimit: {
@@ -150,11 +205,6 @@
 				type: Boolean
 			},
 
-			url: {
-				required: true,
-				type: String
-			},
-
 			value: {
 				default: () => [],
 				required: false,
@@ -174,19 +224,6 @@
 		data()
 		{
 			return {
-				defaults: {
-					column: {
-						is_searchable: false,
-						is_sortable: false
-					},
-					mock: {
-						field: "",
-						sorting: {
-							by: "",
-							order: ""
-						}
-					}
-				},
 				subscriptions: {
 					refresh: null
 				},
@@ -194,8 +231,10 @@
 				actions: [],
 				columns: [],
 				data: [],
+				dsi: undefined,
 				filters: [],
 				limit: this.defaultLimit,
+				notice: undefined,
 				offset: 0,
 				pagination: [],
 				params: {},
@@ -215,7 +254,6 @@
 			this.subscriptions.refresh = on("data-tables:refresh", () => this.reload());
 
 			this.addSpinner();
-			this.loadSetup();
 		},
 
 		computed: {
@@ -259,7 +297,7 @@
 				filter.class = filter.class || "badge-info";
 
 				this.filters.push(filter);
-				this.loadFromUrl();
+				this.loadData();
 			},
 
 			addSpinner()
@@ -268,7 +306,7 @@
 					return;
 
 				this.spinner = createElement("span", span => span.classList.add("spinner", "spinner-primary"));
-				this.$el.parentNode.append(this.spinner);
+				closest(this.$el, ".panel").append(this.spinner);
 			},
 
 			removeFilter(evt, filterKey)
@@ -276,7 +314,7 @@
 				this.offset = 0;
 
 				this.filters.splice(filterKey, 1);
-				this.loadFromUrl();
+				this.loadData();
 
 				evt.preventDefault();
 				evt.stopPropagation();
@@ -326,27 +364,25 @@
 				});
 			},
 
-			loadFromUrl()
+			loadData()
 			{
 				this.isLoading = true;
 
-				let url = `${this.url}/data?offset=${this.offset}&limit=${this.limit}`;
-
-				if (this.sort.by.trim() !== "")
-					url += `&sort=${this.sort.order}&by=${this.sort.by}`;
+				const filters = {};
+				const params = {};
+				const sorting = this.sort.by.trim() !== "" ? {order: this.sort.order, by: this.sort.by} : null;
 
 				for (let key in this.params)
 					if (this.params.hasOwnProperty(key) && !isNullOrWhitespace(this.params[key]))
-						url += `&${key}=${encodeURIComponent(this.params[key])}`;
+						params[key] = encodeURIComponent(params[key]);
 
 				for (let i in this.filters)
 					if (this.filters.hasOwnProperty(i))
 						if (!isNullOrWhitespace(this.filters[i].value.toString()))
-							url += `&filter[${this.filters[i].property}]=${this.filters[i]["value"]}`;
+							filters[this.filters[i].property] = this.filters[i]["value"];
 
-				request(url)
-					.then(r => r.json())
-					.then(this.onReceivedData)
+				this.dsi.requestData(this.offset, this.limit, filters, params, sorting)
+					.then(r => this.onReceivedData(r))
 					.catch(err => handleError(err));
 			},
 
@@ -354,47 +390,39 @@
 			{
 				this.isLoading = true;
 
-				request(`${this.url}?offset=${this.offset}&limit=${this.limit}`)
-					.then(r => r.json())
-					.then(this.onReceivedSetupResponse)
-					.catch(err => handleError(err));
+				this.actions = this.dsi.actions;
+				this.columns = this.dsi.columns.map(column => Object.assign({}, columnDefaults, column));
+
+				if (this.dsi.sorting !== undefined)
+					this.sort = this.dsi.sorting;
+
+				if (this.dsi.initial_data !== undefined)
+					this.onReceivedData(this.dsi.initial_data);
+				else
+					this.loadData();
 			},
 
 			navigateToOffset(offset)
 			{
 				this.offset = offset;
-				this.loadFromUrl();
+				this.loadData();
 			},
 
 			onReceivedData(response)
 			{
-				this.data = response.data.data;
-				this.pagination = response.data.pagination;
-				this.total = response.data.total || 0;
+				if (!response)
+					return handleError(new Error("Response is invalid."));
+
+				this.data = response.data;
+				this.pagination = response.pagination;
+				this.total = response.total || 0;
 
 				this.isLoading = false;
 			},
 
-			onReceivedSetupResponse(response)
-			{
-				this.actions = response.data.actions;
-				this.columns = response.data.columns.map(column => Object.assign({}, this.defaults.column, column));
-
-				if (response.data.sorting !== undefined)
-				{
-					this.sort.by = response.data.sorting.by;
-					this.sort.order = response.data.sorting.order;
-				}
-
-				if (response.data.initial_data !== undefined)
-					this.onReceivedData({data: response.data.initial_data});
-				else
-					this.loadFromUrl();
-			},
-
 			reload()
 			{
-				this.loadFromUrl();
+				this.loadData();
 			},
 
 			search(field, value, evt)
@@ -407,14 +435,14 @@
 
 				this.params[field] = value;
 				this.offset = 0;
-				this.loadFromUrl();
+				this.loadData();
 			},
 
 			setLimit(limit)
 			{
 				this.limit = limit;
 				this.offset = 0;
-				this.loadFromUrl();
+				this.loadData();
 			},
 
 			sortBy(field)
@@ -423,12 +451,32 @@
 					this.sort.order = this.sort.order === "DESC" ? "ASC" : "DESC";
 
 				this.sort.by = field;
-				this.loadFromUrl();
+				this.loadData();
 			}
 
 		},
 
 		watch: {
+
+			dataSource: {
+				deep: true,
+				immediate: true,
+				async handler()
+				{
+					if (this.dataSource === undefined)
+						throw new Error("dataSource is undefined.");
+
+					if (typeof this.dataSource === "string")
+						this.dsi = await urlDataSource(this.dataSource);
+					else
+						this.dsi = await this.dataSource();
+
+					if (!this.dsi)
+						throw new Error("Invalid data source instance.");
+
+					this.loadSetup();
+				}
+			},
 
 			isLoading()
 			{
@@ -437,7 +485,7 @@
 				if (!this.addSpinnerToParent)
 					return;
 
-				const parent = this.$el.parentNode;
+				const parent = closest(this.$el, ".panel");
 
 				if (this.isLoading)
 					parent.classList.add("is-loading");

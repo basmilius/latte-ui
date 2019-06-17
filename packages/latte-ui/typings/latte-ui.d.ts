@@ -31,9 +31,9 @@ declare namespace Latte
 	{
 		export function id(): string;
 
-		export function request(url: string, options: RequestInit): Promise<Response>;
+		export function request(url: string, options?: RequestInit): Promise<Response>;
 
-		export function requestJson(url: string, options: RequestInit): Promise<Response>;
+		export function requestJson(url: string, options?: RequestInit): Promise<Response>;
 	}
 
 	namespace core
