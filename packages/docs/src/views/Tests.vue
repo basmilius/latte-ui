@@ -25,7 +25,6 @@
 							<span class="panel-title">Data table</span>
 						</div>
 						<latte-data-table add-spinner-to-parent :data-source="customDataSource"></latte-data-table>
-						<!--						<latte-data-table add-spinner-to-parent data-source="https://latte.dev-preview.nl/api/hub/apps/data-table"></latte-data-table>-->
 					</div>
 
 				</div>
@@ -48,13 +47,22 @@
 
 		data()
 		{
-			return {};
+			let rows = [];
+
+			for (let i = 0; i < 1000; i++)
+				rows.push({name: `Bas ${i + 1}`});
+
+			return {
+				rows: rows
+			};
 		},
 
 		methods: {
 
 			async customDataSource()
 			{
+				let $this = this;
+
 				return {
 					actions: [],
 					columns: [
@@ -71,11 +79,9 @@
 					async requestData(offset, limit, filters, params, sorting)
 					{
 						return {
-							data: [
-								{name: "Bas"}
-							],
+							data: $this.rows.slice(offset, offset + limit),
 							pagination: undefined,
-							total: 1000
+							total: $this.rows.length
 						};
 					}
 				};
