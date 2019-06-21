@@ -64,6 +64,7 @@
 <script>
 
 	import { id, request } from "../../js/core/api";
+	import { handleError } from "../../js/core";
 
 	function areArraysEqual(a, b)
 	{
@@ -77,11 +78,67 @@
 		return true;
 	}
 
+	/**
+	 * Returns an url data source for autocomplete.
+	 *
+	 * @param {String} url
+	 * @returns {Latte.iid.AutocompleteDataSourceMethods}
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.8.0
+	 */
+	function urlDataSource(url)
+	{
+		let abortController = null;
+
+		function reset()
+		{
+			if (abortController !== null)
+				abortController.abort();
+
+			abortController = new AbortController();
+		}
+
+		return {
+			async getEntries(ids)
+			{
+				reset();
+
+				return request(`${url}?ids=${ids.join(",")}`, {cache: "no-cache", signal: abortController.signal})
+					.then(r => r.json())
+					.then(r =>
+					{
+						abortController = null;
+						return r.data;
+					});
+			},
+
+			async getSuggestions(query)
+			{
+				reset();
+
+				return request(`${url}?q=${encodeURI(query)}`, {cache: "no-cache", signal: abortController.signal})
+					.then(r => r.json())
+					.then(r =>
+					{
+						abortController = null;
+						return r.data;
+					})
+					.catch(() => []);
+			}
+		};
+	}
+
 	export default {
 
 		name: "latte-autocomplete",
 
 		props: {
+
+			dataSource: {
+				default: null,
+				required: true,
+				type: Function | String | null
+			},
 
 			defaultValue: {
 				default: undefined,
@@ -124,11 +181,6 @@
 				type: String
 			},
 
-			url: {
-				required: true,
-				type: String
-			},
-
 			value: {
 				default: () => [],
 				required: false,
@@ -145,9 +197,9 @@
 		data()
 		{
 			return {
-				abortController: null,
 				canEmit: true,
 				canOpen: false,
+				dsi: null,
 				isLoading: false,
 				currentSuggestion: -1,
 				searchTerm: "",
@@ -160,7 +212,6 @@
 		mounted()
 		{
 			this.$el.addOutsideEventListener("click", this.onBlur);
-			this.onValueChanged();
 		},
 
 		computed: {
@@ -197,6 +248,11 @@
 				this.values.push({label, remove, value});
 			},
 
+			loadDataSource()
+			{
+				this.onValueChanged();
+			},
+
 			removeValue(value)
 			{
 				this.values = this.values.filter(v => v.value !== value);
@@ -223,6 +279,8 @@
 				this.addValue(label, value);
 				this.canOpen = false;
 				this.searchTerm = "";
+
+				this.$refs.field.focus();
 			},
 
 			onSelectFirstSuggestion(evt)
@@ -263,18 +321,16 @@
 					this.currentSuggestion--;
 			},
 
-			onReceiveSuggestions(response)
+			onReceiveSuggestions(suggestions)
 			{
-				this.abortController = null;
 				this.canOpen = true;
 				this.currentSuggestion = -1;
-				this.suggestions = response.data;
+				this.suggestions = suggestions || [];
 			},
 
-			onReceiveValues(response)
+			onReceiveValues(values)
 			{
-				response.data.forEach(v => this.addValue(v.label, v.value));
-
+				values.filter(v => !!v).forEach(v => this.addValue(v.label, v.value));
 				this.isLoading = false;
 			},
 
@@ -287,18 +343,9 @@
 					return;
 				}
 
-				if (this.abortController !== null)
-				{
-					this.abortController.abort();
-					this.abortController = null;
-				}
-
-				this.abortController = new AbortController();
-
-				request(`${this.url}?q=${encodeURIComponent(this.searchTerm.toLowerCase())}`, {cache: "no-cache", signal: this.signal})
-					.then(r => r.json())
+				this.dsi.getSuggestions(this.searchTerm)
 					.then(r => this.onReceiveSuggestions(r))
-					.catch(err => console.error(err));
+					.catch(err => handleError(err));
 			},
 
 			onValueChanged()
@@ -320,18 +367,36 @@
 					return;
 
 				this.isLoading = true;
-
-				request(`${this.url}?ids=${value.join(",")}`)
-					.then(r => r.json())
-					.then(r => this.onReceiveValues(r))
-					.catch(err => console.error(err));
-
 				this.valueLast = value;
+
+				this.dsi.getEntries(value)
+					.then(r => this.onReceiveValues(r))
+					.catch(err => handleError(err));
 			}
 
 		},
 
 		watch: {
+
+			dataSource: {
+				deep: true,
+				immediate: true,
+				async handler()
+				{
+					if (this.dataSource === undefined)
+						throw new Error("dataSource is undefined.");
+
+					if (typeof this.dataSource === "string")
+						this.dsi = await urlDataSource(this.dataSource);
+					else
+						this.dsi = await this.dataSource();
+
+					if (!this.dsi)
+						throw new Error("Invalid data source instance.");
+
+					this.loadDataSource();
+				}
+			},
 
 			shouldOpenSuggestions()
 			{

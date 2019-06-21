@@ -7,7 +7,7 @@ type LatteRenderFunction = (h: Function) => any;
 
 interface LattePHPBaseEntity
 {
-	"@type": string;
+	"@type"?: string;
 }
 
 declare namespace Latte
@@ -70,6 +70,49 @@ declare namespace Latte
 		export function replace(str: string, params: any[]): string;
 
 		export function translate(domain: string, str: string, params: any[]): string;
+	}
+
+	namespace iid
+	{
+		interface AutocompleteSuggestion extends LattePHPBaseEntity
+		{
+			value: number;
+			label: string;
+			sub_label?: string | null;
+		}
+
+		type AutocompleteDataSourceMethods = {
+			getEntries(ids: Array<number>): Promise<AutocompleteSuggestion[]>;
+			getSuggestions(query: string): Promise<AutocompleteSuggestion[]>;
+		};
+
+		type AutocompleteDataSource = () => Promise<AutocompleteDataSourceMethods> | AutocompleteDataSourceMethods;
+
+		interface DataTableAction
+		{
+			template: string;
+		}
+
+		interface DataTableColumn
+		{
+			field: string;
+			is_searchable?: boolean;
+			is_sortable?: boolean;
+			label: string;
+			template: string;
+			width?: number;
+		}
+
+		type DataTableDataSourceData = {
+			actions: DataTableAction[];
+			columns: DataTableColumn[];
+			initial_data: any[];
+			limit: number;
+			offset: number;
+			requestData(offset: number, limit: number, filters: { [key: string]: any }, params: { [key: string]: any }, sorting: { by: string, order: string }): Promise<any>;
+		};
+
+		type DataTableDataSource = () => Promise<DataTableDataSourceData> | DataTableDataSourceData;
 	}
 
 	namespace math

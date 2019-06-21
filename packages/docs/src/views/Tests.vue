@@ -21,10 +21,21 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header">
-							<span class="panel-title">Data table</span>
+						<div class="panel-header"><span class="panel-title">Data table</span></div>
+						<div class="panel-body">
+							<latte-autocomplete :data-source="autocompleteDataSource"></latte-autocomplete>
 						</div>
-						<latte-data-table add-spinner-to-parent :data-source="customDataSource"></latte-data-table>
+						<div class="panel-body">
+							<latte-autocomplete :data-source="autocompleteDataSource" multi-select></latte-autocomplete>
+						</div>
+						<div class="panel-body">
+							<latte-autocomplete :data-source="autocompleteDataSource" multi-select :value="[3, 6]"></latte-autocomplete>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Data table</span></div>
+						<latte-data-table add-spinner-to-parent :data-source="datatableDataSource"></latte-data-table>
 					</div>
 
 				</div>
@@ -38,6 +49,7 @@
 <script>
 
 	import PageHeader from "../components/PageHeader";
+	import { randomPassword } from "@bybas/latte-ui/src/js/core";
 
 	export default {
 
@@ -59,7 +71,27 @@
 
 		methods: {
 
-			async customDataSource()
+			autocompleteDataSource()
+			{
+				const data = [];
+
+				for (let i = 0; i < 20; i++)
+					data.push({value: i, label: randomPassword(), sub_label: `Entry ${i}`});
+
+				return {
+					async getEntries(ids)
+					{
+						return ids.map(id => data.find(d => d.value === id));
+					},
+
+					async getSuggestions(query)
+					{
+						return data.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+					}
+				};
+			},
+
+			datatableDataSource()
 			{
 				let $this = this;
 

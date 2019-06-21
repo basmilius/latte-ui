@@ -107,6 +107,14 @@
 		width: 0
 	};
 
+	/**
+	 * Returns an url data source for data-table.
+	 *
+	 * @param {String} url
+	 * @returns {Promise<Latte.iid.DataTableDataSourceData>}
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.8.0
+	 */
 	async function urlDataSource(url)
 	{
 		const response = await request(url)
