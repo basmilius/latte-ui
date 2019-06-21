@@ -99,31 +99,37 @@
 		}
 
 		return {
-			async getEntries(ids)
+			getEntries(ids)
 			{
-				reset();
+				return new Promise(resolve =>
+				{
+					reset();
 
-				return request(`${url}?ids=${ids.join(",")}`, {cache: "no-cache", signal: abortController.signal})
-					.then(r => r.json())
-					.then(r =>
-					{
-						abortController = null;
-						return r.data;
-					});
+					request(`${url}?ids=${ids.join(",")}`, {cache: "no-cache", signal: abortController.signal})
+						.then(r => r.json())
+						.then(r =>
+						{
+							abortController = null;
+							resolve(r.data);
+						});
+				});
 			},
 
-			async getSuggestions(query)
+			getSuggestions(query)
 			{
-				reset();
+				return new Promise(resolve =>
+				{
+					reset();
 
-				return request(`${url}?q=${encodeURI(query)}`, {cache: "no-cache", signal: abortController.signal})
-					.then(r => r.json())
-					.then(r =>
-					{
-						abortController = null;
-						return r.data;
-					})
-					.catch(() => []);
+					request(`${url}?q=${encodeURI(query)}`, {cache: "no-cache", signal: abortController.signal})
+						.then(r => r.json())
+						.then(r =>
+						{
+							abortController = null;
+							resolve(r.data);
+						})
+						.catch(() => resolve([]));
+				});
 			}
 		};
 	}
@@ -381,20 +387,34 @@
 			dataSource: {
 				deep: true,
 				immediate: true,
-				async handler()
+				handler()
 				{
 					if (this.dataSource === undefined)
 						throw new Error("dataSource is undefined.");
 
-					if (typeof this.dataSource === "string")
-						this.dsi = await urlDataSource(this.dataSource);
-					else
-						this.dsi = await this.dataSource();
+					return new Promise(resolve =>
+					{
+						let dsi;
 
-					if (!this.dsi)
-						throw new Error("Invalid data source instance.");
+						if (typeof this.dataSource === "string")
+							dsi = urlDataSource(this.dataSource);
+						else
+							dsi = this.dataSource();
 
-					this.loadDataSource();
+						if (!(dsi instanceof Promise))
+							dsi = Promise.resolve(dsi);
+
+						dsi.then(dsi =>
+						{
+							this.dsi = dsi;
+
+							if (!this.dsi)
+								throw new Error("Invalid data source instance.");
+
+							this.loadDataSource();
+							resolve();
+						});
+					});
 				}
 			},
 

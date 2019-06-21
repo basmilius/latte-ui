@@ -18,7 +18,6 @@
 				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
-
 						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
 					</div>
 				</th>
@@ -32,7 +31,7 @@
 			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<th v-if="isSelectionMode" style="width:42px"></th>
 				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
-					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 				</th>
 				<th v-if="hasActions"></th>
 			</slot>
@@ -59,10 +58,10 @@
 		<tr v-for="(row, rowKey) in data">
 			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 				<td v-if="isSelectionMode" style="width:42px;z-index:1">
-					<div class="column-content pr-0">
+					<label class="column-content pr-0">
 						<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
 						<input type="checkbox" class="checkbox checkbox-primary mr-0" :id="uniqueId + ':' + row.id" :name="name + '[]'" :value="row.id" v-if="selectMode === 'multiple'" v-model="selection"/>
-					</div>
+					</label>
 				</td>
 
 				<template v-for="(column, columnKey) in columns">
@@ -101,6 +100,11 @@
 	import { isNullOrWhitespace } from "../../js/util/string";
 	import { handleError } from "../../js/core";
 
+	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
+											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
+											<span class="badge ml-2" :class="['badge-' + badge.type]" v-if="badge.filter === null">{{ badge.message }}</span>
+										</template>`;
+
 	const columnDefaults = {
 		is_searchable: false,
 		is_sortable: false,
@@ -115,41 +119,43 @@
 	 * @author Bas Milius <bas@mili.us>
 	 * @version 1.8.0
 	 */
-	async function urlDataSource(url)
+	function urlDataSource(url)
 	{
-		const response = await request(url)
-			.then(r => r.json())
-			.then(r => r.data)
-			.catch(err => handleError(err));
+		return new Promise(resolve =>
+		{
+			request(url)
+				.then(r => r.json())
+				.then(r => r.data)
+				.then(response => resolve({
+					actions: response.actions,
+					columns: response.columns,
+					initial_data: response.initial_data,
+					limit: response.limit,
+					offset: response.offset,
 
-		return {
-			actions: response.actions,
-			columns: response.columns,
-			initial_data: response.initial_data,
-			limit: response.limit,
-			offset: response.offset,
+					requestData(offset, limit, filters, params, sorting)
+					{
+						let queryString = `offset=${offset}&limit=${limit}`;
 
-			async requestData(offset, limit, filters, params, sorting)
-			{
-				let queryString = `offset=${offset}&limit=${limit}`;
+						if (sorting !== null)
+							queryString += `&sort=${sorting.order}&by=${sorting.by}`;
 
-				if (sorting !== null)
-					queryString += `&sort=${sorting.order}&by=${sorting.by}`;
+						for (let key in filters)
+							if (filters.hasOwnProperty(key))
+								queryString += `&filter[${key}]=${filters[key]}`;
 
-				for (let key in filters)
-					if (filters.hasOwnProperty(key))
-						queryString += `&filter[${key}]=${filters[key]}`;
+						for (let key in params)
+							if (params.hasOwnProperty(key))
+								queryString += `&${key}=${params[key]}`;
 
-				for (let key in params)
-					if (params.hasOwnProperty(key))
-						queryString += `&${key}=${params[key]}`;
-
-				return request(`${url}/data?${queryString}`)
-					.then(r => r.json())
-					.then(r => r.data)
-					.catch(err => handleError(err));
-			}
-		};
+						return new Promise(resolve => request(`${url}/data?${queryString}`)
+							.then(r => r.json())
+							.then(r => resolve(r.data))
+							.catch(err => handleError(err)));
+					}
+				}))
+				.catch(err => handleError(err));
+		});
 	}
 
 	export default {
@@ -333,11 +339,6 @@
 				const $this = this;
 				const uniqueId = this.uniqueId;
 
-				const badgesHTML = `	<template v-for="badge of (row.badges || [])">
-											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
-											<span class="badge ml-2" :class="['badge-' + badge.type]" v-if="badge.filter === null">{{ badge.message }}</span>
-										</template>`;
-
 				column.template = column.template.replace(`<slot name="badges"></slot>`, badgesHTML);
 
 				return Vue.extend({
@@ -382,7 +383,7 @@
 
 				for (let key in this.params)
 					if (this.params.hasOwnProperty(key) && !isNullOrWhitespace(this.params[key]))
-						params[key] = encodeURIComponent(params[key]);
+						params[key] = encodeURIComponent(this.params[key]);
 
 				for (let i in this.filters)
 					if (this.filters.hasOwnProperty(i))
@@ -469,20 +470,34 @@
 			dataSource: {
 				deep: true,
 				immediate: true,
-				async handler()
+				handler()
 				{
 					if (this.dataSource === undefined)
 						throw new Error("dataSource is undefined.");
 
-					if (typeof this.dataSource === "string")
-						this.dsi = await urlDataSource(this.dataSource);
-					else
-						this.dsi = await this.dataSource();
+					return new Promise(resolve =>
+					{
+						let dsi;
 
-					if (!this.dsi)
-						throw new Error("Invalid data source instance.");
+						if (typeof this.dataSource === "string")
+							dsi = urlDataSource(this.dataSource);
+						else
+							dsi = this.dataSource();
 
-					this.loadSetup();
+						if (!(dsi instanceof Promise))
+							dsi = Promise.resolve(dsi);
+
+						dsi.then(dsi =>
+						{
+							this.dsi = dsi;
+
+							if (!this.dsi)
+								throw new Error("Invalid data source instance.");
+
+							this.loadSetup();
+							resolve();
+						});
+					});
 				}
 			},
 
