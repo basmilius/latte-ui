@@ -24,6 +24,7 @@ module.exports = {
 		minimizer: [
 			new TerserJSPlugin({}),
 			new OptimizeCSSAssetsPlugin({
+				canPrint: false,
 				cssProcessor: require("cssnano"),
 				cssProcessorPluginOptions: {
 					preset: ["advanced", {
@@ -111,6 +112,13 @@ module.exports = {
 
 if (process.env.NODE_ENV === "production")
 {
+	const banner = `Copyright (c) 2019 - Bas Milius <bas@mili.us>
+
+This file is part of the Latte UI package.
+
+For the full copyright and license information, please view the
+LICENSE file that was distributed with this source code.`;
+
 	module.exports.devtool = "#source-map";
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
@@ -120,6 +128,10 @@ if (process.env.NODE_ENV === "production")
 		}),
 		new webpack.LoaderOptionsPlugin({
 			minimize: true
+		}),
+		new webpack.BannerPlugin({
+			banner,
+			test: /\.(css|js)$/
 		})
 	]);
 }
