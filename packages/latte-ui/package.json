@@ -7,27 +7,24 @@
 		"email": "bas@mili.us",
 		"url": "https://bas.dev"
 	},
+	"homepage": "https://latte-ui.com",
+	"license": "MIT",
 	"main": "src/index.js",
 	"unpkg": "dist/latte-ui.js",
-	"scripts": {
-		"build": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-		"serve": "rollup -c --configDebug --watch.chokidar"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/basmilius/latte-ui.git"
-	},
 	"keywords": [
 		"ui",
 		"latte",
 		"latte-framework",
 		"latte-ui"
 	],
-	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/basmilius/latte-ui.git"
+	},
 	"bugs": {
 		"url": "https://github.com/basmilius/latte-ui/issues"
 	},
-	"homepage": "https://latte-ui.com",
+	"scripts": {},
 	"devDependencies": {},
 	"dependencies": {
 		"bootstrap": "^4.3.1",
