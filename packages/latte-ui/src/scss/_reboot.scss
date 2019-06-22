@@ -16,7 +16,7 @@
 
 html
 {
-	font-family: $font-family-base;
+	font-family: var(--font-sans-serif);
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -159,7 +159,7 @@ code,
 kbd,
 samp
 {
-	font-family: $font-family-monospace;
+	font-family: var(--font-monospace);
 	font-size: 1em;
 }
 

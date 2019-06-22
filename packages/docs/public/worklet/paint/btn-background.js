@@ -7,9 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
-class ButtonBackgroundPaintWorklet
+registerPaint("btn-background", class
 {
-
 	static get inputProperties()
 	{
 		return ["--btn-background", "--btn-foreground", "--btn-alpha", "--btn-hover"];
@@ -30,7 +29,4 @@ class ButtonBackgroundPaintWorklet
 			context.fill();
 		}
 	}
-
-}
-
-registerPaint("btn-background", ButtonBackgroundPaintWorklet);
+});
