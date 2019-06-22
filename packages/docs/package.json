@@ -1,6 +1,11 @@
 {
 	"name": "latte-ui-docs",
 	"version": "1.8.0-beta.0",
+	"author": {
+		"name": "Bas Milius",
+		"email": "bas@mili.us",
+		"url": "https://bas.dev"
+	},
 	"private": true,
 	"scripts": {
 		"serve": "vue-cli-service serve",
