@@ -1,28 +1,24 @@
 let path = require("path");
 let webpack = require("webpack");
 
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 
 let {VueLoaderPlugin} = require("vue-loader");
 
+const rootDir = path.join(__dirname, "../");
+
 module.exports = {
-	entry: {
-		"latte-ui": "./src/js/index.js"
-	},
-	output: {
-		path: path.resolve(__dirname, "./dist"),
-		publicPath: "/dist/",
-		filename: "[name].js"
-	},
-	externals: {
-		moment: "moment",
-		vue: "Vue"
-	},
 	optimization: {
 		minimizer: [
-			new TerserJSPlugin({}),
+			new TerserJSPlugin({
+				cache: true,
+				parallel: true,
+				sourceMap: false,
+				terserOptions: {}
+			}),
 			new OptimizeCSSAssetsPlugin({
 				canPrint: false,
 				cssProcessor: require("cssnano"),
@@ -90,8 +86,14 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
+			canPrint: false,
 			chunkFilename: '[id].css'
-		})
+		}),
+		new CopyPlugin([
+			{from: `${rootDir}/src/image`, to: `${rootDir}/dist/image`},
+			{from: `${rootDir}/src/sound`, to: `${rootDir}/dist/sound`},
+			{from: `${rootDir}/src/worklet`, to: `${rootDir}/dist/worklet`}
+		])
 	],
 	resolve: {
 		extensions: [".ts", ".js", ".vue", ".json"],

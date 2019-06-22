@@ -10,6 +10,7 @@
 	"homepage": "https://latte-ui.com",
 	"license": "MIT",
 	"main": "src/index.js",
+	"module": "src/index.js",
 	"unpkg": "dist/latte-ui.js",
 	"keywords": [
 		"ui",
@@ -17,19 +18,17 @@
 		"latte-framework",
 		"latte-ui"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/basmilius/latte-ui.git"
-	},
-	"bugs": {
-		"url": "https://github.com/basmilius/latte-ui/issues"
-	},
+	"repository": "https://github.com/basmilius/latte-ui",
+	"bugs": "https://github.com/basmilius/latte-ui/issues",
 	"scripts": {
-		"build": "concurrently \"yarn build:dist\"",
-		"build:dist": "rimraf dist && cross-env NODE_ENV=production webpack --progress --hide-modules"
+		"build": "concurrently \"yarn build:browser\"",
+		"build:browser": "rimraf dist && cross-env NODE_ENV=production webpack --config config/browser.js --progress --hide-modules",
+		"build:module": "rimraf dist && cross-env NODE_ENV=production webpack --config config/module.js --progress --hide-modules",
+		"serve": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch"
 	},
 	"devDependencies": {
 		"concurrently": "^4.1.0",
+		"copy-webpack-plugin": "^5.0.3",
 		"cross-env": "^5.2.0",
 		"css-loader": "^3.0.0",
 		"cssnano": "^4.1.10",
@@ -46,7 +45,8 @@
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.10",
 		"webpack": "^4.35.0",
-		"webpack-cli": "^3.3.4"
+		"webpack-cli": "^3.3.4",
+		"webpack-merge": "^4.2.1"
 	},
 	"dependencies": {
 		"bootstrap": "^4.3.1",

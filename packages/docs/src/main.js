@@ -3,7 +3,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 
-import LatteUI, { Latte } from "../../latte-ui/src/index";
+import LatteUI, { Latte } from "../../latte-ui";
 
 import "highlight.js/styles/github-gist.css";
 import "@mdi/font/css/materialdesignicons.css";
@@ -19,11 +19,8 @@ Vue.use(LatteUI);
 moment.locale("nl");
 
 new Vue({
-
 	router,
-
-	render: ce => ce(App)
-
+	render: h => h(App)
 }).$mount("#app");
 
-console.log(`Using Latte UI ${Latte.version} by ${Latte.author} and Vue.js ${Vue.version}.`);
+console.log(`Using Latte UI ${Latte.version} by ${Latte.author.name} and Vue.js ${Vue.version}.`);
