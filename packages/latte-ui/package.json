@@ -24,9 +24,17 @@
 		"build": "concurrently \"yarn build:browser\"",
 		"build:browser": "rimraf dist && cross-env NODE_ENV=production webpack --config config/browser.js --progress --hide-modules",
 		"build:module": "rimraf dist && cross-env NODE_ENV=production webpack --config config/module.js --progress --hide-modules",
-		"serve": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch"
+		"serve": "rimraf dist && cross-env NODE_ENV=development webpack --config config/browser.js --progress --hide-modules --watch"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.4.5",
+		"@babel/plugin-proposal-class-properties": "^7.4.4",
+		"@babel/plugin-proposal-decorators": "^7.4.4",
+		"@babel/plugin-proposal-json-strings": "^7.2.0",
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/plugin-syntax-import-meta": "^7.2.0",
+		"@babel/preset-env": "^7.4.5",
+		"babel-loader": "^8.0.6",
 		"concurrently": "^4.1.0",
 		"copy-webpack-plugin": "^5.0.3",
 		"cross-env": "^5.2.0",
@@ -41,6 +49,7 @@
 		"terser-webpack-plugin": "^1.3.0",
 		"ts-loader": "^6.0.4",
 		"typescript": "^3.5.2",
+		"uglify-template-string-loader": "^1.1.1",
 		"vue-loader": "^15.7.0",
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.10",

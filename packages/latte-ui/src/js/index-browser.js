@@ -7,9 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import Vue from "vue";
-import LatteUI from "../index";
+import { Latte, LatteUI } from "./index";
 
-Vue.use(LatteUI);
-
-window.addEventListener("DOMContentLoaded", () => new Vue({el: "main#app"}));
+self.Latte = Latte;
+self.LatteUI = LatteUI;

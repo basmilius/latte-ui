@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = merge(base, {
 	entry: {
-		"latte-ui": "./src/js/index.js"
+		"latte-ui": "./src/js/index-browser.js"
 	},
 	externals: {
 		moment: "moment",

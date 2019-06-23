@@ -16,8 +16,18 @@ module.exports = {
 			new TerserJSPlugin({
 				cache: true,
 				parallel: true,
-				sourceMap: false,
-				terserOptions: {}
+				sourceMap: true,
+				terserOptions: {
+					compress: {
+						booleans_as_integers: true,
+						drop_console: true,
+						keep_fargs: false,
+						toplevel: true,
+						unsafe: true,
+						unsafe_proto: true,
+						unsafe_undefined: true
+					}
+				}
 			}),
 			new OptimizeCSSAssetsPlugin({
 				canPrint: false,
@@ -41,13 +51,17 @@ module.exports = {
 				test: /\.vue$/,
 				loader: "vue-loader",
 				options: {
+					compilerOptions: {
+						whitespace: "condense"
+					},
+					exposeFilename: false,
 					extractCSS: true,
+					prettify: false,
 					loaders: {
 						"css": ["vue-style-loader", {
 							loader: MiniCssExtractPlugin.loader
 						}],
-						"scss": "vue-style-loader!css-loader!sass-loader",
-						"sass": "vue-style-loader!css-loader!sass-loader?indentedSyntax"
+						"scss": "vue-style-loader!css-loader?sourceMap!sass-loader?sourceMap"
 					}
 				}
 			},
@@ -60,10 +74,24 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				include: [
+					path.resolve(__dirname, "../src")
+				]
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: [
+					"uglify-template-string-loader"
+				]
+			},
+			{
 				test: /\.(png|jpg|gif|svg)$/,
 				loader: "file-loader",
 				options: {
-					name: "[name].[ext]?[hash]"
+					name: "[name].[ext]"
 				}
 			},
 			{
@@ -72,12 +100,13 @@ module.exports = {
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
-							hmr: process.env.NODE_ENV === 'development'
+							hmr: process.env.NODE_ENV === 'development',
+							sourceMap: true
 						}
 					},
-					'css-loader',
-					'postcss-loader',
-					'sass-loader'
+					'css-loader?sourceMap',
+					'postcss-loader?sourceMap',
+					'sass-loader?sourceMap'
 				]
 			}
 		]
@@ -108,7 +137,7 @@ module.exports = {
 	performance: {
 		hints: false
 	},
-	devtool: "#eval-source-map",
+	devtool: "source-map",
 	mode: process.env.NODE_ENV === "production" ? "production" : "development"
 };
 
@@ -121,7 +150,7 @@ This file is part of the Latte UI package.
 For the full copyright and license information, please view the
 LICENSE file that was distributed with this source code.`;
 
-	module.exports.devtool = "#source-map";
+	module.exports.devtool = "source-map";
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
 			"process.env": {
