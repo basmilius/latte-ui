@@ -21,15 +21,15 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Data table</span></div>
+						<div class="panel-header"><span class="panel-title">Autocomplete</span></div>
 						<div class="panel-body">
 							<latte-autocomplete :data-source="autocompleteDataSource"></latte-autocomplete>
 						</div>
 						<div class="panel-body">
-							<latte-autocomplete :data-source="autocompleteDataSource" multi-select></latte-autocomplete>
+							<latte-autocomplete :data-source="autocompleteDataSource" v-model="acTwo" multi-select></latte-autocomplete>
 						</div>
 						<div class="panel-body">
-							<latte-autocomplete :data-source="autocompleteDataSource" multi-select :value="[3, 6]"></latte-autocomplete>
+							<latte-autocomplete :data-source="autocompleteDataSource" v-model="acTree" multi-select :value="[3, 6]"></latte-autocomplete>
 						</div>
 					</div>
 
@@ -49,7 +49,8 @@
 <script>
 
 	import PageHeader from "../components/PageHeader";
-	import { randomPassword } from "@bybas/latte-ui/src/js/core";
+
+	import autocompleteData from "../assets/data/autocomplete-data.json";
 
 	export default {
 
@@ -65,7 +66,9 @@
 				rows.push({name: `Bas ${i + 1}`});
 
 			return {
-				rows: rows
+				rows: rows,
+				acTwo: [],
+				acTree: [3, 6]
 			};
 		},
 
@@ -73,10 +76,7 @@
 
 			autocompleteDataSource()
 			{
-				const data = [];
-
-				for (let i = 0; i < 20; i++)
-					data.push({value: i, label: randomPassword(), sub_label: `Entry ${i}`});
+				const data = Array.from(autocompleteData);
 
 				return {
 					async getEntries(ids)
@@ -84,9 +84,11 @@
 						return ids.map(id => data.find(d => d.value === id));
 					},
 
-					async getSuggestions(query)
+					async getSuggestions(query, offset, limit)
 					{
-						return data.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1);
+						return data
+							.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1)
+							.slice(offset, offset + limit);
 					}
 				};
 			},
@@ -117,6 +119,20 @@
 						};
 					}
 				};
+			}
+
+		},
+
+		watch: {
+
+			acTwo()
+			{
+				console.log(`Value for first multi-select: `, Array.from(this.acTwo));
+			},
+
+			acTree()
+			{
+				console.log(`Value for second multi-select: `, Array.from(this.acTree));
 			}
 
 		}

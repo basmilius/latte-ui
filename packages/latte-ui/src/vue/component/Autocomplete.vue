@@ -115,13 +115,13 @@
 				});
 			},
 
-			getSuggestions(query)
+			getSuggestions(query, offset, limit)
 			{
 				return new Promise(resolve =>
 				{
 					reset();
 
-					request(`${url}?q=${encodeURI(query)}`, {cache: "no-cache", signal: abortController.signal})
+					request(`${url}?q=${encodeURI(query)}&offset=${offset}&limit=${limit}`, {cache: "no-cache", signal: abortController.signal})
 						.then(r => r.json())
 						.then(r =>
 						{
@@ -261,6 +261,7 @@
 
 			removeValue(value)
 			{
+				this.canEmit = true;
 				this.values = this.values.filter(v => v.value !== value);
 			},
 
@@ -337,6 +338,7 @@
 			onReceiveValues(values)
 			{
 				values.filter(v => !!v).forEach(v => this.addValue(v.label, v.value));
+				this.canEmit = true;
 				this.isLoading = false;
 			},
 
@@ -349,7 +351,7 @@
 					return;
 				}
 
-				this.dsi.getSuggestions(this.searchTerm)
+				this.dsi.getSuggestions(this.searchTerm, this.offset, this.limit)
 					.then(r => this.onReceiveSuggestions(r))
 					.catch(err => handleError(err));
 			},
@@ -357,7 +359,6 @@
 			onValueChanged()
 			{
 				let value = this.multiSelect ? this.value : [this.value];
-				value = value.filter ? value.filter(v => v > 0) : value;
 
 				if (value.length === 0)
 				{
