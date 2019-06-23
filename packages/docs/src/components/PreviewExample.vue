@@ -29,7 +29,7 @@
 <script>
 
 	import Vue from "vue";
-	import { Latte } from "@bybas/latte-ui";
+	import { Latte } from "../../../latte-ui";
 	import CodeSnippet from "./CodeSnippet";
 
 	export default {
@@ -70,10 +70,10 @@
 			{
 				this.isLoading = true;
 
-				await this.$latte.api.request(this.url)
+				await Latte.api.request(this.url)
 					.then(r => r.text())
 					.then(r => this.onPreviewLoaded(r))
-					.catch(err => this.$latte.core.handleError(err));
+					.catch(err => Latte.core.handleError(err));
 
 				this.isLoading = false;
 			},

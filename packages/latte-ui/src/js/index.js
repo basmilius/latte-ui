@@ -56,6 +56,7 @@ export class LatteUI
 
 		window.addEventListener("load", () => LatteUI.onDOMContentLoaded(), {passive: true});
 		window.addEventListener("scroll", () => LatteUI.onWindowScroll(), {passive: true});
+		Vue.prototype.$latte = LatteSDK;
 	}
 
 	static findMainElement(Vue)

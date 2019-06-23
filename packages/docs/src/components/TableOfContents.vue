@@ -16,6 +16,8 @@
 
 <script>
 
+	import { Latte } from "../../../latte-ui";
+
 	export default {
 
 		name: "TableOfContents",
@@ -44,7 +46,7 @@
 
 			goToElement(el)
 			{
-				const panel = this.$latte.util.dom.closest(el, "div.panel");
+				const panel = Latte.util.dom.closest(el, "div.panel");
 
 				if (panel !== null)
 					el = panel;
