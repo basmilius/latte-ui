@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+let fs = require("fs");
 let path = require("path");
 let webpack = require("webpack");
 
@@ -39,7 +49,9 @@ module.exports = {
 						},
 						discardComments: {
 							removeAll: true
-						}
+						},
+						mergeIdents: true,
+						reduceIdents: true
 					}]
 				}
 			})
@@ -75,7 +87,7 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
-				loader: 'babel-loader',
+				loader: "babel-loader",
 				include: [
 					path.resolve(__dirname, "../src")
 				]
@@ -91,7 +103,8 @@ module.exports = {
 				test: /\.(png|jpg|gif|svg)$/,
 				loader: "file-loader",
 				options: {
-					name: "[name].[ext]"
+					name: "[name].[ext]",
+					publicPath: "./"
 				}
 			},
 			{
@@ -100,7 +113,6 @@ module.exports = {
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
-							hmr: process.env.NODE_ENV === 'development',
 							sourceMap: true
 						}
 					},
@@ -114,9 +126,10 @@ module.exports = {
 	plugins: [
 		new VueLoaderPlugin(),
 		new MiniCssExtractPlugin({
-			filename: '[name].css',
+			filename: "[name].css",
 			canPrint: false,
-			chunkFilename: '[id].css'
+			chunkFilename: "[id].css",
+			publicPath: "./"
 		}),
 		new CopyPlugin([
 			{from: `${rootDir}/src/image`, to: `${rootDir}/dist/image`},
@@ -143,13 +156,6 @@ module.exports = {
 
 if (process.env.NODE_ENV === "production")
 {
-	const banner = `Copyright (c) 2019 - Bas Milius <bas@mili.us>
-
-This file is part of the Latte UI package.
-
-For the full copyright and license information, please view the
-LICENSE file that was distributed with this source code.`;
-
 	module.exports.devtool = "source-map";
 	module.exports.plugins = (module.exports.plugins || []).concat([
 		new webpack.DefinePlugin({
@@ -161,7 +167,7 @@ LICENSE file that was distributed with this source code.`;
 			minimize: true
 		}),
 		new webpack.BannerPlugin({
-			banner,
+			banner: fs.readFileSync("config/license-header.txt", "utf8").trim(),
 			test: /\.(css|js)$/
 		})
 	]);
