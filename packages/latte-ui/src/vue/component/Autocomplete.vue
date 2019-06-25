@@ -254,15 +254,15 @@
 				this.values.push({label, remove, value});
 			},
 
-			loadDataSource()
-			{
-				this.onValueChanged();
-			},
-
 			removeValue(value)
 			{
 				this.canEmit = true;
 				this.values = this.values.filter(v => v.value !== value);
+			},
+
+			loadDataSource()
+			{
+				this.onValueChanged();
 			},
 
 			onBlur()
@@ -358,7 +358,8 @@
 
 			onValueChanged()
 			{
-				let value = this.multiSelect ? this.value : [this.value];
+				let value = (this.multiSelect ? this.value : [this.value])
+					.filter(v => typeof v === "number");
 
 				if (value.length === 0)
 				{
@@ -368,9 +369,6 @@
 				}
 
 				if (areArraysEqual(value, this.valueLast))
-					return;
-
-				if (this.isLoading)
 					return;
 
 				this.isLoading = true;
@@ -441,7 +439,7 @@
 					return this.canEmit = true;
 
 				let values = this.values.map(v => v.value);
-				this.$emit("input", (this.multiSelect ? values : values[0]) || this.defaultValue);
+				this.$emit("input", (this.multiSelect ? values : (values.length === 1 ? values[0] : this.defaultValue)));
 			}
 
 		}
