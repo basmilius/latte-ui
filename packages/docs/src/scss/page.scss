@@ -20,7 +20,7 @@ div.page-header
 	display: block;
 	margin: calc(0px - var(--content-gutter)) calc(0px - var(--content-gutter)) 24px calc(0px - var(--content-gutter));
 	background: RGB(var(--panel-background));
-	border-bottom: var(--divider-size) solid var(--outline-color-secondary);
+	border-bottom: var(--divider-size) solid RGB(var(--outline-color-secondary));
 
 	div.page-header-content
 	{

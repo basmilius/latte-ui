@@ -81,8 +81,8 @@
 	div.code-snippet
 	{
 		margin: 0;
-		background: var(--main-background);
-		border: 1px solid var(--outline-color-secondary);
+		background: RGB(var(--main-background));
+		border: 1px solid RGB(var(--outline-color-secondary));
 		border-radius: var(--border-radius);
 	}
 

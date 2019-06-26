@@ -11,7 +11,7 @@
 {
 	--tabs-accent: var(--color-primary);
 	--tabs-accent-foreground: var(--color-primary-foreground);
-	--tabs-foreground: var(--main-foreground-rgb);
+	--tabs-foreground: var(--main-foreground);
 	--tabs-height: 45px;
 }
 
@@ -98,7 +98,7 @@
 .panel > .nav.nav-tabs
 {
 	padding: 0 24px;
-	border-bottom: 2px solid var(--outline-color-secondary);
+	border-bottom: 2px solid #{latte-rgb(var(--outline-color-secondary))};
 
 	div.nav-tabs-indicator
 	{

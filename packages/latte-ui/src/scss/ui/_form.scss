@@ -80,7 +80,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: var(--form-field-outline);
+		background: #{latte-rgb(var(--form-field-outline))};
 		border-radius: var(--border-radius);
 		color: transparent; // ...?
 	}
@@ -106,7 +106,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: var(--form-field-outline);
+		background: #{latte-rgb(var(--form-field-outline))};
 		border-radius: var(--border-radius);
 		border-color: transparent; // ...?
 		color: transparent; // ...?
@@ -135,7 +135,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: var(--form-field-outline);
+		background: #{latte-rgb(var(--form-field-outline))};
 		border-radius: var(--border-radius);
 		border-width: calc(var(--range-thumb-size) / 2);
 		color: transparent; // ...?
@@ -165,7 +165,7 @@ label.col-form-label
 	}
 	border: 0;
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 1px var(--form-field-outline);
+	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
 	color: currentColor;
 	font-size: 1rem;
 	line-height: 26px;
@@ -231,7 +231,7 @@ label.col-form-label
 	display: flex;
 	align-items: center;
 	border-radius: var(--border-radius);
-	box-shadow: 0 0 0 1px var(--form-field-outline);
+	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
 	transition: all 180ms var(--ease-standard-curve);
 	will-change: border-radius, box-shadow;
 	z-index: 0;

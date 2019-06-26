@@ -22,6 +22,7 @@
 	import { applyZ } from "../../js/core/z";
 	import { raf } from "../../js/util/dom";
 	import { getMainElement } from "../../js/core";
+	import { popupClosed, popupOpened } from "../../js/core/popup";
 
 	export default {
 
@@ -102,6 +103,8 @@
 				if (!this.isVisible)
 					return;
 
+				popupClosed();
+
 				raf(() => this.isOpen = false);
 				raf(() => this.isVisible = false, 270);
 
@@ -113,6 +116,8 @@
 			{
 				if (this.isVisible)
 					return;
+
+				popupOpened();
 
 				raf(() =>
 				{

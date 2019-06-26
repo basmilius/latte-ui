@@ -10,7 +10,7 @@
 :root
 {
 	--popup-background: #ffffff;
-	--popup-elevation: #{elevation-generate(16)}, 0 0 0 1px var(--outline-color-secondary);
+	--popup-elevation: #{elevation-generate(16)}, 0 0 0 1px #{latte-rgb(var(--outline-color-secondary))};
 }
 
 .popup
@@ -54,8 +54,8 @@
 		margin: -1px 0 0 0;
 		content: "";
 		border: 9px solid transparent;
-		border-top-color: var(--outline-color);
-		border-bottom-color: var(--outline-color);
+		border-top-color: #{latte-rgb(var(--outline-color))};
+		border-bottom-color: #{latte-rgb(var(--outline-color))};
 		z-index: -1;
 	}
 

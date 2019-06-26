@@ -31,7 +31,7 @@
 
 	--btn-background: var(--app-bar-foreground);
 	--btn-foreground: var(--app-bar-background);
-	--outline-color: #{latte-rgba(var(--app-bar-foreground), .1)};
+	--outline-color: var(--app-bar-foreground);
 	--spinner-color: var(--app-bar-foreground);
 	--tabs-accent: var(--app-bar-foreground);
 	--tabs-foreground: var(--app-bar-foreground);
@@ -118,6 +118,7 @@
 .app-bar .divider
 {
 	height: 24px;
+	opacity: .1;
 
 	&:first-child
 	{
@@ -150,12 +151,12 @@
 
 	&:not(:last-child):not(:only-child)
 	{
-		border-bottom: var(--divider-size) solid var(--outline-color-secondary);
+		border-bottom: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	&:last-child:not(:only-child)
 	{
-		border-top: var(--divider-size) solid var(--outline-color-secondary);
+		border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	.app-bar-title:first-child

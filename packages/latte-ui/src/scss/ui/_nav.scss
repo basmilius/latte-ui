@@ -149,7 +149,7 @@ button.nav-link
 
 	.nav-link
 	{
-		color: var(--main-foreground);
+		color: #{latte-rgb(var(--main-foreground))};
 		transition: all 150ms var(--ease-standard-curve);
 		will-change: background, color;
 

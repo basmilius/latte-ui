@@ -34,8 +34,8 @@ html
 body
 {
 	margin: 0;
-	background: var(--main-background);
-	color: var(--main-foreground);
+	background: #{latte-rgb(var(--main-background))};
+	color: #{latte-rgb(var(--main-foreground))};
 	font-size: 1rem;
 	line-height: 1.5;
 	text-align: left;

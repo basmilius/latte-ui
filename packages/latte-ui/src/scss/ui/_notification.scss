@@ -48,7 +48,7 @@ span.notification-title
 {
 	position: relative;
 	display: block;
-	color: var(--main-foreground);
+	color: #{latte-rgb(var(--main-foreground))};
 	font-size: 1.1em;
 	font-weight: 700;
 }

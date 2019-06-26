@@ -157,7 +157,7 @@
 								const table = createElement("table", table =>
 								{
 									table.classList.add("table", "table-compact");
-									table.style.setProperty("--outline-color-secondary", "rgba(255, 255, 255, .05)");
+									table.style.setProperty("--outline-color-secondary", "255, 255, 255");
 
 									table.appendChild(createElement("thead", thead =>
 									{

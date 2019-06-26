@@ -56,7 +56,7 @@
 	.ce-ripple
 	{
 		position: relative;
-		box-shadow: 0 0 0 2px var(--outline-color);
+		box-shadow: 0 0 0 2px RGB(var(--outline-color));
 		line-height: 180px;
 		text-align: center;
 	}

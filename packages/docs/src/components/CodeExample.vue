@@ -134,13 +134,13 @@
 	{
 		padding: 30px;
 		background: RGB(var(--panel-background));
-		border-top: 1px solid var(--outline-color-secondary);
+		border-top: 1px solid RGB(var(--outline-color));
 		z-index: 0;
 	}
 
 	.darker div.code-example-preview
 	{
-		background: var(--main-background);
+		background: RGB(var(--main-background));
 	}
 
 	div.code-example-code pre

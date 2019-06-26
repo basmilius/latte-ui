@@ -15,7 +15,7 @@
 .divider
 {
 	flex: 0 0 auto;
-	background: var(--outline-color);
+	background: #{latte-rgb(var(--outline-color))};
 
 	&.divider-horizontal
 	{

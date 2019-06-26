@@ -28,11 +28,7 @@ div.sheet-overlay
 div.sheet-content
 {
 	position: fixed;
-	display: flex;
-	align-items: stretch;
-	flex-flow: column nowrap;
-	background: #{latte-rgb(var(--panel-background))};
-	color: var(--main-foreground);
+	display: block;
 	pointer-events: all;
 
 	&.sheet-top

@@ -150,8 +150,8 @@
 		{
 			height: 100%;
 			padding: 0;
-			background: var(--main-background);
-			border-left: 1px solid var(--outline-color);
+			background: RGB(var(--main-background));
+			border-left: 1px solid RGB(var(--outline-color));
 
 			div.code-snippet
 			{
