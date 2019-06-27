@@ -16,6 +16,7 @@ import panel, { initializePanels } from "./panel";
 import question from "./question";
 import snackbar, { initializeSnackbars } from "./snackbar";
 import { initializeTooltips } from "./tooltip";
+import { initializeEmoji } from "./emoji";
 
 export function initializeUI()
 {

@@ -21,6 +21,7 @@ export { default as DatePicker } from "./DatePicker.vue";
 export { default as DatePickerCalendar } from "./DatePickerCalendar.vue";
 export { default as DateTimePicker } from "./DateTimePicker.vue";
 export { default as Draggable } from "./Draggable.vue";
+export { default as EmojiPicker } from "./EmojiPicker.vue";
 export { default as Expandable } from "./Expandable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";

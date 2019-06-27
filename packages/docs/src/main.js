@@ -15,7 +15,9 @@ import "./registerServiceWorker";
 
 Vue.config.productionTip = false;
 
-Vue.use(LatteUI);
+Vue.use(LatteUI, {
+	emojiPath: "/svg/@0.svg"
+});
 moment.locale("nl");
 
 new Vue({

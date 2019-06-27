@@ -22,8 +22,12 @@ import * as Mixins from "../vue/mixin"
 import * as RTEPlugins from "../vue/rich-text-editor";
 
 import "../scss/app.scss";
+import { initializeEmoji } from "./ui/emoji";
 
 export const defaultOptions = {
+	emojiBaseUrl: "https://cdn.mili.us/assets/joypixels/v5",
+	emojiEnabled: true,
+	emojiPath: "/png/64/@0.png",
 	i18n: {},
 	locale: navigator.language,
 	tickInterval: 250
@@ -42,6 +46,9 @@ export class LatteUI
 	static install(Vue, options = {})
 	{
 		options = normalizeOptions(options);
+
+		if (options.emojiEnabled)
+			initializeEmoji(options);
 
 		initializeHoudiniApis();
 		registerOutsideEvents();

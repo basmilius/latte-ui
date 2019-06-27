@@ -1,0 +1,96 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.emoji-picker
+{
+	max-height: 330px;
+	width: 304px;
+	overflow: auto;
+
+	.skin-tone
+	{
+		position: relative;
+		display: block;
+		height: 18px;
+		margin: 3px;
+		width: 18px;
+		border-radius: 12px;
+
+		&.tone-0
+		{
+			background: #ffcf11;
+		}
+
+		&.tone-1
+		{
+			background: #fae3c3;
+		}
+
+		&.tone-2
+		{
+			background: #e2cfa1;
+		}
+
+		&.tone-3
+		{
+			background: #dba373;
+		}
+
+		&.tone-4
+		{
+			background: #a88054;
+		}
+
+		&.tone-5
+		{
+			background: #5f4e43;
+		}
+	}
+
+	.skin-tones
+	{
+		position: sticky;
+		background: RGB(var(--panel-background));
+		bottom: 0;
+	}
+
+	.app-bar-flat
+	{
+		position: sticky;
+		top: 0;
+		background: RGB(var(--panel-background));
+		z-index: 10;
+	}
+
+	.nav-tabs
+	{
+		--tabs-accent: var(--color-primary);
+
+		img
+		{
+			height: 18px;
+			margin: 3px;
+		}
+	}
+
+	.btn.btn-text.btn-emoji
+	{
+		height: 36px;
+		width: 36px;
+		margin: 0;
+		padding: 6px;
+
+		i
+		{
+			margin: 3px 0 0 0;
+			line-height: 1em;
+			vertical-align: middle;
+		}
+	}
+}

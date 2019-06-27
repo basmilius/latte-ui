@@ -10,11 +10,12 @@
 import Vue from "vue";
 
 import { currentOptions } from "./core";
+import { format } from "./util/string";
 
 /**
  * Replaces params in a string.
  *
- * @param {String} string
+ * @param {String} str
  * @param {Array} params
  *
  * @returns {*}
@@ -22,12 +23,9 @@ import { currentOptions } from "./core";
  * @author Bas Milius <bas@mili.us>
  * @since 1.0.0
  */
-export function replace(string, params = [])
+export function replace(str, params = [])
 {
-	for (let i = 0; i < params.length; i++)
-		string = string.replace(new RegExp(`@${i}`, 'g'), params[i]);
-
-	return string;
+	return format(str, ...params);
 }
 
 /**

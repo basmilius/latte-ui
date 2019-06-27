@@ -16,10 +16,34 @@
 	flex: 1 1 auto;
 	flex-flow: column;
 
+	.avatar
+	{
+		font-size: 42px;
+		z-index: 1;
+	}
+
+	p:last-of-type
+	{
+		margin-bottom: 0;
+	}
+
+	small
+	{
+		margin-top: .5em;
+		margin-left: auto;
+		color: #{latte-rgba(var(--message-foreground), .5)};
+		line-height: 1em;
+	}
+
 	&.incoming
 	{
 		margin-right: auto;
 		justify-self: flex-start;
+
+		.avatar
+		{
+			margin-right: 15px;
+		}
 	}
 
 	&.outgoing
@@ -27,18 +51,26 @@
 		margin-left: auto;
 		align-items: flex-end;
 		justify-self: flex-end;
+
+		.avatar
+		{
+			margin-left: 15px;
+			order: 1;
+		}
 	}
 }
 
-.avatar + .message-bubble
+.message-bubble-container
 {
-	margin-left: 30px;
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	z-index: 0;
 }
 
-.message-bubble-avatar
+.message-bubble + .message-bubble
 {
-	margin-bottom: 30px;
-	flex: 0 0 auto;
+	margin-top: .5rem;
 }
 
 .message-bubble-content
