@@ -13,29 +13,37 @@
 		<i class="mdi mdi-sticker-emoji"></i>
 
 		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9">
-			<div class="panel emoji-picker">
-				<div class="app-bar app-bar-flat">
-					<nav class="nav nav-tabs is-over-outline px-2">
-						<template v-for="(cat, index) of categories">
-							<a class="nav-link mx-0" :data-tooltip="cat.label|i18n('latte-ui')" :class="{'is-active': index === currentCategory}" @click="currentCategory = index">
-								<img :src="cat.imageUrl" :alt="cat.label|i18n('latte-ui')"/>
-							</a>
-						</template>
-					</nav>
-				</div>
-				<div class="panel-body p-2">
-					<latte-ripple as="button" class="btn btn-icon btn-text btn-emoji" @click="onEmojiClick(emoji)" v-for="emoji of emojis">
-						<i :class="`joypixels-24-${emoji.diversity !== null && !emoji.isDiversityBase ? 'diversity' : emoji.category} _${emoji.codePoints.base}`"></i>
-					</latte-ripple>
-				</div>
-				<div class="app-bar skin-tones" v-if="showSkinTones">
-					<div class="app-bar-row app-bar-auto justify-content-center py-1">
-						<latte-ripple as="button" class="btn btn-icon btn-icon btn-text" :key="index" @click="setSkinTone(index)" v-for="(skinTone, index) of skinTones">
-							<i :class="`skin-tone tone-${index}`" :data-skin-tone="skinTone"></i>
-						</latte-ripple>
+			<latte-virtual-scroller class="panel emoji-picker" :items="emojis" items-class="panel-body" :item-height="36" :items-padding="[7, 7, 7, 7]" :item-width="36">
+
+				<template v-slot:header>
+					<div class="app-bar app-bar-flat">
+						<nav class="nav nav-tabs is-over-outline px-2">
+							<template v-for="(cat, index) of categories">
+								<a class="nav-link mx-0" :data-tooltip="cat.label|i18n('latte-ui')" :class="{'is-active': index === currentCategory}" @click="currentCategory = index">
+									<img :src="cat.imageUrl" :alt="cat.label|i18n('latte-ui')"/>
+								</a>
+							</template>
+						</nav>
 					</div>
-				</div>
-			</div>
+				</template>
+
+				<template v-slot="{item}">
+					<latte-ripple as="button" class="btn btn-icon btn-text btn-emoji" @click="onEmojiClick(item)">
+						<i :class="`joypixels-24-${item.diversity !== null && !item.isDiversityBase ? 'diversity' : item.category} _${item.codePoints.base}`"></i>
+					</latte-ripple>
+				</template>
+
+				<template v-slot:footer v-if="showSkinTones">
+					<div class="app-bar skin-tones">
+						<div class="app-bar-row app-bar-auto justify-content-center py-1">
+							<latte-ripple as="button" class="btn btn-icon btn-icon btn-text" :key="index" @click="setSkinTone(index)" v-for="(skinTone, index) of skinTones">
+								<i :class="`skin-tone tone-${index}`" :data-skin-tone="skinTone"></i>
+							</latte-ripple>
+						</div>
+					</div>
+				</template>
+
+			</latte-virtual-scroller>
 		</latte-popup>
 	</button>
 

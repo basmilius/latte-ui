@@ -21,8 +21,31 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
-						To-do: add virtual scroller element.
+						<div class="panel-header">
+							<span class="panel-title">Virtual scroller</span>
+							<button class="btn btn-contained btn-primary ml-auto" @click="rows.push({id: 0, name: 'Awesome!'})"><span>Add</span></button>
+						</div>
+						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 450px">
+
+							<template v-slot="{item, itemHeight}">
+								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="{height: `${itemHeight}px`}">Item {{item.id}}</div>
+							</template>
+
+						</latte-virtual-scroller>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header">
+							<span class="panel-title">Virtual scroller (grid)</span>
+							<button class="btn btn-contained btn-primary ml-auto" @click="rows.push({id: 0, name: 'Awesome!'})"><span>Add</span></button>
+						</div>
+						<latte-virtual-scroller :items="rows" :item-height="48" :item-width="222" items-class="d-flex flex-row flex-wrap" style="height: 450px">
+
+							<template v-slot="{item, itemHeight, itemWidth}">
+								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="{height: `${itemHeight}px`, width: `${itemWidth}px`}">Item {{item.id}}</div>
+							</template>
+
+						</latte-virtual-scroller>
 					</div>
 
 					<div class="panel">
@@ -81,7 +104,7 @@
 			let rows = [];
 
 			for (let i = 0; i < 1000; i++)
-				rows.push({name: `Bas ${i + 1}`});
+				rows.push({id: i, name: `Bas ${i + 1}`});
 
 			return {
 				rows: rows,
