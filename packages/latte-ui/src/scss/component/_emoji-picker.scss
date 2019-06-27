@@ -56,7 +56,6 @@
 	.skin-tones
 	{
 		position: sticky;
-		background: RGB(var(--panel-background));
 		bottom: 0;
 	}
 
@@ -64,8 +63,7 @@
 	{
 		position: sticky;
 		top: 0;
-		background: RGB(var(--panel-background));
-		z-index: 10;
+		z-index: 1;
 	}
 
 	.nav-tabs
