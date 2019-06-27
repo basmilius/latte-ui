@@ -1,0 +1,35 @@
+Latte.ui.snackbar.create({
+	message: "Hello world!"
+});
+
+// ...
+
+const wasAction = await Latte.ui.snackbar.create({
+	action: {
+		color: "success",
+		label: "Undo"
+	},
+	message: "Folder has been removed."
+});
+
+Latte.ui.message.alert("Snackbar result", wasAction ? "You pressed Undo" : "You did nothing!");
+
+// ...
+
+const locations = [
+	Latte.ui.snackbar.Locations.BOTTOM_LEFT,
+	Latte.ui.snackbar.Locations.BOTTOM,
+	Latte.ui.snackbar.Locations.BOTTOM_RIGHT,
+	Latte.ui.snackbar.Locations.TOP_LEFT,
+	Latte.ui.snackbar.Locations.TOP,
+	Latte.ui.snackbar.Locations.TOP_RIGHT
+];
+
+locations.forEach(location =>
+{
+	Latte.ui.snackbar.create({
+		duration: 300,
+		location,
+		message: "Hey! I'm a snackbar!"
+	});
+});

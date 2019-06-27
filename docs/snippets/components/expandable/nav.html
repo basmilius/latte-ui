@@ -1,0 +1,32 @@
+<nav class="nav nav-list">
+	<a class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></a>
+
+	<latte-expandable group="example-nav">
+		<template v-slot:header="{isOpen}">
+			<a class="nav-link">
+				<i class="mdi mdi-view-grid"></i>
+				<span>Components</span>
+				<i class="mdi" :class="{'mdi-chevron-down': !isOpen, 'mdi-chevron-up': isOpen}"></i>
+			</a>
+		</template>
+
+		<a class="nav-link"><i class="mdi"></i><span>App bar</span></a>
+		<a class="nav-link"><i class="mdi"></i><span>Avatar</span></a>
+		<a class="nav-link"><i class="mdi"></i><span>Badge</span></a>
+		<a class="nav-link"><i class="mdi"></i><span>Bottom nav</span></a>
+	</latte-expandable>
+
+	<latte-expandable group="example-nav">
+		<template v-slot:header="{isOpen}">
+			<a class="nav-link">
+				<i class="mdi mdi-eye"></i>
+				<span>Examples</span>
+				<i class="mdi" :class="{'mdi-chevron-down': !isOpen, 'mdi-chevron-up': isOpen}"></i>
+			</a>
+		</template>
+
+		<a class="nav-link"><i class="mdi"></i><span>Admin dashboard</span></a>
+		<a class="nav-link"><i class="mdi"></i><span>Blog</span></a>
+		<a class="nav-link"><i class="mdi"></i><span>Website</span></a>
+	</latte-expandable>
+</nav>

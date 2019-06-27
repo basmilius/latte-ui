@@ -21,18 +21,15 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Emoji filter</span></div>
+						<div class="panel-header">
+							<span class="panel-title">Emoji stuff</span>
+							<div class="ml-auto"></div>
+							<latte-emoji-picker></latte-emoji-picker>
+							<latte-emoji-picker close-on-select></latte-emoji-picker>
+						</div>
 						<div class="panel-body">
 							<p v-emojify>{{ "Emoji's are now replaced in latte-ui 🎉🙅🏽‍♂️" }}</p>
 							<p v-emojify>{{ "🥳🤪✋🏼🍑🥳🥳🥳😘" }}</p>
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Emoji picker</span></div>
-						<div class="panel-body">
-							<latte-emoji-picker></latte-emoji-picker>
-							<latte-emoji-picker close-on-select></latte-emoji-picker>
 						</div>
 					</div>
 
