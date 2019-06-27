@@ -45,7 +45,6 @@
 	.ripple
 	{
 		position: absolute;
-		display: block;
 		height: var(--ripple-size);
 		width: var(--ripple-size);
 		background: rgba(var(--ripple-color), var(--ripple-alpha));

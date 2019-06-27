@@ -19,7 +19,6 @@ import { raf } from "./util/dom";
 
 import * as Components from "../vue/component";
 import * as Mixins from "../vue/mixin"
-import * as RTEPlugins from "../vue/rich-text-editor";
 
 import "../scss/app.scss";
 import { initializeEmoji } from "./ui/emoji";
@@ -86,7 +85,6 @@ export class LatteUI
 	static registerComponents(Vue)
 	{
 		Object.values(Components).forEach(c => Vue.component(c.name, c));
-		Object.values(RTEPlugins).forEach(p => Vue.component(p.name, p));
 	}
 
 	static registerMixins(Vue)

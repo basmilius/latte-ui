@@ -21,6 +21,11 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
+						To-do: add virtual scroller element.
+					</div>
+
+					<div class="panel">
 						<div class="panel-header">
 							<span class="panel-title">Emoji stuff</span>
 							<div class="ml-auto"></div>

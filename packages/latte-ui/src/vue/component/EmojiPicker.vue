@@ -19,7 +19,7 @@
 						<nav class="nav nav-tabs is-over-outline">
 							<template v-for="(cat, index) of categories">
 								<a class="nav-link mx-0" :data-tooltip="cat.label|i18n('latte-ui')" :class="{'is-active': index === currentCategory}" @click="currentCategory = index">
-									<img :src="cat.imageUrl"/>
+									<img :src="cat.imageUrl" :alt="cat.label|i18n('latte-ui')"/>
 								</a>
 							</template>
 						</nav>
@@ -27,16 +27,16 @@
 				</div>
 				<div class="panel-body p-2">
 					<template v-for="emoji of emojis">
-						<button class="btn btn-text btn-emoji" @click="onEmojiClick(emoji)">
+						<latte-ripple as="button" class="btn btn-icon btn-text btn-emoji" @click="onEmojiClick(emoji)">
 							<i :class="`joypixels-24-${emoji.diversity !== null && !emoji.isDiversityBase ? 'diversity' : emoji.category} _${emoji.codePoints.base}`"></i>
-						</button>
+						</latte-ripple>
 					</template>
 				</div>
 				<div class="app-bar skin-tones" v-if="showSkinTones">
 					<div class="app-bar-row app-bar-auto justify-content-center py-1">
-						<button class="btn btn-icon btn-text" @click="setSkinTone(index)" v-for="(skinTone, index) of skinTones">
+						<latte-ripple as="button" class="btn btn-icon btn-icon btn-text" :key="index" @click="setSkinTone(index)" v-for="(skinTone, index) of skinTones">
 							<i :class="`skin-tone tone-${index}`" :data-skin-tone="skinTone"></i>
-						</button>
+						</latte-ripple>
 					</div>
 				</div>
 			</div>

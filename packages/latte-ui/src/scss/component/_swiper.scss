@@ -14,13 +14,13 @@
 	--swiper-view-padding: 0;
 }
 
-div.swiper
+.swiper
 {
 	position: relative;
 	display: block;
 	overflow: hidden;
 
-	div.swiper-body
+	.swiper-body
 	{
 		position: relative;
 		display: flex;
@@ -36,7 +36,7 @@ div.swiper
 		}
 	}
 
-	&.is-dragging div.swiper-body
+	&.is-dragging .swiper-body
 	{
 		transition: none;
 	}

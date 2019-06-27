@@ -10,7 +10,7 @@
 .emoji-picker
 {
 	max-height: 330px;
-	width: 304px;
+	width: calc(304px + var(--scrollbar-width, 0));
 	overflow: auto;
 
 	.skin-tone
@@ -81,17 +81,13 @@
 
 	.btn.btn-text.btn-emoji
 	{
-		height: 36px;
-		width: 36px;
 		margin: 0;
-		padding: 6px;
+		background: transparent;
 
 		i
 		{
 			top: unset;
 			margin: 0;
-			line-height: 1em;
-			vertical-align: middle;
 		}
 	}
 }
