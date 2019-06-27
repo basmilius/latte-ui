@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -22,6 +22,24 @@ export function commaCommaAnd(strs)
 }
 
 /**
+ * Applies parameters to a string.
+ *
+ * @param {String} str
+ * @param {String} params
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.8.0
+ */
+export function format(str, ...params)
+{
+	for (let i = 0; i < params.length; i++)
+		str = str.replace(new RegExp(`@${i}`, 'g'), params[i]);
+
+	return str;
+}
+
+/**
  * Returns TRUE if {@see str} is undefined, NULL or contains only whitespace.
  *
  * @param {String} str
@@ -40,5 +58,6 @@ export function isNullOrWhitespace(str)
 
 export default {
 	commaCommaAnd,
+	format,
 	isNullOrWhitespace
 };

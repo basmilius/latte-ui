@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -15,6 +15,9 @@
 	--ease-standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);
 	--ease-swift-out: cubic-bezier(.55, 0, .1, 1);
 
+	--font-sans-serif: "proxima-nova", sans-serif;
+	--font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
 	--branding-logo: url(../image/logo.svg);
 	--border-radius: 6px;
 
@@ -22,16 +25,12 @@
 	--dark: 25, 26, 28;
 	--elevation-color: 127, 127, 127;
 
-	--main-background: rgb(249, 249, 249);
-	--main-background-rgb: 249, 249, 249;
-	--main-foreground: rgba(0, 0, 0, .87);
-	--main-foreground-rgb: 0, 0, 0;
+	--main-background: 249, 249, 249;
+	--main-foreground: 25, 26, 28;
 	--main-placeholder: rgba(0, 0, 0, .42);
 
-	--outline-color: rgb(232, 235, 242);
-	--outline-color-rgb: 232, 235, 242;
-	--outline-color-secondary: rgb(243, 246, 251);
-	--outline-color-secondary-rgb: 243, 246, 251;
+	--outline-color: 232, 235, 242;
+	--outline-color-secondary: 243, 246, 251;
 
 	@each $type, $color in $theme-colors
 	{
@@ -40,8 +39,9 @@
 	}
 }
 
-body.is-popup-opened
+.is-popup-opened
 {
+	margin-right: var(--scrollbar-width, 0);
 	overflow: hidden;
 	pointer-events: none;
 }

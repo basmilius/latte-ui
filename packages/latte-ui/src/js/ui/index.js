@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -16,6 +16,7 @@ import panel, { initializePanels } from "./panel";
 import question from "./question";
 import snackbar, { initializeSnackbars } from "./snackbar";
 import { initializeTooltips } from "./tooltip";
+import { initializeEmoji } from "./emoji";
 
 export function initializeUI()
 {

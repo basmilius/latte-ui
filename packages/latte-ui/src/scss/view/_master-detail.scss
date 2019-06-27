@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -11,12 +11,12 @@ body.master-detail main#app
 {
 	div#drawer
 	{
-		--drawer-elevation: var(--divider-size) 0 var(--outline-color-secondary);
+		--drawer-elevation: var(--divider-size) 0 #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	> div.app-bar
 	{
-		--app-bar-elevation: var(--drawer-width-primary) var(--divider-size) var(--outline-color-secondary);
+		--app-bar-elevation: var(--drawer-width-primary) var(--divider-size) #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	> div.content
@@ -52,7 +52,7 @@ body.master-detail main#app
 
 			#detail
 			{
-				border-top: var(--divider-size) solid var(--outline-color-secondary);
+				border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 			}
 		}
 
@@ -60,7 +60,7 @@ body.master-detail main#app
 		{
 			#detail
 			{
-				border-left: var(--divider-size) solid var(--outline-color-secondary);
+				border-left: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 			}
 		}
 	}
@@ -69,7 +69,7 @@ body.master-detail main#app
 	{
 		> div.app-bar
 		{
-			--app-bar-elevation: 0 var(--divider-size) var(--outline-color-secondary);
+			--app-bar-elevation: 0 var(--divider-size) #{latte-rgb(var(--outline-color-secondary))};
 		}
 	}
 }

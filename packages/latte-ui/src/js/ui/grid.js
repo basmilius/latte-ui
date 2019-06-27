@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -253,12 +253,12 @@ export function validateLayout(layout, contextName = "Layout")
 
 		for (let j = 0; j < subProps.length; j++)
 			if (typeof item[subProps[j]] !== "number")
-				throw new Error(`Latte Grid: ${contextName}[${i}].${subProps[j]} must be a number!`);
+				throw new Error(`[LatteUI] ${contextName}[${i}].${subProps[j]} must be a number!`);
 
 		if (item.i && typeof item.i !== "string")
-			throw new Error(`Latte Grid: ${contextName}[${i}].i must be a string!`);
+			throw new Error(`[LatteUI] ${contextName}[${i}].i must be a string!`);
 
 		if (item.static !== undefined && typeof item.static !== "boolean")
-			throw new Error(`Latte Grid: ${contextName}[${i}].static must be a boolean!`);
+			throw new Error(`[LatteUI] ${contextName}[${i}].static must be a boolean!`);
 	}
 }

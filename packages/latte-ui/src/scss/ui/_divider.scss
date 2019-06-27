@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -15,7 +15,7 @@
 .divider
 {
 	flex: 0 0 auto;
-	background: var(--outline-color);
+	background: #{latte-rgb(var(--outline-color))};
 
 	&.divider-horizontal
 	{

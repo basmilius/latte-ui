@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -149,7 +149,7 @@ button.nav-link
 
 	.nav-link
 	{
-		color: var(--main-foreground);
+		color: #{latte-rgb(var(--main-foreground))};
 		transition: all 150ms var(--ease-standard-curve);
 		will-change: background, color;
 

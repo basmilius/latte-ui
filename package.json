@@ -1,6 +1,13 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.7.0",
+	"version": "1.8.0-beta.4",
+	"description": "Monorepo for latte-ui.",
+	"author": {
+		"name": "Bas Milius",
+		"email": "bas@mili.us",
+		"url": "https://bas.dev"
+	},
+	"repository": "https://github.com/basmilius/latte-ui",
 	"private": true,
 	"scripts": {
 		"build": "yarn workspace @bybas/latte-ui run build",

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -48,7 +48,7 @@ span.notification-title
 {
 	position: relative;
 	display: block;
-	color: var(--main-foreground);
+	color: #{latte-rgb(var(--main-foreground))};
 	font-size: 1.1em;
 	font-weight: 700;
 }

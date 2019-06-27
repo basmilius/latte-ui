@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -27,27 +27,28 @@
 .avatar-strip
 {
 	position: relative;
-	display: flex;
+	display: inline-flex;
+	flex-flow: row-reverse;
 
 	.avatar
 	{
 		position: relative;
 		display: block;
 		height: 1em;
-		margin-left: -.3em;
+		margin-right: -.3em;
 		width: 1em;
 		box-shadow: 0 0 0 .1em var(--avatar-strip-background, #{latte-rgb(var(--panel-background))});
 		transition: all 180ms var(--ease-swift-out);
 
 		&:first-child
 		{
-			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 
 	&.with-hover:hover .avatar:not(:first-child)
 	{
-		margin-left: .1em;
+		margin-right: .1em;
 	}
 }
 

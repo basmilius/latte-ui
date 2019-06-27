@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -17,8 +17,8 @@ table.table
 	width: 100%;
 	z-index: 0;
 
-	$border: 1px solid var(--outline-color-secondary);
-	$hover-bg: rgba(var(--outline-color-secondary-rgb), .5);
+	$border: 1px solid #{latte-rgb(var(--outline-color-secondary))};
+	$hover-bg: #{latte-rgba(var(--outline-color-secondary), .5)};
 
 	&.table-border
 	{
@@ -133,7 +133,7 @@ table.table
 
 	a.column-content
 	{
-		color: var(--main-foreground);
+		color: #{latte-rgb(var(--main-foreground))};
 		cursor: pointer;
 		text-decoration: none;
 
@@ -159,9 +159,9 @@ table.table
 		td,
 		th
 		{
-			background: var(--outline-color-secondary);
-			border-top: 1px solid var(--outline-color);
-			border-bottom: 1px solid var(--outline-color);
+			background: #{latte-rgb(var(--outline-color-secondary))};
+			border-top: 1px solid #{latte-rgb(var(--outline-color))};
+			border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
 		}
 
 		input
@@ -171,7 +171,7 @@ table.table
 			width: 100%;
 			background: transparent;
 			border: 0;
-			color: var(--main-foreground);
+			color: #{latte-rgb(var(--main-foreground))};
 			font-weight: 500;
 			outline: none;
 

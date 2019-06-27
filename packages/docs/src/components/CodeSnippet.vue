@@ -2,6 +2,7 @@
 
 	import hljs from "highlight.js";
 	import Vue from "vue";
+	import { Latte } from "../../../latte-ui";
 
 	export default {
 
@@ -49,10 +50,10 @@
 
 			loadSnippet()
 			{
-				this.$latte.api.request(this.url)
+				Latte.api.request(this.url)
 					.then(r => r.text())
 					.then(r => this.onSnippetLoaded(r))
-					.catch(err => this.$latte.core.handleError(err));
+					.catch(err => Latte.core.handleError(err));
 			},
 
 			onSnippetLoaded(response)
@@ -80,8 +81,8 @@
 	div.code-snippet
 	{
 		margin: 0;
-		background: var(--main-background);
-		border: 1px solid var(--outline-color-secondary);
+		background: RGB(var(--main-background));
+		border: 1px solid RGB(var(--outline-color-secondary));
 		border-radius: var(--border-radius);
 	}
 

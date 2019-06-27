@@ -50,6 +50,7 @@
 	import TableOfContents from "../../../components/TableOfContents";
 	import CodeExample from "../../../components/CodeExample";
 	import CodeSnippet from "../../../components/CodeSnippet";
+	import { Latte } from "../../../../../latte-ui";
 
 	export default {
 
@@ -66,7 +67,7 @@
 
 			async findMe()
 			{
-				const result = await this.$latte.ui.question.create("map-marker-outline", "Allow <strong>Latte UI Docs</strong> to use this device's location?", [
+				const result = await Latte.ui.question.create("map-marker-outline", "Allow <strong>Latte UI Docs</strong> to use this device's location?", [
 					{id: 1, label: "Allow all the time"},
 					{id: 2, label: "Allow when the app in use"},
 					{id: 4, label: "Deny"},
@@ -77,15 +78,15 @@
 				{
 					case 1:
 					case 2:
-						navigator.geolocation.getCurrentPosition(pos => this.$latte.ui.snackbar.create({message: `Lat: ${pos.coords.latitude}; Long: ${pos.coords.longitude}`}));
+						navigator.geolocation.getCurrentPosition(pos => Latte.ui.snackbar.create({message: `Lat: ${pos.coords.latitude}; Long: ${pos.coords.longitude}`}));
 						break;
 
 					case 4:
-						await this.$latte.ui.snackbar.create({message: "You denied!"});
+						await Latte.ui.snackbar.create({message: "You denied!"});
 						break;
 
 					case 8:
-						await this.$latte.ui.snackbar.create({message: "You denied and asked to never show this question again!"});
+						await Latte.ui.snackbar.create({message: "You denied and asked to never show this question again!"});
 						break;
 				}
 			}

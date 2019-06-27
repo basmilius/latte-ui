@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  - Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
   -
   - This file is part of the Latte UI package.
   -
@@ -64,6 +64,7 @@
 <script>
 
 	import { id, request } from "../../js/core/api";
+	import { handleError } from "../../js/core";
 
 	function areArraysEqual(a, b)
 	{
@@ -77,11 +78,73 @@
 		return true;
 	}
 
+	/**
+	 * Returns an url data source for autocomplete.
+	 *
+	 * @param {String} url
+	 * @returns {Latte.iid.AutocompleteDataSourceMethods}
+	 * @author Bas Milius <bas@mili.us>
+	 * @version 1.8.0
+	 */
+	function urlDataSource(url)
+	{
+		let abortController = null;
+
+		function reset()
+		{
+			if (abortController !== null)
+				abortController.abort();
+
+			abortController = new AbortController();
+		}
+
+		return {
+			getEntries(ids)
+			{
+				return new Promise(resolve =>
+				{
+					reset();
+
+					request(`${url}?ids=${ids.join(",")}`, {cache: "no-cache", signal: abortController.signal})
+						.then(r => r.json())
+						.then(r =>
+						{
+							abortController = null;
+							resolve(r.data);
+						});
+				});
+			},
+
+			getSuggestions(query, offset, limit)
+			{
+				return new Promise(resolve =>
+				{
+					reset();
+
+					request(`${url}?q=${encodeURI(query)}&offset=${offset}&limit=${limit}`, {cache: "no-cache", signal: abortController.signal})
+						.then(r => r.json())
+						.then(r =>
+						{
+							abortController = null;
+							resolve(r.data);
+						})
+						.catch(() => resolve([]));
+				});
+			}
+		};
+	}
+
 	export default {
 
 		name: "latte-autocomplete",
 
 		props: {
+
+			dataSource: {
+				default: null,
+				required: true,
+				type: Function | String | null
+			},
 
 			defaultValue: {
 				default: undefined,
@@ -124,11 +187,6 @@
 				type: String
 			},
 
-			url: {
-				required: true,
-				type: String
-			},
-
 			value: {
 				default: () => [],
 				required: false,
@@ -145,9 +203,9 @@
 		data()
 		{
 			return {
-				abortController: null,
 				canEmit: true,
 				canOpen: false,
+				dsi: null,
 				isLoading: false,
 				currentSuggestion: -1,
 				searchTerm: "",
@@ -160,7 +218,6 @@
 		mounted()
 		{
 			this.$el.addOutsideEventListener("click", this.onBlur);
-			this.onValueChanged();
 		},
 
 		computed: {
@@ -199,7 +256,13 @@
 
 			removeValue(value)
 			{
+				this.canEmit = true;
 				this.values = this.values.filter(v => v.value !== value);
+			},
+
+			loadDataSource()
+			{
+				this.onValueChanged();
 			},
 
 			onBlur()
@@ -223,6 +286,8 @@
 				this.addValue(label, value);
 				this.canOpen = false;
 				this.searchTerm = "";
+
+				this.$refs.field.focus();
 			},
 
 			onSelectFirstSuggestion(evt)
@@ -263,18 +328,17 @@
 					this.currentSuggestion--;
 			},
 
-			onReceiveSuggestions(response)
+			onReceiveSuggestions(suggestions)
 			{
-				this.abortController = null;
 				this.canOpen = true;
 				this.currentSuggestion = -1;
-				this.suggestions = response.data;
+				this.suggestions = suggestions || [];
 			},
 
-			onReceiveValues(response)
+			onReceiveValues(values)
 			{
-				response.data.forEach(v => this.addValue(v.label, v.value));
-
+				values.filter(v => !!v).forEach(v => this.addValue(v.label, v.value));
+				this.canEmit = true;
 				this.isLoading = false;
 			},
 
@@ -287,24 +351,15 @@
 					return;
 				}
 
-				if (this.abortController !== null)
-				{
-					this.abortController.abort();
-					this.abortController = null;
-				}
-
-				this.abortController = new AbortController();
-
-				request(`${this.url}?q=${encodeURIComponent(this.searchTerm.toLowerCase())}`, {cache: "no-cache", signal: this.signal})
-					.then(r => r.json())
+				this.dsi.getSuggestions(this.searchTerm, this.offset, this.limit)
 					.then(r => this.onReceiveSuggestions(r))
-					.catch(err => console.error(err));
+					.catch(err => handleError(err));
 			},
 
 			onValueChanged()
 			{
-				let value = this.multiSelect ? this.value : [this.value];
-				value = value.filter ? value.filter(v => v > 0) : value;
+				let value = (this.multiSelect ? this.value : [this.value])
+					.filter(v => typeof v === "number");
 
 				if (value.length === 0)
 				{
@@ -316,22 +371,51 @@
 				if (areArraysEqual(value, this.valueLast))
 					return;
 
-				if (this.isLoading)
-					return;
-
 				this.isLoading = true;
-
-				request(`${this.url}?ids=${value.join(",")}`)
-					.then(r => r.json())
-					.then(r => this.onReceiveValues(r))
-					.catch(err => console.error(err));
-
 				this.valueLast = value;
+
+				this.dsi.getEntries(value)
+					.then(r => this.onReceiveValues(r))
+					.catch(err => handleError(err));
 			}
 
 		},
 
 		watch: {
+
+			dataSource: {
+				deep: true,
+				immediate: true,
+				handler()
+				{
+					if (this.dataSource === undefined)
+						throw new Error("dataSource is undefined.");
+
+					return new Promise(resolve =>
+					{
+						let dsi;
+
+						if (typeof this.dataSource === "string")
+							dsi = urlDataSource(this.dataSource);
+						else
+							dsi = this.dataSource();
+
+						if (!(dsi instanceof Promise))
+							dsi = Promise.resolve(dsi);
+
+						dsi.then(dsi =>
+						{
+							this.dsi = dsi;
+
+							if (!this.dsi)
+								throw new Error("Invalid data source instance.");
+
+							this.loadDataSource();
+							resolve();
+						});
+					});
+				}
+			},
 
 			shouldOpenSuggestions()
 			{
@@ -355,7 +439,7 @@
 					return this.canEmit = true;
 
 				let values = this.values.map(v => v.value);
-				this.$emit("input", (this.multiSelect ? values : values[0]) || this.defaultValue);
+				this.$emit("input", (this.multiSelect ? values : (values.length === 1 ? values[0] : this.defaultValue)));
 			}
 
 		}

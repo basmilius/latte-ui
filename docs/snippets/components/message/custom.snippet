@@ -1,0 +1,17 @@
+const buttons = Latte.ui.message.Buttons.CANCEL | Latte.ui.message.Buttons.NO | Latte.ui.message.Buttons.YES;
+const {button} = await Latte.ui.message.create("Custom", "This is a message with three custom buttons defined in Latte.ui.message.Buttons", buttons);
+
+switch (button)
+{
+	case Latte.ui.message.Buttons.CANCEL:
+		Latte.ui.message.alert("Result", "You clicked Cancel!");
+		break;
+
+	case Latte.ui.message.Buttons.NO:
+		Latte.ui.message.alert("Result", "You clicked No!");
+		break;
+
+	case Latte.ui.message.Buttons.YES:
+		Latte.ui.message.alert("Result", "You clicked Yes!");
+		break;
+}

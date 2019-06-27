@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -22,6 +22,9 @@ export function popupClosed()
 
 export function popupOpened()
 {
+	if (counter === 0)
+		document.documentElement.style.setProperty("--scrollbar-width", `${window.innerWidth - document.body.clientWidth}px`);
+
 	counter++;
 	update();
 }

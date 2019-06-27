@@ -14,6 +14,7 @@
 
 <script>
 
+	import { Latte } from "../../latte-ui";
 	import ReleaseNotesOverlay from "./components/ReleaseNotesOverlay";
 
 	export default {
@@ -31,8 +32,8 @@
 
 		mounted()
 		{
-			this.$latte.action.on("latte-docs:navigate", () => this.isLoading = true);
-			this.$latte.action.on("latte-docs:navigated", () => this.isLoading = false);
+			Latte.action.on("latte-docs:navigate", () => this.isLoading = true);
+			Latte.action.on("latte-docs:navigated", () => this.isLoading = false);
 		}
 
 	}

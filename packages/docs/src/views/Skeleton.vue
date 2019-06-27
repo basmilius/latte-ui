@@ -102,7 +102,7 @@
 							<br/>
 							<p><strong>By Bas</strong></p>
 							<p>
-								Designed and developed with <img src="https://cdn.mili.us/assets/emojione/svg/2764.svg" alt="Heart" class="emoji"/> by <a href="https://bas.dev" target="_blank" rel="noopener">Bas Milius</a> and other contributors.
+								Designed and developed with <img src="https://cdn.mili.us/assets/joypixels/v5/svg/2764.svg" alt="Heart" class="emoji"/> by <a href="https://bas.dev" target="_blank" rel="noopener">Bas Milius</a> and other contributors.
 							</p>
 
 						</div>

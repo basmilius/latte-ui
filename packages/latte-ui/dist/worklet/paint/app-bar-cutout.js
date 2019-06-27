@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -7,9 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
-class AppBarCutout
+registerPaint("app-bar-cutout", class
 {
-
 	static get inputProperties()
 	{
 		return ["--app-bar-alpha", "--app-bar-background", "--app-bar-cutout-position", "--app-bar-cutout-offset"];
@@ -96,7 +95,4 @@ class AppBarCutout
 		context.lineTo(0, geometry.height);
 		context.lineTo(0, 0);
 	}
-
-}
-
-registerPaint("app-bar-cutout", AppBarCutout);
+});

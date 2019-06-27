@@ -21,7 +21,7 @@
 
 <script>
 
-	import { Latte } from "../../../latte-ui/src/index";
+	import { Latte } from "../../../latte-ui";
 
 	export default {
 

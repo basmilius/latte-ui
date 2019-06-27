@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2019 - Bas Milius <bas@mili.us>
+  - Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
   -
   - This file is part of the Latte UI package.
   -
@@ -26,6 +26,7 @@
 				<template v-if="rowIndex === 0">
 					<div class="divider divider-vertical ml-auto"></div>
 					<div class="btn-group">
+						<latte-emoji-picker close-on-select @select="insertEmoji"></latte-emoji-picker>
 						<button class="btn btn-icon btn-text btn-dark m-0" data-tooltip="More..."><i class="mdi mdi-dots-vertical"></i></button>
 					</div>
 				</template>
@@ -187,6 +188,8 @@
 				{
 					this.editableContent.appendChild(el);
 				}
+
+				this.setSelectionAfter(el, true);
 			},
 
 			addToolbarAction(id, icon, label, row = 0, options = {})
@@ -209,6 +212,11 @@
 				command.fn(...params);
 				this.isMutationsAllowed = true;
 				this.onContentChanged();
+			},
+
+			insertEmoji(emoji)
+			{
+				this.addElementAtCursor(document.createTextNode(emoji.unicode));
 			},
 
 			getToolbarAction(id)

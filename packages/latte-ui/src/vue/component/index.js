@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -21,6 +21,7 @@ export { default as DatePicker } from "./DatePicker.vue";
 export { default as DatePickerCalendar } from "./DatePickerCalendar.vue";
 export { default as DateTimePicker } from "./DateTimePicker.vue";
 export { default as Draggable } from "./Draggable.vue";
+export { default as EmojiPicker } from "./EmojiPicker.vue";
 export { default as Expandable } from "./Expandable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";
@@ -40,7 +41,6 @@ export { default as Sheet } from "./Sheet.vue";
 export { default as SortingButton } from "./SortingButton.vue";
 export { default as Submenu } from "./Submenu.vue";
 export { default as Swiper } from "./Swiper.vue";
-export { default as SVGUndraw } from "./SVGUndraw.vue";
 export { default as Tab } from "./Tab.vue";
 export { default as TabBar } from "./TabBar.vue";
 export { default as TabContainer } from "./TabContainer.vue";

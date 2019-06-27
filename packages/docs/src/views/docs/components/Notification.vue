@@ -71,6 +71,7 @@
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
+	import { Latte } from "../../../../../latte-ui";
 
 	export default {
 
