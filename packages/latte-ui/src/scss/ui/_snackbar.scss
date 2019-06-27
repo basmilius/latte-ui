@@ -27,7 +27,6 @@
 	color: #{latte-rgb(var(--light))};
 	transition: 240ms var(--ease-swift-out);
 	transition-property: opacity, transform;
-	will-change: opacity, transform;
 
 	&:not(.is-open)
 	{

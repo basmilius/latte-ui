@@ -172,7 +172,6 @@ label.col-form-label
 	outline: none;
 	transition: all 180ms var(--ease-standard-curve);
 	vertical-align: middle;
-	will-change: border-radius, box-shadow;
 
 	&::placeholder
 	{
@@ -233,7 +232,6 @@ label.col-form-label
 	border-radius: var(--border-radius);
 	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
 	transition: all 180ms var(--ease-standard-curve);
-	will-change: border-radius, box-shadow;
 	z-index: 0;
 
 	&::placeholder

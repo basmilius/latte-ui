@@ -28,7 +28,6 @@ div.tooltip
 	color: var(--tooltip-foreground);
 	pointer-events: none;
 	transition: opacity 210ms var(--ease-swift-out);
-	will-change: opacity;
 	z-index: 2147483647;
 
 	&::before
@@ -39,58 +38,57 @@ div.tooltip
 		color: var(--tooltip-background);
 		border: $tooltip-arrow solid transparent;
 		transition: inherit;
-		will-change: border, color;
 		z-index: -1;
 	}
 
 	&::before
 	{
-		top: var(--tooltip-arrow-top, 0);
-		left: var(--tooltip-arrow-left, 0);
+		top: var(--ta-top, 0);
+		left: var(--ta-left, 0);
 	}
 
 	&.tooltip-top
 	{
-		--tooltip-arrow-top: 100%;
-		--tooltip-arrow-left: calc(50% - #{$tooltip-arrow});
+		--ta-top: 100%;
+		--ta-left: calc(50% - #{$tooltip-arrow});
 	}
 
 	&.tooltip-left
 	{
-		--tooltip-arrow-top: calc(50% - #{$tooltip-arrow});
-		--tooltip-arrow-left: 100%;
+		--ta-top: calc(50% - #{$tooltip-arrow});
+		--ta-left: 100%;
 	}
 
 	&.tooltip-right
 	{
-		--tooltip-arrow-top: calc(50% - #{$tooltip-arrow});
-		--tooltip-arrow-left: #{-($tooltip-arrow * 2)};
+		--ta-top: calc(50% - #{$tooltip-arrow});
+		--ta-left: #{-($tooltip-arrow * 2)};
 	}
 
 	&.tooltip-bottom
 	{
-		--tooltip-arrow-top: #{-($tooltip-arrow * 2)};
-		--tooltip-arrow-left: calc(50% - #{$tooltip-arrow});
+		--ta-top: #{-($tooltip-arrow * 2)};
+		--ta-left: calc(50% - #{$tooltip-arrow});
 	}
 
 	&.tooltip-top::before
 	{
-		border-top: $tooltip-arrow solid currentColor;
+		border-top-color: currentColor;
 	}
 
 	&.tooltip-left::before
 	{
-		border-left: $tooltip-arrow solid currentColor;
+		border-left-color: currentColor;
 	}
 
 	&.tooltip-right::before
 	{
-		border-right: $tooltip-arrow solid currentColor;
+		border-right-color: currentColor;
 	}
 
 	&.tooltip-bottom::before
 	{
-		border-bottom: $tooltip-arrow solid currentColor;
+		border-bottom-color: currentColor;
 	}
 
 	&.is-hidden

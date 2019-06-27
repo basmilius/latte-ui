@@ -28,7 +28,6 @@ div.overlay
 	opacity: 1;
 	overflow-y: auto;
 	transition: all $anim-duration var(--ease-swift-out);
-	will-change: opacity;
 	z-index: 2000;
 
 	-webkit-overflow-scrolling: touch;
@@ -39,7 +38,6 @@ div.overlay
 		transform: translate3d(0, 0, 0);
 		transition: all $anim-duration var(--ease-swift-out);
 		transition-delay: $anim-delay;
-		will-change: opacity, transform;
 	}
 
 	> .panel

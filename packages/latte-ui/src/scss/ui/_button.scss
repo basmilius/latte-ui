@@ -40,7 +40,6 @@
 	transition: 150ms var(--ease-swift-out);
 	transition-property: background, color, --btn-alpha, --btn-hover;
 	vertical-align: middle;
-	will-change: background, color, --btn-alpha, --btn-hover;
 
 	&:hover
 	{

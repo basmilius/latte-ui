@@ -27,7 +27,6 @@
 		padding: var(--swiper-view-padding);
 		flex-flow: row nowrap;
 		transition: all 420ms var(--ease-deceleration-curve);
-		will-change: transform;
 
 		> *
 		{

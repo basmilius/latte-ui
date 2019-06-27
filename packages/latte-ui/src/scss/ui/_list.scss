@@ -59,7 +59,6 @@ a.list-item
 	cursor: pointer;
 	text-decoration: none;
 	transition: all 150ms var(--ease-standard-curve);
-	will-change: background, color;
 
 	&:hover
 	{

@@ -28,7 +28,6 @@ input[type=checkbox].checkbox
 	outline: none;
 	transition: all 180ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: background, border-color, box-shadow;
 
 	&:last-child
 	{
@@ -44,7 +43,6 @@ input[type=checkbox].checkbox
 		background: transparent;
 		border-radius: 3px;
 		transition: inherit;
-		will-change: top, left, height, background, transform;
 	}
 
 	&::before

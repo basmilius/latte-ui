@@ -32,7 +32,6 @@ div.combo-box
 		left: 0;
 		right: 0;
 		transition: all 180ms var(--ease-swift-out);
-		will-change: opacity, transform;
 		z-index: 10;
 
 		&:not(.is-open)

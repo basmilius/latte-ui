@@ -30,7 +30,6 @@
 		height: 2px;
 		background: #{latte-rgb(var(--tabs-accent))};
 		transition: all 330ms var(--ease-swift-out);
-		will-change: width, transform;
 	}
 
 	&.is-over-outline
@@ -54,7 +53,6 @@
 		line-height: 24px;
 		opacity: .6;
 		transition: all 180ms var(--ease-swift-out);
-		will-change: box-shadow, opacity;
 
 		+ .nav-link
 		{

@@ -151,7 +151,6 @@ button.nav-link
 	{
 		color: #{latte-rgb(var(--main-foreground))};
 		transition: all 150ms var(--ease-standard-curve);
-		will-change: background, color;
 
 		--badge-color: var(--color-primary);
 		--checkbox-background: var(--color-primary);

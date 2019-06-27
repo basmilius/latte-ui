@@ -26,7 +26,6 @@
 	pointer-events: none;
 	transition: 210ms var(--ease-swift-out);
 	transition-property: opacity, transform;
-	will-change: opacity, transform;
 	z-index: 3000;
 
 	&.is-open

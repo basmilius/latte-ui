@@ -28,7 +28,6 @@ input[type=radio].radio-button
 	outline: none;
 	transition: all 180ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: background, border-color, box-shadow;
 
 	&::before
 	{
@@ -41,7 +40,6 @@ input[type=radio].radio-button
 		background: transparent;
 		border-radius: 7px;
 		transition: inherit;
-		will-change: background;
 	}
 
 	&:hover::before

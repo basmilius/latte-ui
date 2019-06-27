@@ -34,7 +34,6 @@
 	color: #{latte-rgb(var(--color-primary-foreground))};
 	pointer-events: none;
 	transition: all 300ms var(--ease-swift-out);
-	will-change: --drop-target-gutter, opacity;
 
 	&:not(.is-dragging)
 	{

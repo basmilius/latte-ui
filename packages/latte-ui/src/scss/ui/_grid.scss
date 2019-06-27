@@ -18,7 +18,6 @@ div.latte-grid-item
 	position: relative;
 	display: block;
 	transition: all 210ms var(--ease-deceleration-curve);
-	will-change: height, width, opacity, transform;
 
 	&.latte-grid-placeholder::before
 	{

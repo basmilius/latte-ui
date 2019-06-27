@@ -27,7 +27,6 @@
 	outline: none;
 	transition: all 240ms var(--ease-swift-out);
 	vertical-align: middle;
-	will-change: background, border, box-shadow;
 
 	&::before
 	{
@@ -40,7 +39,6 @@
 		border-radius: 7px;
 		transform: translate3d(0, 0, 0);
 		transition: inherit;
-		will-change: color, transform;
 	}
 
 	&:focus

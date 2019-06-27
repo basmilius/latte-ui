@@ -18,7 +18,6 @@ div.notification
 	box-shadow: var(--panel-elevation-hover);
 	transition: 420ms var(--ease-swift-out);
 	transition-property: top, opacity, transform;
-	will-change: top, opacity, transform;
 
 	@include compact
 	{
