@@ -12,8 +12,8 @@
 	<button class="btn btn-icon btn-text btn-dark">
 		<i class="mdi mdi-sticker-emoji"></i>
 
-		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9">
-			<latte-virtual-scroller class="panel emoji-picker" :items="emojis" items-class="panel-body" :item-height="36" :items-padding="[7, 7, 7, 7]" :item-width="36">
+		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9" @open="onOpen">
+			<latte-virtual-scroller ref="scroller" class="panel emoji-picker" :items="emojis" items-class="panel-body m-2" :item-height="36" :items-padding="[7, 7, 7, 7]" :item-width="36">
 
 				<template v-slot:header>
 					<div class="app-bar app-bar-flat">
@@ -27,8 +27,8 @@
 					</div>
 				</template>
 
-				<template v-slot="{item}">
-					<latte-ripple as="button" class="btn btn-icon btn-text btn-emoji" @click="onEmojiClick(item)">
+				<template v-slot="{item, style}">
+					<latte-ripple as="button" :style="style" class="btn btn-icon btn-text btn-emoji" @click="onEmojiClick(item)">
 						<i :class="`joypixels-24-${item.diversity !== null && !item.isDiversityBase ? 'diversity' : item.category} _${item.codePoints.base}`"></i>
 					</latte-ripple>
 				</template>
@@ -144,6 +144,11 @@
 			onEmojiReady()
 			{
 				this.categories = getCategories();
+			},
+
+			onOpen()
+			{
+				this.$refs.scroller.calculateVisibleNodes();
 			}
 
 		}

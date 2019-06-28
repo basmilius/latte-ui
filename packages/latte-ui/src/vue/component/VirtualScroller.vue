@@ -108,7 +108,6 @@
 		mounted()
 		{
 			this.$el.addEventListener("scroll", this.onScroll, {passive: true});
-
 			this.calculateVisibleNodes();
 		},
 
@@ -250,8 +249,17 @@
 
 			items()
 			{
+				this.offset = -1;
+				this.limit = 0;
+
 				this.onItemsChanged();
 				this.calculateVisibleNodes();
+
+				this.$nextTick(() =>
+				{
+					this.$el.scrollBy({top: 1, left: 1});
+					this.$nextTick(() => this.$el.scrollBy({top: -1, left: -1}));
+				});
 			},
 
 			itemHeight()
