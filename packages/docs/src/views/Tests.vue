@@ -97,7 +97,7 @@
 		{
 			let rows = [];
 
-			for (let i = 0; i < 1000; i++)
+			for (let i = 0; i < 1000000; i++)
 				rows.push({id: i, name: `Bas ${i + 1}`});
 
 			return {

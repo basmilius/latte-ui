@@ -12,12 +12,14 @@
 	<component :is="tag" :style="rootStyles">
 		<slot name="header"></slot>
 
-		<div class="virtual-scroller-content flex-shrink-0" :style="contentStyles">
-			<div class="virtual-scroller-nodes" :class="itemsClass" :style="nodesStyles">
-				<template v-for="item of visibleItems">
+		<div class="virtual-scroller-content flex-shrink-0" :class="itemsClass" :style="contentStyles">
+			<template v-for="item of visibleItems">
+
+				<div :style="itemStyle(item)" :key="item.__index">
 					<slot v-bind="{item, itemHeight, itemWidth}"></slot>
-				</template>
-			</div>
+				</div>
+
+			</template>
 		</div>
 
 		<slot name="footer"></slot>
@@ -29,8 +31,10 @@
 
 	import { on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";
+	import { spaceship } from "../../js/operators";
 
 	// TODO(Bas): Horizontal scroller.
+	// TODO(Bas): Variable height.
 	export default {
 
 		name: "latte-virtual-scroller",
@@ -82,10 +86,15 @@
 
 		},
 
+		created()
+		{
+			this.onItemsChanged();
+		},
+
 		data()
 		{
 			return {
-				tickSubscription: null,
+				__items: [],
 				multiplier: 1,
 				position: 0,
 				limit: 0,
@@ -100,7 +109,6 @@
 		destroyed()
 		{
 			this.$el.removeEventListener("scroll", this.onScroll);
-			this.tickSubscription.unsubscribe();
 		},
 
 		mounted()
@@ -108,7 +116,6 @@
 			this.$el.addEventListener("scroll", this.onScroll, {passive: true});
 
 			this.calculateVisibleNodes();
-			this.tickSubscription = on("latte:tick", () => raf(() => this.calculateVisibleNodes()));
 		},
 
 		computed: {
@@ -116,29 +123,15 @@
 			contentStyles()
 			{
 				return {
-					minHeight: this.isVertical ? `${Math.ceil(this.items.length / this.multiplier) * this.itemHeight + (this.itemsPadding[0] + this.itemsPadding[2])}px` : "0",
-					minWidth: this.isHorizontal ? `${Math.ceil(this.items.length / this.multiplier) * this.itemWidth}px` : "0"
-				};
-			},
-
-			nodesStyles()
-			{
-				let x = this.isHorizontal ? this.position : 0;
-				let y = this.isVertical ? this.position : 0;
-
-				let yp = this.position % this.itemHeight;
-
-				y -= yp;
-
-				return {
-					padding: this.itemsPadding.map(p => `${p}px`).join(" "),
-					transform: `translate3d(${x}px, ${y}px, 0)`
+					minHeight: this.isVertical ? `${Math.ceil(this.__items.length / this.multiplier) * this.itemHeight + (this.itemsPadding[0] + this.itemsPadding[2])}px` : "0",
+					minWidth: this.isHorizontal ? `${Math.ceil(this.__items.length / this.multiplier) * this.itemWidth}px` : "0"
 				};
 			},
 
 			rootStyles()
 			{
 				return {
+					position: "relative",
 					overflow: "auto",
 					overflowScrolling: "touch"
 				};
@@ -146,7 +139,10 @@
 
 			visibleItems()
 			{
-				return this.items.slice(this.offset, this.offset + this.limit);
+				return this.__items
+					.slice(this.offset, this.offset + this.limit)
+					.map(item => ({__nodeIndex: item.__index % this.limit, ...item}))
+					.sort((a, b) => spaceship(a.__nodeIndex, b.__nodeIndex));
 			},
 
 			isHorizontal()
@@ -207,14 +203,41 @@
 					this.limit = Math.ceil(width / iw) + 1;
 			},
 
+			itemStyle(item)
+			{
+				let realIndex = item.__index;
+				let x = Math.floor(realIndex % this.multiplier) * (this.itemWidth !== null ? this.itemWidth : 0);
+				let y = Math.floor(realIndex / this.multiplier) * (this.itemHeight !== null ? this.itemHeight : 0);
+
+				return {
+					position: "absolute",
+					top: "0px",
+					left: "0px",
+					height: this.itemHeight !== null ? `${this.itemHeight}px` : "100%",
+					width: this.itemWidth !== null ? `${this.itemWidth}px` : "100%",
+					transform: `translate3d(${x}px, ${y}px, 0)`
+				};
+			},
+
+			onItemsChanged()
+			{
+				let i = 0;
+
+				this.__items = this.items
+					.map(item => ({__index: i++, ...item}));
+			},
+
 			onScroll()
 			{
-				if (this.isHorizontal)
-					this.position = this.$el.scrollLeft;
-				else
-					this.position = this.$el.scrollTop;
+				raf(() =>
+				{
+					if (this.isHorizontal)
+						this.position = this.$el.scrollLeft;
+					else
+						this.position = this.$el.scrollTop;
 
-				this.offset = Math.floor(this.position / this.itemHeight) * this.multiplier;
+					this.offset = Math.floor(this.position / this.itemHeight) * this.multiplier;
+				});
 			}
 
 		},
@@ -223,6 +246,7 @@
 
 			items()
 			{
+				this.onItemsChanged();
 				this.calculateVisibleNodes();
 			},
 
