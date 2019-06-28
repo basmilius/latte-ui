@@ -24,8 +24,19 @@
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 450px">
 
-							<template v-slot="{item, itemHeight}">
-								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="{height: `${itemHeight}px`}">Item {{item.id}}</div>
+							<template v-slot="{item, style}">
+								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="style">Item {{item.id}}</div>
+							</template>
+
+						</latte-virtual-scroller>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Virtual scroller (horizontal)</span></div>
+						<latte-virtual-scroller direction="horizontal" items-class="d-flex flex-row h-100" :items="rows" :item-width="96" style="height: 450px">
+
+							<template v-slot="{item, style}">
+								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="style">Item {{item.id}}</div>
 							</template>
 
 						</latte-virtual-scroller>
@@ -35,8 +46,8 @@
 						<div class="panel-header"><span class="panel-title">Virtual scroller (grid)</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" :item-width="222" items-class="d-flex flex-row flex-wrap" style="height: 450px">
 
-							<template v-slot="{item, itemHeight, itemWidth}">
-								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="{height: `${itemHeight}px`, width: `${itemWidth}px`}">Item {{item.id}}</div>
+							<template v-slot="{item, style}">
+								<div class="d-flex align-items-center justify-content-center bg-dark text-white border" :style="style">Item {{item.id}}</div>
 							</template>
 
 						</latte-virtual-scroller>
@@ -97,7 +108,7 @@
 		{
 			let rows = [];
 
-			for (let i = 0; i < 1000000; i++)
+			for (let i = 0; i < 1000; i++)
 				rows.push({id: i, name: `Bas ${i + 1}`});
 
 			return {

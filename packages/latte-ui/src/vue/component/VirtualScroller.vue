@@ -14,11 +14,7 @@
 
 		<div class="virtual-scroller-content flex-shrink-0" :class="itemsClass" :style="contentStyles">
 			<template v-for="item of visibleItems">
-
-				<div :style="itemStyle(item)" :key="item.__index">
-					<slot v-bind="{item, itemHeight, itemWidth}"></slot>
-				</div>
-
+				<slot v-bind="{item, itemHeight, itemWidth, style: itemStyle(item)}"></slot>
 			</template>
 		</div>
 
@@ -29,12 +25,10 @@
 
 <script>
 
-	import { on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";
 	import { spaceship } from "../../js/operators";
 
-	// TODO(Bas): Horizontal scroller.
-	// TODO(Bas): Variable height.
+	// TODO(Bas): Variable height?
 	export default {
 
 		name: "latte-virtual-scroller",
@@ -206,8 +200,18 @@
 			itemStyle(item)
 			{
 				let realIndex = item.__index;
-				let x = Math.floor(realIndex % this.multiplier) * (this.itemWidth !== null ? this.itemWidth : 0);
-				let y = Math.floor(realIndex / this.multiplier) * (this.itemHeight !== null ? this.itemHeight : 0);
+				let x, y;
+
+				if (this.isVertical)
+				{
+					x = Math.floor(realIndex % this.multiplier) * (this.itemWidth !== null ? this.itemWidth : 0);
+					y = Math.floor(realIndex / this.multiplier) * (this.itemHeight !== null ? this.itemHeight : 0);
+				}
+				else
+				{
+					x = Math.floor(realIndex / this.multiplier) * (this.itemWidth !== null ? this.itemWidth : 0);
+					y = Math.floor(realIndex % this.multiplier) * (this.itemHeight !== null ? this.itemHeight : 0);
+				}
 
 				return {
 					position: "absolute",
@@ -236,7 +240,7 @@
 					else
 						this.position = this.$el.scrollTop;
 
-					this.offset = Math.floor(this.position / this.itemHeight) * this.multiplier;
+					this.offset = Math.floor(this.position / (this.isVertical ? this.itemHeight : this.itemWidth)) * this.multiplier;
 				});
 			}
 
