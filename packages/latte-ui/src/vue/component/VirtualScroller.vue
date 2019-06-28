@@ -30,6 +30,7 @@
 	import { on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";
 
+	// TODO(Bas): Horizontal scroller.
 	export default {
 
 		name: "latte-virtual-scroller",
@@ -86,8 +87,9 @@
 			return {
 				tickSubscription: null,
 				multiplier: 1,
-				nodes: 0,
 				position: 0,
+				limit: 0,
+				offset: 0,
 				padding: {
 					top: 0,
 					bottom: 0
@@ -114,8 +116,8 @@
 			contentStyles()
 			{
 				return {
-					height: this.isVertical ? `${Math.ceil(this.items.length / this.multiplier) * this.itemHeight + this.itemsPadding[0] + this.itemsPadding[2] + (this.padding.top + this.padding.bottom)}px` : "auto",
-					width: this.isHorizontal ? `${Math.ceil(this.items.length / this.multiplier) * this.itemWidth}px` : "auto"
+					minHeight: this.isVertical ? `${Math.ceil(this.items.length / this.multiplier) * this.itemHeight + (this.itemsPadding[0] + this.itemsPadding[2])}px` : "0",
+					minWidth: this.isHorizontal ? `${Math.ceil(this.items.length / this.multiplier) * this.itemWidth}px` : "0"
 				};
 			},
 
@@ -137,16 +139,14 @@
 			rootStyles()
 			{
 				return {
-					overflow: "auto"
+					overflow: "auto",
+					overflowScrolling: "touch"
 				};
 			},
 
 			visibleItems()
 			{
-				let offset = Math.floor(this.position / this.itemHeight) * this.multiplier;
-				let limit = this.nodes;
-
-				return this.items.slice(offset, offset + limit);
+				return this.items.slice(this.offset, this.offset + this.limit);
 			},
 
 			isHorizontal()
@@ -175,14 +175,14 @@
 				if (ih === null && iw === null)
 					throw new Error("[LatteUI] At least one of itemHeight and itemWidth should be set.");
 
-				const {height, width} = this.$el.getBoundingClientRect();
-				const elements = Array.from(this.$el.querySelector(".virtual-scroller-content").children);
+				const elements = Array.from(this.$el.children);
+				let {height, width} = this.$el.getBoundingClientRect();
 
 				for (let index in elements)
 				{
 					let element = elements[index];
 
-					if (element.classList.contains("virtual-scroller-nodes"))
+					if (element.classList.contains("virtual-scroller-content"))
 					{
 						foundContent = true;
 						continue;
@@ -197,12 +197,14 @@
 				this.padding.top = pt;
 				this.padding.bottom = pb;
 
+				height -= pt + pb;
+
 				if (ih !== null && iw !== null)
-					this.nodes = (Math.ceil(height / ih) + 1) * (this.multiplier = Math.floor(width / iw));
+					this.limit = (Math.ceil(height / ih) + 1) * (this.multiplier = Math.floor(width / iw));
 				else if (ih !== null && this.isVertical)
-					this.nodes = Math.ceil(height / ih) + 1;
+					this.limit = Math.ceil(height / ih) + 1;
 				else if (this.isHorizontal)
-					this.nodes = Math.ceil(width / iw) + 1;
+					this.limit = Math.ceil(width / iw) + 1;
 			},
 
 			onScroll()
@@ -211,6 +213,8 @@
 					this.position = this.$el.scrollLeft;
 				else
 					this.position = this.$el.scrollTop;
+
+				this.offset = Math.floor(this.position / this.itemHeight) * this.multiplier;
 			}
 
 		},
