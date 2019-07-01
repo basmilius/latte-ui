@@ -7,15 +7,11 @@
   - LICENSE file that was distributed with this source code.
   -->
 
-<template>
-
-	<span class="latte-moment">{{ formatted_moment }}</span>
-
-</template>
-
 <script>
 
 	export default {
+
+		functional: true,
 
 		name: "latte-moment",
 
@@ -27,7 +23,7 @@
 				type: String
 			},
 
-			unixTimestamp: {
+			ms: {
 				default: () => Date.now(),
 				required: false,
 				type: Number
@@ -35,14 +31,11 @@
 
 		},
 
-		computed: {
-
-			formatted_moment()
-			{
-				return this.moment(this.unixTimestamp).format(this.format);
-			}
-
+		render(h, {parent, props, _v})
+		{
+			return _v(parent.moment(props.ms).format(props.format));
 		}
+
 	}
 
 </script>
