@@ -10,6 +10,7 @@
 import popup from "./popup";
 import z from "./z";
 
+export const docRoot = document.documentElement;
 export let currentOptions = {};
 
 /**

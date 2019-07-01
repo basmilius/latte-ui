@@ -17,6 +17,7 @@ import question from "./question";
 import snackbar, { initializeSnackbars } from "./snackbar";
 import { initializeTooltips } from "./tooltip";
 import { initializeEmoji } from "./emoji";
+import { initializeScrollbar } from "./scrollbar";
 
 export function initializeUI()
 {
@@ -25,6 +26,7 @@ export function initializeUI()
 	initializeNotifications();
 	initializeOverlays();
 	initializePanels();
+	initializeScrollbar();
 	initializeSnackbars();
 	initializeTooltips();
 }

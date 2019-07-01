@@ -8,10 +8,11 @@
  */
 
 import { getLattePath } from "../util/dom";
+import { docRoot } from "../core";
 
 function registerCSSPaintWorklets()
 {
-	document.body.classList.add("css-paint-api");
+	docRoot.classList.add("css-paint-api");
 
 	let path = getLattePath();
 
@@ -24,7 +25,7 @@ function registerCSSPaintWorklets()
 
 function registerCSSProperties()
 {
-	document.body.classList.add("css-props-values");
+	docRoot.classList.add("css-props-values");
 
 	CSS.registerProperty({
 		name: "--app-bar-alpha",

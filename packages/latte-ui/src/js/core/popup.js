@@ -22,9 +22,6 @@ export function popupClosed()
 
 export function popupOpened()
 {
-	if (counter === 0)
-		document.documentElement.style.setProperty("--scrollbar-width", `${window.innerWidth - document.body.clientWidth}px`);
-
 	counter++;
 	update();
 }

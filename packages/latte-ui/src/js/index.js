@@ -10,7 +10,7 @@
 import LatteSDK from "./sdk";
 
 import { dispatch, initializeActions, on, removeSavedFromQueryString } from "./core/action";
-import { getOptions, interval, setOptions } from "./core";
+import { docRoot, getOptions, interval, setOptions } from "./core";
 import { setCookie } from "./util/cookies";
 import { initializeHoudiniApis } from "./houdini";
 import { registerOutsideEvents } from "./hid/OutsideEvent";
@@ -106,7 +106,7 @@ export class LatteUI
 		if (themeId === undefined)
 			return;
 
-		document.documentElement.dataset.theme = themeId;
+		docRoot.dataset.theme = themeId;
 		setCookie("$ui:theme", themeId);
 	}
 

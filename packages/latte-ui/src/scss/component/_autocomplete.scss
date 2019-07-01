@@ -7,16 +7,14 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.latte-autocomplete
+.latte-autocomplete
 {
 	position: relative;
 	display: block;
 
-	div.form-control
+	.form-control
 	{
-		display: flex;
 		padding: 0 8px;
-		align-items: center;
 		flex-flow: row wrap;
 
 		span.badge
@@ -26,8 +24,6 @@ div.latte-autocomplete
 
 		input[type=search]
 		{
-			position: relative;
-			display: block;
 			margin: 0 -8px;
 			padding: 0 16px;
 			min-width: 90px;
