@@ -29,7 +29,7 @@
 	import BEToolbar from "./BEToolbar";
 
 	import { defaultCategories } from "./block";
-	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, WrapperBlock } from "./blocks";
+	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, ParagraphBlock, WrapperBlock } from "./blocks";
 
 	export default {
 
@@ -46,6 +46,7 @@
 
 			// Text
 			this.registerBlock(HeadingBlock);
+			this.registerBlock(ParagraphBlock);
 
 			defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 		},
@@ -80,7 +81,11 @@
 									children: [
 										{
 											id: "heading",
-											options: {type: "h6", text: "Header number 6"}
+											options: {type: "h3", text: "Header number 6"}
+										},
+										{
+											id: "paragraph",
+											options: {text: "Lorem ipsum..."}
 										}
 									],
 									options: {}

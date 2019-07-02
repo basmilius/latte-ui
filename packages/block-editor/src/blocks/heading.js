@@ -1,6 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
+import { renderEditor } from "./paragraph";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},
@@ -32,17 +33,9 @@ export class HeadingBlock extends BlockBase
 		return super.render(h, options);
 	}
 
-	renderEditor(h, {options, setOptions})
+	renderEditor(h, api)
 	{
-		return h(options.type, {
-			domProps: {
-				contentEditable: true,
-				innerHTML: options.text
-			},
-			on: {
-				blur: evt => setOptions({text: evt.target.innerHTML})
-			}
-		});
+		return renderEditor(api.options.type, h, api);
 	}
 
 	renderOptions(h, {index, indexMax, rearrange, remove, options, setOptions})

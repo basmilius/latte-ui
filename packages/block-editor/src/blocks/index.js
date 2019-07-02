@@ -5,3 +5,4 @@ export { WrapperBlock } from "./wrapper";
 
 // Text
 export { HeadingBlock } from "./heading";
+export { ParagraphBlock } from "./paragraph";
