@@ -1,6 +1,6 @@
 import BEBlocks from "../BEBlocks";
 import BESettingsGroup from "../BESettingsGroup";
-import BERearrange from "../BERearrange";
+import BEBlockActions from "../BEBlockActions";
 
 import { BlockBase } from "../block";
 import { replaceIndex } from "../utils";
@@ -11,7 +11,8 @@ export class ColumnsBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
-			columns: 2
+			columns: 2,
+			gutters: true
 		};
 	}
 
@@ -25,13 +26,14 @@ export class ColumnsBlock extends BlockBase
 		return super.render(h, options);
 	}
 
-	renderEditor(h, {options, children, setChildren})
+	renderEditor(h, {depth, options, children, setChildren})
 	{
-		return h("div", {class: `row be-block-columns`}, Array(options.columns).fill(undefined).map((_, index) => h("div", {class: "col-12 col-lg"}, [
+		return h("div", {class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`}, Array(options.columns).fill(undefined).map((_, index) => h("div", {class: "col-12 col-lg"}, [
 			h(BEBlocks, {
 				props: {
 					blocks: this.editor.blocks,
 					categories: this.editor.categories,
+					depth,
 					value: children[index] || []
 				},
 				on: {
@@ -41,14 +43,37 @@ export class ColumnsBlock extends BlockBase
 		])));
 	}
 
-	renderOptions(h, {index, indexMax, rearrange, children, options, setChildren, setOptions})
+	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BERearrange, {props: {index, indexMax, rearrange}, slot: "header"}),
+		return h(BESettingsGroup, {props: {title: `${this.name} (${depth})`}}, [
+			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("label", {class: "be-settings-row"}, [
 				h("span", "Amount of columns"),
 				h("div", [
-					h("input", {class: "custom-range", domProps: {checked: options.shouldFade, min: 2, max: 6, value: options.columns, type: "range"}, on: {input: evt => setOptions({columns: parseInt(evt.target.value)})}})
+					h("input", {
+						class: "custom-range",
+						domProps: {
+							min: 2,
+							max: 6,
+							value: options.columns,
+							type: "range"
+						},
+						on: {
+							input: evt =>
+							{
+								const columns = parseInt(evt.target.value);
+
+								setChildren(children.slice(0, columns));
+								setOptions({columns});
+							}
+						}
+					})
+				])
+			]),
+			h("label", {class: "be-settings-row"}, [
+				h("span", "Gutters"),
+				h("div", [
+					h("input", {class: "toggle-button toggle-button-primary", domProps: {checked: options.gutters, type: "checkbox"}, on: {input: evt => setOptions({gutters: evt.target.checked})}})
 				])
 			])
 		]);

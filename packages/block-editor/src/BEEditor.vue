@@ -28,8 +28,8 @@
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
 
-	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock } from "./blocks";
 	import { defaultCategories } from "./block";
+	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, WrapperBlock } from "./blocks";
 
 	export default {
 
@@ -42,6 +42,7 @@
 			// Layout
 			this.registerBlock(ColumnsBlock);
 			this.registerBlock(FeaturedImageBlock);
+			this.registerBlock(WrapperBlock);
 
 			// Text
 			this.registerBlock(HeadingBlock);
@@ -62,21 +63,27 @@
 							[
 								{
 									id: "heading",
-									options: {type: "h4", text: "This is a header"}
+									options: {type: "h4", text: "Test block editor stuff"}
 								},
 								{
 									id: "featured-image",
-									options: {imageUrl: "https://appmanager.marveld.ideemedia.cloud/storage/b40f062c/2019/06/243ba0ae-9261-11e9-b0dd-525400806242.webp", title: "Item 1"}
+									options: {imageUrl: "https://appmanager.marveld.ideemedia.cloud/storage/b40f062c/2019/06/243ba0ae-9261-11e9-b0dd-525400806242.webp", title: "Teun & Pleun"}
 								}
 							],
 							[
 								{
 									id: "heading",
-									options: {type: "h4", text: "This is a header"}
+									options: {type: "h4", text: "Below is a wrapper block"}
 								},
 								{
-									id: "featured-image",
-									options: {imageUrl: "https://appmanager.marveld.ideemedia.cloud/storage/b40f062c/2019/06/243ba0ae-9261-11e9-b0dd-525400806242.webp", title: "Item 1"}
+									id: "wrapper",
+									children: [
+										{
+											id: "heading",
+											options: {type: "h6", text: "Header number 6"}
+										}
+									],
+									options: {}
 								}
 							]
 						],

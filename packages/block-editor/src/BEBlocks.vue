@@ -2,8 +2,8 @@
 
 	import { Latte } from "@bybas/latte-ui";
 
-	import BEInserterExpanded from "./BEInserterExpanded";
 	import BEInserterMini from "./BEInserterMini";
+	import BEInserterExpanded from "./BEInserterExpanded";
 
 	export default {
 
@@ -21,6 +21,11 @@
 				default: () => [],
 				required: true,
 				type: Array
+			},
+
+			depth: {
+				default: 0,
+				type: Number
 			},
 
 			value: {
@@ -46,8 +51,9 @@
 
 		render(h)
 		{
-			return h("div", {class: "be-blocks"}, [
-				this.content.map((item, index) =>
+			const renderBlocks = () =>
+			{
+				return this.content.map((item, index) =>
 				{
 					const block = this.blocks.find(b => b.id === item.id);
 
@@ -56,6 +62,7 @@
 
 					block.controller = this;
 
+					const depth = this.depth + 1;
 					const isSelected = this.selectedIndex === index;
 					const children = item.children || [];
 					const options = Object.assign({}, block.defaultOptions || {}, item.options);
@@ -66,18 +73,23 @@
 						this.setSettingsIndex(index + dir);
 						this.$el.click();
 					};
+
+					const remove = () => this.content.splice(index, 1);
+
 					const setChildren = newChildren => this.content.splice(index, 1, Object.assign({}, this.content[index], {children: newChildren}));
 					const setOptions = newOptions => this.content.splice(index, 1, Object.assign({}, this.content[index], {options: Object.assign(options, newOptions)}));
 
 					const api = {
+						depth,
 						options,
 						children,
 						index,
 						indexMax: this.content.length,
 
+						rearrange,
+						remove,
 						setChildren,
-						setOptions,
-						rearrange
+						setOptions
 					};
 
 					const renderBlock = () =>
@@ -105,15 +117,14 @@
 						if (!isSelected)
 							return undefined;
 
-						return h("latte-portal", {props: {to: `be-settings-pane-${block.editor.uniqueId}`}}, [
+						return h("latte-portal", {props: {depth, to: `be-settings-pane-${block.editor.uniqueId}`}}, [
 							block.renderOptions(h, api)
 						]);
 					};
 
 					return h("div", {class: `be-block-wrapper ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
-						renderOptions(),
-						renderBlock(),
 						h(BEInserterMini, {
+							class: "top",
 							props: {
 								blocks: this.blocks,
 								categories: this.categories
@@ -121,19 +132,39 @@
 							on: {
 								select: id => this.insertBlock(id, index)
 							}
+						}),
+						renderOptions(),
+						renderBlock(),
+						h(BEInserterMini, {
+							class: "bottom",
+							props: {
+								blocks: this.blocks,
+								categories: this.categories
+							},
+							on: {
+								select: id => this.insertBlock(id, index + 1)
+							}
 						})
 					]);
-				}),
-				h(BEInserterExpanded, {
-					props: {
-						blocks: this.blocks,
-						categories: this.categories
-					},
-					on: {
-						select: id => this.insertBlock(id)
-					}
-				})
-			])
+				});
+			};
+
+			const renderEmptyInserter = () =>
+			{
+				return [
+					h(BEInserterExpanded, {
+						props: {
+							blocks: this.blocks,
+							categories: this.categories
+						},
+						on: {
+							select: id => this.insertBlock(id)
+						}
+					})
+				];
+			};
+
+			return h("div", {class: "be-blocks"}, this.content.length > 0 ? renderBlocks() : renderEmptyInserter());
 		},
 
 		methods: {

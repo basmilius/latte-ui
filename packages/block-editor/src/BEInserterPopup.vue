@@ -78,8 +78,8 @@
 
 			select(id)
 			{
-				this.$emit("select", id);
 				Latte.action.dispatch("latte:context-menu");
+				this.$nextTick(() => this.$emit("select", id));
 			}
 
 		}

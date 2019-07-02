@@ -1,6 +1,6 @@
 import { BlockBase } from "../block";
 import BESettingsGroup from "../BESettingsGroup";
-import BERearrange from "../BERearrange";
+import BEBlockActions from "../BEBlockActions";
 
 export class FeaturedImageBlock extends BlockBase
 {
@@ -41,10 +41,10 @@ export class FeaturedImageBlock extends BlockBase
 		]);
 	}
 
-	renderOptions(h, {index, indexMax, rearrange, options, setOptions})
+	renderOptions(h, {index, indexMax, rearrange, remove, options, setOptions})
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BERearrange, {props: {index, indexMax, rearrange}, slot: "header"}),
+			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("label", {class: "be-settings-row"}, [
 				h("span", "Fade"),
 				h("div", [

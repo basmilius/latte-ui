@@ -64,8 +64,5 @@ export class BlockBase
 
 export const defaultCategories = [
 	{id: "layout", icon: "layers", name: "Layout"},
-	{id: "text", icon: "format-text", name: "Text"},
-	{id: "2", icon: "layers", name: "2"},
-	{id: "3", icon: "layers", name: "3"},
-	{id: "4", icon: "layers", name: "4"}
+	{id: "text", icon: "format-text", name: "Text"}
 ];
