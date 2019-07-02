@@ -1,0 +1,271 @@
+.be-editor
+{
+	--panel-gutter: 24px;
+
+	position: relative;
+	display: flex;
+	align-items: stretch;
+
+	[contenteditable]
+	{
+		outline: 0 !important;
+	}
+
+	.be-content-pane
+	{
+		position: relative;
+		display: block;
+		flex: 1 1 auto;
+	}
+
+	.be-block-wrapper
+	{
+		position: relative;
+
+		&.is-selected
+		{
+			outline: 2px dashed rgba(var(--color-primary), .25);
+			outline-offset: 12px;
+		}
+	}
+
+	.be-rearrange
+	{
+		position: relative;
+		display: flex;
+		margin-right: 9px;
+		padding-right: 9px;
+		flex: 0 0 auto;
+		align-items: center;
+		border-right: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+
+		span
+		{
+			flex: 1 1 auto;
+		}
+	}
+
+	.be-inserter.be-inserter-expanded
+	{
+		position: relative;
+		display: flex;
+		height: 90px;
+		margin: 1rem 0;
+		align-items: center;
+		justify-content: center;
+		flex-flow: column;
+		background: rgba(var(--outline-color), .3);
+		border: 2px dashed rgba(var(--outline-color), 1);
+		border-radius: var(--border-radius);
+		color: rgba(var(--main-foreground), .75);
+		cursor: pointer;
+		text-align: center;
+
+		i.mdi
+		{
+			margin-bottom: 6px;
+			font-size: 24px;
+		}
+
+		&:hover
+		{
+			background: rgba(var(--outline-color), .4);
+		}
+	}
+
+	.be-inserter.be-inserter-mini
+	{
+		position: absolute;
+		top: 0;
+		left: 50%;
+		background: white;
+		border-radius: 99px;
+		opacity: 0;
+		transform: translate3d(-50%, -50%, 0);
+		transition: opacity 300ms var(--ease-swift-out);
+
+		&:hover,
+		&.is-open
+		{
+			opacity: 1;
+		}
+	}
+
+	.be-settings-group
+	{
+		+ .be-settings-group
+		{
+			border-top: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+		}
+
+		.be-settings-header
+		{
+			position: relative;
+			display: flex;
+			height: 54px;
+			padding: 0 24px;
+			align-items: center;
+			box-shadow: 0 1px rgba(var(--outline-color-secondary), 1);
+			cursor: pointer;
+
+			&:hover
+			{
+				background: rgba(var(--outline-color-secondary), .25);
+			}
+
+			span
+			{
+				flex: 1 1 auto;
+				font-size: .9rem;
+				font-weight: 500;
+			}
+
+			> i.mdi
+			{
+				color: rgba(var(--main-foreground), .75);
+				font-size: 24px;
+			}
+		}
+
+		.be-settings-body
+		{
+			position: relative;
+			display: flex;
+			padding: 18px 24px;
+			flex-flow: column;
+		}
+	}
+
+	.be-settings-pane
+	{
+		position: relative;
+		display: flex;
+		width: 300px;
+		flex: 0 0 auto;
+		flex-flow: column;
+		justify-content: flex-start;
+		border-left: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+
+		.panel-header
+		{
+			min-height: 60px;
+			font-size: 1rem;
+		}
+	}
+
+	.be-settings-row
+	{
+		position: relative;
+		display: flex;
+		min-height: 42px;
+		align-items: center;
+		justify-content: space-between;
+
+		label
+		{
+			margin: 0;
+		}
+	}
+
+	.panel-header.be-toolbar
+	{
+		min-height: 60px;
+		font-size: 1rem;
+	}
+
+	@at-root .be-inserter.be-inserter-popup
+	{
+		width: 420px;
+
+		.be-inserter-category
+		{
+			position: relative;
+			display: block;
+
+			+ .be-inserter-category
+			{
+				border-top: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+			}
+		}
+
+		.be-inserter-header
+		{
+			position: sticky;
+			display: flex;
+			top: 0;
+			height: 54px;
+			padding: 0 15px;
+			align-items: center;
+			cursor: pointer;
+
+			&.is-open
+			{
+				border-bottom: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+			}
+
+			&:hover
+			{
+				background: rgba(var(--outline-color-secondary), .25);
+			}
+
+			i.mdi
+			{
+				color: rgba(var(--main-foreground), .75);
+				font-size: 24px;
+			}
+
+			span
+			{
+				margin: 0 auto 0 12px;
+			}
+		}
+
+		.be-inserter-body
+		{
+			position: relative;
+			display: grid;
+			padding: 24px;
+			grid-gap: 6px;
+			grid-auto-rows: 1fr;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		.be-inserter-block
+		{
+			position: relative;
+			display: flex;
+			padding: 18px 12px;
+			align-items: center;
+			flex-flow: column;
+			justify-content: flex-start;
+			background: transparent;
+			border: 0;
+			border-radius: var(--border-radius);
+			cursor: pointer;
+
+			&:hover
+			{
+				background: rgba(var(--outline-color-secondary), .5);
+			}
+
+			i.mdi
+			{
+				color: rgba(var(--color-primary), .75);
+				margin-bottom: 6px;
+				font-size: 24px;
+			}
+
+			span
+			{
+				color: rgba(var(--main-foreground), .75);
+				font-size: .9rem;
+			}
+		}
+
+		.be-inserter-empty
+		{
+			grid-column: 1 / span 3;
+			text-align: center;
+		}
+	}
+}

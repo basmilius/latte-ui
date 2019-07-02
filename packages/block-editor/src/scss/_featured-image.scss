@@ -1,0 +1,66 @@
+div.featured-image
+{
+	position: relative;
+	display: flex;
+	min-height: 240px;
+	padding: 0 24px;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	text-align: center;
+
+	@media (min-width: 991px)
+	{
+		min-height: 360px;
+	}
+
+	&:not(.should-fade)::after
+	{
+		position: absolute;
+		display: block;
+		left: -30px;
+		right: -30px;
+		bottom: 0;
+		height: 18px;
+		content: "";
+		background: url(../assets/image/graphics/white.svg) no-repeat top center / cover;
+	}
+
+	div.featured-image-image
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background:
+		{
+			position: center center;
+			repeat: no-repeat;
+			size: cover;
+		}
+	}
+
+	div.featured-image-title
+	{
+		position: relative;
+		display: block;
+		margin-bottom: 24px;
+		color: white;
+		font-family: marcelle-script, sans-serif;
+		font-size: 3rem;
+		text-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+	}
+
+	&.should-fade
+	{
+		min-height: 276px;
+		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+
+		div.featured-image-title
+		{
+			margin-bottom: 60px;
+		}
+	}
+}

@@ -1,0 +1,82 @@
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-Italic.woff2") format("woff2"), url("../assets/font/CronosPro-Italic.woff") format("woff");
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-Bold.woff2") format("woff2"), url("../assets/font/CronosPro-Bold.woff") format("woff");
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-Regular.woff2") format("woff2"), url("../assets/font/CronosPro-Regular.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-BoldIt.woff2") format("woff2"), url("../assets/font/CronosPro-BoldIt.woff") format("woff");
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-LtIt.woff2") format("woff2"), url("../assets/font/CronosPro-LtIt.woff") format("woff");
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-SemiboldIt.woff2") format("woff2"), url("../assets/font/CronosPro-SemiboldIt.woff") format("woff");
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-Semibold.woff2") format("woff2"), url("../assets/font/CronosPro-Semibold.woff") format("woff");
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-family: cronos-pro;
+	src: url("../assets/font/CronosPro-Lt.woff2") format("woff2"), url("../assets/font/CronosPro-Lt.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face
+{
+	font-display: swap;
+	font-family: marcelle-script;
+	font-weight: normal;
+	font-style: normal;
+	src: url("../assets/font/MarcelleScript.woff2") format("woff2"), url("../assets/font/MarcelleScript.woff") format("woff");
+}
+
+.text-cronos
+{
+	font-family: cronos-pro, sans-serif;
+}
+
+.text-marcelle
+{
+	font-family: marcelle-script, sans-serif;
+}
