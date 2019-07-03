@@ -19,7 +19,7 @@ export class HeadingBlock extends BlockBase
 	{
 		return {
 			type: "h3",
-			text: "Header"
+			text: ""
 		};
 	}
 

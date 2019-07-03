@@ -32,6 +32,9 @@ export class FeaturedImageBlock extends BlockBase
 		return h("div", {class: `featured-image ${options.shouldFade === true ? "should-fade" : "should-not-fade"}`}, [
 			h("div", {class: "featured-image-image", style: {backgroundImage: `url(${options.imageUrl})`}}),
 			h("div", {
+				attrs: {
+					"data-placeholder": "Enter a caption..."
+				},
 				class: "featured-image-title",
 				domProps: {
 					contentEditable: "plaintext-only",

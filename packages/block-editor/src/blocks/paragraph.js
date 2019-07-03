@@ -47,6 +47,9 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 	let canUpdate = true;
 
 	return h(tag, {
+		attrs: {
+			"data-placeholder": "Enter some text..."
+		},
 		domProps: {
 			contentEditable: "true",
 			innerHTML: options.text
@@ -115,7 +118,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					sibbling.focus(false, elm => setSelectionAfter(elm.childNodes[0], true));
 				}
 
-				if (evt.key === "Backspace" && selection.anchorOffset === 0)
+				if (evt.key === "Backspace" && selection.anchorOffset === 0 && selection.focusOffset === 0)
 				{
 					evt.preventDefault();
 
