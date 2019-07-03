@@ -48,7 +48,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 
 	return h(tag, {
 		domProps: {
-			contentEditable: true,
+			contentEditable: "true",
 			innerHTML: options.text
 		},
 		on: {
@@ -150,7 +150,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					return;
 				}
 
-				console.log(evt.key);
+				return false; //console.log(evt.key);
 			}
 		}
 	});

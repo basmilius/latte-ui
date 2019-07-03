@@ -1,0 +1,9 @@
+.be-block-embed
+{
+	margin-bottom: 1rem;
+}
+
+.be-editing .be-block-embed > *
+{
+	pointer-events: none;
+}

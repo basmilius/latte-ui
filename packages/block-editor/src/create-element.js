@@ -16,6 +16,10 @@ export function createElement(tag, props = undefined, content = undefined)
 			el.classList.add(...props.class);
 	}
 
+	if (props.domProps)
+		for (let prop in props.domProps)
+			el.setAttribute(prop, props.domProps[prop]);
+
 	if (props.style)
 		for (let prop in props.style)
 			el.style[prop] = props.style[prop];

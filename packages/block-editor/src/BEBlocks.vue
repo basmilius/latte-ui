@@ -68,10 +68,10 @@
 						if (blockNode.elm.contentEditable !== "true")
 							return;
 
-						if (selectAll)
-							document.execCommand("selectAll");
-						else
+						if (!selectAll && blockNode.elm.childNodes.length > 0)
 							setSelectionBefore(blockNode.elm.childNodes[0], true);
+						else
+							document.execCommand("selectAll");
 
 						if (fn)
 							fn(blockNode.elm);
@@ -130,19 +130,19 @@
 						focus(false);
 					}
 
-					return h("div", {class: `be-block-wrapper be-block-${block.id} ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
-						h(BEInserterMini, {
+					return h("div", {class: `be-block-wrapper be-block-${block.id} ${isSelected ? "is-selected" : "not-selected"} be-editing`, on: {click: () => this.setSettingsIndex(index)}}, [
+						index === 0 ? h(BEInserterMini, {
 							class: "top",
 							on: {
 								select: id => this.insertBlock(id, index)
 							}
-						}),
-						index === 0 ? h(BEInserterMini, {
+						}) : undefined,
+						h(BEInserterMini, {
 							class: "bottom",
 							on: {
 								select: id => this.insertBlock(id, index + 1)
 							}
-						}) : undefined,
+						}),
 						renderOptions(),
 						blockNode
 					]);

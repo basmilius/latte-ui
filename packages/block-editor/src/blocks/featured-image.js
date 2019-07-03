@@ -34,7 +34,7 @@ export class FeaturedImageBlock extends BlockBase
 			h("div", {
 				class: "featured-image-title",
 				domProps: {
-					contentEditable: true,
+					contentEditable: "plaintext-only",
 					innerHTML: options.title
 				},
 				on: {

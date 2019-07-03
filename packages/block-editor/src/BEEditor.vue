@@ -6,7 +6,7 @@
 			<BEToolbar/>
 
 			<div class="be-content-mount">
-				<div class="be-content-wrapper">
+				<div class="be-content-wrapper be-editing">
 					<BEBlocks ref="rootBlocks" :value="content" @input="onInput"/>
 				</div>
 
@@ -25,15 +25,15 @@
 <script>
 
 	import { Latte } from "@bybas/latte-ui";
+	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
-	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, ParagraphBlock, WrapperBlock } from "./blocks";
+	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
-	import { createElement } from "./create-element";
 
 	export default {
 
@@ -57,6 +57,9 @@
 			// Text
 			this.registerBlock(HeadingBlock);
 			this.registerBlock(ParagraphBlock);
+
+			// Embeds
+			this.registerBlock(YouTubeEmbedBlock);
 
 			defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 		},
