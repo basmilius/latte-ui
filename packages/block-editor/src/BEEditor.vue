@@ -5,8 +5,8 @@
 		<div class="be-content-pane" @click="onEditorClick">
 			<BEToolbar/>
 
-			<div class="container">
-				<div class="panel-body">
+			<div class="be-content-mount">
+				<div class="be-content-wrapper">
 					<BEBlocks ref="rootBlocks" :value="content" @input="onInput"/>
 				</div>
 			</div>

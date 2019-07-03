@@ -74,8 +74,6 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					remove();
 					return;
 				}
-
-				console.log(evt.key);
 			}
 		}
 	});

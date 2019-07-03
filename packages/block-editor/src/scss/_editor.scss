@@ -2,9 +2,12 @@
 {
 	--panel-gutter: 24px;
 
-	position: relative;
+	position: absolute;
 	display: flex;
-	align-items: stretch;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 
 	[contenteditable]
 	{
@@ -15,17 +18,43 @@
 	{
 		position: relative;
 		display: block;
+		height: 100%;
 		flex: 1 1 auto;
+	}
+
+	.be-content-mount
+	{
+		position: relative;
+		display: block;
+		height: calc(100% - 60px);
+		width: 100%;
+		overflow: auto;
+		will-change: transform;
+	}
+
+	.be-content-wrapper
+	{
+		position: relative;
+		display: block;
+		margin: var(--panel-gutter) auto;
+		max-width: 960px;
 	}
 
 	.be-block-wrapper
 	{
 		position: relative;
 
-		&.is-selected
+		&.is-selected::before
 		{
-			outline: 2px dashed rgba(var(--color-primary), .25);
-			outline-offset: 12px;
+			position: absolute;
+			display: block;
+			top: -15px;
+			left: -15px;
+			right: -15px;
+			bottom: -15px;
+			content: "";
+			border: 2px dashed rgba(var(--color-primary), .25);
+			pointer-events: none;
 		}
 	}
 
@@ -153,16 +182,23 @@
 	{
 		position: relative;
 		display: flex;
+		height: 100%;
 		width: 330px;
 		flex: 0 0 auto;
 		flex-flow: column;
 		justify-content: flex-start;
 		border-left: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+		overflow: auto;
+		will-change: transform;
 
 		.panel-header
 		{
+			position: sticky;
+			top: 0;
 			min-height: 60px;
+			background: rgba(var(--panel-background), 1);
 			font-size: 1rem;
+			z-index: 1;
 		}
 	}
 
@@ -182,6 +218,8 @@
 
 	.panel-header.be-toolbar
 	{
+		position: relative;
+		top: 0;
 		min-height: 60px;
 		font-size: 1rem;
 	}

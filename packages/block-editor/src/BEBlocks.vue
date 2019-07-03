@@ -128,21 +128,21 @@
 						focus();
 					}
 
-					return h("div", {class: `be-block-wrapper ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
+					return h("div", {class: `be-block-wrapper be-block-${block.id} ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
 						h(BEInserterMini, {
 							class: "top",
 							on: {
 								select: id => this.insertBlock(id, index)
 							}
 						}),
-						renderOptions(),
-						blockNode,
 						h(BEInserterMini, {
 							class: "bottom",
 							on: {
 								select: id => this.insertBlock(id, index + 1)
 							}
-						})
+						}),
+						renderOptions(),
+						blockNode
 					]);
 				});
 			};

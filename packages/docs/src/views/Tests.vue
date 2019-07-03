@@ -79,7 +79,7 @@
 
 	</div>
 
-	<div class="panel radius-none" v-else>
+	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
 		<BEEditor></BEEditor>
 	</div>
 
@@ -109,6 +109,11 @@
 				acTwo: [],
 				acTree: [3, 6]
 			};
+		},
+
+		mounted()
+		{
+			document.body.style.setProperty("overflow", "hidden");
 		},
 
 		methods: {

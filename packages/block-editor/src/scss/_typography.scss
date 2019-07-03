@@ -5,3 +5,19 @@ h4
 	font-family: cronos-pro, sans-serif;
 	font-weight: 600;
 }
+
+p
+{
+	min-height: 1.5em;
+}
+
+
+
+
+/*
+ * Editor specific styling
+ */
+.be-block-paragraph:not(:last-child)
+{
+	margin-bottom: 1rem;
+}
