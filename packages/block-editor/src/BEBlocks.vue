@@ -137,12 +137,12 @@
 								select: id => this.insertBlock(id, index)
 							}
 						}),
-						h(BEInserterMini, {
+						index === 0 ? h(BEInserterMini, {
 							class: "bottom",
 							on: {
 								select: id => this.insertBlock(id, index + 1)
 							}
-						}),
+						}) : undefined,
 						renderOptions(),
 						blockNode
 					]);
