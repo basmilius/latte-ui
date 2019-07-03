@@ -60,7 +60,7 @@
 					const children = item.children || [];
 					const options = Object.assign({}, block.defaultOptions || {}, item.options);
 
-					const focus = (selectAll = true) => this.$nextTick(() =>
+					const focus = (selectAll = true, fn = undefined) => this.$nextTick(() =>
 					{
 						blockNode.elm.click();
 						blockNode.elm.focus();
@@ -72,6 +72,9 @@
 							document.execCommand("selectAll");
 						else
 							setSelectionBefore(blockNode.elm.childNodes[0], true);
+
+						if (fn)
+							fn(blockNode.elm);
 					});
 
 					const getRelative = dir =>
@@ -102,6 +105,7 @@
 					};
 
 					const api = this.apis[index] = {
+						blockId: block.id,
 						depth,
 						options,
 						children,
@@ -111,6 +115,7 @@
 						focus,
 						getRelative,
 						insertBlock: (id, index = -1, options = {}, shouldFocus = true) => this.insertBlock(id, index, options, shouldFocus),
+						nextTick: fn => this.$nextTick(fn),
 						rearrange,
 						remove,
 						setChildren,

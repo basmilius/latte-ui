@@ -14,6 +14,18 @@ export function replaceIndex(arr, index, obj)
 	return arr;
 }
 
+export function setSelection(el, offset = 0, collapse = true)
+{
+	const range = document.createRange();
+	const selection = window.getSelection();
+
+	range.setStart(el, offset);
+	range.collapse(collapse);
+
+	selection.removeAllRanges();
+	selection.addRange(range);
+}
+
 export function setSelectionAfter(el, collapse = false, char = "\u00A0")
 {
 	if (char === " ")

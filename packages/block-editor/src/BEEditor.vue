@@ -98,9 +98,7 @@
 											options: {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis eu nunc eget mattis. Praesent et metus at enim placerat auctor sed condimentum lorem. Donec feugiat, diam vel blandit faucibus, turpis massa feugiat magna, vel sodales quam eros vitae justo. Sed sit amet eros tristique, scelerisque est at, ultricies nulla. Nam placerat efficitur tellus, ut egestas erat tincidunt id. Sed molestie eget turpis eget luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam eget lorem dolor. Phasellus at consequat magna, non aliquet ligula. Nam pellentesque urna felis, ac imperdiet erat tincidunt eget."}
 										}
 									],
-									options: {
-										class: "p-4"
-									}
+									options: {}
 								}
 							]
 						],

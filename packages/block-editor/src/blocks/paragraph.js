@@ -1,6 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
+import { setSelection, setSelectionAfter, setSelectionBefore } from "../utils";
 
 export class ParagraphBlock extends BlockBase
 {
@@ -60,30 +61,79 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 			},
 			keydown: evt =>
 			{
+				const selection = window.getSelection();
 				const text = evt.target.innerText;
 
 				if (evt.key === "Enter" && !evt.shiftKey)
 				{
 					evt.preventDefault();
 
-					const selection = window.getSelection();
-
 					switch (selection.type)
 					{
 						case "Caret":
+						{
 							const textLeft = text.substr(0, selection.anchorOffset).trim();
 							const textRight = text.substr(selection.anchorOffset).trim();
 
 							insertBlock("paragraph", index + 1, {text: textRight});
 							setOptions({text: textLeft});
-							return true;
+							return;
+						}
 
 						case "Range":
-							console.log(selection);
-							return true;
-					}
+						{
+							const textRight = text.substr(selection.focusOffset).trim();
 
-					insertBlock("paragraph", index + 1);
+							insertBlock("paragraph", index + 1, {text: textRight});
+							setOptions({text: ""});
+							return;
+						}
+					}
+				}
+
+				if (evt.key === "ArrowDown" && selection.anchorOffset === text.length)
+				{
+					evt.preventDefault();
+
+					const sibbling = getRelative(1);
+
+					if (!sibbling)
+						return;
+
+					sibbling.focus(false, elm => setSelectionBefore(elm.childNodes[0], true));
+				}
+
+				if (evt.key === "ArrowUp" && selection.anchorOffset === 0)
+				{
+					evt.preventDefault();
+
+					const sibbling = getRelative(-1);
+
+					if (!sibbling)
+						return;
+
+					sibbling.focus(false, elm => setSelectionAfter(elm.childNodes[0], true));
+				}
+
+				if (evt.key === "Backspace" && selection.anchorOffset === 0)
+				{
+					evt.preventDefault();
+
+					const allowAppend = ["heading", "paragraph"];
+					const sibbling = getRelative(-1);
+
+					if (!sibbling)
+						return;
+
+					if (allowAppend.indexOf(sibbling.blockId) === -1)
+						return;
+
+					const offset = sibbling.options.text.length + 1;
+
+					sibbling.setOptions({text: sibbling.options.text + " " + options.text});
+					remove();
+					sibbling.focus(false, elm => setSelection(elm.childNodes[0], offset));
+
 					return;
 				}
 
@@ -100,7 +150,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					return;
 				}
 
-				return true;
+				console.log(evt.key);
 			}
 		}
 	});

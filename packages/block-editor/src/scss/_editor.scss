@@ -175,6 +175,8 @@
 			display: flex;
 			padding: 18px 24px;
 			flex-flow: column;
+			background: rgba(var(--outline-color-secondary), .3);
+			box-shadow: 0 1px rgba(var(--outline-color-secondary), 1);
 		}
 	}
 
@@ -206,13 +208,40 @@
 	{
 		position: relative;
 		display: flex;
-		min-height: 42px;
+		margin: 0;
+		min-height: 24px;
 		align-items: center;
 		justify-content: space-between;
 
-		label
+		+ .be-settings-row
 		{
-			margin: 0;
+			margin-top: 9px;
+			padding-top: 9px;
+			border-top: var(--divider-size) solid rgba(var(--outline-color-secondary), .75);
+		}
+
+		> div
+		{
+			position: relative;
+			display: block;
+			flex: 0 0 auto;
+		}
+
+		> span
+		{
+			color: rgba(var(--main-foreground), .75);
+			font-size: .9rem;
+			font-weight: 500;
+		}
+
+		&.flex-column
+		{
+			align-items: flex-start;
+
+			span
+			{
+				margin: 0 0 .5rem 0;
+			}
 		}
 	}
 

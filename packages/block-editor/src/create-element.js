@@ -11,7 +11,7 @@ export function createElement(tag, props = undefined, content = undefined)
 	if (props.class)
 	{
 		if (typeof props.class === "string")
-			el.classList.add(...props.class.split(" "));
+			el.classList.add(...props.class.split(" ").filter(t => t.trim() !== ""));
 		else
 			el.classList.add(...props.class);
 	}

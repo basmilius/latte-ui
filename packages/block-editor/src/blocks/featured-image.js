@@ -57,11 +57,9 @@ export class FeaturedImageBlock extends BlockBase
 					h("input", {class: "toggle-button toggle-button-primary", domProps: {checked: options.shouldFade, type: "checkbox"}, on: {input: evt => setOptions({shouldFade: evt.target.checked})}})
 				])
 			]),
-			h("label", {class: "be-settings-row"}, [
+			h("label", {class: "be-settings-row flex-column"}, [
 				h("span", "Image URL"),
-				h("div", [
-					h("input", {class: "form-control", domProps: {value: options.imageUrl, type: "text"}, on: {input: evt => setOptions({imageUrl: evt.target.value})}})
-				])
+				h("input", {class: "form-control", domProps: {value: options.imageUrl, type: "text"}, on: {input: evt => setOptions({imageUrl: evt.target.value})}})
 			])
 		]);
 	}

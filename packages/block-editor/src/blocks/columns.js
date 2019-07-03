@@ -11,6 +11,7 @@ export class ColumnsBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
+			class: "",
 			columns: 2,
 			gutters: true
 		};
@@ -28,9 +29,7 @@ export class ColumnsBlock extends BlockBase
 
 		return h(
 			"div",
-			{
-				class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`
-			},
+			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
 			Array(options.columns)
 				.fill(undefined)
 				.map((_, index) => h("div", {class: "col-12 col-lg"}, processGroup(children[index] || [])))
@@ -41,9 +40,7 @@ export class ColumnsBlock extends BlockBase
 	{
 		return h(
 			"div",
-			{
-				class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`
-			},
+			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
 			Array(options.columns)
 				.fill(undefined)
 				.map((_, index) => h("div", {class: "col-12 col-lg"}, [
@@ -92,6 +89,10 @@ export class ColumnsBlock extends BlockBase
 				h("div", [
 					h("input", {class: "toggle-button toggle-button-primary", domProps: {checked: options.gutters, type: "checkbox"}, on: {input: evt => setOptions({gutters: evt.target.checked})}})
 				])
+			]),
+			h("label", {class: "be-settings-row flex-column"}, [
+				h("span", "Additional classes"),
+				h("input", {class: "form-control", domProps: {type: "text", value: options.class}, on: {input: evt => setOptions({class: evt.target.value})}})
 			])
 		]);
 	}
