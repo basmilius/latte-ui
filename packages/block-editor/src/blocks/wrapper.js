@@ -16,25 +16,26 @@ export class WrapperBlock extends BlockBase
 		return super.render(h, options);
 	}
 
-	renderEditor(h, {index, children, setChildren})
+	renderEditor(h, {depth, index, children, setChildren})
 	{
-		return h("div", {class: `be-block-wrapper`}, [
-			h(BEBlocks, {
-				props: {
-					blocks: this.editor.blocks,
-					categories: this.editor.categories,
-					value: children || []
-				},
-				on: {
-					input: c => setChildren(c)
-				}
-			})
+		return h("div", {class: `row be-block-wrapper`}, [
+			h("div", {class: "col-12"}, [
+				h(BEBlocks, {
+					props: {
+						depth,
+						value: children || []
+					},
+					on: {
+						input: c => setChildren(c)
+					}
+				})
+			])
 		]);
 	}
 
-	renderOptions(h, {index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
+	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
+		return h(BESettingsGroup, {props: {title: `${this.name} (${depth})`}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"})
 		]);
 	}

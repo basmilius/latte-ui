@@ -3,15 +3,16 @@
 	<div class="be-editor" spellcheck="false">
 
 		<div class="be-content-pane" @click="onEditorClick">
-			<BEToolbar :blocks="blocks" :categories="categories"/>
+			<BEToolbar/>
 
 			<div class="container">
 				<div class="panel-body">
-					<BEBlocks :blocks="blocks" :categories="categories" :value="content" @input="onInput"/>
+					<BEBlocks ref="rootBlocks" :value="content" @input="onInput"/>
 				</div>
 			</div>
 		</div>
 
+		<BEInserterPopup ref="inserter"/>
 		<BESettingsPane :editor="selfEditor"/>
 
 	</div>
@@ -21,6 +22,8 @@
 <script>
 
 	import { Latte } from "@bybas/latte-ui";
+	import { defaultCategories } from "./block";
+	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, ParagraphBlock, WrapperBlock } from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -28,14 +31,17 @@
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
 
-	import { defaultCategories } from "./block";
-	import { ColumnsBlock, FeaturedImageBlock, HeadingBlock, ParagraphBlock, WrapperBlock } from "./blocks";
-
 	export default {
 
 		name: "BEEditor",
 
-		components: {BESettingsPane, BEBlocks, BEToolbar, BEInserterPopup, BEInserterExpanded},
+		components: {
+			BEBlocks,
+			BEInserterExpanded,
+			BEInserterPopup,
+			BESettingsPane,
+			BEToolbar
+		},
 
 		created()
 		{
@@ -77,6 +83,11 @@
 									options: {type: "h4", text: "Below is a wrapper block"}
 								},
 								{
+									id: "columns",
+									children: [],
+									options: {}
+								},
+								{
 									id: "wrapper",
 									children: [
 										{
@@ -101,6 +112,16 @@
 		},
 
 		computed: {
+
+			inserter()
+			{
+				return this.$refs.inserter;
+			},
+
+			rootBlocks()
+			{
+				return this.$refs.rootBlocks;
+			},
 
 			selfEditor()
 			{
@@ -131,8 +152,8 @@
 
 			onInput(content)
 			{
-				console.clear();
-				console.log(JSON.stringify(content));
+				// console.clear();
+				// console.log(JSON.stringify(content));
 			}
 
 		}

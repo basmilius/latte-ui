@@ -1,28 +1,16 @@
 <script>
 
 	import { Latte } from "@bybas/latte-ui";
+	import { editorInstance, setSelectionAfter } from "./utils";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
-	import { setSelectionAfter } from "./utils";
 
 	export default {
 
 		name: "BEBlocks",
 
 		props: {
-
-			blocks: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
-
-			categories: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
 
 			depth: {
 				default: 0,
@@ -42,6 +30,7 @@
 			return {
 				apis: [],
 				content: this.value,
+				editor: editorInstance(this),
 				selectedIndex: -1
 			};
 		},
@@ -57,14 +46,14 @@
 			{
 				return this.content.map((item, index) =>
 				{
-					const block = this.blocks.find(b => b.id === item.id);
+					const block = this.editor.blocks.find(b => b.id === item.id);
 
 					if (!block)
 						return undefined;
 
 					block.controller = this;
 
-					let vnode = undefined;
+					let blockNode = undefined;
 
 					const depth = this.depth + 1;
 					const isSelected = this.selectedIndex === index;
@@ -75,15 +64,15 @@
 					{
 						this.$nextTick(() =>
 						{
-							vnode.elm.click();
-							vnode.elm.focus();
+							blockNode.elm.click();
+							blockNode.elm.focus();
 
-							if (vnode.elm.contentEditable === "true")
+							if (blockNode.elm.contentEditable === "true")
 							{
 								if (selectAll)
 									document.execCommand("selectAll");
 								else
-									setSelectionAfter(vnode.elm.childNodes[0]);
+									setSelectionAfter(blockNode.elm.childNodes[0]);
 							}
 						});
 					};
@@ -131,7 +120,7 @@
 						setOptions
 					};
 
-					vnode = block.renderEditor(h, api);
+					blockNode = block.renderEditor(h, api);
 
 					if (item.shouldFocus)
 					{
@@ -142,22 +131,14 @@
 					return h("div", {class: `be-block-wrapper ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
 						h(BEInserterMini, {
 							class: "top",
-							props: {
-								blocks: this.blocks,
-								categories: this.categories
-							},
 							on: {
 								select: id => this.insertBlock(id, index)
 							}
 						}),
 						renderOptions(),
-						vnode,
+						blockNode,
 						h(BEInserterMini, {
 							class: "bottom",
-							props: {
-								blocks: this.blocks,
-								categories: this.categories
-							},
 							on: {
 								select: id => this.insertBlock(id, index + 1)
 							}
@@ -170,10 +151,6 @@
 			{
 				return [
 					h(BEInserterExpanded, {
-						props: {
-							blocks: this.blocks,
-							categories: this.categories
-						},
 						on: {
 							select: id => this.insertBlock(id)
 						}

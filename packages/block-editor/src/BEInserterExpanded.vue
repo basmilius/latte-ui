@@ -1,18 +1,15 @@
 <template>
 
-	<div class="be-inserter be-inserter-expanded">
+	<div class="be-inserter be-inserter-expanded" @click="onClick">
 		<i class="mdi mdi-plus-circle-outline"></i>
 		<span>{{ "Add block" | i18n("latte-ui") }}</span>
-
-		<latte-popup :associate-with="$el">
-			<BEInserterPopup @select="$emit('select', $event)" :blocks="blocks" :categories="categories"/>
-		</latte-popup>
 	</div>
 
 </template>
 
 <script>
 
+	import { editorInstance } from "./utils";
 	import BEInserterPopup from "./BEInserterPopup";
 
 	export default {
@@ -23,18 +20,16 @@
 			BEInserterPopup
 		},
 
-		props: {
+		methods: {
 
-			blocks: {
-				default: () => [],
-				required: true,
-				type: Array
+			onClick()
+			{
+				editorInstance(this).inserter.open(this.$el.querySelector("i.mdi"), id => this.select(id), -15, 9);
 			},
 
-			categories: {
-				default: () => [],
-				required: true,
-				type: Array
+			select(id)
+			{
+				this.$emit("select", id);
 			}
 
 		}

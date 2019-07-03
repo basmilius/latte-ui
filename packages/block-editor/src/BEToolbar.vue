@@ -1,15 +1,14 @@
 <template>
 
 	<div class="panel-header be-toolbar">
-		<latte-button-dropdown icon="plus-circle-outline">
-			<BEInserterPopup :blocks="blocks" :categories="categories"/>
-		</latte-button-dropdown>
+		<button class="btn btn-icon btn-text btn-dark inserter-btn" @click="onInserterClick"><i class="mdi mdi-plus-circle-outline"></i></button>
 	</div>
 
 </template>
 
 <script>
 
+	import { editorInstance } from "./utils";
 	import BEInserterPopup from "./BEInserterPopup";
 
 	export default {
@@ -20,18 +19,14 @@
 
 		name: "BEToolbar",
 
-		props: {
+		methods: {
 
-			blocks: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
+			onInserterClick()
+			{
+				const editor = editorInstance(this);
+				const el = this.$el.querySelector("button.inserter-btn i.mdi");
 
-			categories: {
-				default: () => [],
-				required: true,
-				type: Array
+				editor.inserter.open(el, id => editor.rootBlocks.insertBlock(id), -15, 9);
 			}
 
 		}

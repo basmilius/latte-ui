@@ -31,8 +31,6 @@ export class ColumnsBlock extends BlockBase
 		return h("div", {class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`}, Array(options.columns).fill(undefined).map((_, index) => h("div", {class: "col-12 col-lg"}, [
 			h(BEBlocks, {
 				props: {
-					blocks: this.editor.blocks,
-					categories: this.editor.categories,
 					depth,
 					value: children[index] || []
 				},

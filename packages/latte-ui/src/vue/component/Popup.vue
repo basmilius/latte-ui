@@ -10,6 +10,7 @@
 <script>
 
 	import Vue from "vue";
+
 	import { dispatch, on } from "../../js/core/action";
 	import { live, raf } from "../../js/util/dom";
 	import { applyZ } from "../../js/core/z";
@@ -89,7 +90,7 @@
 		{
 			if (this.$el.parentNode)
 				this.$el.parentNode.removeChild(this.$el);
-			else
+			else if (this.associatedElement)
 				this.bindEvents();
 
 			getMainElement().appendChild(this.$el);

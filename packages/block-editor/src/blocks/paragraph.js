@@ -38,13 +38,21 @@ export class ParagraphBlock extends BlockBase
 
 export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, options, setOptions})
 {
+	let canUpdate = true;
+
 	return h(tag, {
 		domProps: {
 			contentEditable: true,
 			innerHTML: options.text
 		},
 		on: {
-			blur: evt => setOptions({text: evt.target.innerHTML}),
+			blur: evt =>
+			{
+				if (!canUpdate)
+					return;
+
+				setOptions({text: evt.target.innerHTML});
+			},
 			keydown: evt =>
 			{
 				if (evt.key === "Enter" && !evt.shiftKey)
@@ -62,6 +70,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					if (sibbling)
 						sibbling.focus(false);
 
+					canUpdate = false;
 					remove();
 					return;
 				}

@@ -1,10 +1,7 @@
 <template>
 
-	<button class="btn btn-icon btn-text btn-dark be-inserter be-inserter-mini" :class="{'is-open': isOpen}">
+	<button class="btn btn-icon btn-text btn-dark be-inserter be-inserter-mini" :class="{'is-open': isOpen}" @click="onClick">
 		<i class="mdi mdi-plus-circle-outline"></i>
-		<latte-popup :associate-with="$el" :margin-x="-9" @close="isOpen = false" @open="isOpen = true">
-			<BEInserterPopup @select="$emit('select', $event)" :blocks="blocks" :categories="categories"/>
-		</latte-popup>
 	</button>
 
 </template>
@@ -12,6 +9,7 @@
 <script>
 
 	import BEInserterPopup from "./BEInserterPopup";
+	import { editorInstance } from "./utils";
 
 	export default {
 
@@ -19,27 +17,25 @@
 
 		name: "BEInserterMini",
 
-		props: {
-
-			blocks: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
-
-			categories: {
-				default: () => [],
-				required: true,
-				type: Array
-			}
-
-		},
-
 		data()
 		{
 			return {
 				isOpen: false
 			};
+		},
+
+		methods: {
+
+			onClick()
+			{
+				editorInstance(this).inserter.open(this.$el.querySelector("i.mdi"), id => this.select(id), -15);
+			},
+
+			select(id)
+			{
+				this.$emit("select", id);
+			}
+
 		}
 
 	}

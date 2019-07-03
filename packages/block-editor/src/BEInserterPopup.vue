@@ -1,72 +1,69 @@
 <template>
 
-	<div class="be-inserter be-inserter-popup">
-		<latte-expandable class="be-inserter-category" group="be-inserter" :opened="index === 0" v-for="(category, index) of blocksCategorized">
+	<latte-popup ref="popup" :associate-with="assiciatedElement" :margin-x="marginX" :margin-y="marginY" @close="onClose" @open="onOpen">
 
-			<template v-slot:header="{isOpen}">
+		<div class="be-inserter be-inserter-popup">
+			<div class="be-inserter-category" v-for="category of blocksCategorized">
 
-				<div class="be-inserter-header" :class="{'is-open': isOpen}">
+				<div class="be-inserter-header" :class="{'is-open': (currentCategory === category.id)}" @click="currentCategory = category.id">
 					<i class="mdi" :class="`mdi-${category.icon}`"></i>
 					<span>{{ category.name }}</span>
-					<i class="mdi" :class="{'mdi-chevron-down': !isOpen, 'mdi-chevron-up': isOpen}"></i>
+					<i class="mdi" :class="{'mdi-chevron-down': !(currentCategory === category.id), 'mdi-chevron-up': (currentCategory === category.id)}"></i>
 				</div>
 
-			</template>
+				<div class="be-inserter-body" v-if="currentCategory === category.id">
+					<template v-if="category.blocks.length > 0">
 
-			<div class="be-inserter-body">
-				<template v-if="category.blocks.length > 0">
+						<button class="be-inserter-block" @click="select(block.id)" :data-tooltip="block.description" v-for="block of category.blocks">
+							<i class="mdi" :class="`mdi-${block.icon}`"></i>
+							<span>{{ block.name }}</span>
+						</button>
 
-					<button class="be-inserter-block" @click="select(block.id)" :data-tooltip="block.description" v-for="block of category.blocks">
-						<i class="mdi" :class="`mdi-${block.icon}`"></i>
-						<span>{{ block.name }}</span>
-					</button>
+					</template>
+					<template v-else>
 
-				</template>
-				<template v-else>
+						<div class="be-inserter-empty">
+							<span>{{ "There are no blocks in this category." | i18n("latte-ui") }}</span>
+						</div>
 
-					<div class="be-inserter-empty">
-						<span>{{ "There are no blocks in this category." | i18n("latte-ui") }}</span>
-					</div>
+					</template>
+				</div>
 
-				</template>
 			</div>
+		</div>
 
-		</latte-expandable>
-	</div>
+	</latte-popup>
 
 </template>
 
 <script>
 
-	import { Latte } from "@bybas/latte-ui";
+	import { editorInstance } from "./utils";
 
 	export default {
 
 		name: "BEInserterPopup",
 
-		props: {
-
-			blocks: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
-
-			categories: {
-				default: () => [],
-				required: true,
-				type: Array
-			}
-
+		data()
+		{
+			return {
+				assiciatedElement: undefined,
+				currentCategory: null,
+				editor: editorInstance(this),
+				fn: undefined,
+				isOpen: false,
+				marginX: 0,
+				marginY: 0
+			};
 		},
 
 		computed: {
 
 			blocksCategorized()
 			{
-				return this.categories.map(c =>
+				return this.editor.categories.map(c =>
 				{
-					c.blocks = this.blocks.filter(b => b.category === c.id);
+					c.blocks = this.editor.blocks.filter(b => b.category === c.id);
 
 					return c;
 				});
@@ -76,10 +73,33 @@
 
 		methods: {
 
+			onClose()
+			{
+				this.assiciatedElement = undefined;
+				this.isOpen = false;
+			},
+
+			onOpen()
+			{
+				this.currentCategory = this.editor.categories[0].id;
+				this.isOpen = true;
+			},
+
+			open(associateWith, fn, marginX = 0, marginY = 0)
+			{
+				this.assiciatedElement = associateWith;
+				this.fn = fn;
+				this.marginX = marginX;
+				this.marginY = marginY;
+				this.$refs.popup.open();
+			},
+
 			select(id)
 			{
-				Latte.action.dispatch("latte:context-menu");
-				this.$nextTick(() => this.$emit("select", id));
+				this.$refs.popup.close();
+
+				if (this.fn)
+					this.fn(id);
 			}
 
 		}

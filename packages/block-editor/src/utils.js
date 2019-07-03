@@ -1,3 +1,12 @@
+export function editorInstance(component)
+{
+	while ((component = component.$parent) !== undefined)
+		if (component.$options.name === "BEEditor")
+			return component;
+
+	return undefined;
+}
+
 export function replaceIndex(arr, index, obj)
 {
 	arr.splice(index, 1, obj);
