@@ -9,6 +9,9 @@
 				<div class="be-content-wrapper">
 					<BEBlocks ref="rootBlocks" :value="content" @input="onInput"/>
 				</div>
+
+				<textarea class="form-control radius-none my-5" :value="rendered" rows="10"></textarea>
+				<div class="be-content-wrapper" v-html="rendered"></div>
 			</div>
 		</div>
 
@@ -30,6 +33,7 @@
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
+	import { createElement } from "./create-element";
 
 	export default {
 
@@ -83,11 +87,6 @@
 									options: {type: "h4", text: "Below is a wrapper block"}
 								},
 								{
-									id: "columns",
-									children: [],
-									options: {}
-								},
-								{
 									id: "wrapper",
 									children: [
 										{
@@ -96,10 +95,12 @@
 										},
 										{
 											id: "paragraph",
-											options: {text: "Lorem ipsum..."}
+											options: {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis eu nunc eget mattis. Praesent et metus at enim placerat auctor sed condimentum lorem. Donec feugiat, diam vel blandit faucibus, turpis massa feugiat magna, vel sodales quam eros vitae justo. Sed sit amet eros tristique, scelerisque est at, ultricies nulla. Nam placerat efficitur tellus, ut egestas erat tincidunt id. Sed molestie eget turpis eget luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam eget lorem dolor. Phasellus at consequat magna, non aliquet ligula. Nam pellentesque urna felis, ac imperdiet erat tincidunt eget."}
 										}
 									],
-									options: {}
+									options: {
+										class: "p-4"
+									}
 								}
 							]
 						],
@@ -107,7 +108,8 @@
 							columns: 2
 						}
 					}
-				]
+				],
+				rendered: ""
 			};
 		},
 
@@ -145,6 +147,40 @@
 				this.categories.push({id, icon, name});
 			},
 
+			save()
+			{
+				const processGroup = group => group.map((item, index) =>
+				{
+					let block = this.blocks.find(b => b.id === item.id);
+
+					if (block === undefined)
+						return undefined;
+
+					const depth = this.depth + 1;
+					const children = item.children || [];
+					const options = Object.assign({}, block.defaultOptions || {}, item.options);
+
+					return block.render(createElement, {
+						depth,
+						index,
+						children,
+						options,
+
+						processGroup
+					});
+				}).filter(b => !!b);
+
+				const blocks = processGroup(this.content);
+				const template = document.createElement("div");
+
+				for (let block of blocks)
+					template.appendChild(block);
+
+				console.log(template.innerHTML);
+
+				return this.rendered = template.innerHTML;
+			},
+
 			onEditorClick()
 			{
 				Latte.action.dispatch("latte:be:reset-settings-pane");
@@ -152,8 +188,7 @@
 
 			onInput(content)
 			{
-				// console.clear();
-				// console.log(JSON.stringify(content));
+				this.content = content;
 			}
 
 		}

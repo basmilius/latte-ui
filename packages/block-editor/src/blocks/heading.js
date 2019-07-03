@@ -1,7 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { renderEditor } from "./paragraph";
+import { render, renderEditor } from "./paragraph";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},
@@ -28,9 +28,9 @@ export class HeadingBlock extends BlockBase
 		super("heading", "text", "format-header-1", "Heading", "Header text from 1 through 6.");
 	}
 
-	render(h, options)
+	render(h, api)
 	{
-		return super.render(h, options);
+		return render(api.options.type, h, api);
 	}
 
 	renderEditor(h, api)

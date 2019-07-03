@@ -11,9 +11,20 @@ export class WrapperBlock extends BlockBase
 		super("wrapper", "layout", "border-none-variant", "Wrapper", "Wraps blocks in a wrapper.");
 	}
 
-	render(h, options)
+	render(h, {children, options, processGroup})
 	{
-		return super.render(h, options);
+		if (children.length === 0)
+			return undefined;
+
+		return h(
+			"div",
+			{
+				class: `row be-block-wrapper`
+			},
+			[
+				h("div", {class: "col-12"}, processGroup(children))
+			]
+		);
 	}
 
 	renderEditor(h, {depth, index, children, setChildren})

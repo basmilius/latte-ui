@@ -19,9 +19,12 @@ export class FeaturedImageBlock extends BlockBase
 		super("featured-image", "layout", "image-area", "Featured Image", "An image that is featured.");
 	}
 
-	render(h, options)
+	render(h, {options})
 	{
-		return super.render(h, options);
+		return h("div", {class: `featured-image ${options.shouldFade === true ? "should-fade" : "should-not-fade"}`}, [
+			h("div", {class: "featured-image-image", style: {backgroundImage: `url(${options.imageUrl})`}}),
+			h("div", {class: "featured-image-title"}, options.title)
+		]);
 	}
 
 	renderEditor(h, {options, setOptions})
@@ -36,6 +39,9 @@ export class FeaturedImageBlock extends BlockBase
 				},
 				on: {
 					blur: evt => setOptions({title: evt.target.innerText})
+				},
+				style: {
+					minWidth: "100%"
 				}
 			})
 		]);

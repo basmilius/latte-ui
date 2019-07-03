@@ -42,3 +42,15 @@ export function setSelectionAfter(el, collapse = false, char = "\u00A0")
 	selection.removeAllRanges();
 	selection.addRange(range);
 }
+
+export function setSelectionBefore(el, collapse = false)
+{
+	const range = document.createRange();
+	const selection = window.getSelection();
+
+	range.setStartBefore(el);
+	range.collapse(collapse);
+
+	selection.removeAllRanges();
+	selection.addRange(range);
+}

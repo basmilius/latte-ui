@@ -17,9 +17,9 @@ export class ParagraphBlock extends BlockBase
 		super("paragraph", "text", "format-paragraph", "Paragraph", "Some text.");
 	}
 
-	render(h, options)
+	render(h, api)
 	{
-		return super.render(h, options);
+		return render("p", h, api);
 	}
 
 	renderEditor(h, api)
@@ -34,6 +34,11 @@ export class ParagraphBlock extends BlockBase
 		]);
 	}
 
+}
+
+export function render(tag, h, {options})
+{
+	return h(tag, options.text);
 }
 
 export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, options, setOptions})
@@ -55,14 +60,34 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 			},
 			keydown: evt =>
 			{
+				const text = evt.target.innerText;
+
 				if (evt.key === "Enter" && !evt.shiftKey)
 				{
 					evt.preventDefault();
+
+					const selection = window.getSelection();
+
+					switch (selection.type)
+					{
+						case "Caret":
+							const textLeft = text.substr(0, selection.anchorOffset).trim();
+							const textRight = text.substr(selection.anchorOffset).trim();
+
+							insertBlock("paragraph", index + 1, {text: textRight});
+							setOptions({text: textLeft});
+							return true;
+
+						case "Range":
+							console.log(selection);
+							return true;
+					}
+
 					insertBlock("paragraph", index + 1);
 					return;
 				}
 
-				if (evt.key === "Backspace" && evt.target.innerText.trim() === "")
+				if (evt.key === "Backspace" && text.trim() === "")
 				{
 					evt.preventDefault();
 
@@ -74,6 +99,8 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 					remove();
 					return;
 				}
+
+				return true;
 			}
 		}
 	});

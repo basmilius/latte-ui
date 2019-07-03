@@ -3,7 +3,7 @@
 	<div class="panel-header be-toolbar">
 		<latte-ripple as="button" class="btn btn-icon btn-text btn-dark inserter-btn" @click="onInserterClick"><i class="mdi mdi-plus-circle-outline"></i></latte-ripple>
 		<div class="mx-auto"></div>
-		<latte-ripple as="button" class="btn btn-contained btn-primary"><i class="mdi mdi-check-circle"></i><span>{{ "Save" | i18n("latte-ui") }}</span></latte-ripple>
+		<latte-ripple as="button" class="btn btn-contained btn-primary" @click="editor.save()"><i class="mdi mdi-check-circle"></i><span>{{ "Save" | i18n("latte-ui") }}</span></latte-ripple>
 	</div>
 
 </template>
@@ -21,14 +21,20 @@
 
 		name: "BEToolbar",
 
+		data()
+		{
+			return {
+				editor: editorInstance(this)
+			};
+		},
+
 		methods: {
 
 			onInserterClick()
 			{
-				const editor = editorInstance(this);
 				const el = this.$el.querySelector("button.inserter-btn i.mdi");
 
-				editor.inserter.open(el, id => editor.rootBlocks.insertBlock(id), -15, 9);
+				this.editor.inserter.open(el, id => this.editor.rootBlocks.insertBlock(id), -15, 9);
 			}
 
 		}

@@ -1,7 +1,7 @@
 <script>
 
 	import { Latte } from "@bybas/latte-ui";
-	import { editorInstance, setSelectionAfter } from "./utils";
+	import { editorInstance, setSelectionBefore } from "./utils";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -60,22 +60,19 @@
 					const children = item.children || [];
 					const options = Object.assign({}, block.defaultOptions || {}, item.options);
 
-					const focus = (selectAll = true) =>
+					const focus = (selectAll = true) => this.$nextTick(() =>
 					{
-						this.$nextTick(() =>
-						{
-							blockNode.elm.click();
-							blockNode.elm.focus();
+						blockNode.elm.click();
+						blockNode.elm.focus();
 
-							if (blockNode.elm.contentEditable === "true")
-							{
-								if (selectAll)
-									document.execCommand("selectAll");
-								else
-									setSelectionAfter(blockNode.elm.childNodes[0]);
-							}
-						});
-					};
+						if (blockNode.elm.contentEditable !== "true")
+							return;
+
+						if (selectAll)
+							document.execCommand("selectAll");
+						else
+							setSelectionBefore(blockNode.elm.childNodes[0], true);
+					});
 
 					const getRelative = dir =>
 					{
@@ -113,7 +110,7 @@
 
 						focus,
 						getRelative,
-						insertBlock: (id, index = -1) => this.insertBlock(id, index),
+						insertBlock: (id, index = -1, options = {}, shouldFocus = true) => this.insertBlock(id, index, options, shouldFocus),
 						rearrange,
 						remove,
 						setChildren,
@@ -125,7 +122,7 @@
 					if (item.shouldFocus)
 					{
 						this.content[index].shouldFocus = false;
-						focus();
+						focus(false);
 					}
 
 					return h("div", {class: `be-block-wrapper be-block-${block.id} ${isSelected ? "is-selected" : "is-not-selected"}`, on: {click: () => this.setSettingsIndex(index)}}, [
@@ -163,12 +160,12 @@
 
 		methods: {
 
-			insertBlock(id, index = -1)
+			insertBlock(id, index = -1, options = {}, shouldFocus = true)
 			{
 				const spec = {
 					id,
-					options: {},
-					shouldFocus: true
+					options,
+					shouldFocus
 				};
 
 				if (index > -1)

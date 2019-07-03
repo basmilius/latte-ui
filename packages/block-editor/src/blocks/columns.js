@@ -21,24 +21,43 @@ export class ColumnsBlock extends BlockBase
 		super("columns", "layout", "view-column", "Columns", "Displays blocks next to each other.");
 	}
 
-	render(h, options)
+	render(h, {children, options, processGroup})
 	{
-		return super.render(h, options);
+		if (children.flat().length === 0)
+			return undefined;
+
+		return h(
+			"div",
+			{
+				class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`
+			},
+			Array(options.columns)
+				.fill(undefined)
+				.map((_, index) => h("div", {class: "col-12 col-lg"}, processGroup(children[index] || [])))
+		);
 	}
 
 	renderEditor(h, {depth, options, children, setChildren})
 	{
-		return h("div", {class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`}, Array(options.columns).fill(undefined).map((_, index) => h("div", {class: "col-12 col-lg"}, [
-			h(BEBlocks, {
-				props: {
-					depth,
-					value: children[index] || []
-				},
-				on: {
-					input: c => setChildren(replaceIndex(children, index, c))
-				}
-			})
-		])));
+		return h(
+			"div",
+			{
+				class: `row be-block-columns ${options.gutters ? "gutters" : "no-gutters"}`
+			},
+			Array(options.columns)
+				.fill(undefined)
+				.map((_, index) => h("div", {class: "col-12 col-lg"}, [
+					h(BEBlocks, {
+						props: {
+							depth,
+							value: children[index] || []
+						},
+						on: {
+							input: c => setChildren(replaceIndex(children, index, c))
+						}
+					})
+				]))
+		);
 	}
 
 	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
