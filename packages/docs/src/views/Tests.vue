@@ -9,14 +9,14 @@
 
 <template>
 
-	<div class="page" id="tests">
+	<div class="page" id="tests" v-if="false">
 
 		<PageHeader>
 			<h1>Random tests</h1>
 			<p>These are some development tests.</p>
 		</PageHeader>
 
-		<div class="container">
+		<div class="container" v-if="false">
 			<div class="row">
 				<div class="col-12">
 
@@ -79,17 +79,23 @@
 
 	</div>
 
+	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
+		<BEEditor></BEEditor>
+	</div>
+
 </template>
 
 <script>
 
 	import PageHeader from "../components/PageHeader";
-
 	import autocompleteData from "../assets/data/autocomplete-data.json";
+
+	import { BEEditor } from "../../../block-editor/src";
 
 	export default {
 
 		components: {
+			BEEditor,
 			PageHeader
 		},
 
@@ -103,6 +109,11 @@
 				acTwo: [],
 				acTree: [3, 6]
 			};
+		},
+
+		mounted()
+		{
+			document.body.style.setProperty("overflow", "hidden");
 		},
 
 		methods: {
@@ -154,7 +165,7 @@
 				};
 			}
 
-		},
+		}
 
 		// watch: {
 		//

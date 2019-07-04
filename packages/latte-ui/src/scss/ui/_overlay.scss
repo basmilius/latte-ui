@@ -45,6 +45,11 @@ div.overlay
 		margin: auto;
 	}
 
+	&.is-open
+	{
+		pointer-events: all;
+	}
+
 	&.is-visible
 	{
 		display: flex;

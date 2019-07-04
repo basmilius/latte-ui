@@ -80,6 +80,9 @@ export function getEmojisForCategory(category)
 
 export function replaceEmoji(str)
 {
+	if (!isLoaded)
+		return str;
+
 	for (let emoji of emojisJson)
 		str = str.split(emoji.unicode).join(`<img src="${getEmojiUrl(emoji.codePoints.base)}" class="emoji" alt="${emoji.name}" title="${emoji.name}"/>`);
 
