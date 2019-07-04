@@ -102,6 +102,9 @@
 			const children = this.children();
 			const noWrapper = this.noWrapper();
 
+			if (children.length === 0)
+				return undefined;
+
 			if (this.withTransition)
 			{
 				const transitionType = noWrapper ? "transition" : "transition-group";

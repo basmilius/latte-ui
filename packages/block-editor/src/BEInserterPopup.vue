@@ -81,7 +81,7 @@
 
 			onOpen()
 			{
-				this.currentCategory = this.editor.categories[0].id;
+				this.currentCategory = this.currentCategory || this.editor.categories[0].id;
 				this.isOpen = true;
 			},
 

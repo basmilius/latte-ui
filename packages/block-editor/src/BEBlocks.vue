@@ -37,7 +37,7 @@
 
 		mounted()
 		{
-			Latte.action.on("latte:be:reset-settings-pane", () => this.selectedIndex = -1);
+			this.editor.$on("be:reset-settings-pane", () => this.selectedIndex = -1);
 		},
 
 		render(h)
@@ -50,8 +50,6 @@
 
 					if (!block)
 						return undefined;
-
-					block.controller = this;
 
 					let blockNode = undefined;
 
@@ -94,6 +92,17 @@
 					const setChildren = newChildren => this.content.splice(index, 1, Object.assign({}, this.content[index], {children: newChildren}));
 					const setOptions = newOptions => this.content.splice(index, 1, Object.assign({}, this.content[index], {options: Object.assign(options, newOptions)}));
 
+					const renderInserter = (shouldRender, mode) =>
+					{
+						if (!shouldRender)
+							return undefined;
+
+						return h(BEInserterMini, {
+							class: mode,
+							on: {select: id => this.insertBlock(id, mode === "top" ? index : index + 1)}
+						});
+					};
+
 					const renderOptions = () =>
 					{
 						if (!isSelected)
@@ -130,19 +139,20 @@
 						focus(false);
 					}
 
-					return h("div", {class: `be-block-wrapper be-block-${block.id} ${isSelected ? "is-selected" : "not-selected"} be-editing`, on: {click: () => this.setSettingsIndex(index)}}, [
-						index === 0 ? h(BEInserterMini, {
-							class: "top",
-							on: {
-								select: id => this.insertBlock(id, index)
-							}
-						}) : undefined,
-						h(BEInserterMini, {
-							class: "bottom",
-							on: {
-								select: id => this.insertBlock(id, index + 1)
-							}
-						}),
+					const classes = ["be-block-mount", `be-block-${block.id}`, "be-editing"];
+
+					if (isSelected)
+						classes.push("is-selected");
+
+					if (index === 0)
+						classes.push("is-first");
+
+					if (index === this.content.length - 1)
+						classes.push("is-last");
+
+					return h("div", {class: classes, on: {click: () => this.setSettingsIndex(index, blockNode.elm)}}, [
+						renderInserter(index === 0, "top"),
+						renderInserter(true, "bottom"),
 						renderOptions(),
 						blockNode
 					]);
@@ -179,9 +189,19 @@
 					this.content.push(spec);
 			},
 
-			setSettingsIndex(index)
+			setSettingsIndex(index, elm)
 			{
-				Latte.action.dispatch("latte:be:reset-settings-pane");
+				const style = window.getComputedStyle(elm);
+
+				// Note(Bas): vgutters is hardcoded to zero because it looks
+				// nicer in the editor... Not sure if it causes bugs or something.
+				const hgutters = parseInt(style.marginLeft) + parseInt(style.marginRight);
+				const vgutters = 0; //parseInt(style.marginTop) + parseInt(style.marginBottom);
+
+				elm.parentElement.style.setProperty("--editor-rect-h", `${elm.clientHeight + vgutters}px`);
+				elm.parentElement.style.setProperty("--editor-rect-w", `${elm.clientWidth + hgutters}px`);
+
+				this.editor.$emit("be:reset-settings-pane");
 				Latte.util.dom.raf(() => this.selectedIndex = index);
 			}
 

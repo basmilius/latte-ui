@@ -1,10 +1,16 @@
 <template>
 
 	<div class="be-settings-pane">
-		<div class="panel-header">
-			<span class="panel-title">{{ "Settings" | i18n("latte-ui") }}</span>
-		</div>
-		<latte-portal-target :name="uniqueId" multiple></latte-portal-target>
+		<slot name="before"></slot>
+
+		<template>
+			<div class="panel-header" v-if="portalHasPassengers">
+				<span class="panel-title">{{ "Block settings" | i18n("latte-ui") }}</span>
+			</div>
+			<latte-portal-target ref="portal" :name="uniqueId" multiple></latte-portal-target>
+		</template>
+
+		<slot name="after"></slot>
 	</div>
 
 </template>
@@ -27,11 +33,29 @@
 
 		computed: {
 
+			portalHasPassengers()
+			{
+				if (!this.isInitialized || !this.$refs.portal)
+					return false;
+
+				return this.$refs.portal.passengers.length > 0;
+			},
+
 			uniqueId()
 			{
 				return `be-settings-pane-${this.editor.uniqueId}`;
 			}
 
+		},
+
+		data()
+		{
+			return {isInitialized: false};
+		},
+
+		mounted()
+		{
+			this.isInitialized = true;
 		}
 
 	}

@@ -3,7 +3,6 @@
 	<div class="panel-header be-toolbar">
 		<latte-ripple as="button" class="btn btn-icon btn-text btn-dark inserter-btn" @click="onInserterClick"><i class="mdi mdi-plus-circle-outline"></i></latte-ripple>
 		<div class="mx-auto"></div>
-		<latte-ripple as="button" class="btn btn-contained btn-primary" @click="editor.save()"><i class="mdi mdi-check-circle"></i><span>{{ "Save" | i18n("latte-ui") }}</span></latte-ripple>
 	</div>
 
 </template>

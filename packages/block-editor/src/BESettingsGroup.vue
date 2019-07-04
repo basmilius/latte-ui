@@ -21,6 +21,11 @@
 
 		props: {
 
+			opened: {
+				default: true,
+				type: Boolean
+			},
+
 			title: {
 				default: "Unknown group",
 				required: true,
@@ -32,7 +37,7 @@
 		data()
 		{
 			return {
-				isOpen: true
+				isOpen: this.opened
 			};
 		},
 
@@ -41,6 +46,15 @@
 			hasBody()
 			{
 				return this.$slots.default;
+			}
+
+		},
+
+		watch: {
+
+			opened()
+			{
+				this.isOpen = this.opened;
 			}
 
 		}

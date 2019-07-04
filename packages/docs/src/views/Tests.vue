@@ -80,7 +80,17 @@
 	</div>
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
-		<BEEditor></BEEditor>
+		<BEEditor>
+			<template v-slot:settings-pane-after>
+				<div class="panel-header"><span class="panel-title">Page settings</span></div>
+				<BESettingsGroup title="General">
+					hi
+				</BESettingsGroup>
+				<BESettingsGroup title="View">
+					hi
+				</BESettingsGroup>
+			</template>
+		</BEEditor>
 	</div>
 
 </template>
@@ -91,10 +101,12 @@
 	import autocompleteData from "../assets/data/autocomplete-data.json";
 
 	import { BEEditor } from "../../../block-editor/src";
+	import BESettingsGroup from "../../../block-editor/src/BESettingsGroup";
 
 	export default {
 
 		components: {
+			BESettingsGroup,
 			BEEditor,
 			PageHeader
 		},
@@ -105,6 +117,7 @@
 			let rows = Array.from(Array(1000), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
+				content: [],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6]
@@ -163,6 +176,15 @@
 						};
 					}
 				};
+			}
+
+		},
+
+		watch: {
+
+			content()
+			{
+				console.log(this.content);
 			}
 
 		}

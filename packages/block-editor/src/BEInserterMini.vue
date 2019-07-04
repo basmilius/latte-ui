@@ -1,8 +1,10 @@
 <template>
 
-	<button class="btn btn-icon btn-text btn-dark be-inserter be-inserter-mini" :class="{'is-open': isOpen}" @click="onClick">
-		<i class="mdi mdi-plus-circle-outline"></i>
-	</button>
+	<div class="be-inserter be-inserter-mini">
+		<button class="btn btn-icon btn-text btn-dark" :class="{'is-open': isOpen}" @click="onClick">
+			<i class="mdi mdi-plus"></i>
+		</button>
+	</div>
 
 </template>
 
