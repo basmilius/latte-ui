@@ -43,7 +43,7 @@
 		position: relative;
 		display: block;
 		margin: var(--panel-gutter) auto;
-		max-width: 960px;
+		max-width: var(--editor-content-width, 960px);
 	}
 
 	.be-block-wrapper
