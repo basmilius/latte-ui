@@ -25,31 +25,26 @@
 		props: {
 
 			associateWith: {
-				default: undefined,
-				required: false
+				default: undefined
 			},
 
 			marginX: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			marginY: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			persistent: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			withArrow: {
 				default: true,
-				required: false,
 				type: Boolean
 			}
 

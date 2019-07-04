@@ -38,8 +38,7 @@
 		props: {
 
 			value: {
-				default: null,
-				required: false
+				default: null
 			}
 
 		},

@@ -35,61 +35,51 @@
 
 			ariaLabel: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			buttonClass: {
 				default: "btn-text btn-icon btn-dark",
-				required: false,
 				type: String
 			},
 
 			icon: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			iconAfter: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			iconBefore: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			label: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			marginX: {
 				default: -9,
-				required: false,
 				type: Number
 			},
 
 			marginY: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			small: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			tooltip: {
 				default: "",
-				required: false,
 				type: String
 			}
 

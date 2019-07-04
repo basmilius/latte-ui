@@ -70,7 +70,6 @@
 
 			controllerBar: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
@@ -82,26 +81,22 @@
 
 			navigationControls: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			offset: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			sizeEnd: {
 				default: 2,
-				required: false,
 				type: Number,
 				validator: num => num >= 0
 			},
 
 			sizeMid: {
 				default: 1,
-				required: false,
 				type: Number,
 				validator: num => num >= 0
 			},

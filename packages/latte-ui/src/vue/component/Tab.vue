@@ -25,19 +25,16 @@
 
 			badge: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			icon: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			label: {
 				default: "",
-				required: false,
 				type: String
 			}
 

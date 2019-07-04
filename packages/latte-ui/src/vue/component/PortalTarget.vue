@@ -22,13 +22,11 @@
 
 			attributes: {
 				default: () => ({}),
-				required: false,
 				type: Object
 			},
 
 			multiple: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 

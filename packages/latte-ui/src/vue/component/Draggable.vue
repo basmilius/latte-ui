@@ -19,13 +19,11 @@
 
 			list: {
 				type: Array,
-				required: false,
 				default: null
 			},
 
 			value: {
 				type: Array,
-				required: false,
 				default: null
 			},
 

@@ -37,7 +37,6 @@
 
 			initials: {
 				default: "BM",
-				required: false,
 				type: String
 			}
 

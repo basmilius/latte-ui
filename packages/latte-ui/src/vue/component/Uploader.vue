@@ -54,43 +54,36 @@
 
 			accept: {
 				default: undefined,
-				required: false,
 				type: String | undefined
 			},
 
 			droppable: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			i18nDomain: {
 				default: "latte-ui",
-				required: false,
 				type: String
 			},
 
 			id: {
 				default: () => id(),
-				required: false,
 				type: String
 			},
 
 			multiple: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			name: {
 				default: () => id(),
-				required: false,
 				type: String
 			},
 
 			strings: {
 				default: () => defaultStrings,
-				required: false,
 				type: Object
 			}
 

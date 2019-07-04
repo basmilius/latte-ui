@@ -34,13 +34,11 @@
 
 			options: {
 				default: () => ({}),
-				required: false,
 				type: Object
 			},
 
 			title: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 

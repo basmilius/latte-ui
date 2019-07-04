@@ -36,7 +36,6 @@
 
 			value: {
 				default: () => new Date(),
-				required: false,
 				type: Date
 			}
 

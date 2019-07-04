@@ -43,25 +43,21 @@
 
 			center: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			itemPadding: {
 				default: 0,
-				required: false,
 				type: Number | Array
 			},
 
 			itemWidth: {
 				default: undefined,
-				required: false,
 				type: Number | undefined
 			},
 
 			viewPadding: {
 				default: 0,
-				required: false,
 				type: Number | Array
 			}
 

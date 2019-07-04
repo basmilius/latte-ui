@@ -32,37 +32,31 @@
 
 			isDraggable: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			isResizable: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			maxHeight: {
 				default: Infinity,
-				required: false,
 				type: Number
 			},
 
 			maxWidth: {
 				default: Infinity,
-				required: false,
 				type: Number
 			},
 
 			minHeight: {
 				default: 1,
-				required: false,
 				type: Number
 			},
 
 			minWidth: {
 				default: 1,
-				required: false,
 				type: Number
 			},
 
@@ -88,25 +82,21 @@
 
 			dragIgnoreFrom: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 
 			dragAllowFrom: {
 				default: ".grid-item-drag-handle",
-				required: false,
 				type: String | null
 			},
 
 			resizeIgnoreFrom: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 
 			resizeAllowFrom: {
 				default: ".grid-item-resize-handle",
-				required: false,
 				type: String | null
 			}
 

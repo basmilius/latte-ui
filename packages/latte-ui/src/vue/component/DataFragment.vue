@@ -28,13 +28,11 @@
 
 			as: {
 				default: "div",
-				required: false,
 				type: String
 			},
 
 			initialParams: {
 				default: () => ({}),
-				required: false,
 				type: Object
 
 			},

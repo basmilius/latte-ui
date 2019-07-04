@@ -43,13 +43,11 @@
 
 			icon: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 
 			label: {
 				default: "Submenu",
-				required: false,
 				type: String
 			}
 

@@ -38,13 +38,11 @@
 
 			opened: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			responsive: {
 				default: true,
-				required: false,
 				type: Boolean
 			}
 

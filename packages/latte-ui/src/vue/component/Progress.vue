@@ -40,31 +40,26 @@
 
 			isIndeterminate: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			isRing: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			max: {
 				default: 100,
-				required: false,
 				type: Number
 			},
 
 			min: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			value: {
 				default: 0,
-				required: false,
 				type: Number
 			}
 

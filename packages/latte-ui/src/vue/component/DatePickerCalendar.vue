@@ -70,13 +70,11 @@
 
 			bodyClass: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			value: {
 				default: () => new Date(),
-				required: false,
 				type: Date
 			}
 

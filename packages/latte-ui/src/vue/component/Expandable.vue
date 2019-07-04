@@ -38,13 +38,11 @@
 
 			group: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 
 			opened: {
 				default: false,
-				required: false,
 				type: Boolean
 			}
 

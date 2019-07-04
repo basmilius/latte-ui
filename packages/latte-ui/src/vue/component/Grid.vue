@@ -28,49 +28,41 @@
 
 			autoSize: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			columns: {
 				default: 12,
-				required: false,
 				type: Number
 			},
 
 			rowHeight: {
 				default: 100,
-				required: false,
 				type: Number
 			},
 
 			maxRows: {
 				default: Infinity,
-				required: false,
 				type: Number
 			},
 
 			margin: {
 				default: () => [24, 24],
-				required: false,
 				type: Array
 			},
 
 			isDraggable: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			isResizable: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			verticalCompact: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 

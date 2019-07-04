@@ -33,14 +33,12 @@
 
 			position: {
 				default: "left",
-				required: false,
 				type: String,
 				validator: val => ["top", "left", "right", "bottom"].includes(val)
 			},
 
 			touchEnabled: {
 				default: true,
-				required: false,
 				type: Boolean
 			}
 

@@ -19,13 +19,11 @@
 
 			format: {
 				default: "d MMMM YYYY",
-				required: false,
 				type: String
 			},
 
 			ms: {
 				default: () => Date.now(),
-				required: false,
 				type: Number
 			}
 

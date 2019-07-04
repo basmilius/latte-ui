@@ -27,49 +27,41 @@
 
 			disabled: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			name: {
 				default: () => String(++portalId),
-				required: false,
 				type: String
 			},
 
 			order: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			slim: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			slotProps: {
 				default: () => ({}),
-				required: false,
 				type: Object
 			},
 
 			tag: {
 				default: "div",
-				required: false,
 				type: String
 			},
 
 			targetEl: {
 				default: undefined,
-				required: false,
 				type: [String, HTMLElement]
 			},
 
 			targetClass: {
 				default: undefined,
-				required: false,
 				type: String
 			},
 

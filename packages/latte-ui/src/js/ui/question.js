@@ -30,7 +30,6 @@ const QuestionPanel = Vue.extend({
 
 		icon: {
 			default: "home-outline",
-			required: false,
 			type: String
 		},
 

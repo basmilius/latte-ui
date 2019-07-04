@@ -25,7 +25,6 @@
 
 			initialTab: {
 				default: 0,
-				required: false,
 				type: Number
 			}
 

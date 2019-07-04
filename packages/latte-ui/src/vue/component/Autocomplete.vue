@@ -151,49 +151,41 @@
 			},
 
 			defaultValue: {
-				default: undefined,
-				required: false
+				default: undefined
 			},
 
 			disabled: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			limit: {
 				default: 5,
-				required: false,
 				type: Number
 			},
 
 			multiSelect: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			name: {
 				default: id(),
-				required: false,
 				type: String
 			},
 
 			offset: {
 				default: 0,
-				required: false,
 				type: Number
 			},
 
 			placeholder: {
 				default: "Search...",
-				required: false,
 				type: String
 			},
 
 			value: {
 				default: () => [],
-				required: false,
 				type: Array | Number
 			}
 

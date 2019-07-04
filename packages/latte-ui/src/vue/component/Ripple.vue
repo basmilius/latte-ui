@@ -21,7 +21,6 @@
 
 			as: {
 				default: "div",
-				required: false,
 				type: String
 			}
 

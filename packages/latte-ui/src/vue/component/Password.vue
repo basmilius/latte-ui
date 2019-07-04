@@ -26,37 +26,31 @@
 
 			autocomplete: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			id: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			name: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			placeholder: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			show: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			value: {
 				default: "",
-				required: false,
 				type: String
 			}
 

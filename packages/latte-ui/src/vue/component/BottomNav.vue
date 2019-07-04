@@ -27,19 +27,16 @@
 
 			isShifting: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			isSide: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			value: {
 				default: 0,
-				required: false,
 				type: Number
 			}
 

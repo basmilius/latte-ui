@@ -133,7 +133,7 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 
 					const offset = sibbling.options.text.length + 1;
 
-					sibbling.setOptions({text: sibbling.options.text + " " + options.text});
+					sibbling.setOptions({text: sibbling.options.text + " " + text});
 					remove();
 					sibbling.focus(false, elm => setSelection(elm.childNodes[0], offset));
 
@@ -144,12 +144,13 @@ export function renderEditor(tag, h, {index, getRelative, insertBlock, remove, o
 				{
 					evt.preventDefault();
 
+					canUpdate = false;
+					remove();
+
 					const sibbling = getRelative(-1);
 					if (sibbling)
 						sibbling.focus(false);
 
-					canUpdate = false;
-					remove();
 					return;
 				}
 

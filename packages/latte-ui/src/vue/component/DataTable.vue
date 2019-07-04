@@ -166,7 +166,6 @@
 
 			addSpinnerToParent: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
@@ -178,50 +177,42 @@
 
 			defaultLimit: {
 				default: 20,
-				required: false,
 				type: Number
 			},
 
 			name: {
 				default: () => id(),
-				required: false,
 				type: String
 			},
 
 			numColumns: {
 				default: null,
-				required: false,
 				type: Number | null
 			},
 
 			selectMode: {
 				default: "none",
-				required: false,
 				type: String,
 				validator: value => ["none", "single", "multiple"].indexOf(value) > -1
 			},
 
 			showHeader: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			showSearch: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			showSorting: {
 				default: true,
-				required: false,
 				type: Boolean
 			},
 
 			value: {
 				default: () => [],
-				required: false,
 				type: Array | Number
 			}
 

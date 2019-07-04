@@ -27,25 +27,21 @@
 
 			ariaLabel: {
 				default: null,
-				required: false,
 				type: String | null
 			},
 
 			buttonClass: {
 				default: "btn btn-icon btn-text btn-dark",
-				required: false,
 				type: String
 			},
 
 			isSorting: {
 				default: false,
-				required: false,
 				type: Boolean
 			},
 
 			isSortingAscending: {
 				default: true,
-				required: false,
 				type: Boolean
 			}
 

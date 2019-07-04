@@ -37,7 +37,6 @@
 
 			direction: {
 				default: "vertical",
-				required: false,
 				type: String,
 				validator: str => ["horizontal", "vertical"].indexOf(str) >= 0
 			},
@@ -50,31 +49,26 @@
 
 			itemsClass: {
 				default: "",
-				required: false,
 				type: String
 			},
 
 			itemsPadding: {
 				default: () => [0, 0, 0, 0],
-				required: false,
 				type: Array
 			},
 
 			itemHeight: {
 				default: null,
-				required: false,
 				type: Number
 			},
 
 			itemWidth: {
 				default: null,
-				required: false,
 				type: Number
 			},
 
 			tag: {
 				default: "div",
-				required: false,
 				type: String
 			}
 

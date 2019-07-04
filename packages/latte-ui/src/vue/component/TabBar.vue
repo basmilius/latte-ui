@@ -38,7 +38,6 @@
 
 			animatedIndicator: {
 				default: false,
-				required: false,
 				type: Boolean
 			}
 
