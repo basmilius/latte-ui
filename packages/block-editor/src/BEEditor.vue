@@ -48,37 +48,27 @@
 			children: [
 				[
 					{
-						id: "heading",
-						options: {type: "h4", text: "Test block editor stuff"}
+						id: "youtube-embed",
+						options: {}
 					},
 					{
-						id: "featured-image",
-						options: {imageUrl: "https://appmanager.marveld.ideemedia.cloud/storage/b40f062c/2019/06/243ba0ae-9261-11e9-b0dd-525400806242.webp", title: "Teun & Pleun"}
+						id: "heading",
+						options: {type: "h4", text: "Gavin DeGraw - Soldier"}
+					},
+					{
+						id: "paragraph",
+						options: {text: "Nice music from YouTube."}
 					}
 				],
 				[
 					{
 						id: "heading",
-						options: {type: "h4", text: "Below is a wrapper block"}
-					},
-					{
-						id: "wrapper",
-						children: [
-							{
-								id: "heading",
-								options: {type: "h3", text: "Header number 6"}
-							},
-							{
-								id: "paragraph",
-								options: {text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque mollis eu nunc eget mattis. Praesent et metus at enim placerat auctor sed condimentum lorem. Donec feugiat, diam vel blandit faucibus, turpis massa feugiat magna, vel sodales quam eros vitae justo. Sed sit amet eros tristique, scelerisque est at, ultricies nulla. Nam placerat efficitur tellus, ut egestas erat tincidunt id. Sed molestie eget turpis eget luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam eget lorem dolor. Phasellus at consequat magna, non aliquet ligula. Nam pellentesque urna felis, ac imperdiet erat tincidunt eget."}
-							}
-						],
-						options: {}
+						options: {type: "h4", text: "Related videos"}
 					}
 				]
 			],
 			options: {
-				columns: 2
+				preset: 1
 			}
 		}
 	];
@@ -97,6 +87,34 @@
 		},
 
 		props: {
+
+			colorPalette: {
+				default: () => [
+					{name: "Primary", value: "rgb(var(--color-primary))"},
+					{name: "Black", value: "rgb(0, 0, 0)"},
+					{name: "White", value: "rgb(255, 255, 255)"},
+					{name: "Chili", value: "rgb(194, 24, 7)"},
+					{name: "Ginger", value: "rgb(247, 54, 43)"},
+					{name: "Pineapple", value: "rgb(255, 173, 0)"},
+					{name: "Lemon", value: "rgb(245, 214, 0)"},
+					{name: "Lime", value: "rgb(110, 204, 84)"},
+					{name: "Fern", value: "rgb(79, 121, 66)"},
+					{name: "Elderflower", value: "rgb(74, 204, 207)"},
+					{name: "Cream Soda", value: "rgb(0, 171, 255)"},
+					{name: "Sapphire", value: "rgb(24, 103, 192)"},
+					{name: "Blackberry", value: "rgb(69, 56, 140)"},
+					{name: "Grape", value: "rgb(102, 61, 166)"},
+					{name: "Blueberry", value: "rgb(143, 120, 232)"},
+					{name: "Tropical", value: "rgb(204, 120, 209)"},
+					{name: "Bubble Gum", value: "rgb(247, 140, 191)"},
+					{name: "Raspberry", value: "rgb(252, 0, 122)"},
+					{name: "Hibiscus", value: "rgb(180, 55, 87)"},
+					{name: "Tortilla", value: "rgb(153, 121, 80)"},
+					{name: "Flint", value: "rgb(126, 123, 158)"},
+					{name: "Slate", value: "rgb(63, 59, 84)"}
+				],
+				type: Array
+			},
 
 			value: {
 				default: () => testBlocks,

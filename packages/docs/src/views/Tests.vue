@@ -84,10 +84,10 @@
 			<template v-slot:settings-pane-after>
 				<div class="panel-header"><span class="panel-title">Page settings</span></div>
 				<BESettingsGroup title="General" padded>
-					hi
+					This panel was added with a slot.
 				</BESettingsGroup>
 				<BESettingsGroup title="View" padded>
-					hi
+					This panel was also added with a slot.
 				</BESettingsGroup>
 			</template>
 		</BEEditor>

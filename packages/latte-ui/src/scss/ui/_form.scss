@@ -47,6 +47,7 @@ label.col-form-label
 	padding: 0;
 	width: 100%;
 	background: transparent;
+	transform: translate3d(0, 3px, 0);
 
 	&:focus
 	{

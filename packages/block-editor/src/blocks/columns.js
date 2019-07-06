@@ -42,7 +42,7 @@ export class ColumnsBlock extends BlockBase
 			class: "",
 			columns: 2,
 			gutters: true,
-			preset: 0
+			preset: -1
 		};
 	}
 
@@ -107,7 +107,7 @@ export class ColumnsBlock extends BlockBase
 
 	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
 	{
-		return h(BESettingsGroup, {props: {title: `${this.name} (${depth})`}}, [
+		return h(BESettingsGroup, {props: {title: this.name, depth}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Preset"),

@@ -1,7 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { render, renderEditor } from "./primitive/text";
+import { optionTextColor, optionTextSize, render, renderEditor } from "./primitive/text";
 
 export class ParagraphBlock extends BlockBase
 {
@@ -9,6 +9,8 @@ export class ParagraphBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
+			color: undefined,
+			fontSize: 1,
 			text: ""
 		};
 	}
@@ -43,10 +45,12 @@ export class ParagraphBlock extends BlockBase
 		return renderEditor("p", h, api);
 	}
 
-	renderOptions(h, {index, indexMax, rearrange, remove, options, setOptions})
+	renderOptions(h, {editor, index, indexMax, rearrange, remove, options, setOptions})
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"})
+			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
+			optionTextColor(h, {editor, options, setOptions}),
+			optionTextSize(h, {options, setOptions})
 		]);
 	}
 

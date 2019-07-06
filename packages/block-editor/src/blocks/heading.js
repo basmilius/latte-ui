@@ -1,7 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { render, renderEditor } from "./primitive/text";
+import { optionTextColor, render, renderEditor } from "./primitive/text";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},
@@ -18,6 +18,7 @@ export class HeadingBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
+			color: undefined,
 			type: "h3",
 			text: ""
 		};
@@ -53,17 +54,18 @@ export class HeadingBlock extends BlockBase
 		return renderEditor(api.options.type, h, api);
 	}
 
-	renderOptions(h, {index, indexMax, rearrange, remove, options, setOptions})
+	renderOptions(h, {editor, index, indexMax, rearrange, remove, options, setOptions})
 	{
-		return h(BESettingsGroup, {props: {padded: true, title: this.name}}, [
+		return h(BESettingsGroup, {props: {title: this.name}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
-			h("div", {class: "d-flex"}, headers.map(header => h("button", {
+			h("div", {class: "be-settings-row"}, headers.map(header => h("button", {
 				class: `btn btn-icon ${header.tag === options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,
 				on: {click: () => setOptions({type: header.tag})},
 				style: {flex: "1 1 0"}
 			}, [
 				h("i", {class: `mdi mdi-${header.icon}`})
-			])))
+			]))),
+			optionTextColor(h, {editor, options, setOptions})
 		]);
 	}
 

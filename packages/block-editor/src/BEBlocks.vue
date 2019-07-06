@@ -53,7 +53,31 @@
 
 		render(h)
 		{
-			const renderBlocks = () => this.content.map((item, index) =>
+			return h("div", {class: "be-blocks"}, this.content.filter(r => r !== undefined && r !== null).length > 0 ? this.renderBlocks(h) : this.renderEmptyInserter(h));
+		},
+
+		methods: {
+
+			insertBlock(id, index = -1, options = {}, shouldFocus = true)
+			{
+				const spec = {
+					id,
+					options,
+					shouldFocus
+				};
+
+				if (index > -1)
+					this.content.splice(index, 0, spec);
+				else
+					this.content.push(spec);
+			},
+
+			removeBlock(index)
+			{
+				this.content.splice(index, 1, undefined);
+			},
+
+			renderBlock(h, item, index)
 			{
 				if (item === undefined || item === null)
 					return undefined;
@@ -112,17 +136,6 @@
 				const setChildren = newChildren => ensure(() => this.content.splice(index, 1, Object.assign({}, this.content[index], {children: newChildren})));
 				const setOptions = newOptions => ensure(() => this.content.splice(index, 1, Object.assign({}, this.content[index], {options: Object.assign(options, newOptions)})));
 
-				const renderInserter = (shouldRender, mode) =>
-				{
-					if (!shouldRender)
-						return undefined;
-
-					return h(BEInserterMini, {
-						class: mode,
-						on: {select: id => this.insertBlock(id, mode === "top" ? index : index + 1)}
-					});
-				};
-
 				const renderOptions = () =>
 				{
 					if (!isSelected)
@@ -176,48 +189,36 @@
 				Latte.util.dom.raf(() => isSelected ? this.selectedElement = blockNode.elm : undefined);
 
 				return h("div", {class: classes, on: {click: () => this.setSelectedIndex(index, blockNode.elm)}}, [
-					renderInserter(index === 0, "top"),
-					renderInserter(true, "bottom"),
+					this.renderInserter(h, true, index, "top"),
+					this.renderInserter(h, true, index, "bottom"),
 					renderOptions(),
 					blockNode
 				]);
-			});
+			},
 
-			const renderEmptyInserter = () =>
+			renderBlocks(h)
+			{
+				return this.content.map((item, index) => this.renderBlock(h, item, index));
+			},
+
+			renderEmptyInserter(h)
 			{
 				return [
 					h(BEInserterExpanded, {
-						on: {
-							select: id => this.insertBlock(id)
-						}
+						on: {select: id => this.insertBlock(id)}
 					})
 				];
-			};
-
-			Latte.util.dom.raf(() => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
-
-			return h("div", {class: "be-blocks"}, this.content.filter(r => r !== undefined && r !== null).length > 0 ? renderBlocks() : renderEmptyInserter());
-		},
-
-		methods: {
-
-			insertBlock(id, index = -1, options = {}, shouldFocus = true)
-			{
-				const spec = {
-					id,
-					options,
-					shouldFocus
-				};
-
-				if (index > -1)
-					this.content.splice(index, 0, spec);
-				else
-					this.content.push(spec);
 			},
 
-			removeBlock(index)
+			renderInserter(h, shouldRender, index, mode)
 			{
-				this.content.splice(index, 1, undefined);
+				if (!shouldRender)
+					return undefined;
+
+				return h(BEInserterMini, {
+					class: mode,
+					on: {select: id => this.insertBlock(id, mode === "top" ? index : index + 1)}
+				});
 			},
 
 			setSelectedIndex(index, elm, auto = false)
