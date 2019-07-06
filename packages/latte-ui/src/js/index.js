@@ -10,7 +10,7 @@
 import LatteSDK from "./sdk";
 
 import { dispatch, initializeActions, on, removeSavedFromQueryString } from "./core/action";
-import { docRoot, getOptions, interval, setOptions } from "./core";
+import { docRoot, getOptions, setOptions, timeout } from "./core";
 import { setCookie } from "./util/cookies";
 import { initializeHoudiniApis } from "./houdini";
 import { registerOutsideEvents } from "./hid/OutsideEvent";
@@ -57,8 +57,8 @@ export class LatteUI
 		LatteUI.registerMixins(Vue);
 		LatteUI.registerComponents(Vue);
 
-		interval(options.tickInterval, () => raf(() => LatteUI.onTick()));
 		on("latte:switch-theme", data => LatteUI.onSwitchTheme(data));
+		raf(() => LatteUI.onTick());
 
 		window.addEventListener("load", () => LatteUI.onDOMContentLoaded(), {passive: true});
 		window.addEventListener("scroll", () => LatteUI.onWindowScroll(), {passive: true});
@@ -119,6 +119,7 @@ export class LatteUI
 			return;
 
 		dispatch("latte:tick", window.performance.now());
+		timeout(getOptions().tickInterval, () => raf(() => LatteUI.onTick()));
 	}
 
 	static onWindowScroll()
