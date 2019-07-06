@@ -28,13 +28,13 @@
 		"serve": "cross-env NODE_ENV=development webpack --config config/browser.js --progress --hide-modules --watch"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.4.5",
-		"@babel/plugin-proposal-class-properties": "^7.4.4",
+		"@babel/core": "^7.5.0",
+		"@babel/plugin-proposal-class-properties": "^7.5.0",
 		"@babel/plugin-proposal-decorators": "^7.4.4",
 		"@babel/plugin-proposal-json-strings": "^7.2.0",
 		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
 		"@babel/plugin-syntax-import-meta": "^7.2.0",
-		"@babel/preset-env": "^7.4.5",
+		"@babel/preset-env": "^7.5.0",
 		"babel-loader": "^8.0.6",
 		"concurrently": "^4.1.1",
 		"copy-webpack-plugin": "^5.0.3",
@@ -48,22 +48,18 @@
 		"rimraf": "^2.6.3",
 		"sass-loader": "^7.1.0",
 		"terser-webpack-plugin": "^1.3.0",
-		"ts-loader": "^6.0.4",
-		"typescript": "^3.5.2",
 		"uglify-template-string-loader": "^1.1.1",
 		"vue-loader": "^15.7.0",
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.10",
-		"webpack": "^4.35.0",
+		"webpack": "^4.35.2",
 		"webpack-cli": "^3.3.5",
 		"webpack-merge": "^4.2.1"
 	},
 	"dependencies": {
 		"bootstrap": "^4.3.1",
 		"moment": "^2.24.0",
-		"vue": "^2.6.10",
-		"vue-class-component": "^7.1.0",
-		"vue-property-decorator": "^8.2.1"
+		"vue": "^2.6.10"
 	},
 	"peerDependencies": {
 		"vue": "^2.6.10"
