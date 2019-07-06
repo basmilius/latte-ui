@@ -12,6 +12,7 @@
 			</div>
 		</div>
 
+		<BEInserterList ref="inserterList"/>
 		<BEInserterPopup ref="inserter"/>
 
 		<BESettingsPane :editor="selfEditor">
@@ -36,6 +37,7 @@
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
+	import BEInserterList from "./BEInserterList";
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
@@ -88,6 +90,7 @@
 		components: {
 			BEBlocks,
 			BEInserterExpanded,
+			BEInserterList,
 			BEInserterPopup,
 			BESettingsPane,
 			BEToolbar
@@ -136,6 +139,11 @@
 				return this.$refs.inserter;
 			},
 
+			inserterList()
+			{
+				return this.$refs.inserterList;
+			},
+
 			rootBlocks()
 			{
 				return this.$refs.rootBlocks;
@@ -152,10 +160,7 @@
 
 			registerBlock(implementation)
 			{
-				const block = new implementation();
-				block.editor = this;
-
-				this.blocks.push(block);
+				this.blocks.push(new implementation());
 			},
 
 			registerCategory(id, icon, name)

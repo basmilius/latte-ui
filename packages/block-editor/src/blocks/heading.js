@@ -1,7 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { render, renderEditor } from "./paragraph";
+import { render, renderEditor } from "./primitive/text";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},
@@ -23,9 +23,24 @@ export class HeadingBlock extends BlockBase
 		};
 	}
 
+	get description()
+	{
+		return "Represents a header text."
+	}
+
+	get keywords()
+	{
+		return ["header", "heading", "text", "h1", "h2", "h3", "h4", "h5", "h6"];
+	}
+
+	get name()
+	{
+		return "Header";
+	}
+
 	constructor()
 	{
-		super("heading", "text", "format-header-1", "Heading", "Header text from 1 through 6.");
+		super("heading", "text", "format-header-1");
 	}
 
 	render(h, api)
@@ -40,7 +55,7 @@ export class HeadingBlock extends BlockBase
 
 	renderOptions(h, {index, indexMax, rearrange, remove, options, setOptions})
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
+		return h(BESettingsGroup, {props: {padded: true, title: this.name}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("div", {class: "d-flex"}, headers.map(header => h("button", {
 				class: `btn btn-icon ${header.tag === options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,

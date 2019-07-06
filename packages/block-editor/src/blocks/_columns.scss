@@ -1,0 +1,29 @@
+.be-block-columns > .col-12
+{
+	flex: 1 0 0;
+}
+
+.be-settings-columns-preview
+{
+	position: relative;
+	display: flex;
+	height: 48px;
+	padding: 6px;
+	width: 72px;
+	background: rgba(var(--outline-color-secondary), .25);
+	border: 1px solid rgba(var(--outline-color), 1);
+	border-radius: var(--border-radius);
+
+	+ .be-settings-columns-preview
+	{
+		margin-left: 12px;
+	}
+
+	div.column
+	{
+		position: relative;
+		display: block;
+		background: white;
+		box-shadow: 0 0 0 1px rgba(var(--outline-color), 1);
+	}
+}

@@ -24,6 +24,11 @@
 
 		props: {
 
+			animateTransform: {
+				default: true,
+				type: Boolean
+			},
+
 			associateWith: {
 				default: undefined
 			},
@@ -136,6 +141,9 @@
 					classes.push(`popup-${position}-${aboveUnder}`);
 				}
 
+				if (!this.animateTransform)
+					classes.push("no-transform-animation");
+
 				if (this.isOpen === true)
 					classes.push("is-open");
 
@@ -223,7 +231,7 @@
 						y = t - (pcr.height + this.marginY);
 
 					this.popupX = Math.round(x);
-					this.popupY = Math.round(y + (this.isOpen ? 0 : py === "above" ? -24 : 24));
+					this.popupY = Math.round(y + (this.isOpen || !this.animateTransform ? 0 : py === "above" ? -24 : 24));
 				});
 			},
 

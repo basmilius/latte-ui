@@ -12,9 +12,24 @@ export class YouTubeEmbedBlock extends BlockBase
 		};
 	}
 
+	get description()
+	{
+		return "Embeds a YouTube-video.";
+	}
+
+	get keywords()
+	{
+		return ["youtube", "embed", "video"];
+	}
+
+	get name()
+	{
+		return "YouTube video";
+	}
+
 	constructor()
 	{
-		super("youtube-embed", "embeds", "youtube", "YouTube", "Embed a YouTube video.");
+		super("youtube-embed", "embeds", "youtube");
 	}
 
 	render(h, {options})

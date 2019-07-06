@@ -28,6 +28,11 @@
 	transition-property: opacity, transform;
 	z-index: 3000;
 
+	&.no-transform-animation
+	{
+		transition-property: opacity;
+	}
+
 	&.is-open
 	{
 		opacity: 1;

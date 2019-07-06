@@ -5,6 +5,25 @@ import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
 import { replaceIndex } from "../utils";
 
+const presets = [
+	{
+		columns: 2,
+		classes: [
+			"col-12 col-lg-4",
+			"col-12 col-lg-8"
+		],
+		preview: [33, 67]
+	},
+	{
+		columns: 2,
+		classes: [
+			"col-12 col-lg-8",
+			"col-12 col-lg-4"
+		],
+		preview: [67, 33]
+	}
+];
+
 export class ColumnsBlock extends BlockBase
 {
 
@@ -17,9 +36,24 @@ export class ColumnsBlock extends BlockBase
 		};
 	}
 
+	get description()
+	{
+		return "Displays blocks in a column view.";
+	}
+
+	get keywords()
+	{
+		return ["column", "columns", "grid"];
+	}
+
+	get name()
+	{
+		return "Columns";
+	}
+
 	constructor()
 	{
-		super("columns", "layout", "view-column", "Columns", "Displays blocks next to each other.");
+		super("columns", "layout", "view-column");
 	}
 
 	render(h, {children, options, processGroup})
@@ -61,6 +95,12 @@ export class ColumnsBlock extends BlockBase
 	{
 		return h(BESettingsGroup, {props: {title: `${this.name} (${depth})`}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
+			h("div", {class: "be-settings-row flex-column"}, [
+				h("span", "Preset"),
+				h("div", {class: "d-flex flex-wrap w-100"}, presets.map(preset => h("div", {class: "be-settings-columns-preview"},
+					Array(preset.columns).fill(undefined).map((_, index) => h("div", {class: "column", style: {flexGrow: preset.preview[index]}}))
+				)))
+			]),
 			h("label", {class: "be-settings-row"}, [
 				h("span", "Amount of columns"),
 				h("div", [

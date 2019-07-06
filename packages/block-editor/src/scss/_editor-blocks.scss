@@ -1,3 +1,5 @@
+@import "../blocks/columns";
+
 .be-block-youtube-embed:not(.is-last) .be-block-embed
 {
 	margin-bottom: 1rem;
@@ -6,11 +8,6 @@
 .be-editing .be-block-embed > *
 {
 	pointer-events: none;
-}
-
-.be-block-columns > .col-12
-{
-	flex: 1 0 0;
 }
 
 h1, h2, h3, h4, h5, h6

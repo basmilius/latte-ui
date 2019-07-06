@@ -13,9 +13,24 @@ export class WrapperBlock extends BlockBase
 		};
 	}
 
+	get description()
+	{
+		return "Wraps blocks into a wrapper.";
+	}
+
+	get keywords()
+	{
+		return ["wrapper"];
+	}
+
+	get name()
+	{
+		return "Wrapper";
+	}
+
 	constructor()
 	{
-		super("wrapper", "layout", "border-none-variant", "Wrapper", "Wraps blocks in a wrapper.");
+		super("wrapper", "layout", "border-none-variant");
 	}
 
 	render(h, {children, options, processGroup})

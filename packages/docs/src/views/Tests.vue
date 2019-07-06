@@ -83,10 +83,10 @@
 		<BEEditor>
 			<template v-slot:settings-pane-after>
 				<div class="panel-header"><span class="panel-title">Page settings</span></div>
-				<BESettingsGroup title="General">
+				<BESettingsGroup title="General" padded>
 					hi
 				</BESettingsGroup>
-				<BESettingsGroup title="View">
+				<BESettingsGroup title="View" padded>
 					hi
 				</BESettingsGroup>
 			</template>

@@ -16,33 +16,26 @@ export class BlockBase
 		return this._icon;
 	}
 
-	get name()
-	{
-		return this._name;
-	}
-
 	get description()
 	{
-		return this._description;
+		return undefined;
 	}
 
-	get editor()
+	get keywords()
 	{
-		return this._editor;
+		return [this.id];
 	}
 
-	set editor(value)
+	get name()
 	{
-		this._editor = value;
+		return this._id;
 	}
 
-	constructor(id, category, icon, name, description)
+	constructor(id, category, icon)
 	{
 		this._id = id;
 		this._category = category;
 		this._icon = icon;
-		this._name = name;
-		this._description = description;
 	}
 
 	render(h, options)

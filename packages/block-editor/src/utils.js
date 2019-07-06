@@ -16,6 +16,9 @@ export function replaceIndex(arr, index, obj)
 
 export function setSelection(el, offset = 0, collapse = true)
 {
+	if (!(el instanceof Node))
+		return;
+
 	const range = document.createRange();
 	const selection = window.getSelection();
 
@@ -28,6 +31,9 @@ export function setSelection(el, offset = 0, collapse = true)
 
 export function setSelectionAfter(el, collapse = false, char = "\u00A0")
 {
+	if (!(el instanceof Node))
+		return;
+
 	if (char === " ")
 		char = "\u00A0";
 
@@ -46,7 +52,7 @@ export function setSelectionAfter(el, collapse = false, char = "\u00A0")
 		else
 			el.parentNode.appendChild(dummy);
 
-		range.setStartAfter(dummy);
+		range.setStartBefore(dummy);
 	}
 
 	range.collapse(collapse);
@@ -57,6 +63,9 @@ export function setSelectionAfter(el, collapse = false, char = "\u00A0")
 
 export function setSelectionBefore(el, collapse = false)
 {
+	if (!(el instanceof Node))
+		return;
+
 	const range = document.createRange();
 	const selection = window.getSelection();
 

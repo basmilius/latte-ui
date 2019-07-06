@@ -6,7 +6,7 @@
 			<slot name="header"></slot>
 			<i class="mdi" :class="{'mdi-chevron-down': !isOpen && hasBody, 'mdi-chevron-up': isOpen && hasBody}"></i>
 		</div>
-		<div class="be-settings-body" v-if="isOpen && hasBody">
+		<div class="be-settings-body" :class="{'padded': padded}" v-if="isOpen && hasBody">
 			<slot></slot>
 		</div>
 	</div>
@@ -23,6 +23,11 @@
 
 			opened: {
 				default: true,
+				type: Boolean
+			},
+
+			padded: {
+				default: false,
 				type: Boolean
 			},
 
