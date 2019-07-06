@@ -3,27 +3,43 @@
 	flex: 1 0 0;
 }
 
-.be-settings-columns-preview
+.be-settings-columns-presets
 {
 	position: relative;
 	display: flex;
-	height: 48px;
-	padding: 6px;
-	width: 72px;
-	background: rgba(var(--outline-color-secondary), .25);
-	border: 1px solid rgba(var(--outline-color), 1);
-	border-radius: var(--border-radius);
+	margin: 0 -7px -7px;
+	width: calc(100% + 14px);
+	flex-wrap: wrap;
 
-	+ .be-settings-columns-preview
-	{
-		margin-left: 12px;
-	}
-
-	div.column
+	.preset
 	{
 		position: relative;
-		display: block;
-		background: white;
+		display: flex;
+		height: 54px;
+		margin: 7px;
+		padding: 6px;
+		width: 84px;
+		background: rgba(var(--outline-color-secondary), .25);
 		box-shadow: 0 0 0 1px rgba(var(--outline-color), 1);
+		border-radius: var(--border-radius);
+		cursor: pointer;
+
+		&:hover
+		{
+			box-shadow: 0 0 0 2px rgba(var(--outline-color), 1);
+		}
+
+		&.is-active
+		{
+			box-shadow: 0 0 0 2px rgba(var(--color-primary), 1);
+		}
+
+		div.column
+		{
+			position: relative;
+			display: block;
+			background: rgba(var(--panel-background), 1);
+			box-shadow: 0 0 0 1px rgba(var(--outline-color), 1);
+		}
 	}
 }

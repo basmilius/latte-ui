@@ -106,7 +106,7 @@
 				const remove = () =>
 				{
 					isRemoved = true;
-					this.content.splice(index, 1, undefined);
+					this.removeBlock(index);
 				};
 
 				const setChildren = newChildren => ensure(() => this.content.splice(index, 1, Object.assign({}, this.content[index], {children: newChildren})));
@@ -141,6 +141,7 @@
 					editor: this.editor,
 					index,
 					indexMax: this.content.length,
+					isRemoved,
 					isSelected,
 
 					focus,
@@ -149,7 +150,6 @@
 					nextTick: fn => this.$nextTick(fn),
 					rearrange,
 					remove,
-					replaceBlock: (id, index, options = {}, shouldFocus = true) => this.replaceBlock(id, index, options, shouldFocus),
 					setChildren,
 					setOptions
 				};
@@ -194,6 +194,8 @@
 				];
 			};
 
+			Latte.util.dom.raf(() => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
+
 			return h("div", {class: "be-blocks"}, this.content.filter(r => r !== undefined && r !== null).length > 0 ? renderBlocks() : renderEmptyInserter());
 		},
 
@@ -213,9 +215,9 @@
 					this.content.push(spec);
 			},
 
-			replaceBlock(id, index, options = {}, shouldFocus = true)
+			removeBlock(index)
 			{
-				this.content.splice(index, 1, {id, options, shouldFocus});
+				this.content.splice(index, 1, undefined);
 			},
 
 			setSelectedIndex(index, elm, auto = false)

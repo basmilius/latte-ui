@@ -21,6 +21,15 @@ const presets = [
 			"col-12 col-lg-4"
 		],
 		preview: [67, 33]
+	},
+	{
+		columns: 3,
+		classes: [
+			"col-12 col-lg-3",
+			"col-12 col-lg-6",
+			"col-12 col-lg-3"
+		],
+		preview: [25, 50, 25]
 	}
 ];
 
@@ -32,7 +41,8 @@ export class ColumnsBlock extends BlockBase
 		return {
 			class: "",
 			columns: 2,
-			gutters: true
+			gutters: true,
+			preset: 0
 		};
 	}
 
@@ -61,23 +71,27 @@ export class ColumnsBlock extends BlockBase
 		if (children.flat().length === 0)
 			return undefined;
 
+		const preset = presets[options.preset] || undefined;
+
 		return h(
 			"div",
 			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
-			Array(options.columns)
+			Array(preset ? preset.columns : options.columns)
 				.fill(undefined)
-				.map((_, index) => h("div", {class: "col-12 col-lg"}, processGroup(children[index] || [])))
+				.map((_, index) => h("div", {class: preset ? preset.classes[index] : "col-12 col-lg"}, processGroup(children[index] || [])))
 		);
 	}
 
 	renderEditor(h, {depth, options, children, setChildren})
 	{
+		const preset = presets[options.preset] || undefined;
+
 		return h(
 			"div",
 			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
-			Array(options.columns)
+			Array(preset ? preset.columns : options.columns)
 				.fill(undefined)
-				.map((_, index) => h("div", {class: "col-12 col-lg"}, [
+				.map((_, index) => h("div", {class: preset ? preset.classes[index] : "col-12 col-lg"}, [
 					h(BEBlocks, {
 						props: {
 							depth,
@@ -97,11 +111,18 @@ export class ColumnsBlock extends BlockBase
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Preset"),
-				h("div", {class: "d-flex flex-wrap w-100"}, presets.map(preset => h("div", {class: "be-settings-columns-preview"},
-					Array(preset.columns).fill(undefined).map((_, index) => h("div", {class: "column", style: {flexGrow: preset.preview[index]}}))
-				)))
+				h("div", {class: "d-flex flex-wrap be-settings-columns-presets"}, presets.map((preset, index) =>
+					h("div", {
+							class: `preset ${options.preset === index ? "is-active" : ""}`,
+							on: {click: () => setOptions({preset: index === options.preset ? -1 : index})}
+						},
+						Array(preset.columns)
+							.fill(undefined)
+							.map((_, column) => h("div", {class: "column", style: {flexGrow: preset.preview[column]}}))
+					)
+				))
 			]),
-			h("label", {class: "be-settings-row"}, [
+			options.preset === -1 ? h("label", {class: "be-settings-row"}, [
 				h("span", "Amount of columns"),
 				h("div", [
 					h("input", {
@@ -123,7 +144,7 @@ export class ColumnsBlock extends BlockBase
 						}
 					})
 				])
-			]),
+			]) : undefined,
 			h("label", {class: "be-settings-row"}, [
 				h("span", "Gutters"),
 				h("div", [
@@ -136,5 +157,6 @@ export class ColumnsBlock extends BlockBase
 			])
 		]);
 	}
+
 
 }

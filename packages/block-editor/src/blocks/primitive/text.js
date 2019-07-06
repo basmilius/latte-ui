@@ -25,13 +25,17 @@ export function renderEditor(tag, h, api)
 	});
 }
 
-function onBlur(evt, {editor, setOptions})
+function onBlur(evt, {editor, isRemoved, setOptions})
 {
 	editor.inserterList.close();
+
+	if (isRemoved)
+		return;
+
 	setOptions({text: evt.target.innerHTML});
 }
 
-function onInput(evt, {editor, index, replaceBlock})
+function onInput(evt, {editor, index, insertBlock, remove})
 {
 	const selection = window.getSelection();
 	const selectionRange = selection.getRangeAt(0);
@@ -47,7 +51,11 @@ function onInput(evt, {editor, index, replaceBlock})
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));
 
-	editor.inserterList.open(selectionRect, foundBlocks, blockId => replaceBlock(blockId, index));
+	editor.inserterList.open(selectionRect, foundBlocks, blockId =>
+	{
+		remove();
+		insertBlock(blockId, index);
+	});
 }
 
 function onKeyDown(evt, {editor, index, getRelative, insertBlock, remove, setOptions})
@@ -56,26 +64,22 @@ function onKeyDown(evt, {editor, index, getRelative, insertBlock, remove, setOpt
 	const text = evt.target.innerText;
 
 	if (editor.inserterList.isOpen)
-	{
-		editor.inserterList.handleKeyDown(evt);
-	}
-	else
-	{
-		if (evt.key === "Enter" && !evt.shiftKey)
-			return kdHandleEnterWhenNotShift(evt, editor, index, selection, text, insertBlock, setOptions);
+		return editor.inserterList.handleKeyDown(evt);
 
-		if ((evt.key === "ArrowDown" || evt.key === "ArrowRight") && selection.focusOffset === text.length)
-			return kdHandleArrowDownAtEnd(evt, getRelative);
+	if (evt.key === "Enter" && !evt.shiftKey)
+		return kdHandleEnterWhenNotShift(evt, editor, index, selection, text, insertBlock, setOptions);
 
-		if ((evt.key === "ArrowUp" || evt.key === "ArrowLeft") && selection.focusOffset === 0)
-			return kdHandleArrowUpAtStart(evt, getRelative);
+	if ((evt.key === "ArrowDown" || evt.key === "ArrowRight") && selection.focusOffset === text.length)
+		return kdHandleArrowDownAtEnd(evt, getRelative);
 
-		if (evt.key === "Backspace" && selection.anchorOffset === 0 && selection.focusOffset === 0)
-			return kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative);
+	if ((evt.key === "ArrowUp" || evt.key === "ArrowLeft") && selection.focusOffset === 0)
+		return kdHandleArrowUpAtStart(evt, getRelative);
 
-		if (evt.key === "Backspace" && text.trim() === "")
-			return kdHandleBackspaceWhenEmpty(evt, remove, getRelative);
-	}
+	if (evt.key === "Backspace" && selection.anchorOffset === 0 && selection.focusOffset === 0)
+		return kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative);
+
+	if (evt.key === "Backspace" && text.trim() === "")
+		return kdHandleBackspaceWhenEmpty(evt, remove, getRelative);
 }
 
 function kdHandleArrowDownAtEnd(evt, getRelative)
@@ -108,8 +112,8 @@ function kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative)
 	if (!sibbling || allowAppend.indexOf(sibbling.blockId) === -1)
 		return;
 
-	const textLength = sibbling.options.text.length;
-	const appendTextLength = text.length;
+	const textLength = sibbling.options.text.trim().length;
+	const appendTextLength = text.trim().length;
 	const offset = textLength > 0 ? textLength + Math.min(appendTextLength, 1) : 0;
 
 	sibbling.setOptions({text: (sibbling.options.text + " " + text).trim()});
