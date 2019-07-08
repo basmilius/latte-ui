@@ -80,6 +80,8 @@ export class ParagraphBlock extends BlockBase
 
 	renderOptions(h, {editor, focus, index, indexMax, rearrange, remove, options, setOptions})
 	{
+		canUpdate = true;
+
 		return h(BESettingsGroup, {props: {title: this.name}}, [
 			h("latte-portal", {props: {to: editor.toolbar.beforePortalId}}, [
 				h("div", {class: "d-flex align-items-center", on: {mousedown: () => makeLastRange()}}, [
