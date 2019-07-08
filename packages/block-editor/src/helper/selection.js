@@ -65,6 +65,47 @@ export function atEdge(elm, atEnd = false, onlyLines = false)
 	return Math.round(testRect[side]) === Math.round(rangeRect[side]);
 }
 
+export function caretPosition(elm)
+{
+	const iterator = createNodeIterator(elm);
+	const position = {anchorOffset: 0, focusOffset: 0};
+	const {anchorNode, anchorOffset, isCollapsed, focusNode, focusOffset} = window.getSelection();
+
+	let currentNode;
+	let isBeyondStart = false;
+
+	while ((currentNode = iterator.nextNode()))
+	{
+		if (!isBeyondStart && currentNode === anchorNode)
+		{
+			isBeyondStart = true;
+			position.anchorOffset += anchorOffset;
+
+			if (!isCollapsed)
+				continue;
+
+			position.focusOffset = position.anchorOffset;
+			break;
+		}
+		else if (!isBeyondStart)
+		{
+			position.anchorOffset += currentNode.length;
+		}
+
+		if (!isCollapsed && currentNode === focusNode)
+		{
+			position.focusOffset += focusOffset;
+			break;
+		}
+		else if (!isCollapsed)
+		{
+			position.focusOffset += currentNode.length;
+		}
+	}
+
+	return position;
+}
+
 export function caretRangeFromPoint(doc, x, y)
 {
 	if (doc.caretRangeFromPoint)
@@ -144,6 +185,33 @@ export function isForwardSelection(selection)
 	return true;
 }
 
+export function placeCaretAt(elm, offset = 0)
+{
+	const iterator = createNodeIterator(elm);
+	let currentNode;
+	let currentOffset = 0;
+
+	while ((currentNode = iterator.nextNode()))
+	{
+		currentOffset += currentNode.length;
+
+		if (currentOffset < offset)
+			continue;
+
+		const previousOffset = currentOffset - currentNode.length;
+		const realOffset = offset - previousOffset;
+
+		const range = document.createRange();
+		range.setStart(currentNode, realOffset);
+		range.collapse(true);
+
+		const selection = window.getSelection();
+		selection.removeAllRanges();
+		selection.addRange(range);
+		break;
+	}
+}
+
 export function placeCaretAtEdge(elm, atEnd = false)
 {
 	if (isInputOrTextarea(elm))
@@ -174,4 +242,16 @@ export function placeCaretAtEdge(elm, atEnd = false)
 
 	selection.removeAllRanges();
 	selection.addRange(range);
+}
+
+function createNodeIterator(node)
+{
+	return document.createNodeIterator(node, NodeFilter.SHOW_TEXT, {
+
+		acceptNode()
+		{
+			return NodeFilter.FILTER_ACCEPT;
+		}
+
+	});
 }

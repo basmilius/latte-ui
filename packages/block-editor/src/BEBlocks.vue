@@ -102,7 +102,7 @@
 
 				const focus = (focusData, fn = undefined) => this.$nextTick(() =>
 				{
-					focusData = Object.assign(defaultFocusData, focusData);
+					focusData = Object.assign(defaultFocusData, focusData || {});
 					blockNode.elm.click();
 					blockNode.elm.focus();
 
