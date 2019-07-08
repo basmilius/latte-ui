@@ -118,19 +118,7 @@
 
 		created()
 		{
-			// Layout
-			this.registerBlock(ButtonBlock);
-			this.registerBlock(ColumnsBlock);
-			this.registerBlock(WrapperBlock);
-
-			// Text
-			this.registerBlock(HeadingBlock);
-			this.registerBlock(ParagraphBlock);
-
-			// Embeds
-			this.registerBlock(YouTubeEmbedBlock);
-
-			defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
+			this.resetBlocksAndCategories();
 		},
 
 		destroyed()
@@ -195,6 +183,26 @@
 			registerCategory(id, icon, name)
 			{
 				this.categories.push({id, icon, name});
+			},
+
+			resetBlocksAndCategories()
+			{
+				this.blocks = [];
+				this.categories = [];
+
+				// Layout
+				this.registerBlock(ButtonBlock);
+				this.registerBlock(ColumnsBlock);
+				this.registerBlock(WrapperBlock);
+
+				// Text
+				this.registerBlock(HeadingBlock);
+				this.registerBlock(ParagraphBlock);
+
+				// Embeds
+				this.registerBlock(YouTubeEmbedBlock);
+
+				defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 			},
 
 			render()

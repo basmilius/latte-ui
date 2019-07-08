@@ -7,16 +7,16 @@
 
 				<div class="be-inserter-header" :class="{'is-open': (currentCategory === category.id)}" @click="currentCategory = category.id">
 					<i class="mdi" :class="`mdi-${category.icon}`"></i>
-					<span>{{ category.name }}</span>
+					<span>{{ category.name | i18n("latte-ui") }}</span>
 					<i class="mdi" :class="{'mdi-chevron-down': !(currentCategory === category.id), 'mdi-chevron-up': (currentCategory === category.id)}"></i>
 				</div>
 
 				<div class="be-inserter-body" v-if="currentCategory === category.id">
 					<template v-if="category.blocks.length > 0">
 
-						<button class="be-inserter-block" @click="select(block.id)" :data-tooltip="block.description" v-for="block of category.blocks">
+						<button class="be-inserter-block" @click="select(block.id)" :data-tooltip="block.description | i18n('latte-ui')" v-for="block of category.blocks">
 							<i class="mdi" :class="`mdi-${block.icon}`"></i>
-							<span>{{ block.name }}</span>
+							<span>{{ block.name | i18n("latte-ui") }}</span>
 						</button>
 
 					</template>

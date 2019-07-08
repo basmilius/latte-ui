@@ -7,7 +7,7 @@
 
 				<latte-ripple as="button" class="nav-link" :class="{'is-active': selectedIndex === index}" @mousedown="select(block.id)">
 					<i class="mdi" :class="`mdi-${block.icon}`"></i>
-					<span>{{ block.name }}</span>
+					<span>{{ block.name | i18n("latte-ui") }}</span>
 				</latte-ripple>
 
 			</template>

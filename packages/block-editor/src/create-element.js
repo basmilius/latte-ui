@@ -20,10 +20,15 @@ export function createElement(tag, props = undefined, content = undefined)
 	{
 		for (let prop in props.domProps)
 		{
+			const val = props.domProps[prop];
+
+			if (val === undefined)
+				continue;
+
 			if (prop === "innerHTML")
-				content = props.domProps[prop];
+				content = val;
 			else
-				el.setAttribute(prop, props.domProps[prop]);
+				el.setAttribute(prop, val);
 		}
 	}
 
