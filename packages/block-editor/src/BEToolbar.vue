@@ -10,8 +10,8 @@
 		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'View hierarchy' | i18n('latte-ui')"><i class="mdi mdi-notification-clear-all mdi-flip-v"></i></button>
 
 		<div class="divider divider-vertical"></div>
-		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'Undo' | i18n('latte-ui')"><i class="mdi mdi-undo"></i></button>
-		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'Redo' | i18n('latte-ui')"><i class="mdi mdi-redo"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Undo' | i18n('latte-ui')"><i class="mdi mdi-undo"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Redo' | i18n('latte-ui')"><i class="mdi mdi-redo"></i></button>
 
 		<latte-portal-target class="d-flex align-items-center" :name="beforePortalId" multiple></latte-portal-target>
 		<div class="mx-auto"></div>

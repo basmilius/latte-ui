@@ -1,11 +1,24 @@
-export function iconButton(h, icon, onClick, isPressed = undefined)
+import { IconToggleButton } from "./icon-button";
+
+export { IconToggleButton } from "./icon-button";
+
+export function commandIconToggleButton(h, executeAndFocus, focus, icon, command)
 {
-	return h("button", {
-		class: `btn btn-icon ${isPressed === undefined || isPressed() === false ? "btn-text btn-dark" : "btn-contained btn-primary"}`,
-		on: {click: onClick || (() => undefined)}
-	}, [
-		h("i", {class: `mdi mdi-${icon}`})
-	]);
+	return h(IconToggleButton, {
+		props: {
+			icon,
+			can: () => document.queryCommandEnabled(command),
+			press: () => executeAndFocus(focus, () => document.execCommand(command)),
+			pressed: () => document.queryCommandState(command)
+		}
+	});
+}
+
+export function divider(h, vertical = false)
+{
+	return h("div", {
+		class: `divider divider-${vertical ? "vertical" : "horizontal"}`
+	});
 }
 
 export function optionTextColor(h, {editor, options, setOptions})

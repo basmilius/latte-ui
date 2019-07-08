@@ -1,11 +1,8 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { iconButton, optionTextColor, optionTextSize } from "./primitive/element";
+import { commandIconToggleButton, divider, optionTextColor, optionTextSize } from "./primitive/element";
 import { render, renderEditor } from "./primitive/text";
-import { getLatte } from "../utils";
-
-const L = getLatte();
 
 let canUpdate = true;
 let lastSelectionRange;
@@ -84,19 +81,12 @@ export class ParagraphBlock extends BlockBase
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
 			h("latte-portal", {props: {to: editor.toolbar.beforePortalId}}, [
-				h("div", {class: "d-flex align-items-center", on: {click: evt => evt.preventDefault(), mousedown: () => makeLastRange()}}, [
+				h("div", {class: "d-flex align-items-center", on: {mousedown: () => makeLastRange()}}, [
 					h("div", {class: "divider divider-vertical"}),
-					iconButton(h, "format-bold", () => executeAndFocus(focus, () => document.execCommand("bold")), () => document.queryCommandState("bold")),
-					iconButton(h, "format-italic", () => executeAndFocus(focus, () => document.execCommand("italic")), () => document.queryCommandState("italic")),
-					iconButton(h, "format-underline", () => executeAndFocus(focus, () => document.execCommand("underline")), () => document.queryCommandState("underline")),
-					h("div", {class: "divider divider-vertical"}),
-					iconButton(h, "link", () => L.ui.message.prompt("Url", "Enter a URL").then(r =>
-					{
-						if (r.button !== L.ui.message.Buttons.OK)
-							return;
-
-						executeAndFocus(focus, () => document.execCommand("createLink", false, r.input));
-					}))
+					commandIconToggleButton(h, executeAndFocus, focus, "format-bold", "bold"),
+					commandIconToggleButton(h, executeAndFocus, focus, "format-italic", "italic"),
+					commandIconToggleButton(h, executeAndFocus, focus, "format-underline", "underline"),
+					divider(h, true)
 				])
 			]),
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
