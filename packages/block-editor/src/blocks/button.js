@@ -3,13 +3,21 @@ import { getLatte } from "../utils";
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 
-const L = getLatte();
-
 const buttonTypes = [
 	{id: "contained", label: "Contained"},
 	{id: "soft", label: "Soft"},
 	{id: "text", label: "Text"}
 ];
+
+function getButtonClasses(options)
+{
+	const classes = ["btn", `btn-${options.type}`];
+
+	if (options.pillButton)
+		classes.push("btn-pill");
+
+	return classes;
+}
 
 export class ButtonBlock extends BlockBase
 {
@@ -47,21 +55,16 @@ export class ButtonBlock extends BlockBase
 	render(h, {options})
 	{
 		return h("button", {
-			class: `btn`
+			class: getButtonClasses(options)
 		});
 	}
 
 	renderEditor(h, {options, setOptions})
 	{
-		const classes = ["btn", `btn-${options.type}`];
-
-		if (options.pillButton)
-			classes.push("btn-pill");
-
 		return h(
 			"button",
 			{
-				class: classes
+				class: getButtonClasses(options)
 			},
 			[
 				h("span", {
