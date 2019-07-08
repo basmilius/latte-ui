@@ -54,9 +54,18 @@ export class ButtonBlock extends BlockBase
 
 	render(h, {options})
 	{
-		return h("button", {
-			class: getButtonClasses(options)
-		});
+		return h(
+			"button",
+			{
+				class: getButtonClasses(options),
+				domProps: {
+					href: options.url
+				}
+			},
+			[
+				h("span", options.text)
+			]
+		);
 	}
 
 	renderEditor(h, {options, setOptions})

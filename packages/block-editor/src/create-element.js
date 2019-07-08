@@ -17,8 +17,15 @@ export function createElement(tag, props = undefined, content = undefined)
 	}
 
 	if (props.domProps)
+	{
 		for (let prop in props.domProps)
-			el.setAttribute(prop, props.domProps[prop]);
+		{
+			if (prop === "innerHTML")
+				content = props.domProps[prop];
+			else
+				el.setAttribute(prop, props.domProps[prop]);
+		}
+	}
 
 	if (props.style)
 		for (let prop in props.style)

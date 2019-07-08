@@ -199,26 +199,36 @@
 
 			render()
 			{
-				const processGroup = group => group.map((item, index) =>
+				const notNullOrUndefined = (p) =>
 				{
-					let block = this.blocks.find(b => b.id === item.id);
+					return p !== undefined && p !== null;
+				};
 
-					if (block === undefined)
-						return undefined;
+				const processGroup = group => group
+					.filter(item => notNullOrUndefined(item))
+					.map((item, index) =>
+					{
+						let block = this.blocks
+							.filter(b => notNullOrUndefined(b))
+							.find(b => b.id === item.id);
 
-					const depth = this.depth + 1;
-					const children = item.children || [];
-					const options = Object.assign({}, block.defaultOptions || {}, item.options);
+						if (block === undefined)
+							return undefined;
 
-					return block.render(createElement, {
-						depth,
-						index,
-						children,
-						options,
+						const depth = this.depth + 1;
+						const children = item.children || [];
+						const options = Object.assign({}, block.defaultOptions || {}, item.options);
 
-						processGroup
-					});
-				}).filter(b => !!b);
+						return block.render(createElement, {
+							depth,
+							index,
+							children,
+							options,
+
+							processGroup
+						});
+					})
+					.filter(item => notNullOrUndefined(item));
 
 				const blocks = processGroup(this.content);
 				const template = document.createElement("div");
