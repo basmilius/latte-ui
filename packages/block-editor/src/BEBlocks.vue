@@ -1,13 +1,16 @@
 <script>
 
-	import { Latte } from "@bybas/latte-ui";
-	import { editorInstance, setSelectionBefore } from "./utils";
+	import { editorInstance, getLatte } from "./utils";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
+	import { placeCaretAtEdge } from "./helper/selection";
 
 	const inlineClasses = ["be-block-embed"];
 	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
+
+	const defaultFocusData = {placeAtEnd: true, select: true, selectAll: false};
+	const L = getLatte();
 
 	export default {
 
@@ -48,7 +51,7 @@
 				this.selectedIndex = -1;
 			});
 
-			Latte.action.on("latte:tick", () => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
+			L.action.on("latte:tick", () => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
 		},
 
 		render(h)
@@ -58,12 +61,12 @@
 
 		methods: {
 
-			insertBlock(id, index = -1, options = {}, shouldFocus = true)
+			insertBlock(id, index = -1, options = {}, focusData = defaultFocusData)
 			{
 				const spec = {
 					id,
 					options,
-					shouldFocus
+					focusData
 				};
 
 				if (index > -1)
@@ -87,7 +90,6 @@
 				if (!block)
 					return undefined;
 
-				let api = {};
 				let blockNode = undefined;
 				let isRemoved = false;
 
@@ -98,18 +100,22 @@
 
 				const ensure = fn => !isRemoved ? fn() : undefined;
 
-				const focus = (selectAll = true, fn = undefined) => this.$nextTick(() =>
+				const focus = (focusData, fn = undefined) => this.$nextTick(() =>
 				{
+					focusData = Object.assign(defaultFocusData, focusData);
 					blockNode.elm.click();
 					blockNode.elm.focus();
 
-					if (blockNode.elm.contentEditable !== "true")
+					if (!blockNode.elm.isContentEditable)
 						return;
 
-					if (!selectAll && blockNode.elm.childNodes.length > 0)
-						setSelectionBefore(blockNode.elm.childNodes[0], true);
-					else
-						document.execCommand("selectAll");
+					if (focusData.select)
+					{
+						if (focusData.selectAll === false && blockNode.elm.childNodes.length > 0)
+							placeCaretAtEdge(blockNode.elm, focusData.placeAtEnd);
+						else
+							document.execCommand("selectAll");
+					}
 
 					if (fn)
 						fn(blockNode.elm);
@@ -124,7 +130,7 @@
 				{
 					this.content.splice(index + dir, 0, this.content.splice(index, 1)[0]);
 					this.setSelectedIndex(index + dir);
-					this.content[index + dir].shouldFocus = true;
+					this.content[index + dir].focusData = defaultFocusData;
 				};
 
 				const remove = () =>
@@ -142,11 +148,11 @@
 						return undefined;
 
 					return h("latte-portal", {props: {depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
-						block.renderOptions(h, api)
+						block.renderOptions(h, this.apis[index])
 					]);
 				};
 
-				api = this.apis[index] = {
+				let api = this.apis[index] = {
 					blockId: block.id,
 					depth,
 					options,
@@ -159,8 +165,9 @@
 
 					focus,
 					getRelative,
-					insertBlock: (id, index = -1, options = {}, shouldFocus = true) => this.insertBlock(id, index, options, shouldFocus),
+					insertBlock: (id, index = -1, options = {}, focusData = undefined) => this.insertBlock(id, index, options, focusData),
 					nextTick: fn => this.$nextTick(fn),
+					raf: fn => L.util.dom.raf(fn),
 					rearrange,
 					remove,
 					setChildren,
@@ -169,10 +176,10 @@
 
 				blockNode = block.renderEditor(h, api);
 
-				if (item.shouldFocus)
+				if (item.focusData)
 				{
-					delete this.content[index].shouldFocus;
-					focus(false);
+					focus(this.content[index].focusData);
+					delete this.content[index].focusData;
 				}
 
 				const classes = ["be-block-mount", `be-block-${block.id}`, "be-editing"];
@@ -186,9 +193,15 @@
 				if (index === this.content.length - 1)
 					classes.push("is-last");
 
-				Latte.util.dom.raf(() => isSelected ? this.selectedElement = blockNode.elm : undefined);
+				const onClick = evt =>
+				{
+					evt.preventDefault();
 
-				return h("div", {class: classes, on: {click: () => this.setSelectedIndex(index, blockNode.elm)}}, [
+					if (this.selectedIndex !== index)
+						this.setSelectedIndex(index, blockNode.elm);
+				};
+
+				return h("div", {class: classes, on: {click: evt => onClick(evt)}}, [
 					this.renderInserter(h, true, index, "top"),
 					this.renderInserter(h, true, index, "bottom"),
 					renderOptions(),
@@ -245,7 +258,7 @@
 
 				this.editor.$emit("be:reset-settings-pane");
 
-				Latte.util.dom.raf(() =>
+				L.util.dom.raf(() =>
 				{
 					this.selectedElement = elm;
 					this.selectedIndex = index;

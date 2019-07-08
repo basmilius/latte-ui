@@ -1,59 +1,50 @@
-import { setSelection, setSelectionAfter, setSelectionBefore } from "../../utils";
+import { setSelection } from "../../utils";
+import { atEdge, getRectFromRange, isForwardSelection, placeCaretAtEdge } from "../../helper/selection";
+import { includes } from "../../helper/array";
+import { formatText } from "../../helper/format";
 
 const allowAppend = ["heading", "paragraph"];
 
 export function render(tag, h, {options})
 {
-	return h(tag, options.text);
+	return h(tag, {domProps: {innerHTML: options.format ? [formatText(h, options.text, options.format)] : options.text}});
 }
 
-export function renderEditor(tag, h, api)
+export function renderEditor(tag, h, api, canUpdate = undefined)
 {
-	return h(tag, {
-		attrs: {
-			"data-placeholder": "Enter some text..."
-		},
-		domProps: {
-			contentEditable: "true",
-			innerHTML: api.options.text
-		},
-		style: {
-			color: api.options.color ? api.options.color : undefined,
-			fontSize: api.options.fontSize ? `${api.options.fontSize}rem` : undefined
-		},
-		on: {
-			blur: evt => onBlur(evt, api),
-			input: evt => tag === "p" ? onInput(evt, api) : undefined,
-			keydown: evt => onKeyDown(evt, api)
-		}
-	});
-}
+	let {options, setOptions} = api;
 
-export function optionTextColor(h, {editor, options, setOptions})
-{
-	return h("div", {class: "be-settings-row flex-column"}, [
-		h("span", "Color"),
-		h("div", {class: "be-settings-text-colors"}, editor.colorPalette.map(color => h("button", {
-			attrs: {"data-tooltip": color.name},
-			class: `color ${color.value === options.color ? "is-active" : ""}`,
-			style: {color: color.value},
-			on: {click: () => setOptions({color: options.color === color.value ? undefined : color.value})}
-		})))
-	])
-}
+	if (!options.formatted)
+		setOptions({formatted: formatText(options.text, options.format)});
 
-export function optionTextSize(h, {options, setOptions}, min = 1, max = 3, step = 0.05)
-{
-	return h("label", {class: "be-settings-row"}, [
-		h("span", "Size"),
-		h("div", [
-			h("input", {
-				class: "custom-range",
-				domProps: {min, max, step, value: options.fontSize, type: "range"},
-				on: {input: evt => setOptions({fontSize: parseFloat(evt.target.value)})}
-			})
-		])
-	])
+	return h("div", {class: "be-text-wrapper"}, [
+		h(tag, {
+			attrs: {
+				"data-placeholder": "Enter some text..."
+			},
+			domProps: {
+				contentEditable: "true",
+				innerHTML: options.text
+			},
+			style: {
+				color: options.color ? options.color : undefined,
+				fontSize: options.fontSize ? `${options.fontSize}rem` : undefined
+			},
+			on: {
+				blur: evt => canUpdate === undefined || canUpdate() === true ? onBlur(evt, api) : undefined,
+				input: evt => onInput(evt, tag, api),
+				keydown: evt => onKeyDown(evt, api),
+				paste: evt => onPaste(evt, api)
+			}
+		}),
+		h(tag, {
+			domProps: {innerHTML: options.formatted || options.text},
+			style: {
+				color: options.color ? options.color : undefined,
+				fontSize: options.fontSize ? `${options.fontSize}rem` : undefined
+			}
+		})
+	]);
 }
 
 function onBlur(evt, {editor, isRemoved, setOptions})
@@ -63,15 +54,19 @@ function onBlur(evt, {editor, isRemoved, setOptions})
 	if (isRemoved)
 		return;
 
-	setOptions({text: evt.target.innerHTML});
+	setOptions({text: evt.target.innerText, formatted: formatText(evt.target.innerText)});
 }
 
-function onInput(evt, {editor, index, insertBlock, remove})
+function onInput(evt, tag, {editor, index, insertBlock, options, remove})
 {
-	const selection = window.getSelection();
-	const selectionRange = selection.getRangeAt(0);
-	const selectionRect = selectionRange.getBoundingClientRect();
 	const text = evt.target.innerText;
+
+	options.formatted = formatText(text, options.format);
+
+	if (tag !== "p")
+		return;
+
+	const selection = editor.selection;
 
 	if (!text.startsWith("/") || selection.focusOffset < text.length)
 		return editor.inserterList.close();
@@ -82,14 +77,14 @@ function onInput(evt, {editor, index, insertBlock, remove})
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));
 
-	editor.inserterList.open(selectionRect, foundBlocks, blockId =>
+	editor.inserterList.open(getRectFromRange(selection.getRangeAt(0)), foundBlocks, blockId =>
 	{
 		remove();
 		insertBlock(blockId, index);
 	});
 }
 
-function onKeyDown(evt, {editor, index, getRelative, insertBlock, remove, setOptions})
+function onKeyDown(evt, {editor, index, getRelative, insertBlock, options, remove, setOptions})
 {
 	const selection = window.getSelection();
 	const text = evt.target.innerText;
@@ -98,19 +93,41 @@ function onKeyDown(evt, {editor, index, getRelative, insertBlock, remove, setOpt
 		return editor.inserterList.handleKeyDown(evt);
 
 	if (evt.key === "Enter" && !evt.shiftKey)
-		return kdHandleEnterWhenNotShift(evt, editor, index, selection, text, insertBlock, setOptions);
+		return kdHandleEnterWhenNotShift(evt, editor, index, options, selection, text, insertBlock, setOptions);
 
-	if ((evt.key === "ArrowDown" || evt.key === "ArrowRight") && selection.focusOffset === text.length)
+	if (includes(["ArrowDown", "ArrowRight"], evt.key) && atEdge(evt.target, true))
 		return kdHandleArrowDownAtEnd(evt, getRelative);
 
-	if ((evt.key === "ArrowUp" || evt.key === "ArrowLeft") && selection.focusOffset === 0)
+	if (includes(["ArrowLeft", "ArrowUp"], evt.key) && atEdge(evt.target, false))
 		return kdHandleArrowUpAtStart(evt, getRelative);
 
 	if (evt.key === "Backspace" && selection.anchorOffset === 0 && selection.focusOffset === 0)
-		return kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative);
+		return kdHandleBackspaceWhenAtStart(evt, options, text, remove, getRelative);
 
 	if (evt.key === "Backspace" && text.trim() === "")
 		return kdHandleBackspaceWhenEmpty(evt, remove, getRelative);
+}
+
+function onPaste(evt, {index, insertBlock, remove})
+{
+	evt.preventDefault();
+
+	const contents = evt.clipboardData
+		.getData("Text")
+		.split(/\r\n|\r|\n/g)
+		.map(paragraph => paragraph.trim())
+		.filter(paragrap => paragrap.length > 0);
+
+	remove();
+	contents.forEach((text, i) => insertBlock("paragraph", index + i, {text}, {placeAtEnd: true}));
+}
+
+function textOptions(options, currentOptions)
+{
+	return {
+		...options,
+		formatted: formatText(options.text, currentOptions.format || [])
+	};
 }
 
 function kdHandleArrowDownAtEnd(evt, getRelative)
@@ -121,7 +138,7 @@ function kdHandleArrowDownAtEnd(evt, getRelative)
 	if (!sibbling)
 		return;
 
-	sibbling.focus(false, elm => setSelectionBefore(elm.childNodes[0], true));
+	sibbling.focus({select: false}, elm => placeCaretAtEdge(elm, false));
 }
 
 function kdHandleArrowUpAtStart(evt, getRelative)
@@ -132,10 +149,10 @@ function kdHandleArrowUpAtStart(evt, getRelative)
 	if (!sibbling)
 		return;
 
-	sibbling.focus(false, elm => setSelectionAfter(elm.childNodes[0], true));
+	sibbling.focus({select: false}, elm => placeCaretAtEdge(elm, true));
 }
 
-function kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative)
+function kdHandleBackspaceWhenAtStart(evt, options, text, remove, getRelative)
 {
 	evt.preventDefault();
 
@@ -147,9 +164,9 @@ function kdHandleBackspaceWhenAtStart(evt, text, remove, getRelative)
 	const appendTextLength = text.trim().length;
 	const offset = textLength > 0 ? textLength + Math.min(appendTextLength, 1) : 0;
 
-	sibbling.setOptions({text: (sibbling.options.text + " " + text).trim()});
+	sibbling.setOptions(textOptions({text: (sibbling.options.text + " " + text).trim()}, options));
 	remove();
-	sibbling.focus(false, elm => setSelection(elm.childNodes[0], offset));
+	sibbling.focus({select: false}, elm => setSelection(elm.childNodes[0], offset));
 }
 
 function kdHandleBackspaceWhenEmpty(evt, remove, getRelative)
@@ -159,34 +176,30 @@ function kdHandleBackspaceWhenEmpty(evt, remove, getRelative)
 
 	const sibbling = getRelative(-1);
 	if (sibbling)
-		sibbling.focus(false);
+		sibbling.focus({select: true, placeAtEnd: true});
 }
 
-function kdHandleEnterWhenNotShift(evt, editor, index, selection, text, insertBlock, setOptions)
+function kdHandleEnterWhenNotShift(evt, editor, index, options, selection, text, insertBlock, setOptions)
 {
 	evt.preventDefault();
 	editor.inserterList.close();
 
-	switch (selection.type)
+	const isForward = isForwardSelection(selection);
+	let {anchorOffset, focusOffset, type} = selection;
+
+	if (!isForward)
 	{
-		case "Caret":
-		{
-			const textLeft = text.substr(0, selection.anchorOffset).trim();
-			const textRight = text.substr(selection.anchorOffset).trim();
-
-			insertBlock("paragraph", index + 1, {text: textRight});
-			setOptions({text: textLeft});
-			return;
-		}
-
-		case "Range":
-		{
-			const textLeft = text.substr(0, selection.anchorOffset).trim();
-			const textRight = text.substr(selection.focusOffset).trim();
-
-			insertBlock("paragraph", index + 1, {text: textRight});
-			setOptions({text: textLeft});
-			return;
-		}
+		let tmp = anchorOffset;
+		anchorOffset = focusOffset;
+		focusOffset = tmp;
 	}
+
+	const startRightFrom = type === "Caret" ? anchorOffset : focusOffset;
+
+	const textLeft = text.substr(0, anchorOffset).trim();
+	const textRight = text.substr(startRightFrom).trim();
+
+	// TODO(Bas): Make sure that if any formatting is used, format should split and used in the new block.
+	insertBlock("paragraph", index + 1, textOptions({text: textRight}, {}), {placeAtEnd: false});
+	setOptions(textOptions({text: textLeft}, options));
 }

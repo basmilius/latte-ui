@@ -6,7 +6,7 @@
 	margin-bottom: 1rem;
 }
 
-.be-editing .be-block-embed > *
+.be-block-youtube-embed:not(.is-selected) .be-block-embed > *
 {
 	pointer-events: none;
 }

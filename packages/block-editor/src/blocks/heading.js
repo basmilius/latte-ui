@@ -1,7 +1,8 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { optionTextColor, render, renderEditor } from "./primitive/text";
+import { render, renderEditor } from "./primitive/text";
+import { optionTextColor } from "./primitive/element";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},

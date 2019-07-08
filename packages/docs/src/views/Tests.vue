@@ -80,7 +80,7 @@
 	</div>
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
-		<BEEditor>
+		<BEEditor :value="content">
 			<template v-slot:settings-pane-after>
 				<div class="panel-header"><span class="panel-title">Page settings</span></div>
 				<BESettingsGroup title="General" padded>
@@ -117,7 +117,20 @@
 			let rows = Array.from(Array(1000), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [],
+				content: [
+					{
+						id: "paragraph",
+						options: {
+							format: [
+								{offset: 14, length: 3, type: "italic"},
+								{offset: 6, length: 5, type: "bold"},
+								{offset: 51, length: 8, type: "bold"},
+								{offset: 51, length: 4, type: "italic"}
+							],
+							text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porttitor eleifend leo, ac mollis elit tempor nec. Nullam consequat lorem ut leo porttitor, eget porta purus ornare. Sed ac massa convallis, malesuada mi semper, dictum neque. Quisque varius justo vel volutpat elementum. Aenean fringilla mi sed luctus finibus. Sed ornare odio eu nisl tempus, a pulvinar justo molestie. In arcu ligula, ornare ut augue a, aliquet imperdiet nibh. Aenean mi massa, posuere vel tincidunt vel, eleifend eget lectus. Morbi convallis neque sed nulla commodo, eget imperdiet felis hendrerit. Donec nibh risus, vehicula vitae consequat nec, posuere in lorem. Cras dui lorem, tincidunt quis aliquam ac, suscipit in massa. Curabitur cursus ligula elit, in tempor massa vestibulum rutrum. Aliquam vitae fringilla felis. Maecenas felis eros, placerat consectetur enim id, luctus accumsan nunc. Sed sed est vitae nibh blandit dapibus."
+						}
+					}
+				],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6]
@@ -176,15 +189,6 @@
 						};
 					}
 				};
-			}
-
-		},
-
-		watch: {
-
-			content()
-			{
-				console.log(this.content);
 			}
 
 		}

@@ -3,6 +3,11 @@ h1, h2, h3, h4, h5, h6
 	word-break: break-word;
 }
 
+.be-block-paragraph
+{
+	cursor: text;
+}
+
 .be-block-paragraph:not(:last-child)
 {
 	margin-bottom: 1rem;

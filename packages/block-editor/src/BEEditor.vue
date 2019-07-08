@@ -2,8 +2,8 @@
 
 	<div class="be-editor" spellcheck="false">
 
-		<div class="be-content-pane" @click="onEditorClick">
-			<BEToolbar/>
+		<div class="be-content-pane" @click.capture="onEditorClick">
+			<BEToolbar ref="toolbar"/>
 
 			<div class="be-content-mount">
 				<div class="be-content-wrapper be-editing">
@@ -30,7 +30,6 @@
 
 <script>
 
-	import { Latte } from "@bybas/latte-ui";
 	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
 	import { ColumnsBlock, HeadingBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
@@ -41,7 +40,9 @@
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
+	import { getLatte } from "./utils";
 
+	const L = getLatte();
 	const testBlocks = [
 		{
 			id: "columns",
@@ -139,15 +140,26 @@
 			defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 		},
 
+		destroyed()
+		{
+			document.removeEventListener("selectionchange", this.onSelectionChanged);
+		},
+
 		data()
 		{
 			return {
-				uniqueId: Latte.api.id(),
+				uniqueId: L.api.id(),
 				blocks: [],
 				categories: [],
 				content: [],
-				rendered: ""
+				rendered: "",
+				selection: window.getSelection()
 			};
+		},
+
+		mounted()
+		{
+			document.addEventListener("selectionchange", this.onSelectionChanged, {passive: true});
 		},
 
 		computed: {
@@ -170,6 +182,11 @@
 			selfEditor()
 			{
 				return this;
+			},
+
+			toolbar()
+			{
+				return this.$refs.toolbar;
 			}
 
 		},
@@ -227,6 +244,14 @@
 			{
 				this.content = content;
 				this.$emit("input", content);
+			},
+
+			onSelectionChanged()
+			{
+				if (L.util.dom.closest(this.selection.anchorNode, this.$el) === null)
+					return;
+
+				this.$emit("be:selection-changed", this.selection);
 			}
 
 		},
