@@ -1,4 +1,5 @@
 // Layout
+export { ButtonBlock } from "./button";
 export { ColumnsBlock } from "./columns";
 export { WrapperBlock } from "./wrapper";
 

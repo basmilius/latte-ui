@@ -78,7 +78,7 @@ declare namespace Latte
 	{
 		export function replace(str: string, params: any[]): string;
 
-		export function translate(domain: string, str: string, params: any[]): string;
+		export function translate(domain: string, str: string, params?: any[]): string;
 	}
 
 	namespace iid

@@ -4,9 +4,23 @@ import { decodeEntities } from "../../helper/html-entities";
 
 const allowAppend = ["heading", "paragraph"];
 
+function getStyles(options)
+{
+	return {
+		color: options.color ? options.color : undefined,
+		fontSize: options.fontSize ? `${options.fontSize}rem` : undefined,
+		textAlign: options.align || undefined
+	};
+}
+
 export function render(tag, h, {options})
 {
-	return h(tag, {domProps: {innerHTML: options.text}});
+	return h(tag, {
+		domProps: {
+			innerHTML: options.text
+		},
+		style: getStyles(options)
+	});
 }
 
 export function renderEditor(tag, h, api, canUpdate = undefined)
@@ -21,10 +35,7 @@ export function renderEditor(tag, h, api, canUpdate = undefined)
 			contentEditable: "true",
 			innerHTML: options.text
 		},
-		style: {
-			color: options.color ? options.color : undefined,
-			fontSize: options.fontSize ? `${options.fontSize}rem` : undefined
-		},
+		style: getStyles(options),
 		on: {
 			blur: evt => canUpdate === undefined || canUpdate() === true ? onBlur(evt, api) : undefined,
 			input: evt => onInput(evt, tag, api),
@@ -168,7 +179,7 @@ function kdHandleBackspaceWhenEmpty(evt, {remove, getRelative})
 		sibbling.focus({select: true, placeAtEnd: true});
 }
 
-function kdHandleEnterWhenNotShift(evt, text, {editor, raf, index, insertBlock, setOptions})
+function kdHandleEnterWhenNotShift(evt, text, {editor, raf, index, insertBlock, options, setOptions})
 {
 	editor.inserterList.close();
 
@@ -182,7 +193,8 @@ function kdHandleEnterWhenNotShift(evt, text, {editor, raf, index, insertBlock, 
 	{
 		raf(() =>
 		{
-			const newElement = evt.target.getElementsByTagName("p")[0];
+			const childElements = Array.from(evt.target.getElementsByTagName("p"));
+			const newElement = childElements[childElements.length - 1];
 
 			if (!newElement)
 				return;
@@ -190,7 +202,7 @@ function kdHandleEnterWhenNotShift(evt, text, {editor, raf, index, insertBlock, 
 			const html = decodeEntities(newElement.innerHTML);
 			newElement.remove();
 
-			insertBlock("paragraph", index + 1, {text: html}, {placeAtEnd: false});
+			insertBlock("paragraph", index + 1, {...options, text: html}, {placeAtEnd: false});
 			setOptions({text: decodeEntities(evt.target.innerHTML)});
 		});
 	}

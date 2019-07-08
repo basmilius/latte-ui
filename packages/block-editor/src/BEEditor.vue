@@ -32,7 +32,7 @@
 
 	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
-	import { ColumnsBlock, HeadingBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
+	import { ButtonBlock, ColumnsBlock, HeadingBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -112,22 +112,14 @@
 		},
 
 		props: {
-
-			colorPalette: {
-				default: () => defaultColorPalette,
-				type: Array
-			},
-
-			value: {
-				default: () => testBlocks,
-				type: Array
-			}
-
+			colorPalette: {default: () => defaultColorPalette, type: Array},
+			value: {default: () => testBlocks, type: Array}
 		},
 
 		created()
 		{
 			// Layout
+			this.registerBlock(ButtonBlock);
 			this.registerBlock(ColumnsBlock);
 			this.registerBlock(WrapperBlock);
 

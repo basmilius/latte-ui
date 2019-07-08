@@ -14,6 +14,18 @@ export function commandIconToggleButton(h, executeAndFocus, focus, icon, command
 	});
 }
 
+export function functionIconToggleButton(h, executeAndFocus, focus, icon, onClick, isPressed)
+{
+	return h(IconToggleButton, {
+		props: {
+			icon,
+			can: () => true,
+			press: () => executeAndFocus(focus, onClick),
+			pressed: isPressed
+		}
+	});
+}
+
 export function divider(h, vertical = false)
 {
 	return h("div", {

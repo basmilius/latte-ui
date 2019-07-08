@@ -1,7 +1,7 @@
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { commandIconToggleButton, divider, optionTextColor, optionTextSize } from "./primitive/element";
+import { commandIconToggleButton, divider, functionIconToggleButton, optionTextColor, optionTextSize } from "./primitive/element";
 import { render, renderEditor } from "./primitive/text";
 
 let canUpdate = true;
@@ -40,6 +40,7 @@ export class ParagraphBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
+			align: "left",
 			color: undefined,
 			fontSize: 1,
 			format: undefined,
@@ -86,7 +87,11 @@ export class ParagraphBlock extends BlockBase
 					commandIconToggleButton(h, executeAndFocus, focus, "format-bold", "bold"),
 					commandIconToggleButton(h, executeAndFocus, focus, "format-italic", "italic"),
 					commandIconToggleButton(h, executeAndFocus, focus, "format-underline", "underline"),
-					divider(h, true)
+					divider(h, true),
+					functionIconToggleButton(h, executeAndFocus, focus, "format-align-left", () => setOptions({align: "left"}), () => options.align === "left"),
+					functionIconToggleButton(h, executeAndFocus, focus, "format-align-center", () => setOptions({align: "center"}), () => options.align === "center"),
+					functionIconToggleButton(h, executeAndFocus, focus, "format-align-right", () => setOptions({align: "right"}), () => options.align === "right"),
+					functionIconToggleButton(h, executeAndFocus, focus, "format-align-justify", () => setOptions({align: "justify"}), () => options.align === "justify")
 				])
 			]),
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
