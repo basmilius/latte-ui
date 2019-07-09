@@ -116,10 +116,14 @@ function onKeyDown(evt, api)
 
 function onPaste(evt, {index, insertBlock, remove})
 {
+	const textData = evt.clipboardData.getData("Text");
+
+	if (!textData.match(/\r\n|\r|\n/))
+		return;
+
 	evt.preventDefault();
 
-	const contents = evt.clipboardData
-		.getData("Text")
+	const contents = textData
 		.split(/\r\n|\r|\n/g)
 		.map(paragraph => paragraph.trim())
 		.filter(paragrap => paragrap.length > 0);
@@ -130,22 +134,22 @@ function onPaste(evt, {index, insertBlock, remove})
 
 function kdHandleArrowDownAtEnd(evt, {getRelative})
 {
-	evt.preventDefault();
-
 	const sibbling = getRelative(1);
 	if (!sibbling)
 		return;
+
+	evt.preventDefault();
 
 	sibbling.focus({select: false}, elm => placeCaretAtEdge(elm, false));
 }
 
 function kdHandleArrowUpAtStart(evt, {getRelative})
 {
-	evt.preventDefault();
-
 	const sibbling = getRelative(-1);
 	if (!sibbling)
 		return;
+
+	evt.preventDefault();
 
 	sibbling.focus({select: false}, elm => placeCaretAtEdge(elm, true));
 }

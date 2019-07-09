@@ -56,7 +56,7 @@ export class YouTubeEmbedBlock extends BlockBase
 
 	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
 	{
-		return h(BESettingsGroup, {props: {title: `${this.name} (${depth})`}}, [
+		return h(BESettingsGroup, {props: {title: this.name}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
 			h("label", {class: "be-settings-row flex-column"}, [
 				h("span", "Video ID"),

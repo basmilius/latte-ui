@@ -81,14 +81,16 @@
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
 		<BEEditor v-model="content">
-			<template v-slot:settings-pane-after>
-				<div class="panel-header"><span class="panel-title">Page settings</span></div>
-				<BESettingsGroup title="General" padded>
-					This panel was added with a slot.
-				</BESettingsGroup>
-				<BESettingsGroup title="View" padded>
-					This panel was also added with a slot.
-				</BESettingsGroup>
+			<template v-slot:settings-pane-after="{blockSettingsShown}">
+				<template v-if="!blockSettingsShown">
+					<div class="panel-header"><span class="panel-title">Page settings</span></div>
+					<BESettingsGroup title="General" :padded="true">
+						This panel was added with a slot.
+					</BESettingsGroup>
+					<BESettingsGroup title="View" :opened="false" :padded="true">
+						This panel was also added with a slot.
+					</BESettingsGroup>
+				</template>
 			</template>
 		</BEEditor>
 	</div>

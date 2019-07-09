@@ -23,11 +23,11 @@
 		<BEInserterPopup ref="inserter"/>
 
 		<BESettingsPane>
-			<template v-slot:before>
-				<slot name="settings-pane-before"></slot>
+			<template v-slot:before="api">
+				<slot name="settings-pane-before" v-bind="api"></slot>
 			</template>
-			<template v-slot:after>
-				<slot name="settings-pane-after"></slot>
+			<template v-slot:after="api">
+				<slot name="settings-pane-after" v-bind="api"></slot>
 			</template>
 		</BESettingsPane>
 

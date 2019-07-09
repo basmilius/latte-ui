@@ -193,6 +193,7 @@
 			background: rgba(var(--outline-color), .25);
 			box-shadow: 0 1px rgba(var(--outline-color), 1);
 			cursor: pointer;
+			user-select: none;
 
 			&:hover
 			{

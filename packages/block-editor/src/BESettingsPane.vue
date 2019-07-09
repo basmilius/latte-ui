@@ -1,7 +1,7 @@
 <template>
 
 	<div class="be-settings-pane">
-		<slot name="before"></slot>
+		<slot name="before" v-bind="{blockSettingsShown: portalHasPassengers}"></slot>
 
 		<template>
 			<div class="panel-header" v-if="portalHasPassengers">
@@ -10,7 +10,7 @@
 			<latte-portal-target ref="portal" :name="uniqueId" multiple></latte-portal-target>
 		</template>
 
-		<slot name="after"></slot>
+		<slot name="after" v-bind="{blockSettingsShown: portalHasPassengers}"></slot>
 	</div>
 
 </template>

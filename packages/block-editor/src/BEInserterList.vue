@@ -13,7 +13,7 @@
 			</template>
 
 		</nav>
-		<div class="p-3 text-center" v-else>
+		<div class="p-3 text-center" style="max-width: 240px" v-else>
 
 			<i>{{ "No blocks found matching your search term." | i18n("latte-ui") }}</i>
 
