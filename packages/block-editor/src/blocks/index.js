@@ -9,3 +9,6 @@ export { ParagraphBlock } from "./paragraph";
 
 // Embeds
 export { YouTubeEmbedBlock } from "./youtube";
+
+// Other
+export { HtmlBlock } from "./html";

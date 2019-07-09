@@ -232,7 +232,7 @@ label.col-form-label
 	align-items: center;
 	border-radius: var(--border-radius);
 	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
-	transition: all 180ms var(--ease-standard-curve);
+	transition: box-shadow 180ms var(--ease-standard-curve);
 	z-index: 0;
 
 	&::placeholder

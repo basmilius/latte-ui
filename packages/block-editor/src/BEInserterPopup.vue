@@ -14,7 +14,7 @@
 				<div class="be-inserter-body" v-if="currentCategory === category.id">
 					<template v-if="category.blocks.length > 0">
 
-						<button class="be-inserter-block" @click="select(block.id)" :data-tooltip="block.description | i18n('latte-ui')" v-for="block of category.blocks">
+						<button class="be-inserter-block" @click="select(block.id)" v-for="block of category.blocks">
 							<i class="mdi" :class="`mdi-${block.icon}`"></i>
 							<span>{{ block.name | i18n("latte-ui") }}</span>
 						</button>

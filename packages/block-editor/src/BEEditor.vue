@@ -32,7 +32,8 @@
 
 	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
-	import { ButtonBlock, ColumnsBlock, HeadingBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
+	import { notNullOrUndefined } from "./utils";
+	import { ButtonBlock, ColumnsBlock, HeadingBlock, HtmlBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -202,16 +203,14 @@
 				// Embeds
 				this.registerBlock(YouTubeEmbedBlock);
 
+				// Other
+				this.registerBlock(HtmlBlock);
+
 				defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 			},
 
 			render()
 			{
-				const notNullOrUndefined = (p) =>
-				{
-					return p !== undefined && p !== null;
-				};
-
 				const processGroup = group => group
 					.filter(item => notNullOrUndefined(item))
 					.map((item, index) =>
@@ -244,7 +243,22 @@
 				for (let block of blocks)
 					template.appendChild(block);
 
-				return this.rendered = template.innerHTML;
+				const processData = data => data
+					.filter(data => notNullOrUndefined(data))
+					.map(data =>
+					{
+						if (!data.children)
+							return data;
+
+						return Object.assign(data, {children: processData(data.children)});
+					});
+
+				this.content = processData(this.content);
+
+				const data = this.content;
+				const rendered = template.innerHTML;
+
+				return {data, rendered};
 			},
 
 			onEditorClick()

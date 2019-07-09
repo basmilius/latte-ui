@@ -1,6 +1,6 @@
 <script>
 
-	import { editorInstance, getLatte } from "./utils";
+	import { editorInstance, getLatte, notNullOrUndefined } from "./utils";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -56,7 +56,17 @@
 
 		render(h)
 		{
-			return h("div", {class: "be-blocks"}, this.content.filter(r => r !== undefined && r !== null).length > 0 ? this.renderBlocks(h) : this.renderEmptyInserter(h));
+			return h("div", {class: "be-blocks"}, this.contentFiltered.length > 0 ? this.renderBlocks(h) : this.renderEmptyInserter(h));
+		},
+
+		computed: {
+
+			contentFiltered()
+			{
+				return this.content
+					.filter(item => notNullOrUndefined(item))
+			}
+
 		},
 
 		methods: {
@@ -176,6 +186,9 @@
 
 				blockNode = block.renderEditor(h, api);
 
+				if (blockNode === undefined)
+					return undefined;
+
 				if (item.focusData)
 				{
 					focus(this.content[index].focusData);
@@ -211,7 +224,8 @@
 
 			renderBlocks(h)
 			{
-				return this.content.map((item, index) => this.renderBlock(h, item, index));
+				return this.content
+					.map((item, index) => this.renderBlock(h, item, index));
 			},
 
 			renderEmptyInserter(h)

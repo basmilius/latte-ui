@@ -117,29 +117,7 @@
 			let rows = Array.from(Array(1000), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [
-					{
-						id: "paragraph",
-						options: {
-							color: "rgb(79, 121, 66)",
-							text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porttitor eleifend leo, ac mollis elit tempor nec. Nullam consequat lorem ut leo porttitor, eget porta purus ornare. Sed ac massa convallis, malesuada mi semper, dictum neque. Quisque varius justo vel volutpat elementum. Aenean fringilla mi sed luctus finibus."
-						}
-					},
-					{
-						id: "paragraph",
-						options: {
-							color: "rgb(252, 0, 122)",
-							text: "Sed ornare odio eu nisl tempus, a pulvinar justo molestie. In arcu ligula, ornare ut augue a, aliquet imperdiet nibh. Aenean mi massa, posuere vel tincidunt vel, eleifend eget lectus. Morbi convallis neque sed nulla commodo, eget imperdiet felis hendrerit. Donec nibh risus, vehicula vitae consequat nec, posuere in lorem."
-						}
-					},
-					{
-						id: "paragraph",
-						options: {
-							color: "rgb(24, 103, 192)",
-							text: "Cras dui lorem, tincidunt quis aliquam ac, suscipit in massa. Curabitur cursus ligula elit, in tempor massa vestibulum rutrum. Aliquam vitae fringilla felis. Maecenas felis eros, placerat consectetur enim id, luctus accumsan nunc. Sed sed est vitae nibh blandit dapibus."
-						}
-					}
-				],
+				content: [],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6]

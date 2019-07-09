@@ -17,6 +17,8 @@
 		<div class="mx-auto"></div>
 		<latte-portal-target class="d-flex align-items-center" :name="afterPortalId" multiple></latte-portal-target>
 
+		<button class="btn btn-text btn-primary" @click="render"><span>Render</span></button>
+
 		<span></span>
 	</div>
 
@@ -65,6 +67,11 @@
 				const el = L.util.dom.closest(evt.target, ".btn").querySelector("i.mdi");
 
 				this.editor.inserter.open(el, id => this.editor.rootBlocks.insertBlock(id), -15, 9);
+			},
+
+			render()
+			{
+				console.log(this.editor.render());
 			}
 
 		}

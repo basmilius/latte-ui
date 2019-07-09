@@ -14,6 +14,11 @@ export function getLatte()
 	return Latte;
 }
 
+export function notNullOrUndefined(p)
+{
+	return p !== undefined && p !== null;
+}
+
 export function replaceIndex(arr, index, obj)
 {
 	arr.splice(index, 1, obj);
