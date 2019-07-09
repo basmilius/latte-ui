@@ -17,23 +17,10 @@
 		name: "BEBlockActions",
 
 		props: {
-
-			index: {
-				type: Number
-			},
-
-			indexMax: {
-				type: Number
-			},
-
-			rearrange: {
-				type: Function
-			},
-
-			remove: {
-				type: Function
-			}
-
+			index: {type: Number},
+			indexMax: {type: Number},
+			rearrange: {type: Function},
+			remove: {type: Function}
 		}
 
 	}

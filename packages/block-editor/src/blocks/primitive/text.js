@@ -29,7 +29,7 @@ export function renderEditor(tag, h, api, canUpdate = undefined)
 
 	return h(tag, {
 		attrs: {
-			"data-placeholder": "Enter some text..."
+			"data-placeholder": "Start writing..."
 		},
 		domProps: {
 			contentEditable: "true",
@@ -95,10 +95,16 @@ function onKeyDown(evt, api)
 	if (evt.key === "Enter" && !evt.shiftKey)
 		return kdHandleEnterWhenNotShift(evt, text, api);
 
-	if (includes(["ArrowDown", "ArrowRight"], evt.key) && atEdge(evt.target, true))
+	if (evt.key === "ArrowDown" && atEdge(evt.target, true, true))
 		return kdHandleArrowDownAtEnd(evt, api);
 
-	if (includes(["ArrowLeft", "ArrowUp"], evt.key) && atEdge(evt.target, false))
+	if (evt.key === "ArrowUp" && atEdge(evt.target, false, true))
+		return kdHandleArrowUpAtStart(evt, api);
+
+	if (evt.key === "ArrowRight" && atEdge(evt.target, true))
+		return kdHandleArrowDownAtEnd(evt, api);
+
+	if (evt.key === "ArrowLeft" && atEdge(evt.target, false))
 		return kdHandleArrowUpAtStart(evt, api);
 
 	if (evt.key === "Backspace" && anchorOffset === 0 && focusOffset === 0)

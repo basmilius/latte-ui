@@ -43,7 +43,6 @@ export class ParagraphBlock extends BlockBase
 			align: "left",
 			color: undefined,
 			fontSize: 1,
-			format: undefined,
 			text: ""
 		};
 	}

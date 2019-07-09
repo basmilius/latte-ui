@@ -3,7 +3,14 @@
 	<div class="be-editor" spellcheck="false">
 
 		<div class="be-content-pane" @click.capture="onEditorClick">
-			<BEToolbar ref="toolbar"/>
+			<BEToolbar ref="toolbar">
+				<template v-slot:before>
+					<slot name="toolbar-before"></slot>
+				</template>
+				<template v-slot:after>
+					<slot name="toolbar-after"></slot>
+				</template>
+			</BEToolbar>
 
 			<div class="be-content-mount">
 				<div class="be-content-wrapper be-editing">
@@ -15,7 +22,7 @@
 		<BEInserterList ref="inserterList"/>
 		<BEInserterPopup ref="inserter"/>
 
-		<BESettingsPane :editor="selfEditor">
+		<BESettingsPane>
 			<template v-slot:before>
 				<slot name="settings-pane-before"></slot>
 			</template>
@@ -162,11 +169,6 @@
 				return this.$refs.rootBlocks;
 			},
 
-			selfEditor()
-			{
-				return this;
-			},
-
 			toolbar()
 			{
 				return this.$refs.toolbar;
@@ -288,7 +290,12 @@
 				immediate: true,
 				handler()
 				{
-					this.content = this.value;
+					let content = this.value;
+
+					if (content.length === 0)
+						content = [{id: "paragraph", focusData: {}}];
+
+					this.content = content;
 				}
 			}
 

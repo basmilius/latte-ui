@@ -6,6 +6,11 @@ import { BlockBase } from "../block";
 export class WrapperBlock extends BlockBase
 {
 
+	get canHaveChildren()
+	{
+		return true;
+	}
+
 	get defaultOptions()
 	{
 		return {

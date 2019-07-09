@@ -6,6 +6,11 @@ export class BlockBase
 		return this._id;
 	}
 
+	get canHaveChildren()
+	{
+		return false;
+	}
+
 	get category()
 	{
 		return this._category;
@@ -38,17 +43,17 @@ export class BlockBase
 		this._icon = icon;
 	}
 
-	render(h, options)
+	render(h, api)
 	{
 		return undefined;
 	}
 
-	renderEditor(h, options)
+	renderEditor(h, api)
 	{
 		return undefined;
 	}
 
-	renderOptions(h, options)
+	renderOptions(h, api)
 	{
 		return undefined;
 	}

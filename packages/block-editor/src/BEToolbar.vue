@@ -14,10 +14,12 @@
 		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Redo' | i18n('latte-ui')"><i class="mdi mdi-redo"></i></button>
 
 		<latte-portal-target class="d-flex align-items-center" :name="beforePortalId" multiple></latte-portal-target>
-		<div class="mx-auto"></div>
-		<latte-portal-target class="d-flex align-items-center" :name="afterPortalId" multiple></latte-portal-target>
+		<slot name="before"></slot>
 
-		<button class="btn btn-text btn-primary" @click="render"><span>Render</span></button>
+		<div class="mx-auto"></div>
+
+		<latte-portal-target class="d-flex align-items-center" :name="afterPortalId" multiple></latte-portal-target>
+		<slot name="after"></slot>
 
 		<span></span>
 	</div>

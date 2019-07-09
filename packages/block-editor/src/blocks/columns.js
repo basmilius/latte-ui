@@ -36,6 +36,11 @@ const presets = [
 export class ColumnsBlock extends BlockBase
 {
 
+	get canHaveChildren()
+	{
+		return true;
+	}
+
 	get defaultOptions()
 	{
 		return {

@@ -1,10 +1,11 @@
 <script>
 
-	import { editorInstance, getLatte, notNullOrUndefined } from "./utils";
+	import { placeCaretAtEdge } from "./helper/selection";
+	import { divider, icon } from "./blocks/primitive/element";
+	import { editorInstance, getLatte, notNullOrUndefined, replaceIndex } from "./utils";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
-	import { placeCaretAtEdge } from "./helper/selection";
 
 	const inlineClasses = ["be-block-embed"];
 	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
@@ -17,29 +18,19 @@
 		name: "BEBlocks",
 
 		props: {
-
-			depth: {
-				default: 0,
-				type: Number
-			},
-
-			value: {
-				default: () => [],
-				required: true,
-				type: Array
-			}
-
+			depth: {default: 0, type: Number},
+			value: {default: () => [], required: true, type: Array}
 		},
 
 		data()
 		{
 			return {
 				apis: [],
+				canUpdate: true,
 				content: this.value,
 				editor: editorInstance(this),
 				selectedElement: undefined,
-				selectedIndex: -1,
-				tick: 0
+				selectedIndex: -1
 			};
 		},
 
@@ -50,8 +41,6 @@
 				this.selectedElement = undefined;
 				this.selectedIndex = -1;
 			});
-
-			L.action.on("latte:tick", () => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
 		},
 
 		render(h)
@@ -105,31 +94,40 @@
 
 				const depth = this.depth + 1;
 				const isSelected = this.selectedIndex === index;
-				const children = item.children || [];
+				const children = block.canHaveChildren ? item.children || [] : undefined;
 				const options = Object.assign({}, block.defaultOptions || {}, item.options);
 
 				const ensure = fn => !isRemoved ? fn() : undefined;
 
-				const focus = (focusData, fn = undefined) => this.$nextTick(() =>
+				const focus = (focusData = {}, fn = undefined) =>
 				{
 					focusData = Object.assign(defaultFocusData, focusData || {});
-					blockNode.elm.click();
-					blockNode.elm.focus();
 
-					if (!blockNode.elm.isContentEditable)
-						return;
-
-					if (focusData.select)
+					const withElement = elm =>
 					{
-						if (focusData.selectAll === false && blockNode.elm.childNodes.length > 0)
-							placeCaretAtEdge(blockNode.elm, focusData.placeAtEnd);
-						else
-							document.execCommand("selectAll");
-					}
+						elm.click();
+						elm.focus();
 
-					if (fn)
-						fn(blockNode.elm);
-				});
+						if (!elm.isContentEditable)
+							return;
+
+						if (focusData.select)
+						{
+							if (focusData.selectAll === false && elm.childNodes.length > 0)
+								placeCaretAtEdge(elm, focusData.placeAtEnd);
+							else
+								document.execCommand("selectAll");
+						}
+
+						if (fn)
+							fn(elm);
+					};
+
+					if (blockNode.elm)
+						withElement(blockNode.elm);
+					else
+						this.$nextTick(() => withElement(blockNode.elm));
+				};
 
 				const getRelative = dir =>
 				{
@@ -138,32 +136,31 @@
 
 				const rearrange = dir =>
 				{
+					isRemoved = true;
+					this.content[index].focusData = defaultFocusData;
 					this.content.splice(index + dir, 0, this.content.splice(index, 1)[0]);
-					this.setSelectedIndex(index + dir);
-					this.content[index + dir].focusData = defaultFocusData;
 				};
 
 				const remove = () =>
 				{
 					isRemoved = true;
+
+					const sibbling = getRelative(-1);
+
 					this.removeBlock(index);
+
+					if (sibbling)
+						sibbling.focus();
+					else
+						this.setSelectedIndex(-1, undefined);
 				};
 
-				const setChildren = newChildren => ensure(() => this.content.splice(index, 1, Object.assign({}, this.content[index], {children: newChildren})));
-				const setOptions = newOptions => ensure(() => this.content.splice(index, 1, Object.assign({}, this.content[index], {options: Object.assign(options, newOptions)})));
+				const setChildren = newChildren => ensure(() => replaceIndex(this.content, index, Object.assign({}, item, {children: newChildren})));
+				const setOptions = newOptions => ensure(() => replaceIndex(this.content, index, Object.assign({}, item, {options: Object.assign(options, newOptions)})));
 
-				const renderOptions = () =>
-				{
-					if (!isSelected)
-						return undefined;
-
-					return h("latte-portal", {props: {depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
-						block.renderOptions(h, this.apis[index])
-					]);
-				};
-
-				let api = this.apis[index] = {
+				this.apis[index] = {
 					blockId: block.id,
+					blockNode,
 					depth,
 					options,
 					children,
@@ -175,23 +172,23 @@
 
 					focus,
 					getRelative,
-					insertBlock: (id, index = -1, options = {}, focusData = undefined) => this.insertBlock(id, index, options, focusData),
-					nextTick: fn => this.$nextTick(fn),
-					raf: fn => L.util.dom.raf(fn),
+					insertBlock: this.insertBlock.bind(this),
+					nextTick: this.$nextTick.bind(this),
+					raf: L.util.dom.raf,
 					rearrange,
 					remove,
 					setChildren,
 					setOptions
 				};
 
-				blockNode = block.renderEditor(h, api);
+				blockNode = block.renderEditor(h, this.apis[index]);
 
 				if (blockNode === undefined)
 					return undefined;
 
 				if (item.focusData)
 				{
-					focus(this.content[index].focusData);
+					focus(item.focusData);
 					delete this.content[index].focusData;
 				}
 
@@ -206,24 +203,25 @@
 				if (index === this.content.length - 1)
 					classes.push("is-last");
 
-				const onClick = evt =>
+				const onClick = () => ensure(() =>
 				{
-					evt.preventDefault();
-
 					if (this.selectedIndex !== index)
 						this.setSelectedIndex(index, blockNode.elm);
-				};
+				});
 
-				return h("div", {class: classes, on: {click: evt => onClick(evt)}}, [
-					this.renderInserter(h, true, index, "top"),
+				return h("div", {class: classes, on: {"!click": evt => onClick(evt)}}, [
+					this.renderInserter(h, index === 0, index, "top"),
 					this.renderInserter(h, true, index, "bottom"),
-					renderOptions(),
+					this.renderOptions(h, block, this.apis[index]),
+					this.renderOptionsSide(h, block, this.apis[index]),
 					blockNode
 				]);
 			},
 
 			renderBlocks(h)
 			{
+				L.util.dom.raf(() => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
+
 				return this.content
 					.map((item, index) => this.renderBlock(h, item, index));
 			},
@@ -246,6 +244,47 @@
 					class: mode,
 					on: {select: id => this.insertBlock(id, mode === "top" ? index : index + 1)}
 				});
+			},
+
+			renderOptions(h, block, api)
+			{
+				const {depth, isSelected} = api;
+
+				if (!isSelected)
+					return undefined;
+
+				return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
+					block.renderOptions(h, api)
+				]);
+			},
+
+			renderOptionsSide(h, block, {index, indexMax, isSelected, rearrange, remove})
+			{
+				if (!isSelected || block.canHaveChildren)
+					return undefined;
+
+				return h("div", {class: "be-options-side", on: {click: evt => evt.preventDefault()}}, [
+
+					h("button", {
+						class: "btn btn-icon btn-text btn-dark btn-sm",
+						domProps: {disabled: index === 0},
+						on: {click: () => rearrange(-1)}
+					}, [icon(h, "arrow-up")]),
+
+					h("button", {
+						class: "btn btn-icon btn-text btn-dark btn-sm",
+						domProps: {disabled: index === indexMax - 1},
+						on: {click: () => rearrange(1)}
+					}, [icon(h, "arrow-down")]),
+
+					divider(h),
+
+					h("button", {
+						class: "btn btn-icon btn-text btn-dark btn-sm",
+						on: {click: () => remove()}
+					}, [icon(h, "delete")])
+
+				])
 			},
 
 			setSelectedIndex(index, elm, auto = false)
@@ -285,12 +324,17 @@
 
 			content()
 			{
+				if (!this.canUpdate)
+					return this.canUpdate = true;
+
 				this.$emit("input", this.content);
 			},
 
 			value()
 			{
-				this.content = this.value;
+				this.canUpdate = false;
+				this.content = Array.from(this.value)
+					.filter(item => notNullOrUndefined(item));
 			}
 
 		}

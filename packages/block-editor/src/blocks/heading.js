@@ -59,14 +59,14 @@ export class HeadingBlock extends BlockBase
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
 			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
+			optionTextColor(h, {editor, options, setOptions}),
 			h("div", {class: "be-settings-row"}, headers.map(header => h("button", {
 				class: `btn btn-icon ${header.tag === options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,
 				on: {click: () => setOptions({type: header.tag})},
 				style: {flex: "1 1 0"}
 			}, [
 				h("i", {class: `mdi mdi-${header.icon}`})
-			]))),
-			optionTextColor(h, {editor, options, setOptions})
+			])))
 		]);
 	}
 

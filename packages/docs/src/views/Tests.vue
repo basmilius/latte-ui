@@ -80,7 +80,7 @@
 	</div>
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
-		<BEEditor :value="content">
+		<BEEditor v-model="content">
 			<template v-slot:settings-pane-after>
 				<div class="panel-header"><span class="panel-title">Page settings</span></div>
 				<BESettingsGroup title="General" padded>

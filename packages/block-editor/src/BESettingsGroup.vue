@@ -23,28 +23,10 @@
 		name: "BESettingsGroup",
 
 		props: {
-
-			depth: {
-				default: -1,
-				type: Number
-			},
-
-			opened: {
-				default: true,
-				type: Boolean
-			},
-
-			padded: {
-				default: false,
-				type: Boolean
-			},
-
-			title: {
-				default: "Unknown group",
-				required: true,
-				type: String
-			}
-
+			depth: {default: -1, type: Number},
+			opened: {default: true, type: Boolean},
+			padded: {default: false, type: Boolean},
+			title: {default: "Unknown group", required: true, type: String}
 		},
 
 		data()

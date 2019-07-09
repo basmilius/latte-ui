@@ -33,6 +33,13 @@ export function divider(h, vertical = false)
 	});
 }
 
+export function icon(h, icon)
+{
+	return h("i", {
+		class: `mdi mdi-${icon}`
+	});
+}
+
 export function optionTextColor(h, {editor, options, setOptions})
 {
 	return h("div", {class: "be-settings-row flex-column"}, [

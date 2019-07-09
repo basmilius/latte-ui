@@ -44,7 +44,7 @@
 		position: relative;
 		display: block;
 		margin: var(--panel-gutter) auto;
-		max-width: var(--editor-content-width, 960px);
+		max-width: var(--editor-content-width, 800px);
 	}
 
 	.be-block-mount
@@ -311,6 +311,30 @@
 			{
 				margin: 0 0 .5rem 0;
 			}
+		}
+	}
+
+	.be-options-side
+	{
+		position: absolute;
+		display: flex;
+		top: -12px;
+		left: -66px;
+		padding: 6px;
+		flex-flow: column;
+		background: rgba(var(--panel-background), 1);
+		border-radius: var(--border-radius);
+		box-shadow: var(--popup-elevation);
+		z-index: 10;
+
+		.btn
+		{
+			margin: 0;
+		}
+
+		.divider
+		{
+			margin: 6px 0;
 		}
 	}
 

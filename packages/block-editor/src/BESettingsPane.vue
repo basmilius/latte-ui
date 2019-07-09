@@ -17,18 +17,23 @@
 
 <script>
 
+	import { editorInstance } from "./utils";
+
 	export default {
 
 		name: "BESettingsPane",
 
-		props: {
+		data()
+		{
+			return {
+				editor: editorInstance(this),
+				isInitialized: false
+			};
+		},
 
-			editor: {
-				default: null,
-				required: true,
-				type: Object
-			}
-
+		mounted()
+		{
+			this.isInitialized = true;
 		},
 
 		computed: {
@@ -46,16 +51,6 @@
 				return `be-settings-pane-${this.editor.uniqueId}`;
 			}
 
-		},
-
-		data()
-		{
-			return {isInitialized: false};
-		},
-
-		mounted()
-		{
-			this.isInitialized = true;
 		}
 
 	}

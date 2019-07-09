@@ -63,7 +63,9 @@
 			{
 				return this.editor.categories.map(c =>
 				{
-					c.blocks = this.editor.blocks.filter(b => b.category === c.id);
+					c.blocks = this.editor.blocks
+						.filter(b => b.category === c.id)
+						.sort((a, b) => a.name.localeCompare(b.name));
 
 					return c;
 				});
