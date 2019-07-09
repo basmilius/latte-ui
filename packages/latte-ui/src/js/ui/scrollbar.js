@@ -9,9 +9,13 @@
 
 import { createElement, raf } from "../util/dom";
 import { docRoot } from "../core";
+import { isTouchDevice } from "../util/touch";
 
 export function initializeScrollbar()
 {
+	if (isTouchDevice())
+		return; // No scrollbars on touch devices.
+
 	createElement("div", div =>
 	{
 		const props = {
