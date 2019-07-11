@@ -149,7 +149,7 @@
 		mounted()
 		{
 			document.addEventListener("selectionchange", this.onSelectionChanged, {passive: true});
-			document.execCommand("defaultParagraphSeparator", false, "p");
+			document.execCommand("defaultParagraphSeparator", false, "div");
 		},
 
 		computed: {

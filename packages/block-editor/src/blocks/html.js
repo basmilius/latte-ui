@@ -32,7 +32,7 @@ export class HtmlBlock extends BlockBase
 		super("html", "other", "language-html5");
 	}
 
-	renderEditor(h, {isSelected, options, setOptions})
+	renderEditor(h, api)
 	{
 		return h("latte-tab-container", {}, [
 			h("div", {class: "d-flex align-items-center mb-1"}, [
@@ -44,10 +44,10 @@ export class HtmlBlock extends BlockBase
 					class: "form-control",
 					domProps: {
 						rows: 10,
-						value: options.code
+						value: api.options.code
 					},
 					on: {
-						input: evt => setOptions({code: evt.target.value})
+						input: evt => api.setOptions({code: evt.target.value})
 					}
 				})
 			]),
@@ -55,17 +55,17 @@ export class HtmlBlock extends BlockBase
 				h("div", {
 					class: "be-block-custom-html-code",
 					domProps: {
-						innerHTML: options.code
+						innerHTML: api.options.code
 					}
 				})
 			])
 		])
 	}
 
-	renderOptions(h, {editor, index, indexMax, rearrange, remove, options, setOptions})
+	renderOptions(h, api)
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"})
+			h(BEBlockActions, {props: {api}, slot: "header"})
 		]);
 	}
 

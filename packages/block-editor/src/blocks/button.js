@@ -2,6 +2,7 @@ import { BlockBase } from "../block";
 import { getLatte } from "../utils";
 import BESettingsGroup from "../BESettingsGroup";
 import BEBlockActions from "../BEBlockActions";
+import { textField, toggleButton } from "./primitive/settings";
 
 const buttonTypes = [
 	{id: "contained", label: "Contained"},
@@ -68,21 +69,21 @@ export class ButtonBlock extends BlockBase
 		);
 	}
 
-	renderEditor(h, {options, setOptions})
+	renderEditor(h, api)
 	{
 		return h(
 			"button",
 			{
-				class: getButtonClasses(options)
+				class: getButtonClasses(api.options)
 			},
 			[
 				h("span", {
 					domProps: {
 						contentEditable: "plaintext-only",
-						innerHTML: options.text
+						innerHTML: api.options.text
 					},
 					on: {
-						blur: evt => setOptions({text: evt.target.innerText})
+						blur: evt => api.setOptions({text: evt.target.innerText})
 					},
 					style: {
 						minWidth: "18px"
@@ -92,31 +93,32 @@ export class ButtonBlock extends BlockBase
 		);
 	}
 
-	renderOptions(h, {editor, index, indexMax, rearrange, remove, options, setOptions})
+	renderOptions(h, api)
 	{
 		const uniqueId = getLatte().api.id();
 
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
-			h("label", {class: "be-settings-row"}, [
-				h("span", "Pill button"),
-				h("div", [
-					h("input", {class: "toggle-button toggle-button-primary", domProps: {checked: options.pillButton, type: "checkbox"}, on: {input: evt => setOptions({pillButton: evt.target.checked})}})
-				])
-			]),
+			h(BEBlockActions, {props: {api}, slot: "header"}),
+			toggleButton(h, "Pill button", () => api.options.pillButton, pillButton => api.setOptions({pillButton})),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Type"),
 				buttonTypes.map(buttonType => h("label", {class: "d-flex align-items-center my-1 w-100"}, [
-					h("div", [
-						h("input", {class: "radio-button radio-button-primary mr-3", domProps: {checked: options.type === buttonType.id, type: "radio", name: uniqueId, value: buttonType.id}, on: {click: () => setOptions({type: buttonType.id})}})
-					]),
+					h("input", {
+						class: "radio-button radio-button-primary mr-3",
+						domProps: {
+							checked: api.options.type === buttonType.id,
+							type: "radio",
+							name: uniqueId,
+							value: buttonType.id
+						},
+						on: {
+							click: () => api.setOptions({type: buttonType.id})
+						}
+					}),
 					h("span", {class: "m-0"}, buttonType.label)
 				]))
 			]),
-			h("label", {class: "be-settings-row flex-column"}, [
-				h("span", "URL"),
-				h("input", {class: "form-control", domProps: {type: "text", value: options.url}, on: {input: evt => setOptions({url: evt.target.value})}})
-			])
+			textField(h, "URL", () => api.options.url, url => api.setOptions({url}))
 		]);
 	}
 

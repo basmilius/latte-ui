@@ -1,6 +1,7 @@
 import BEBlockActions from "../BEBlockActions";
 import BESettingsGroup from "../BESettingsGroup";
 import { BlockBase } from "../block";
+import { textField } from "./primitive/settings";
 
 export class YouTubeEmbedBlock extends BlockBase
 {
@@ -43,25 +44,22 @@ export class YouTubeEmbedBlock extends BlockBase
 		]);
 	}
 
-	renderEditor(h, {options})
+	renderEditor(h, api)
 	{
 		return h("div", {class: "embed-responsive embed-responsive-16by9 be-block-embed be-block-youtube-embed"}, [
 			h("iframe", {
 				domProps: {
-					src: `https://www.youtube-nocookie.com/embed/${options.videoId}`
+					src: `https://www.youtube-nocookie.com/embed/${api.options.videoId}`
 				}
 			})
 		]);
 	}
 
-	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
+	renderOptions(h, api)
 	{
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
-			h("label", {class: "be-settings-row flex-column"}, [
-				h("span", "Video ID"),
-				h("input", {class: "form-control", domProps: {type: "text", value: options.videoId}, on: {input: evt => setOptions({videoId: evt.target.value})}})
-			])
+			h(BEBlockActions, {props: {api}, slot: "header"}),
+			textField(h, "Video ID", () => api.options.videoId, videoId => api.setOptions({videoId}))
 		]);
 	}
 

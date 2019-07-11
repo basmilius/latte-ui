@@ -229,10 +229,13 @@ export function placeCaretAtEdge(elm, atEnd = false)
 	if (!elm.isContentEditable)
 		return;
 
-	const target = elm[atEnd ? "lastChild" : "firstChild"];
+	let target = elm[atEnd ? "lastChild" : "firstChild"];
 
 	if (!target)
-		return;
+	{
+		target = document.createTextNode("");
+		elm.appendChild(target);
+	}
 
 	const selection = window.getSelection();
 	const range = document.createRange();

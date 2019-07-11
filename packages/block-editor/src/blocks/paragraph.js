@@ -7,9 +7,9 @@ import { render, renderEditor } from "./primitive/text";
 let canUpdate = true;
 let lastSelectionRange;
 
-function executeAndFocus(focus, fn)
+function executeAndFocus(api, fn)
 {
-	focus(undefined, elm =>
+	api.focus(undefined, elm =>
 	{
 		elm.focus();
 
@@ -77,27 +77,27 @@ export class ParagraphBlock extends BlockBase
 		return renderEditor("p", h, api, () => canUpdate);
 	}
 
-	renderOptions(h, {editor, focus, index, indexMax, rearrange, remove, options, setOptions})
+	renderOptions(h, api)
 	{
 		canUpdate = true;
 
 		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h("latte-portal", {props: {to: editor.toolbar.beforePortalId}}, [
+			h("latte-portal", {props: {to: api.editor.toolbar.beforePortalId}}, [
 				h("div", {class: "d-flex align-items-center", on: {mousedown: () => makeLastRange()}}, [
 					h("div", {class: "divider divider-vertical"}),
-					commandIconToggleButton(h, executeAndFocus, focus, "format-bold", "bold"),
-					commandIconToggleButton(h, executeAndFocus, focus, "format-italic", "italic"),
-					commandIconToggleButton(h, executeAndFocus, focus, "format-underline", "underline"),
+					commandIconToggleButton(h, executeAndFocus, api, "format-bold", "bold"),
+					commandIconToggleButton(h, executeAndFocus, api, "format-italic", "italic"),
+					commandIconToggleButton(h, executeAndFocus, api, "format-underline", "underline"),
 					divider(h, true),
-					functionIconToggleButton(h, executeAndFocus, focus, "format-align-left", () => setOptions({align: "left"}), () => options.align === "left"),
-					functionIconToggleButton(h, executeAndFocus, focus, "format-align-center", () => setOptions({align: "center"}), () => options.align === "center"),
-					functionIconToggleButton(h, executeAndFocus, focus, "format-align-right", () => setOptions({align: "right"}), () => options.align === "right"),
-					functionIconToggleButton(h, executeAndFocus, focus, "format-align-justify", () => setOptions({align: "justify"}), () => options.align === "justify")
+					functionIconToggleButton(h, executeAndFocus, api, "format-align-left", () => api.setOptions({align: "left"}), () => api.options.align === "left"),
+					functionIconToggleButton(h, executeAndFocus, api, "format-align-center", () => api.setOptions({align: "center"}), () => api.options.align === "center"),
+					functionIconToggleButton(h, executeAndFocus, api, "format-align-right", () => api.setOptions({align: "right"}), () => api.options.align === "right"),
+					functionIconToggleButton(h, executeAndFocus, api, "format-align-justify", () => api.setOptions({align: "justify"}), () => api.options.align === "justify")
 				])
 			]),
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
-			optionTextColor(h, {editor, options, setOptions}),
-			optionTextSize(h, {options, setOptions})
+			h(BEBlockActions, {props: {api}, slot: "header"}),
+			optionTextColor(h, api),
+			optionTextSize(h, api)
 		]);
 	}
 

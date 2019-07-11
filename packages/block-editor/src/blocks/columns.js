@@ -4,6 +4,8 @@ import BEBlockActions from "../BEBlockActions";
 
 import { BlockBase } from "../block";
 import { replaceIndex } from "../utils";
+import { optional, rangeField, toggleButton } from "./primitive/settings";
+import { optionAdditionalClasses } from "./primitive/element";
 
 const presets = [
 	{
@@ -80,46 +82,46 @@ export class ColumnsBlock extends BlockBase
 
 		return h(
 			"div",
-			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
+			{class: `row be-block-columns ${options.class} ${options.gutters ? "" : "no-gutters"}`},
 			Array(preset ? preset.columns : options.columns)
 				.fill(undefined)
 				.map((_, index) => h("div", {class: preset ? preset.classes[index] : "col-12 col-lg"}, processGroup(children[index] || [])))
 		);
 	}
 
-	renderEditor(h, {depth, options, children, setChildren})
+	renderEditor(h, api)
 	{
-		const preset = presets[options.preset] || undefined;
+		const preset = presets[api.options.preset] || undefined;
 
 		return h(
 			"div",
-			{class: `row be-block-columns ${options.class} ${options.gutters ? "gutters" : "no-gutters"}`},
-			Array(preset ? preset.columns : options.columns)
+			{class: `row be-block-columns ${api.options.class} ${api.options.gutters ? "" : "no-gutters"}`},
+			Array(preset ? preset.columns : api.options.columns)
 				.fill(undefined)
 				.map((_, index) => h("div", {class: preset ? preset.classes[index] : "col-12 col-lg"}, [
 					h(BEBlocks, {
 						props: {
-							depth,
-							value: children[index] || []
+							depth: api.depth,
+							value: api.children[index] || []
 						},
 						on: {
-							input: c => setChildren(replaceIndex(children, index, c))
+							input: c => api.setChildren(replaceIndex(api.children, index, c))
 						}
 					})
 				]))
 		);
 	}
 
-	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
+	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name, depth}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
+		return h(BESettingsGroup, {props: {title: this.name, depth: api.depth}}, [
+			h(BEBlockActions, {props: {api}, slot: "header"}),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Preset"),
 				h("div", {class: "d-flex flex-wrap be-settings-columns-presets"}, presets.map((preset, index) =>
 					h("div", {
-							class: `preset ${options.preset === index ? "is-active" : ""}`,
-							on: {click: () => setOptions({preset: index === options.preset ? -1 : index})}
+							class: `preset ${api.options.preset === index ? "is-active" : ""}`,
+							on: {click: () => api.setOptions({preset: index === api.options.preset ? -1 : index})}
 						},
 						Array(preset.columns)
 							.fill(undefined)
@@ -127,39 +129,13 @@ export class ColumnsBlock extends BlockBase
 					)
 				))
 			]),
-			options.preset === -1 ? h("label", {class: "be-settings-row"}, [
-				h("span", "Amount of columns"),
-				h("div", [
-					h("input", {
-						class: "custom-range",
-						domProps: {
-							min: 2,
-							max: 6,
-							value: options.columns,
-							type: "range"
-						},
-						on: {
-							input: evt =>
-							{
-								const columns = parseInt(evt.target.value);
-
-								setChildren(children.slice(0, columns));
-								setOptions({columns});
-							}
-						}
-					})
-				])
-			]) : undefined,
-			h("label", {class: "be-settings-row"}, [
-				h("span", "Gutters"),
-				h("div", [
-					h("input", {class: "toggle-button toggle-button-primary", domProps: {checked: options.gutters, type: "checkbox"}, on: {input: evt => setOptions({gutters: evt.target.checked})}})
-				])
-			]),
-			h("label", {class: "be-settings-row flex-column"}, [
-				h("span", "Additional classes"),
-				h("input", {class: "form-control", domProps: {type: "text", value: options.class}, on: {input: evt => setOptions({class: evt.target.value})}})
-			])
+			optional(api.options.preset === -1, () => rangeField(h, "Amount of columns", () => api.options.columns, columns =>
+			{
+				api.setChildren(api.children.slice(0, columns));
+				api.setOptions({columns});
+			}, 2, 6, 1)),
+			toggleButton(h, "Gutters", () => api.options.gutters, gutters => api.setOptions({gutters})),
+			optionAdditionalClasses(h, api)
 		]);
 	}
 

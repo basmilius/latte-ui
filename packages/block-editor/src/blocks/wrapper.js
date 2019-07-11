@@ -2,6 +2,7 @@ import BEBlocks from "../BEBlocks";
 import BEBlockActions from "../BEBlockActions";
 import BESettingsGroup from "../BESettingsGroup";
 import { BlockBase } from "../block";
+import { optionAdditionalClasses } from "./primitive/element";
 
 export class WrapperBlock extends BlockBase
 {
@@ -52,31 +53,28 @@ export class WrapperBlock extends BlockBase
 		);
 	}
 
-	renderEditor(h, {depth, index, children, options, setChildren})
+	renderEditor(h, api)
 	{
-		return h("div", {class: `row be-block-wrapper ${options.class}`}, [
+		return h("div", {class: `row be-block-wrapper ${api.options.class}`}, [
 			h("div", {class: "col-12"}, [
 				h(BEBlocks, {
 					props: {
-						depth,
-						value: children || []
+						depth: api.depth,
+						value: api.children || []
 					},
 					on: {
-						input: c => setChildren(c)
+						input: c => api.setChildren(c)
 					}
 				})
 			])
 		]);
 	}
 
-	renderOptions(h, {depth, index, indexMax, rearrange, remove, children, options, setChildren, setOptions})
+	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name, depth}}, [
-			h(BEBlockActions, {props: {index, indexMax, rearrange, remove}, slot: "header"}),
-			h("label", {class: "be-settings-row flex-column"}, [
-				h("span", "Additional classes"),
-				h("input", {class: "form-control", domProps: {type: "text", value: options.class}, on: {input: evt => setOptions({class: evt.target.value})}})
-			])
+		return h(BESettingsGroup, {props: {title: this.name, depth: api.depth}}, [
+			h(BEBlockActions, {props: {api}, slot: "header"}),
+			optionAdditionalClasses(h, api)
 		]);
 	}
 
