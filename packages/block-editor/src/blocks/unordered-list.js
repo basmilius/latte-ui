@@ -1,9 +1,10 @@
 import { BlockBase } from "../block";
+import { render, renderEditor } from "../primitive/list";
+import { renderTextFormatToolbar } from "../primitive/text";
 import { optionTextColor, optionTextSize } from "../primitive/element";
-import { render, renderEditor, renderTextFormatToolbar } from "../primitive/text";
 import { blockActions, settingsGroup } from "../primitive/settings";
 
-export class ParagraphBlock extends BlockBase
+export class UnorderedListBlock extends BlockBase
 {
 
 	get defaultOptions()
@@ -12,46 +13,45 @@ export class ParagraphBlock extends BlockBase
 			align: "left",
 			color: undefined,
 			fontSize: 1,
-			indent: 0,
-			text: ""
+			text: "<li></li>"
 		};
 	}
 
 	get description()
 	{
-		return "Represents some text."
+		return "An list that is not ordered.";
 	}
 
 	get keywords()
 	{
-		return ["paragraph", "text"];
+		return ["list", "unordered"];
 	}
 
 	get name()
 	{
-		return "Paragraph";
+		return "Unordered List";
 	}
 
 	constructor()
 	{
-		super("paragraph", "text", "format-paragraph");
+		super("unordered-list", "text", "format-list-bulleted");
 	}
 
 	render(h, api)
 	{
-		return render("p", h, api);
+		return render(h, "ul", api);
 	}
 
 	renderEditor(h, api)
 	{
-		return renderEditor("p", h, api);
+		return renderEditor(h, "ul", api);
 	}
 
 	renderOptions(h, api)
 	{
 		return settingsGroup(h, this.name, [
 			blockActions(h, api),
-			renderTextFormatToolbar(h, api),
+			renderTextFormatToolbar(h, api, {textAlignment: false, textIdentation: false}),
 			optionTextColor(h, api),
 			optionTextSize(h, api)
 		]);

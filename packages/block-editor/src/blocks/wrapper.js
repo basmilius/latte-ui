@@ -1,8 +1,7 @@
 import BEBlocks from "../BEBlocks";
-import BEBlockActions from "../BEBlockActions";
-import BESettingsGroup from "../BESettingsGroup";
 import { BlockBase } from "../block";
-import { optionAdditionalClasses } from "./primitive/element";
+import { optionAdditionalClasses } from "../primitive/element";
+import { blockActions, settingsGroupWithDepth } from "../primitive/settings";
 
 export class WrapperBlock extends BlockBase
 {
@@ -72,8 +71,8 @@ export class WrapperBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name, depth: api.depth}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"}),
+		return settingsGroupWithDepth(h, api.depth, this.name, [
+			blockActions(h, api),
 			optionAdditionalClasses(h, api)
 		]);
 	}

@@ -21,6 +21,21 @@
 		}
 	}
 
+	ol[contenteditable],
+	ul[contenteditable]
+	{
+		&:empty::before
+		{
+			display: none;
+		}
+
+		li:empty::before
+		{
+			content: attr(data-placeholder);
+			opacity: .6;
+		}
+	}
+
 	.be-content-pane
 	{
 		position: relative;
@@ -346,6 +361,12 @@
 		min-height: 60px;
 		border-color: rgba(var(--outline-color), 1);
 		font-size: 1rem;
+
+		.divider + .divider,
+		.divider:last-child
+		{
+			display: none;
+		}
 	}
 
 	@at-root .be-inserter.be-inserter-popup

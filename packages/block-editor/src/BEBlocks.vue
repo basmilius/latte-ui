@@ -2,13 +2,13 @@
 
 	import { BlockAPI, defaultFocusData } from "./block";
 	import { editorInstance, getLatte, notNullOrUndefined } from "./utils";
-	import { divider, icon } from "./blocks/primitive/element";
+	import { divider, icon } from "./primitive/element";
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
 
 	const inlineClasses = ["be-block-embed"];
-	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p"];
+	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "ol", "ul"];
 
 	const L = getLatte();
 

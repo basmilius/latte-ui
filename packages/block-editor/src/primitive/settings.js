@@ -1,7 +1,15 @@
-export function optional(condition, fn)
+import BEBlockActions from "../BEBlockActions";
+import BESettingsGroup from "../BESettingsGroup";
+
+export function blockActions(h, api)
+{
+	return h(BEBlockActions, {props: {api}, slot: "header"});
+}
+
+export function optional(condition, fn, defaultValue = undefined)
 {
 	if (!condition)
-		return undefined;
+		return defaultValue;
 
 	return fn();
 }
@@ -26,6 +34,16 @@ export function rangeField(h, title, getValue, setValue, min = 0, max = 1, step 
 			})
 		])
 	]);
+}
+
+export function settingsGroup(h, title, children)
+{
+	return h(BESettingsGroup, {props: {title}}, children);
+}
+
+export function settingsGroupWithDepth(h, depth, title, children)
+{
+	return h(BESettingsGroup, {props: {title, depth}}, children);
 }
 
 export function textField(h, title, getValue, setValue)

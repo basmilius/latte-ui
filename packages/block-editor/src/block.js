@@ -256,7 +256,9 @@ export class BlockAPI
 		this.#group.removeBlock(this.#index);
 
 		if (this.previousSibbling)
-			this.previousSibbling.focus();
+			this.previousSibbling.focus({placeAtEnd: true});
+		else if (this.#group.contentFiltered.length > 0)
+			this.nextTick(() => this.#group.blocks[this.#index].focus({}));
 		else
 			this.#group.setSelectedIndex(-1, undefined);
 	}

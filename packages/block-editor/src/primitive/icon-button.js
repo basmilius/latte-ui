@@ -1,7 +1,34 @@
 import Vue from "vue";
-import { getLatte } from "../../utils";
+import { getLatte } from "../utils";
 
 const L = getLatte();
+
+export const IconButton = Vue.extend({
+
+	name: "IconToggleButton",
+
+	props: {
+		disabled: {default: false, type: Boolean},
+		icon: {type: String},
+		press: {type: Function}
+	},
+
+	render(h)
+	{
+		return h(
+			"button",
+			{
+				class: `btn btn-icon btn-text btn-dark`,
+				domProps: {disabled: this.disabled},
+				on: {click: evt => this.press(evt)}
+			},
+			[
+				h("i", {class: `mdi mdi-${this.icon}`})
+			]
+		);
+	}
+
+});
 
 export const IconToggleButton = Vue.extend({
 

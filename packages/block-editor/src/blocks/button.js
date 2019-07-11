@@ -1,8 +1,6 @@
 import { BlockBase } from "../block";
 import { getLatte } from "../utils";
-import BESettingsGroup from "../BESettingsGroup";
-import BEBlockActions from "../BEBlockActions";
-import { textField, toggleButton } from "./primitive/settings";
+import { blockActions, settingsGroup, textField, toggleButton } from "../primitive/settings";
 
 const buttonTypes = [
 	{id: "contained", label: "Contained"},
@@ -97,8 +95,8 @@ export class ButtonBlock extends BlockBase
 	{
 		const uniqueId = getLatte().api.id();
 
-		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"}),
+		return settingsGroup(h, this.name, [
+			blockActions(h, api),
 			toggleButton(h, "Pill button", () => api.options.pillButton, pillButton => api.setOptions({pillButton})),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Type"),

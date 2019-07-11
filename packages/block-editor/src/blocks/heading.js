@@ -1,8 +1,7 @@
-import BESettingsGroup from "../BESettingsGroup";
-import BEBlockActions from "../BEBlockActions";
 import { BlockBase } from "../block";
-import { render, renderEditor } from "./primitive/text";
-import { optionTextColor } from "./primitive/element";
+import { render, renderEditor } from "../primitive/text";
+import { optionTextColor } from "../primitive/element";
+import { blockActions, settingsGroup } from "../primitive/settings";
 
 const headers = [
 	{tag: "h1", icon: "format-header-1", name: "Header 1"},
@@ -57,8 +56,8 @@ export class HeadingBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"}),
+		return settingsGroup(h, this.name, [
+			blockActions(h, api),
 			optionTextColor(h, api),
 			h("div", {class: "be-settings-row"}, headers.map(header => h("button", {
 				class: `btn btn-icon ${header.tag === api.options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,

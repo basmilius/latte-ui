@@ -1,49 +1,65 @@
-import { atEdge, caretPosition, getRectFromRange, placeCaretAt, placeCaretAtEdge } from "../../helper/selection";
-import { decodeEntities } from "../../helper/html-entities";
+import { commandIconToggleButton, functionIconButton, functionIconToggleButton, divider } from "./element";
+import { decodeEntities } from "../helper/html-entities";
+import { atEdge, caretPosition, getRectFromRange, placeCaretAt, placeCaretAtEdge } from "../helper/selection";
+import { optional } from "./settings";
 
 const allowAppend = ["heading", "paragraph"];
+const defaultFormattingOptions = {
+	boldItalicUnderline: true,
+	createLinks: true,
+	textAlignment: true,
+	textIdentation: true
+};
 
-function getStyles(options)
+let canUpdate = true;
+let lastSelectionRange;
+
+function executeAndFocus(api, fn)
+{
+	api.focus({select: false}, elm =>
+	{
+		elm.focus();
+
+		api.editor.selection.setBaseAndExtent(
+			lastSelectionRange.startContainer,
+			lastSelectionRange.startOffset,
+			lastSelectionRange.endContainer,
+			lastSelectionRange.endOffset
+		);
+
+		fn();
+		saveLastSelection();
+	});
+}
+
+function saveLastSelection()
+{
+	canUpdate = false;
+
+	const current = window.getSelection().getRangeAt(0);
+	const range = document.createRange();
+
+	range.setStart(current.startContainer instanceof Element ? current.startContainer.childNodes[0] : current.startContainer, current.startOffset);
+	range.setEnd(current.endContainer instanceof Element ? current.endContainer.childNodes[0] : current.endContainer, current.endOffset);
+
+	lastSelectionRange = range;
+}
+
+export function getStyles(options)
 {
 	return {
+		marginLeft: options.indent ? `${options.indent}rem` : undefined,
 		color: options.color ? options.color : undefined,
 		fontSize: options.fontSize ? `${options.fontSize}rem` : undefined,
 		textAlign: options.align || undefined
 	};
 }
 
-export function render(tag, h, {options})
+export function onBlur(evt, api)
 {
-	return h(tag, {
-		domProps: {
-			innerHTML: options.text
-		},
-		style: getStyles(options)
-	});
-}
+	if (!canUpdate)
+		return;
 
-export function renderEditor(tag, h, api, canUpdate = undefined)
-{
-	return h(tag, {
-		attrs: {
-			"data-placeholder": "Start writing..."
-		},
-		domProps: {
-			contentEditable: "true",
-			innerHTML: api.options.text
-		},
-		style: getStyles(api.options),
-		on: {
-			blur: evt => canUpdate === undefined || canUpdate() === true ? onBlur(evt, api) : undefined,
-			input: evt => onInput(evt, tag, api),
-			keydown: evt => onKeyDown(evt, api),
-			paste: evt => onPaste(evt, api)
-		}
-	});
-}
-
-function onBlur(evt, api)
-{
 	api.editor.inserterList.close();
 
 	if (api.isRemoved)
@@ -53,7 +69,7 @@ function onBlur(evt, api)
 	api.setOptions({text: evt.target.innerHTML});
 }
 
-function onInput(evt, tag, api)
+export function onInput(evt, tag, api)
 {
 	const text = evt.target.innerText;
 
@@ -81,7 +97,7 @@ function onInput(evt, tag, api)
 	});
 }
 
-function onKeyDown(evt, api)
+export function onKeyDown(evt, api)
 {
 	const {anchorOffset, focusOffset} = api.editor.selection;
 	const text = evt.target.innerHTML;
@@ -111,7 +127,7 @@ function onKeyDown(evt, api)
 		return kdHandleBackspaceWhenAtStart(evt, text, api);
 }
 
-function onPaste(evt, api)
+export function onPaste(evt, api)
 {
 	const textData = evt.clipboardData.getData("Text");
 
@@ -127,6 +143,85 @@ function onPaste(evt, api)
 
 	api.remove();
 	contents.forEach((text, i) => api.insertBlock("paragraph", api.index + i, {text}, {placeAtEnd: true}));
+}
+
+export function render(tag, h, {options})
+{
+	return h(tag, {
+		domProps: {
+			innerHTML: options.text
+		},
+		style: getStyles(options)
+	});
+}
+
+export function renderEditor(tag, h, api)
+{
+	canUpdate = true;
+
+	return h(tag, {
+		attrs: {
+			"data-placeholder": "Start writing..."
+		},
+		domProps: {
+			contentEditable: "true",
+			innerHTML: api.options.text
+		},
+		style: getStyles(api.options),
+		on: {
+			blur: evt => onBlur(evt, api),
+			input: evt => onInput(evt, tag, api),
+			keydown: evt => onKeyDown(evt, api),
+			paste: evt => onPaste(evt, api)
+		}
+	});
+}
+
+export function renderTextFormatToolbar(h, api, formattingOptions = {})
+{
+	formattingOptions = Object.assign({}, defaultFormattingOptions, formattingOptions);
+
+	return h("latte-portal", {props: {to: api.editor.toolbar.beforePortalId}}, [
+		h("div", {class: "d-flex align-items-center", on: {mousedown: () => saveLastSelection()}}, [
+			h("div", {class: "divider divider-vertical"}),
+
+			...optional(formattingOptions.boldItalicUnderline, () => [
+				commandIconToggleButton(h, executeAndFocus, api, "format-bold", "bold"),
+				commandIconToggleButton(h, executeAndFocus, api, "format-italic", "italic"),
+				commandIconToggleButton(h, executeAndFocus, api, "format-underline", "underline")
+			], []),
+
+			divider(h, true),
+
+			...optional(formattingOptions.textAlignment, () => [
+				functionIconToggleButton(h, executeAndFocus, api, "format-align-left", () => api.setOptions({align: "left"}), () => api.options.align === "left"),
+				functionIconToggleButton(h, executeAndFocus, api, "format-align-center", () => api.setOptions({align: "center"}), () => api.options.align === "center"),
+				functionIconToggleButton(h, executeAndFocus, api, "format-align-right", () => api.setOptions({align: "right"}), () => api.options.align === "right"),
+				functionIconToggleButton(h, executeAndFocus, api, "format-align-justify", () => api.setOptions({align: "justify"}), () => api.options.align === "justify")
+			], []),
+
+			divider(h, true),
+
+			...optional(formattingOptions.createLinks, () => [
+				functionIconButton(h, executeAndFocus, api, "link", () =>
+				{
+				})
+			], []),
+
+			divider(h, true),
+
+			...optional(formattingOptions.textIdentation, () => [
+				functionIconButton(h, executeAndFocus, api, "format-indent-decrease", () => api.setOptions({indent: api.options.indent - 1}), api.options.indent === 0),
+				functionIconButton(h, executeAndFocus, api, "format-indent-increase", () => api.setOptions({indent: api.options.indent + 1}), api.options.indent >= 10)
+			], [])
+		])
+	])
+}
+
+export function removeEmptyElements(evt)
+{
+	Array.from(evt.target.querySelectorAll("br,b:empty,i:empty,p:empty"))
+		.forEach(br => br.remove());
 }
 
 function kdHandleArrowDownAtEnd(evt, api)
@@ -215,10 +310,4 @@ function kdHandleEnterWhenNotShift(evt, text, api)
 			api.setOptions({text: decodeEntities(evt.target.innerHTML)});
 		});
 	}
-}
-
-function removeEmptyElements(evt)
-{
-	Array.from(evt.target.querySelectorAll("br,b:empty,i:empty,p:empty"))
-		.forEach(br => br.remove());
 }

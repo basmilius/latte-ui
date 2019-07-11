@@ -1,11 +1,9 @@
 import BEBlocks from "../BEBlocks";
-import BESettingsGroup from "../BESettingsGroup";
-import BEBlockActions from "../BEBlockActions";
 
 import { BlockBase } from "../block";
 import { replaceIndex } from "../utils";
-import { optional, rangeField, toggleButton } from "./primitive/settings";
-import { optionAdditionalClasses } from "./primitive/element";
+import { blockActions, optional, rangeField, settingsGroupWithDepth, toggleButton } from "../primitive/settings";
+import { optionAdditionalClasses } from "../primitive/element";
 
 const presets = [
 	{
@@ -114,8 +112,8 @@ export class ColumnsBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name, depth: api.depth}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"}),
+		return settingsGroupWithDepth(h, api.depth, this.name, [
+			blockActions(h, api),
 			h("div", {class: "be-settings-row flex-column"}, [
 				h("span", "Preset"),
 				h("div", {class: "d-flex flex-wrap be-settings-columns-presets"}, presets.map((preset, index) =>

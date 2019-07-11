@@ -1,6 +1,5 @@
 import { BlockBase } from "../block";
-import BESettingsGroup from "../BESettingsGroup";
-import BEBlockActions from "../BEBlockActions";
+import { blockActions, settingsGroup } from "../primitive/settings";
 
 export class HtmlBlock extends BlockBase
 {
@@ -64,8 +63,8 @@ export class HtmlBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"})
+		return settingsGroup(h, this.name, [
+			blockActions(h, api)
 		]);
 	}
 

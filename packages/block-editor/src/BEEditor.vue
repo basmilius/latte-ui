@@ -40,7 +40,16 @@
 	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
 	import { notNullOrUndefined } from "./utils";
-	import { ButtonBlock, ColumnsBlock, HeadingBlock, HtmlBlock, ParagraphBlock, WrapperBlock, YouTubeEmbedBlock } from "./blocks";
+	import {
+		ButtonBlock,
+		ColumnsBlock,
+		HeadingBlock,
+		HtmlBlock,
+		OrderedListBlock,
+		ParagraphBlock, UnorderedListBlock,
+		WrapperBlock,
+		YouTubeEmbedBlock
+	} from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -200,7 +209,9 @@
 
 				// Text
 				this.registerBlock(HeadingBlock);
+				this.registerBlock(OrderedListBlock);
 				this.registerBlock(ParagraphBlock);
+				this.registerBlock(UnorderedListBlock);
 
 				// Embeds
 				this.registerBlock(YouTubeEmbedBlock);

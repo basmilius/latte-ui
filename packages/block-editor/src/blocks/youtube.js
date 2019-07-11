@@ -1,7 +1,5 @@
-import BEBlockActions from "../BEBlockActions";
-import BESettingsGroup from "../BESettingsGroup";
 import { BlockBase } from "../block";
-import { textField } from "./primitive/settings";
+import { blockActions, settingsGroup, textField } from "../primitive/settings";
 
 export class YouTubeEmbedBlock extends BlockBase
 {
@@ -57,8 +55,8 @@ export class YouTubeEmbedBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return h(BESettingsGroup, {props: {title: this.name}}, [
-			h(BEBlockActions, {props: {api}, slot: "header"}),
+		return settingsGroup(h, this.title, [
+			blockActions(h, api),
 			textField(h, "Video ID", () => api.options.videoId, videoId => api.setOptions({videoId}))
 		]);
 	}
