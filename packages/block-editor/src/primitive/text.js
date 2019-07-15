@@ -2,6 +2,8 @@ import { commandIconToggleButton, functionIconButton, functionIconToggleButton, 
 import { decodeEntities } from "../helper/html-entities";
 import { atEdge, caretPosition, getRectFromRange, placeCaretAt, placeCaretAtEdge } from "../helper/selection";
 import { optional } from "./settings";
+import { translate } from "../utils";
+import { handleComponentError } from "../helper/error";
 
 const allowAppend = ["heading", "paragraph"];
 const defaultFormattingOptions = {
@@ -13,6 +15,22 @@ const defaultFormattingOptions = {
 
 let canUpdate = true;
 let lastSelectionRange;
+
+function ensureTextNode(elm)
+{
+	if (elm instanceof Element)
+	{
+		if (elm.childNodes[0])
+			return elm.childNodes[0];
+
+		const dummy = document.createTextNode("");
+		elm.appendChild(dummy);
+
+		return dummy;
+	}
+
+	return elm;
+}
 
 function executeAndFocus(api, fn)
 {
@@ -39,10 +57,17 @@ function saveLastSelection()
 	const current = window.getSelection().getRangeAt(0);
 	const range = document.createRange();
 
-	range.setStart(current.startContainer instanceof Element ? current.startContainer.childNodes[0] : current.startContainer, current.startOffset);
-	range.setEnd(current.endContainer instanceof Element ? current.endContainer.childNodes[0] : current.endContainer, current.endOffset);
+	try
+	{
+		range.setStart(ensureTextNode(current.startContainer), current.startOffset);
+		range.setEnd(ensureTextNode(current.endContainer), current.endOffset);
 
-	lastSelectionRange = range;
+		lastSelectionRange = range;
+	}
+	catch (err)
+	{
+		handleComponentError(err, "text/saveLastSelection", current);
+	}
 }
 
 export function getStyles(options)
@@ -86,7 +111,7 @@ export function onInput(evt, tag, api)
 
 	const searchTerm = text.substr(1).toLowerCase();
 	const foundBlocks = api.editor.blocks
-		.filter(api => api.keywords.find(keyword => keyword.startsWith(searchTerm)))
+		.filter(api => api.keywords.map(keyword => translate(keyword)).find(keyword => keyword.startsWith(searchTerm)))
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -161,7 +186,7 @@ export function renderEditor(tag, h, api)
 
 	return h(tag, {
 		attrs: {
-			"data-placeholder": "Start writing..."
+			"data-placeholder": translate("Start writing or type / to insert a block...")
 		},
 		domProps: {
 			contentEditable: "true",

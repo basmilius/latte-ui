@@ -6,6 +6,7 @@
 
 	import BEInserterMini from "./BEInserterMini";
 	import BEInserterExpanded from "./BEInserterExpanded";
+	import { handleComponentError } from "./helper/error";
 
 	const inlineClasses = ["be-block-embed"];
 	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "ol", "ul"];
@@ -135,8 +136,18 @@
 				this.updateSelection();
 				this.maxIndex = this.content.length - 1;
 
-				return this.content
-					.map((item, index) => this.renderBlock(h, item, index));
+				return this.content.map((item, index) =>
+				{
+					try
+					{
+						return this.renderBlock(h, item, index);
+					}
+					catch (err)
+					{
+						handleComponentError(err, "BEBlocks/renderBlock", {index, item});
+						return undefined;
+					}
+				});
 			},
 
 			renderEmptyInserter(h)
@@ -166,9 +177,17 @@
 				if (!isSelected)
 					return undefined;
 
-				return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
-					block.renderOptions(h, api)
-				]);
+				try
+				{
+					return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
+						block.renderOptions(h, api)
+					]);
+				}
+				catch (err)
+				{
+					handleComponentError(err, "BEBlocks/renderOptions", {block, api});
+					return undefined;
+				}
 			},
 
 			renderOptionsSide(h, block, blockApi)
