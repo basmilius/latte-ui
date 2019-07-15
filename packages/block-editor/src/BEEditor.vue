@@ -301,12 +301,7 @@
 				immediate: true,
 				handler()
 				{
-					let content = this.value;
-
-					if (content.length === 0)
-						content = [{id: "paragraph", focusData: {}}];
-
-					this.content = content;
+					this.content = this.value;
 				}
 			}
 
