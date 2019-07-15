@@ -39,17 +39,8 @@
 
 	import { createElement } from "./create-element";
 	import { defaultCategories } from "./block";
-	import { notNullOrUndefined } from "./utils";
-	import {
-		ButtonBlock,
-		ColumnsBlock,
-		HeadingBlock,
-		HtmlBlock,
-		OrderedListBlock,
-		ParagraphBlock, UnorderedListBlock,
-		WrapperBlock,
-		YouTubeEmbedBlock
-	} from "./blocks";
+	import { getLatte, notNullOrUndefined } from "./utils";
+	import * as DefaultBlocks from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
 	import BEInserterExpanded from "./BEInserterExpanded";
@@ -57,7 +48,6 @@
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
-	import { getLatte } from "./utils";
 
 	const L = getLatte();
 	const defaultColorPalette = [
@@ -202,22 +192,7 @@
 				this.blocks = [];
 				this.categories = [];
 
-				// Layout
-				this.registerBlock(ButtonBlock);
-				this.registerBlock(ColumnsBlock);
-				this.registerBlock(WrapperBlock);
-
-				// Text
-				this.registerBlock(HeadingBlock);
-				this.registerBlock(OrderedListBlock);
-				this.registerBlock(ParagraphBlock);
-				this.registerBlock(UnorderedListBlock);
-
-				// Embeds
-				this.registerBlock(YouTubeEmbedBlock);
-
-				// Other
-				this.registerBlock(HtmlBlock);
+				Object.keys(DefaultBlocks).forEach(block => this.registerBlock(DefaultBlocks[block]));
 
 				defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
 			},

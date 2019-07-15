@@ -7,7 +7,7 @@
 
 				<div class="be-inserter-header" :class="{'is-open': (currentCategory === category.id)}" @click="currentCategory = category.id">
 					<i class="mdi" :class="`mdi-${category.icon}`"></i>
-					<span>{{ category.name | i18n("latte-ui") }}</span>
+					<span>{{ category.name | beTranslate }}</span>
 					<i class="mdi" :class="{'mdi-chevron-down': !(currentCategory === category.id), 'mdi-chevron-up': (currentCategory === category.id)}"></i>
 				</div>
 
@@ -16,14 +16,14 @@
 
 						<button class="be-inserter-block" @click="select(block.id)" v-for="block of category.blocks">
 							<i class="mdi" :class="`mdi-${block.icon}`"></i>
-							<span>{{ block.name | i18n("latte-ui") }}</span>
+							<span>{{ block.name | beTranslate }}</span>
 						</button>
 
 					</template>
 					<template v-else>
 
 						<div class="be-inserter-empty">
-							<span>{{ "There are no blocks in this category." | i18n("latte-ui") }}</span>
+							<span>{{ "There are no blocks in this category." | beTranslate }}</span>
 						</div>
 
 					</template>
@@ -38,11 +38,15 @@
 
 <script>
 
-	import { editorInstance } from "./utils";
+	import { editorInstance, translate } from "./utils";
 
 	export default {
 
 		name: "BEInserterPopup",
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
+		},
 
 		data()
 		{

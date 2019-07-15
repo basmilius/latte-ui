@@ -1,0 +1,36 @@
+.be-block-page-break
+{
+	margin: 1rem 0;
+
+	.be-page-break
+	{
+		position: relative;
+		display: block;
+		margin: -.5rem 0;
+		text-align: center;
+
+		&::before
+		{
+			position: absolute;
+			display: block;
+			top: calc(50% - 2px);
+			left: 0;
+			right: 0;
+			content: "";
+			border-top: 4px dashed rgba(var(--outline-color), 1);
+		}
+
+		&::after
+		{
+			position: relative;
+			display: inline-block;
+			padding: 0 1rem;
+			content: attr(data-text);
+			background: var(--editor-content-background);
+			color: rgba(var(--main-foreground), .4);
+			font-size: .8rem;
+			font-weight: 500;
+			text-transform: uppercase;
+		}
+	}
+}

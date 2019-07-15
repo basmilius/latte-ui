@@ -1,5 +1,7 @@
 .be-editor
 {
+	--editor-content-background: rgba(var(--panel-background), 1);
+	--editor-content-width: 800px;
 	--panel-gutter: 24px;
 
 	position: absolute;
@@ -50,6 +52,7 @@
 		display: block;
 		height: calc(100% - 60px);
 		width: 100%;
+		background: var(--editor-content-background);
 		overflow: auto;
 		will-change: transform;
 	}
@@ -59,7 +62,7 @@
 		position: relative;
 		display: block;
 		margin: var(--panel-gutter) auto;
-		max-width: var(--editor-content-width, 800px);
+		max-width: var(--editor-content-width);
 	}
 
 	.be-block-mount

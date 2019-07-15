@@ -7,7 +7,7 @@
 
 				<latte-ripple as="button" class="nav-link" :class="{'is-active': selectedIndex === index}" @mousedown="select(block.id)">
 					<i class="mdi" :class="`mdi-${block.icon}`"></i>
-					<span>{{ block.name | i18n("latte-ui") }}</span>
+					<span>{{ block.name | beTranslate }}</span>
 				</latte-ripple>
 
 			</template>
@@ -15,7 +15,7 @@
 		</nav>
 		<div class="p-3 text-center" style="max-width: 240px" v-else>
 
-			<i>{{ "No blocks found matching your search term." | i18n("latte-ui") }}</i>
+			<i>{{ "No blocks found matching your search term." | beTranslate }}</i>
 
 		</div>
 	</latte-popup>
@@ -24,9 +24,15 @@
 
 <script>
 
+	import { translate } from "./utils";
+
 	export default {
 
 		name: "BEInserterList",
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
+		},
 
 		data()
 		{

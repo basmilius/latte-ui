@@ -3,8 +3,8 @@
 	<div class="be-settings-group">
 		<div class="be-settings-header" @click="isOpen = !isOpen">
 			<div class="be-settings-group-label">
-				<span>{{ title | i18n("latte-ui") }}</span>
-				<span v-if="depth > -1">{{ "Level @0" | i18n("latte-ui", depth) }}</span>
+				<span>{{ title | beTranslate }}</span>
+				<span v-if="depth > -1">{{ "Level @0" | beTranslate(depth) }}</span>
 			</div>
 			<slot name="header"></slot>
 			<i class="mdi" :class="{'mdi-chevron-down': !isOpen && hasBody, 'mdi-chevron-up': isOpen && hasBody}"></i>
@@ -18,9 +18,15 @@
 
 <script>
 
+	import { translate } from "./utils";
+
 	export default {
 
 		name: "BESettingsGroup",
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
+		},
 
 		props: {
 			depth: {default: -1, type: Number},

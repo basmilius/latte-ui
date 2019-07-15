@@ -5,7 +5,7 @@
 
 		<template>
 			<div class="panel-header" v-if="portalHasPassengers">
-				<span class="panel-title">{{ "Block settings" | i18n("latte-ui") }}</span>
+				<span class="panel-title">{{ "Block settings" | beTranslate }}</span>
 			</div>
 			<latte-portal-target ref="portal" :name="uniqueId" multiple></latte-portal-target>
 		</template>
@@ -17,11 +17,15 @@
 
 <script>
 
-	import { editorInstance } from "./utils";
+	import { editorInstance, translate } from "./utils";
 
 	export default {
 
 		name: "BESettingsPane",
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
+		},
 
 		data()
 		{

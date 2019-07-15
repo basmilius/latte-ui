@@ -2,14 +2,14 @@
 
 	<div class="be-inserter be-inserter-expanded" @click="onClick">
 		<i class="mdi mdi-plus-circle-outline"></i>
-		<span>{{ "Add block" | i18n("latte-ui") }}</span>
+		<span>{{ "Add block" | beTranslate }}</span>
 	</div>
 
 </template>
 
 <script>
 
-	import { editorInstance } from "./utils";
+	import { editorInstance, translate } from "./utils";
 	import BEInserterPopup from "./BEInserterPopup";
 
 	export default {
@@ -18,6 +18,10 @@
 
 		components: {
 			BEInserterPopup
+		},
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
 		},
 
 		methods: {

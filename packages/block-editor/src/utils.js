@@ -25,3 +25,8 @@ export function replaceIndex(arr, index, obj)
 
 	return arr;
 }
+
+export function translate(text, ...params)
+{
+	return Latte.i18n.translate("block-editor", text, params);
+}

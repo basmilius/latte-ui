@@ -3,15 +3,15 @@
 	<div class="panel-header be-toolbar">
 		<span></span>
 
-		<button class="btn btn-contained btn-primary" @click="onInserterClick"><i class="mdi mdi-plus-circle"></i><span>{{ "Insert" |i18n("latte-ui") }}</span></button>
+		<button class="btn btn-contained btn-primary" @click="onInserterClick"><i class="mdi mdi-plus-circle"></i><span>{{ "Insert" | beTranslate }}</span></button>
 
 		<div class="divider divider-vertical"></div>
-		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'View code' | i18n('latte-ui')"><i class="mdi mdi-code-tags"></i></button>
-		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'View hierarchy' | i18n('latte-ui')"><i class="mdi mdi-notification-clear-all mdi-flip-v"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'View code' | beTranslate"><i class="mdi mdi-code-tags"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" :data-tooltip="'View hierarchy' | beTranslate"><i class="mdi mdi-notification-clear-all mdi-flip-v"></i></button>
 
 		<div class="divider divider-vertical"></div>
-		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Undo' | i18n('latte-ui')"><i class="mdi mdi-undo"></i></button>
-		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Redo' | i18n('latte-ui')"><i class="mdi mdi-redo"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Undo' | beTranslate"><i class="mdi mdi-undo"></i></button>
+		<button class="btn btn-icon btn-text btn-dark" disabled :data-tooltip="'Redo' | beTranslate"><i class="mdi mdi-redo"></i></button>
 
 		<latte-portal-target class="d-flex align-items-center" :name="beforePortalId" multiple></latte-portal-target>
 		<slot name="before"></slot>
@@ -28,7 +28,7 @@
 
 <script>
 
-	import { editorInstance, getLatte } from "./utils";
+	import { editorInstance, getLatte, translate } from "./utils";
 	import BEInserterPopup from "./BEInserterPopup";
 
 	const L = getLatte();
@@ -37,6 +37,10 @@
 
 		components: {
 			BEInserterPopup
+		},
+
+		filters: {
+			beTranslate: (text, ...params) => translate(text, ...params)
 		},
 
 		name: "BEToolbar",
