@@ -4,6 +4,7 @@ import { BlockBase } from "../block";
 import { replaceIndex } from "../utils";
 import { blockActions, optional, rangeField, settingsGroupWithDepth, toggleButton } from "../primitive/settings";
 import { optionAdditionalClasses } from "../primitive/element";
+import { getElementDimensions, querySelector, querySelectorAll } from "../helper/element";
 
 const presets = [
 	{
@@ -56,6 +57,11 @@ export class ColumnsBlock extends BlockBase
 		return "Displays blocks in a column view.";
 	}
 
+	get isInline()
+	{
+		return true;
+	}
+
 	get keywords()
 	{
 		return ["column", "columns", "grid"];
@@ -69,6 +75,23 @@ export class ColumnsBlock extends BlockBase
 	constructor()
 	{
 		super("columns", "layout", "view-column");
+	}
+
+	calculateSelectionBorder(api)
+	{
+		const {dimensions, margin} = getElementDimensions(api.elm);
+
+		let hgutters = margin.horizontal;
+		let vgutters = this.isInline ? 0 : margin.vertical;
+
+		let columns = querySelectorAll(api.elm, ".col-12");
+		let columnsLast = columns.map(column => querySelector(column, ".be-block-mount:last-child"));
+		let lastDimensions = columnsLast.map(l => getElementDimensions(l).margin.bottom);
+
+		return {
+			height: dimensions.height + vgutters - Math.max(...lastDimensions),
+			width: dimensions.width + hgutters
+		};
 	}
 
 	render(h, {children, options, processGroup})

@@ -249,9 +249,15 @@
 				return {data, rendered};
 			},
 
-			onEditorClick()
+			onEditorClick(evt)
 			{
-				this.$emit("be:reset-settings-pane");
+				if (L.util.dom.closest(evt.target, ".be-options-side") !== null)
+					return;
+
+				if (L.util.dom.closest(evt.target, ".be-toolbar") !== null)
+					return;
+
+				this.$emit("be:reset-block-selection");
 			},
 
 			onInput(content)

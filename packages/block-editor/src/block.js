@@ -1,3 +1,4 @@
+import { getElementDimensions } from "./helper/element";
 import { placeCaretAtEdge } from "./helper/selection";
 import { getLatte, replaceIndex } from "./utils";
 
@@ -37,6 +38,11 @@ export class BlockBase
 		return this._icon;
 	}
 
+	get isInline()
+	{
+		return false;
+	}
+
 	get description()
 	{
 		return undefined;
@@ -57,6 +63,19 @@ export class BlockBase
 		this._id = id;
 		this._category = category;
 		this._icon = icon;
+	}
+
+	calculateSelectionBorder(api)
+	{
+		const {dimensions, margin} = getElementDimensions(api.elm);
+
+		let hgutters = margin.horizontal;
+		let vgutters = this.isInline ? 0 : margin.vertical;
+
+		return {
+			height: dimensions.height + vgutters,
+			width: dimensions.width + hgutters
+		};
 	}
 
 	render(h, api)
@@ -214,8 +233,6 @@ export class BlockAPI
 			{
 				if (focusData.selectAll === false)
 					placeCaretAtEdge(elm, focusData.placeAtEnd);
-				else if (focusData.selectAll === false)
-					elm.focus();
 				else
 					document.execCommand("selectAll");
 			}
@@ -265,7 +282,7 @@ export class BlockAPI
 		else if (this.#group.contentFiltered.length > 0)
 			this.nextTick(() => this.#group.blocks[this.#index].focus({}));
 		else
-			this.#group.setSelectedIndex(-1, undefined);
+			this.#group.setSelectedIndex(-1);
 	}
 
 	setChildren(children)

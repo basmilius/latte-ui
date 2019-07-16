@@ -22,6 +22,11 @@ export class UnorderedListBlock extends BlockBase
 		return "An list that is not ordered.";
 	}
 
+	get isInline()
+	{
+		return true;
+	}
+
 	get keywords()
 	{
 		return ["list", "unordered"];

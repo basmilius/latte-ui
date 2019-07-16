@@ -29,6 +29,11 @@ export class HeadingBlock extends BlockBase
 		return "Represents a header text."
 	}
 
+	get isInline()
+	{
+		return true;
+	}
+
 	get keywords()
 	{
 		return ["header", "heading", "text", "h1", "h2", "h3", "h4", "h5", "h6"];

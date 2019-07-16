@@ -3,6 +3,7 @@
 	import BEInserterMini from "./BEInserterMini";
 	import { handleComponentError } from "./helper/error";
 	import { divider, icon } from "./primitive/element";
+	import { terminateEvent } from "./utils/events";
 
 	export default {
 
@@ -14,7 +15,7 @@
 
 		render(h)
 		{
-			return h("div", {class: this.mountClasses, on: {"!click": evt => this.onClick(evt)}}, [
+			return h("div", {class: this.mountClasses, on: {click: evt => this.onClick(evt)}}, [
 				this.renderInserter(h, this.api.index === 0, this.api.index, "top"),
 				this.renderInserter(h, true, this.api.index, "bottom"),
 				this.renderOptions(h),
@@ -90,7 +91,7 @@
 				if (!this.api.isSelected || this.api.block.canHaveChildren)
 					return undefined;
 
-				return h("div", {class: "be-options-side", on: {click: evt => evt.preventDefault()}}, [
+				return h("div", {class: "be-options-side", on: {click: evt => terminateEvent(evt)}}, [
 
 					h("button", {
 						class: "btn btn-icon btn-text btn-dark btn-sm",

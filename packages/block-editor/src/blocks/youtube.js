@@ -16,6 +16,11 @@ export class YouTubeEmbedBlock extends BlockBase
 		return "Embeds a YouTube-video.";
 	}
 
+	get isInline()
+	{
+		return true;
+	}
+
 	get keywords()
 	{
 		return ["youtube", "embed", "video"];

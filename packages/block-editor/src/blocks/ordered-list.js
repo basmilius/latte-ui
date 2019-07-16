@@ -22,6 +22,11 @@ export class OrderedListBlock extends BlockBase
 		return "An list that is ordered with numbers.";
 	}
 
+	get isInline()
+	{
+		return true;
+	}
+
 	get keywords()
 	{
 		return ["list", "ordered"];

@@ -2,6 +2,7 @@ import BEBlocks from "../BEBlocks";
 import { BlockBase } from "../block";
 import { optionAdditionalClasses } from "../primitive/element";
 import { blockActions, settingsGroupWithDepth } from "../primitive/settings";
+import { getElementDimensions, querySelector } from "../helper/element";
 
 export class WrapperBlock extends BlockBase
 {
@@ -36,6 +37,22 @@ export class WrapperBlock extends BlockBase
 	constructor()
 	{
 		super("wrapper", "layout", "border-none-variant");
+	}
+
+	calculateSelectionBorder(api)
+	{
+		const {dimensions, margin} = getElementDimensions(api.elm);
+
+		let hgutters = margin.horizontal;
+		let vgutters = this.isInline ? 0 : margin.vertical;
+
+		let columnsLast = querySelector(api.elm, ".be-block-mount:last-child");
+		let lastDimensions = getElementDimensions(columnsLast);
+
+		return {
+			height: dimensions.height + vgutters - lastDimensions.margin.bottom,
+			width: dimensions.width + hgutters
+		};
 	}
 
 	render(h, {children, options, processGroup})

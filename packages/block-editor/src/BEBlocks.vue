@@ -8,9 +8,6 @@
 	import BEInserterExpanded from "./BEInserterExpanded";
 	import BEBlockMount from "./BEBlockMount";
 
-	const inlineClasses = ["be-block-embed"];
-	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "ol", "ul"];
-
 	const L = getLatte();
 
 	export default {
@@ -31,18 +28,13 @@
 				editor: editorInstance(this),
 				isSwappingBlocks: false,
 				maxIndex: 0,
-				selectedElement: undefined,
 				selectedIndex: -1
 			};
 		},
 
 		mounted()
 		{
-			this.editor.$on("be:reset-settings-pane", () =>
-			{
-				this.selectedElement = undefined;
-				this.selectedIndex = -1;
-			});
+			this.editor.$on("be:reset-block-selection", () => this.selectedIndex = -1);
 		},
 
 		render(h)
@@ -68,11 +60,7 @@
 
 			insertBlock(id, index = -1, options = {}, focusData = defaultFocusData)
 			{
-				const spec = {
-					id,
-					options,
-					focusData
-				};
+				const spec = {id, options, focusData};
 
 				if (index > -1)
 					this.content.splice(index, 0, spec);
@@ -133,7 +121,6 @@
 				}
 
 				return h(BEBlockMount, {
-					key: JSON.stringify(item),
 					props: {
 						api: this.blocks[index]
 					}
@@ -168,37 +155,31 @@
 				];
 			},
 
-			setSelectedIndex(index, elm, auto = false)
+			setSelectedIndex(index, auto = false)
 			{
-				if (elm instanceof Element && elm.parentNode)
+				const blockApi = this.blocks[index];
+
+				if (blockApi)
 				{
-					const style = window.getComputedStyle(elm);
+					const {height, width} = blockApi.block.calculateSelectionBorder(blockApi);
+					const parent = blockApi.elm.parentElement;
 
-					let isInlineElement = inlineElements.indexOf(elm.tagName.toLowerCase()) > -1;
-
-					for (let cls of inlineClasses)
-						if (elm.classList.contains(cls))
-							isInlineElement = true;
-
-					let hgutters = parseInt(style.marginLeft) + parseInt(style.marginRight);
-					let vgutters = isInlineElement ? 0 : (parseInt(style.marginTop) + parseInt(style.marginBottom));
-
-					elm.parentElement.style.setProperty("--editor-rect-h", `${elm.clientHeight + vgutters}px`);
-					elm.parentElement.style.setProperty("--editor-rect-w", `${elm.clientWidth + hgutters}px`);
+					if (parent)
+					{
+						parent.style.setProperty("--editor-rect-h", `${height}px`);
+						parent.style.setProperty("--editor-rect-w", `${width}px`);
+					}
 				}
 
 				if (auto === true)
 					return;
 
-				this.editor.$emit("be:reset-settings-pane");
-
-				this.selectedElement = elm;
 				this.selectedIndex = index;
 			},
 
 			updateSelection()
 			{
-				L.util.dom.raf(() => this.setSelectedIndex(this.selectedIndex, this.selectedElement, true));
+				L.util.dom.raf(() => this.setSelectedIndex(this.selectedIndex, true));
 			}
 
 		},

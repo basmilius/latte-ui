@@ -65,33 +65,6 @@
 		max-width: var(--editor-content-width);
 	}
 
-	.be-block-mount
-	{
-		position: relative;
-		margin: -1px;
-		padding: 1px;
-
-		&.is-selected
-		{
-			z-index: 1;
-		}
-
-		&.is-selected::before
-		{
-			position: absolute;
-			display: block;
-			top: 0;
-			left: 0;
-			height: var(--editor-rect-h, 0);
-			width: var(--editor-rect-w, 0);
-			content: "";
-			outline: 2px dashed rgba(var(--color-primary), .15);
-			outline-offset: 12px;
-			pointer-events: none;
-			z-index: 10;
-		}
-	}
-
 	.be-block-actions
 	{
 		position: relative;
