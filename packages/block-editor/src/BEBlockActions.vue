@@ -1,6 +1,6 @@
 <template>
 
-	<div class="be-block-actions">
+	<div class="be-block-actions" @click.stop>
 		<button class="btn btn-icon btn-sm btn-text btn-dark" @click="api.rearrange(-1)" :disabled="api.index === 0"><i class="mdi mdi-arrow-up"></i></button>
 		<button class="btn btn-icon btn-sm btn-text btn-dark" @click="api.rearrange(1)" :disabled="api.index === api.group.maxIndex"><i class="mdi mdi-arrow-down"></i></button>
 		<div class="divider divider-vertical"></div>
@@ -12,14 +12,14 @@
 
 <script>
 
-	import { BlockApi } from "./block";
+	import { BlockAPI } from "./block";
 
 	export default {
 
 		name: "BEBlockActions",
 
 		props: {
-			api: {required: true, type: BlockApi}
+			api: {required: true, type: BlockAPI}
 		}
 
 	}

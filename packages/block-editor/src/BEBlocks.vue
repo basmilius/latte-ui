@@ -2,11 +2,11 @@
 
 	import { BlockAPI, defaultFocusData } from "./block";
 	import { editorInstance, getLatte, notNullOrUndefined } from "./utils";
-	import { divider, icon } from "./primitive/element";
-
-	import BEInserterMini from "./BEInserterMini";
-	import BEInserterExpanded from "./BEInserterExpanded";
 	import { handleComponentError } from "./helper/error";
+	import { swapElements } from "./helper/animation";
+
+	import BEInserterExpanded from "./BEInserterExpanded";
+	import BEBlockMount from "./BEBlockMount";
 
 	const inlineClasses = ["be-block-embed"];
 	const inlineElements = ["h1", "h2", "h3", "h4", "h5", "h6", "p", "ol", "ul"];
@@ -29,6 +29,7 @@
 				canUpdate: true,
 				content: this.value,
 				editor: editorInstance(this),
+				isSwappingBlocks: false,
 				maxIndex: 0,
 				selectedElement: undefined,
 				selectedIndex: -1
@@ -46,7 +47,11 @@
 
 		render(h)
 		{
-			return h("div", {class: "be-blocks"}, this.contentFiltered.length > 0 ? this.renderBlocks(h) : this.renderEmptyInserter(h));
+			this.canUpdate = false;
+			const content = this.contentFiltered.length > 0 ? this.renderBlocks(h) : this.renderEmptyInserter(h);
+			this.canUpdate = true;
+
+			return h("div", {class: "be-blocks"}, content);
 		},
 
 		computed: {
@@ -77,9 +82,31 @@
 
 			rearrangeBlock(index, dir)
 			{
-				this.blocks[index].isRemoved = true;
-				this.content[index].focusData = defaultFocusData;
-				this.content.splice(index + dir, 0, this.content.splice(index, 1)[0]);
+				if (this.isSwappingBlocks)
+					return;
+
+				this.isSwappingBlocks = true;
+
+				const current = this.blocks[index];
+				const previous = this.blocks[index + dir];
+
+				if (!current || !previous)
+					return;
+
+				const currentElm = L.util.dom.closest(current.blockNode.elm, ".be-block-mount");
+				const previousElm = L.util.dom.closest(previous.blockNode.elm, ".be-block-mount");
+
+				swapElements({
+					firstElement: currentElm,
+					secondElement: previousElm,
+					scrollingContainer: L.util.dom.closest(currentElm, ".be-content-mount"),
+					raf: L.util.dom.raf
+				}, () =>
+				{
+					this.blocks[index].isRemoved = true;
+					this.content.splice(index + dir, 0, Object.assign(this.content.splice(index, 1)[0], {focusData: {}}));
+					L.util.dom.raf(() => this.isSwappingBlocks = false);
+				});
 			},
 
 			removeBlock(index)
@@ -105,30 +132,12 @@
 					delete this.content[index].focusData;
 				}
 
-				const classes = ["be-block-mount", `be-block-${block.id}`, "be-editing"];
-
-				if (this.blocks[index].isSelected)
-					classes.push("is-selected");
-
-				if (index === 0)
-					classes.push("is-first");
-
-				if (index === this.content.length - 1)
-					classes.push("is-last");
-
-				const onClick = () => this.blocks[index].ensure(() =>
-				{
-					if (this.selectedIndex !== index)
-						this.setSelectedIndex(index, this.blocks[index].elm);
+				return h(BEBlockMount, {
+					key: JSON.stringify(item),
+					props: {
+						api: this.blocks[index]
+					}
 				});
-
-				return h("div", {class: classes, on: {"!click": evt => onClick(evt)}}, [
-					this.renderInserter(h, index === 0, index, "top"),
-					this.renderInserter(h, true, index, "bottom"),
-					this.renderOptions(h, block, this.blocks[index]),
-					this.renderOptionsSide(h, block, this.blocks[index]),
-					this.blocks[index].renderEditor(h)
-				]);
 			},
 
 			renderBlocks(h)
@@ -159,66 +168,6 @@
 				];
 			},
 
-			renderInserter(h, shouldRender, index, mode)
-			{
-				if (!shouldRender)
-					return undefined;
-
-				return h(BEInserterMini, {
-					class: mode,
-					on: {select: id => this.insertBlock(id, mode === "top" ? index : index + 1)}
-				});
-			},
-
-			renderOptions(h, block, api)
-			{
-				const {depth, isSelected} = api;
-
-				if (!isSelected)
-					return undefined;
-
-				try
-				{
-					return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.editor.uniqueId}`}}, [
-						block.renderOptions(h, api)
-					]);
-				}
-				catch (err)
-				{
-					handleComponentError(err, "BEBlocks/renderOptions", {block, api});
-					return undefined;
-				}
-			},
-
-			renderOptionsSide(h, block, blockApi)
-			{
-				if (!blockApi.isSelected || block.canHaveChildren)
-					return undefined;
-
-				return h("div", {class: "be-options-side", on: {click: evt => evt.preventDefault()}}, [
-
-					h("button", {
-						class: "btn btn-icon btn-text btn-dark btn-sm",
-						domProps: {disabled: blockApi.index === 0},
-						on: {click: () => blockApi.rearrange(-1)}
-					}, [icon(h, "arrow-up")]),
-
-					h("button", {
-						class: "btn btn-icon btn-text btn-dark btn-sm",
-						domProps: {disabled: blockApi.index === this.maxIndex},
-						on: {click: () => blockApi.rearrange(1)}
-					}, [icon(h, "arrow-down")]),
-
-					divider(h),
-
-					h("button", {
-						class: "btn btn-icon btn-text btn-dark btn-sm",
-						on: {click: () => blockApi.remove()}
-					}, [icon(h, "delete")])
-
-				])
-			},
-
 			setSelectedIndex(index, elm, auto = false)
 			{
 				if (elm instanceof Element && elm.parentNode)
@@ -243,11 +192,8 @@
 
 				this.editor.$emit("be:reset-settings-pane");
 
-				L.util.dom.raf(() =>
-				{
-					this.selectedElement = elm;
-					this.selectedIndex = index;
-				});
+				this.selectedElement = elm;
+				this.selectedIndex = index;
 			},
 
 			updateSelection()
@@ -262,7 +208,7 @@
 			content()
 			{
 				if (!this.canUpdate)
-					return this.canUpdate = true;
+					return;
 
 				this.$emit("input", this.content);
 			},
@@ -270,8 +216,11 @@
 			value()
 			{
 				this.canUpdate = false;
+
 				this.content = Array.from(this.value)
 					.filter(item => notNullOrUndefined(item));
+
+				this.$nextTick(() => this.canUpdate = true);
 			}
 
 		}

@@ -71,6 +71,11 @@
 		margin: -1px;
 		padding: 1px;
 
+		&.is-selected
+		{
+			z-index: 1;
+		}
+
 		&.is-selected::before
 		{
 			position: absolute;

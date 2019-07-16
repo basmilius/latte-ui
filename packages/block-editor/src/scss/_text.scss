@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6
 	cursor: text;
 }
 
-.be-block-paragraph:not(:last-child)
+.be-block-paragraph
 {
 	margin-bottom: 1rem;
 	word-break: break-word;

@@ -89,6 +89,11 @@ export class BlockAPI
 	#blockNode = null;
 	#isRemoved = false;
 
+	get block()
+	{
+		return this.#block;
+	}
+
 	get blockId()
 	{
 		return this.#block.id;
