@@ -61,12 +61,7 @@
 		name: "latte-emoji-picker",
 
 		props: {
-
-			closeOnSelect: {
-				default: false,
-				type: Boolean
-			}
-
+			closeOnSelect: {default: false, type: Boolean}
 		},
 
 		created()

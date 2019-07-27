@@ -25,24 +25,9 @@
 		name: "latte-data-fragment",
 
 		props: {
-
-			as: {
-				default: "div",
-				type: String
-			},
-
-			initialParams: {
-				default: () => ({}),
-				type: Object
-
-			},
-
-			url: {
-				default: null,
-				required: true,
-				type: String | null
-			}
-
+			as: {default: "div", type: String},
+			initialParams: {default: () => ({}), type: Object},
+			url: {default: null, required: true, type: String | null}
 		},
 
 		data()

@@ -30,19 +30,8 @@
 		name: "latte-data-table-actions",
 
 		props: {
-
-			actions: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
-
-			row: {
-				default: () => ({}),
-				required: true,
-				type: Object
-			}
-
+			actions: {default: () => [], required: true, type: Array},
+			row: {default: () => ({}), required: true, type: Object}
 		},
 
 		methods: {

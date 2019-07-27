@@ -99,6 +99,7 @@
 	import { closest, createElement } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
 	import { handleError } from "../../js/core";
+	import { oneOf } from "../../js/helper/array";
 
 	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
@@ -163,59 +164,16 @@
 		name: "latte-data-table",
 
 		props: {
-
-			addSpinnerToParent: {
-				default: false,
-				type: Boolean
-			},
-
-			dataSource: {
-				default: null,
-				required: true,
-				type: Function | String | null
-			},
-
-			defaultLimit: {
-				default: 20,
-				type: Number
-			},
-
-			name: {
-				default: () => id(),
-				type: String
-			},
-
-			numColumns: {
-				default: null,
-				type: Number | null
-			},
-
-			selectMode: {
-				default: "none",
-				type: String,
-				validator: value => ["none", "single", "multiple"].indexOf(value) > -1
-			},
-
-			showHeader: {
-				default: true,
-				type: Boolean
-			},
-
-			showSearch: {
-				default: true,
-				type: Boolean
-			},
-
-			showSorting: {
-				default: true,
-				type: Boolean
-			},
-
-			value: {
-				default: () => [],
-				type: Array | Number
-			}
-
+			addSpinnerToParent: {default: false, type: Boolean},
+			dataSource: {default: null, required: true, type: Function | String | null},
+			defaultLimit: {default: 20, type: Number},
+			name: {default: () => id(), type: String},
+			numColumns: {default: null, type: Number | null},
+			selectMode: {default: "none", type: String, validator: oneOf(["none", "single", "multiple"])},
+			showHeader: {default: true, type: Boolean},
+			showSearch: {default: true, type: Boolean},
+			showSorting: {default: true, type: Boolean},
+			value: {default: () => [], type: Array | Number}
 		},
 
 		beforeDestroy()

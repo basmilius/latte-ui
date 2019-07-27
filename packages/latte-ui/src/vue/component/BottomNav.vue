@@ -24,22 +24,9 @@
 		name: "latte-bottom-nav",
 
 		props: {
-
-			isShifting: {
-				default: false,
-				type: Boolean
-			},
-
-			isSide: {
-				default: false,
-				type: Boolean
-			},
-
-			value: {
-				default: 0,
-				type: Number
-			}
-
+			isShifting: {default: false, type: Boolean},
+			isSide: {default: false, type: Boolean},
+			value: {default: 0, type: Number}
 		},
 
 		mounted()

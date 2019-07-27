@@ -67,17 +67,8 @@
 		name: "latte-datepicker-calendar",
 
 		props: {
-
-			bodyClass: {
-				default: "",
-				type: String
-			},
-
-			value: {
-				default: () => new Date(),
-				type: Date
-			}
-
+			bodyClass: {default: "", type: String},
+			value: {default: () => new Date(), type: Date}
 		},
 
 		data()

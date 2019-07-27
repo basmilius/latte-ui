@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<latte-sheet ref="drawer" class="drawer-container has-secondary">
+		<latte-sheet ref="drawer" class="drawer-container has-secondary" :touch-enabled="isDrawerTouchEnabled">
 			<div id="drawer" role="menu" @click="$refs.drawer.close()">
 				<nav class="nav nav-list py-3" id="drawer-secondary">
 
@@ -138,7 +138,34 @@
 
 	export default {
 
-		name: "Skeleton"
+		name: "Skeleton",
+
+		data()
+		{
+			return {
+				isDrawerTouchEnabled: true
+			};
+		},
+
+		destroyed()
+		{
+			window.removeEventListener("resize", this.onWindowResize);
+		},
+
+		mounted()
+		{
+			window.addEventListener("resize", this.onWindowResize, {passive: true});
+			this.onWindowResize();
+		},
+
+		methods: {
+
+			onWindowResize()
+			{
+				this.isDrawerTouchEnabled = window.innerWidth <= 991;
+			}
+
+		}
 
 	}
 

@@ -16,17 +16,8 @@
 		name: "latte-moment",
 
 		props: {
-
-			format: {
-				default: "d MMMM YYYY",
-				type: String
-			},
-
-			ms: {
-				default: () => Date.now(),
-				type: Number
-			}
-
+			format: {default: "d MMMM YYYY", type: String},
+			ms: {default: () => Date.now(), type: Number}
 		},
 
 		render(h, {parent, props, _v})

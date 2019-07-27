@@ -22,11 +22,7 @@
 		name: "latte-combo-box-item",
 
 		props: {
-
-			value: {
-				required: true
-			}
-
+			value: {required: true}
 		},
 
 		beforeDestroy()

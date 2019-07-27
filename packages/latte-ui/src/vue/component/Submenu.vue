@@ -40,17 +40,8 @@
 		name: "latte-submenu",
 
 		props: {
-
-			icon: {
-				default: null,
-				type: String | null
-			},
-
-			label: {
-				default: "Submenu",
-				type: String
-			}
-
+			icon: {default: null, type: String | null},
+			label: {default: "Submenu", type: String}
 		},
 
 		data()

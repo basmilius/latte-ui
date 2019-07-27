@@ -143,52 +143,15 @@
 		name: "latte-autocomplete",
 
 		props: {
-
-			dataSource: {
-				default: null,
-				required: true,
-				type: Function | String | null
-			},
-
-			defaultValue: {
-				default: undefined
-			},
-
-			disabled: {
-				default: false,
-				type: Boolean
-			},
-
-			limit: {
-				default: 5,
-				type: Number
-			},
-
-			multiSelect: {
-				default: false,
-				type: Boolean
-			},
-
-			name: {
-				default: id(),
-				type: String
-			},
-
-			offset: {
-				default: 0,
-				type: Number
-			},
-
-			placeholder: {
-				default: "Search...",
-				type: String
-			},
-
-			value: {
-				default: () => [],
-				type: Array | Number
-			}
-
+			dataSource: {default: null, required: true, type: Function | String | null},
+			defaultValue: {default: undefined},
+			disabled: {default: false, type: Boolean},
+			limit: {default: 5, type: Number},
+			multiSelect: {default: false, type: Boolean},
+			name: {default: id(), type: String},
+			offset: {default: 0, type: Number},
+			placeholder: {default: "Search...", type: String},
+			value: {default: () => [], type: Array | Number}
 		},
 
 		beforeDestroy()

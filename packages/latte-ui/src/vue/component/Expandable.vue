@@ -35,17 +35,8 @@
 		name: "latte-expandable",
 
 		props: {
-
-			group: {
-				default: null,
-				type: String | null
-			},
-
-			opened: {
-				default: false,
-				type: Boolean
-			}
-
+			group: {default: null, type: String | null},
+			opened: {default: false, type: Boolean}
 		},
 
 		created()

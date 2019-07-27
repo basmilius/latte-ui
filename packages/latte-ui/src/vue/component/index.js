@@ -30,7 +30,6 @@ export { default as Moment } from "./Moment.vue";
 export { default as Overlay } from "./Overlay.vue";
 export { default as Pagination } from "./Pagination.vue";
 export { default as Password } from "./Password.vue";
-export { default as PdfViewer } from "./PdfViewer.vue";
 export { default as Popup } from "./Popup.vue";
 export { default as Portal } from "./Portal.vue";
 export { default as PortalTarget } from "./PortalTarget.vue";

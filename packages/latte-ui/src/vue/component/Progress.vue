@@ -37,32 +37,11 @@
 		name: "latte-progress",
 
 		props: {
-
-			isIndeterminate: {
-				default: false,
-				type: Boolean
-			},
-
-			isRing: {
-				default: false,
-				type: Boolean
-			},
-
-			max: {
-				default: 100,
-				type: Number
-			},
-
-			min: {
-				default: 0,
-				type: Number
-			},
-
-			value: {
-				default: 0,
-				type: Number
-			}
-
+			isIndeterminate: {default: false, type: Boolean},
+			isRing: {default: false, type: Boolean},
+			max: {default: 100, type: Number},
+			min: {default: 0, type: Number},
+			value: {default: 0, type: Number}
 		},
 
 		data()

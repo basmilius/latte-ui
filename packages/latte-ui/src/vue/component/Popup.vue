@@ -23,36 +23,12 @@
 		name: "latte-popup",
 
 		props: {
-
-			animateTransform: {
-				default: true,
-				type: Boolean
-			},
-
-			associateWith: {
-				default: undefined
-			},
-
-			marginX: {
-				default: 0,
-				type: Number
-			},
-
-			marginY: {
-				default: 0,
-				type: Number
-			},
-
-			persistent: {
-				default: false,
-				type: Boolean
-			},
-
-			withArrow: {
-				default: true,
-				type: Boolean
-			}
-
+			animateTransform: {default: true, type: Boolean},
+			associateWith: {default: undefined},
+			marginX: {default: 0, type: Number},
+			marginY: {default: 0, type: Number},
+			persistent: {default: false, type: Boolean},
+			withArrow: {default: true, type: Boolean}
 		},
 
 		beforeDestroy()

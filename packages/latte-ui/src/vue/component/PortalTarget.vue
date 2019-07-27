@@ -19,47 +19,14 @@
 		name: "latte-portal-target",
 
 		props: {
-
-			attributes: {
-				default: () => ({}),
-				type: Object
-			},
-
-			multiple: {
-				default: false,
-				type: Boolean
-			},
-
-			name: {
-				required: true,
-				type: String
-			},
-
-			slim: {
-				default: false,
-				type: Boolean
-			},
-
-			slotProps: {
-				default: () => ({}),
-				type: Object
-			},
-
-			tag: {
-				default: "div",
-				type: String
-			},
-
-			transition: {
-				default: false,
-				type: [Boolean, String, Object]
-			},
-
-			transitionEvents: {
-				default: () => ({}),
-				type: Object
-			}
-
+			attributes: {default: () => ({}), type: Object},
+			multiple: {default: false, type: Boolean},
+			name: {required: true, type: String},
+			slim: {default: false, type: Boolean},
+			slotProps: {default: () => ({}), type: Object},
+			tag: {default: "div", type: String},
+			transition: {default: false, type: [Boolean, String, Object]},
+			transitionEvents: {default: () => ({}), type: Object}
 		},
 
 		beforeDestroy()

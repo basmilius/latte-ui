@@ -34,12 +34,7 @@
 		name: "latte-initials",
 
 		props: {
-
-			initials: {
-				default: "BM",
-				type: String
-			}
-
+			initials: {default: "BM", type: String}
 		},
 
 		data()

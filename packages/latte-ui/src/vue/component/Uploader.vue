@@ -15,8 +15,8 @@
 		<slot v-bind="{blobs, files, id, multiple, name, openDialog, removeFile}"></slot>
 
 		<div class="drop-target" :class="{'is-dragging': isDragging, 'is-dragging-over': isDraggingOver}">
-			<div class="drop-target-info" v-if="!isDraggingOver">{{ (multiple ? strings.placeFiles : strings.placeFile)|i18n(i18nDomain) }}</div>
-			<div class="drop-target-info" v-else>{{ (multiple ? strings.dropFiles : strings.dropFile)|i18n(i18nDomain) }}</div>
+			<div class="drop-target-info" v-if="!isDraggingOver">{{ (multiple ? strings.placeFiles : strings.placeFile) | i18n("latte-ui") }}</div>
+			<div class="drop-target-info" v-else>{{ (multiple ? strings.dropFiles : strings.dropFile) | i18n("latte-ui") }}</div>
 		</div>
 	</div>
 
@@ -51,42 +51,12 @@
 		name: "latte-uploader",
 
 		props: {
-
-			accept: {
-				default: undefined,
-				type: String | undefined
-			},
-
-			droppable: {
-				default: true,
-				type: Boolean
-			},
-
-			i18nDomain: {
-				default: "latte-ui",
-				type: String
-			},
-
-			id: {
-				default: () => id(),
-				type: String
-			},
-
-			multiple: {
-				default: false,
-				type: Boolean
-			},
-
-			name: {
-				default: () => id(),
-				type: String
-			},
-
-			strings: {
-				default: () => defaultStrings,
-				type: Object
-			}
-
+			accept: {default: undefined, type: String | undefined},
+			droppable: {default: true, type: Boolean},
+			id: {default: () => id(), type: String},
+			multiple: {default: false, type: Boolean},
+			name: {default: () => id(), type: String},
+			strings: {default: () => defaultStrings, type: Object}
 		},
 
 		beforeDestroy()

@@ -22,12 +22,7 @@
 		name: "latte-tab-container",
 
 		props: {
-
-			initialTab: {
-				default: 0,
-				type: Number
-			}
-
+			initialTab: {default: 0, type: Number}
 		},
 
 		data()

@@ -27,6 +27,7 @@
 
 	import { raf } from "../../js/util/dom";
 	import { spaceship } from "../../js/operators";
+	import { oneOf } from "../../js/helper/array";
 
 	// TODO(Bas): Variable height?
 	export default {
@@ -34,44 +35,13 @@
 		name: "latte-virtual-scroller",
 
 		props: {
-
-			direction: {
-				default: "vertical",
-				type: String,
-				validator: str => ["horizontal", "vertical"].indexOf(str) >= 0
-			},
-
-			items: {
-				default: () => [],
-				required: true,
-				type: Array
-			},
-
-			itemsClass: {
-				default: "",
-				type: String
-			},
-
-			itemsPadding: {
-				default: () => [0, 0, 0, 0],
-				type: Array
-			},
-
-			itemHeight: {
-				default: null,
-				type: Number
-			},
-
-			itemWidth: {
-				default: null,
-				type: Number
-			},
-
-			tag: {
-				default: "div",
-				type: String
-			}
-
+			direction: {default: "vertical", type: String, validator: oneOf(["horizontal", "vertical"])},
+			items: {default: () => [], required: true, type: Array},
+			itemsClass: {default: "", type: String},
+			itemsPadding: {default: () => [0, 0, 0, 0], type: Array},
+			itemHeight: {default: null, type: Number},
+			itemWidth: {default: null, type: Number},
+			tag: {default: "div", type: String}
 		},
 
 		created()

@@ -126,6 +126,11 @@
 			};
 		},
 
+		destroyed()
+		{
+			document.body.style.removeProperty("overflow");
+		},
+
 		mounted()
 		{
 			document.body.style.setProperty("overflow", "hidden");

@@ -334,6 +334,8 @@ declare namespace Latte
 
 			export function relativeCoordsTo(element: HTMLElement, evt: CoordsEvents): Coords | undefined;
 
+			export function terminateEvent(evt: Event): void;
+
 			export function toDOM(str: string): DocumentFragment;
 		}
 

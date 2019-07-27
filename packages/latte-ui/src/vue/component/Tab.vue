@@ -22,22 +22,9 @@
 		name: "latte-tab",
 
 		props: {
-
-			badge: {
-				default: "",
-				type: String
-			},
-
-			icon: {
-				default: "",
-				type: String
-			},
-
-			label: {
-				default: "",
-				type: String
-			}
-
+			badge: {default: "", type: String},
+			icon: {default: "", type: String},
+			label: {default: "", type: String}
 		},
 
 		data()

@@ -24,27 +24,10 @@
 		name: "latte-sorting-button",
 
 		props: {
-
-			ariaLabel: {
-				default: null,
-				type: String | null
-			},
-
-			buttonClass: {
-				default: "btn btn-icon btn-text btn-dark",
-				type: String
-			},
-
-			isSorting: {
-				default: false,
-				type: Boolean
-			},
-
-			isSortingAscending: {
-				default: true,
-				type: Boolean
-			}
-
+			ariaLabel: {default: null, type: String | null},
+			buttonClass: {default: "btn btn-icon btn-text btn-dark", type: String},
+			isSorting: {default: false, type: Boolean},
+			isSortingAscending: {default: true, type: Boolean}
 		},
 
 		methods: {

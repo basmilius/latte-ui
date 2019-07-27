@@ -3,7 +3,9 @@
 	import BEInserterMini from "./BEInserterMini";
 	import { handleComponentError } from "./helper/error";
 	import { divider, icon } from "./primitive/element";
-	import { terminateEvent } from "./utils/events";
+	import { getLatte } from "./utils";
+
+	const L = getLatte();
 
 	export default {
 
@@ -91,7 +93,7 @@
 				if (!this.api.isSelected || this.api.block.canHaveChildren)
 					return undefined;
 
-				return h("div", {class: "be-options-side", on: {click: evt => terminateEvent(evt)}}, [
+				return h("div", {class: "be-options-side", on: {click: evt => L.util.dom.terminateEvent(evt)}}, [
 
 					h("button", {
 						class: "btn btn-icon btn-text btn-dark btn-sm",

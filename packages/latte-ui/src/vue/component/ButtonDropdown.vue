@@ -32,57 +32,16 @@
 		name: "latte-button-dropdown",
 
 		props: {
-
-			ariaLabel: {
-				default: "",
-				type: String
-			},
-
-			buttonClass: {
-				default: "btn-text btn-icon btn-dark",
-				type: String
-			},
-
-			icon: {
-				default: "",
-				type: String
-			},
-
-			iconAfter: {
-				default: "",
-				type: String
-			},
-
-			iconBefore: {
-				default: "",
-				type: String
-			},
-
-			label: {
-				default: "",
-				type: String
-			},
-
-			marginX: {
-				default: -9,
-				type: Number
-			},
-
-			marginY: {
-				default: 0,
-				type: Number
-			},
-
-			small: {
-				default: false,
-				type: Boolean
-			},
-
-			tooltip: {
-				default: "",
-				type: String
-			}
-
+			ariaLabel: {default: "", type: String},
+			buttonClass: {default: "btn-text btn-icon btn-dark", type: String},
+			icon: {default: "", type: String},
+			iconAfter: {default: "", type: String},
+			iconBefore: {default: "", type: String},
+			label: {default: "", type: String},
+			marginX: {default: -9, type: Number},
+			marginY: {default: 0, type: Number},
+			small: {default: false, type: Boolean},
+			tooltip: {default: "", type: String}
 		},
 
 		data()

@@ -14,42 +14,13 @@
 		name: "latte-draggable",
 
 		props: {
-
-			options: Object,
-
-			list: {
-				type: Array,
-				default: null
-			},
-
-			value: {
-				type: Array,
-				default: null
-			},
-
-			noTransitionOnDrag: {
-				type: Boolean,
-				default: false
-			},
-
-			clone: {
-				type: Function,
-				default: function (original)
-				{
-					return original;
-				}
-			},
-
-			element: {
-				type: String,
-				default: 'div'
-			},
-
-			move: {
-				type: Function,
-				default: null
-			}
-
+			options: {type: Object},
+			list: {default: null, type: Array},
+			value: {default: null, type: Array},
+			noTransitionOnDrag: {default: false, type: Boolean},
+			clone: {default: original => original, type: Function},
+			element: {default: "div", type: String},
+			move: {default: null, type: Function}
 		},
 
 		beforeDestroy()

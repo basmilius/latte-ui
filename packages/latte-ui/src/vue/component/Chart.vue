@@ -31,22 +31,9 @@
 		name: "latte-chart",
 
 		props: {
-
-			options: {
-				default: () => ({}),
-				type: Object
-			},
-
-			title: {
-				default: null,
-				type: String | null
-			},
-
-			url: {
-				required: true,
-				type: String
-			}
-
+			options: {default: () => ({}), type: Object},
+			title: {default: null, type: String | null},
+			url: {required: true, type: String}
 		},
 
 		data()

@@ -18,88 +18,28 @@
 
 <script>
 
-	import { eventBus, createCoreData, getControlPosition, setTransform } from "../../js/ui/grid";
+	import { createCoreData, eventBus, getControlPosition, setTransform } from "../../js/ui/grid";
 
 	export default {
 
 		name: "latte-grid-item",
 
 		props: {
-
-			id: {
-				required: true
-			},
-
-			isDraggable: {
-				default: true,
-				type: Boolean
-			},
-
-			isResizable: {
-				default: true,
-				type: Boolean
-			},
-
-			maxHeight: {
-				default: Infinity,
-				type: Number
-			},
-
-			maxWidth: {
-				default: Infinity,
-				type: Number
-			},
-
-			minHeight: {
-				default: 1,
-				type: Number
-			},
-
-			minWidth: {
-				default: 1,
-				type: Number
-			},
-
-			x: {
-				required: true,
-				type: Number
-			},
-
-			y: {
-				required: true,
-				type: Number
-			},
-
-			height: {
-				required: true,
-				type: Number
-			},
-
-			width: {
-				required: true,
-				type: Number
-			},
-
-			dragIgnoreFrom: {
-				default: null,
-				type: String | null
-			},
-
-			dragAllowFrom: {
-				default: ".grid-item-drag-handle",
-				type: String | null
-			},
-
-			resizeIgnoreFrom: {
-				default: null,
-				type: String | null
-			},
-
-			resizeAllowFrom: {
-				default: ".grid-item-resize-handle",
-				type: String | null
-			}
-
+			id: {required: true},
+			isDraggable: {default: true, type: Boolean},
+			isResizable: {default: true, type: Boolean},
+			maxHeight: {default: Infinity, type: Number},
+			maxWidth: {default: Infinity, type: Number},
+			minHeight: {default: 1, type: Number},
+			minWidth: {default: 1, type: Number},
+			x: {required: true, type: Number},
+			y: {required: true, type: Number},
+			height: {required: true, type: Number},
+			width: {required: true, type: Number},
+			dragIgnoreFrom: {default: null, type: String | null},
+			dragAllowFrom: {default: ".grid-item-drag-handle", type: String | null},
+			resizeIgnoreFrom: {default: null, type: String | null},
+			resizeAllowFrom: {default: ".grid-item-resize-handle", type: String | null}
 		},
 
 		beforeDestroy()

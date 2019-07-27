@@ -36,27 +36,10 @@
 		name: "latte-datetime-picker",
 
 		props: {
-
-			id: {
-				default: "date",
-				type: String
-			},
-
-			name: {
-				default: "date",
-				type: String
-			},
-
-			placeholder: {
-				default: "",
-				type: String
-			},
-
-			value: {
-				default: () => new Date(),
-				type: Date
-			}
-
+			id: {default: "date", type: String},
+			name: {default: "date", type: String},
+			placeholder: {default: "", type: String},
+			value: {default: () => new Date(), type: Date}
 		},
 
 		data()

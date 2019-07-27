@@ -30,12 +30,7 @@
 		name: "latte-chart-panel",
 
 		props: {
-
-			url: {
-				required: true,
-				type: String
-			}
-
+			url: {required: true, type: String}
 		},
 
 		data()

@@ -267,6 +267,20 @@ export function relativeCoordsTo(element, evt)
 }
 
 /**
+ * Terminates an event.
+ *
+ * @param {Event} evt
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.0.0
+ */
+export function terminateEvent(evt)
+{
+	evt.preventDefault();
+	evt.stopPropagation();
+}
+
+/**
  * Converts a string containing html code to dom elements.
  *
  * @param {String} str
@@ -301,5 +315,6 @@ export default {
 	printDocument,
 	raf,
 	relativeCoordsTo,
+	terminateEvent,
 	toDOM
 }

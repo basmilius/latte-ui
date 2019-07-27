@@ -36,11 +36,7 @@
 		name: "latte-combo-box",
 
 		props: {
-
-			value: {
-				default: null
-			}
-
+			value: {default: null}
 		},
 
 		data()

@@ -11,9 +11,9 @@
 
 	<div class="timepicker-clock">
 
-		<input type="number" class="form-control timepicker-control" :min="isAMPM ? 1 : 0" :max="isAMPM ? 12 : 23" required v-model="selectedHour" />
+		<input type="number" class="form-control timepicker-control" :min="isAMPM ? 1 : 0" :max="isAMPM ? 12 : 23" required v-model="selectedHour"/>
 
-		<input type="number" class="form-control timepicker-control" :min="0" :max="59" required v-model="selectedMinute" />
+		<input type="number" class="form-control timepicker-control" :min="0" :max="59" required v-model="selectedMinute"/>
 
 		<select class="custom-select timepicker-control" v-if="isAMPM" v-model="selectedMeridiem">
 			<option value="am">AM</option>
@@ -33,12 +33,7 @@
 		name: "latte-timepicker-clock",
 
 		props: {
-
-			value: {
-				default: () => new Date(),
-				type: Date
-			}
-
+			value: {default: () => new Date(), type: Date}
 		},
 
 		data()

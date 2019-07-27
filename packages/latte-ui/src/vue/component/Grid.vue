@@ -18,59 +18,22 @@
 
 <script>
 
-	import { eventBus, bottom, compact, getLayoutItem, moveElement, validateLayout } from "../../js/ui/grid";
+	import { bottom, compact, eventBus, getLayoutItem, moveElement, validateLayout } from "../../js/ui/grid";
 
 	export default {
 
 		name: "latte-grid",
 
 		props: {
-
-			autoSize: {
-				default: true,
-				type: Boolean
-			},
-
-			columns: {
-				default: 12,
-				type: Number
-			},
-
-			rowHeight: {
-				default: 100,
-				type: Number
-			},
-
-			maxRows: {
-				default: Infinity,
-				type: Number
-			},
-
-			margin: {
-				default: () => [24, 24],
-				type: Array
-			},
-
-			isDraggable: {
-				default: true,
-				type: Boolean
-			},
-
-			isResizable: {
-				default: true,
-				type: Boolean
-			},
-
-			verticalCompact: {
-				default: true,
-				type: Boolean
-			},
-
-			layout: {
-				required: true,
-				type: Array
-			}
-
+			autoSize: {default: true, type: Boolean},
+			columns: {default: 12, type: Number},
+			rowHeight: {default: 100, type: Number},
+			maxRows: {default: Infinity, type: Number},
+			margin: {default: () => [24, 24], type: Array},
+			isDraggable: {default: true, type: Boolean},
+			isResizable: {default: true, type: Boolean},
+			verticalCompact: {default: true, type: Boolean},
+			layout: {required: true, type: Array}
 		},
 
 		beforeDestroy()

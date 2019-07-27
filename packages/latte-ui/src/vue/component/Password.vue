@@ -23,37 +23,12 @@
 		name: "latte-password",
 
 		props: {
-
-			autocomplete: {
-				default: "",
-				type: String
-			},
-
-			id: {
-				default: "",
-				type: String
-			},
-
-			name: {
-				default: "",
-				type: String
-			},
-
-			placeholder: {
-				default: "",
-				type: String
-			},
-
-			show: {
-				default: false,
-				type: Boolean
-			},
-
-			value: {
-				default: "",
-				type: String
-			}
-
+			autocomplete: {default: "", type: String},
+			id: {default: "", type: String},
+			name: {default: "", type: String},
+			placeholder: {default: "", type: String},
+			show: {default: false, type: Boolean},
+			value: {default: "", type: String}
 		},
 
 		data()

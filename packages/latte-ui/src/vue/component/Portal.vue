@@ -14,6 +14,7 @@
 	import wormhole from "../../js/util/portal/wormhole";
 	import { default as PortalTarget } from "./PortalTarget.vue";
 	import { extractAttributes } from "../../js/util/portal/util";
+	import { id } from "../../js/core/api";
 
 	let portalId = 0;
 
@@ -24,53 +25,15 @@
 		name: "latte-portal",
 
 		props: {
-
-			disabled: {
-				default: false,
-				type: Boolean
-			},
-
-			name: {
-				default: () => String(++portalId),
-				type: String
-			},
-
-			order: {
-				default: 0,
-				type: Number
-			},
-
-			slim: {
-				default: false,
-				type: Boolean
-			},
-
-			slotProps: {
-				default: () => ({}),
-				type: Object
-			},
-
-			tag: {
-				default: "div",
-				type: String
-			},
-
-			targetEl: {
-				default: undefined,
-				type: [String, HTMLElement]
-			},
-
-			targetClass: {
-				default: undefined,
-				type: String
-			},
-
-			to: {
-				default: () => String(Math.round(Math.random() * 10000000)),
-				required: true,
-				type: String
-			}
-
+			disabled: {default: false, type: Boolean},
+			name: {default: () => String(++portalId), type: String},
+			order: {default: 0, type: Number},
+			slim: {default: false, type: Boolean},
+			slotProps: {default: () => ({}), type: Object},
+			tag: {default: "div", type: String},
+			targetEl: {default: undefined, type: [String, HTMLElement]},
+			targetClass: {default: undefined, type: String},
+			to: {default: () => id(), required: true, type: String}
 		},
 
 		beforeDestroy()

@@ -35,12 +35,7 @@
 		name: "latte-tab-bar",
 
 		props: {
-
-			animatedIndicator: {
-				default: false,
-				type: Boolean
-			}
-
+			animatedIndicator: {default: false, type: Boolean}
 		},
 
 		data()

@@ -19,9 +19,10 @@
 
 <script>
 
-	import { closest, getCoords } from "../../js/util/dom";
-	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
+	import { closest, getCoords, terminateEvent } from "../../js/util/dom";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
+	import { oneOf } from "../../js/helper/array";
 
 	const TRIGGER_SIZE = 24;
 
@@ -30,18 +31,8 @@
 		name: "latte-sheet",
 
 		props: {
-
-			position: {
-				default: "left",
-				type: String,
-				validator: val => ["top", "left", "right", "bottom"].includes(val)
-			},
-
-			touchEnabled: {
-				default: true,
-				type: Boolean
-			}
-
+			position: {default: "left", type: String, validator: oneOf(["top", "left", "right", "bottom"])},
+			touchEnabled: {default: true, type: Boolean}
 		},
 
 		data()
@@ -59,6 +50,12 @@
 			};
 		},
 
+		destroyed()
+		{
+			if (this.isOpen)
+				popupClosed();
+		},
+
 		mounted()
 		{
 			this.overlay = this.$el;
@@ -71,7 +68,6 @@
 			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
 			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
 
-			window.addEventListener("mousewheel", onlyMouse(this.onMouseWheel), {passive: false});
 			window.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: false});
 			window.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: false});
 		},
@@ -149,7 +145,7 @@
 			overlayStyles()
 			{
 				return {
-					background: `rgba(0, 0, 0, ${this.current * .85})`
+					background: `rgba(var(--overlay-background), calc(${this.current} * var(--overlay-opacity)))`
 				};
 			}
 
@@ -181,6 +177,9 @@
 			{
 				const rect = this.content.getBoundingClientRect();
 
+				if (!this.currentPosition || !this.startPosition)
+					return this.current;
+
 				switch (this.position)
 				{
 					case "top":
@@ -194,7 +193,6 @@
 
 					case "bottom":
 						return (this.currentPosition.y - this.startPosition.y) / rect.height * -1;
-
 				}
 			},
 
@@ -285,26 +283,9 @@
 				}
 			},
 
-			onMouseWheel(evt)
-			{
-				if (!this.isOpen)
-					return;
-
-				const {deltaX, deltaY} = evt;
-
-				if (Math.abs(deltaX) > 20 && (this.position === "left" || this.position === "right"))
-					this.close();
-
-				if (Math.abs(deltaY) > 20 && (this.position === "top" || this.position === "bottom"))
-					this.close();
-
-				if (!this.isWithinElement(getCoords(evt), this.content))
-					evt.preventDefault();
-			},
-
 			onPointerCancel(evt)
 			{
-				if (!this.touchEnabled)
+				if (!this.touchEnabled || !this.isDragging)
 					return;
 
 				this.isDragging = false;
@@ -322,6 +303,9 @@
 
 				if (!this.isOpen && !this.isWithinTriggerBounds(position))
 					return;
+
+				if (this.isOpen && closest(evt.target, ".sheet-content") === null)
+					terminateEvent(evt);
 
 				this.isDragging = true;
 

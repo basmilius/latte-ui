@@ -58,7 +58,7 @@
 
 <script>
 
-	import { prompt, Buttons } from "../../js/ui/message";
+	import { Buttons, prompt } from "../../js/ui/message";
 	import { translate } from "../../js/i18n";
 	import { clamp } from "../../js/math";
 
@@ -67,46 +67,13 @@
 		name: "latte-pagination",
 
 		props: {
-
-			controllerBar: {
-				default: false,
-				type: Boolean
-			},
-
-			limit: {
-				default: 10,
-				required: true,
-				type: Number
-			},
-
-			navigationControls: {
-				default: true,
-				type: Boolean
-			},
-
-			offset: {
-				default: 0,
-				type: Number
-			},
-
-			sizeEnd: {
-				default: 2,
-				type: Number,
-				validator: num => num >= 0
-			},
-
-			sizeMid: {
-				default: 1,
-				type: Number,
-				validator: num => num >= 0
-			},
-
-			total: {
-				default: 0,
-				required: true,
-				type: Number
-			}
-
+			controllerBar: {default: false, type: Boolean},
+			limit: {default: 10, required: true, type: Number},
+			navigationControls: {default: true, type: Boolean},
+			offset: {default: 0, type: Number},
+			sizeEnd: {default: 2, type: Number, validator: num => num >= 0},
+			sizeMid: {default: 1, type: Number, validator: num => num >= 0},
+			total: {default: 0, required: true, type: Number}
 		},
 
 		data()

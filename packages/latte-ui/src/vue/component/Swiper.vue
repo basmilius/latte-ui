@@ -40,27 +40,10 @@
 		name: "latte-swiper",
 
 		props: {
-
-			center: {
-				default: true,
-				type: Boolean
-			},
-
-			itemPadding: {
-				default: 0,
-				type: Number | Array
-			},
-
-			itemWidth: {
-				default: undefined,
-				type: Number | undefined
-			},
-
-			viewPadding: {
-				default: 0,
-				type: Number | Array
-			}
-
+			center: {default: true, type: Boolean},
+			itemPadding: {default: 0, type: Number | Array},
+			itemWidth: {default: undefined, type: Number | undefined},
+			viewPadding: {default: 0, type: Number | Array}
 		},
 
 		beforeDestroy()

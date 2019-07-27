@@ -29,23 +29,9 @@
 		name: "latte-overlay",
 
 		props: {
-
-			name: {
-				default: "",
-				required: true,
-				type: String
-			},
-
-			opened: {
-				default: false,
-				type: Boolean
-			},
-
-			responsive: {
-				default: true,
-				type: Boolean
-			}
-
+			name: {default: "", required: true, type: String},
+			opened: {default: false, type: Boolean},
+			responsive: {default: true, type: Boolean}
 		},
 
 		data()
