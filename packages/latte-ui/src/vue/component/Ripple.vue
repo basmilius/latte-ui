@@ -12,6 +12,7 @@
 	import { createElement, raf, relativeCoordsTo } from "../../js/util/dom";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { pythagorean } from "../../js/math";
+	import { isSomethingScrolling } from "../../js/ui/scrollbar";
 
 	export default {
 
@@ -24,6 +25,7 @@
 		data()
 		{
 			return {
+				center: false,
 				clip: true,
 				observer: null,
 				ripples: []
@@ -35,7 +37,6 @@
 			if (this.observer !== null)
 				this.observer.disconnect();
 
-			// Remove all ripples, we don't want any animation at this point.
 			while (this.ripples.length > 0)
 				this.ripples.shift().remove();
 		},
@@ -44,7 +45,6 @@
 		{
 			this.$el.classList.add("is-ripple");
 
-			// TODO(Bas): Should probably find something that doesn't only work in Chrome :)
 			if (window.ResizeObserver)
 			{
 				this.observer = new ResizeObserver(entries => this.onResizeObserved(entries));
@@ -74,14 +74,14 @@
 			createRipple(x, y)
 			{
 				const rect = this.$el.getBoundingClientRect();
-				const size = pythagorean(rect.width, rect.height) + 2; // Add two, just to be sure we cover everything.
+				const size = pythagorean(rect.width, rect.height) + 2;
 				const sizeHalf = size / 2;
 
 				const computedStyles = window.getComputedStyle(this.$el);
-				const isCentered = computedStyles.getPropertyValue("--ripple-center").trim() !== "false";
+				this.center = computedStyles.getPropertyValue("--ripple-center").trim() !== "false";
 				this.clip = computedStyles.getPropertyValue("--ripple-clip").trim() !== "false";
 
-				if (isCentered)
+				if (this.center)
 				{
 					x = rect.width / 2;
 					y = rect.height / 2;
@@ -91,7 +91,7 @@
 				{
 					ripple.classList.add("ripple");
 
-					const minSize = isCentered ? 12 : Math.max(size * .1, 24);
+					const minSize = this.center ? 12 : Math.max(size * .1, 24);
 
 					ripple.style.setProperty("--ripple-scale", `${minSize / size}`);
 					ripple.style.setProperty("--ripple-size", `${size}px`);
@@ -105,7 +105,7 @@
 				{
 					ripple.style.setProperty("--ripple-scale", "1");
 
-					if (isCentered)
+					if (this.center)
 						return;
 
 					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
@@ -117,6 +117,9 @@
 
 			onPointerDown(evt)
 			{
+				if (isSomethingScrolling)
+					return;
+
 				const {x, y} = relativeCoordsTo(this.$el, evt);
 
 				this.ripples.push(this.createRipple(x, y));
@@ -149,7 +152,7 @@
 					return;
 
 				const rect = this.$el.getBoundingClientRect();
-				const size = pythagorean(rect.width, rect.height) + 2; // Add two, just to be sure we cover everything.
+				const size = pythagorean(rect.width, rect.height) + 2;
 				const sizeHalf = size / 2;
 
 				this.ripples.forEach(ripple =>

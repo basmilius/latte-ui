@@ -23,8 +23,9 @@
 	import { closest, getCoords, terminateEvent } from "../../js/util/dom";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { oneOf } from "../../js/helper/array";
+	import { isSomethingScrolling } from "../../js/ui/scrollbar";
 
-	const TRIGGER_SIZE = 24;
+	const TRIGGER_SIZE = 18;
 
 	export default {
 
@@ -32,13 +33,16 @@
 
 		props: {
 			position: {default: "left", type: String, validator: oneOf(["top", "left", "right", "bottom"])},
+			peekEnabled: {default: true, type: Boolean},
 			touchEnabled: {default: true, type: Boolean}
 		},
 
 		data()
 		{
 			return {
+				events: [0, 0, 0, 0, 0, 0],
 				isDragging: false,
+				isPeeking: false,
 				current: 0.0,
 				previous: 0.0,
 				content: null,
@@ -54,6 +58,16 @@
 		{
 			if (this.isOpen)
 				popupClosed();
+
+			window.removeEventListener("resize", this.close);
+
+			window.removeEventListener("touchcancel", this.events[0]);
+			window.removeEventListener("touchstart", this.events[1]);
+			window.removeEventListener("touchmove", this.events[2]);
+			window.removeEventListener("touchend", this.events[3]);
+
+			window.removeEventListener("mousedown", this.events[4]);
+			window.removeEventListener("mouseup", this.events[5]);
 		},
 
 		mounted()
@@ -61,15 +75,15 @@
 			this.overlay = this.$el;
 			this.content = this.$el.querySelector("div.sheet-content");
 
-			window.addEventListener("resize", () => this.close());
+			window.addEventListener("resize", this.close);
 
-			window.addEventListener("touchcancel", onlyTouch(this.onPointerCancel), {passive: false});
-			window.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: false});
-			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
-			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
+			window.addEventListener("touchcancel", this.events[0] = onlyTouch(this.onPointerCancel), {passive: false});
+			window.addEventListener("touchstart", this.events[1] = onlyTouch(this.onPointerDown), {passive: false});
+			window.addEventListener("touchmove", this.events[2] = onlyTouch(this.onPointerMove), {passive: false});
+			window.addEventListener("touchend", this.events[3] = onlyTouch(this.onPointerUp), {passive: false});
 
-			window.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: false});
-			window.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: false});
+			window.addEventListener("mousedown", this.events[4] = onlyMouse(this.onPointerDown), {passive: false});
+			window.addEventListener("mouseup", this.events[5] = onlyMouse(this.onPointerUp), {passive: false});
 		},
 
 		computed: {
@@ -165,6 +179,19 @@
 				this.previous = 0.0;
 			},
 
+			peek()
+			{
+				if (!this.peekEnabled)
+					return false;
+
+				const {height, width} = this.content.getBoundingClientRect();
+
+				this.current = TRIGGER_SIZE / (this.position === "left" || this.position === "right" ? width : height);
+				this.isPeeking = true;
+
+				return true;
+			},
+
 			toggle()
 			{
 				if (this.isOpen)
@@ -175,7 +202,7 @@
 
 			calculateCurrent()
 			{
-				const rect = this.content.getBoundingClientRect();
+				const {height, width} = this.content.getBoundingClientRect();
 
 				if (!this.currentPosition || !this.startPosition)
 					return this.current;
@@ -183,16 +210,16 @@
 				switch (this.position)
 				{
 					case "top":
-						return (this.currentPosition.y - this.startPosition.y) / rect.height;
+						return (this.currentPosition.y - this.startPosition.y) / height;
 
 					case "left":
-						return (this.currentPosition.x - this.startPosition.x) / rect.width;
+						return (this.currentPosition.x - this.startPosition.x) / width;
 
 					case "right":
-						return (this.currentPosition.x - this.startPosition.x) / rect.width * -1;
+						return (this.currentPosition.x - this.startPosition.x) / width * -1;
 
 					case "bottom":
-						return (this.currentPosition.y - this.startPosition.y) / rect.height * -1;
+						return (this.currentPosition.y - this.startPosition.y) / height * -1;
 				}
 			},
 
@@ -257,6 +284,9 @@
 
 			isWithinElement(position, element)
 			{
+				if (!position)
+					return false;
+
 				return closest(document.elementFromPoint(position.x, position.y), element) !== null;
 			},
 
@@ -307,19 +337,33 @@
 				if (this.isOpen && closest(evt.target, ".sheet-content") === null)
 					terminateEvent(evt);
 
-				this.isDragging = true;
-
-				this.previous = this.current;
 				this.currentPosition = position;
 				this.previousPosition = position;
 				this.startPosition = position;
 
-				this.checkState();
+				if (!this.isOpen && this.peek())
+				{
+					terminateEvent(evt);
+
+					this.previous = this.current;
+					this.previousPosition.x += this.position === "left" ? 1 : -1;
+					this.previousPosition.y += this.position === "top" ? 1 : -1;
+				}
+				else
+				{
+					this.previous = this.current;
+					this.isDragging = true;
+
+					this.checkState();
+				}
 			},
 
 			onPointerMove(evt)
 			{
-				if (!this.touchEnabled || !this.isDragging)
+				if (this.isPeeking)
+					this.isPeeking = !(this.isDragging = true);
+
+				if (!this.touchEnabled || !this.isDragging || isSomethingScrolling)
 					return;
 
 				const position = getCoords(evt);
@@ -335,6 +379,9 @@
 
 			onPointerUp(evt)
 			{
+				if (this.isPeeking)
+					this.isPeeking = !(this.isDragging = true);
+
 				if (!this.touchEnabled || !this.isDragging || this.currentPosition === undefined || this.startPosition === undefined)
 					return;
 

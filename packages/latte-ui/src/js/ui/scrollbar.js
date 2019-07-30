@@ -11,10 +11,23 @@ import { createElement, raf } from "../util/dom";
 import { docRoot } from "../core";
 import { isTouchDevice } from "../util/touch";
 
+let scrollingTimeout = 0;
+
+function onScroll()
+{
+	clearTimeout(scrollingTimeout);
+	isSomethingScrolling = true;
+	scrollingTimeout = setTimeout(() => isSomethingScrolling = false, 100);
+}
+
+export let isSomethingScrolling = false;
+
 export function initializeScrollbar()
 {
+	window.addEventListener("scroll", onScroll, {capture: true, passive: true});
+
 	if (isTouchDevice())
-		return; // No scrollbars on touch devices.
+		return;
 
 	createElement("div", div =>
 	{
