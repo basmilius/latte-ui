@@ -7,8 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { Velocity } from "./animation/velocity";
-
 /**
  * Clamps a value between min and max.
  *
@@ -58,6 +56,5 @@ export function pythagorean(a, b)
 
 export default {
 	clamp,
-	pythagorean,
-	Velocity
+	pythagorean
 };

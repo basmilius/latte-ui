@@ -49,8 +49,7 @@
 				overlay: null,
 				currentPosition: {x: 0, y: 0},
 				previousPosition: {x: 0, y: 0},
-				startPosition: {x: 0, y: 0},
-				timer: null
+				startPosition: {x: 0, y: 0}
 			};
 		},
 
