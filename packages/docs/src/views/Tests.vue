@@ -79,7 +79,7 @@
 
 	</div>
 
-	<div class="panel radius-none" style="height: calc(100vh - 60px); margin: -24px" v-else>
+	<div class="panel radius-none" style="height: calc(100vh - 60px)" v-else>
 		<BEEditor v-model="content">
 			<template v-slot:settings-pane-after="{blockSettingsShown}">
 				<template v-if="!blockSettingsShown">

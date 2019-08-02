@@ -12,18 +12,18 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"@mdi/font": "^3.7.95",
-		"animejs": "^3.0.1",
-		"highlight.js": "^9.15.8",
+		"@mdi/font": "^3.8.95",
+		"animejs": "^3.1.0",
+		"highlight.js": "^9.15.9",
 		"moment": "^2.24.0",
 		"register-service-worker": "^1.6.2",
 		"vue": "^2.6.10",
 		"vue-router": "^3.0.7"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "^3.9.0",
+		"@vue/cli-plugin-babel": "^3.9.2",
 		"@vue/cli-plugin-pwa": "^3.9.0",
-		"@vue/cli-service": "^3.9.0",
+		"@vue/cli-service": "^3.9.3",
 		"node-sass": "^4.12.0",
 		"sass-loader": "^7.1.0",
 		"vue-template-compiler": "^2.6.10"

@@ -31,7 +31,10 @@ npm i @bybas/latte-ui
 					</div>
 
 					<div class="panel">
-						<div class="panel-header"><h2 class="panel-title mb-0">Install using CDN</h2></div>
+						<div class="panel-header">
+							<h2 class="panel-title mb-0">Install using CDN</h2>
+							<a href="/download/starter-template.html" download="starter-template.html" class="btn btn-outline btn-primary ml-auto d-none d-lg-flex"><i class="mdi mdi-download"></i><span>Starter template</span></a>
+						</div>
 						<div class="panel-body">
 							<p>
 								You can also add latte-ui to your project by using a CDN. Latte-ui is available on unpkg.com the popular
@@ -43,18 +46,6 @@ npm i @bybas/latte-ui
 &lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
 &lt;script src="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.js" type="text/javascript"&gt;&lt;/script&gt;
 							</CodeSnippet>
-						</div>
-						<div class="panel-body">
-							Or if you want to use a specific version:
-						</div>
-						<div class="panel-body border-top-0 pt-0">
-							<CodeSnippet lang="html">
-&lt;link href="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.css" type="text/css"/&gt;
-&lt;script src="https://unpkg.com/@bybas/latte-ui@{{ $latte.version }}/dist/latte-ui.js" type="text/javascript"&gt;&lt;/script&gt;
-							</CodeSnippet>
-						</div>
-						<div class="panel-footer justify-content-end">
-							<a href="/download/starter-template.html" download="starter-template.html" class="btn btn-contained btn-primary"><i class="mdi mdi-download"></i><span>Starter template</span></a>
 						</div>
 					</div>
 
@@ -78,14 +69,6 @@ new Vue({
 });
 							</CodeSnippet>
 						</div>
-						<div class="panel-body border-top-0 pt-0 d-none">
-							<div class="notice notice-info">
-								<i class="mdi mdi-information-outline"></i>
-								<p>
-									Note for laravel-mix users. T.B.D.
-								</p>
-							</div>
-						</div>
 					</div>
 
 					<div class="panel">
@@ -93,6 +76,11 @@ new Vue({
 						<div class="panel-body">
 							Latte-ui works best with Vue, but you can also just use latte-ui's CSS. Please note that a few features
 							require your own custom implementation to work.
+						</div>
+						<div class="panel-body border-top-0 pt-0">
+							<CodeSnippet lang="html">
+								&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
+							</CodeSnippet>
 						</div>
 					</div>
 

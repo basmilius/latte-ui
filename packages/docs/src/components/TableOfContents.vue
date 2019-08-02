@@ -1,6 +1,6 @@
 <template>
 
-	<div class="panel">
+	<div class="panel mb-panel-gutter">
 		<nav class="nav nav-list">
 			<template v-for="element of elements">
 				<div class="divider divider-horizontal" v-if="element.isSeparator"></div>

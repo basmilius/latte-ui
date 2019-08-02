@@ -9,19 +9,9 @@
 		name: "CodeSnippet",
 
 		props: {
-
-			lang: {
-				default: "js",
-				required: true,
-				type: String
-			},
-
-			url: {
-				default: null,
-				required: false,
-				type: String | null
-			}
-
+			lang: {default: "js", required: true, type: String},
+			small: {default: false, type: Boolean},
+			url: {default: null, type: String | null}
 		},
 
 		data()
@@ -40,7 +30,7 @@
 		{
 			const code = hljs.highlight(this.lang, (this.url !== null ? (this.code !== null ? this.code : "") : this.$slots.default[0].text).trim()).value;
 			const cmp = Vue.extend({
-				template: `<div class="code-snippet"><pre>${code}</pre></div>`
+				template: `<div class="code-snippet ${this.small ? "small" : ""}"><pre>${code}</pre></div>`
 			});
 
 			return ce(cmp);
@@ -80,20 +70,30 @@
 
 	div.code-snippet
 	{
+		position: relative;
+		display: block;
 		margin: 0;
+		max-width: 100%;
 		background: RGB(var(--main-background));
 		border: 1px solid RGB(var(--outline-color-secondary));
 		border-radius: var(--border-radius);
-	}
+		overflow: auto;
 
-	div.code-snippet pre
-	{
-		margin: 0;
-		padding: 24px;
-		font-family: "Operator Mono", monospace;
-		font-size: 13px;
-		font-weight: 500;
-		tab-size: 36px;
+		pre
+		{
+			margin: 0;
+			padding: 24px;
+			font-family: "Operator Mono", monospace;
+			font-size: 13px;
+			font-weight: 500;
+			overflow: visible;
+			tab-size: 36px;
+		}
+
+		&.small pre
+		{
+			padding: 12px;
+		}
 	}
 
 </style>

@@ -78,12 +78,12 @@ span.spinner#app-spinner
 
 footer.footer
 {
-	margin-top: 12px;
-}
+	background: rgba(var(--panel-background), 1);
 
-footer.footer nav.nav.nav-links .nav-link
-{
-	min-height: 36px;
+	nav.nav.nav-links .nav-link
+	{
+		min-height: 36px;
+	}
 }
 
 @media (max-width: 991px)

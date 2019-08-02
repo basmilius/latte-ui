@@ -11,14 +11,14 @@ div.page
 {
 	position: relative;
 	display: block;
-	min-height: calc(100vh - var(--app-bar-height) - (var(--content-gutter) * 2));
+	min-height: calc(100vh - var(--app-bar-height));
 }
 
 div.page-header
 {
 	position: relative;
 	display: block;
-	margin: calc(0px - var(--content-gutter)) calc(0px - var(--content-gutter)) 24px calc(0px - var(--content-gutter));
+	margin: 0 0 24px 0;
 	background: RGB(var(--panel-background));
 	border-bottom: var(--divider-size) solid RGB(var(--outline-color-secondary));
 
@@ -43,10 +43,15 @@ div.page-header
 
 	p
 	{
-		margin: 0;
+		margin-bottom: .5rem;
 		font-size: 1.1rem;
 		font-weight: 400;
 		opacity: .9;
+
+		&:last-child
+		{
+			margin-bottom: 0;
+		}
 	}
 }
 

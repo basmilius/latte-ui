@@ -12,11 +12,13 @@
 
 					<CodeExample title="Contained buttons" url="/snippets/components/button/contained.html"></CodeExample>
 					<CodeExample title="Floating action buttons" url="/snippets/components/button/fab.html"></CodeExample>
+					<CodeExample title="Outline buttons" url="/snippets/components/button/outline.html"></CodeExample>
 					<CodeExample title="Soft buttons" url="/snippets/components/button/soft.html"></CodeExample>
 					<CodeExample title="Text buttons" url="/snippets/components/button/text.html"></CodeExample>
 					<CodeExample title="Action buttons" url="/snippets/components/button/action.html"></CodeExample>
 					<CodeExample title="Grouped buttons" url="/snippets/components/button/group.html"></CodeExample>
 					<CodeExample class="darker" title="Pill buttons" url="/snippets/components/button/pill.html"></CodeExample>
+					<CodeExample title="Button sizes" url="/snippets/components/button/sizes.html"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
 

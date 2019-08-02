@@ -1,44 +1,20 @@
 <template>
 
 	<main id="skeleton" :class="{'is-docs': $router.currentRoute.path.substr(0, 5) === '/docs'}">
-		<div class="app-bar app-bar-main app-bar-primary" role="toolbar">
-			<div class="app-bar-row">
-				<button class="btn btn-icon btn-text ml-lg-2 mr-lg-1 d-block d-lg-none" aria-label="Toggle drawer" @click="$refs.drawer.open()"><i class="mdi mdi-menu"></i></button>
 
-				<span class="app-bar-title">Latte UI</span>
-
-				<nav class="nav nav-tabs px-5 d-none d-lg-flex">
-					<latte-ripple as="router-link" to="/" class="nav-link">Home</latte-ripple>
-					<latte-ripple as="router-link" to="/docs" class="nav-link">Documentation</latte-ripple>
-					<latte-ripple as="router-link" to="/tests" class="nav-link">Random tests</latte-ripple>
-				</nav>
-
-				<div class="d-flex align-items-center ml-auto">
-					<span class="mx-2">v{{ $latte.version }}</span>
-					<div class="divider divider-vertical"></div>
-					<latte-button-dropdown button-class="btn-icon btn-text" icon="dots-vertical">
-						<nav class="nav nav-list">
-							<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui/releases" target="_blank"><i class="mdi mdi-download"></i><span>Download</span></latte-ripple>
-							<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui" target="_blank"><i class="mdi mdi-github-circle"></i><span>Get Source</span></latte-ripple>
-							<div class="divider divider-horizontal"></div>
-							<latte-ripple as="a" class="nav-link" data-action="latte:switch-theme" data-close data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></latte-ripple>
-							<latte-ripple as="a" class="nav-link" data-action="latte:switch-theme" data-close data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></latte-ripple>
-						</nav>
-					</latte-button-dropdown>
-				</div>
-			</div>
-			<div class="app-bar-row d-flex d-lg-none">
-				<nav class="nav nav-tabs tabs-fill flex-grow-1">
-					<latte-ripple as="router-link" to="/" class="nav-link" style="flex-basis: 0">Home</latte-ripple>
-					<latte-ripple as="router-link" to="/docs" class="nav-link" style="flex-basis: 0">Documentation</latte-ripple>
-					<latte-ripple as="router-link" to="/tests" class="nav-link" style="flex-basis: 0">Random tests</latte-ripple>
-				</nav>
-			</div>
-		</div>
+		<MainMenu @toggle-drawer="$refs.drawer.toggle()"/>
 
 		<latte-sheet ref="drawer" class="drawer-container has-secondary" :touch-enabled="isDrawerTouchEnabled">
 			<div id="drawer" role="menu" @click="$refs.drawer.close()">
 				<nav class="nav nav-list py-3" id="drawer-secondary">
+
+					<div class="d-flex d-lg-none flex-column">
+						<latte-ripple as="router-link" to="/" class="nav-link"><span>Home</span></latte-ripple>
+						<latte-ripple as="router-link" to="/docs" class="nav-link"><span>Documentation</span></latte-ripple>
+						<latte-ripple as="router-link" to="/tests" class="nav-link"><span>Random tests</span></latte-ripple>
+
+						<div class="divider divider-horizontal"></div>
+					</div>
 
 					<latte-ripple as="router-link" to="/docs" class="nav-link"><span>Getting started</span></latte-ripple>
 
@@ -86,13 +62,11 @@
 			</div>
 		</latte-sheet>
 
-		<div class="content">
-
+		<div class="content p-0">
 			<router-view/>
-
 		</div>
 
-		<footer class="footer py-5 bg-light">
+		<footer class="footer py-5">
 			<div class="content">
 				<div class="container">
 					<div class="row">
@@ -136,10 +110,11 @@
 
 <script>
 
+	import MainMenu from "../components/MainMenu";
 	export default {
 
 		name: "Skeleton",
-
+		components: {MainMenu},
 		data()
 		{
 			return {
