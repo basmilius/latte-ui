@@ -111,8 +111,8 @@
 
 				if (this.withArrow)
 				{
-					const aboveUnder = this.y > (window.innerHeight / 2) ? "above" : "under";
-					const position = this.x > (window.innerWidth / 2) ? "right" : "left";
+					const aboveUnder = this.y > (self.innerHeight / 2) ? "above" : "under";
+					const position = this.x > (self.innerWidth / 2) ? "right" : "left";
 
 					classes.push(`popup-${position}-${aboveUnder}`);
 				}
@@ -136,11 +136,6 @@
 			isPersistent()
 			{
 				return this.persistent || this.lattePersistent;
-			},
-
-			self()
-			{
-				return this;
 			}
 
 		},
@@ -186,29 +181,26 @@
 
 			calculatePosition()
 			{
-				raf(() =>
-				{
-					const pcr = this.$el.getBoundingClientRect();
-					const px = this.x > (window.innerWidth / 2) ? "right" : "left";
-					const py = this.y > (window.innerHeight / 2) ? "above" : "under";
+				const pcr = this.$el.getBoundingClientRect();
+				const px = this.x > (self.innerWidth / 2) ? "right" : "left";
+				const py = this.y > (self.innerHeight / 2) ? "above" : "under";
 
-					const l = this.x;
-					const t = this.y;
-					const h = this.rect !== null ? this.rect.height : 0;
-					const w = this.rect !== null ? this.rect.width : 0;
+				const l = this.x;
+				const t = this.y;
+				const h = this.rect !== null ? this.rect.height : 0;
+				const w = this.rect !== null ? this.rect.width : 0;
 
-					let x = l + this.marginX;
-					let y = t + h + this.marginY;
+				let x = l + this.marginX;
+				let y = t + h + this.marginY;
 
-					if (px === "right")
-						x = (l + w) - (pcr.width + this.marginX);
+				if (px === "right")
+					x = (l + w) - (pcr.width + this.marginX);
 
-					if (py === "above")
-						y = t - (pcr.height + this.marginY);
+				if (py === "above")
+					y = t - (pcr.height + this.marginY);
 
-					this.popupX = Math.round(x);
-					this.popupY = Math.round(y + (this.isOpen || !this.animateTransform ? 0 : py === "above" ? -24 : 24));
-				});
+				this.popupX = Math.round(x);
+				this.popupY = Math.round(y + (this.isOpen || !this.animateTransform ? 0 : (py === "above" ? -24 : 24)));
 			},
 
 			setPosition(x, y)

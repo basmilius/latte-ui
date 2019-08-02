@@ -11,7 +11,7 @@ footer.footer
 {
 	position: relative;
 	display: block;
-	border-top: 2px solid #{latte-rgb(var(--outline-color-secondary))};
+	border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 
 	.divider
 	{

@@ -17,7 +17,7 @@ $sizes: (33px, 28px, 25px, 22px, 19px, 15px);
 		display: block;
 		margin: 0 0 1rem 0;
 		color: currentColor;
-		font-weight: 500;
+		font-weight: 600;
 		vertical-align: middle;
 
 		@include font-size(nth($sizes, $heading));

@@ -22,6 +22,7 @@ import * as Mixins from "../vue/mixin"
 
 import "../scss/app.scss";
 import { initializeEmoji } from "./ui/emoji";
+import { isSomethingScrolling } from "./ui/scrollbar";
 
 export const defaultOptions = {
 	emojiBaseUrl: "https://cdn.mili.us/assets/joypixels/v5",
@@ -38,7 +39,7 @@ function normalizeOptions(options)
 }
 
 let foundMainElement = false;
-let lastScroll = 0;
+let tickTimeout = 0;
 
 export class LatteUI
 {
@@ -60,8 +61,8 @@ export class LatteUI
 		on("latte:switch-theme", data => LatteUI.onSwitchTheme(data));
 		raf(() => LatteUI.onTick());
 
+		document.addEventListener("visibilitychange", () => LatteUI.onVisibilityChange());
 		window.addEventListener("load", () => LatteUI.onDOMContentLoaded(), {passive: true});
-		window.addEventListener("scroll", () => LatteUI.onWindowScroll(), {passive: true});
 		Vue.prototype.$latte = LatteSDK;
 	}
 
@@ -110,21 +111,27 @@ export class LatteUI
 		setCookie("$ui:theme", themeId);
 	}
 
+	static onVisibilityChange()
+	{
+		if (document.hidden)
+			clearTimeout(tickTimeout);
+		else
+			LatteUI.onTick();
+	}
+
 	static onTick()
 	{
+		clearTimeout(tickTimeout);
+
 		if (document.hidden === true)
 			return;
 
-		if (Date.now() - lastScroll < 100)
+		tickTimeout = timeout(getOptions().tickInterval, () => LatteUI.onTick());
+
+		if (isSomethingScrolling)
 			return;
 
 		dispatch("latte:tick", window.performance.now());
-		timeout(getOptions().tickInterval, () => raf(() => LatteUI.onTick()));
-	}
-
-	static onWindowScroll()
-	{
-		lastScroll = Date.now();
 	}
 }
 

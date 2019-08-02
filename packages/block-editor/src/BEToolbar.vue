@@ -3,7 +3,7 @@
 	<div class="panel-header be-toolbar">
 		<span></span>
 
-		<button class="btn btn-contained btn-primary" @click="onInserterClick"><i class="mdi mdi-plus-circle"></i><span>{{ "Insert" | beTranslate }}</span></button>
+		<button class="btn btn-outline btn-primary" @click="onInserterClick"><i class="mdi mdi-plus-circle"></i><span>{{ "Insert" | beTranslate }}</span></button>
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'View code' | beTranslate"><i class="mdi mdi-code-tags"></i></button>
