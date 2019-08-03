@@ -12,14 +12,14 @@
 	<div class="panel panel-blank datepicker-calendar">
 
 		<div class="panel-header datepicker-calendar-header" :class="[selectedView]">
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></latte-ripple>
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 ml-1" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></latte-ripple>
 
 			<div class="btn-group mx-auto">
 				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
 				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
 			</div>
 
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></latte-ripple>
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 mr-1" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></latte-ripple>
 		</div>
 
 		<div class="panel-body datepicker-calendar-dates pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
@@ -41,7 +41,7 @@
 		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
 			<template v-for="(month, index) in months">
 				<latte-ripple as="button" :key="index" :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)">
-					<span>{{ month }}</span>
+					{{ month }}
 				</latte-ripple>
 			</template>
 		</div>

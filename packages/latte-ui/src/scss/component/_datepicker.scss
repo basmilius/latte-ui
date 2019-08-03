@@ -7,12 +7,12 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.datepicker-calendar
+.datepicker-calendar
 {
 	min-width: 380px;
 	z-index: 0;
 
-	div.datepicker-calendar-header
+	.datepicker-calendar-header
 	{
 		position: sticky;
 		top: 0;
@@ -26,19 +26,18 @@ div.datepicker-calendar
 			box-shadow: elevation-generate(1);
 		}
 
-		div.btn-group .btn
+		.btn-group .btn
 		{
 			text-transform: capitalize;
 		}
 	}
 
-	div.datepicker-calendar-dates
+	.datepicker-calendar-dates
 	{
-		position: relative;
 		display: grid;
 		grid-template-columns: repeat(7, 1fr);
 
-		span.day
+		.day
 		{
 			position: relative;
 			display: block;
@@ -50,8 +49,10 @@ div.datepicker-calendar
 			text-transform: capitalize;
 		}
 
-		button.btn
+		.btn
 		{
+			--btn-padding: 0;
+
 			height: 42px;
 			margin: 0;
 			width: 100%;
