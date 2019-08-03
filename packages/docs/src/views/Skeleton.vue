@@ -29,34 +29,34 @@
 					<div class="divider divider-horizontal"></div>
 
 					<span class="section">Components</span>
-					<latte-ripple as="router-link" to="/docs/components/app-bar" class="nav-link"><span>App bar</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/avatar" class="nav-link"><span>Avatar</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/badge" class="nav-link"><span>Badge</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/bottom-nav" class="nav-link"><span>Bottom nav</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/button" class="nav-link"><span>Button</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/chat" class="nav-link"><span>Chat</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/datatable" class="nav-link"><span>Datatable</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/dropdown-button" class="nav-link"><span>Dropdown button</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/expandable" class="nav-link"><span>Expandable</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/form-elements" class="nav-link"><span>Form elements</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/list" class="nav-link"><span>List</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/message" class="nav-link"><span>Message</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/nav" class="nav-link"><span>Nav</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/notice" class="nav-link"><span>Notice</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/notification" class="nav-link"><span>Notification</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/overlay" class="nav-link"><span>Overlay</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/pagination" class="nav-link"><span>Pagination</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/panel" class="nav-link"><span>Panel</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/popup" class="nav-link"><span>Popup</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/portal" class="nav-link"><span>Portal</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/progress" class="nav-link"><span>Progress</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/question" class="nav-link"><span>Question</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/ripple" class="nav-link"><span>Ripple</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/sheet" class="nav-link"><span>Sheet</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/snackbar" class="nav-link"><span>Snackbar</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/spinner" class="nav-link"><span>Spinner</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/swiper" class="nav-link"><span>Swiper</span></latte-ripple>
-					<latte-ripple as="router-link" to="/docs/components/tabs" class="nav-link"><span>Tabs</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/app-bar"><span>App bar</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/avatar"><span>Avatar</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/badge"><span>Badge</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/bottom-nav"><span>Bottom nav</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/button"><span>Button</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/chat"><span>Chat</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/datatable"><span>Datatable</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/expandable"><span>Expandable</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/form-elements"><span>Form elements</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/list"><span>List</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/message"><span>Message</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/nav"><span>Nav</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/notice"><span>Notice</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/notification"><span>Notification</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/overlay"><span>Overlay</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/pagination"><span>Pagination</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/panel"><span>Panel</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/popup"><span>Popup</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/portal"><span>Portal</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/progress"><span>Progress</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/question"><span>Question</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/ripple"><span>Ripple</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/sheet"><span>Sheet</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/snackbar"><span>Snackbar</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/spinner"><span>Spinner</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/swiper"><span>Swiper</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/tabs"><span>Tabs</span></latte-ripple>
+					<latte-ripple as="router-link" class="nav-link" to="/docs/components/window"><span>Window</span></latte-ripple>
 
 				</nav>
 			</div>

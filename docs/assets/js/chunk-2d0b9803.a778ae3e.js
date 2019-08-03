@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b9803"],{"32e3":function(n,e,t){"use strict";t.r(e);var o=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("div",{staticClass:"page",attrs:{id:"components-dropdown-button"}},[t("PageHeader",[t("h1",[n._v("Dropdown button")])])],1)},a=[],r=t("36ad"),s={name:"DropdownButton",components:{PageHeader:r["a"]}},d=s,u=t("2be6"),c=Object(u["a"])(d,o,a,!1,null,null,null);e["default"]=c.exports}}]);
-//# sourceMappingURL=chunk-2d0b9803.a778ae3e.js.map

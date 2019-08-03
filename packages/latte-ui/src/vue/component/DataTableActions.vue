@@ -11,11 +11,12 @@
 
 	<td class="actions">
 		<div class="column-content flex-row align-items-center pl-0">
-			<latte-button-dropdown :aria-label="'More options...'|i18n('latte-ui')" icon="dots-vertical">
+			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'More options...'|i18n('latte-ui')"><i class="mdi mdi-dots-horizontal"></i></button>
+			<latte-popup :associate-with="$refs.btn" :margin-x="-9">
 				<nav class="nav nav-list">
 					<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
 				</nav>
-			</latte-button-dropdown>
+			</latte-popup>
 		</div>
 	</td>
 

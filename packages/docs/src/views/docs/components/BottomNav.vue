@@ -15,7 +15,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="bottomNavVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -32,20 +32,20 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "BottomNav",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
@@ -54,28 +54,61 @@
 				.getComputedStyle(document.body);
 
 			return {
-				bottomNavVars: [
-					{
-						name: "--bottom-nav-alpha",
-						type: "int",
-						default: 1
-					},
-					{
-						name: "--bottom-nav-background",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--bottom-nav-background").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--bottom-nav-foreground",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--bottom-nav-foreground").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--bottom-nav-elevation",
-						type: "string",
-						default: computedStyle.getPropertyValue("--bottom-nav-elevation")
-					}
-				]
+				api: {
+					events: [
+						{
+							name: "input",
+							description: "Invoked when the active item changes.",
+							signature: "(index: number)"
+						}
+					],
+					properties: [
+						{
+							name: "is-shifting",
+							description: "Items should only show labels when they're active.",
+							default: false,
+							type: "boolean"
+						},
+						{
+							name: "is-side",
+							description: "Bottom nav should actually be a side-nav.",
+							default: false,
+							type: "boolean"
+						},
+						{
+							name: "value",
+							description: "Control the active item by index.",
+							default: 0,
+							type: "number"
+						}
+					],
+					variables: [
+						{
+							name: "--bottom-nav-alpha",
+							description: "Botton nav alpha.",
+							type: "int",
+							default: 1
+						},
+						{
+							name: "--bottom-nav-background",
+							description: "Background color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--bottom-nav-background").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--bottom-nav-foreground",
+							description: "Foreground color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--bottom-nav-foreground").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--bottom-nav-elevation",
+							description: "Bottom nav elevation shadow.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--bottom-nav-elevation")
+						}
+					]
+				}
 			};
 		}
 

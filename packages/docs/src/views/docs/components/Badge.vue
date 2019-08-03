@@ -26,7 +26,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="badgeVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -43,20 +43,20 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "Badge",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
@@ -65,9 +65,16 @@
 				.getComputedStyle(document.body);
 
 			return {
-				badgeVars: [
-					{name: "--badge-color", type: "rgb", default: computedStyle.getPropertyValue("--badge-color").split(",").map(c => parseInt(c))}
-				]
+				api: {
+					variables: [
+						{
+							name: "--badge-color",
+							description: "Sets the badge color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--badge-color").split(",").map(c => parseInt(c))
+						}
+					]
+				}
 			};
 		}
 

@@ -17,7 +17,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="noticeVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -34,35 +34,41 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "Notice",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
 		{
 			return {
-				noticeVars: [
-					{
-						name: "--notice-background",
-						type: "none"
-					},
-					{
-						name: "--notice-foreground",
-						type: "none"
-					}
-				]
+				api: {
+					variables: [
+						{
+							name: "--notice-background",
+							description: "Background color.",
+							default: null,
+							type: "rgb"
+						},
+						{
+							name: "--notice-foreground",
+							description: "Foreground color.",
+							default: null,
+							type: "rgb"
+						}
+					]
+				}
 			};
 		}
 

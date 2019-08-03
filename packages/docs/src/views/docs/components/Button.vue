@@ -22,7 +22,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="buttonVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -39,20 +39,20 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "Buttons",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
@@ -61,48 +61,58 @@
 				.getComputedStyle(document.body);
 
 			return {
-				buttonVars: [
-					{
-						name: "--btn-alpha",
-						type: "int",
-						default: 1
-					},
-					{
-						name: "--btn-background",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--btn-background").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--btn-foreground",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--btn-foreground").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--btn-font-size",
-						type: "string",
-						default: computedStyle.getPropertyValue("--btn-font-size")
-					},
-					{
-						name: "--btn-height",
-						type: "string",
-						default: computedStyle.getPropertyValue("--btn-height")
-					},
-					{
-						name: "--btn-hover",
-						type: "int",
-						default: 0
-					},
-					{
-						name: "--btn-icon-size",
-						type: "string",
-						default: computedStyle.getPropertyValue("--btn-icon-size")
-					},
-					{
-						name: "--btn-padding",
-						type: "string",
-						default: computedStyle.getPropertyValue("--btn-padding")
-					}
-				]
+				api: {
+					variables: [
+						{
+							name: "--btn-alpha",
+							description: "Controls the button alpha level.",
+							type: "int",
+							default: 1
+						},
+						{
+							name: "--btn-background",
+							description: "Background color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--btn-background").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--btn-foreground",
+							description: "Foreground color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--btn-foreground").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--btn-font-size",
+							description: "Font size of the button.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--btn-font-size")
+						},
+						{
+							name: "--btn-height",
+							description: "Height of the button.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--btn-height")
+						},
+						{
+							name: "--btn-hover",
+							description: "Hover state.",
+							type: "int",
+							default: 0
+						},
+						{
+							name: "--btn-icon-size",
+							description: "Icon size.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--btn-icon-size")
+						},
+						{
+							name: "--btn-padding",
+							description: "Button padding.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--btn-padding")
+						}
+					]
+				}
 			};
 		}
 

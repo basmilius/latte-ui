@@ -17,7 +17,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="avatarVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -34,17 +34,17 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
+	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import CodeExample from "../../../components/CodeExample";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "Avatar",
 
 		components: {
-			Variables,
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
 			TableOfContents
@@ -53,13 +53,16 @@
 		data()
 		{
 			return {
-				avatarVars: [
-					{
-						name: "font-size",
-						type: "string",
-						default: "15px"
-					}
-				]
+				api: {
+					variables: [
+						{
+							name: "font-size",
+							description: "Sets the size of the avatar.",
+							type: "string",
+							default: "15px"
+						}
+					]
+				}
 			};
 		}
 

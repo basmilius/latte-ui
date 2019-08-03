@@ -19,6 +19,8 @@
 			<CodeSnippet lang="html" v-if="code">{{ code }}</CodeSnippet>
 		</div>
 
+		<slot name="root"></slot>
+
 		<span class="spinner spinner-primary"></span>
 	</div>
 
@@ -26,9 +28,9 @@
 
 <script>
 
+	import { Latte } from "../../../latte-ui";
 	import Vue from "vue";
 	import CodeSnippet from "./CodeSnippet";
-	import { Latte } from "../../../latte-ui";
 
 	export default {
 
@@ -39,25 +41,9 @@
 		},
 
 		props: {
-
-			showCode: {
-				default: true,
-				required: false,
-				type: Boolean
-			},
-
-			title: {
-				default: "Example",
-				required: false,
-				type: String
-			},
-
-			url: {
-				default: "Example",
-				required: true,
-				type: String
-			}
-
+			showCode: {default: true, type: Boolean},
+			title: {default: "Example", type: String},
+			url: {default: "Example", required: true, type: String}
 		},
 
 		data()

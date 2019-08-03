@@ -61,10 +61,6 @@ const router = new Router({
 									component: () => import("./views/docs/components/Datatable.vue")
 								},
 								{
-									path: "dropdown-button",
-									component: () => import("./views/docs/components/DropdownButton.vue")
-								},
-								{
 									path: "expandable",
 									component: () => import("./views/docs/components/Expandable.vue")
 								},
@@ -143,6 +139,10 @@ const router = new Router({
 								{
 									path: "tabs",
 									component: () => import("./views/docs/components/Tabs.vue")
+								},
+								{
+									path: "window",
+									component: () => import("./views/docs/components/Window.vue")
 								}
 							]
 						},

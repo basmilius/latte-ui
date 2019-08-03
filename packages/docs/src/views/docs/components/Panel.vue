@@ -20,7 +20,7 @@
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="panelVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -37,20 +37,20 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "Panels",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
@@ -59,28 +59,34 @@
 				.getComputedStyle(document.body);
 
 			return {
-				panelVars: [
-					{
-						name: "--panel-background",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--panel-background").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--panel-elevation",
-						type: "string",
-						default: computedStyle.getPropertyValue("--panel-elevation")
-					},
-					{
-						name: "--panel-elevation-hover",
-						type: "string",
-						default: computedStyle.getPropertyValue("--panel-elevation-hover")
-					},
-					{
-						name: "--panel-gutter",
-						type: "string",
-						default: computedStyle.getPropertyValue("--panel-gutter")
-					}
-				]
+				api: {
+					variables: [
+						{
+							name: "--panel-background",
+							description: "Background color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--panel-background").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--panel-elevation",
+							description: "Elevation shadow.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--panel-elevation")
+						},
+						{
+							name: "--panel-elevation-hover",
+							description: "Elevation shadow on hover.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--panel-elevation-hover")
+						},
+						{
+							name: "--panel-gutter",
+							description: "Gutter.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--panel-gutter")
+						}
+					]
+				}
 			};
 		}
 

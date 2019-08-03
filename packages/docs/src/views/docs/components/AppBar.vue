@@ -20,16 +20,11 @@
 						To make an app bar the primary one on your page, simply apply the <code>app-bar-main</code> class to it. The app bar will
 						become sticky and gets a higher z-index.
 					</CodeExample>
-<!--					<CodeExample class="darker" title="Cutout" url="/snippets/components/app-bar/cutout.html">-->
-<!--						<template slot="header">-->
-<!--							<span class="badge badge-warning">CSS Paint API</span>-->
-<!--						</template>-->
-<!--					</CodeExample>-->
 					<CodeExample class="darker" title="Panel" url="/snippets/components/app-bar/panel.html"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
 
-					<Variables :vars="appBarVars"/>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -46,20 +41,20 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
+	import CodeExample from "../../../components/CodeExample";
 	import PageHeader from "../../../components/PageHeader";
 	import TableOfContents from "../../../components/TableOfContents";
-	import CodeExample from "../../../components/CodeExample";
-	import Variables from "../../../components/Variables";
 
 	export default {
 
 		name: "AppBar",
 
 		components: {
+			ApiExplorer,
 			CodeExample,
 			PageHeader,
-			TableOfContents,
-			Variables
+			TableOfContents
 		},
 
 		data()
@@ -68,38 +63,46 @@
 				.getComputedStyle(document.body);
 
 			return {
-				appBarVars: [
-					{
-						name: "--app-bar-alpha",
-						type: "int",
-						default: 1
-					},
-					{
-						name: "--app-bar-background",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--app-bar-background").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--app-bar-foreground",
-						type: "rgb",
-						default: computedStyle.getPropertyValue("--app-bar-foreground").split(",").map(c => parseInt(c))
-					},
-					{
-						name: "--app-bar-elevation",
-						type: "string",
-						default: computedStyle.getPropertyValue("--app-bar-elevation")
-					},
-					{
-						name: "--app-bar-gutter",
-						type: "string",
-						default: computedStyle.getPropertyValue("--app-bar-gutter")
-					},
-					{
-						name: "--app-bar-height",
-						type: "string",
-						default: computedStyle.getPropertyValue("--app-bar-height")
-					}
-				]
+				api: {
+					variables: [
+						{
+							name: "--app-bar-alpha",
+							description: "App bar alpha.",
+							type: "number",
+							default: 1
+						},
+						{
+							name: "--app-bar-background",
+							description: "Background color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--app-bar-background").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--app-bar-foreground",
+							description: "Foreground color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--app-bar-foreground").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--app-bar-elevation",
+							description: "Elevation shadow.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--app-bar-elevation")
+						},
+						{
+							name: "--app-bar-gutter",
+							description: "Gutters",
+							type: "string",
+							default: computedStyle.getPropertyValue("--app-bar-gutter")
+						},
+						{
+							name: "--app-bar-height",
+							description: "App bar height",
+							type: "string",
+							default: computedStyle.getPropertyValue("--app-bar-height")
+						}
+					]
+				}
 			};
 		}
 

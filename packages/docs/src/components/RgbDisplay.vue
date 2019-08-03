@@ -3,7 +3,7 @@
 	<div class="rgb-display" :style="styles">
 		<span>{{ rgb[0] }}, {{ rgb[1] }}, {{ rgb[2] }}</span>
 	</div>
-	
+
 </template>
 
 <script>
@@ -14,11 +14,7 @@
 
 		props: {
 
-			rgb: {
-				default: () => [0, 0, 0],
-				required: false,
-				type: Array
-			}
+			rgb: {default: () => [0, 0, 0], required: true, type: Array}
 
 		},
 
