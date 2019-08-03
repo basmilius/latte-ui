@@ -185,4 +185,12 @@
 		}
 	}
 
+	@media (min-width: 1921px)
+	{
+		div#home-blocks section.home-block
+		{
+			padding: 48px 5vw;
+		}
+	}
+
 </style>
