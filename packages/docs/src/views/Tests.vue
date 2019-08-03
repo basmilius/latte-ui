@@ -9,16 +9,64 @@
 
 <template>
 
-	<div class="page" id="tests" v-if="false">
+	<div class="page mb-3" id="tests" v-if="!testEditor">
 
 		<PageHeader>
 			<h1>Random tests</h1>
 			<p>These are some development tests.</p>
 		</PageHeader>
 
-		<div class="container" v-if="false">
+		<div class="container">
 			<div class="row">
 				<div class="col-12">
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Window</span></div>
+						<div class="panel-body">
+
+							<button class="btn btn-outline btn-primary btn-icon" ref="windowButton"><i class="mdi mdi-dots-horizontal"></i></button>
+
+							<latte-popup :associate-with="$refs.windowButton" :margin-x="-9">
+								<latte-window>
+									<template v-slot="{navigate}">
+
+										<nav class="nav nav-list" style="min-width: 210px">
+											<a class="nav-link" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i><span>Sub</span></a>
+											<a class="nav-link" @click="navigate(3)"><i class="mdi mdi-chevron-right"></i><span>Sub 2</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+										</nav>
+
+										<nav class="nav nav-list" style="min-width: 210px">
+											<a class="nav-link" @click="navigate(0)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
+											<a class="nav-link" @click="navigate(2)"><i class="mdi mdi-chevron-right"></i><span>Sub</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+										</nav>
+
+										<nav class="nav nav-list" style="min-width: 210px">
+											<a class="nav-link" @click="navigate(1)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+										</nav>
+
+										<nav class="nav nav-list" style="min-width: 210px">
+											<a class="nav-link" @click="navigate(0)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
+											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link"><span>Item</span></a>
+										</nav>
+
+									</template>
+								</latte-window>
+							</latte-popup>
+
+						</div>
+					</div>
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
@@ -68,11 +116,6 @@
 						</div>
 					</div>
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Data table</span></div>
-						<latte-data-table add-spinner-to-parent :data-source="datatableDataSource"></latte-data-table>
-					</div>
-
 				</div>
 			</div>
 		</div>
@@ -99,11 +142,11 @@
 
 <script>
 
-	import PageHeader from "../components/PageHeader";
-	import autocompleteData from "../assets/data/autocomplete-data.json";
-
 	import { BEEditor } from "../../../block-editor/src";
+
+	import autocompleteData from "../assets/data/autocomplete-data.json";
 	import BESettingsGroup from "../../../block-editor/src/BESettingsGroup";
+	import PageHeader from "../components/PageHeader";
 
 	export default {
 
@@ -116,13 +159,15 @@
 		data()
 		{
 			let i = 0;
-			let rows = Array.from(Array(1000), () => ({id: ++i, name: `Bas ${i}`}));
+			let rows = Array.from(Array(100), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
 				content: [],
 				rows: rows,
 				acTwo: [],
-				acTree: [3, 6]
+				acTree: [3, 6],
+				testEditor: false,
+				checked: false
 			};
 		},
 
@@ -133,7 +178,8 @@
 
 		mounted()
 		{
-			document.body.style.setProperty("overflow", "hidden");
+			if (this.testEditor)
+				document.body.style.setProperty("overflow", "hidden");
 		},
 
 		methods: {
@@ -186,20 +232,6 @@
 			}
 
 		}
-
-		// watch: {
-		//
-		// 	acTwo()
-		// 	{
-		// 		console.log(`Value for first multi-select: `, Array.from(this.acTwo));
-		// 	},
-		//
-		// 	acTree()
-		// 	{
-		// 		console.log(`Value for second multi-select: `, Array.from(this.acTree));
-		// 	}
-		//
-		// }
 
 	}
 

@@ -241,13 +241,3 @@
 	}
 
 </script>
-
-<style lang="scss" scoped>
-
-	.virtual-scroller-header
-	{
-		position: relative;
-		display: block;
-	}
-
-</style>

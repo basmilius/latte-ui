@@ -9,9 +9,9 @@
 
 <template>
 
-	<div class="latte-autocomplete" :class="{'is-loading': isLoading}">
+	<div class="autocomplete" :class="{'is-loading': isLoading}">
 
-		<label class="form-control" :disabled="disabled">
+		<div class="form-control" :disabled="disabled">
 
 			<template v-for="selection in values">
 
@@ -28,7 +28,7 @@
 
 			<input type="search" :name="name" :disabled="disabled" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 
-		</label>
+		</div>
 
 		<div class="popup" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
 			<div class="popup-body">

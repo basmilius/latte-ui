@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-.latte-autocomplete
+.autocomplete
 {
 	position: relative;
 	display: block;
@@ -17,7 +17,7 @@
 		padding: 0 8px;
 		flex-flow: row wrap;
 
-		span.badge
+		.badge
 		{
 			margin: 8px 8px 8px 0;
 		}
@@ -33,7 +33,7 @@
 		}
 	}
 
-	div.popup
+	.popup
 	{
 		position: absolute;
 		margin: 0 -15px;

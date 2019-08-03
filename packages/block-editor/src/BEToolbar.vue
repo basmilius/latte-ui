@@ -77,12 +77,7 @@
 			{
 				const el = L.util.dom.closest(evt.target, ".btn").querySelector("i.mdi");
 
-				this.editor.inserter.open(el, id => this.editor.rootBlocks.insertBlock(id), -15, 9);
-			},
-
-			render()
-			{
-				console.log(this.editor.render());
+				this.editor.inserter.open(el, id => this.editor.rootBlocks.insertBlock(id), -15, 12);
 			}
 
 		}
