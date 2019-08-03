@@ -23,6 +23,7 @@
 					<span class="section">Layout</span>
 					<latte-ripple as="router-link" to="/docs/layout/color" class="nav-link"><span>Color</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/grid-system" class="nav-link"><span>Grid system</span></latte-ripple>
+					<latte-ripple as="router-link" to="/docs/layout/icons" class="nav-link"><span>Icons</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/typography" class="nav-link"><span>Typography</span></latte-ripple>
 					<latte-ripple as="router-link" to="/docs/layout/utilities" class="nav-link"><span>Utilities</span></latte-ripple>
 

@@ -6,7 +6,7 @@
 				<i class="mdi mdi-menu"></i>
 			</button>
 
-			<span class="app-bar-title">Latte</span>
+			<span class="app-bar-title">Latte UI</span>
 
 			<nav class="nav nav-tabs px-5 d-none d-lg-flex">
 				<latte-ripple as="router-link" to="/" class="nav-link">Home</latte-ripple>
@@ -15,7 +15,7 @@
 			</nav>
 
 			<div class="d-flex align-items-center ml-auto">
-				<span class="mx-2">v{{ $latte.version }}</span>
+				<span class="badge badge-light mx-2">v{{ $latte.version }}</span>
 				<div class="divider divider-vertical"></div>
 				<button class="btn btn-icon btn-text" ref="dotsMenu"><i class="mdi mdi-dots-vertical"></i></button>
 

@@ -46,87 +46,7 @@
 						</div>
 					</div>
 
-
-
-					<div class="panel">
-						<div class="panel-header"><h2 class="panel-title m-0">Defaults</h2></div>
-						<table class="table" style="margin: 0 6px">
-							<thead>
-							<tr>
-								<th><div class="column-content"><strong>Variable</strong></div></th>
-								<th style="width: 150px"><div class="column-content"><strong>Type</strong></div></th>
-								<th><div class="column-content"><strong>Default value</strong></div></th>
-							</tr>
-							</thead>
-							<tbody class="text-monospace" style="font-size: .8rem">
-							<tr>
-								<td><div class="column-content">--default-dark</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[25, 26, 28]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--default-light</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[255, 255, 255]"></RgbDisplay></div></td>
-							</tr>
-
-							<tr>
-								<td><div class="column-content">--color-primary</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[55, 125, 255]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--color-primary-foreground</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content">var(--default-light)</div></td>
-							</tr>
-
-							<tr>
-								<td><div class="column-content">--color-error</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[254, 50, 75]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--color-error-foreground</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content">var(--default-light)</div></td>
-							</tr>
-
-							<tr>
-								<td><div class="column-content">--color-info</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[8, 122, 254]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--color-info-foreground</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content">var(--default-light)</div></td>
-							</tr>
-
-							<tr>
-								<td><div class="column-content">--color-success</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[23, 195, 123]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--color-success-foreground</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content">var(--default-light)</div></td>
-							</tr>
-
-							<tr>
-								<td><div class="column-content">--color-warning</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content"><RgbDisplay :rgb="[254, 179, 53]"></RgbDisplay></div></td>
-							</tr>
-							<tr>
-								<td><div class="column-content">--color-warning-foreground</div></td>
-								<td><div class="column-content">RGB</div></td>
-								<td><div class="column-content">var(--default-light)</div></td>
-							</tr>
-							</tbody>
-						</table>
-					</div>
+					<ApiExplorer v-bind="api"/>
 
 				</div>
 				<div class="col-12 col-lg-3">
@@ -141,9 +61,9 @@
 
 <script>
 
+	import ApiExplorer from "../../../components/ApiExplorer";
 	import CodeSnippet from "../../../components/CodeSnippet";
 	import PageHeader from "../../../components/PageHeader";
-	import RgbDisplay from "../../../components/RgbDisplay";
 	import TableOfContents from "../../../components/TableOfContents";
 
 	export default {
@@ -151,10 +71,80 @@
 		name: "Color",
 
 		components: {
+			ApiExplorer,
 			CodeSnippet,
 			PageHeader,
-			RgbDisplay,
 			TableOfContents
+		},
+
+		data()
+		{
+			return {
+				api: {
+					variables: [
+						{
+							name: "--default-dark",
+							type: "rgb",
+							default: [25, 26, 28]
+						},
+						{
+							name: "--default-light",
+							type: "rgb",
+							default: [255, 255, 255]
+						},
+						{
+							name: "--color-primary",
+							type: "rgb",
+							default: [55, 125, 255]
+						},
+						{
+							name: "--color-primary-foreground",
+							type: "rgb",
+							default: [255, 255, 255]
+						},
+						{
+							name: "--color-error",
+							type: "rgb",
+							default: [254, 50, 75]
+						},
+						{
+							name: "--color-error-foreground",
+							type: "rgb",
+							default: [255, 255, 255]
+						},
+						{
+							name: "--color-info",
+							type: "rgb",
+							default: [8, 122, 254]
+						},
+						{
+							name: "--color-info-foreground",
+							type: "rgb",
+							default: [255, 255, 255]
+						},
+						{
+							name: "--color-success",
+							type: "rgb",
+							default: [23, 195, 123]
+						},
+						{
+							name: "--color-success-foreground",
+							type: "rgb",
+							default: [255, 255, 255]
+						},
+						{
+							name: "--color-warning",
+							type: "rgb",
+							default: [254, 179, 53]
+						},
+						{
+							name: "--color-warning-foreground",
+							type: "rgb",
+							default: [255, 255, 255]
+						}
+					]
+				}
+			};
 		}
 
 	}
