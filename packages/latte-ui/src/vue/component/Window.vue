@@ -10,10 +10,15 @@
 <script>
 
 	import { raf } from "../../js/util/dom";
+	import { oneOf } from "../../js/helper/array";
 
 	export default {
 
 		name: "latte-window",
+
+		props: {
+			direction: {default: "horizontal", type: String, validator: oneOf(["horizontal", "vertical"])}
+		},
 
 		data()
 		{
@@ -35,7 +40,7 @@
 			return h(
 				"div",
 				{
-					class: "window",
+					class: ["window", `window-${this.direction}`],
 					style: {
 						"--window-height": `${this.height}px`,
 						"--window-width": `${this.width}px`
@@ -46,7 +51,7 @@
 					navigate: this.navigate,
 					back: this.back,
 					forward: this.forward
-				}).map(view => h("div", {class: "window-view"}, [view]))
+				}).map(view => h("div", {class: ["window-view", `window-${this.direction}`]}, [view]))
 			);
 		},
 
@@ -109,6 +114,7 @@
 			current()
 			{
 				this.update();
+				this.$emit("navigate", this.current);
 			}
 
 		}

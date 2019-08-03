@@ -68,7 +68,7 @@
 						</div>
 					</div>
 
-					<div class="panel">
+					<div class="panel" v-if="false">
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 390px">
 
@@ -79,7 +79,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel">
+					<div class="panel" v-if="false">
 						<div class="panel-header"><span class="panel-title">Virtual scroller (grid)</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" :item-width="222" items-class="d-flex flex-row flex-wrap" style="height: 390px">
 
@@ -90,7 +90,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel">
+					<div class="panel" v-if="false">
 						<div class="panel-header">
 							<span class="panel-title">Emoji stuff</span>
 							<div class="ml-auto"></div>
@@ -103,7 +103,7 @@
 						</div>
 					</div>
 
-					<div class="panel">
+					<div class="panel" v-if="false">
 						<div class="panel-header"><span class="panel-title">Autocomplete</span></div>
 						<div class="panel-body">
 							<latte-autocomplete :data-source="autocompleteDataSource"></latte-autocomplete>
