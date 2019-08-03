@@ -28,7 +28,7 @@
 
 							<latte-popup :associate-with="$refs.windowButton" :margin-x="-9">
 								<latte-window>
-									<template v-slot="{navigate}">
+									<template v-slot="{navigate, reset}">
 
 										<nav class="nav nav-list" style="min-width: 210px">
 											<a class="nav-link" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i><span>Sub</span></a>
@@ -57,7 +57,7 @@
 
 										<nav class="nav nav-list" style="min-width: 210px">
 											<a class="nav-link" @click="navigate(0)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
-											<a class="nav-link"><span>Item</span></a>
+											<a class="nav-link" @click="reset"><span>Item</span></a>
 											<a class="nav-link"><span>Item</span></a>
 										</nav>
 
@@ -159,14 +159,14 @@
 		data()
 		{
 			let i = 0;
-			let rows = Array.from(Array(100), () => ({id: ++i, name: `Bas ${i}`}));
+			let rows = Array.from(Array(50), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
 				content: [],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6],
-				testEditor: true
+				testEditor: false
 			};
 		},
 

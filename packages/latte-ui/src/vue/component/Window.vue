@@ -50,7 +50,8 @@
 					current: this.current,
 					navigate: this.navigate,
 					back: this.back,
-					forward: this.forward
+					forward: this.forward,
+					reset: this.reset
 				}).map(view => h("div", {class: ["window-view", `window-${this.direction}`]}, [view]))
 			);
 		},
@@ -73,6 +74,12 @@
 			{
 				this.previous = this.current;
 				this.current++;
+			},
+
+			reset()
+			{
+				this.current = 0;
+				this.previous = -1;
 			},
 
 			update()
@@ -101,10 +108,14 @@
 					const pr = previous.getBoundingClientRect();
 					cFrom = isForward ? pr.width : -pr.width;
 					previous.classList.add("is-hiding", dClass);
-				}
 
-				current.classList.add("is-visible", "is-staged", dClass);
-				raf(() => current.classList.remove("is-staged", "is-forward", "is-backward"));
+					current.classList.add("is-visible", "is-staged", dClass);
+					raf(() => current.classList.remove("is-staged", "is-forward", "is-backward"));
+				}
+				else
+				{
+					current.classList.add("is-visible");
+				}
 			}
 
 		},
