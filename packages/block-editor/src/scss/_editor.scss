@@ -113,7 +113,7 @@
 		left: 0;
 		right: 0;
 		height: 3px;
-		background: rgba(var(--color-primary), 1);
+		background: rgba(var(--color-primary), .5);
 		border-radius: 2px;
 		cursor: default;
 		opacity: 0;
@@ -154,7 +154,7 @@
 			left: 50%;
 			height: 30px;
 			width: 30px;
-			background: inherit;
+			background: rgba(var(--color-primary), 1);
 			border-radius: 99px;
 			color: white;
 			transform: translate3d(-50%, -50%, 0);

@@ -1,9 +1,10 @@
 import { BlockBase } from "../block";
 import { getLatte } from "../utils";
-import { blockActions, settingsGroup, textField, toggleButton } from "../primitive/settings";
+import { blockActions, radioButtons, settingsGroup, textField, toggleButton } from "../primitive/settings";
 
 const buttonTypes = [
 	{id: "contained", label: "Contained"},
+	{id: "outline", label: "Outline"},
 	{id: "soft", label: "Soft"},
 	{id: "text", label: "Text"}
 ];
@@ -25,6 +26,7 @@ export class ButtonBlock extends BlockBase
 	{
 		return {
 			pillButton: false,
+			rippleButton: false,
 			text: "Button",
 			type: "contained",
 			url: ""
@@ -54,12 +56,13 @@ export class ButtonBlock extends BlockBase
 	render(h, {options})
 	{
 		return h(
-			"button",
+			options.rippleButton ? "latte-ripple" : "button",
 			{
 				class: getButtonClasses(options),
 				domProps: {
 					href: options.url
-				}
+				},
+				props: {as: "button"}
 			},
 			[
 				h("span", options.text)
@@ -70,9 +73,10 @@ export class ButtonBlock extends BlockBase
 	renderEditor(h, api)
 	{
 		return h(
-			"button",
+			api.options.rippleButton ? "latte-ripple" : "button",
 			{
-				class: getButtonClasses(api.options)
+				class: getButtonClasses(api.options),
+				props: {as: "button"}
 			},
 			[
 				h("span", {
@@ -97,25 +101,9 @@ export class ButtonBlock extends BlockBase
 
 		return settingsGroup(h, this.name, [
 			blockActions(h, api),
-			toggleButton(h, "Pill button", () => api.options.pillButton, pillButton => api.setOptions({pillButton})),
-			h("div", {class: "be-settings-row flex-column"}, [
-				h("span", "Type"),
-				buttonTypes.map(buttonType => h("label", {class: "d-flex align-items-center my-1 w-100"}, [
-					h("input", {
-						class: "radio-button radio-button-primary mr-3",
-						domProps: {
-							checked: api.options.type === buttonType.id,
-							type: "radio",
-							name: uniqueId,
-							value: buttonType.id
-						},
-						on: {
-							click: () => api.setOptions({type: buttonType.id})
-						}
-					}),
-					h("span", {class: "m-0"}, buttonType.label)
-				]))
-			]),
+			toggleButton(h, "Ripple", () => api.options.rippleButton, rippleButton => api.setOptions({rippleButton})),
+			toggleButton(h, "Pill", () => api.options.pillButton, pillButton => api.setOptions({pillButton})),
+			radioButtons(h, "Type", () => api.options.type, type => api.setOptions({type}), uniqueId, buttonTypes),
 			textField(h, "URL", () => api.options.url, url => api.setOptions({url}))
 		]);
 	}

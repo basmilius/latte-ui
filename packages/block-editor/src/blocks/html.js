@@ -31,10 +31,15 @@ export class HtmlBlock extends BlockBase
 		super("html", "other", "language-html5");
 	}
 
+	render(h, api)
+	{
+		return h("div", {class: "be-custom-html", domProps: {innerHTML: api.options.code}});
+	}
+
 	renderEditor(h, api)
 	{
-		return h("latte-tab-container", {}, [
-			h("div", {class: "d-flex align-items-center mb-1"}, [
+		return h("latte-tab-container", {style: {zIndex: "0"}}, [
+			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {background: "rgba(var(--panel-background), .75)", zIndex: "1"}}, [
 				h("strong", this.name),
 				h("latte-tab-bar", {class: "ml-auto"})
 			]),

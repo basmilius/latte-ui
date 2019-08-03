@@ -44,7 +44,7 @@ export class ParagraphBlock extends BlockBase
 
 	renderEditor(h, api)
 	{
-		return renderEditor("p", h, api);
+		return renderEditor("p", h, api, "Start writing or type / to insert a block...");
 	}
 
 	renderOptions(h, api)

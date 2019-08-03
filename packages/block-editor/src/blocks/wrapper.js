@@ -47,10 +47,10 @@ export class WrapperBlock extends BlockBase
 		let vgutters = this.isInline ? 0 : margin.vertical;
 
 		let columnsLast = querySelector(api.elm, ".be-block-mount:last-child");
-		let lastDimensions = getElementDimensions(columnsLast);
+		let lastDimensions = columnsLast !== null ? getElementDimensions(columnsLast).margin.bottom : 0;
 
 		return {
-			height: dimensions.height + vgutters - lastDimensions.margin.bottom,
+			height: dimensions.height + vgutters - lastDimensions,
 			width: dimensions.width + hgutters
 		};
 	}

@@ -180,13 +180,13 @@ export function render(tag, h, {options})
 	});
 }
 
-export function renderEditor(tag, h, api)
+export function renderEditor(tag, h, api, placeholder = "Start writing...")
 {
 	canUpdate = true;
 
 	return h(tag, {
 		attrs: {
-			"data-placeholder": translate("Start writing or type / to insert a block...")
+			"data-placeholder": translate(placeholder)
 		},
 		domProps: {
 			contentEditable: "true",
@@ -297,10 +297,12 @@ function kdHandleBackspaceWhenAtStart(evt, text, api)
 function kdHandleBackspaceWhenEmpty(evt, api)
 {
 	evt.preventDefault();
-	api.remove();
 
-	if (api.previousSibbling)
-		api.previousSibbling.focus({select: true, placeAtEnd: true});
+	if (!api.previousSibbling)
+		return;
+
+	api.remove();
+	api.previousSibbling.focus({select: true, placeAtEnd: true});
 }
 
 function kdHandleEnterWhenNotShift(evt, text, api)

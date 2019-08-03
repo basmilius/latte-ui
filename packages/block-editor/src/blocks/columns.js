@@ -1,7 +1,7 @@
 import BEBlocks from "../BEBlocks";
 
 import { BlockBase } from "../block";
-import { replaceIndex } from "../utils";
+import { notNullOrUndefined, replaceIndex } from "../utils";
 import { blockActions, optional, rangeField, settingsGroupWithDepth, toggleButton } from "../primitive/settings";
 import { optionAdditionalClasses } from "../primitive/element";
 import { getElementDimensions, querySelector, querySelectorAll } from "../helper/element";
@@ -85,11 +85,11 @@ export class ColumnsBlock extends BlockBase
 		let vgutters = this.isInline ? 0 : margin.vertical;
 
 		let columns = querySelectorAll(api.elm, ".col-12");
-		let columnsLast = columns.map(column => querySelector(column, ".be-block-mount:last-child"));
+		let columnsLast = columns.map(column => querySelector(column, ".be-block-mount:last-child")).filter(column => notNullOrUndefined(column));
 		let lastDimensions = columnsLast.map(l => getElementDimensions(l).margin.bottom);
 
 		return {
-			height: dimensions.height + vgutters - Math.max(...lastDimensions),
+			height: dimensions.height + vgutters - Math.max(0, ...lastDimensions),
 			width: dimensions.width + hgutters
 		};
 	}
@@ -159,6 +159,5 @@ export class ColumnsBlock extends BlockBase
 			optionAdditionalClasses(h, api)
 		]);
 	}
-
 
 }

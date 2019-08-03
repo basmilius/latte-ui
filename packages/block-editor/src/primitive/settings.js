@@ -14,6 +14,28 @@ export function optional(condition, fn, defaultValue = undefined)
 	return fn();
 }
 
+export function radioButtons(h, title, getValue, setValue, name, options)
+{
+	return h("div", {class: "be-settings-row flex-column"}, [
+		h("span", title),
+		options.map(option => h("label", {class: "d-flex align-items-center my-1 w-100"}, [
+			h("input", {
+				class: "radio-button radio-button-primary mr-3",
+				domProps: {
+					checked: getValue() === option.id,
+					type: "radio",
+					name: name,
+					value: option.id
+				},
+				on: {
+					click: () => setValue(option.id)
+				}
+			}),
+			h("span", {class: "m-0"}, option.label)
+		]))
+	])
+}
+
 export function rangeField(h, title, getValue, setValue, min = 0, max = 1, step = 0.1)
 {
 	return h("label", {class: "be-settings-row"}, [
