@@ -93,7 +93,7 @@
 				}
 				else
 				{
-					this.bodyStyle.height = "0";
+					raf(() => this.bodyStyle.height = "0");
 				}
 			},
 
