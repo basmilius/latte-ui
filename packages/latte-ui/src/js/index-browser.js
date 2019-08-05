@@ -7,6 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import "../scss/app.scss";
 import { Latte, LatteUI } from "./index";
 
 self.Latte = Latte;

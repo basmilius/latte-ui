@@ -18,7 +18,7 @@
 	--font-sans-serif: "proxima-nova", sans-serif;
 	--font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-	--branding-logo: unquote("url(" + $latte-root + "image/logo.svg)");
+	--branding-logo: #{unquote("url(" + $latte-root + "image/logo.svg)")};
 	--border-radius: 6px;
 
 	--light: 255, 255, 255;
