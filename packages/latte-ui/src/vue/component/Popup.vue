@@ -53,6 +53,7 @@
 		{
 			return {
 				isOpen: false,
+				isOpening: false,
 				popupX: 0,
 				popupY: 0,
 				rect: null,
@@ -117,7 +118,7 @@
 					classes.push(`popup-${position}-${aboveUnder}`);
 				}
 
-				if (!this.animateTransform)
+				if (!this.animateTransform || this.isOpening)
 					classes.push("no-transform-animation");
 
 				if (this.isOpen === true)
@@ -168,7 +169,9 @@
 			open()
 			{
 				applyZ(z => this.$el.style.setProperty("z-index", z));
-				this.isOpen = true;
+				this.isOpening = true;
+				this.calculatePosition();
+				raf(() => this.isOpening = !(this.isOpen = true));
 			},
 
 			toggle()

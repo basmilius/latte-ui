@@ -60,7 +60,7 @@ export class YouTubeEmbedBlock extends BlockBase
 
 	renderOptions(h, api)
 	{
-		return settingsGroup(h, this.title, [
+		return settingsGroup(h, this.name, [
 			blockActions(h, api),
 			textField(h, "Video ID", () => api.options.videoId, videoId => api.setOptions({videoId}))
 		]);
