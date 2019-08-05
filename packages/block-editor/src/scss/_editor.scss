@@ -350,6 +350,76 @@
 		}
 	}
 
+	@at-root .be-hierarchy
+	{
+		min-width: 420px;
+
+		.be-hierarchy-group
+		{
+			position: relative;
+			display: flex;
+			flex-flow: column;
+		}
+
+		> .be-hierarchy-group
+		{
+			padding: 12px 0;
+		}
+
+		.be-hierarchy-item
+		{
+			position: relative;
+			display: flex;
+			align-items: stretch;
+			flex-flow: column;
+
+			.be-hierarchy-group
+			{
+				margin-left: 18px;
+			}
+		}
+
+		.be-hierarchy-header
+		{
+			position: relative;
+			display: flex;
+			margin-left: -300px;
+			padding-left: 300px;
+			align-items: center;
+
+			.block-actions
+			{
+				position: relative;
+				display: flex;
+				padding: 0 30px 0 0;
+				align-items: center;
+
+				.divider
+				{
+					height: 18px;
+					margin: 0 6px;
+				}
+			}
+
+			.block-name
+			{
+				position: relative;
+				display: block;
+				padding: 9px 30px;
+				flex: 1 1 0;
+				color: rgba(var(--main-foreground), .75);
+				font-size: .9rem;
+				font-weight: 500;
+			}
+
+			&:hover
+			{
+				background: rgba(var(--outline-color), .25);
+				outline: var(--divider-size) solid rgba(var(--outline-color), 1);
+			}
+		}
+	}
+
 	@at-root .be-inserter.be-inserter-popup
 	{
 		width: 420px;

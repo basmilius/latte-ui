@@ -188,6 +188,8 @@
 
 			content()
 			{
+				this.editor.$emit("content-update");
+
 				if (!this.canUpdate)
 					return;
 

@@ -7,7 +7,7 @@
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'View code' | beTranslate"><i class="mdi mdi-code-tags"></i></button>
-		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'View hierarchy' | beTranslate"><i class="mdi mdi-notification-clear-all mdi-flip-v"></i></button>
+		<BEHierarchy/>
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'Undo' | beTranslate"><i class="mdi mdi-undo"></i></button>
@@ -30,12 +30,14 @@
 
 	import { editorInstance, getLatte, translate } from "./utils";
 	import BEInserterPopup from "./BEInserterPopup";
+	import BEHierarchy from "./BEHierarchy";
 
 	const L = getLatte();
 
 	export default {
 
 		components: {
+			BEHierarchy,
 			BEInserterPopup
 		},
 
