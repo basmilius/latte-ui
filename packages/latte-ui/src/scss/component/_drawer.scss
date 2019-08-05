@@ -70,7 +70,7 @@ div#drawer
 				color: #{latte-rgb(var(--color-primary-foreground))};
 			}
 
-			i.mdi
+			#{unquote($latte-icon-class)}
 			{
 				font-size: 24px;
 			}

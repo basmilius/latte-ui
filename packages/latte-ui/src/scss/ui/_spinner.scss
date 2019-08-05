@@ -38,14 +38,14 @@
 	}
 }
 
-i.mdi.spinner
+#{unquote($latte-icon-class)}.spinner
 {
 	display: inline-flex;
 	vertical-align: middle;
 }
 
 span.spinner::before,
-i.mdi.spinner::before
+#{unquote($latte-icon-class)}.spinner::before
 {
 	display: block;
 	height: 1em;

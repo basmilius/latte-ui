@@ -13,13 +13,13 @@
 	--mdi-foreground: #{latte-rgb(var(--color-primary-foreground))};
 }
 
-i.mdi.mdi-branding::before
+#{unquote($latte-icon-class)}.mdi-branding::before
 {
 	content: "";
 	background: var(--branding-logo) no-repeat center center / contain;
 }
 
-i.mdi.latte-sorting
+#{unquote($latte-icon-class)}.latte-sorting
 {
 	position: relative;
 	z-index: 0;
@@ -68,7 +68,7 @@ i.mdi.latte-sorting
 	}
 }
 
-i.mdi.icon-rounded
+#{unquote($latte-icon-class)}.icon-rounded
 {
 	height: 2em;
 	padding: .5em;

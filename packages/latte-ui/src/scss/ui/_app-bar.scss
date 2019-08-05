@@ -203,7 +203,7 @@
 		background: #{latte-rgb(var(--drawer-background-primary))};
 		pointer-events: none;
 
-		i.mdi::before
+		#{unquote($latte-icon-class)}::before
 		{
 			content: "";
 			background: var(--branding-logo) no-repeat center center / contain;

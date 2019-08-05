@@ -30,5 +30,5 @@
 .radius-squircle
 {
 	border-radius: 0 !important;
-	mask: url(../image/squircle.svg);
+	mask: unquote("url(" + $latte-root + "image/squircle.svg)");
 }

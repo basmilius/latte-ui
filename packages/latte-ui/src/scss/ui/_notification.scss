@@ -105,7 +105,7 @@ div.notification-icon
 	border-radius: 30px;
 	color: var(--notification-foreground, white);
 
-	i.mdi
+	#{unquote($latte-icon-class)}
 	{
 		display: block;
 		margin: 18px;

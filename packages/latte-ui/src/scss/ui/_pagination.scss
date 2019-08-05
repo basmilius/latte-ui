@@ -37,7 +37,7 @@ nav.pagination
 		text-align: center;
 		text-decoration: none;
 
-		i.mdi
+		#{unquote($latte-icon-class)}
 		{
 			font-size: 18px;
 		}

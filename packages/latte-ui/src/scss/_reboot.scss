@@ -356,7 +356,7 @@ template
 	display: none !important;
 }
 
-i.mdi
+#{unquote($latte-icon-class)}
 {
 	height: 1em;
 	width: 1em;

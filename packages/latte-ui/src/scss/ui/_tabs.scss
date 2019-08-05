@@ -59,12 +59,12 @@
 			margin-left: 18px;
 		}
 
-		i.mdi, span
+		#{unquote($latte-icon-class)}, span
 		{
 			flex: 0 0 auto;
 		}
 
-		i.mdi + span
+		#{unquote($latte-icon-class)} + span
 		{
 			margin-left: 15px;
 		}

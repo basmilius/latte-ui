@@ -69,7 +69,7 @@
 			background: #{latte-rgba(var(--badge-color), .2)};
 		}
 
-		i.mdi
+		#{unquote($latte-icon-class)}
 		{
 			font-size: inherit;
 		}

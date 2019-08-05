@@ -32,7 +32,7 @@ div.notice
 		--btn-foreground: var(--notice-foreground);
 	}
 
-	> i.mdi
+	> #{unquote($latte-icon-class)}
 	{
 		margin: -1px 0;
 		align-self: flex-start;

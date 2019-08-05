@@ -159,7 +159,7 @@ label.col-form-label
 	background:
 	{
 		color: transparent;
-		image: url(../image/select-arrow.svg);
+		image: unquote("url(" + $latte-root + "image/select-arrow.svg)");
 		position: center right 9px;
 		repeat: no-repeat;
 		size: 24px 24px;

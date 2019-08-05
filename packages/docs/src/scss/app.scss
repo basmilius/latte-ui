@@ -7,6 +7,10 @@
  * LICENSE file that was distributed with this source code.
  */
 
+$latte-root: "~@bybas/latte-ui/src/";
+
+@import "~@bybas/latte-ui/src/scss/app";
+
 body
 {
 	--color-primary: 41, 121, 255;

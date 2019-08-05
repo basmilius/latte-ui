@@ -63,7 +63,7 @@
 		text-decoration: none;
 	}
 
-	i.mdi
+	#{unquote($latte-icon-class)}
 	{
 		position: relative;
 		display: block;
@@ -94,12 +94,12 @@
 	}
 
 	.avatar + *,
-	i.mdi + *
+	#{unquote($latte-icon-class)} + *
 	{
 		margin-left: 24px;
 	}
 
-	i.mdi:last-child
+	#{unquote($latte-icon-class)}:last-child
 	{
 		margin-right: -3px;
 	}

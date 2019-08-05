@@ -20,7 +20,6 @@ import { raf } from "./util/dom";
 import * as Components from "../vue/component";
 import * as Mixins from "../vue/mixin"
 
-import "../scss/app.scss";
 import { initializeEmoji } from "./ui/emoji";
 import { isSomethingScrolling } from "./ui/scrollbar";
 
