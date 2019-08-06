@@ -12,6 +12,7 @@
 
 					<CodeExample title="Basic" url="/snippets/components/bottom-nav/all.html"></CodeExample>
 					<CodeExample title="Shifting" url="/snippets/components/bottom-nav/shifting.html"></CodeExample>
+					<CodeExample title="Side" url="/snippets/components/bottom-nav/side.html" preview-classes="position-relative d-flex flex-row justify-content-center"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
 

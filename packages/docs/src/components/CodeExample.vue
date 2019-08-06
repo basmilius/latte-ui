@@ -41,6 +41,7 @@
 		},
 
 		props: {
+			previewClasses: {default: "", type: String},
 			showCode: {default: true, type: Boolean},
 			title: {default: "Example", type: String},
 			url: {default: "Example", required: true, type: String}
@@ -74,10 +75,12 @@
 
 			onSnippetLoaded(code)
 			{
-				this.code = code.replace(new RegExp(`\n<div class="ce-gutter"></div>\n`, "g"), "");
+				this.code = code
+					.replace(new RegExp(`\n<div class="ce-gutter"></div>\n`, "g"), "")
+					.replace(new RegExp(`\n<div class="ce-gutter-w"></div>\n`, "g"), "");
 				this.component = Vue.extend({
 
-					template: `<div>${code}</div>`
+					template: `<div class="${this.previewClasses}">${code}</div>`
 
 				});
 				this.isLoading = false;
@@ -103,6 +106,11 @@
 	div.ce-gutter
 	{
 		height: 30px;
+	}
+
+	div.ce-gutter-w
+	{
+		width: 30px;
 	}
 
 	div.code-example-panel
