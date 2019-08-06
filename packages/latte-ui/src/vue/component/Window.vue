@@ -26,13 +26,23 @@
 				current: 0,
 				previous: -1,
 				height: 0,
-				width: 0
+				width: 0,
+				isParentPopup: this.$parent.$options.name === "latte-popup"
 			};
+		},
+
+		destroyed()
+		{
+			if (this.isParentPopup)
+				this.$parent.$off("close", this.reset);
 		},
 
 		mounted()
 		{
 			this.update();
+
+			if (this.isParentPopup)
+				this.$parent.$on("close", this.reset);
 		},
 
 		render(h)
@@ -78,8 +88,11 @@
 
 			reset()
 			{
-				this.current = 0;
-				this.previous = -1;
+				raf(() =>
+				{
+					this.current = 0;
+					this.previous = -1;
+				}, this.isParentPopup ? 210 : 0);
 			},
 
 			update()
