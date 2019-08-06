@@ -35,7 +35,7 @@
 
 	&.panel-outline
 	{
-		--panel-elevation: 0 0 0 var(--divider-size) #{latte-rgb(var(--outline-color-secondary))};
+		--panel-elevation: 0 0 0 #{$latte-divider-size} #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	+ .panel,
@@ -76,7 +76,7 @@ a.panel
 
 	+ .panel-body
 	{
-		border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+		border-top: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 }
 
@@ -98,7 +98,7 @@ a.panel
 
 	&:not(:first-child)
 	{
-		border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+		border-top: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	.divider
@@ -118,7 +118,7 @@ a.panel
 
 	&:not(:last-child)
 	{
-		border-bottom: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+		border-bottom: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	&.panel-header-sticky
