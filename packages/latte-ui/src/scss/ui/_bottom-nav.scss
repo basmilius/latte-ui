@@ -25,24 +25,21 @@
 	color: #{latte-rgb(var(--bottom-nav-foreground))};
 	overflow: hidden;
 
-	.btn
+	.btn-action
 	{
 		--border-radius: 0;
-		--btn-background: var(--bottom-nav-foreground);
 		--ripple-color: var(--bottom-nav-foreground);
 		--ripple-center: true;
 		--ripple-clip: false;
 
-		opacity: .5;
-	}
-
-	.btn-action
-	{
 		min-width: unset;
 		flex: 1 1 0;
+		background: transparent;
+		color: rgba(var(--bottom-nav-foreground), 1);
+		opacity: .5;
 		transition: all 240ms var(--ease-swift-out);
 
-		+ .btn
+		+ .btn-action
 		{
 			margin: 0;
 		}
@@ -64,31 +61,23 @@
 		}
 	}
 
-	&.bottom-nav-shifting
+	&.bottom-nav-shifting .btn-action
 	{
-		.btn-action
+		&:not(.is-active) span
 		{
+			height: 0;
+			margin-top: 0;
+			opacity: 0;
+		}
+
+		&.is-active
+		{
+			flex-grow: 1.5;
 
 			span
 			{
-				height: 0;
-				opacity: 0;
-			}
-
-			&:not(.is-active) span
-			{
-				margin-top: 0;
-			}
-
-			&.is-active
-			{
-				flex-grow: 1.5;
-
-				span
-				{
-					height: 1em;
-					opacity: 1;
-				}
+				height: 1em;
+				opacity: 1;
 			}
 		}
 	}

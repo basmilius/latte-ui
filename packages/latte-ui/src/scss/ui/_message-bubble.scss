@@ -9,7 +9,7 @@
 
 .message-bubble
 {
-	--radius: calc(var(--border-radius) * 2);
+	--radius: calc(var(--border-radius) * 1.5);
 
 	display: flex;
 	max-width: 540px;
