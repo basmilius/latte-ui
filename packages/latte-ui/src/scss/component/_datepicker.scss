@@ -9,7 +9,7 @@
 
 .datepicker-calendar
 {
-	min-width: 380px;
+	min-width: 384px;
 	z-index: 0;
 
 	.datepicker-calendar-header
@@ -17,7 +17,6 @@
 		position: sticky;
 		top: 0;
 		background: #{latte-rgb(var(--panel-background))};
-		border: 0;
 		z-index: 1;
 
 		&.months,
@@ -66,27 +65,6 @@
 			{
 				opacity: .3;
 			}
-		}
-	}
-}
-
-div.timepicker-clock
-{
-	position: relative;
-	display: flex;
-	align-items: stretch;
-	border: var(--divider-size) solid #{latte-rgb(var(--outline-color))};
-	border-radius: var(--border-radius);
-	overflow: hidden;
-
-	.timepicker-control
-	{
-		border-radius: 0;
-		box-shadow: none;
-
-		+ .timepicker-control
-		{
-			border-left: var(--divider-size) solid #{latte-rgb(var(--outline-color))};
 		}
 	}
 }
