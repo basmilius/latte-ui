@@ -151,12 +151,12 @@
 
 	&:not(:last-child):not(:only-child)
 	{
-		border-bottom: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color-secondary))};
+		border-bottom: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	&:last-child:not(:only-child)
 	{
-		border-top: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color-secondary))};
+		border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
 	}
 
 	.app-bar-title:first-child

@@ -75,7 +75,7 @@ div.timepicker-clock
 	position: relative;
 	display: flex;
 	align-items: stretch;
-	border: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color))};
+	border: var(--divider-size) solid #{latte-rgb(var(--outline-color))};
 	border-radius: var(--border-radius);
 	overflow: hidden;
 
@@ -86,7 +86,7 @@ div.timepicker-clock
 
 		+ .timepicker-control
 		{
-			border-left: #{$latte-divider-size} solid #{latte-rgb(var(--outline-color))};
+			border-left: var(--divider-size) solid #{latte-rgb(var(--outline-color))};
 		}
 	}
 }
