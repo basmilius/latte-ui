@@ -20,54 +20,6 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Window</span></div>
-						<div class="panel-body">
-
-							<button class="btn btn-outline btn-primary btn-icon" ref="windowButton"><i class="mdi mdi-dots-horizontal"></i></button>
-
-							<latte-popup :associate-with="$refs.windowButton" :margin-x="-9">
-								<latte-window>
-									<template v-slot="{navigate, reset}">
-
-										<nav class="nav nav-list" style="min-width: 210px">
-											<a class="nav-link" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i><span>Sub</span></a>
-											<a class="nav-link" @click="navigate(3)"><i class="mdi mdi-chevron-right"></i><span>Sub 2</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-										</nav>
-
-										<nav class="nav nav-list" style="min-width: 210px">
-											<a class="nav-link" @click="navigate(0)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
-											<a class="nav-link" @click="navigate(2)"><i class="mdi mdi-chevron-right"></i><span>Sub</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-										</nav>
-
-										<nav class="nav nav-list" style="min-width: 210px">
-											<a class="nav-link" @click="navigate(1)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
-											<a class="nav-link"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-										</nav>
-
-										<nav class="nav nav-list" style="min-width: 210px">
-											<a class="nav-link" @click="navigate(0)"><i class="mdi mdi-chevron-left"></i><span>Previous</span></a>
-											<a class="nav-link" @click="reset"><span>Item</span></a>
-											<a class="nav-link"><span>Item</span></a>
-										</nav>
-
-									</template>
-								</latte-window>
-							</latte-popup>
-
-						</div>
-					</div>
-
 					<div class="panel" v-if="false">
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 390px">
@@ -103,7 +55,7 @@
 						</div>
 					</div>
 
-					<div class="panel" v-if="false">
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Autocomplete</span></div>
 						<div class="panel-body">
 							<latte-autocomplete :data-source="autocompleteDataSource"></latte-autocomplete>
@@ -187,19 +139,21 @@
 			{
 				const data = Array.from(autocompleteData);
 
-				return {
-					async getEntries(ids)
+				return new Promise(resolve => resolve({
+					getEntries(ids)
 					{
-						return ids.map(id => data.find(d => d.value === id));
+						return new Promise(resolve => resolve(ids.map(id => data.find(d => d.value === id))));
 					},
 
-					async getSuggestions(query, offset, limit)
+					getSuggestions(query, offset, limit)
 					{
-						return data
-							.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1)
-							.slice(offset, offset + limit);
+						return new Promise(resolve => resolve(
+							data
+								.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1)
+								.slice(offset, offset + limit)
+						));
 					}
-				};
+				}));
 			},
 
 			datatableDataSource()

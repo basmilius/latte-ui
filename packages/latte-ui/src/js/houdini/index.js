@@ -12,15 +12,15 @@ import { docRoot } from "../core";
 
 function registerCSSPaintWorklets()
 {
-	docRoot.classList.add("css-paint-api");
-
 	let path = getLattePath();
 
-	// noinspection JSIgnoredPromiseFromCall
-	CSS.paintWorklet.addModule(`${path}worklet/paint/app-bar-cutout.js`);
-
-	// noinspection JSIgnoredPromiseFromCall
-	CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`);
+	Promise
+		.all([
+			CSS.paintWorklet.addModule(`${path}worklet/paint/app-bar-cutout.js`),
+			CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`)
+		])
+		.then(() => docRoot.classList.add("css-paint-api"))
+		.catch(err => console.error(`[LatteUI] CSS Paint API not used because worklets could not load.`));
 }
 
 function registerCSSProperties()

@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { getOptions } from "../core";
+
 let lattePath = null;
 
 /**
@@ -142,6 +144,11 @@ export function getLattePath()
 {
 	if (lattePath !== null)
 		return lattePath;
+
+	const options = getOptions();
+
+	if (options.root)
+		return options.root;
 
 	const lattejs = document.querySelector(`script[src*="latte-ui"]`);
 

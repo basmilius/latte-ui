@@ -29,6 +29,7 @@ export const defaultOptions = {
 	emojiPath: "/png/64/@0.png",
 	i18n: {},
 	locale: navigator.language,
+	root: undefined,
 	tickInterval: 250
 };
 
@@ -45,13 +46,13 @@ export class LatteUI
 	static install(Vue, options = {})
 	{
 		options = normalizeOptions(options);
+		setOptions(options);
 
 		if (options.emojiEnabled)
 			initializeEmoji(options);
 
 		initializeHoudiniApis();
 		registerOutsideEvents();
-		setOptions(options);
 
 		LatteUI.findMainElement(Vue);
 		LatteUI.registerMixins(Vue);
