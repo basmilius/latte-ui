@@ -23,13 +23,7 @@
 		</div>
 
 		<div class="panel-body datepicker-calendar-dates pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
-			<span class="day">{{ moment().isoWeekday(1).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(2).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(3).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(4).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(5).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(6).format("dd") }}</span>
-			<span class="day">{{ moment().isoWeekday(7).format("dd") }}</span>
+			<span class="day" v-for="day of days">{{ day }}</span>
 
 			<template v-for="(date, index) of dates">
 				<latte-ripple as="button" :key="index" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
@@ -40,7 +34,7 @@
 
 		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
 			<template v-for="(month, index) in months">
-				<latte-ripple as="button" :key="index" :class="getClassesForMonth(index)" :data-month="index" @click="selectMonth(index)">
+				<latte-ripple as="button" :key="index" :class="getClassesForMonth(index + 1)" :data-month="index + 1" @click="selectMonth(index + 1)">
 					{{ month }}
 				</latte-ripple>
 			</template>
@@ -104,6 +98,11 @@
 				return dates;
 			},
 
+			days()
+			{
+				return Array.from(Array(7).keys()).map(day => this.moment().isoWeekday(day + 1).format("dd"));
+			},
+
 			monthBeginDate()
 			{
 				return new Date(this.selectedYear, this.selectedMonth - 1, 1);
@@ -116,20 +115,7 @@
 
 			months()
 			{
-				return {
-					1: this.moment().month(0).format("MMMM"),
-					2: this.moment().month(1).format("MMMM"),
-					3: this.moment().month(2).format("MMMM"),
-					4: this.moment().month(3).format("MMMM"),
-					5: this.moment().month(4).format("MMMM"),
-					6: this.moment().month(5).format("MMMM"),
-					7: this.moment().month(6).format("MMMM"),
-					8: this.moment().month(7).format("MMMM"),
-					9: this.moment().month(8).format("MMMM"),
-					10: this.moment().month(9).format("MMMM"),
-					11: this.moment().month(10).format("MMMM"),
-					12: this.moment().month(11).format("MMMM")
-				};
+				return Array.from(Array(12).keys()).map(month => this.moment().month(month).format("MMMM"));
 			},
 
 			years()
@@ -163,7 +149,7 @@
 
 			getClassesForMonth(month)
 			{
-				const classes = ["btn", "m-0", "w-100"];
+				const classes = ["btn", "m-0", "text-capitalize", "w-100"];
 
 				if (parseInt(month) === this.selectedMonth)
 					classes.push("btn-contained", "btn-primary");
