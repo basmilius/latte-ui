@@ -37,6 +37,11 @@
 		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
 		--color-#{$type}-foreground: #{dark-or-light($color, var(--dark), var(--light))};
 	}
+
+	@for $level from 0 through 24
+	{
+		--elevation-#{$level}: #{if($level == 0, none, elevation-generate($level))};
+	}
 }
 
 .is-popup-opened

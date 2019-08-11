@@ -25,30 +25,30 @@
 
 	--app-bar-background: 32, 33, 36;
 	--app-bar-foreground: 255, 255, 255;
-	--app-bar-elevation: #{elevation-generate(2, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--app-bar-elevation: var(--elevation-2), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 
 	--drawer-background-primary: 19, 19, 21;
 	--drawer-background-secondary: 32, 33, 36;
-	--drawer-elevation: #{elevation-generate(1, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--drawer-elevation: var(--elevation-1), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 	--drawer-foreground-primary: 255, 255, 255;
 	--drawer-outline-primary: #{latte-rgb(var(--outline-color))};
 	--drawer-outline-secondary: #{latte-rgb(var(--outline-color))};
 
 	--dropdown-background: rgb(32, 33, 36);
-	--dropdown-elevation: #{elevation-generate(16, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--dropdown-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 
 	--form-field-outline: var(--outline-color);
 
 	--overlay-background: 0, 0, 0;
 
 	--panel-background: 32, 33, 36;
-	--panel-elevation: #{elevation-generate(3, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
-	--panel-elevation-hover: #{elevation-generate(9, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--panel-elevation: var(--elevation-3), 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--panel-elevation-hover: var(--elevation-9), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 
 	--popup-background: rgb(32, 33, 36);
-	--popup-elevation: #{elevation-generate(16, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--popup-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 
-	--snackbar-elevation: #{elevation-generate(8, black)}, 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--snackbar-elevation: var(--elevation-8), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 
 	--tooltip-background: rgba(0, 0, 0, .9);
 	--tooltip-foreground: rgb(255, 255, 255);

@@ -9,7 +9,7 @@
 
 :root
 {
-	--snackbar-elevation: #{elevation-generate(8)};
+	--snackbar-elevation: var(--elevation-8);
 }
 
 .snackbar

@@ -23,7 +23,7 @@
 		&.months,
 		&.years
 		{
-			box-shadow: elevation-generate(1);
+			box-shadow: var(--elevation-1);
 		}
 
 		.btn-group .btn

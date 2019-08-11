@@ -12,7 +12,7 @@
 	--app-bar-alpha: 1;
 	--app-bar-background: var(--color-light);
 	--app-bar-foreground: var(--color-light-foreground);
-	--app-bar-elevation: #{elevation-generate(2)};
+	--app-bar-elevation: var(--elevation-2);
 	--app-bar-gutter: 15px;
 	--app-bar-height: 60px;
 

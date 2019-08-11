@@ -11,7 +11,7 @@
 {
 	--drawer-background-primary: var(--color-dark);
 	--drawer-background-secondary: 255, 255, 255;
-	--drawer-elevation: #{elevation-generate(1)};
+	--drawer-elevation: var(--elevation-1);
 	--drawer-foreground-primary: var(--color-dark-foreground);
 	--drawer-outline-primary: rgba(255, 255, 255, .05);
 	--drawer-outline-secondary: rgba(0, 0, 0, .05);

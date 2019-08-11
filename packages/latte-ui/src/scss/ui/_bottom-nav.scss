@@ -12,7 +12,7 @@
 	--bottom-nav-alpha: 1;
 	--bottom-nav-background: var(--color-light);
 	--bottom-nav-foreground: var(--color-light-foreground);
-	--bottom-nav-elevation: #{elevation-generate(8)};
+	--bottom-nav-elevation: var(--elevation-8);
 }
 
 .bottom-nav

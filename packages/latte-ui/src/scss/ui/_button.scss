@@ -250,7 +250,7 @@
 	--btn-height: 56px;
 	--btn-padding: 16px;
 
-	box-shadow: #{elevation-generate(8)};
+	box-shadow: var(--elevation-8);
 }
 
 .btn-icon

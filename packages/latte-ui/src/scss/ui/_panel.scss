@@ -10,8 +10,8 @@
 :root
 {
 	--panel-background: 255, 255, 255;
-	--panel-elevation: #{elevation-generate(3)};
-	--panel-elevation-hover: #{elevation-generate(9)};
+	--panel-elevation: var(--elevation-3);
+	--panel-elevation-hover: var(--elevation-9);
 	--panel-gutter: 30px;
 }
 
