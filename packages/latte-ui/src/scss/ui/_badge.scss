@@ -34,7 +34,7 @@
 
 	+ .badge
 	{
-		margin-left: 6px;
+		margin-left: 3px;
 	}
 
 	&.badge-fill
@@ -71,7 +71,7 @@
 
 		#{unquote($latte-icon-class)}
 		{
-			font-size: inherit;
+			--icon-size: 1em;
 		}
 	}
 

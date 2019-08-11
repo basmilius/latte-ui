@@ -15,7 +15,6 @@
 	--btn-font-size: 1rem;
 	--btn-height: 36px;
 	--btn-hover: 0;
-	--btn-icon-size: 24px;
 	--btn-padding: 6px 15px;
 }
 
@@ -52,11 +51,6 @@
 		filter: grayscale(100%);
 		opacity: .5;
 		pointer-events: none;
-	}
-
-	#{unquote($latte-icon-class)}
-	{
-		font-size: var(--btn-icon-size);
 	}
 
 	#{unquote($latte-icon-class)} + span,
@@ -239,9 +233,9 @@
 .btn-sm
 {
 	--btn-height: 24px;
-	--btn-icon-size: 18px;
 	--btn-font-size: .9rem;
 	--btn-padding: 0 9px;
+	--icon-size: 18px;
 }
 
 .btn-fab
@@ -250,12 +244,14 @@
 	--btn-height: 56px;
 	--btn-padding: 16px;
 
+	width: var(--btn-height);
 	box-shadow: var(--elevation-8);
 }
 
 .btn-icon
 {
 	--btn-padding: 6px;
+	width: var(--btn-height);
 
 	&.btn-sm
 	{

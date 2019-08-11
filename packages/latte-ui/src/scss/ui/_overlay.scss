@@ -27,7 +27,7 @@ div.overlay
 	padding: 48px;
 	background: rgba(var(--overlay-background), var(--overlay-opacity));
 	opacity: 1;
-	overflow-y: auto;
+	overflow: auto;
 	transition: all $anim-duration var(--ease-swift-out);
 	z-index: 2000;
 
@@ -36,8 +36,8 @@ div.overlay
 	.panel
 	{
 		opacity: 1;
-		transform: translate3d(0, 0, 0);
-		transition: all $anim-duration var(--ease-swift-out);
+		transform: none;
+		transition: inherit;
 		transition-delay: $anim-delay;
 	}
 
@@ -61,10 +61,10 @@ div.overlay
 		opacity: 0;
 		transition-delay: $anim-delay;
 
-		div.panel
+		.panel
 		{
 			opacity: 0;
-			transform: scale3d(0.95, 0.95, 0.95);
+			transform: scale3d(.95, .95, .95);
 			transition-delay: 0ms;
 		}
 	}

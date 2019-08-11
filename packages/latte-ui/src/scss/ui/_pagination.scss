@@ -17,6 +17,8 @@ nav.pagination
 
 	.pagination-item
 	{
+		--icon-size: 18px;
+
 		display: block;
 		padding: 0 6px;
 		height: 30px;
@@ -36,11 +38,6 @@ nav.pagination
 		opacity: .75;
 		text-align: center;
 		text-decoration: none;
-
-		#{unquote($latte-icon-class)}
-		{
-			font-size: 18px;
-		}
 
 		&:hover
 		{

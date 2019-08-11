@@ -69,11 +69,6 @@ div#drawer
 				background: #{latte-rgb(var(--color-primary))};
 				color: #{latte-rgb(var(--color-primary-foreground))};
 			}
-
-			#{unquote($latte-icon-class)}
-			{
-				font-size: 24px;
-			}
 		}
 	}
 
