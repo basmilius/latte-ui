@@ -132,7 +132,6 @@ module.exports = {
 			publicPath: "./"
 		}),
 		new CopyPlugin([
-			{from: `${rootDir}/src/image`, to: `${rootDir}/dist/image`},
 			{from: `${rootDir}/src/sound`, to: `${rootDir}/dist/sound`},
 			{from: `${rootDir}/src/worklet`, to: `${rootDir}/dist/worklet`}
 		])
