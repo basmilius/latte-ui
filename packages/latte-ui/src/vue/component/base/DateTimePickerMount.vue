@@ -14,7 +14,7 @@
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" :type="type" class="form-control" :value="inputValue" @click.prevent="open"/>
 
 		<component :is="componentType" class="datetimemount" :class="type" :associate-with="$refs.input" :name="uniqueId" ref="popup" :responsive="false" persistent>
-			<slot v-bind="{current, setCurrent, isOverlay, cancel, close, open, select}"></slot>
+			<slot v-bind="{current, setCurrent, setNow, isOverlay, cancel, close, open, select}"></slot>
 		</component>
 
 	</div>
@@ -24,7 +24,6 @@
 <script>
 
 	import { id } from "../../../js/core/api";
-	import { isCollapsed } from "../../../js/util/dom";
 	import { on } from "../../../js/core/action";
 
 	export default {
@@ -103,6 +102,30 @@
 			setCurrent(current)
 			{
 				this.current = current;
+			},
+
+			setNow()
+			{
+				let date = new Date(this.current.getTime());
+				let now = new Date();
+
+				if (this.type === "datetime-local")
+				{
+					date = new Date();
+				}
+				else if (this.type === "date")
+				{
+					date.setFullYear(now.getFullYear());
+					date.setMonth(now.getMonth());
+					date.setDate(now.getDate());
+				}
+				else if (this.type === "time")
+				{
+					date.setHours(now.getHours());
+					date.setMinutes(now.getMinutes());
+				}
+
+				this.setCurrent(date);
 			}
 
 		},

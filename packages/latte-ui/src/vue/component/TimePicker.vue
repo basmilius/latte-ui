@@ -11,10 +11,11 @@
 
 	<DateTimePickerMount class="timepicker" type="time" input-format="HH:mm" v-bind="$attrs" v-on="$listeners">
 
-		<template v-slot="{current, setCurrent, cancel, select}">
+		<template v-slot="{current, setCurrent, setNow, cancel, select}">
 			<latte-timepicker-clock ref="picker" :value="current" @input="setCurrent">
-				<div class="panel-footer justify-content-end">
-					<latte-ripple as="button" class="btn btn-text btn-dark" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+				<div class="panel-footer">
+					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><i class="mdi mdi-calendar-today"></i></latte-ripple>
+					<latte-ripple as="button" class="btn btn-text btn-dark ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
 					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
 				</div>
 			</latte-timepicker-clock>
