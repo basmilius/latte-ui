@@ -16,10 +16,7 @@
  */
 export function isTouchDevice()
 {
-	if ((navigator.maxTouchPoints || navigator.msMaxTouchPoints) > 0)
-		return true;
-
-	return /iPad|iPhone|iPod/.test(navigator.platform);
+	return "ontouchstart" in document.documentElement || /iPad|iPhone|iPod/.test(navigator.platform);
 }
 
 /**

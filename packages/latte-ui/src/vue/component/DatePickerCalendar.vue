@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="panel panel-blank datepicker-calendar">
+	<div class="panel datepicker-calendar">
 
 		<div class="panel-header border-0 datepicker-calendar-header" :class="[selectedView]">
 			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 ml-1" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></latte-ripple>

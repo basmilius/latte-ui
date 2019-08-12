@@ -39,9 +39,14 @@
 		width: 100%;
 	}
 
+	.snackbar-body:not(:last-child)
+	{
+		margin-right: 15px;
+	}
+
 	.btn
 	{
-		margin-left: 15px;
+		margin-left: auto;
 		margin-right: -15px;
 	}
 }

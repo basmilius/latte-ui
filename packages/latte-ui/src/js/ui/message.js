@@ -15,6 +15,7 @@ import { spaceship } from "../operators";
 import { translate } from "../i18n";
 import { applyZ } from "../core/z";
 import { getMainElement } from "../core";
+import { popupClosed, popupOpened } from "../core/popup";
 
 const MessagePanel = Vue.extend({
 
@@ -108,6 +109,8 @@ const MessagePanel = Vue.extend({
 			raf(() => this.isOpen = false);
 			raf(() => this.$emit("delete-me"), 300);
 
+			popupClosed();
+
 			this.resolve({
 				button: buttonId,
 				input: this.promptResult
@@ -118,6 +121,8 @@ const MessagePanel = Vue.extend({
 		{
 			applyZ(z => this.z = z);
 			raf(() => raf(() => this.isOpen = true));
+
+			popupOpened();
 
 			if (this.prompt)
 				raf(() => this.$el.querySelector("input").focus(), 300);

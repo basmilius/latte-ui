@@ -44,6 +44,9 @@
 
 		destroyed()
 		{
+			if (this.isOpen)
+				popupClosed();
+
 			remove(this.name);
 		},
 

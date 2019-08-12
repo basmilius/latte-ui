@@ -22,11 +22,14 @@
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Date / Time Pickers</span></div>
-						<div class="panel-body d-flex align-items-start justify-content-between">
-
-							<latte-timepicker-clock style="width: 326px" class="border flex-grow-0 m-0"></latte-timepicker-clock>
-							<latte-datepicker-calendar style="width: 384px" class="border flex-grow-0 m-0"></latte-datepicker-calendar>
-
+						<div class="panel-body">
+							<latte-timepicker></latte-timepicker>
+						</div>
+						<div class="panel-body">
+							<latte-datepicker></latte-datepicker>
+						</div>
+						<div class="panel-body">
+							<latte-datetimepicker></latte-datetimepicker>
 						</div>
 					</div>
 

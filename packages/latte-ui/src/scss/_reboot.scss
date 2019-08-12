@@ -270,15 +270,6 @@ input[type="checkbox"]
 	padding: 0;
 }
 
-
-input[type="date"],
-input[type="time"],
-input[type="datetime-local"],
-input[type="month"]
-{
-	-webkit-appearance: listbox;
-}
-
 textarea
 {
 	overflow: auto;

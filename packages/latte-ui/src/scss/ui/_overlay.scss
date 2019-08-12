@@ -71,6 +71,8 @@ div.overlay
 
 	@include compact
 	{
+		padding: 12px;
+
 		&.is-responsive
 		{
 			padding: 0;

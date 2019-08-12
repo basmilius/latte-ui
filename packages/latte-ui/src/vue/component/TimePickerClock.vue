@@ -9,32 +9,36 @@
 
 <template>
 
-	<div class="panel panel-blank timepicker-clock" :class="{'is-pointer-down': isPointerDown, 'is-switching-views': isSwitchingViews}">
+	<div class="panel timepicker-clock" :class="{'is-pointer-down': isPointerDown, 'is-switching-views': isSwitchingViews}">
 		<div class="panel-header timepicker-header">
-			<div class="timepicker-selected">
-				<button class="btn btn-text btn-dark timepicker-segment hours" @click="setView('hours')">{{ currentHour.toString().padStart(2, "0") }}</button>
-				<span class="timepicker-segment colon">:</span>
-				<button class="btn btn-text btn-dark timepicker-segment minutes" @click="setView('minutes')">{{ currentMinute.toString().padStart(2, "0") }}</button>
+			<div class="timepicker-segments">
+				<button class="timepicker-segment hours" :class="{'is-selection': view === 'hours'}" @click="setView('hours')">{{ currentHour.toString().padStart(2, "0") }}</button>
+				<span class="colon">:</span>
+				<button class="timepicker-segment minutes" :class="{'is-selection': view === 'minutes'}" @click="setView('minutes')">{{ currentMinute.toString().padStart(2, "0") }}</button>
+			</div>
+			<div class="timepicker-ampm" v-if="isAMPM">
+				<span class="ampm" :class="{'is-selected': !isPM}" @click="setAM">AM</span>
+				<span class="ampm" :class="{'is-selected': isPM}" @click="setPM">PM</span>
 			</div>
 		</div>
 		<div class="panel-body timepicker-clock">
-
-			<div class="timepicker-clock-mount" :style="{'--clock-size': `${Math.round(clockRadius * 2.4)}px`}" @mousedown="onPointerDown" @mousemove="onPointerMove" @mouseup="onPointerUp" @mouseleave="onPointerCancel">
+			<div class="timepicker-clock-mount" :style="{'--clock-size': `${Math.round(clockRadius * 2.4)}px`}">
 				<div class="timepicker-clock-pointer" :class="{'is-alternative': pointerAlternative}" :style="{height: `${pointerHeight}px`, transform: `rotate(${pointerDegrees}deg)`}"></div>
 				<button class="timepicker-clock-item hour" :class="{'is-selected': item.isSelected}" :style="item.style" v-if="item.show" v-for="item of items">{{ item.label }}</button>
 			</div>
-
 		</div>
+		<slot></slot>
 	</div>
 
 </template>
 
 <script>
 
-	import { closest, raf, relativeCoordsTo } from "../../js/util/dom";
+	import { raf, relativeCoordsTo, terminateEvent } from "../../js/util/dom";
 	import { pythagorean } from "../../js/math";
+	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 
-	const innerRingOffset = -39;
+	const innerRingOffset = -33;
 
 	function calculateDegrees(a, b)
 	{
@@ -61,7 +65,7 @@
 		name: "latte-timepicker-clock",
 
 		props: {
-			clockRadius: {default: 110, type: Number},
+			clockRadius: {default: 103, type: Number},
 			value: {default: () => new Date(), type: Date}
 		},
 
@@ -83,6 +87,16 @@
 		mounted()
 		{
 			this.reset();
+
+			const clockMount = this.$el.querySelector(".timepicker-clock-mount");
+
+			clockMount.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: false});
+			window.addEventListener("mousemove", onlyMouse(this.onPointerMove), {passive: false});
+			window.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: false});
+
+			clockMount.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: false});
+			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
+			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
 		},
 
 		computed: {
@@ -90,6 +104,11 @@
 			isAMPM()
 			{
 				return this.moment().localeData().longDateFormat("LT").endsWith("A");
+			},
+
+			isPM()
+			{
+				return this.current.getHours() >= 12;
 			},
 
 			items()
@@ -105,6 +124,15 @@
 		},
 
 		methods: {
+
+			addHours(h)
+			{
+				let date = new Date(this.current.getTime());
+				date.setHours(date.getHours() + h);
+				this.current = date;
+
+				this.$emit("input", this.current);
+			},
 
 			generateHours()
 			{
@@ -139,7 +167,7 @@
 					return {
 						degrees,
 						itemRadius: this.clockRadius,
-						label: this.isAMPM && minute === 0 ? 12 : minute,
+						label: minute,
 						isSelected: (this.pointerDegrees + 180) % 360 === degrees,
 						show: minute % 5 === 0,
 						style: {
@@ -158,6 +186,9 @@
 
 			setView(view)
 			{
+				if (this.view === view)
+					return;
+
 				this.isSwitchingViews = true;
 
 				raf(() =>
@@ -184,7 +215,10 @@
 				if (!this.isPointerDown)
 					return;
 
-				const clock = closest(evt.target, ".timepicker-clock-mount");
+				terminateEvent(evt);
+
+				/** @var {HTMLElement} clock */
+				const clock = this.$el.querySelector(".timepicker-clock-mount");
 				const coords = relativeCoordsTo(clock, evt);
 				const rect = clock.getBoundingClientRect();
 
@@ -232,6 +266,22 @@
 					this.view = "minutes";
 			},
 
+			setAM()
+			{
+				if (!this.isPM)
+					return;
+
+				this.addHours(-12);
+			},
+
+			setPM()
+			{
+				if (this.isPM)
+					return;
+
+				this.addHours(12);
+			},
+
 			updateCurrent()
 			{
 				let item = this.items.find(i => i.isSelected);
@@ -247,13 +297,14 @@
 					date.setMinutes(item.value);
 
 				this.current = date;
+				this.$emit("input", this.current);
 			},
 
 			updatePointer()
 			{
 				if (this.view === "hours")
 				{
-					let item = this.items.find(i => i.value === this.current.getHours());
+					let item = this.items.find(i => i.value === this.current.getHours() % (this.isAMPM ? 12 : 24));
 					this.pointerAlternative = false;
 					this.pointerDegrees = (item.degrees + 180) % 360;
 					this.pointerHeight = item.itemRadius;
@@ -275,18 +326,18 @@
 				immediate: true,
 				handler()
 				{
-					this.currentHour = this.current.getHours();
+					const h = this.current.getHours();
+
+					this.currentHour = this.isAMPM ? (this.isPM ? (h === 12 ? 12 : h - 12) : (h === 0 ? 12 : h)) : h;
 					this.currentMinute = this.current.getMinutes();
 
 					this.$nextTick(() => this.updatePointer());
-					this.$emit("input", this.current);
 				}
 			},
 
 			value()
 			{
 				this.current = new Date(this.value.getTime());
-				this.updatePointer();
 			},
 
 			view()

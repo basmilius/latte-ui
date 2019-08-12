@@ -13,7 +13,7 @@
 
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="date" class="form-control" :value="inputValue"/>
 
-		<latte-popup :associate-with="$refs.input" ref="popup" style="width: 384px">
+		<latte-popup :associate-with="$refs.input" ref="popup">
 			<latte-datepicker-calendar v-model="current"></latte-datepicker-calendar>
 		</latte-popup>
 

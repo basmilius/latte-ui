@@ -33,7 +33,7 @@
 
 	export default {
 
-		name: "latte-datetime-picker",
+		name: "latte-datetimepicker",
 
 		props: {
 			id: {default: "date", type: String},

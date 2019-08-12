@@ -9,138 +9,175 @@
 
 .timepicker-clock
 {
-	min-width: 326px;
+	min-width: 283px;
 
-	.timepicker-header
+	.timepicker-ampm
 	{
-		.timepicker-segment
-		{
-			padding: 0;
-			font-size: 1.7rem;
-			font-weight: 500;
-			line-height: 1em;
-			vertical-align: middle;
+		position: relative;
+		display: flex;
+		margin-left: auto;
+		align-items: center;
+		flex-flow: column;
 
-			&.colon
+		.ampm
+		{
+			cursor: pointer;
+			font-weight: 700;
+			line-height: 1em;
+			transition: opacity 90ms var(--ease-swift-out);
+
+			+ .ampm
 			{
-				margin: 0 -6px;
-				opacity: .5;
-				pointer-events: none;
+				margin-top: 3px;
 			}
 
-			&.btn
+			&:not(.is-selected)
 			{
-				margin: 0 3px;
-				padding: 0 9px;
+				opacity: .5;
 
-				&:first-child
+				&:hover
 				{
-					margin-left: -9px;
+					opacity: .6;
 				}
 			}
 		}
 	}
 
+	.timepicker-segments
+	{
+		position: relative;
+		display: flex;
+		align-items: center;
+		font-size: 2rem;
+
+		.colon,
+		.timepicker-segment
+		{
+			line-height: 1em;
+			vertical-align: middle;
+		}
+
+		.colon
+		{
+			margin: 0 3px;
+			opacity: .5;
+		}
+
+		.timepicker-segment
+		{
+			margin: 0;
+			padding: 0;
+			background: transparent;
+			border: 0;
+			color: #{latte-rgb(var(--main-foreground))};
+			cursor: pointer;
+			font-weight: 500;
+			transition: opacity 90ms var(--ease-swift-out);
+
+			&:not(.is-selection)
+			{
+				opacity: .5;
+
+				&:hover
+				{
+					opacity: .6;
+				}
+			}
+		}
+	}
+
+	.timepicker-clock-mount
+	{
+		position: relative;
+		height: var(--clock-size);
+		width: var(--clock-size);
+		background: #{latte-rgb(var(--outline-color-secondary))};
+		border-radius: 999px;
+		user-select: none;
+
+		> *
+		{
+			transition: opacity 150ms var(--ease-swift-out);
+		}
+	}
+
+	.timepicker-clock-pointer
+	{
+		position: absolute;
+		top: 50%;
+		left: calc(50% - 1px);
+		width: 2px;
+		background: #{latte-rgb(var(--color-primary))};
+		transform: rotate(0deg);
+		transform-origin: top center;
+
+		&::before,
+		&::after
+		{
+			position: absolute;
+			content: "";
+			background: inherit;
+			border-radius: 99px;
+		}
+
+		&::before
+		{
+			top: -4px;
+			left: -3px;
+			right: -3px;
+			height: 8px;
+			width: 8px;
+		}
+
+		&::after
+		{
+			left: -15px;
+			right: -15px;
+			bottom: -15px;
+			height: 32px;
+			width: 32px;
+		}
+
+		&.is-alternative::after
+		{
+			left: -4px;
+			right: -4px;
+			bottom: -4px;
+			height: 10px;
+			width: 10px;
+			background: #{latte-rgb(var(--outline-color-secondary))};
+			border: 2px solid #{latte-rgb(var(--color-primary))};
+		}
+	}
+
 	.timepicker-clock
 	{
-		.timepicker-clock-mount
-		{
-			position: relative;
-			display: block;
-			height: var(--clock-size);
-			width: var(--clock-size);
-			background: #{latte-rgb(var(--outline-color-secondary))};
-			border-radius: 999px;
-			user-select: none;
-
-			> *
-			{
-				transition: opacity 150ms var(--ease-swift-out);
-			}
-		}
-
-		.timepicker-clock-pointer
-		{
-			position: absolute;
-			display: block;
-			top: 50%;
-			left: calc(50% - 1px);
-			width: 2px;
-			background: #{latte-rgb(var(--color-primary))};
-			transform: rotate(0deg);
-			transform-origin: top center;
-			transition: all 210ms var(--ease-swift-out);
-
-			&::before,
-			&::after
-			{
-				position: absolute;
-				display: block;
-				content: "";
-				background: inherit;
-				border-radius: 99px;
-			}
-
-			&::before
-			{
-				top: -4px;
-				left: -3px;
-				right: -3px;
-				height: 8px;
-				width: 8px;
-			}
-
-			&::after
-			{
-				left: -17px;
-				right: -17px;
-				bottom: -17px;
-				height: 36px;
-				width: 36px;
-			}
-
-			&.is-alternative::after
-			{
-				left: -4px;
-				right: -4px;
-				bottom: -4px;
-				height: 10px;
-				width: 10px;
-				background: #{latte-rgb(var(--outline-color-secondary))};
-				border: 2px solid #{latte-rgb(var(--color-primary))};
-			}
-		}
-
-		.timepicker-clock-item
-		{
-			position: absolute;
-			display: flex;
-			top: 50%;
-			left: 50%;
-			height: 36px;
-			margin: -18px 0 0 -18px;
-			width: 36px;
-			align-items: center;
-			justify-content: center;
-			background: unset;
-			border: 0;
-			color: #{latte-rgba(var(--main-foreground), .7)};
-			font-size: .9rem;
-			font-weight: 500;
-
-			&.is-selected
-			{
-				color: #{latte-rgb(var(--color-primary-foreground))};
-			}
-		}
+		padding: 18px;
 	}
 
-	&.is-pointer-down .timepicker-clock .timepicker-clock-pointer
+	.timepicker-clock-item
 	{
-		transition: none;
+		position: absolute;
+		display: block;
+		top: 50%;
+		left: 50%;
+		height: 36px;
+		margin: -18px 0 0 -18px;
+		width: 36px;
+		background: unset;
+		border: 0;
+		color: #{latte-rgba(var(--main-foreground), .5)};
+		font-size: .85rem;
+		font-weight: 500;
+		text-align: center;
+
+		&.is-selected
+		{
+			color: #{latte-rgb(var(--color-primary-foreground))};
+		}
 	}
 
-	&.is-switching-views .timepicker-clock .timepicker-clock-mount > *
+	&.is-switching-views .timepicker-clock-mount > *
 	{
 		opacity: 0;
 	}
