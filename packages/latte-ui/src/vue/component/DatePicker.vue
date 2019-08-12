@@ -9,60 +9,39 @@
 
 <template>
 
-	<div class="datepicker">
+	<DateTimePickerMount class="datepicker" type="date" input-format="YYYY-MM-DD" v-bind="$attrs" v-on="$listeners">
 
-		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="date" class="form-control" :value="inputValue"/>
+		<template v-slot="{current, setCurrent, cancel, select}">
+			<latte-datepicker-calendar ref="picker" :value="current" @input="setCurrent">
 
-		<latte-popup :associate-with="$refs.input" ref="popup">
-			<latte-datepicker-calendar v-model="current"></latte-datepicker-calendar>
-		</latte-popup>
+				<template v-slot="{selectedView}">
+					<div class="panel-footer justify-content-end" v-if="selectedView === 'dates'">
+						<latte-ripple as="button" class="btn btn-text btn-dark" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+						<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					</div>
+				</template>
 
-	</div>
+			</latte-datepicker-calendar>
+		</template>
+
+	</DateTimePickerMount>
 
 </template>
 
 <script>
 
+	import DateTimePickerMount from "./base/DateTimePickerMount";
+
 	export default {
+
+		components: {DateTimePickerMount},
 
 		name: "latte-datepicker",
 
 		props: {
 			id: {default: "date", type: String},
 			name: {default: "date", type: String},
-			placeholder: {default: "", type: String},
-			value: {default: () => new Date(), type: Date}
-		},
-
-		data()
-		{
-			return {
-				current: this.value
-			};
-		},
-
-		computed: {
-
-			inputValue()
-			{
-				return this.moment(this.current).format("YYYY-MM-DD");
-			}
-
-		},
-
-		watch: {
-
-			current()
-			{
-				this.$emit("input", this.current);
-				this.$refs.popup.close();
-			},
-
-			value()
-			{
-				this.current = this.value;
-			}
-
+			placeholder: {default: "", type: String}
 		}
 
 	}

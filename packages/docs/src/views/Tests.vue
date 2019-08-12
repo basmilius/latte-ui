@@ -23,13 +23,16 @@
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Date / Time Pickers</span></div>
 						<div class="panel-body">
-							<latte-timepicker></latte-timepicker>
+							<latte-timepicker v-model="datetime"></latte-timepicker>
+							<latte-timepicker class="mt-2"></latte-timepicker>
 						</div>
 						<div class="panel-body">
-							<latte-datepicker></latte-datepicker>
+							<latte-datepicker v-model="datetime"></latte-datepicker>
+							<latte-datepicker class="mt-2"></latte-datepicker>
 						</div>
 						<div class="panel-body">
-							<latte-datetimepicker></latte-datetimepicker>
+							<latte-datetimepicker v-model="datetime"></latte-datetimepicker>
+							<latte-datetimepicker class="mt-2"></latte-datetimepicker>
 						</div>
 					</div>
 
@@ -128,6 +131,7 @@
 
 			return {
 				content: [],
+				datetime: new Date(1996, 2, 13, 20, 15),
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6],
@@ -195,6 +199,15 @@
 						};
 					}
 				};
+			}
+
+		},
+
+		watch: {
+
+			datetime()
+			{
+				console.log(this.moment(this.datetime).format("LLLL"));
 			}
 
 		}

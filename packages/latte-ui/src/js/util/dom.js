@@ -159,18 +159,6 @@ export function getLattePath()
 }
 
 /**
- * Returns TRUE if LatteUI should use mobile optimized UI.
- *
- * @returns {Boolean}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function isCollapsed()
-{
-	return window.innerWidth <= 991;
-}
-
-/**
  * Returns TRUE when the document is ready.
  *
  * @returns {Boolean}
@@ -329,7 +317,6 @@ export default {
 	downloadFile,
 	getCoords,
 	getLattePath,
-	isCollapsed,
 	isReady,
 	live,
 	printDocument,

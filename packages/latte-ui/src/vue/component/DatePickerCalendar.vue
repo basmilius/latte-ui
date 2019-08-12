@@ -22,11 +22,11 @@
 			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 mr-1" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></latte-ripple>
 		</div>
 
-		<div class="panel-body datepicker-calendar-dates pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
+		<div class="panel-body datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
 			<span class="day" v-for="day of days">{{ day }}</span>
 
 			<template v-for="(date, index) of dates">
-				<latte-ripple as="button" :key="index" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
+				<latte-ripple as="button" :key="date.getTime()" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
 					<span>{{ date.getDate() }}</span>
 				</latte-ripple>
 			</template>
@@ -47,6 +47,8 @@
 				</latte-ripple>
 			</template>
 		</div>
+
+		<slot v-bind="{selectedView}"></slot>
 
 	</div>
 
@@ -86,7 +88,14 @@
 					dates.push(new Date(Date.UTC(this.selectedYear, this.selectedMonth - 1, 0 - x, 0, 0, 0)));
 
 				for (let x = 1; x <= monthDays; x++)
-					dates.push(new Date(Date.UTC(this.selectedYear, this.selectedMonth - 1, x, 0, 0, 0)));
+				{
+					const date = new Date(this.value.getTime());
+					date.setFullYear(this.selectedYear);
+					date.setMonth(this.selectedMonth - 1);
+					date.setDate(x);
+
+					dates.push(date);
+				}
 
 				const rows = Math.ceil(dates.length / 7);
 				const datesToShow = rows * 7;
@@ -140,7 +149,7 @@
 					classes.push("font-italic", "font-weight-bold");
 
 				if (this.isSelected(date))
-					classes.push("btn-contained", "btn-primary");
+					classes.push("btn-outline", "btn-primary");
 				else
 					classes.push("btn-text", "btn-dark");
 
@@ -152,7 +161,7 @@
 				const classes = ["btn", "m-0", "text-capitalize", "w-100"];
 
 				if (parseInt(month) === this.selectedMonth)
-					classes.push("btn-contained", "btn-primary");
+					classes.push("btn-outline", "btn-primary");
 				else
 					classes.push("btn-text", "btn-dark");
 
@@ -164,7 +173,7 @@
 				const classes = ["btn", "m-0", "w-100"];
 
 				if (parseInt(year) === this.selectedYear)
-					classes.push("btn-contained", "btn-primary");
+					classes.push("btn-outline", "btn-primary");
 				else
 					classes.push("btn-text", "btn-dark");
 

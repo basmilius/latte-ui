@@ -9,108 +9,58 @@
 
 <template>
 
-	<div class="datepicker">
+	<DateTimePickerMount class="datetimepicker" type="datetime-local" input-format="YYYY-MM-DD[T]HH:mm" v-bind="$attrs" v-on="$listeners">
 
-		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" type="datetime-local" class="form-control" :value="inputValue"/>
-
-		<latte-popup :associate-with="$refs.input" @close="onClose" @open="onOpen" ref="popup" style="width: 384px">
-			<div class="panel panel-blank">
-				<latte-datepicker-calendar body-class="pb-0" @view="calendarView = $event" v-model="currentDate"></latte-datepicker-calendar>
-
-				<latte-timepicker-clock class="mx-4 my-3" style="min-height: unset" v-if="calendarView === 'dates'" v-model="currentTime"></latte-timepicker-clock>
-
-				<div class="btn-group" v-if="calendarView === 'dates'">
-					<latte-ripple as="button" class="btn btn-contained btn-pill btn-primary" @click="select"><i class="mdi mdi-check"></i></latte-ripple>
+		<template v-slot="{current, setCurrent, isOverlay, cancel, select}">
+			<template v-if="!isOverlay">
+				<div class="row no-gutters">
+					<div class="col-auto">
+						<latte-datepicker-calendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-datepicker-calendar>
+					</div>
+					<div class="col-auto border-left" style="--outline-color: var(--outline-color-secondary)">
+						<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
+					</div>
 				</div>
-			</div>
-		</latte-popup>
 
-	</div>
+				<div class="panel-footer justify-content-end">
+					<latte-ripple as="button" class="btn btn-text btn-dark" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+				</div>
+			</template>
+
+			<latte-tab-container class="panel" v-else>
+				<latte-tab-bar></latte-tab-bar>
+				<latte-tab :label="'Date' | i18n('latte-ui')">
+					<latte-datepicker-calendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-datepicker-calendar>
+				</latte-tab>
+				<latte-tab :label="'Time' | i18n('latte-ui')">
+					<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
+				</latte-tab>
+				<div class="panel-footer justify-content-end">
+					<latte-ripple as="button" class="btn btn-text btn-dark" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+				</div>
+			</latte-tab-container>
+		</template>
+
+	</DateTimePickerMount>
 
 </template>
 
 <script>
 
+	import DateTimePickerMount from "./base/DateTimePickerMount";
+
 	export default {
+
+		components: {DateTimePickerMount},
 
 		name: "latte-datetimepicker",
 
 		props: {
-			id: {default: "date", type: String},
-			name: {default: "date", type: String},
-			placeholder: {default: "", type: String},
-			value: {default: () => new Date(), type: Date}
-		},
-
-		data()
-		{
-			return {
-				canReset: true,
-				calendarView: "dates",
-				currentDate: new Date(),
-				currentTime: new Date()
-			};
-		},
-
-		computed: {
-
-			current()
-			{
-				const dt = new Date(this.currentDate);
-				dt.setHours(this.currentTime.getHours());
-				dt.setMinutes(this.currentTime.getMinutes());
-
-				return dt;
-			},
-
-			inputValue()
-			{
-				return this.moment(this.current).format("YYYY-MM-DD[T]HH:mm");
-			}
-
-		},
-
-		methods: {
-
-			close()
-			{
-				this.$refs.popup.close();
-			},
-
-			select()
-			{
-				this.$emit("input", this.current);
-				this.canReset = false;
-				this.close();
-			},
-
-			onClose()
-			{
-				if (!this.canReset)
-					return;
-
-				this.currentDate = new Date(this.value.getTime());
-				this.currentTime = new Date(this.value.getTime());
-			},
-
-			onOpen()
-			{
-				this.canReset = true;
-			}
-
-		},
-
-		watch: {
-
-			value: {
-				immediate: true,
-				handler()
-				{
-					this.currentDate = new Date(this.value.getTime());
-					this.currentTime = new Date(this.value.getTime());
-				}
-			}
-
+			id: {default: "datetime", type: String},
+			name: {default: "datetime", type: String},
+			placeholder: {default: "", type: String}
 		}
 
 	}
