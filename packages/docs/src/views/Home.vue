@@ -17,7 +17,7 @@
 						<div class="page-header-content tall">
 							<h1 id="hero-title">Latte</h1>
 							<p>An easy to use UI library build on top of Vue.js</p>
-							<div class="d-flex mt-4 mb-3" id="hero-actions">
+							<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
 								<latte-ripple as="button" class="btn btn-contained btn-primary btn-lg" @click="$router.push('/docs')"><i class="mdi mdi-book-open-variant"></i><span>Documentation</span></latte-ripple>
 								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-outline btn-dark btn-lg"><i class="mdi mdi-github-circle"></i><span>GitHub</span></latte-ripple>
 							</div>
@@ -129,6 +129,11 @@
 		background: rgba(var(--panel-background), 1);
 		border: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
 
+		@media (max-width: 991px)
+		{
+			text-align: center;
+		}
+
 		h1#hero-title
 		{
 			font-size: 2.4rem;
@@ -171,6 +176,7 @@
 			section.home-block
 			{
 				padding: 39px;
+				width: calc(100% - 6px);
 			}
 		}
 
