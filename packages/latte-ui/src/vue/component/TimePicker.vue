@@ -9,7 +9,7 @@
 
 <template>
 
-	<DateTimePickerMount class="timepicker" type="time" input-format="HH:mm" v-bind="$attrs" v-on="$listeners">
+	<DateTimePickerMount class="timepicker" type="time" input-format="HH:mm" :id="id" :name="name" :placeholder="placeholder" v-bind="$attrs" v-on="$listeners">
 
 		<template v-slot="{current, setCurrent, setNow, cancel, select}">
 			<latte-timepicker-clock ref="picker" :value="current" @input="setCurrent">
@@ -32,6 +32,8 @@
 	export default {
 
 		components: {DateTimePickerMount},
+
+		inheritAttrs: false,
 
 		name: "latte-timepicker",
 

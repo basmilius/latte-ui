@@ -9,7 +9,7 @@
 
 <template>
 
-	<DateTimePickerMount class="datepicker" type="date" input-format="YYYY-MM-DD" v-bind="$attrs" v-on="$listeners">
+	<DateTimePickerMount class="datepicker" type="date" input-format="YYYY-MM-DD" :id="id" :name="name" :placeholder="placeholder" v-bind="$attrs" v-on="$listeners">
 
 		<template v-slot="{current, setCurrent, setNow, cancel, select}">
 			<latte-datepicker-calendar ref="picker" :value="current" @input="setCurrent">
@@ -36,6 +36,8 @@
 	export default {
 
 		components: {DateTimePickerMount},
+
+		inheritAttrs: false,
 
 		name: "latte-datepicker",
 

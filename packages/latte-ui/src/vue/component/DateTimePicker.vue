@@ -9,7 +9,7 @@
 
 <template>
 
-	<DateTimePickerMount class="datetimepicker" type="datetime-local" input-format="YYYY-MM-DD[T]HH:mm" v-bind="$attrs" v-on="$listeners">
+	<DateTimePickerMount class="datetimepicker" type="datetime-local" input-format="YYYY-MM-DD[T]HH:mm" :id="id" :name="name" :placeholder="placeholder" v-bind="$attrs" v-on="$listeners">
 
 		<template v-slot="{current, setCurrent, setNow, isOverlay, cancel, select}">
 			<template v-if="!isOverlay">
@@ -56,6 +56,8 @@
 	export default {
 
 		components: {DateTimePickerMount},
+
+		inheritAttrs: false,
 
 		name: "latte-datetimepicker",
 
