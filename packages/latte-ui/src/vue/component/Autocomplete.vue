@@ -12,34 +12,27 @@
 	<div class="autocomplete" :class="{'is-loading': isLoading}">
 
 		<div class="form-control" :disabled="disabled">
-
 			<template v-for="selection in values">
 
 				<slot name="selection" v-bind="selection">
-
 					<span class="badge badge-primary">
 						<span>{{ selection.label }}</span>
-						<button class="btn" @click="selection.remove()"><Icon name="window-close"/></button>
+						<button class="btn" @click="selection.remove()"><Icon name="close"/></button>
 					</span>
-
 				</slot>
 
 			</template>
 
 			<input type="search" :name="name" :disabled="disabled" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
-
 		</div>
 
 		<div class="popup" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
 			<div class="popup-body">
 				<nav class="nav nav-list">
-
 					<template v-for="(suggestion, index) in suggestionsFiltered">
 
 						<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
-
 							<slot name="suggestion" v-bind="suggestion">
-
 								<div class="flex-grow-1" v-if="suggestion.sub_label">
 									<span>{{ suggestion.label }}</span>
 									<span class="text-soft">{{ suggestion.sub_label }}</span>
@@ -47,14 +40,11 @@
 
 								<span v-else>{{ suggestion.label }}</span>
 
-								<i class="mdi mdi-chevron-right"></i>
-
+								<Icon name="chevron-right"/>
 							</slot>
-
 						</a>
 
 					</template>
-
 				</nav>
 			</div>
 		</div>
@@ -141,8 +131,10 @@
 
 	export default {
 
-		name: "latte-autocomplete",
 		components: {Icon},
+
+		name: "latte-autocomplete",
+
 		props: {
 			dataSource: {default: null, required: true, type: Function | String | null},
 			defaultValue: {default: undefined},

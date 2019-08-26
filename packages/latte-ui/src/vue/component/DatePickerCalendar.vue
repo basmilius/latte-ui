@@ -12,14 +12,18 @@
 	<div class="panel datepicker-calendar">
 
 		<div class="panel-header border-0 datepicker-calendar-header" :class="[selectedView]">
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 ml-1" @click="navigate(-1)"><i class="mdi mdi-chevron-left"></i></latte-ripple>
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 ml-1" @click="navigate(-1)">
+				<Icon name="chevron-left"/>
+			</latte-ripple>
 
 			<div class="btn-group mx-auto">
 				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
 				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
 			</div>
 
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 mr-1" @click="navigate(1)"><i class="mdi mdi-chevron-right"></i></latte-ripple>
+			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0 mr-1" @click="navigate(1)">
+				<Icon name="chevron-right"/>
+			</latte-ripple>
 		</div>
 
 		<div class="panel-body datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
@@ -57,9 +61,13 @@
 <script>
 
 	import moment from "moment";
+	import Icon from "./base/Icon";
+
 	import { raf } from "../../js/util/dom";
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-datepicker-calendar",
 

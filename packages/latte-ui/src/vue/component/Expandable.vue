@@ -13,7 +13,9 @@
 
 		<div class="expandable-header" @click="toggle">
 			<slot name="header" v-bind:isOpen="isOpen">
-				<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-menu-swap"></i></button>
+				<button class="btn btn-icon btn-text btn-dark">
+					<Icon name="menu-swap"/>
+				</button>
 			</slot>
 		</div>
 
@@ -27,10 +29,14 @@
 
 <script>
 
+	import Icon from "./base/Icon";
+
 	import { dispatch, on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-expandable",
 

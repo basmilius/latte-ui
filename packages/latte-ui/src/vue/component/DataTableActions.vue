@@ -11,7 +11,9 @@
 
 	<td class="actions">
 		<div class="column-content flex-row align-items-center pl-0">
-			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'More options...'|i18n('latte-ui')"><i class="mdi mdi-dots-horizontal"></i></button>
+			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'More options...' | i18n('latte-ui')">
+				<Icon name="dots-horizontal"/>
+			</button>
 			<latte-popup :associate-with="$refs.btn" :margin-x="-9">
 				<nav class="nav nav-list">
 					<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
@@ -25,8 +27,11 @@
 <script>
 
 	import Vue from "vue";
+	import Icon from "./base/Icon";
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-data-table-actions",
 

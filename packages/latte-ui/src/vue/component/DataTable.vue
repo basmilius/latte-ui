@@ -19,9 +19,9 @@
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
 						<button class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-dark': sort.by !== column.field, 'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
-							<i class="mdi mdi-sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"></i>
-							<i class="mdi mdi-sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"></i>
-							<i class="mdi mdi-sort" v-else></i>
+							<Icon name="sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"/>
+							<Icon name="sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"/>
+							<Icon name="sort" v-else/>
 						</button>
 					</div>
 				</th>
@@ -48,7 +48,9 @@
 					<template v-for="(filter, filterKey) of filters">
 						<span class="badge mr-1" :class="filter.class">
 							<span>{{ filter.label }}</span>
-							<button class="btn" @click="removeFilter($event, filterKey)"><i class="mdi mdi-window-close"></i></button>
+							<button class="btn" @click="removeFilter($event, filterKey)">
+								<Icon name="close"/>
+							</button>
 						</span>
 					</template>
 
@@ -104,6 +106,7 @@
 	import { isNullOrWhitespace } from "../../js/util/string";
 	import { handleError } from "../../js/core";
 	import { oneOf } from "../../js/helper/array";
+	import Icon from "./base/Icon";
 
 	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
@@ -164,6 +167,8 @@
 	}
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-data-table",
 

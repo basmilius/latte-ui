@@ -11,14 +11,20 @@
 
 	<div class="form-control">
 		<input :type="fieldType" :autocomplete="autocomplete" class="form-control-plain" v-bind="bindings" v-model="password"/>
-		<button class="btn btn-text btn-icon btn-dark form-control-suffix" @click="toggle" type="button"><i class="mdi" :class="iconClass"></i></button>
+		<button class="btn btn-text btn-icon btn-dark form-control-suffix" @click="toggle" type="button">
+			<Icon :name="fieldType === 'password' ? 'eye' : 'eye-off'"/>
+		</button>
 	</div>
 
 </template>
 
 <script>
 
+	import Icon from "./base/Icon";
+
 	export default {
+
+		components: {Icon},
 
 		name: "latte-password",
 
@@ -56,11 +62,6 @@
 					bindings.placeholder = this.placeholder;
 
 				return bindings;
-			},
-
-			iconClass()
-			{
-				return this.fieldType === "password" ? "mdi-eye" : "mdi-eye-off";
 			}
 
 		},

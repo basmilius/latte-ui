@@ -36,8 +36,12 @@
 			<div class="d-flex align-items-center">
 
 				<template v-if="navigationControls && currentPage > 1">
-					<button class="pagination-item d-none d-md-block" @click="navigate(1)"><Icon name="chevron-double-left"/></button>
-					<button class="pagination-item" @click="navigate(currentPage - 1)"><Icon name="chevron-left"/></button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(1)">
+						<Icon name="chevron-double-left"/>
+					</button>
+					<button class="pagination-item" @click="navigate(currentPage - 1)">
+						<Icon name="chevron-left"/>
+					</button>
 				</template>
 
 				<template v-for="page of visiblePages">
@@ -46,8 +50,12 @@
 				</template>
 
 				<template v-if="navigationControls && currentPage < totalPages">
-					<button class="pagination-item" @click="navigate(currentPage + 1)"><Icon name="chevron-right"/></button>
-					<button class="pagination-item d-none d-md-block" @click="navigate(totalPages)"><Icon name="chevron-double-right"/></button>
+					<button class="pagination-item" @click="navigate(currentPage + 1)">
+						<Icon name="chevron-right"/>
+					</button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(totalPages)">
+						<Icon name="chevron-double-right"/>
+					</button>
 				</template>
 
 			</div>
@@ -65,8 +73,10 @@
 
 	export default {
 
-		name: "latte-pagination",
 		components: {Icon},
+
+		name: "latte-pagination",
+
 		props: {
 			controllerBar: {default: false, type: Boolean},
 			limit: {default: 10, required: true, type: Number},

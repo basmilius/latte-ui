@@ -13,7 +13,7 @@
 
 		<template v-for="(tab, index) in tabs">
 			<a class="nav-link" :class="{'is-active': tab.active, 'no-indicator': animatedIndicator}" @click="click(index)">
-				<i class="mdi" :class="'mdi-' + tab.icon" v-if="tab.icon !== ''"></i>
+				<Icon :name="tab.icon" v-if="tab.icon !== ''"/>
 				<span v-if="tab.label !== ''">{{ tab.label }}</span>
 				<span class="badge badge-primary ml-2" v-if="tab.badge !== ''">{{ tab.badge }}</span>
 			</a>
@@ -29,8 +29,11 @@
 
 	import { raf } from "../../js/util/dom";
 	import { on } from "../../js/core/action";
+	import Icon from "./base/Icon";
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-tab-bar",
 

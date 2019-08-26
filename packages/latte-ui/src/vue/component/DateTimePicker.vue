@@ -23,9 +23,9 @@
 				</div>
 
 				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><i class="mdi mdi-calendar-today"></i></latte-ripple>
+					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
 					<latte-ripple as="button" class="btn btn-text btn-dark ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
 				</div>
 			</template>
 
@@ -38,9 +38,9 @@
 					<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
 				</latte-tab>
 				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><i class="mdi mdi-calendar-today"></i></latte-ripple>
+					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
 					<latte-ripple as="button" class="btn btn-text btn-dark ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><i class="mdi mdi-check-circle"></i><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
 				</div>
 			</latte-tab-container>
 		</template>
@@ -52,10 +52,11 @@
 <script>
 
 	import DateTimePickerMount from "./base/DateTimePickerMount";
+	import Icon from "./base/Icon";
 
 	export default {
 
-		components: {DateTimePickerMount},
+		components: {DateTimePickerMount, Icon},
 
 		inheritAttrs: false,
 

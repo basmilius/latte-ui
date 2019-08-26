@@ -10,7 +10,7 @@
 <template>
 
 	<button class="btn btn-icon btn-text btn-dark">
-		<i class="mdi mdi-sticker-emoji"></i>
+		<Icon name="sticker-emoji"/>
 
 		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9" @open="onOpen">
 			<latte-virtual-scroller ref="scroller" class="panel emoji-picker" :items="emojis" items-class="panel-body m-2" :item-height="36" :items-padding="[7, 7, 7, 7]" :item-width="36">
@@ -53,10 +53,13 @@
 
 	import { emojiBaseUrl, ensureEmojisReady, getCategories, getEmoji, getEmojisForCategory, skinTones } from "../../js/ui/emoji";
 	import { createElement } from "../../js/util/dom";
+	import Icon from "./base/Icon";
 
 	let isSpriteCssLoaded = false;
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-emoji-picker",
 

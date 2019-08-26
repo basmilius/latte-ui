@@ -10,11 +10,12 @@
 <template>
 
 	<div class="form-control combo-box" tabindex="0" @blur="close" @click="toggle" @keydown.down="onKeyPressDown" @keydown.enter="onKeyPressEnter" @keydown.esc="onKeyPressEscape" @keydown.up="onKeyPressUp">
-
 		<a class="combo-box-selection" :class="selectedOptionClasses" v-if="selectedOptionTemplate !== null" v-html="selectedOptionTemplate"></a>
 		<div class="combo-box-empty" v-else>Select...</div>
 
-		<button class="btn btn-text btn-icon btn-dark form-control-suffix" type="button"><i class="mdi mdi-chevron-down"></i></button>
+		<button class="btn btn-text btn-icon btn-dark form-control-suffix" type="button">
+			<Icon name="chevron-down"/>
+		</button>
 
 		<div class="popup" :class="{'is-open': isDropdownOpened}" role="combobox">
 			<div class="popup-body">
@@ -30,8 +31,11 @@
 <script>
 
 	import { raf } from "../../js/util/dom";
+	import Icon from "./base/Icon";
 
 	export default {
+
+		components: {Icon},
 
 		name: "latte-combo-box",
 
