@@ -25,7 +25,7 @@
 		<div class="panel-body datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
 			<span class="day" v-for="day of days">{{ day }}</span>
 
-			<template v-for="(date, index) of dates">
+			<template v-for="date of dates">
 				<latte-ripple as="button" :key="date.getTime()" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
 					<span>{{ date.getDate() }}</span>
 				</latte-ripple>
@@ -56,6 +56,7 @@
 
 <script>
 
+	import moment from "moment";
 	import { raf } from "../../js/util/dom";
 
 	export default {
@@ -64,6 +65,8 @@
 
 		props: {
 			bodyClass: {default: "", type: String},
+			maxYear: {default: 2100, type: Number},
+			minYear: {default: 1900, type: Number},
 			value: {default: () => new Date(), type: Date}
 		},
 
@@ -81,8 +84,8 @@
 			dates()
 			{
 				let dates = [];
-				let monthDays = this.monthEndDate.getDate();
-				let beforeDates = Math.max(0, this.monthBeginDate.getDay() - 1);
+				let monthDays = this.monthEndDate.date();
+				let beforeDates = Math.max(0, this.monthBeginDate.weekday());
 
 				for (let x = beforeDates - 1; x >= 0; x--)
 					dates.push(new Date(Date.UTC(this.selectedYear, this.selectedMonth - 1, 0 - x, 0, 0, 0)));
@@ -104,34 +107,38 @@
 				while (datesToShow > dates.length)
 					dates.push(new Date(Date.UTC(this.selectedYear, this.selectedMonth, ++x, 0, 0, 0)));
 
+				if (Math.ceil(dates.length / 7) < 6)
+					for (let i = 0; i < 7; i++)
+						dates.push(new Date(Date.UTC(this.selectedYear, this.selectedMonth, ++x, 0, 0, 0)));
+
 				return dates;
 			},
 
 			days()
 			{
-				return Array.from(Array(7).keys()).map(day => this.moment().isoWeekday(day + 1).format("dd"));
+				return Array.from(Array(7).keys()).map(day => moment().weekday(day).format("dd"));
 			},
 
 			monthBeginDate()
 			{
-				return new Date(this.selectedYear, this.selectedMonth - 1, 1);
+				return moment(new Date(this.selectedYear, this.selectedMonth - 1, 1));
 			},
 
 			monthEndDate()
 			{
-				return new Date(this.selectedYear, this.selectedMonth, 0);
+				return moment(new Date(this.selectedYear, this.selectedMonth, 0));
 			},
 
 			months()
 			{
-				return Array.from(Array(12).keys()).map(month => this.moment().month(month).format("MMMM"));
+				return Array.from(Array(12).keys()).map(month => moment().month(month).format("MMMM"));
 			},
 
 			years()
 			{
 				const years = [];
 
-				for (let year = 1900; year <= 2100; year++)
+				for (let year = this.minYear; year <= this.maxYear; year++)
 					years.push(year);
 
 				return years;
