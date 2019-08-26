@@ -40,17 +40,8 @@ const defaultActionOptions = {
 const Snackbar = Vue.extend({
 
 	props: {
-
-		options: {
-			required: true,
-			type: Object
-		},
-
-		resolve: {
-			required: true,
-			type: Function
-		}
-
+		options: {required: true, type: Object},
+		resolve: {required: true, type: Function}
 	},
 
 	data()

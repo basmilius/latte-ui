@@ -20,36 +20,11 @@ import { popupClosed, popupOpened } from "../core/popup";
 const MessagePanel = Vue.extend({
 
 	props: {
-
-		buttons: {
-			default: () => [],
-			required: true,
-			type: Array
-		},
-
-		message: {
-			default: "",
-			required: true,
-			type: String
-		},
-
-		prompt: {
-			default: false,
-			required: true,
-			type: Boolean
-		},
-
-		resolve: {
-			required: true,
-			type: Function
-		},
-
-		title: {
-			default: "",
-			required: true,
-			type: String
-		}
-
+		buttons: {default: () => [], required: true, type: Array},
+		message: {default: "", required: true, type: String},
+		prompt: {default: false, required: true, type: Boolean},
+		resolve: {required: true, type: Function},
+		title: {default: "", required: true, type: String}
 	},
 
 	data()
@@ -223,7 +198,7 @@ function buttonsToButtons(buttons)
 				actualButtons.push(ButtonsDescribed[i]);
 
 	actualButtons = actualButtons.sort((a, b) => spaceship(a.weight, b.weight));
-	actualButtons.forEach(button => button.label = translate("root", button.label));
+	actualButtons.forEach(button => button.label = translate("latte-ui", button.label));
 
 	return actualButtons;
 }

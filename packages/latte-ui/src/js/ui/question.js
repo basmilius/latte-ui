@@ -21,35 +21,11 @@ const defaultOptions = {
 const QuestionPanel = Vue.extend({
 
 	props: {
-
-		buttons: {
-			default: () => [],
-			required: true,
-			type: Array
-		},
-
-		icon: {
-			default: "home-outline",
-			type: String
-		},
-
-		message: {
-			default: "",
-			required: true,
-			type: String
-		},
-
-		options: {
-			default: () => ({}),
-			required: true,
-			type: Object
-		},
-
-		resolve: {
-			required: true,
-			type: Function
-		}
-
+		buttons: {default: () => [], required: true, type: Array},
+		icon: {default: "home-outline", type: String},
+		message: {default: "", required: true, type: String},
+		options: {default: () => ({}), required: true, type: Object},
+		resolve: {required: true, type: Function}
 	},
 
 	data()
