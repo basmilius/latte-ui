@@ -30,7 +30,7 @@ export const defaultOptions = {
 	i18n: {},
 	locale: navigator.language,
 	root: undefined,
-	tickInterval: 250
+	tickInterval: 200
 };
 
 function normalizeOptions(options)
