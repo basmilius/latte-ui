@@ -9,63 +9,14 @@
 
 :root
 {
-	--mdi-background: #{latte-rgb(var(--color-primary))};
-	--mdi-foreground: #{latte-rgb(var(--color-primary-foreground))};
+	--icon-background: #{latte-rgb(var(--color-primary))};
+	--icon-foreground: #{latte-rgb(var(--color-primary-foreground))};
 }
 
 #{unquote($latte-icon-class)}.mdi-branding::before
 {
 	content: "";
 	background: var(--branding-logo) no-repeat center center / contain;
-}
-
-#{unquote($latte-icon-class)}.latte-sorting
-{
-	position: relative;
-	z-index: 0;
-
-	&::after
-	{
-		position: absolute;
-		display: block;
-		top: 0;
-		left: 0;
-		width: inherit;
-		content: "\F54F";
-		font:
-		{
-			family: "Material Design Icons", sans-serif;
-			style: normal;
-			weight: 400;
-		}
-		font-size: inherit;
-		line-height: inherit;
-		opacity: .25;
-		text-rendering: auto;
-		z-index: 0;
-
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
-	&::before
-	{
-		z-index: 1;
-	}
-
-	&.down::before
-	{
-		content: "\F140";
-		color: #{latte-rgb(var(--color-primary))};
-		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, .27em, 0);
-	}
-
-	&.up::before
-	{
-		content: "\F143";
-		color: #{latte-rgb(var(--color-primary))};
-		transform: scale3d(0.85, 0.85, 0.85) translate3d(.01em, -.27em, 0);
-	}
 }
 
 #{unquote($latte-icon-class)}.icon-rounded
@@ -76,8 +27,8 @@
 
 	&.icon-rounded-bg
 	{
-		background: var(--mdi-background);
+		background: var(--icon-background);
 		border-radius: 1em;
-		color: var(--mdi-foreground);
+		color: var(--icon-foreground);
 	}
 }

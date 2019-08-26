@@ -33,7 +33,6 @@ export { default as PortalTarget } from "./PortalTarget.vue";
 export { default as Progress } from "./Progress.vue";
 export { default as Ripple } from "./Ripple.vue";
 export { default as Sheet } from "./Sheet.vue";
-export { default as SortingButton } from "./SortingButton.vue";
 export { default as Swiper } from "./Swiper.vue";
 export { default as Tab } from "./Tab.vue";
 export { default as TabBar } from "./TabBar.vue";

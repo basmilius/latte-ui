@@ -71,19 +71,6 @@
 						</div>
 					</div>
 
-					<div class="panel" v-if="false">
-						<div class="panel-header"><span class="panel-title">Autocomplete</span></div>
-						<div class="panel-body">
-							<latte-autocomplete :data-source="autocompleteDataSource"></latte-autocomplete>
-						</div>
-						<div class="panel-body">
-							<latte-autocomplete :data-source="autocompleteDataSource" v-model="acTwo" multi-select></latte-autocomplete>
-						</div>
-						<div class="panel-body">
-							<latte-autocomplete :data-source="autocompleteDataSource" v-model="acTree" multi-select :value="[3, 6]"></latte-autocomplete>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</div>
@@ -112,7 +99,6 @@
 
 	import { BEEditor } from "../../../block-editor/src";
 
-	import autocompleteData from "../assets/data/autocomplete-data.json";
 	import BESettingsGroup from "../../../block-editor/src/BESettingsGroup";
 	import PageHeader from "../components/PageHeader";
 
@@ -148,59 +134,6 @@
 		{
 			if (this.testEditor)
 				document.body.style.setProperty("overflow", "hidden");
-		},
-
-		methods: {
-
-			autocompleteDataSource()
-			{
-				const data = Array.from(autocompleteData);
-
-				return new Promise(resolve => resolve({
-					getEntries(ids)
-					{
-						return new Promise(resolve => resolve(ids.map(id => data.find(d => d.value === id))));
-					},
-
-					getSuggestions(query, offset, limit)
-					{
-						return new Promise(resolve => resolve(
-							data
-								.filter(d => d.label.toLowerCase().indexOf(query.toLowerCase()) > -1)
-								.slice(offset, offset + limit)
-						));
-					}
-				}));
-			},
-
-			datatableDataSource()
-			{
-				let $this = this;
-
-				return {
-					actions: [],
-					columns: [
-						{
-							field: "name",
-							label: "Name",
-							template: `<div class="column-content">{{ row.name }}</div>`
-						}
-					],
-					initial_data: undefined,
-					limit: 10,
-					offset: 0,
-
-					async requestData(offset, limit, filters, params, sorting)
-					{
-						return {
-							data: $this.rows.slice(offset, offset + limit),
-							pagination: undefined,
-							total: $this.rows.length
-						};
-					}
-				};
-			}
-
 		},
 
 		watch: {

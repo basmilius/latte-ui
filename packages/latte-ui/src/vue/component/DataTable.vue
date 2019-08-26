@@ -18,7 +18,11 @@
 				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
-						<latte-sorting-button v-if="showSorting && column.is_sortable" :is-sorting="sort.by === column.field" :is-sorting-ascending="sort.order === 'ASC'" button-class="btn btn-icon btn-text btn-dark btn-sm ml-1" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)"></latte-sorting-button>
+						<button class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-dark': sort.by !== column.field, 'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
+							<i class="mdi mdi-sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"></i>
+							<i class="mdi mdi-sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"></i>
+							<i class="mdi mdi-sort" v-else></i>
+						</button>
 					</div>
 				</th>
 				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
@@ -406,9 +410,15 @@
 			sortBy(field)
 			{
 				if (this.sort.by === field)
+				{
 					this.sort.order = this.sort.order === "DESC" ? "ASC" : "DESC";
+				}
+				else
+				{
+					this.sort.by = field;
+					this.sort.order = "ASC";
+				}
 
-				this.sort.by = field;
 				this.loadData();
 			}
 
