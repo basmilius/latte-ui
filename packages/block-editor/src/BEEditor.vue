@@ -4,10 +4,10 @@
 
 		<div class="be-content-pane" @click.capture="onEditorClick">
 			<BEToolbar ref="toolbar">
-				<template v-slot:before>
+				<template #before>
 					<slot name="toolbar-before"></slot>
 				</template>
-				<template v-slot:after>
+				<template #after>
 					<slot name="toolbar-after"></slot>
 				</template>
 			</BEToolbar>
@@ -23,10 +23,10 @@
 		<BEInserterPopup ref="inserter"/>
 
 		<BESettingsPane>
-			<template v-slot:before="api">
+			<template #before="api">
 				<slot name="settings-pane-before" v-bind="api"></slot>
 			</template>
-			<template v-slot:after="api">
+			<template #after="api">
 				<slot name="settings-pane-after" v-bind="api"></slot>
 			</template>
 		</BESettingsPane>

@@ -15,7 +15,7 @@
 		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9" @open="onOpen">
 			<latte-virtual-scroller ref="scroller" class="panel emoji-picker" :items="emojis" items-class="panel-body m-2" :item-height="36" :items-padding="[7, 7, 7, 7]" :item-width="36">
 
-				<template v-slot:header>
+				<template #header>
 					<div class="app-bar app-bar-flat">
 						<nav class="nav nav-tabs is-over-outline px-2">
 							<template v-for="(cat, index) of categories">
@@ -33,7 +33,7 @@
 					</latte-ripple>
 				</template>
 
-				<template v-slot:footer v-if="showSkinTones">
+				<template #footer v-if="showSkinTones">
 					<div class="app-bar skin-tones">
 						<div class="app-bar-row app-bar-auto justify-content-center py-1">
 							<latte-ripple as="button" class="btn btn-icon btn-icon btn-text" :key="index" @click="setSkinTone(index)" v-for="(skinTone, index) of skinTones">

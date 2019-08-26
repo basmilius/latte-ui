@@ -92,7 +92,7 @@
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px)" v-else>
 		<BEEditor v-model="content">
-			<template v-slot:settings-pane-after="{blockSettingsShown}">
+			<template #settings-pane-after="{ blockSettingsShown }">
 				<template v-if="!blockSettingsShown">
 					<div class="panel-header"><span class="panel-title">Page settings</span></div>
 					<BESettingsGroup title="General" :padded="true">

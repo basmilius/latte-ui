@@ -193,9 +193,8 @@ function buttonsToButtons(buttons)
 	let actualButtons = [];
 
 	for (let i in ButtonsDescribed)
-		if (ButtonsDescribed.hasOwnProperty(i))
-			if ((buttons & ButtonsDescribed[i].id) === ButtonsDescribed[i].id)
-				actualButtons.push(ButtonsDescribed[i]);
+		if (ButtonsDescribed.hasOwnProperty(i) && (buttons & ButtonsDescribed[i].id) === ButtonsDescribed[i].id)
+			actualButtons.push(ButtonsDescribed[i]);
 
 	actualButtons = actualButtons.sort((a, b) => spaceship(a.weight, b.weight));
 	actualButtons.forEach(button => button.label = translate("latte-ui", button.label));
