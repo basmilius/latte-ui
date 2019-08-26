@@ -19,7 +19,7 @@
 
 					<span class="badge badge-primary">
 						<span>{{ selection.label }}</span>
-						<button class="btn" @click="selection.remove()"><i class="mdi mdi-window-close"></i></button>
+						<button class="btn" @click="selection.remove()"><Icon name="window-close"/></button>
 					</span>
 
 				</slot>
@@ -69,6 +69,7 @@
 
 	import { id, request } from "../../js/core/api";
 	import { handleError } from "../../js/core";
+	import Icon from "./base/Icon";
 
 	function areArraysEqual(a, b)
 	{
@@ -141,7 +142,7 @@
 	export default {
 
 		name: "latte-autocomplete",
-
+		components: {Icon},
 		props: {
 			dataSource: {default: null, required: true, type: Function | String | null},
 			defaultValue: {default: undefined},

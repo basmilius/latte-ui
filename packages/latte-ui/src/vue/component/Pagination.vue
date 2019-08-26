@@ -16,7 +16,7 @@
 
 				<button ref="entriesButton" class="btn btn-sm btn-text btn-dark btn-small pr-1" style="--btn-height: 30px">
 					<span>{{ "@0 entries"|i18n("latte-ui", limit) }}</span>
-					<i class="mdi mdi-menu-swap"></i>
+					<Icon name="menu-swap"/>
 				</button>
 
 				<latte-popup :associate-with="$refs.entriesButton" :margin-y="9">
@@ -36,8 +36,8 @@
 			<div class="d-flex align-items-center">
 
 				<template v-if="navigationControls && currentPage > 1">
-					<button class="pagination-item d-none d-md-block" @click="navigate(1)"><i class="mdi mdi-chevron-double-left"></i></button>
-					<button class="pagination-item" @click="navigate(currentPage - 1)"><i class="mdi mdi-chevron-left"></i></button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(1)"><Icon name="chevron-double-left"/></button>
+					<button class="pagination-item" @click="navigate(currentPage - 1)"><Icon name="chevron-left"/></button>
 				</template>
 
 				<template v-for="page of visiblePages">
@@ -46,8 +46,8 @@
 				</template>
 
 				<template v-if="navigationControls && currentPage < totalPages">
-					<button class="pagination-item" @click="navigate(currentPage + 1)"><i class="mdi mdi-chevron-right"></i></button>
-					<button class="pagination-item d-none d-md-block" @click="navigate(totalPages)"><i class="mdi mdi-chevron-double-right"></i></button>
+					<button class="pagination-item" @click="navigate(currentPage + 1)"><Icon name="chevron-right"/></button>
+					<button class="pagination-item d-none d-md-block" @click="navigate(totalPages)"><Icon name="chevron-double-right"/></button>
 				</template>
 
 			</div>
@@ -61,11 +61,12 @@
 	import { Buttons, prompt } from "../../js/ui/message";
 	import { translate } from "../../js/i18n";
 	import { clamp } from "../../js/math";
+	import Icon from "./base/Icon";
 
 	export default {
 
 		name: "latte-pagination",
-
+		components: {Icon},
 		props: {
 			controllerBar: {default: false, type: Boolean},
 			limit: {default: 10, required: true, type: Number},
