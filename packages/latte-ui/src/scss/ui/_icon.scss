@@ -13,7 +13,7 @@
 	--icon-foreground: #{latte-rgb(var(--color-primary-foreground))};
 }
 
-#{unquote($latte-icon-class)}.mdi-branding::before
+#{unquote($latte-icon-class)}.branding::before
 {
 	content: "";
 	background: var(--branding-logo) no-repeat center center / contain;
