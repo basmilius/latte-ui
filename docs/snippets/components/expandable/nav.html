@@ -2,7 +2,7 @@
 	<a class="nav-link"><i class="mdi mdi-home"></i><span>Home</span></a>
 
 	<latte-expandable group="example-nav">
-		<template v-slot:header="{isOpen}">
+		<template #header="{isOpen}">
 			<a class="nav-link">
 				<i class="mdi mdi-view-grid"></i>
 				<span>Components</span>
@@ -17,7 +17,7 @@
 	</latte-expandable>
 
 	<latte-expandable group="example-nav">
-		<template v-slot:header="{isOpen}">
+		<template #header="{isOpen}">
 			<a class="nav-link">
 				<i class="mdi mdi-eye"></i>
 				<span>Examples</span>
