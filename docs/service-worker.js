@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.51283f2011e16c151163aa68d864bc4c.js"
+  "/precache-manifest.f9232cb105b20d6647eecfe65136ce9a.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "latte-ui-docs"});
+workbox.core.setCacheNameDetails({prefix: "@bybas/latte-ui-docs"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to

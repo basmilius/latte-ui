@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d207adc"],{a20e:function(e,a,n){"use strict";n.r(a);var t=function(){var e=this,a=e.$createElement,n=e._self._c||a;return n("div",{staticClass:"page",attrs:{id:"components-overlay"}},[n("PageHeader",[n("h1",[e._v("Overlay")])])],1)},r=[],s=n("36ad"),c={name:"Overlay",components:{PageHeader:s["a"]}},l=c,o=n("2be6"),d=Object(o["a"])(l,t,r,!1,null,null,null);a["default"]=d.exports}}]);
-//# sourceMappingURL=chunk-2d207adc.346b1553.js.map

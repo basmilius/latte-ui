@@ -10,6 +10,8 @@
 import popup from "./popup";
 import z from "./z";
 
+import { alert } from "../ui/message";
+
 export const docRoot = document.documentElement;
 export let currentOptions = {};
 
@@ -48,7 +50,7 @@ export function getOptions()
  */
 export function handleError(err, fn = undefined)
 {
-	Latte.ui.message.alert("Aw snap!", `<pre>${err.stack}</pre>`);
+	alert("Aw snap!", `<pre>${err.stack}</pre>`);
 
 	if (fn)
 		fn();

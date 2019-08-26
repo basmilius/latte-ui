@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.8.0-beta.17",
+	"version": "1.8.0-beta.18",
 	"description": "Monorepo for latte-ui.",
 	"author": {
 		"name": "Bas Milius",
@@ -13,8 +13,8 @@
 		"build": "yarn workspace @bybas/latte-ui run build",
 		"build:all": "yarn run build && yarn run docs:build",
 		"serve": "yarn workspace @bybas/latte-ui run serve",
-		"docs:build": "yarn workspace latte-ui-docs run build",
-		"docs:serve": "yarn workspace latte-ui-docs run serve",
+		"docs:build": "yarn workspace @bybas/latte-ui-docs run build",
+		"docs:serve": "yarn workspace @bybas/latte-ui-docs run serve",
 		"publish": "yarn workspace @bybas/latte-ui publish --access public",
 		"publish:beta": "yarn workspace @bybas/latte-ui publish --access public --tag beta",
 		"workspace:install": "yarn install"
