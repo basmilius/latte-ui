@@ -34,7 +34,7 @@ export function commaCommaAnd(strs)
 export function format(str, ...params)
 {
 	for (let i = 0; i < params.length; i++)
-		str = str.replace(new RegExp(`@${i}`, 'g'), params[i]);
+		str = str.replace(new RegExp(`@${i}`, "g"), params[i]);
 
 	return str;
 }
@@ -53,7 +53,7 @@ export function isNullOrWhitespace(str)
 	if (!str)
 		return true;
 
-	return str.replace(/\s/g, '').length < 1;
+	return str.replace(/\s/g, "").length < 1;
 }
 
 export default {

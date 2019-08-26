@@ -17,7 +17,7 @@ export function initializePanels()
 
 export function initializePanel(panel)
 {
-	const header = panel.querySelector("div.panel-header");
+	const header = panel.querySelector(".panel-header");
 
 	if (header === null)
 		return;
@@ -31,7 +31,7 @@ export function initializePanel(panel)
 	if (!hasRightItems)
 		toggle.classList.add("ml-auto");
 
-	toggle.innerHTML = '<i class="mdi mdi-chevron-down"></i>';
+	toggle.innerHTML = `<i class="mdi mdi-chevron-down"></i>`;
 
 	header.appendChild(toggle);
 

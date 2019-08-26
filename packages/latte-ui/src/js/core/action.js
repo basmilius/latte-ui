@@ -129,7 +129,7 @@ export function removeSavedFromQueryString()
 		return;
 
 	if (queryString.substr(0, 6) === "saved=")
-		history.replaceState(null, '', window.location.pathname || window.location.path);
+		history.replaceState(null, "", window.location.pathname || window.location.path);
 }
 
 function onAction(element, evt)

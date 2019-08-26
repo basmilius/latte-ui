@@ -194,10 +194,10 @@
 
 			isSame(date, other)
 			{
-				if (typeof date === 'undefined' || date === null)
+				if (typeof date === "undefined" || date === null)
 					return false;
 
-				if (typeof other === 'undefined' || other === null)
+				if (typeof other === "undefined" || other === null)
 					return false;
 
 				return date.getFullYear() === other.getFullYear() && date.getMonth() === other.getMonth() && date.getDate() === other.getDate();
