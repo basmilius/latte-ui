@@ -10,6 +10,7 @@
 import { on } from "../core/action";
 import { id } from "../core/api"
 import { isIterable } from "../util/object";
+import { icon } from "../core";
 
 export function initializeNotices()
 {
@@ -52,11 +53,7 @@ export function create(message, type, dismissible = true)
 	{
 		const dismiss = document.createElement("button");
 		dismiss.classList.add("btn", "btn-text", "btn-icon", "notice-dismiss");
-
-		const icon = document.createElement("i");
-		icon.classList.add("mdi", "mdi-close");
-
-		dismiss.appendChild(icon);
+		dismiss.innerHTML = icon("close");
 		dismiss.addEventListener("click", () => remove(noticeId), {passive: true});
 
 		notice.appendChild(dismiss);

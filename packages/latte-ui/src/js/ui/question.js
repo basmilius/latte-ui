@@ -12,7 +12,7 @@ import Vue from "vue";
 import { createElement, raf } from "../util/dom";
 import { applyZ } from "../core/z";
 import { dispatch } from "../core/action";
-import { getMainElement } from "../core";
+import { getMainElement, icon } from "../core";
 
 const defaultOptions = {
 	width: "300px"
@@ -41,7 +41,7 @@ const QuestionPanel = Vue.extend({
 		return h("div", {attrs: {role: "dialog"}, class: ["overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
 			h("div", {class: ["panel"], style: {width: this.options.width}}, [
 				h("div", {class: ["panel-header", "justify-content-center", "border-bottom-0", "py-4"]}, [
-					h("i", {class: ["mdi", `mdi-${this.icon}`, "text-primary"], style: {fontSize: "36px"}})
+					icon(this.icon, h, {class: ["text-primary"], style: {fontSize: "36px"}})
 				]),
 				h("div", {class: ["panel-body", "py-0", "text-center"], domProps: {innerHTML: this.message}}),
 				h("div", {class: ["d-flex", "flex-column", "p-3"]}, this.buttons.map(button => h("latte-ripple", {

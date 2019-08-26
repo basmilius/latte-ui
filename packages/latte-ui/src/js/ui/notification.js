@@ -12,7 +12,7 @@ import Vue from "vue";
 import { on } from "../core/action";
 import { id } from "../core/api";
 import { conditionalRender, createElement, eachRender, getLattePath, raf } from "../util/dom";
-import { getMainElement } from "../core";
+import { getMainElement, icon } from "../core";
 import { applyZ } from "../core/z";
 
 const defaultOptions = {
@@ -68,7 +68,7 @@ const Notification = Vue.extend({
 			conditionalRender(this.options.avatar && typeof this.options.avatar === "function", () => this.options.avatar(h)),
 			conditionalRender(this.options.avatar && typeof this.options.avatar === "string", () => h("img", {attrs: {src: this.options.avatar}, class: ["avatar"]})),
 			conditionalRender(this.options.icon, () => h("div", {class: ["notification-icon"]}, [
-				h("i", {class: ["mdi", `mdi-${this.options.icon}`]})
+				icon(this.options.icon, h)
 			])),
 			h("div", {class: ["notification-content"]}, [
 				h("div", {class: ["notification-body"]}, [
@@ -86,7 +86,7 @@ const Notification = Vue.extend({
 							click: () => this.close.call(this, button.id)
 						}
 					}, [
-						conditionalRender(button.icon, () => h("i", {class: ["mdi", `mdi-${button.icon}`]})),
+						conditionalRender(button.icon, () => icon(button.icon, h)),
 						h("span", {}, button.label)
 					]))
 				]))

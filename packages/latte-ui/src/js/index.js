@@ -22,21 +22,31 @@ import * as Mixins from "../vue/mixin"
 
 import { initializeEmoji } from "./ui/emoji";
 import { isSomethingScrolling } from "./ui/scrollbar";
+import { deepMerge } from "./util/object";
+
+function iconFactory(icon, h = undefined, hOptions = {})
+{
+	if (h)
+		return h("i", deepMerge({}, {class: ["mdi", `mdi-${icon}`]}, hOptions));
+
+	return `<i class="mdi mdi-${icon}"></i>`;
+}
+
+function normalizeOptions(options)
+{
+	return Object.assign({}, defaultOptions, options);
+}
 
 export const defaultOptions = {
 	emojiBaseUrl: "https://cdn.mili.us/assets/joypixels/v5",
 	emojiEnabled: true,
 	emojiPath: "/png/64/@0.png",
 	i18n: {},
+	iconFactory: iconFactory,
 	locale: navigator.language,
 	root: undefined,
 	tickInterval: 200
 };
-
-function normalizeOptions(options)
-{
-	return Object.assign({}, defaultOptions, options);
-}
 
 let foundMainElement = false;
 let tickTimeout = 0;

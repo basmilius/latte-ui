@@ -12,11 +12,9 @@ import message from "./message";
 import notice, { initializeNotices } from "./notice";
 import notification, { initializeNotifications } from "./notification";
 import overlay, { initializeOverlays } from "./overlay";
-import panel, { initializePanels } from "./panel";
 import question from "./question";
 import snackbar, { initializeSnackbars } from "./snackbar";
 import { initializeTooltips } from "./tooltip";
-import { initializeEmoji } from "./emoji";
 import { initializeScrollbar } from "./scrollbar";
 
 export function initializeUI()
@@ -25,7 +23,6 @@ export function initializeUI()
 	initializeNotices();
 	initializeNotifications();
 	initializeOverlays();
-	initializePanels();
 	initializeScrollbar();
 	initializeSnackbars();
 	initializeTooltips();
@@ -36,7 +33,6 @@ export default {
 	notice,
 	notification,
 	overlay,
-	panel,
 	question,
 	snackbar
 };

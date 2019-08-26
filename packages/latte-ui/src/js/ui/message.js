@@ -14,7 +14,7 @@ import { createElement, raf } from "../util/dom";
 import { spaceship } from "../operators";
 import { translate } from "../i18n";
 import { applyZ } from "../core/z";
-import { getMainElement } from "../core";
+import { getMainElement, icon } from "../core";
 import { popupClosed, popupOpened } from "../core/popup";
 
 const MessagePanel = Vue.extend({
@@ -70,7 +70,7 @@ const MessagePanel = Vue.extend({
 						as: "button"
 					}
 				}, [
-					button.icon !== null ? h("i", {class: ["mdi", `mdi-${button.icon}`]}) : undefined,
+					button.icon !== null ? icon(button.icon, h) : undefined,
 					h("span", {}, button.label)
 				])))
 			])

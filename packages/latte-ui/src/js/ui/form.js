@@ -42,13 +42,7 @@ function onFormSubmit(form)
 		if (icon === null)
 			return;
 
-		icon.classList.add("spinner");
-
-		if (btn.classList.contains("btn-light"))
-			icon.classList.add("spinner-primary");
-		else
-			icon.classList.add("spinner-light");
-
+		icon.classList.add("spinner", btn.classList.contains("btn-light") ? "spinner-primary" : "spinner-light");
 		btn.classList.add("disabled");
 	});
 }

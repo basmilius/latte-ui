@@ -57,6 +57,22 @@ export function handleError(err, fn = undefined)
 }
 
 /**
+ * Creates icon DOM.
+ *
+ * @param {String} icon
+ * @param {CreateElement|Function|undefined} h
+ * @param {Object} hOptions
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.8.0
+ */
+export function icon(icon, h = undefined, hOptions = {})
+{
+	return currentOptions.iconFactory(icon, h, hOptions);
+}
+
+/**
  * Sets an interval.
  *
  * @param {Number} timeout

@@ -39,6 +39,13 @@ export function deepMerge(target, ...sources)
 
 			deepMerge(target[key], source[key]);
 		}
+		else if (Array.isArray(source[key]))
+		{
+			let arr = target[key] || [];
+			arr.push(...source[key]);
+
+			Object.assign(target, {[key]: arr});
+		}
 		else
 		{
 			Object.assign(target, {[key]: source[key]});
