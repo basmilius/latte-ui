@@ -198,7 +198,7 @@
 				if (label === undefined || value === undefined)
 					return;
 
-				if (this.values.filter(v => v.value === value && v.label === label).length > 0)
+				if (this.values.filter(v => v.value === value).length > 0)
 					return;
 
 				const remove = () => this.removeValue(value);
@@ -383,6 +383,7 @@
 			{
 				this.canEmit = false;
 				this.onValueChanged();
+				this.$nextTick(() => this.canEmit = true);
 			},
 
 			values()
