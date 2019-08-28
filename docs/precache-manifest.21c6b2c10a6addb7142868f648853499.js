@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4424a9c085e86244ee6d",
+    "revision": "02d12722b5c6f92589a9",
     "url": "/assets/css/app.2525a3b4.css"
   },
   {
-    "revision": "4424a9c085e86244ee6d",
-    "url": "/assets/js/app.a5feea27.js"
+    "revision": "02d12722b5c6f92589a9",
+    "url": "/assets/js/app.9b09d610.js"
   },
   {
     "revision": "30736d169c51ef1faac7",
@@ -264,12 +264,12 @@ self.__precacheManifest = [
     "url": "/assets/fonts/materialdesignicons-webfont.f8346507.ttf"
   },
   {
-    "revision": "2c32a0959ade6a2a703ebc8836f587f6",
-    "url": "/assets/img/select-arrow.2c32a095.svg"
-  },
-  {
     "revision": "f8f0c8b8fd0bc226ed9140f450f62acf",
     "url": "/assets/img/logo.f8f0c8b8.svg"
+  },
+  {
+    "revision": "2c32a0959ade6a2a703ebc8836f587f6",
+    "url": "/assets/img/select-arrow.2c32a095.svg"
   },
   {
     "revision": "beea7e75f8970fadb56f261215ceabdc",
@@ -280,7 +280,7 @@ self.__precacheManifest = [
     "url": "/assets/img/bas.bf57d4d6.svg"
   },
   {
-    "revision": "6cec9ec4845f807508936a914a501d9d",
+    "revision": "30a49eff86300f82548f4925ab37ca62",
     "url": "/index.html"
   },
   {
@@ -290,6 +290,10 @@ self.__precacheManifest = [
   {
     "revision": "20fd01949f6781cf296f56c0b4a6225f",
     "url": "/download/starter-template.html"
+  },
+  {
+    "revision": "9cda439d9520349d88620756b7aba5d3",
+    "url": "/snippets/components/app-bar/action-buttons.html"
   },
   {
     "revision": "735ab4f94fbcd57074377afca324c813",
@@ -304,10 +308,6 @@ self.__precacheManifest = [
     "url": "/snippets/components/app-bar/auto-height.html"
   },
   {
-    "revision": "9cda439d9520349d88620756b7aba5d3",
-    "url": "/snippets/components/app-bar/action-buttons.html"
-  },
-  {
     "revision": "2f662396eaded645b13a60e16ec6fe27",
     "url": "/snippets/components/app-bar/flat-transparent.html"
   },
@@ -316,32 +316,24 @@ self.__precacheManifest = [
     "url": "/snippets/components/app-bar/main.html"
   },
   {
-    "revision": "f013d02ce963aa94297f64422421b2e7",
-    "url": "/snippets/components/app-bar/cutout.html"
-  },
-  {
-    "revision": "1096a3d17a2e7974b7bdf9b56cd02671",
-    "url": "/snippets/components/app-bar/panel.html"
-  },
-  {
     "revision": "954c99a46e2523fc933cf064dc4830ab",
     "url": "/snippets/components/app-bar/rows.html"
   },
   {
-    "revision": "b6d11a38303952a350138bdb7fda225f",
-    "url": "/snippets/components/app-bar/search.html"
-  },
-  {
-    "revision": "3ab2a940a7a6c3758713853f0150937d",
-    "url": "/snippets/components/avatar/initials.html"
+    "revision": "8d0934429c3805773efe6e02edeb8da2",
+    "url": "/snippets/components/avatar/avatar.html"
   },
   {
     "revision": "d5f5f2fd895be8473166d56d8a95c4c4",
     "url": "/snippets/components/avatar/radius.html"
   },
   {
-    "revision": "ed053bded43fd3b7a7ba56c014b4b7e7",
-    "url": "/snippets/components/badge/closable.html"
+    "revision": "3ab2a940a7a6c3758713853f0150937d",
+    "url": "/snippets/components/avatar/initials.html"
+  },
+  {
+    "revision": "b6d11a38303952a350138bdb7fda225f",
+    "url": "/snippets/components/app-bar/search.html"
   },
   {
     "revision": "a7a045e6e9f2ff5750befecd43de1618",
@@ -352,40 +344,40 @@ self.__precacheManifest = [
     "url": "/snippets/components/badge/basic.html"
   },
   {
-    "revision": "384ff56bdea583ceb701882d79ead807",
-    "url": "/snippets/components/bottom-nav/shifting.html"
+    "revision": "8551b1d8bcb638313706da04676d8bcd",
+    "url": "/snippets/components/badge/with-spinner.html"
+  },
+  {
+    "revision": "ed053bded43fd3b7a7ba56c014b4b7e7",
+    "url": "/snippets/components/badge/closable.html"
+  },
+  {
+    "revision": "1096a3d17a2e7974b7bdf9b56cd02671",
+    "url": "/snippets/components/app-bar/panel.html"
   },
   {
     "revision": "3b0a0d64dc7f84783ae70ffec24e9415",
     "url": "/snippets/components/bottom-nav/all.html"
   },
   {
-    "revision": "8551b1d8bcb638313706da04676d8bcd",
-    "url": "/snippets/components/badge/with-spinner.html"
-  },
-  {
-    "revision": "47467a932f6a40962b4f313f2d867ae5",
-    "url": "/snippets/components/avatar/strip.html"
-  },
-  {
-    "revision": "02f7ad343cbc81c603d954e4fc5cb6ff",
-    "url": "/snippets/components/bottom-nav/side.html"
-  },
-  {
     "revision": "c24f9973bea9f55458aad9131757ef8d",
     "url": "/snippets/components/button/action.html"
   },
   {
-    "revision": "7a5aa636e3d880f6c50310ada5b20adc",
-    "url": "/snippets/components/button/group.html"
+    "revision": "f013d02ce963aa94297f64422421b2e7",
+    "url": "/snippets/components/app-bar/cutout.html"
+  },
+  {
+    "revision": "67ab68d099b3128a176dd3be9975fc5b",
+    "url": "/snippets/components/button/contained.html"
   },
   {
     "revision": "b956f16695bf5258cf7d7a749f0d1623",
     "url": "/snippets/components/button/fab.html"
   },
   {
-    "revision": "7089efd0a42eebd7bae36500ad55b991",
-    "url": "/snippets/components/button/sizes.html"
+    "revision": "7a5aa636e3d880f6c50310ada5b20adc",
+    "url": "/snippets/components/button/group.html"
   },
   {
     "revision": "26f53bffd4c7209a964d744b9fef4b18",
@@ -396,24 +388,24 @@ self.__precacheManifest = [
     "url": "/snippets/components/button/pill.html"
   },
   {
-    "revision": "0b07f5405808025c1490c0ca7ffaf5e3",
-    "url": "/snippets/components/button/soft.html"
-  },
-  {
-    "revision": "8d0934429c3805773efe6e02edeb8da2",
-    "url": "/snippets/components/avatar/avatar.html"
-  },
-  {
-    "revision": "efd001a7da8780a41410459760aea0e6",
-    "url": "/snippets/components/chat/bubbles.html"
+    "revision": "7089efd0a42eebd7bae36500ad55b991",
+    "url": "/snippets/components/button/sizes.html"
   },
   {
     "revision": "d493bce55e6e5e02d80fba01e69c3828",
     "url": "/snippets/components/button/text.html"
   },
   {
+    "revision": "0b07f5405808025c1490c0ca7ffaf5e3",
+    "url": "/snippets/components/button/soft.html"
+  },
+  {
     "revision": "7e265c64f0bdbea31f370545946bc2ce",
     "url": "/snippets/components/chat/with-avatar.html"
+  },
+  {
+    "revision": "efd001a7da8780a41410459760aea0e6",
+    "url": "/snippets/components/chat/bubbles.html"
   },
   {
     "revision": "9399c949910ee500f17f6e4df2742a61",
@@ -424,32 +416,32 @@ self.__precacheManifest = [
     "url": "/snippets/components/expandable/advanced.html"
   },
   {
-    "revision": "276013c4868f9f0c0ced5dcf83872862",
-    "url": "/snippets/components/expandable/group.html"
+    "revision": "02f7ad343cbc81c603d954e4fc5cb6ff",
+    "url": "/snippets/components/bottom-nav/side.html"
   },
   {
     "revision": "d3787e1fe90ef29a84210b9a08c01eff",
     "url": "/snippets/components/form-elements/autocomplete.html"
   },
   {
-    "revision": "81fa8d0ee83f7036cc9c921ee3776b13",
-    "url": "/snippets/components/expandable/nav.html"
-  },
-  {
-    "revision": "1bf19d21593ee6fb92f35b40da7f17e5",
-    "url": "/snippets/components/form-elements/datetime.html"
+    "revision": "47467a932f6a40962b4f313f2d867ae5",
+    "url": "/snippets/components/avatar/strip.html"
   },
   {
     "revision": "8ac644a8b6dcca30ad20707a648b22ba",
     "url": "/snippets/components/form-elements/checkbox.html"
   },
   {
-    "revision": "b3ed663d2169ffb1219ab26217475f48",
-    "url": "/snippets/components/form-elements/password.html"
+    "revision": "1bf19d21593ee6fb92f35b40da7f17e5",
+    "url": "/snippets/components/form-elements/datetime.html"
   },
   {
     "revision": "a383a9ed67fac94c02855ffab4a72fe9",
     "url": "/snippets/components/form-elements/radio.html"
+  },
+  {
+    "revision": "b3ed663d2169ffb1219ab26217475f48",
+    "url": "/snippets/components/form-elements/password.html"
   },
   {
     "revision": "8b8e4ae2077bf23b0e60a647c54e72d6",
@@ -460,24 +452,20 @@ self.__precacheManifest = [
     "url": "/snippets/components/form-elements/field.html"
   },
   {
-    "revision": "bfacda7c5e37313549cd1194057587b9",
-    "url": "/snippets/components/form-elements/select.html"
-  },
-  {
-    "revision": "2f31af0d3d8b62d64fc434ec6de19bdb",
-    "url": "/snippets/components/list/icon.html"
+    "revision": "dc37d468d2b29dc72015f717f95a46c7",
+    "url": "/snippets/components/list/basic.html"
   },
   {
     "revision": "4aaa62e3f566ec247d88823818c9e6b8",
     "url": "/snippets/components/form-elements/toggle.html"
   },
   {
-    "revision": "bfb3ed4018aae6454cf7a4a7c727c222",
-    "url": "/snippets/components/message/alert.snippet"
+    "revision": "bfacda7c5e37313549cd1194057587b9",
+    "url": "/snippets/components/form-elements/select.html"
   },
   {
-    "revision": "463079b053d1460305089985a1f0701b",
-    "url": "/snippets/components/message/confirm.snippet"
+    "revision": "bfb3ed4018aae6454cf7a4a7c727c222",
+    "url": "/snippets/components/message/alert.snippet"
   },
   {
     "revision": "280ed632d1896e5b42e3dad6c90665f2",
@@ -488,68 +476,68 @@ self.__precacheManifest = [
     "url": "/snippets/components/message/prompt.snippet"
   },
   {
-    "revision": "a608517f38efe51c2e2133c2c71933c3",
-    "url": "/snippets/components/list/ripple.html"
+    "revision": "276013c4868f9f0c0ced5dcf83872862",
+    "url": "/snippets/components/expandable/group.html"
   },
   {
-    "revision": "47b542e8afe8310393314631080d2f03",
-    "url": "/snippets/components/list/prefix-suffix.html"
+    "revision": "384ff56bdea583ceb701882d79ead807",
+    "url": "/snippets/components/bottom-nav/shifting.html"
   },
   {
-    "revision": "dc37d468d2b29dc72015f717f95a46c7",
-    "url": "/snippets/components/list/basic.html"
+    "revision": "463079b053d1460305089985a1f0701b",
+    "url": "/snippets/components/message/confirm.snippet"
   },
   {
-    "revision": "05353f9c756afc789f536177ed6d0aba",
-    "url": "/snippets/components/message/what.html"
+    "revision": "81fa8d0ee83f7036cc9c921ee3776b13",
+    "url": "/snippets/components/expandable/nav.html"
   },
   {
     "revision": "605a5868b2d1217d0a0a8b9c3ef8f963",
     "url": "/snippets/components/notice/all.html"
   },
   {
-    "revision": "64c3b65e7dff9bc3c985a78ee8a7c449",
-    "url": "/snippets/components/notice/button.html"
+    "revision": "05353f9c756afc789f536177ed6d0aba",
+    "url": "/snippets/components/message/what.html"
   },
   {
     "revision": "a9cdc54d2635d519fabd23c9803e883e",
     "url": "/snippets/components/notification/avatar.snippet"
   },
   {
+    "revision": "47b542e8afe8310393314631080d2f03",
+    "url": "/snippets/components/list/prefix-suffix.html"
+  },
+  {
     "revision": "b681bc21648ec1362904e60e127f28a6",
     "url": "/snippets/components/notification/buttons.snippet"
-  },
-  {
-    "revision": "ba1a7866e4eebef64015d4250f23c8fc",
-    "url": "/snippets/components/notice/icon.html"
-  },
-  {
-    "revision": "67ab68d099b3128a176dd3be9975fc5b",
-    "url": "/snippets/components/button/contained.html"
-  },
-  {
-    "revision": "341eadca5dc05748e9dba897c6288a1f",
-    "url": "/snippets/components/notification/icon.snippet"
-  },
-  {
-    "revision": "5b92e52d05831df2175fc7819d6aecfc",
-    "url": "/snippets/components/notification/what.html"
   },
   {
     "revision": "3fe805d83e58626612f8e7e6cc972c2c",
     "url": "/snippets/components/notification/minimal.snippet"
   },
   {
-    "revision": "512277089d72bb1ca1b2d088688cea27",
-    "url": "/snippets/components/notice/panel.html"
+    "revision": "341eadca5dc05748e9dba897c6288a1f",
+    "url": "/snippets/components/notification/icon.snippet"
   },
   {
-    "revision": "686d5371b692c356640027304b976065",
-    "url": "/snippets/components/pagination/controller-bar.html"
+    "revision": "ba1a7866e4eebef64015d4250f23c8fc",
+    "url": "/snippets/components/notice/icon.html"
+  },
+  {
+    "revision": "64c3b65e7dff9bc3c985a78ee8a7c449",
+    "url": "/snippets/components/notice/button.html"
+  },
+  {
+    "revision": "a608517f38efe51c2e2133c2c71933c3",
+    "url": "/snippets/components/list/ripple.html"
   },
   {
     "revision": "3e79f21b0db0bead80006ea7dfc7d7e0",
     "url": "/snippets/components/pagination/basic.html"
+  },
+  {
+    "revision": "686d5371b692c356640027304b976065",
+    "url": "/snippets/components/pagination/controller-bar.html"
   },
   {
     "revision": "0dc8b7e77b9ab1b883a2eea39b21a86e",
@@ -560,20 +548,16 @@ self.__precacheManifest = [
     "url": "/snippets/components/panel/footer.html"
   },
   {
-    "revision": "4a490d92f60789a5d348cc5c9575783d",
-    "url": "/snippets/components/panel/list.html"
-  },
-  {
     "revision": "ae04ad4e716a1d98a679af024878ce5a",
     "url": "/snippets/components/panel/basic.html"
   },
   {
-    "revision": "61c266c2658ce5dce9775f7c51e90ae5",
-    "url": "/snippets/components/panel/media.html"
+    "revision": "512277089d72bb1ca1b2d088688cea27",
+    "url": "/snippets/components/notice/panel.html"
   },
   {
-    "revision": "9c0a7a7249f463be7348c6bd225c9c55",
-    "url": "/snippets/components/panel/nav.html"
+    "revision": "2f31af0d3d8b62d64fc434ec6de19bdb",
+    "url": "/snippets/components/list/icon.html"
   },
   {
     "revision": "fc2742a9ed7b77a1564ce04c9f49c450",
@@ -584,12 +568,16 @@ self.__precacheManifest = [
     "url": "/snippets/components/panel/notice.html"
   },
   {
+    "revision": "9c0a7a7249f463be7348c6bd225c9c55",
+    "url": "/snippets/components/panel/nav.html"
+  },
+  {
     "revision": "9662713787bfc81c3aca423758be1aee",
     "url": "/snippets/components/panel/tabs.html"
   },
   {
-    "revision": "38819ff1ba2e7b70b79ef5bee9310242",
-    "url": "/snippets/components/question/what.html"
+    "revision": "5b92e52d05831df2175fc7819d6aecfc",
+    "url": "/snippets/components/notification/what.html"
   },
   {
     "revision": "f26faba7d9c46d9c32846a5a07fc6be0",
@@ -604,12 +592,12 @@ self.__precacheManifest = [
     "url": "/snippets/components/ripple/clip.html"
   },
   {
-    "revision": "d2463f4690fa36f14da0f7077a40d82d",
-    "url": "/snippets/components/ripple/standalone.html"
-  },
-  {
     "revision": "f7955bbc507b5db7aae6e36c2e887c4e",
     "url": "/snippets/components/ripple/color.html"
+  },
+  {
+    "revision": "d2463f4690fa36f14da0f7077a40d82d",
+    "url": "/snippets/components/ripple/standalone.html"
   },
   {
     "revision": "1d026e956843b02b9e48767f0bee8035",
@@ -620,24 +608,36 @@ self.__precacheManifest = [
     "url": "/snippets/components/snackbar/what.html"
   },
   {
-    "revision": "aec78d9a76aaab031f16a5aae5ee783d",
-    "url": "/image/hamster.jpg"
+    "revision": "cb32c2e2363bc7917bcfdf48bea0ed73",
+    "url": "/snippets/layout/grid-system/auto-grid.html"
   },
   {
     "revision": "d5d604cb0b53220523d1e2e90f6388ad",
     "url": "/snippets/layout/grid-system/widths.html"
   },
   {
-    "revision": "cb32c2e2363bc7917bcfdf48bea0ed73",
-    "url": "/snippets/layout/grid-system/auto-grid.html"
+    "revision": "aec78d9a76aaab031f16a5aae5ee783d",
+    "url": "/image/hamster.jpg"
   },
   {
     "revision": "192ae08e1dd1d2953bab05c8bacac9a8",
     "url": "/worklet/paint/app-bar-cutout.js"
   },
   {
+    "revision": "38819ff1ba2e7b70b79ef5bee9310242",
+    "url": "/snippets/components/question/what.html"
+  },
+  {
     "revision": "365faa8b4d400ccdd5a122193de1153e",
     "url": "/sound/notification.ogg"
+  },
+  {
+    "revision": "4a490d92f60789a5d348cc5c9575783d",
+    "url": "/snippets/components/panel/list.html"
+  },
+  {
+    "revision": "61c266c2658ce5dce9775f7c51e90ae5",
+    "url": "/snippets/components/panel/media.html"
   },
   {
     "revision": "a6bfb0d149d3dae4ce1100890edaaac4",
