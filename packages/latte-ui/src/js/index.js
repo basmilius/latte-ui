@@ -43,6 +43,7 @@ export const defaultOptions = {
 	emojiPath: "/png/64/@0.png",
 	i18n: {},
 	iconFactory: iconFactory,
+	iconSelector: ".mdi",
 	locale: navigator.language,
 	root: undefined,
 	tickInterval: 200

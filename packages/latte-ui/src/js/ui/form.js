@@ -7,6 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { getOptions } from "../core";
+
 export function initializeForms()
 {
 	document.querySelectorAll(`form[method="post"]`).forEach(form => initializeForm(form));
@@ -37,7 +39,7 @@ function onFormSubmit(form)
 		if (btn.classList.contains("btn-icon"))
 			return;
 
-		const icon = btn.querySelector("i.mdi");
+		const icon = btn.querySelector(getOptions().iconSelector);
 
 		if (icon === null)
 			return;
