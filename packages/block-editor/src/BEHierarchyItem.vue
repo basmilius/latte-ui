@@ -19,13 +19,13 @@
 					<div class="block-name">Sub ({{ index }})</div>
 				</div>
 				<div class="be-hierarchy-group">
-					<BEHierarchyItem :api="child.api" :blocks="child.blocks" v-for="child of children"></BEHierarchyItem>
+					<BEHierarchyItem :api="child.api" :blocks="child.blocks" :key="index" v-for="(child, index) of children"></BEHierarchyItem>
 				</div>
 			</div>
 		</div>
 
 		<div class="be-hierarchy-group" v-else if="blockMounts.length > 0" v-for="children of blockMounts">
-			<BEHierarchyItem :api="child.api" :blocks="child.blocks" v-for="child of children"></BEHierarchyItem>
+			<BEHierarchyItem :api="child.api" :blocks="child.blocks" :key="index" v-for="(child, index) of children"></BEHierarchyItem>
 		</div>
 	</div>
 
