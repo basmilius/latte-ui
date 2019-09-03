@@ -10,7 +10,7 @@
 					<button class="btn btn-outline btn-error ml-auto"><i class="mdi mdi-delete"></i><span>{{ "Remove all" | beTranslate }}</span></button>
 				</div>
 				<div class="be-hierarchy-group">
-					<BEHierarchyItem :api="item.api" :blocks="item.blocks" v-for="item of items"/>
+					<BEHierarchyItem :api="item.api" :blocks="item.blocks" :key="index" v-for="(item, index) of items"/>
 				</div>
 			</div>
 		</latte-portal>
