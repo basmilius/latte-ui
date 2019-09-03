@@ -121,7 +121,7 @@
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6],
-				testEditor: false
+				testEditor: true
 			};
 		},
 

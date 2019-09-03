@@ -1,5 +1,6 @@
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
+import { oneOrAnother } from "../helper/element";
 
 export class HtmlBlock extends BlockBase
 {
@@ -33,7 +34,14 @@ export class HtmlBlock extends BlockBase
 
 	render(h, api)
 	{
-		return h("div", {class: "be-custom-html", domProps: {innerHTML: api.options.code}});
+		return h("div", {
+			class: "be-custom-html",
+			domProps: {
+				innerHTML: api.options.code
+					.replace(/\t/g, "")
+					.replace(/\r?\n|\r/g, "")
+			}
+		});
 	}
 
 	renderEditor(h, api)
@@ -63,7 +71,7 @@ export class HtmlBlock extends BlockBase
 					}
 				})
 			])
-		])
+		]);
 	}
 
 	renderOptions(h, api)

@@ -1,5 +1,10 @@
 import { includes } from "./array";
 
+export function oneOrAnother(condition, fn1, fn2)
+{
+	return condition ? fn1() : fn2();
+}
+
 export function getElementDimensions(elm)
 {
 	const {height, width, top, left} = elm.getBoundingClientRect();
