@@ -1,6 +1,7 @@
 .be-block-mount
 {
 	position: relative;
+	display: flex;
 	margin: -1px;
 	padding: 1px;
 	pointer-events: none;
@@ -29,6 +30,16 @@
 		pointer-events: none;
 		z-index: 2;
 	}
+
+	h1, h2, h3, h4, h5, h6, p, ol, ul
+	{
+		width: 100%;
+	}
+}
+
+.be-blocks
+{
+	width: 100%;
 }
 
 @import "columns";

@@ -1,22 +1,31 @@
 import { BlockBase } from "../block";
-import { getLatte } from "../utils";
-import { blockActions, radioButtons, settingsGroup, textField, toggleButton } from "../primitive/settings";
+import { translate } from "../utils";
+import { blockActions, settingsGroup, textField, toggleButton } from "../primitive/settings";
+import { optionAdditionalClasses, optionButtons } from "../primitive/element";
 
-const buttonTypes = [
-	{id: "contained", label: "Contained"},
-	{id: "outline", label: "Outline"},
-	{id: "soft", label: "Soft"},
-	{id: "text", label: "Text"}
+const buttonSizes = [
+	{value: "sm", icon: "alpha-s", tooltip: translate("Small")},
+	{value: "md", icon: "alpha-m", tooltip: translate("Medium")},
+	{value: "lg", icon: "alpha-l", tooltip: translate("Large")}
+];
+
+const buttonStyles = [
+	{value: "contained", icon: "alpha-a-box", tooltip: translate("Solid")},
+	{value: "outline", icon: "alpha-a-box-outline", tooltip: translate("Outline")},
+	{value: "text", icon: "alpha-a", tooltip: translate("Text")}
 ];
 
 function getButtonClasses(options)
 {
-	const classes = ["btn", `btn-${options.type}`];
+	const classes = ["btn", `btn-${options.type}`, options.class];
 
 	if (options.pillButton)
 		classes.push("btn-pill");
 
-	return classes;
+	if (options.size && options.size !== "md")
+		classes.push(`btn-${options.size}`);
+
+	return classes.filter(c => c.trim() !== "").join(" ");
 }
 
 export class ButtonBlock extends BlockBase
@@ -25,8 +34,10 @@ export class ButtonBlock extends BlockBase
 	get defaultOptions()
 	{
 		return {
+			class: "",
 			pillButton: false,
 			rippleButton: false,
+			size: "md",
 			text: "Button",
 			type: "contained",
 			url: ""
@@ -46,6 +57,11 @@ export class ButtonBlock extends BlockBase
 	get name()
 	{
 		return "Button";
+	}
+
+	get isInline()
+	{
+		return true;
 	}
 
 	constructor()
@@ -87,14 +103,14 @@ export class ButtonBlock extends BlockBase
 
 	renderOptions(h, entry)
 	{
-		const uniqueId = getLatte().api.id();
-
 		return settingsGroup(h, this.name, [
 			blockActions(h, entry),
 			toggleButton(h, "Ripple", () => entry.options.rippleButton, rippleButton => entry.setOptions({rippleButton})),
 			toggleButton(h, "Pill", () => entry.options.pillButton, pillButton => entry.setOptions({pillButton})),
-			radioButtons(h, "Type", () => entry.options.type, type => entry.setOptions({type}), uniqueId, buttonTypes),
-			textField(h, "URL", () => entry.options.url, url => entry.setOptions({url}))
+			optionButtons(h, "Size", buttonSizes, () => entry.options.size, size => entry.setOptions({size})),
+			optionButtons(h, "Style", buttonStyles, () => entry.options.type, type => entry.setOptions({type})),
+			textField(h, "URL", () => entry.options.url, url => entry.setOptions({url})),
+			optionAdditionalClasses(h, entry)
 		]);
 	}
 

@@ -1,5 +1,6 @@
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
+import { translate } from "../utils";
 
 export class PageBreakBlock extends BlockBase
 {
@@ -33,7 +34,7 @@ export class PageBreakBlock extends BlockBase
 	{
 		return h("div", {
 			attrs: {
-				"data-text": "Page break"
+				"data-text": translate("Page break")
 			},
 			class: "be-page-break"
 		});

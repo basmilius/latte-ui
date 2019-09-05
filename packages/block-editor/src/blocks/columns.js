@@ -124,11 +124,6 @@ export class ColumnsBlock extends BlockBase
 		return "Displays blocks in a column view.";
 	}
 
-	get isInline()
-	{
-		return true;
-	}
-
 	get keywords()
 	{
 		return ["column", "columns", "grid"];

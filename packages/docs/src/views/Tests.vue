@@ -100,65 +100,15 @@
 			let rows = Array.from(Array(50), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [
-					{
-						"id": "mv-opening-hours",
-						"options": {
-							"facilityId": 13,
-							"showWhenClosed": true
-						}
-					},
-					{
-						"id": "wrapper",
-						"options": {
-							"class": "gutter-mp no-gutters"
-						},
-						"children": [
-							{
-								"id": "heading",
-								"options": {
-									"type": "h3",
-									"text": "Italiaans restaurant Mama Mia"
-								}
-							},
-							{
-								"id": "paragraph",
-								"options": {
-									"align": "left",
-									"fontSize": 1,
-									"indent": 0,
-									"text": "Voor een heerlijke pizza, pasta of lasagne hoef je niet naar Italië te reizen. Ook in ons Italiaanse restaurant op Marveld Recreatie is het culinair Mediterraans genieten. Alle pizza’s worden gebakken in een originele Italiaanse houtoven, wat een extra lekkere authentieke smaak geeft. Ook de voor- en bijgerechten zijn de moeite waard.&nbsp; U kunt reserveren via de receptie!"
-								}
-							}
-						]
-					},
-					{
-						"id": "html",
-						"options": {
-							"code": "<mva-version-check min-version=\"4.1.0\">\n\t<template v-slot:ok>\n\n\t\t<mva-reservation-button :facility-id=\"13\"></mva-reservation-button>\n\t\t<mva-reservation-button :facility-id=\"13\"></mva-reservation-button>\n\n\t</template>\n\n\t<div class=\"gutter-mp my-0\">\n\t\t<latte-ripple as=\"a\" href=\"tel:0031 544 466000\" class=\"btn btn-pill btn-contained btn-primary\">\n\t\t\t<i class=\"mdi mdi-pizza\"></i>\n\t\t\t<span>Pizza bezorgservice</span>\n\t\t</latte-ripple>\n\t\t<latte-ripple as=\"a\" href=\"tel:0031 544 466000\" class=\"btn btn-pill btn-contained btn-primary mt-2\">\n\t\t\t<i class=\"mdi mdi-phone\"></i>\n\t\t\t<span>Telefonisch reserveren</span>\n\t\t</latte-ripple>\n\t</div>\n\n</mva-version-check>\n"
-						}
-					},
-					{
-						"id": "wrapper",
-						"options": {
-							"class": "gutter-mp mb-0 no-gutters"
-						},
-						"children": [
-							{
-								"id": "heading",
-								"options": {
-									"type": "h4",
-									"text": "Menukaart"
-								}
-							}
-						]
-					},
-					{
-						"id": "html",
-						"options": {
-							"code": "<table class=\"table_menu\" border=\"0\" cellspacing=\"0\">\n<tbody>\n<tr class=\"groep\">\n<td colspan=\"2\">Voor- en bijgerechten</td>\n</tr>\n<tr>\n<td><strong>Ciabatta met kruidenboter</strong>\nolijven en tomatenpesto</td>\n<td class=\"prijs\">€ 3,90</td>\n</tr>\n<tr>\n<td><strong>Insalata di pasta legume</strong>\nvegetarische pasta salade</td>\n<td class=\"prijs\">€ 5,80</td>\n</tr>\n<tr>\n<td><strong>Insalata di pasta pollo</strong>\npasta salade kip</td>\n<td class=\"prijs\">€ 5,80</td>\n</tr>\n<tr>\n<td><strong>Insalata di pasta tonno</strong>\npasta salade tonijn</td>\n<td class=\"prijs\">€ 6,10</td>\n</tr>\n<tr>\n<td><strong>Frisse rauwkost</strong>\nmet feta kaas en cocktail tomaatjes</td>\n<td class=\"prijs\">€ 4,20</td>\n</tr>\n<tr class=\"groep\">\n<td colspan=\"2\">Warme voorgerechten</td>\n</tr>\n<tr>\n<td><strong>Tassa di Minestrone</strong>\nItaliaanse tomatensoep</td>\n<td class=\"prijs\">€ 4,80</td>\n</tr>\n<tr>\n<td><strong>Pomodori mozzarella di Bufula</strong>\ntomaat gegratineerd met mozzarella</td>\n<td class=\"prijs\">€ 5,30</td>\n</tr>\n<tr>\n<td><strong>Tinozza di Pesce</strong>\nvispannetje met room</td>\n<td class=\"prijs\">€ 7,40</td>\n</tr>\n<tr>\n<td><strong>Lasagne Bolognese</strong>\nlasagne met gehakt</td>\n<td class=\"prijs\">€ 8,40</td>\n</tr>\n<tr>\n<td><strong>Lasagne Salmone</strong>\nlasagne met zalm</td>\n<td class=\"prijs\">€ 8,40</td>\n</tr>\n<tr>\n<td><strong>Lasagne Legume</strong>\nlasagne met groente</td>\n<td class=\"prijs\">€ 8,40</td>\n</tr>\n<tr class=\"groep\">\n<td colspan=\"2\">Pizza</td>\n</tr>\n<tr>\n<td><strong>Pizza Margarita </strong>\ntomatensaus, kaas en basilicum</td>\n<td class=\"prijs\">€ 6,80</td>\n</tr>\n<tr>\n<td><strong>Pizza Tonno </strong>\ntomatensaus, kaas, tonijn, ui, olijven</td>\n<td class=\"prijs\">€ 9,50</td>\n</tr>\n<tr>\n<td><strong>Pizza Hawaii </strong>\ntomatensaus, kaas, ananas, ham, bacon</td>\n<td class=\"prijs\">€10,00</td>\n</tr>\n<tr>\n<td><strong>Pizza Pepperoni </strong>\ntomatensaus, kaas, pepperoni, ui</td>\n<td class=\"prijs\">€ 9,20</td>\n</tr>\n<tr>\n<td><strong>Pizza Pollo</strong>\ntomatensaus, kaas, kip, mais, paprika, ui</td>\n<td class=\"prijs\">€ 10,30</td>\n</tr>\n<tr>\n<td><strong>Pizza Shoarma </strong>\ntomatensaus, kaas, shoarma, ui, paprika</td>\n<td class=\"prijs\">€ 10,30</td>\n</tr>\n<tr>\n<td><strong>Pizza Funghi </strong>\ntomatensaus, kaas, ham, champignons</td>\n<td class=\"prijs\">€ 9,20</td>\n</tr>\n<tr>\n<td><strong>Pizza Legume</strong>\ntomatensaus, kaas, champignons, paprika, ui, mais</td>\n<td class=\"prijs\">€ 8,90</td>\n</tr>\n<tr>\n<td><strong>Pizza Bambino</strong>\ntomatensaus, kaas, ananas</td>\n<td class=\"prijs\">€ 7,10</td>\n</tr>\n<tr class=\"groep\">\n<td colspan=\"2\">Pasta</td>\n</tr>\n<tr>\n<td><strong>Spaghetti bolognese</strong>\nmet bolognese gehaktsaus</td>\n<td class=\"prijs\">€ 7,40</td>\n</tr>\n<tr>\n<td><strong>Spaghetti carbonara</strong>\nkaas, spek, ui</td>\n<td class=\"prijs\">€ 7,90</td>\n</tr>\n<tr>\n<td><strong>Penne bolognese</strong>\nmet bolognese gehaktsaus</td>\n<td class=\"prijs\">€ 7,40</td>\n</tr>\n<tr>\n<td><strong>Penne carbonara</strong>\nkaas, spek, ui</td>\n<td class=\"prijs\">€ 7,90</td>\n</tr>\n<tr>\n<td><strong>Ravioli spinazie met ricotta, bolognese</strong>\nmet bolognese gehaktsaus</td>\n<td class=\"prijs\">€ 8,70</td>\n</tr>\n<tr>\n<td><strong>Ravioli spinazie met ricotta, carbonara</strong>\nkaas, spek, ui</td>\n<td class=\"prijs\">€ 8,70</td>\n</tr>\n<tr class=\"extras\">\n<td colspan=\"2\"><strong> * Pizzabezorgservice</strong>\nZin in een heerlijke pizza van onze pizzeria Mama Mia, maar blijft u liever op uw eigen stek op ons vakantiepark? Dan biedt onze pizzabezorgservice dé uitkomst! Als u vóór 20.00 uur bestelt, dan zorgen wij ervoor dat uw bestelling op uw aangegeven standplaats of bungalow wordt bezorgd. (Wij bezorgen uitsluitend pizza's)Vermeld tijdens uw telefonische bestelling: Naam, standplaats/bungalownummer en telefoonnummer.\n\n<strong>Pizza bestellijn: 0544 466000</strong></td>\n</tr>\n<tr class=\"opmerkingen\">\n<td colspan=\"2\">\n<ul>\n \t<li>Per tafel of gezelschap maken wij één rekening.</li>\n \t<li>U wordt vriendelijk verzocht uw rekening bij de kassa te voldoen.</li>\n \t<li>Waarde Marveld consumptie-munten € 2,30. Hierop geen geld teruggave.</li>\n \t<li>Wij serveren geen kraanwater, wel verschillende soorten bronwater.</li>\n</ul>\n&nbsp;</td>\n</tr>\n</tbody>\n</table>"
-						}
-					}
+				content: [{"id":"heading","options":{"color":"rgb(247, 54, 43)","type":"h1","text":"Dit is mijn geweldige pagina."}},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lorem eget est commodo vulputate eu quis ipsum. Nam dictum quis dui eget cursus. Phasellus tellus sapien, auctor et cursus eget, tempus ut justo. Donec placerat scelerisque nibh, eu consectetur elit imperdiet eu. Curabitur id ligula quis eros ullamcorper elementum. Fusce diam nibh, porttitor vel sagittis et, hendrerit in mauris. Nam elementum nibh in ipsum tempus, non semper lorem fringilla. In turpis dolor, venenatis lobortis malesuada non, posuere tempor tortor. Cras interdum mauris ut lorem volutpat, sit amet varius ex scelerisque.&nbsp;Suspendisse quam urna, varius ut pretium quis, lacinia a eros. Duis non nisi eu neque luctus ultricies et vel lectus.&nbsp;"}},
+					{"id":"paragraph","options":{"align":"right","color":"rgb(126, 123, 158)","fontSize":1.35,"indent":10,"text":"<i>\"Aenean varius pretium tortor eu porttitor. Vivamus finibus sagittis tellus, sit amet porta tortor tempor ac. Aenean ac mauris lobortis ipsum feugiat volutpat nec sit amet ex.\"</i>"}},
+					{"id":"button","options":{"class":"mx-auto mb-3","pillButton":false,"rippleButton":true,"size":"lg","text":"My awesome button","type":"outline","url":""}},
+					{"id":"columns","options":{"class":"mb-3","columns":2,"gutters":true,"preset":1},"children":[[{"id":"youtube-embed","options":{"videoId":"2TuyT0knklM"}}],[{"id":"heading","options":{"type":"h5","text":"Gavin DeGraw - Soldier"}},
+							{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Phasellus commodo, lacus non viverra imperdiet, libero orci lacinia velit, sit amet malesuada dui diam eu lectus. Sed maximus eu orci ut condimentum.&nbsp;"}},
+							{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Vivamus auctor sapien nisl, varius interdum libero malesuada sit amet. Integer vulputate facilisis urna id sollicitudin."}}]]},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Integer ac vestibulum dolor, et euismod sem. Vivamus volutpat, lectus eget vulputate eleifend, nibh quam aliquet lorem, quis efficitur neque magna ac elit. Vestibulum ac risus eu ligula auctor cursus. Curabitur purus enim, accumsan nec magna vel, ornare sagittis nisi. Pellentesque libero lorem, rhoncus placerat mauris et, vehicula tempor turpis. Duis nec luctus metus. Maecenas consequat libero id nulla pharetra luctus. Donec ultricies tincidunt tincidunt. Suspendisse sollicitudin lacus nunc, sed ultricies tellus efficitur nec. Phasellus eget sem nec enim molestie venenatis nec ut tortor. Aliquam dictum tempus neque, at luctus elit mollis sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed pellentesque, metus pharetra auctor luctus, sem nunc mattis purus, at mattis turpis mauris nec dolor. Curabitur cursus enim non libero sodales tristique."}},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Aliquam urna sapien, gravida eget cursus at, fringilla eu metus. In sapien odio, gravida hendrerit iaculis id, sodales sit amet nibh. Nunc nec efficitur diam. Fusce sagittis at nibh eget tristique. Integer elit felis, consequat nec fermentum ut, dignissim sit amet purus. Ut aliquam imperdiet faucibus. Etiam maximus mauris id sem aliquam, vel posuere leo viverra. Nulla eleifend leo in sapien cursus, congue mollis nunc ultrices."}}
 				],
 				rows: rows,
 				acTwo: [],

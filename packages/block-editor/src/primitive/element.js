@@ -1,6 +1,6 @@
 import { IconButton, IconToggleButton } from "./icon-button";
-import { textField } from "./settings";
-import { translate } from "../utils";
+import { optional, textField } from "./settings";
+import { getLatte, translate } from "../utils";
 
 export function commandIconToggleButton(h, executeAndFocus, entry, icon, command)
 {
@@ -37,6 +37,34 @@ export function functionIconToggleButton(h, executeAndFocus, entry, icon, onClic
 	});
 }
 
+export function button(h, options, fn)
+{
+	const classes = ["btn", `btn-${options.style || "contained"}`];
+
+	if (options.icon && !options.label)
+		classes.push("btn-icon");
+
+	if (options.color)
+		classes.push(`btn-${options.color}`);
+
+	if (options.class)
+		classes.push(options.class);
+
+	let params = {
+		attrs: {},
+		class: classes,
+		on: {click: fn}
+	};
+
+	if (options.tooltip)
+		params.attrs["data-tooltip"] = options.tooltip;
+
+	return h("button", params, [
+		optional(options.icon, () => icon(h, options.icon)),
+		optional(options.label, () => h("span", options.label))
+	]);
+}
+
 export function divider(h, vertical = false)
 {
 	return h("div", {
@@ -56,6 +84,19 @@ export function optionAdditionalClasses(h, entry)
 	return textField(h, translate("Additional classes"), () => entry.options.class, classes => entry.setOptions({class: classes}));
 }
 
+export function optionButtons(h, title, buttons, getValue, setValue)
+{
+	return h("div", {class: "be-settings-row"}, [
+		h("span", title),
+		h("div", {class: "d-flex my-n1"}, buttons.map(btn => button(h, {
+			...btn,
+			class: "m-0",
+			color: getValue() === btn.value ? "primary" : "dark",
+			style: getValue() === btn.value ? "contained" : "text"
+		}, () => setValue(btn.value))))
+	]);
+}
+
 export function optionTextColor(h, entry)
 {
 	return h("div", {class: "be-settings-row flex-column"}, [
@@ -69,7 +110,7 @@ export function optionTextColor(h, entry)
 	])
 }
 
-export function optionTextSize(h, entry, min = 1, max = 3, step = 0.05)
+export function optionTextSize(h, entry, min = 0.7, max = 3, step = 0.1)
 {
 	return h("label", {class: "be-settings-row"}, [
 		h("span", translate("Size")),
@@ -77,7 +118,26 @@ export function optionTextSize(h, entry, min = 1, max = 3, step = 0.05)
 			h("input", {
 				class: "custom-range",
 				domProps: {min, max, step, value: entry.options.fontSize, type: "range"},
-				on: {input: evt => entry.setOptions({fontSize: parseFloat(evt.target.value)})}
+				on: {
+					"!mouseup": () => getLatte().action.dispatch("latte:tooltip:hide"),
+					input: evt =>
+					{
+						const fontSize = parseFloat(evt.target.value);
+						const latte = getLatte();
+						const {top, left, width} = evt.target.getBoundingClientRect();
+						const p = (fontSize - min) / (max - min);
+
+						latte.action.dispatch("latte:tooltip", {
+							x: left + (p * (width - 24)) + 12,
+							y: top,
+							classes: ["tooltip-top"],
+							content: `${fontSize}rem`,
+							position: null
+						});
+
+						entry.setOptions({fontSize});
+					}
+				}
 			})
 		])
 	])
