@@ -1,6 +1,9 @@
+// Root
+export { RootBlock } from "./root";
+
 // Layout
 export { ButtonBlock } from "./button";
-export { ColumnsBlock } from "./columns";
+export { ColumnBlock, ColumnsBlock } from "./columns";
 export { PageBreakBlock } from "./page-break";
 export { WrapperBlock } from "./wrapper";
 

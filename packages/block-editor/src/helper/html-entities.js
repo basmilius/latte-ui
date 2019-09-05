@@ -19,3 +19,8 @@ export function decodeEntities(text)
 
 	return decoded.trim();
 }
+
+export function removeEmptyDivs(text)
+{
+	return text.replace(/<div><\/div>/g, "");
+}

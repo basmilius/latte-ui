@@ -39,22 +39,6 @@ export class WrapperBlock extends BlockBase
 		super("wrapper", "layout", "border-none-variant");
 	}
 
-	calculateSelectionBorder(api)
-	{
-		const {dimensions, margin} = getElementDimensions(api.elm);
-
-		let hgutters = margin.horizontal;
-		let vgutters = this.isInline ? 0 : margin.vertical;
-
-		let columnsLast = querySelector(api.elm, ".be-block-mount:last-child");
-		let lastDimensions = columnsLast !== null ? getElementDimensions(columnsLast).margin.bottom : 0;
-
-		return {
-			height: dimensions.height + vgutters - lastDimensions,
-			width: dimensions.width + hgutters
-		};
-	}
-
 	render(h, {children, options, processGroup})
 	{
 		if (children.length === 0)
@@ -69,28 +53,20 @@ export class WrapperBlock extends BlockBase
 		);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
-		return h("div", {class: `row be-block-wrapper ${api.options.class}`}, [
-			h("div", {class: "col-12"}, [
-				h(BEBlocks, {
-					props: {
-						depth: api.depth,
-						value: api.children || []
-					},
-					on: {
-						input: c => api.setChildren(c)
-					}
-				})
-			])
-		]);
+		return h(BEBlocks, {
+			class: `be-block-wrapper ${entry.options.class}`,
+			props: {entry},
+			on: {input: c => entry.setChildren(c)}
+		});
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
-		return settingsGroupWithDepth(h, api.depth, this.name, [
-			blockActions(h, api),
-			optionAdditionalClasses(h, api)
+		return settingsGroupWithDepth(h, entry.depth, this.name, [
+			blockActions(h, entry),
+			optionAdditionalClasses(h, entry)
 		]);
 	}
 

@@ -1,5 +1,5 @@
-import { commandIconToggleButton, functionIconButton, functionIconToggleButton, divider } from "./element";
-import { decodeEntities } from "../helper/html-entities";
+import { commandIconToggleButton, divider, functionIconButton, functionIconToggleButton } from "./element";
+import { decodeEntities, removeEmptyDivs } from "../helper/html-entities";
 import { atEdge, caretPosition, getRectFromRange, placeCaretAt, placeCaretAtEdge } from "../helper/selection";
 import { optional } from "./settings";
 import { translate } from "../utils";
@@ -32,13 +32,13 @@ function ensureTextNode(elm)
 	return elm;
 }
 
-function executeAndFocus(api, fn)
+function executeAndFocus(entry, fn)
 {
-	api.focus({select: false}, elm =>
+	entry.focus({select: false}, elm =>
 	{
 		elm.focus();
 
-		api.editor.selection.setBaseAndExtent(
+		entry.editor.selection.setBaseAndExtent(
 			lastSelectionRange.startContainer,
 			lastSelectionRange.startOffset,
 			lastSelectionRange.endContainer,
@@ -80,79 +80,79 @@ export function getStyles(options)
 	};
 }
 
-export function onBlur(evt, api)
+export function onBlur(evt, entry)
 {
 	if (!canUpdate)
 		return;
 
-	api.editor.inserterList.close();
+	entry.editor.inserterList.close();
 
-	if (api.isRemoved)
+	if (entry.isRemoved)
 		return;
 
 	removeEmptyElements(evt);
-	api.setOptions({text: evt.target.innerHTML});
+	entry.setOptions({text: evt.target.innerHTML});
 }
 
-export function onInput(evt, tag, api)
+export function onInput(evt, tag, entry)
 {
 	const text = evt.target.innerText;
 
-	api.group.updateSelection();
+	entry.updateEditor(false, true);
 	removeEmptyElements(evt);
 
 	if (tag !== "p")
 		return;
 
-	const selection = api.editor.selection;
+	const selection = entry.editor.selection;
 
 	if (!text.startsWith("/") || selection.focusOffset < text.length)
-		return api.editor.inserterList.close();
+		return entry.editor.inserterList.close();
 
 	const searchTerm = text.substr(1).toLowerCase();
-	const foundBlocks = api.editor.blocks
-		.filter(api => api.keywords.map(keyword => translate(keyword)).find(keyword => keyword.startsWith(searchTerm)))
+	const foundBlocks = entry.editor.blockRegistry.blocks
+		.filter(entry => entry.keywords.map(keyword => translate(keyword)).find(keyword => keyword.startsWith(searchTerm)))
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));
 
-	api.editor.inserterList.open(getRectFromRange(selection.getRangeAt(0)), foundBlocks, blockId =>
+	entry.editor.inserterList.open(getRectFromRange(selection.getRangeAt(0)), foundBlocks, blockId =>
 	{
-		api.remove();
-		api.insertBlock(blockId, api.index);
+		entry.remove();
+		entry.insertBlock(blockId, entry.index);
 	});
 }
 
-export function onKeyDown(evt, api)
+export function onKeyDown(evt, entry)
 {
-	const {anchorOffset, focusOffset} = api.editor.selection;
+	const {anchorOffset, focusOffset} = entry.editor.selection;
 	const text = evt.target.innerHTML;
 
-	if (api.editor.inserterList.isOpen)
-		return api.editor.inserterList.handleKeyDown(evt);
+	if (entry.editor.inserterList.isOpen)
+		return entry.editor.inserterList.handleKeyDown(evt);
 
 	if (evt.key === "Enter" && !evt.shiftKey)
-		return kdHandleEnterWhenNotShift(evt, text, api);
-
-	if (evt.key === "ArrowDown" && atEdge(evt.target, true, true))
-		return kdHandleArrowDownAtEnd(evt, api);
-
-	if (evt.key === "ArrowUp" && atEdge(evt.target, false, true))
-		return kdHandleArrowUpAtStart(evt, api);
-
-	if (evt.key === "ArrowRight" && atEdge(evt.target, true))
-		return kdHandleArrowDownAtEnd(evt, api);
-
-	if (evt.key === "ArrowLeft" && atEdge(evt.target, false))
-		return kdHandleArrowUpAtStart(evt, api);
+		return kdHandleEnterWhenNotShift(evt, text, entry);
 
 	if (evt.key === "Backspace" && text.trim() === "")
-		return kdHandleBackspaceWhenEmpty(evt, api);
+		return kdHandleBackspaceWhenEmpty(evt, entry);
 
 	if (evt.key === "Backspace" && anchorOffset === 0 && focusOffset === 0)
-		return kdHandleBackspaceWhenAtStart(evt, text, api);
+		return kdHandleBackspaceWhenAtStart(evt, text, entry);
+
+	if (evt.key === "ArrowDown" && atEdge(evt.target, true, true))
+		return kdHandleArrowDownAtEnd(evt, entry);
+
+	if (evt.key === "ArrowUp" && atEdge(evt.target, false, true))
+		return kdHandleArrowUpAtStart(evt, entry);
+
+	if (evt.key === "ArrowRight" && atEdge(evt.target, true))
+		return kdHandleArrowDownAtEnd(evt, entry);
+
+	if (evt.key === "ArrowLeft" && atEdge(evt.target, false))
+		return kdHandleArrowUpAtStart(evt, entry);
 }
 
-export function onPaste(evt, api)
+export function onPaste(evt, entry)
 {
 	const textData = evt.clipboardData.getData("Text");
 
@@ -166,8 +166,14 @@ export function onPaste(evt, api)
 		.map(paragraph => paragraph.trim())
 		.filter(paragrap => paragrap.length > 0);
 
-	api.remove();
-	contents.forEach((text, i) => api.insertBlock("paragraph", api.index + i, {text}, {placeAtEnd: true}));
+	const parent = entry.parent;
+
+	parent.transaction(() =>
+	{
+		const blocks = contents.map(text => ({id: "paragraph", options: {text}}));
+		parent.insertBlocks(blocks, entry.index, {placeAtEnd: true}, true, parent);
+		entry.remove();
+	});
 }
 
 export function render(tag, h, {options})
@@ -180,7 +186,7 @@ export function render(tag, h, {options})
 	});
 }
 
-export function renderEditor(tag, h, api, placeholder = "Start writing...")
+export function renderEditor(tag, h, entry, placeholder = "Start writing...")
 {
 	canUpdate = true;
 
@@ -190,45 +196,48 @@ export function renderEditor(tag, h, api, placeholder = "Start writing...")
 		},
 		domProps: {
 			contentEditable: "true",
-			innerHTML: api.options.text
+			innerHTML: removeEmptyDivs(entry.options.text)
 		},
-		style: getStyles(api.options),
+		style: getStyles(entry.options),
 		on: {
-			blur: evt => onBlur(evt, api),
-			input: evt => onInput(evt, tag, api),
-			keydown: evt => onKeyDown(evt, api),
-			paste: evt => onPaste(evt, api)
+			blur: evt => onBlur(evt, entry),
+			input: evt => onInput(evt, tag, entry),
+			keydown: evt => onKeyDown(evt, entry),
+			paste: evt => onPaste(evt, entry)
 		}
 	});
 }
 
-export function renderTextFormatToolbar(h, api, formattingOptions = {})
+export function renderTextFormatToolbar(h, entry, formattingOptions = {})
 {
+	if (entry.isRemoving)
+		return undefined;
+
 	formattingOptions = Object.assign({}, defaultFormattingOptions, formattingOptions);
 
-	return h("latte-portal", {props: {to: api.editor.toolbar.beforePortalId}}, [
+	return h("latte-portal", {props: {to: entry.editor.toolbar.beforePortalId}}, [
 		h("div", {class: "d-flex align-items-center", on: {mousedown: () => saveLastSelection()}}, [
 			h("div", {class: "divider divider-vertical"}),
 
 			...optional(formattingOptions.boldItalicUnderline, () => [
-				commandIconToggleButton(h, executeAndFocus, api, "format-bold", "bold"),
-				commandIconToggleButton(h, executeAndFocus, api, "format-italic", "italic"),
-				commandIconToggleButton(h, executeAndFocus, api, "format-underline", "underline")
+				commandIconToggleButton(h, executeAndFocus, entry, "format-bold", "bold"),
+				commandIconToggleButton(h, executeAndFocus, entry, "format-italic", "italic"),
+				commandIconToggleButton(h, executeAndFocus, entry, "format-underline", "underline")
 			], []),
 
 			divider(h, true),
 
 			...optional(formattingOptions.textAlignment, () => [
-				functionIconToggleButton(h, executeAndFocus, api, "format-align-left", () => api.setOptions({align: "left"}), () => api.options.align === "left"),
-				functionIconToggleButton(h, executeAndFocus, api, "format-align-center", () => api.setOptions({align: "center"}), () => api.options.align === "center"),
-				functionIconToggleButton(h, executeAndFocus, api, "format-align-right", () => api.setOptions({align: "right"}), () => api.options.align === "right"),
-				functionIconToggleButton(h, executeAndFocus, api, "format-align-justify", () => api.setOptions({align: "justify"}), () => api.options.align === "justify")
+				functionIconToggleButton(h, executeAndFocus, entry, "format-align-left", () => entry.setOptions({align: "left"}), () => entry.options.align === "left"),
+				functionIconToggleButton(h, executeAndFocus, entry, "format-align-center", () => entry.setOptions({align: "center"}), () => entry.options.align === "center"),
+				functionIconToggleButton(h, executeAndFocus, entry, "format-align-right", () => entry.setOptions({align: "right"}), () => entry.options.align === "right"),
+				functionIconToggleButton(h, executeAndFocus, entry, "format-align-justify", () => entry.setOptions({align: "justify"}), () => entry.options.align === "justify")
 			], []),
 
 			divider(h, true),
 
 			...optional(formattingOptions.createLinks, () => [
-				functionIconButton(h, executeAndFocus, api, "link", () =>
+				functionIconButton(h, executeAndFocus, entry, "link", () =>
 				{
 				})
 			], []),
@@ -236,8 +245,8 @@ export function renderTextFormatToolbar(h, api, formattingOptions = {})
 			divider(h, true),
 
 			...optional(formattingOptions.textIdentation, () => [
-				functionIconButton(h, executeAndFocus, api, "format-indent-decrease", () => api.setOptions({indent: api.options.indent - 1}), api.options.indent === 0),
-				functionIconButton(h, executeAndFocus, api, "format-indent-increase", () => api.setOptions({indent: api.options.indent + 1}), api.options.indent >= 10)
+				functionIconButton(h, executeAndFocus, entry, "format-indent-decrease", () => entry.setOptions({indent: entry.options.indent - 1}), entry.options.indent === 0),
+				functionIconButton(h, executeAndFocus, entry, "format-indent-increase", () => entry.setOptions({indent: entry.options.indent + 1}), entry.options.indent >= 10)
 			], [])
 		])
 	])
@@ -249,80 +258,83 @@ export function removeEmptyElements(evt)
 		.forEach(br => br.remove());
 }
 
-function kdHandleArrowDownAtEnd(evt, api)
+function kdHandleArrowDownAtEnd(evt, entry)
 {
-	if (!api.nextSibbling)
+	if (!entry.nextSibbling)
 		return;
 
 	evt.preventDefault();
 
-	api.nextSibbling.focus({select: false}, elm => placeCaretAtEdge(elm, false));
+	entry.nextSibbling.focus({select: false}, elm => placeCaretAtEdge(elm, false));
 }
 
-function kdHandleArrowUpAtStart(evt, api)
+function kdHandleArrowUpAtStart(evt, entry)
 {
-	if (!api.previousSibbling)
+	if (!entry.previousSibbling)
 		return;
 
 	evt.preventDefault();
 
-	api.previousSibbling.focus({select: false}, elm => placeCaretAtEdge(elm, true));
+	entry.previousSibbling.focus({select: false}, elm => placeCaretAtEdge(elm, true));
 }
 
-function kdHandleBackspaceWhenAtStart(evt, text, api)
+function kdHandleBackspaceWhenAtStart(evt, text, entry)
 {
 	evt.preventDefault();
 
-	const sibbling = api.previousSibbling;
+	const sibbling = entry.previousSibbling;
 
-	if (!sibbling || allowAppend.indexOf(sibbling.blockId) === -1)
+	if (!sibbling || allowAppend.indexOf(sibbling.block.id) === -1)
 		return;
 
-	sibbling.focus({select: false}, elm =>
+	placeCaretAtEdge(sibbling.element, true);
+
+	const sibblingText = sibbling.options.text.trim();
+	const {anchorOffset} = caretPosition(sibbling.element);
+	const offsetAdjustment = (text !== "" && sibblingText !== "" && !sibblingText.endsWith("&nbsp;")) ? 1 : 0;
+	const combinedText = decodeEntities(sibblingText + (offsetAdjustment === 1 ? " " : "") + text).trim();
+
+	const offset = anchorOffset + offsetAdjustment;
+
+	sibbling.setOptions({text: combinedText});
+	sibbling.nextTick(() =>
 	{
-		placeCaretAtEdge(elm, true);
-
-		const {anchorOffset} = caretPosition(elm);
-		const myText = text.trim();
-		const sibblingText = sibbling.options.text.trim();
-		const offsetAdjustment = myText !== "" && sibblingText !== "" ? 1 : 0;
-
-		const offset = anchorOffset + offsetAdjustment;
-		sibbling.setOptions({text: (sibblingText + (offsetAdjustment === 1 ? " " : "") + myText)});
-		api.remove();
-		api.nextTick(() => placeCaretAt(elm, offset));
+		entry.remove(false);
+		sibbling.nextTick(() => sibbling.focus({}, () => placeCaretAt(sibbling.element, offset)));
 	});
 }
 
-function kdHandleBackspaceWhenEmpty(evt, api)
+function kdHandleBackspaceWhenEmpty(evt, entry)
 {
 	evt.preventDefault();
 
-	if (!api.previousSibbling)
+	const sibbling = entry.previousSibbling;
+
+	if (!sibbling)
 		return;
 
-	api.remove();
-	api.previousSibbling.focus({select: true, placeAtEnd: true});
+	sibbling.focus({select: true, placeAtEnd: true});
+	entry.remove(false);
 }
 
-function kdHandleEnterWhenNotShift(evt, text, api)
+function kdHandleEnterWhenNotShift(evt, text, entry)
 {
-	api.editor.inserterList.close();
+	entry.editor.inserterList.close();
 
 	if (atEdge(evt.target))
 	{
 		evt.preventDefault();
-		api.setOptions({text: ""});
-		api.insertBlock("paragraph", api.index + 1, {text}, {placeAtEnd: false});
+		entry.insertBlock("paragraph", entry.index, {}, null);
+		entry.focus({placeAtEnd: false});
 	}
 	else if (atEdge(evt.target, true))
 	{
 		evt.preventDefault();
-		api.insertBlock("paragraph", api.index + 1, {text: ""}, {placeAtEnd: false});
+		entry.insertBlock("paragraph", entry.index + 1, {text: ""}, {});
 	}
 	else
 	{
-		api.raf(() =>
+		entry.raf(() =>
 		{
 			const childElements = Array.from(evt.target.getElementsByTagName("div"));
 			const newElement = childElements[childElements.length - 1];
@@ -333,8 +345,8 @@ function kdHandleEnterWhenNotShift(evt, text, api)
 			const html = decodeEntities(newElement.innerHTML);
 			newElement.remove();
 
-			api.insertBlock("paragraph", api.index + 1, {...api.options, text: html}, {placeAtEnd: false});
-			api.setOptions({text: decodeEntities(evt.target.innerHTML)});
+			entry.setOptions({text: decodeEntities(evt.target.innerHTML)});
+			entry.insertBlock("paragraph", entry.index + 1, {...entry.options, text: html}, {placeAtEnd: false});
 		});
 	}
 }

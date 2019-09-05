@@ -1,6 +1,5 @@
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
-import { oneOrAnother } from "../helper/element";
 
 export class HtmlBlock extends BlockBase
 {

@@ -21,7 +21,7 @@ export function renderEditor(h, tag, api)
 		},
 		on: {
 			blur: evt => onBlur(evt, api),
-			input: () => api.group.updateSelection(),
+			input: () => api.updateEditor(false),
 			keydown: evt => onKeyDown(evt, api)
 		},
 		style: getStyles((api.options))

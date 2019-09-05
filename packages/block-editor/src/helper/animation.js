@@ -1,16 +1,32 @@
 import anime from "../lib/animejs";
 import { getElementDimensions } from "./element";
+import { raf } from "@bybas/latte-ui/src/js/util/dom";
 
-export function swapElements(options, fn)
+export const easeSwiftOut = "cubicBezier(.55, 0, .1, 1)";
+
+export function removeBlock(options, fn)
+{
+	const {element} = options;
+	const duration = 180;
+
+	raf(() =>
+	{
+		const elementDim = getElementDimensions(element);
+
+		anime({
+			targets: element,
+			marginBottom: `-${elementDim.dimensions.height}px`,
+			opacity: "0",
+			duration,
+			easing: easeSwiftOut
+		}).finished.then(() => fn());
+	});
+}
+
+export function swapBlocks(options, fn)
 {
 	const {firstElement, scrollingContainer, secondElement, raf} = options;
-	const hasWebAnimationsAPI = !!firstElement.animate;
-
-	if (!hasWebAnimationsAPI)
-		return fn();
-
 	const duration = 360;
-	const easing = "cubicBezier(.55, 0, .1, 1)";
 
 	raf(() =>
 	{
@@ -34,9 +50,9 @@ export function swapElements(options, fn)
 
 		const targetScrollTop = Math.max(0, ((firstDim.offset.top - scrollingDim.offset.top) + scrollingContainer.scrollTop + firstY) + (firstDim.dimensions.height / 2) - (scrollingDim.dimensions.height / 2));
 
-		anime({targets: firstElement, translateY: firstY, duration, easing});
-		anime({targets: secondElement, translateY: secondY, duration, easing});
-		anime({targets: scrollingContainer, scrollTop: targetScrollTop, duration, easing}).finished.then(() =>
+		anime({targets: firstElement, translateY: firstY, duration, easing: easeSwiftOut});
+		anime({targets: secondElement, translateY: secondY, duration, easing: easeSwiftOut});
+		anime({targets: scrollingContainer, scrollTop: targetScrollTop, duration, easing: easeSwiftOut}).finished.then(() =>
 		{
 			firstElement.style.removeProperty("transform");
 			secondElement.style.removeProperty("transform");

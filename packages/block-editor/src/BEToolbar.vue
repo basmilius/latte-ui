@@ -7,7 +7,7 @@
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'View code' | beTranslate"><i class="mdi mdi-code-tags"></i></button>
-		<BEHierarchy/>
+<!--		<BEHierarchy/>-->
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'Undo' | beTranslate"><i class="mdi mdi-undo"></i></button>
@@ -79,7 +79,7 @@
 			{
 				const el = L.util.dom.closest(evt.target, ".btn").querySelector("i.mdi");
 
-				this.editor.inserter.open(el, id => this.editor.rootBlocks.insertBlock(id), -15, 12);
+				this.editor.inserter.open(el, id => this.editor.content.insertBlock(id, undefined, {}, {}, this.editor.content), -15, 12);
 			}
 
 		}

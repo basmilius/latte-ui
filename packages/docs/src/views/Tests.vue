@@ -20,23 +20,7 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Date / Time Pickers</span></div>
-						<div class="panel-body">
-							<latte-timepicker v-model="datetime"></latte-timepicker>
-							<latte-timepicker class="mt-2"></latte-timepicker>
-						</div>
-						<div class="panel-body">
-							<latte-datepicker v-model="datetime"></latte-datepicker>
-							<latte-datepicker class="mt-2"></latte-datepicker>
-						</div>
-						<div class="panel-body">
-							<latte-datetimepicker v-model="datetime"></latte-datetimepicker>
-							<latte-datetimepicker class="mt-2"></latte-datetimepicker>
-						</div>
-					</div>
-
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 390px">
 
@@ -47,7 +31,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header"><span class="panel-title">Virtual scroller (grid)</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" :item-width="222" items-class="d-flex flex-row flex-wrap" style="height: 390px">
 
@@ -58,7 +42,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header">
 							<span class="panel-title">Emoji stuff</span>
 							<div class="ml-auto"></div>
@@ -116,8 +100,7 @@
 			let rows = Array.from(Array(50), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [],
-				datetime: new Date(1996, 2, 13, 20, 15),
+				content: [{"id":"columns","options":{"class":"","columns":2,"gutters":true,"preset":-1},"children":[[{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"asdasdasdasd"}},{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"asdasd"}},{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"asd"}},{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"akjlkja sdjalksdj klasjdklasjd kjasd jaskjd lkajsdkjaksljd kaljsd kaljsdklajsdklajsd"}}],[{"id":"youtube-embed","options":{"videoId":"2TuyT0knklM"}}]]}],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6],
@@ -134,15 +117,6 @@
 		{
 			if (this.testEditor)
 				document.body.style.setProperty("overflow", "hidden");
-		},
-
-		watch: {
-
-			datetime()
-			{
-				console.log(this.moment(this.datetime).format("LLLL"));
-			}
-
 		}
 
 	}

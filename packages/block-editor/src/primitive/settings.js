@@ -1,9 +1,9 @@
 import BEBlockActions from "../BEBlockActions";
 import BESettingsGroup from "../BESettingsGroup";
 
-export function blockActions(h, api)
+export function blockActions(h, entry)
 {
-	return h(BEBlockActions, {props: {api}, slot: "header"});
+	return h(BEBlockActions, {props: {entry}, slot: "header"});
 }
 
 export function optional(condition, fn, defaultValue = undefined)

@@ -65,9 +65,9 @@
 
 			blocksCategorized()
 			{
-				return this.editor.categories.map(c =>
+				return this.editor.categoryRegistry.categories.map(c =>
 				{
-					c.blocks = this.editor.blocks
+					c.blocks = this.editor.blockRegistry.blocks
 						.filter(b => b.category === c.id)
 						.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -87,7 +87,7 @@
 
 			onOpen()
 			{
-				this.currentCategory = this.currentCategory || this.editor.categories[0].id;
+				this.currentCategory = this.currentCategory || this.editor.categoryRegistry.categories[0].id;
 				this.isOpen = true;
 			},
 

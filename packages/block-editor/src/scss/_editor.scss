@@ -443,7 +443,9 @@
 			height: 54px;
 			padding: 0 15px;
 			align-items: center;
+			background: rgba(var(--panel-background), 1);
 			cursor: pointer;
+			z-index: 1;
 
 			&.is-open
 			{

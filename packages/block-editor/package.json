@@ -1,0 +1,13 @@
+{
+	"name": "@bybas/block-editor",
+	"version": "1.8.0-beta.21",
+	"description": "Block editor concept based on latte-ui.",
+	"author": {
+		"name": "Bas Milius",
+		"email": "bas@mili.us",
+		"url": "https://bas.dev"
+	},
+	"dependencies": {
+		"object-hash": "^1.3.1"
+	}
+}
