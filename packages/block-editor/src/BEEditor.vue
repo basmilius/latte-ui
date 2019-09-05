@@ -232,7 +232,6 @@
 
 				this.content = convertToBlocks(this, this.value);
 				this.$emit("be:content-ready");
-				this.onInput();
 			}
 
 		},

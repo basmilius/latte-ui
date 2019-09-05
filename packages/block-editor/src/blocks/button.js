@@ -87,7 +87,7 @@ export class ButtonBlock extends BlockBase
 
 	renderOptions(h, entry)
 	{
-		const uniqueId = getLatte().entry.id();
+		const uniqueId = getLatte().api.id();
 
 		return settingsGroup(h, this.name, [
 			blockActions(h, entry),

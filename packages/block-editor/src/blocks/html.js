@@ -1,5 +1,8 @@
+import Vue from "vue";
+
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
+import { getLatte, translate } from "../utils";
 
 export class HtmlBlock extends BlockBase
 {
@@ -33,12 +36,7 @@ export class HtmlBlock extends BlockBase
 
 	render(h, entry)
 	{
-		return h("div", {
-			class: "be-custom-html",
-			domProps: {
-				innerHTML: entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, "")
-			}
-		});
+		return getLatte().util.dom.toDOM(entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, ""));
 	}
 
 	renderEditor(h, entry)
@@ -48,7 +46,14 @@ export class HtmlBlock extends BlockBase
 				h("strong", this.name),
 				h("latte-tab-bar", {class: "ml-auto"})
 			]),
-			h("latte-tab", {props: {label: "HTML"}}, [
+			h("latte-tab", {props: {label: translate("Visual")}}, [
+				h(Vue.extend({
+					template: entry.options.code
+						.replace(/href=/g, "data-be-href=")
+						.replace(/data-action=/g, "data-be-action=")
+				}))
+			]),
+			h("latte-tab", {props: {label: translate("Code")}}, [
 				h("textarea", {
 					class: "form-control",
 					domProps: {
@@ -57,14 +62,6 @@ export class HtmlBlock extends BlockBase
 					},
 					on: {
 						input: evt => entry.setOptions({code: evt.target.value})
-					}
-				})
-			]),
-			h("latte-tab", {props: {label: "Preview"}}, [
-				h("div", {
-					class: "be-block-custom-html-code",
-					domProps: {
-						innerHTML: entry.options.code
 					}
 				})
 			])

@@ -118,7 +118,7 @@ export class BlockEntry
 
 	constructor(editor, index, id, options, children = [], parent = undefined)
 	{
-		this.#block = editor.blockRegistry.findById(id);
+		this.#block = editor.blockRegistry.findById(id) || editor.blockRegistry.findById("missing");
 		this.#editor = editor;
 		this.#id = id;
 		this.#depth = parent ? parent.#block.canHaveGroups ? parent.depth : parent.depth + 1 : 0;
