@@ -5,6 +5,7 @@ import { placeCaretAtEdge } from "./helper/selection";
 import { defaultFocusOptions } from "./block";
 import { getLatte } from "./utils";
 import { handleComponentError } from "./helper/error";
+import { createElement } from "./create-element";
 
 let blockToFocus = undefined;
 let blocksToUpdateChildren = [];
@@ -165,10 +166,6 @@ export class BlockEntry
 			data.children = this.#children.map(c => c.data());
 
 		return data;
-	}
-
-	html()
-	{
 	}
 
 	nextTick(fn)
@@ -383,6 +380,11 @@ export class BlockEntry
 			fn();
 	}
 
+	render(h)
+	{
+		return this.block.render(h, this);
+	}
+
 	renderEditor(h)
 	{
 		return this.#node = this.block.renderEditor(h, this);
@@ -485,10 +487,12 @@ export function convertToData(root)
 
 export function convertToHtml(root)
 {
-	return root.children
-		.filter(entry => entry !== undefined)
-		.map(entry => entry.html())
-		.join();
+	const tmp = document.createElement("div");
+
+	renderChildren(root)
+		.forEach(dom => tmp.appendChild(dom));
+
+	return tmp.innerHTML;
 }
 
 export function convertToJson(root)
@@ -496,53 +500,9 @@ export function convertToJson(root)
 	return JSON.stringify(convertToData(root));
 }
 
-
-// const processGroup = group => group
-// 	.filter(item => notNullOrUndefined(item))
-// 	.map((item, index) =>
-// 	{
-// 		let block = this.blocks
-// 			.filter(b => notNullOrUndefined(b))
-// 			.find(b => b.id === item.id);
-//
-// 		if (block === undefined)
-// 			return undefined;
-//
-// 		const depth = this.depth + 1;
-// 		const children = item.children || [];
-// 		const options = Object.assign({}, block.defaultOptions || {}, item.options);
-//
-// 		return block.render(createElement, {
-// 			depth,
-// 			index,
-// 			children,
-// 			options,
-//
-// 			processGroup
-// 		});
-// 	})
-// 	.filter(item => notNullOrUndefined(item));
-//
-// const blocks = processGroup(this.content);
-// const template = document.createElement("div");
-//
-// for (let block of blocks)
-// 	template.appendChild(block);
-//
-// const processData = data => data
-// 	.filter(data => notNullOrUndefined(data))
-// 	.map(data =>
-// 	{
-// 		if (!data.children)
-// 			return data;
-//
-// 		return Object.assign(data, {children: processData(data.children)});
-// 	});
-//
-// this.content = processData(this.content);
-//
-// const data = this.content;
-// const rendered = template.innerHTML;
-//
-// return {data, rendered};
-
+export function renderChildren(entry)
+{
+	return entry.children
+		.map(child => child.render(createElement))
+		.filter(dom => !!dom);
+}

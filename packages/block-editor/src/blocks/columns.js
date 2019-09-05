@@ -1,6 +1,6 @@
 import BEBlocks from "../BEBlocks";
 
-import { convertBlock } from "../api";
+import { convertBlock, renderChildren } from "../api";
 import { BlockBase } from "../block";
 import { notNullOrUndefined } from "../utils";
 import { blockActions, optional, rangeField, settingsGroupWithDepth, toggleButton } from "../primitive/settings";
@@ -36,6 +36,14 @@ const presets = [
 	}
 ];
 
+export function entryChildOrDefault(block, entry, index)
+{
+	if (entry.children[index])
+		return entry.children[index];
+
+	return convertBlock(entry.editor, index, {id: block.groupBlock, children: []}, entry);
+}
+
 export class ColumnBlock extends BlockBase
 {
 
@@ -64,16 +72,21 @@ export class ColumnBlock extends BlockBase
 		super("column", "", "");
 	}
 
+	render(h, entry)
+	{
+		const preset = presets[entry.parent.options.preset] || undefined;
+
+		return h("div", {class: preset ? preset.classes[entry.index] : "col-12 col-lg"}, renderChildren(entry));
+	}
+
 	renderEditor(h, entry)
 	{
 		const preset = presets[entry.parent.options.preset] || undefined;
 
-		return h("div", {class: preset ? preset.classes[entry.index] : "col-12 col-lg"}, [
-			h(BEBlocks, {
-				key: entry.hash,
-				props: {entry}
-			})
-		]);
+		return h(BEBlocks, {
+			class: `be-block-column ${preset ? preset.classes[entry.index] : "col-12 col-lg"}`,
+			props: {entry}
+		});
 	}
 
 }
@@ -148,20 +161,21 @@ export class ColumnsBlock extends BlockBase
 		};
 	}
 
-	render(h, {children, options, processGroup})
+	render(h, entry)
 	{
-		if (children.flat().length === 0)
-			return undefined;
+		const preset = presets[entry.options.preset] || undefined;
+		const classes = `row be-block-columns ${entry.options.class} ${entry.options.gutters ? "" : "no-gutters"}`;
+		const columns = preset ? preset.columns : entry.options.columns;
 
-		const preset = presets[options.preset] || undefined;
+		range(0, columns, index =>
+		{
+			const child = entryChildOrDefault(this, entry, index);
 
-		return h(
-			"div",
-			{class: `row be-block-columns ${options.class} ${options.gutters ? "" : "no-gutters"}`},
-			Array(preset ? preset.columns : options.columns)
-				.fill(undefined)
-				.map((_, index) => h("div", {class: preset ? preset.classes[index] : "col-12 col-lg"}, processGroup(children[index] || [])))
-		);
+			if (!entry.children[index])
+				entry.children.push(child);
+		});
+
+		return h("div", {class: classes}, renderChildren(entry));
 	}
 
 	renderEditor(h, entry)
@@ -170,27 +184,19 @@ export class ColumnsBlock extends BlockBase
 		const classes = `row be-block-columns ${entry.options.class} ${entry.options.gutters ? "" : "no-gutters"}`;
 		const columns = preset ? preset.columns : entry.options.columns;
 
-		const entryChildOrDefault = index =>
-		{
-			if (entry.children[index])
-				return entry.children[index];
-
-			return convertBlock(entry.editor, index, {id: this.groupBlock, children: []}, entry);
-		};
-
 		range(0, columns, index =>
 		{
-			const child = entryChildOrDefault(index);
+			const child = entryChildOrDefault(this, entry, index);
 
 			if (!entry.children[index])
 				entry.children.push(child);
 		});
 
-		return h(
-			"div",
-			{key: entry.hash, class: classes},
-			range(0, columns, index => entry.children[index].renderEditor(h))
-		);
+		return h(BEBlocks, {
+			key: entry.hash,
+			class: classes,
+			props: {entry}
+		});
 	}
 
 	renderOptions(h, entry)

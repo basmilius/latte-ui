@@ -54,7 +54,7 @@
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
 
-	import { BlockRegistry, convertToBlocks, convertToJson } from "./api";
+	import { BlockRegistry, convertToBlocks, convertToHtml, convertToJson } from "./api";
 	import { CategoryRegistry } from "./categories";
 	import BEBlockMount from "./BEBlockMount";
 
@@ -204,7 +204,9 @@
 				this.lastUpdate = Date.now();
 				this.updateCount++;
 
-				// console.log(convertToJson(this.content));
+				console.clear();
+				console.log(convertToJson(this.content));
+				console.log(convertToHtml(this.content));
 
 				// this.canUpdate = false;
 				//
@@ -230,6 +232,7 @@
 
 				this.content = convertToBlocks(this, this.value);
 				this.$emit("be:content-ready");
+				this.onInput();
 			}
 
 		},

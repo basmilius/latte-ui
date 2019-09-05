@@ -2,7 +2,6 @@ import BEBlocks from "../BEBlocks";
 import { BlockBase } from "../block";
 import { optionAdditionalClasses } from "../primitive/element";
 import { blockActions, settingsGroupWithDepth } from "../primitive/settings";
-import { getElementDimensions, querySelector } from "../helper/element";
 
 export class WrapperBlock extends BlockBase
 {
@@ -44,21 +43,16 @@ export class WrapperBlock extends BlockBase
 		if (children.length === 0)
 			return undefined;
 
-		return h(
-			"div",
-			{class: `row be-block-wrapper ${options.class}`},
-			[
-				h("div", {class: "col-12"}, processGroup(children))
-			]
-		);
+		return h("div", {class: `row be-block-wrapper ${options.class}`}, [
+			h("div", {class: "col-12"}, processGroup(children))
+		]);
 	}
 
 	renderEditor(h, entry)
 	{
 		return h(BEBlocks, {
 			class: `be-block-wrapper ${entry.options.class}`,
-			props: {entry},
-			on: {input: c => entry.setChildren(c)}
+			props: {entry}
 		});
 	}
 
