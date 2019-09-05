@@ -24,12 +24,12 @@ export class PageBreakBlock extends BlockBase
 		super("page-break", "layout", "format-page-break");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
 		return document.createComment("page-break");
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
 		return h("div", {
 			attrs: {
@@ -39,10 +39,10 @@ export class PageBreakBlock extends BlockBase
 		});
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api)
+			blockActions(h, entry)
 		]);
 	}
 

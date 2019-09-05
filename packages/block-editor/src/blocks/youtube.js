@@ -36,33 +36,33 @@ export class YouTubeEmbedBlock extends BlockBase
 		super("youtube-embed", "embeds", "youtube");
 	}
 
-	render(h, {options})
+	render(h, entry)
 	{
 		return h("div", {class: "embed-responsive embed-responsive-16by9 be-block-embed be-block-youtube-embed"}, [
 			h("iframe", {
 				domProps: {
-					src: `https://www.youtube-nocookie.com/embed/${options.videoId}`
+					src: `https://www.youtube-nocookie.com/embed/${entry.options.videoId}`
 				}
 			})
 		]);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
 		return h("div", {class: "embed-responsive embed-responsive-16by9 be-block-embed be-block-youtube-embed"}, [
 			h("iframe", {
 				domProps: {
-					src: `https://www.youtube-nocookie.com/embed/${api.options.videoId}`
+					src: `https://www.youtube-nocookie.com/embed/${entry.options.videoId}`
 				}
 			})
 		]);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			textField(h, "Video ID", () => api.options.videoId, videoId => api.setOptions({videoId}))
+			blockActions(h, entry),
+			textField(h, "Video ID", () => entry.options.videoId, videoId => entry.setOptions({videoId}))
 		]);
 	}
 

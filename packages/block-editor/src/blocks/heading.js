@@ -49,24 +49,24 @@ export class HeadingBlock extends BlockBase
 		super("heading", "text", "format-header-1");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
-		return render(api.options.type, h, api);
+		return render(entry.options.type, h, entry);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
-		return renderEditor(api.options.type, h, api);
+		return renderEditor(entry.options.type, h, entry);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			optionTextColor(h, api),
+			blockActions(h, entry),
+			optionTextColor(h, entry),
 			h("div", {class: "be-settings-row"}, headers.map(header => h("button", {
-				class: `btn btn-icon ${header.tag === api.options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,
-				on: {click: () => api.setOptions({type: header.tag})},
+				class: `btn btn-icon ${header.tag === entry.options.type ? "btn-primary btn-contained" : "btn-dark btn-text"}`,
+				on: {click: () => entry.setOptions({type: header.tag})},
 				style: {flex: "1 1 0"}
 			}, [
 				h("i", {class: `mdi mdi-${header.icon}`})

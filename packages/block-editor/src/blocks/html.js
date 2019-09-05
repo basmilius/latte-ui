@@ -31,19 +31,17 @@ export class HtmlBlock extends BlockBase
 		super("html", "other", "language-html5");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
 		return h("div", {
 			class: "be-custom-html",
 			domProps: {
-				innerHTML: api.options.code
-					.replace(/\t/g, "")
-					.replace(/\r?\n|\r/g, "")
+				innerHTML: entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, "")
 			}
 		});
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
 		return h("latte-tab-container", {style: {zIndex: "0"}}, [
 			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {background: "rgba(var(--panel-background), .75)", zIndex: "1"}}, [
@@ -55,10 +53,10 @@ export class HtmlBlock extends BlockBase
 					class: "form-control",
 					domProps: {
 						rows: 10,
-						value: api.options.code
+						value: entry.options.code
 					},
 					on: {
-						input: evt => api.setOptions({code: evt.target.value})
+						input: evt => entry.setOptions({code: evt.target.value})
 					}
 				})
 			]),
@@ -66,17 +64,17 @@ export class HtmlBlock extends BlockBase
 				h("div", {
 					class: "be-block-custom-html-code",
 					domProps: {
-						innerHTML: api.options.code
+						innerHTML: entry.options.code
 					}
 				})
 			])
 		]);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api)
+			blockActions(h, entry)
 		]);
 	}
 

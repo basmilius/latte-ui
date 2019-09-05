@@ -7,7 +7,7 @@
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'View code' | beTranslate"><i class="mdi mdi-code-tags"></i></button>
-<!--		<BEHierarchy/>-->
+		<!--		<BEHierarchy/>-->
 
 		<div class="divider divider-vertical"></div>
 		<button class="btn btn-icon btn-text btn-dark" @click="notImplemented" :data-tooltip="'Undo' | beTranslate"><i class="mdi mdi-undo"></i></button>

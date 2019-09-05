@@ -53,58 +53,48 @@ export class ButtonBlock extends BlockBase
 		super("button", "layout", "card-text");
 	}
 
-	render(h, {options})
+	render(h, entry)
 	{
-		return h(
-			options.rippleButton ? "latte-ripple" : "button",
-			{
-				class: getButtonClasses(options),
+		return h(entry.options.rippleButton ? "latte-ripple" : "button", {
+			class: getButtonClasses(entry.options),
+			domProps: {href: entry.options.url},
+			props: {as: "button"}
+		}, [
+			h("span", entry.options.text)
+		]);
+	}
+
+	renderEditor(h, entry)
+	{
+		return h(entry.options.rippleButton ? "latte-ripple" : "button", {
+			class: getButtonClasses(entry.options),
+			props: {as: "button"}
+		}, [
+			h("span", {
 				domProps: {
-					href: options.url
+					contentEditable: "plaintext-only",
+					innerHTML: entry.options.text
 				},
-				props: {as: "button"}
-			},
-			[
-				h("span", options.text)
-			]
-		);
+				on: {
+					blur: evt => entry.setOptions({text: evt.target.innerText})
+				},
+				style: {
+					minWidth: "18px"
+				}
+			})
+		]);
 	}
 
-	renderEditor(h, api)
+	renderOptions(h, entry)
 	{
-		return h(
-			api.options.rippleButton ? "latte-ripple" : "button",
-			{
-				class: getButtonClasses(api.options),
-				props: {as: "button"}
-			},
-			[
-				h("span", {
-					domProps: {
-						contentEditable: "plaintext-only",
-						innerHTML: api.options.text
-					},
-					on: {
-						blur: evt => api.setOptions({text: evt.target.innerText})
-					},
-					style: {
-						minWidth: "18px"
-					}
-				})
-			]
-		);
-	}
-
-	renderOptions(h, api)
-	{
-		const uniqueId = getLatte().api.id();
+		const uniqueId = getLatte().entry.id();
 
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			toggleButton(h, "Ripple", () => api.options.rippleButton, rippleButton => api.setOptions({rippleButton})),
-			toggleButton(h, "Pill", () => api.options.pillButton, pillButton => api.setOptions({pillButton})),
-			radioButtons(h, "Type", () => api.options.type, type => api.setOptions({type}), uniqueId, buttonTypes),
-			textField(h, "URL", () => api.options.url, url => api.setOptions({url}))
+			blockActions(h, entry),
+			toggleButton(h, "Ripple", () => entry.options.rippleButton, rippleButton => entry.setOptions({rippleButton})),
+			toggleButton(h, "Pill", () => entry.options.pillButton, pillButton => entry.setOptions({pillButton})),
+			radioButtons(h, "Type", () => entry.options.type, type => entry.setOptions({type}), uniqueId, buttonTypes),
+			textField(h, "URL", () => entry.options.url, url => entry.setOptions({url}))
 		]);
 	}
 

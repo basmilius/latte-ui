@@ -42,23 +42,23 @@ export class UnorderedListBlock extends BlockBase
 		super("unordered-list", "text", "format-list-bulleted");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
-		return render(h, "ul", api);
+		return render(h, "ul", entry);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
-		return renderEditor(h, "ul", api);
+		return renderEditor(h, "ul", entry);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			renderTextFormatToolbar(h, api, {textAlignment: false, textIdentation: false}),
-			optionTextColor(h, api),
-			optionTextSize(h, api)
+			blockActions(h, entry),
+			renderTextFormatToolbar(h, entry, {textAlignment: false, textIdentation: false}),
+			optionTextColor(h, entry),
+			optionTextSize(h, entry)
 		]);
 	}
 
