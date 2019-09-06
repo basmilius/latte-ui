@@ -1,4 +1,3 @@
-import hash from "object-hash";
 import { swapBlocks } from "./helper/animation";
 import { entriesAreDifferent } from "./helper/array";
 import { placeCaretAtEdge } from "./helper/selection";
@@ -145,13 +144,7 @@ export class BlockEntry
 
 	calculateHash()
 	{
-		this.#hash = hash({
-			p: performance.now(),
-			id: this.#id,
-			index: this.#index,
-			depth: this.#depth,
-			options: this.#options
-		});
+		this.#hash = performance.now();
 	}
 
 	data()
