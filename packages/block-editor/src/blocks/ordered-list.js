@@ -42,23 +42,23 @@ export class OrderedListBlock extends BlockBase
 		super("ordered-list", "text", "format-list-numbered");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
-		return render(h, "ol", api);
+		return render(h, "ol", entry);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
-		return renderEditor(h, "ol", api);
+		return renderEditor(h, "ol", entry);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			renderTextFormatToolbar(h, api, {textAlignment: false, textIdentation: false}),
-			optionTextColor(h, api),
-			optionTextSize(h, api)
+			blockActions(h, entry),
+			renderTextFormatToolbar(h, entry, {textAlignment: false, textIdentation: false}),
+			optionTextColor(h, entry),
+			optionTextSize(h, entry)
 		]);
 	}
 

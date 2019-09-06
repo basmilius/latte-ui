@@ -2,7 +2,7 @@ import BEBlocks from "../BEBlocks";
 import { BlockBase } from "../block";
 import { optionAdditionalClasses } from "../primitive/element";
 import { blockActions, settingsGroupWithDepth } from "../primitive/settings";
-import { getElementDimensions, querySelector } from "../helper/element";
+import { renderChildren } from "../api";
 
 export class WrapperBlock extends BlockBase
 {
@@ -39,58 +39,26 @@ export class WrapperBlock extends BlockBase
 		super("wrapper", "layout", "border-none-variant");
 	}
 
-	calculateSelectionBorder(api)
+	render(h, entry)
 	{
-		const {dimensions, margin} = getElementDimensions(api.elm);
-
-		let hgutters = margin.horizontal;
-		let vgutters = this.isInline ? 0 : margin.vertical;
-
-		let columnsLast = querySelector(api.elm, ".be-block-mount:last-child");
-		let lastDimensions = columnsLast !== null ? getElementDimensions(columnsLast).margin.bottom : 0;
-
-		return {
-			height: dimensions.height + vgutters - lastDimensions,
-			width: dimensions.width + hgutters
-		};
-	}
-
-	render(h, {children, options, processGroup})
-	{
-		if (children.length === 0)
-			return undefined;
-
-		return h(
-			"div",
-			{class: `row be-block-wrapper ${options.class}`},
-			[
-				h("div", {class: "col-12"}, processGroup(children))
-			]
-		);
-	}
-
-	renderEditor(h, api)
-	{
-		return h("div", {class: `row be-block-wrapper ${api.options.class}`}, [
-			h("div", {class: "col-12"}, [
-				h(BEBlocks, {
-					props: {
-						depth: api.depth,
-						value: api.children || []
-					},
-					on: {
-						input: c => api.setChildren(c)
-					}
-				})
-			])
+		return h("div", {class: `row be-block-wrapper ${entry.options.class}`}, [
+			h("div", {class: "col-12"}, renderChildren(entry))
 		]);
 	}
 
-	renderOptions(h, api)
+	renderEditor(h, entry)
 	{
-		return settingsGroupWithDepth(h, api.depth, this.name, [
-			blockActions(h, api),
-			optionAdditionalClasses(h, api)
+		return h(BEBlocks, {
+			class: `be-block-wrapper ${entry.options.class}`,
+			props: {entry}
+		});
+	}
+
+	renderOptions(h, entry)
+	{
+		return settingsGroupWithDepth(h, entry.depth, this.name, [
+			blockActions(h, entry),
+			optionAdditionalClasses(h, entry)
 		]);
 	}
 

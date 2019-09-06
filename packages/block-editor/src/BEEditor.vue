@@ -8,13 +8,14 @@
 					<slot name="toolbar-before"></slot>
 				</template>
 				<template #after>
+					<span class="text-muted" v-if="false">Last update: {{ moment(lastUpdate).format("HH:mm:ss.SSSS") }} ({{ updateCount }})</span>
 					<slot name="toolbar-after"></slot>
 				</template>
 			</BEToolbar>
 
 			<div class="be-content-mount">
 				<div class="be-content-wrapper be-editing">
-					<BEBlocks ref="rootBlocks" :value="content" @input="onInput"/>
+					<BEBlockMount :entry="content" v-if="content"/>
 				</div>
 			</div>
 		</div>
@@ -37,17 +38,17 @@
 
 <script>
 
-	import { createElement } from "./create-element";
-	import { defaultCategories } from "./block";
-	import { getLatte, notNullOrUndefined } from "./utils";
-	import * as DefaultBlocks from "./blocks";
+	import { getLatte } from "./utils";
 
 	import BEBlocks from "./BEBlocks";
+	import BEBlockMount from "./BEBlockMount";
 	import BEInserterExpanded from "./BEInserterExpanded";
 	import BEInserterList from "./BEInserterList";
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
+
+	import { convertToBlocks, convertToData } from "./api";
 
 	const L = getLatte();
 	const defaultColorPalette = [
@@ -110,6 +111,7 @@
 		name: "BEEditor",
 
 		components: {
+			BEBlockMount,
 			BEBlocks,
 			BEInserterExpanded,
 			BEInserterList,
@@ -123,11 +125,6 @@
 			value: {default: () => testBlocks, type: Array}
 		},
 
-		created()
-		{
-			this.resetBlocksAndCategories();
-		},
-
 		destroyed()
 		{
 			document.removeEventListener("selectionchange", this.onSelectionChanged);
@@ -136,11 +133,10 @@
 		data()
 		{
 			return {
+				lastUpdate: Date.now(),
+				updateCount: 0,
 				uniqueId: L.api.id(),
-				blocks: [],
-				categories: [],
-				content: [],
-				rendered: "",
+				content: undefined,
 				selection: window.getSelection()
 			};
 		},
@@ -149,6 +145,8 @@
 		{
 			document.addEventListener("selectionchange", this.onSelectionChanged, {passive: true});
 			document.execCommand("defaultParagraphSeparator", false, "div");
+
+			this.onValueChanged();
 		},
 
 		computed: {
@@ -163,11 +161,6 @@
 				return this.$refs.inserterList;
 			},
 
-			rootBlocks()
-			{
-				return this.$refs.rootBlocks;
-			},
-
 			toolbar()
 			{
 				return this.$refs.toolbar;
@@ -177,113 +170,50 @@
 
 		methods: {
 
-			registerBlock(implementation)
+			onEditorClick(evt = undefined)
 			{
-				this.blocks.push(new implementation());
-			},
-
-			registerCategory(id, icon, name)
-			{
-				this.categories.push({id, icon, name});
-			},
-
-			resetBlocksAndCategories()
-			{
-				this.blocks = [];
-				this.categories = [];
-
-				Object.keys(DefaultBlocks).forEach(block => this.registerBlock(DefaultBlocks[block]));
-
-				defaultCategories.forEach(c => this.registerCategory(c.id, c.icon, c.name));
-			},
-
-			render()
-			{
-				const processGroup = group => group
-					.filter(item => notNullOrUndefined(item))
-					.map((item, index) =>
-					{
-						let block = this.blocks
-							.filter(b => notNullOrUndefined(b))
-							.find(b => b.id === item.id);
-
-						if (block === undefined)
-							return undefined;
-
-						const depth = this.depth + 1;
-						const children = item.children || [];
-						const options = Object.assign({}, block.defaultOptions || {}, item.options);
-
-						return block.render(createElement, {
-							depth,
-							index,
-							children,
-							options,
-
-							processGroup
-						});
-					})
-					.filter(item => notNullOrUndefined(item));
-
-				const blocks = processGroup(this.content);
-				const template = document.createElement("div");
-
-				for (let block of blocks)
-					template.appendChild(block);
-
-				const processData = data => data
-					.filter(data => notNullOrUndefined(data))
-					.map(data =>
-					{
-						if (!data.children)
-							return data;
-
-						return Object.assign(data, {children: processData(data.children)});
-					});
-
-				this.content = processData(this.content);
-
-				const data = this.content;
-				const rendered = template.innerHTML;
-
-				return {data, rendered};
-			},
-
-			onEditorClick(evt)
-			{
-				if (L.util.dom.closest(evt.target, ".be-options-side") !== null)
+				if (evt && L.util.dom.closest(evt.target, ".be-options-side") !== null)
 					return;
 
-				if (L.util.dom.closest(evt.target, ".be-toolbar") !== null)
+				if (evt && L.util.dom.closest(evt.target, ".be-toolbar") !== null)
 					return;
 
 				this.$emit("be:reset-block-selection");
 			},
 
-			onInput(content)
+			onInput()
 			{
-				this.content = content;
-				this.$emit("input", content);
+				this.$emit("be:content-ready", this.content);
+				this.$emit("change", convertToData(this.content));
+				this.lastUpdate = Date.now();
+				this.updateCount++;
 			},
 
 			onSelectionChanged()
 			{
-				if (L.util.dom.closest(this.selection.anchorNode, this.$el) === null)
+				/** @var {*} anchorElement */
+				const anchorElement = this.selection.anchorNode;
+
+				if (L.util.dom.closest(anchorElement, this.$el) === null)
 					return;
 
 				this.$emit("be:selection-changed", this.selection);
+			},
+
+			onValueChanged()
+			{
+				this.content = convertToBlocks(this, this.value);
+				this.$emit("be:content-ready");
 			}
 
 		},
 
 		watch: {
 
-			value: {
-				immediate: true,
-				handler()
-				{
-					this.content = this.value;
-				}
+			value()
+			{
+				this.content = undefined;
+				this.$nextTick(() => this.onValueChanged());
 			}
 
 		}

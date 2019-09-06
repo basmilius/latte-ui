@@ -2,33 +2,33 @@ import { getStyles, onBlur, onKeyDown as textOnKeyDown, removeEmptyElements } fr
 import { atEdge } from "../helper/selection";
 import { first, last } from "../helper/array";
 
-export function render(h, tag, api)
+export function render(h, tag, entry)
 {
 	return h(tag, {
 		domProps: {
-			innerHTML: api.options.text
+			innerHTML: entry.options.text
 		},
-		style: getStyles(api.options)
+		style: getStyles(entry.options)
 	});
 }
 
-export function renderEditor(h, tag, api)
+export function renderEditor(h, tag, entry)
 {
 	return h(tag, {
 		domProps: {
 			contentEditable: "true",
-			innerHTML: api.options.text
+			innerHTML: entry.options.text
 		},
 		on: {
-			blur: evt => onBlur(evt, api),
-			input: () => api.group.updateSelection(),
-			keydown: evt => onKeyDown(evt, api)
+			blur: evt => onBlur(evt, entry),
+			input: () => entry.updateEditor(false),
+			keydown: evt => onKeyDown(evt, entry)
 		},
-		style: getStyles((api.options))
+		style: getStyles(entry.options)
 	});
 }
 
-function onKeyDown(evt, api)
+function onKeyDown(evt, entry)
 {
 	const list = evt.target;
 	const items = Array.from(list.getElementsByTagName("li"));
@@ -44,7 +44,7 @@ function onKeyDown(evt, api)
 		{
 			evt.preventDefault();
 			lastItem.remove();
-			api.insertBlock("paragraph", api.index + 1, {text: " "}, {placeAtEnd: false});
+			entry.insertBlock("paragraph", entry.index + 1, {text: " "}, {placeAtEnd: false});
 		}
 
 		return;
@@ -57,11 +57,11 @@ function onKeyDown(evt, api)
 		if (atEdge(list) && items.length === 1 && firstItem.innerHTML.trim() === "")
 		{
 			evt.preventDefault();
-			api.remove();
+			entry.remove();
 		}
 
 		return;
 	}
 
-	textOnKeyDown(evt, api);
+	textOnKeyDown(evt, entry);
 }

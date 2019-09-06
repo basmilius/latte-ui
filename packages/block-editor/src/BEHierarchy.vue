@@ -7,10 +7,13 @@
 			<div class="panel panel-blank be-hierarchy">
 				<div class="panel-header">
 					<span class="panel-title mr-3">{{ "Hierarchy" | beTranslate }}</span>
-					<button class="btn btn-outline btn-error ml-auto"><i class="mdi mdi-delete"></i><span>{{ "Remove all" | beTranslate }}</span></button>
+					<latte-ripple as="button" class="btn btn-outline btn-error ml-auto" @click="deleteEverything">
+						<i class="mdi mdi-delete"></i>
+						<span>{{ "Remove all" | beTranslate }}</span>
+					</latte-ripple>
 				</div>
-				<div class="be-hierarchy-group">
-					<BEHierarchyItem :api="item.api" :blocks="item.blocks" :key="index" v-for="(item, index) of items"/>
+				<div class="be-hierarchy-group" v-if="entry">
+					<BEHierarchyItem :entry="child" :key="child.hash" v-for="child of entry.children"/>
 				</div>
 			</div>
 		</latte-portal>
@@ -25,6 +28,7 @@
 <script>
 
 	import { editorInstance, translate } from "./utils";
+
 	import BEHierarchyItem from "./BEHierarchyItem";
 
 	export default {
@@ -41,36 +45,33 @@
 		{
 			return {
 				editor: editorInstance(this),
-				items: []
+				entry: undefined
 			};
 		},
 
 		destroyed()
 		{
-			this.editor.$off("content-update", this.updateItems);
+			this.editor.$off("be:content-ready", this.updateEntry);
 		},
 
 		mounted()
 		{
-			this.editor.$on("content-update", this.updateItems);
-			this.updateItems();
+			this.editor.$on("be:content-ready", this.updateEntry);
 		},
 
 		methods: {
 
-			updateItems()
+			deleteEverything()
 			{
-				this.$nextTick(() =>
-				{
-					const blocks = this.editor.rootBlocks.$children;
+				if (!this.entry)
+					return;
 
-					this.items = blocks.map(b => ({
-						api: b.api,
-						blocks: b.$children.filter(c => c.$options.name === "BEBlocks")
-					})).filter(b => b.api !== undefined);
+				this.entry.children.forEach(c => c.remove());
+			},
 
-					this.$forceUpdate();
-				});
+			updateEntry(entry)
+			{
+				this.entry = entry;
 			}
 
 		}

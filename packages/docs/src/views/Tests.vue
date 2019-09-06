@@ -20,23 +20,7 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Date / Time Pickers</span></div>
-						<div class="panel-body">
-							<latte-timepicker v-model="datetime"></latte-timepicker>
-							<latte-timepicker class="mt-2"></latte-timepicker>
-						</div>
-						<div class="panel-body">
-							<latte-datepicker v-model="datetime"></latte-datepicker>
-							<latte-datepicker class="mt-2"></latte-datepicker>
-						</div>
-						<div class="panel-body">
-							<latte-datetimepicker v-model="datetime"></latte-datetimepicker>
-							<latte-datetimepicker class="mt-2"></latte-datetimepicker>
-						</div>
-					</div>
-
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header"><span class="panel-title">Virtual scroller</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" style="height: 390px">
 
@@ -47,7 +31,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header"><span class="panel-title">Virtual scroller (grid)</span></div>
 						<latte-virtual-scroller :items="rows" :item-height="48" :item-width="222" items-class="d-flex flex-row flex-wrap" style="height: 390px">
 
@@ -58,7 +42,7 @@
 						</latte-virtual-scroller>
 					</div>
 
-					<div class="panel" v-if="false">
+					<div class="panel" v-if="true">
 						<div class="panel-header">
 							<span class="panel-title">Emoji stuff</span>
 							<div class="ml-auto"></div>
@@ -116,8 +100,16 @@
 			let rows = Array.from(Array(50), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [],
-				datetime: new Date(1996, 2, 13, 20, 15),
+				content: [{"id":"heading","options":{"color":"rgb(247, 54, 43)","type":"h1","text":"Dit is mijn geweldige pagina."}},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lorem eget est commodo vulputate eu quis ipsum. Nam dictum quis dui eget cursus. Phasellus tellus sapien, auctor et cursus eget, tempus ut justo. Donec placerat scelerisque nibh, eu consectetur elit imperdiet eu. Curabitur id ligula quis eros ullamcorper elementum. Fusce diam nibh, porttitor vel sagittis et, hendrerit in mauris. Nam elementum nibh in ipsum tempus, non semper lorem fringilla. In turpis dolor, venenatis lobortis malesuada non, posuere tempor tortor. Cras interdum mauris ut lorem volutpat, sit amet varius ex scelerisque.&nbsp;Suspendisse quam urna, varius ut pretium quis, lacinia a eros. Duis non nisi eu neque luctus ultricies et vel lectus.&nbsp;"}},
+					{"id":"paragraph","options":{"align":"right","color":"rgb(126, 123, 158)","fontSize":1.35,"indent":10,"text":"<i>\"Aenean varius pretium tortor eu porttitor. Vivamus finibus sagittis tellus, sit amet porta tortor tempor ac. Aenean ac mauris lobortis ipsum feugiat volutpat nec sit amet ex.\"</i>"}},
+					{"id":"button","options":{"class":"mx-auto mb-3","pillButton":false,"rippleButton":true,"size":"lg","text":"My awesome button","type":"outline","url":""}},
+					{"id":"columns","options":{"class":"mb-3","columns":2,"gutters":true,"preset":1},"children":[[{"id":"youtube-embed","options":{"videoId":"2TuyT0knklM"}}],[{"id":"heading","options":{"type":"h5","text":"Gavin DeGraw - Soldier"}},
+							{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Phasellus commodo, lacus non viverra imperdiet, libero orci lacinia velit, sit amet malesuada dui diam eu lectus. Sed maximus eu orci ut condimentum.&nbsp;"}},
+							{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Vivamus auctor sapien nisl, varius interdum libero malesuada sit amet. Integer vulputate facilisis urna id sollicitudin."}}]]},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Integer ac vestibulum dolor, et euismod sem. Vivamus volutpat, lectus eget vulputate eleifend, nibh quam aliquet lorem, quis efficitur neque magna ac elit. Vestibulum ac risus eu ligula auctor cursus. Curabitur purus enim, accumsan nec magna vel, ornare sagittis nisi. Pellentesque libero lorem, rhoncus placerat mauris et, vehicula tempor turpis. Duis nec luctus metus. Maecenas consequat libero id nulla pharetra luctus. Donec ultricies tincidunt tincidunt. Suspendisse sollicitudin lacus nunc, sed ultricies tellus efficitur nec. Phasellus eget sem nec enim molestie venenatis nec ut tortor. Aliquam dictum tempus neque, at luctus elit mollis sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed pellentesque, metus pharetra auctor luctus, sem nunc mattis purus, at mattis turpis mauris nec dolor. Curabitur cursus enim non libero sodales tristique."}},
+					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Aliquam urna sapien, gravida eget cursus at, fringilla eu metus. In sapien odio, gravida hendrerit iaculis id, sodales sit amet nibh. Nunc nec efficitur diam. Fusce sagittis at nibh eget tristique. Integer elit felis, consequat nec fermentum ut, dignissim sit amet purus. Ut aliquam imperdiet faucibus. Etiam maximus mauris id sem aliquam, vel posuere leo viverra. Nulla eleifend leo in sapien cursus, congue mollis nunc ultrices."}}
+				],
 				rows: rows,
 				acTwo: [],
 				acTree: [3, 6],
@@ -134,15 +126,6 @@
 		{
 			if (this.testEditor)
 				document.body.style.setProperty("overflow", "hidden");
-		},
-
-		watch: {
-
-			datetime()
-			{
-				console.log(this.moment(this.datetime).format("LLLL"));
-			}
-
 		}
 
 	}

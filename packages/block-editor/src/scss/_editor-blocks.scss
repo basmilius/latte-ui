@@ -31,6 +31,12 @@
 	}
 }
 
+.be-block-button
+{
+	display: flex;
+	width: 100%;
+}
+
 @import "columns";
 @import "page-break";
 @import "text";

@@ -4,6 +4,7 @@
 	import { handleComponentError } from "./helper/error";
 	import { divider, icon } from "./primitive/element";
 	import { getLatte } from "./utils";
+	import { BlockEntry } from "./api";
 
 	const L = getLatte();
 
@@ -12,36 +13,68 @@
 		name: "BEBlockMount",
 
 		props: {
-			api: {required: true, type: Object}
+			entry: {required: true, type: BlockEntry}
+		},
+
+		data()
+		{
+			return {
+				isFirst: this.entry.isFirst,
+				isLast: this.entry.isLast,
+				isSelected: this.entry.isSelected,
+				h: 0,
+				w: 0
+			};
+		},
+
+		mounted()
+		{
+			this.onUpdate();
 		},
 
 		render(h)
 		{
-			return h("div", {class: this.mountClasses, on: {click: evt => this.onClick(evt)}}, [
-				this.renderInserter(h, this.api.index === 0, this.api.index, "top"),
-				this.renderInserter(h, true, this.api.index, "bottom"),
+			if (this.entry.parent && this.entry.parent.block.canHaveGroups)
+				return this.entry.renderEditor(h);
+
+			return h("div", {class: this.classes, style: this.styles, on: {click: evt => this.onClick(evt)}}, [
+				this.renderInserter(h, this.entry.index === 0, this.entry.index, "top"),
+				this.renderInserter(h, true, this.entry.index, "bottom"),
 				this.renderOptions(h),
 				this.renderOptionsSide(h),
-				this.api.renderEditor(h)
+				this.entry.renderEditor(h)
 			]);
+		},
+
+		updated()
+		{
+			this.onUpdate();
 		},
 
 		computed: {
 
-			mountClasses()
+			classes()
 			{
-				const classes = ["be-block-mount", `be-block-${this.api.blockId}`, "be-editing"];
+				const classes = ["be-block-mount", `be-block-${this.entry.block.id}`, "be-editing"];
 
-				if (this.api.isSelected)
+				if (this.isSelected)
 					classes.push("is-selected");
 
-				if (this.api.index === 0)
+				if (this.isFirst)
 					classes.push("is-first");
 
-				if (this.api.index === this.api.group.blocks.length - 1)
+				if (this.isLast)
 					classes.push("is-last");
 
 				return classes;
+			},
+
+			styles()
+			{
+				return {
+					"--editor-rect-h": `${this.h}px`,
+					"--editor-rect-w": `${this.w}px`
+				};
 			}
 
 		},
@@ -50,68 +83,83 @@
 
 			onClick()
 			{
-				this.api.ensure(() =>
-				{
-					if (this.api.group.selectedIndex !== this.api.index)
-						this.api.group.setSelectedIndex(this.api.index, this.api.elm);
-				});
+				if (this.entry.isSelected)
+					return;
+
+				this.entry.select();
+			},
+
+			onUpdate()
+			{
+				this.isFirst = this.entry.isFirst;
+				this.isLast = this.entry.isLast;
+				this.isSelected = this.entry.isSelected;
+
+				if (!this.entry.isSelected)
+					return;
+
+				const {height, width} = this.entry.block.calculateSelectionBorder(this.entry);
+				this.h = height;
+				this.w = width;
 			},
 
 			renderInserter(h, shouldRender, index, mode)
 			{
-				if (!shouldRender)
+				if (!shouldRender || this.entry.block.id === "root")
 					return undefined;
 
 				return h(BEInserterMini, {
 					class: mode,
-					on: {select: id => this.api.insertBlock(id, mode === "top" ? index : index + 1)}
+					on: {
+						select: id => this.entry.insertBlock(id, mode === "top" ? index : index + 1)
+					}
 				});
 			},
 
 			renderOptions(h)
 			{
-				const {depth, isSelected} = this.api;
+				const {depth, isSelected} = this.entry;
 
 				if (!isSelected)
 					return undefined;
 
 				try
 				{
-					return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.api.editor.uniqueId}`}}, [
-						this.api.block.renderOptions(h, this.api)
+					return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.entry.editor.uniqueId}`}}, [
+						this.entry.block.renderOptions(h, this.entry)
 					]);
 				}
 				catch (err)
 				{
-					handleComponentError(err, "BEBlocks/renderOptions", this.api);
+					handleComponentError(err, "BEBlocks/renderOptions", this.entry);
 					return undefined;
 				}
 			},
 
 			renderOptionsSide(h)
 			{
-				if (!this.api.isSelected || this.api.block.canHaveChildren)
+				if (!this.entry.isSelected || this.entry.block.canHaveChildren)
 					return undefined;
 
 				return h("div", {class: "be-options-side", on: {click: evt => L.util.dom.terminateEvent(evt)}}, [
 
 					h("button", {
 						class: "btn btn-icon btn-text btn-dark btn-sm",
-						domProps: {disabled: this.api.index === 0},
-						on: {click: () => this.api.rearrange(-1)}
+						domProps: {disabled: this.entry.index === 0},
+						on: {click: () => this.entry.rearrange(-1)}
 					}, [icon(h, "arrow-up")]),
 
 					h("button", {
 						class: "btn btn-icon btn-text btn-dark btn-sm",
-						domProps: {disabled: this.api.index === this.api.group.maxIndex},
-						on: {click: () => this.api.rearrange(1)}
+						domProps: {disabled: this.entry.index === this.entry.parent.children.length - 1},
+						on: {click: () => this.entry.rearrange(1)}
 					}, [icon(h, "arrow-down")]),
 
 					divider(h),
 
 					h("button", {
 						class: "btn btn-icon btn-text btn-dark btn-sm",
-						on: {click: () => this.api.remove()}
+						on: {click: () => this.entry.remove()}
 					}, [icon(h, "delete")])
 
 				])

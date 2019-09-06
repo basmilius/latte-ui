@@ -37,23 +37,23 @@ export class ParagraphBlock extends BlockBase
 		super("paragraph", "text", "format-paragraph");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
-		return render("p", h, api);
+		return render("p", h, entry);
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
-		return renderEditor("p", h, api, "Start writing or type / to insert a block...");
+		return renderEditor("p", h, entry, "Start writing or type / to insert a block...");
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api),
-			renderTextFormatToolbar(h, api),
-			optionTextColor(h, api),
-			optionTextSize(h, api)
+			blockActions(h, entry),
+			renderTextFormatToolbar(h, entry),
+			optionTextColor(h, entry),
+			optionTextSize(h, entry)
 		]);
 	}
 

@@ -1,5 +1,6 @@
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
+import { translate } from "../utils";
 
 export class PageBreakBlock extends BlockBase
 {
@@ -24,25 +25,25 @@ export class PageBreakBlock extends BlockBase
 		super("page-break", "layout", "format-page-break");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
 		return document.createComment("page-break");
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
 		return h("div", {
 			attrs: {
-				"data-text": "Page break"
+				"data-text": translate("Page break")
 			},
 			class: "be-page-break"
 		});
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api)
+			blockActions(h, entry)
 		]);
 	}
 

@@ -1,6 +1,8 @@
+import Vue from "vue";
+
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup } from "../primitive/settings";
-import { oneOrAnother } from "../helper/element";
+import { getLatte, translate } from "../utils";
 
 export class HtmlBlock extends BlockBase
 {
@@ -32,52 +34,44 @@ export class HtmlBlock extends BlockBase
 		super("html", "other", "language-html5");
 	}
 
-	render(h, api)
+	render(h, entry)
 	{
-		return h("div", {
-			class: "be-custom-html",
-			domProps: {
-				innerHTML: api.options.code
-					.replace(/\t/g, "")
-					.replace(/\r?\n|\r/g, "")
-			}
-		});
+		return getLatte().util.dom.toDOM(entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, " "));
 	}
 
-	renderEditor(h, api)
+	renderEditor(h, entry)
 	{
 		return h("latte-tab-container", {style: {zIndex: "0"}}, [
-			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {background: "rgba(var(--panel-background), .75)", zIndex: "1"}}, [
-				h("strong", this.name),
+			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {zIndex: "1"}}, [
+				h("strong", translate(this.name)),
 				h("latte-tab-bar", {class: "ml-auto"})
 			]),
-			h("latte-tab", {props: {label: "HTML"}}, [
+			h("latte-tab", {props: {label: translate("Visual")}}, [
+				h(Vue.extend({
+					template: entry.options.code
+						.replace(/href=/g, "data-be-href=")
+						.replace(/data-action=/g, "data-be-action=")
+				}))
+			]),
+			h("latte-tab", {props: {label: translate("Code")}}, [
 				h("textarea", {
 					class: "form-control",
 					domProps: {
 						rows: 10,
-						value: api.options.code
+						value: entry.options.code
 					},
 					on: {
-						input: evt => api.setOptions({code: evt.target.value})
-					}
-				})
-			]),
-			h("latte-tab", {props: {label: "Preview"}}, [
-				h("div", {
-					class: "be-block-custom-html-code",
-					domProps: {
-						innerHTML: api.options.code
+						input: evt => entry.setOptions({code: evt.target.value})
 					}
 				})
 			])
 		]);
 	}
 
-	renderOptions(h, api)
+	renderOptions(h, entry)
 	{
 		return settingsGroup(h, this.name, [
-			blockActions(h, api)
+			blockActions(h, entry)
 		]);
 	}
 
