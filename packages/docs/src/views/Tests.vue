@@ -100,7 +100,7 @@
 			let rows = Array.from(Array(50), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
-				content: [{"id":"heading","options":{"color":"rgb(247, 54, 43)","type":"h1","text":"Dit is mijn geweldige pagina."}},
+				content: [{"id":"heading","options":{"color":"rgb(247, 54, 43)","type":"h1","text":"This is my amazing page!"}},
 					{"id":"paragraph","options":{"align":"left","fontSize":1,"indent":0,"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in lorem eget est commodo vulputate eu quis ipsum. Nam dictum quis dui eget cursus. Phasellus tellus sapien, auctor et cursus eget, tempus ut justo. Donec placerat scelerisque nibh, eu consectetur elit imperdiet eu. Curabitur id ligula quis eros ullamcorper elementum. Fusce diam nibh, porttitor vel sagittis et, hendrerit in mauris. Nam elementum nibh in ipsum tempus, non semper lorem fringilla. In turpis dolor, venenatis lobortis malesuada non, posuere tempor tortor. Cras interdum mauris ut lorem volutpat, sit amet varius ex scelerisque.&nbsp;Suspendisse quam urna, varius ut pretium quis, lacinia a eros. Duis non nisi eu neque luctus ultricies et vel lectus.&nbsp;"}},
 					{"id":"paragraph","options":{"align":"right","color":"rgb(126, 123, 158)","fontSize":1.35,"indent":10,"text":"<i>\"Aenean varius pretium tortor eu porttitor. Vivamus finibus sagittis tellus, sit amet porta tortor tempor ac. Aenean ac mauris lobortis ipsum feugiat volutpat nec sit amet ex.\"</i>"}},
 					{"id":"button","options":{"class":"mx-auto mb-3","pillButton":false,"rippleButton":true,"size":"lg","text":"My awesome button","type":"outline","url":""}},
