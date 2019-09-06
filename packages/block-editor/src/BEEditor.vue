@@ -8,7 +8,7 @@
 					<slot name="toolbar-before"></slot>
 				</template>
 				<template #after>
-					<span class="text-muted">Last update: {{ moment(lastUpdate).format("HH:mm:ss.SSSS") }} ({{ updateCount }})</span>
+					<span class="text-muted" v-if="false">Last update: {{ moment(lastUpdate).format("HH:mm:ss.SSSS") }} ({{ updateCount }})</span>
 					<slot name="toolbar-after"></slot>
 				</template>
 			</BEToolbar>
@@ -37,11 +37,6 @@
 </template>
 
 <script>
-
-	/*
-	TODO
-	 - Editor needs to emit an input event when content changes, but there is nothing that can do that at this moment.
-	 */
 
 	import { getLatte } from "./utils";
 
