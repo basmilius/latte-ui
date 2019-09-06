@@ -38,7 +38,7 @@ export class ButtonBlock extends BlockBase
 			pillButton: false,
 			rippleButton: false,
 			size: "md",
-			text: "Button",
+			text: translate("Button"),
 			type: "contained",
 			url: ""
 		};
@@ -105,11 +105,11 @@ export class ButtonBlock extends BlockBase
 	{
 		return settingsGroup(h, this.name, [
 			blockActions(h, entry),
-			toggleButton(h, "Ripple", () => entry.options.rippleButton, rippleButton => entry.setOptions({rippleButton})),
-			toggleButton(h, "Pill", () => entry.options.pillButton, pillButton => entry.setOptions({pillButton})),
-			optionButtons(h, "Size", buttonSizes, () => entry.options.size, size => entry.setOptions({size})),
-			optionButtons(h, "Style", buttonStyles, () => entry.options.type, type => entry.setOptions({type})),
-			textField(h, "URL", () => entry.options.url, url => entry.setOptions({url})),
+			toggleButton(h, translate("Ripple"), () => entry.options.rippleButton, rippleButton => entry.setOptions({rippleButton})),
+			toggleButton(h, translate("Pill"), () => entry.options.pillButton, pillButton => entry.setOptions({pillButton})),
+			optionButtons(h, translate("Size"), buttonSizes, () => entry.options.size, size => entry.setOptions({size})),
+			optionButtons(h, translate("Style"), buttonStyles, () => entry.options.type, type => entry.setOptions({type})),
+			textField(h, translate("URL"), () => entry.options.url, url => entry.setOptions({url})),
 			optionAdditionalClasses(h, entry)
 		]);
 	}

@@ -43,7 +43,7 @@ export class HtmlBlock extends BlockBase
 	{
 		return h("latte-tab-container", {style: {zIndex: "0"}}, [
 			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {zIndex: "1"}}, [
-				h("strong", this.name),
+				h("strong", translate(this.name)),
 				h("latte-tab-bar", {class: "ml-auto"})
 			]),
 			h("latte-tab", {props: {label: translate("Visual")}}, [

@@ -1,5 +1,6 @@
 import { BlockBase } from "../block";
 import { blockActions, settingsGroup, textField } from "../primitive/settings";
+import { translate } from "../utils";
 
 export class YouTubeEmbedBlock extends BlockBase
 {
@@ -57,7 +58,7 @@ export class YouTubeEmbedBlock extends BlockBase
 	{
 		return settingsGroup(h, this.name, [
 			blockActions(h, entry),
-			textField(h, "Video ID", () => entry.options.videoId, videoId => entry.setOptions({videoId}))
+			textField(h, translate("Video ID"), () => entry.options.videoId, videoId => entry.setOptions({videoId}))
 		]);
 	}
 

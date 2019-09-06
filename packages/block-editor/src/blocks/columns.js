@@ -2,7 +2,7 @@ import BEBlocks from "../BEBlocks";
 
 import { convertBlock, renderChildren } from "../api";
 import { BlockBase } from "../block";
-import { notNullOrUndefined } from "../utils";
+import { notNullOrUndefined, translate } from "../utils";
 import { blockActions, optional, rangeField, settingsGroupWithDepth, toggleButton } from "../primitive/settings";
 import { optionAdditionalClasses } from "../primitive/element";
 import { getElementDimensions, querySelector, querySelectorAll } from "../helper/element";
@@ -199,7 +199,7 @@ export class ColumnsBlock extends BlockBase
 		return settingsGroupWithDepth(h, entry.depth, this.name, [
 			blockActions(h, entry),
 			h("div", {class: "be-settings-row flex-column"}, [
-				h("span", "Preset"),
+				h("span", translate("Preset")),
 				h("div", {class: "d-flex flex-wrap be-settings-columns-presets"}, presets.map((preset, index) =>
 					h("div", {
 							class: `preset ${entry.options.preset === index ? "is-active" : ""}`,
@@ -211,12 +211,12 @@ export class ColumnsBlock extends BlockBase
 					)
 				))
 			]),
-			optional(entry.options.preset === -1, () => rangeField(h, "Amount of columns", () => entry.options.columns, columns =>
+			optional(entry.options.preset === -1, () => rangeField(h, translate("Amount of columns"), () => entry.options.columns, columns =>
 			{
 				entry.setChildren(entry.children.slice(0, columns));
 				entry.setOptions({columns});
 			}, 2, 6, 1)),
-			toggleButton(h, "Gutters", () => entry.options.gutters, gutters => entry.setOptions({gutters})),
+			toggleButton(h, translate("Gutters"), () => entry.options.gutters, gutters => entry.setOptions({gutters})),
 			optionAdditionalClasses(h, entry)
 		]);
 	}
