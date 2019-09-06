@@ -43,20 +43,17 @@
 	 - Editor needs to emit an input event when content changes, but there is nothing that can do that at this moment.
 	 */
 
-	import { defaultCategories } from "./block";
 	import { getLatte } from "./utils";
-	import * as DefaultBlocks from "./blocks";
 
 	import BEBlocks from "./BEBlocks";
+	import BEBlockMount from "./BEBlockMount";
 	import BEInserterExpanded from "./BEInserterExpanded";
 	import BEInserterList from "./BEInserterList";
 	import BEInserterPopup from "./BEInserterPopup";
 	import BESettingsPane from "./BESettingsPane";
 	import BEToolbar from "./BEToolbar";
 
-	import { BlockRegistry, convertToBlocks, convertToHtml, convertToJson } from "./api";
-	import { CategoryRegistry } from "./categories";
-	import BEBlockMount from "./BEBlockMount";
+	import { convertToBlocks, convertToData } from "./api";
 
 	const L = getLatte();
 	const defaultColorPalette = [
@@ -133,12 +130,6 @@
 			value: {default: () => testBlocks, type: Array}
 		},
 
-		created()
-		{
-			Object.values(DefaultBlocks).forEach(block => this.blockRegistry.register(new block()));
-			defaultCategories.forEach(category => this.categoryRegistry.register(category));
-		},
-
 		destroyed()
 		{
 			document.removeEventListener("selectionchange", this.onSelectionChanged);
@@ -150,9 +141,6 @@
 				lastUpdate: Date.now(),
 				updateCount: 0,
 				uniqueId: L.api.id(),
-				blockRegistry: new BlockRegistry(),
-				categoryRegistry: new CategoryRegistry(),
-				canUpdate: true,
 				content: undefined,
 				selection: window.getSelection()
 			};
@@ -201,17 +189,9 @@
 			onInput()
 			{
 				this.$emit("be:content-ready", this.content);
+				this.$emit("change", convertToData(this.content));
 				this.lastUpdate = Date.now();
 				this.updateCount++;
-
-				console.clear();
-				console.log(convertToJson(this.content));
-				console.log(convertToHtml(this.content));
-
-				// this.canUpdate = false;
-				//
-				// this.$emit("input", convertToData(this.content));
-				// this.$nextTick(() => this.canUpdate = true);
 			},
 
 			onSelectionChanged()
@@ -227,9 +207,6 @@
 
 			onValueChanged()
 			{
-				if (!this.canUpdate)
-					return;
-
 				this.content = convertToBlocks(this, this.value);
 				this.$emit("be:content-ready");
 			}
@@ -240,7 +217,8 @@
 
 			value()
 			{
-				this.onValueChanged();
+				this.content = undefined;
+				this.$nextTick(() => this.onValueChanged());
 			}
 
 		}

@@ -36,13 +36,13 @@ export class HtmlBlock extends BlockBase
 
 	render(h, entry)
 	{
-		return getLatte().util.dom.toDOM(entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, ""));
+		return getLatte().util.dom.toDOM(entry.options.code.replace(/\t/g, "").replace(/\r?\n|\r/g, " "));
 	}
 
 	renderEditor(h, entry)
 	{
 		return h("latte-tab-container", {style: {zIndex: "0"}}, [
-			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {background: "rgba(var(--panel-background), .75)", zIndex: "1"}}, [
+			h("div", {class: "position-relative d-flex align-items-center mb-1", style: {zIndex: "1"}}, [
 				h("strong", this.name),
 				h("latte-tab-bar", {class: "ml-auto"})
 			]),

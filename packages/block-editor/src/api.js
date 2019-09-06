@@ -1,8 +1,9 @@
 import hash from "object-hash";
 import { swapBlocks } from "./helper/animation";
-import { entriesAreDifferent, first } from "./helper/array";
+import { entriesAreDifferent } from "./helper/array";
 import { placeCaretAtEdge } from "./helper/selection";
 import { defaultFocusOptions } from "./block";
+import { BlockRegistry } from "./registry";
 import { getLatte } from "./utils";
 import { handleComponentError } from "./helper/error";
 import { createElement } from "./create-element";
@@ -118,7 +119,7 @@ export class BlockEntry
 
 	constructor(editor, index, id, options, children = [], parent = undefined)
 	{
-		this.#block = editor.blockRegistry.findById(id) || editor.blockRegistry.findById("missing");
+		this.#block = BlockRegistry.findById(id) || BlockRegistry.findById("missing");
 		this.#editor = editor;
 		this.#id = id;
 		this.#depth = parent ? parent.#block.canHaveGroups ? parent.depth : parent.depth + 1 : 0;
@@ -425,40 +426,6 @@ export class BlockEntry
 
 		if (this.context)
 			this.context.$forceUpdate();
-	}
-
-}
-
-export class BlockRegistry
-{
-
-	#blocks;
-
-	get blocks()
-	{
-		return this.#blocks
-			.filter(b => b.showInInserter);
-	}
-
-	constructor(blocks = [])
-	{
-		this.#blocks = blocks;
-	}
-
-	findById(id)
-	{
-		return first(this.#blocks.filter(b => b.id === id));
-	}
-
-	register(block)
-	{
-		this.#blocks.push(block);
-	}
-
-	unregister(block)
-	{
-		this.#blocks = this.#blocks
-			.filter(b => b.id !== block.id);
 	}
 
 }

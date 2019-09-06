@@ -1,34 +1,15 @@
 import anime from "../lib/animejs";
 import { getElementDimensions } from "./element";
-import { raf } from "@bybas/latte-ui/src/js/util/dom";
+import { getLatte } from "../utils";
 
 export const easeSwiftOut = "cubicBezier(.55, 0, .1, 1)";
 
-export function removeBlock(options, fn)
-{
-	const {element} = options;
-	const duration = 180;
-
-	raf(() =>
-	{
-		const elementDim = getElementDimensions(element);
-
-		anime({
-			targets: element,
-			marginBottom: `-${elementDim.dimensions.height}px`,
-			opacity: "0",
-			duration,
-			easing: easeSwiftOut
-		}).finished.then(() => fn());
-	});
-}
-
 export function swapBlocks(options, fn)
 {
-	const {firstElement, scrollingContainer, secondElement, raf} = options;
+	const {firstElement, scrollingContainer, secondElement} = options;
 	const duration = 360;
 
-	raf(() =>
+	getLatte().util.dom.raf(() =>
 	{
 		const firstDim = getElementDimensions(firstElement);
 		const secondDim = getElementDimensions(secondElement);

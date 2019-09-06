@@ -4,6 +4,7 @@ import { atEdge, caretPosition, getRectFromRange, placeCaretAt, placeCaretAtEdge
 import { optional } from "./settings";
 import { translate } from "../utils";
 import { handleComponentError } from "../helper/error";
+import { BlockRegistry } from "../registry";
 
 const allowAppend = ["heading", "paragraph"];
 const defaultFormattingOptions = {
@@ -110,7 +111,7 @@ export function onInput(evt, tag, entry)
 		return entry.editor.inserterList.close();
 
 	const searchTerm = text.substr(1).toLowerCase();
-	const foundBlocks = entry.editor.blockRegistry.blocks
+	const foundBlocks = BlockRegistry.blocks
 		.filter(entry => entry.keywords.map(keyword => translate(keyword)).find(keyword => keyword.startsWith(searchTerm)))
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));

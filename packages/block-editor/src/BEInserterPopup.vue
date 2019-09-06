@@ -39,6 +39,7 @@
 <script>
 
 	import { editorInstance, translate } from "./utils";
+	import { BlockRegistry, CategoryRegistry } from "./registry";
 
 	export default {
 
@@ -65,9 +66,9 @@
 
 			blocksCategorized()
 			{
-				return this.editor.categoryRegistry.categories.map(c =>
+				return CategoryRegistry.categories.map(c =>
 				{
-					c.blocks = this.editor.blockRegistry.blocks
+					c.blocks = BlockRegistry.blocks
 						.filter(b => b.category === c.id)
 						.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -87,7 +88,7 @@
 
 			onOpen()
 			{
-				this.currentCategory = this.currentCategory || this.editor.categoryRegistry.categories[0].id;
+				this.currentCategory = this.currentCategory || CategoryRegistry.categories[0].id;
 				this.isOpen = true;
 			},
 
