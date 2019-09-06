@@ -144,7 +144,7 @@ export class BlockEntry
 
 	calculateHash()
 	{
-		this.#hash = performance.now();
+		this.#hash = getLatte().api.id();
 	}
 
 	data()

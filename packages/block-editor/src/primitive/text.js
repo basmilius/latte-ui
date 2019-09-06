@@ -100,7 +100,6 @@ export function onInput(evt, tag, entry)
 	const text = evt.target.innerText;
 
 	entry.updateEditor(false, true);
-	removeEmptyElements(evt);
 
 	if (tag !== "p")
 		return;
