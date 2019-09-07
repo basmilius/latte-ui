@@ -9,7 +9,7 @@
 
 :root
 {
-	--popup-background: #ffffff;
+	--popup-background: 255, 255, 255;
 	--popup-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color-secondary))};
 }
 
@@ -19,7 +19,7 @@
 	display: block;
 	top: 0;
 	left: 0;
-	background: var(--popup-background);
+	background: #{latte-rgb(var(--popup-background))};
 	border-radius: var(--border-radius);
 	box-shadow: var(--popup-elevation);
 	opacity: 0;
@@ -46,8 +46,8 @@
 		margin: 0 1px;
 		content: "";
 		border: 8px solid transparent;
-		border-top-color: var(--popup-background);
-		border-bottom-color: var(--popup-background);
+		border-top-color: #{latte-rgb(var(--popup-background))};
+		border-bottom-color: #{latte-rgb(var(--popup-background))};
 		z-index: -1;
 	}
 

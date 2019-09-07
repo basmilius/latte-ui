@@ -17,7 +17,7 @@
 						</div>
 						<div class="panel-body">
 							The most recommended way to add latte-ui to your project is to install it using yarn or npm. Latte-ui
-							recommends using yarn above npm.
+							uses Yarn internally and recommends using it.
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="shell">
@@ -63,6 +63,10 @@ import LatteUI from "@bybas/latte-ui";
 // Register LatteUI with Vue.
 Vue.use(LatteUI);
 
+// Import the CSS, you can also do this in your own scss file
+// to override some of the scss variables.
+import "@bybas/latte-ui/src/scss/app.scss";
+
 // Create your Vue instance.
 new Vue({
 	el: "#app"
@@ -79,7 +83,7 @@ new Vue({
 						</div>
 						<div class="panel-body border-top-0 pt-0">
 							<CodeSnippet lang="html">
-								&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
+&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
 							</CodeSnippet>
 						</div>
 					</div>

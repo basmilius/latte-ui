@@ -127,14 +127,14 @@
 	div.code-example-code
 	{
 		padding: 30px;
-		background: RGB(var(--panel-background));
-		border-top: 1px solid RGB(var(--outline-color));
+		background: rgba(var(--panel-background), 1);
+		border-bottom: 1px solid rgba(var(--outline-color-secondary), 1);
 		z-index: 0;
 	}
 
 	.darker div.code-example-preview
 	{
-		background: RGB(var(--main-background));
+		background: rgba(var(--main-background), 1);
 	}
 
 	div.code-example-code pre

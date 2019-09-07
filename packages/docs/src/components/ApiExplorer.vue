@@ -28,8 +28,9 @@
 						</td>
 						<td>
 							<div class="column-content justify-content-start">
-								<small class="text-muted">Default value</small>
-								<strong class="text-monospace">{{ property.default }}</strong>
+								<small class="text-muted">Default</small>
+								<strong class="text-monospace" v-if="property.default === null">NULL</strong>
+								<strong class="text-monospace" v-else>{{ property.default }}</strong>
 							</div>
 						</td>
 					</tr>
@@ -58,7 +59,7 @@
 						</td>
 						<td>
 							<div class="column-content justify-content-start">
-								<small class="text-muted">Default value</small>
+								<small class="text-muted">Default</small>
 								<em v-if="variable.default === null">NULL</em>
 								<RgbDisplay class="font-weight-bold text-monospace" :rgb="variable.default" v-else-if="variable.type === 'rgb'"/>
 								<strong class="text-monospace" v-else>{{ variable.default }}</strong>

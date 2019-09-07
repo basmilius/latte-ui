@@ -19,8 +19,8 @@ div.page-header
 	position: relative;
 	display: block;
 	margin: 0 0 24px 0;
-	background: RGB(var(--panel-background));
-	border-bottom: var(--divider-size) solid RGB(var(--outline-color-secondary));
+	background: rgba(var(--panel-background), 1);
+	border-bottom: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
 
 	div.page-header-content
 	{
