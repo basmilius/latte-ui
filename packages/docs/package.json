@@ -12,7 +12,6 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"@bybas/latte-ui": "^1.8.0",
 		"@mdi/font": "^4.2.95",
 		"animejs": "^3.1.0",
 		"highlight.js": "^9.15.10",

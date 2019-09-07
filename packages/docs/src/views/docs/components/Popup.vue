@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
-					<CodeExample class="darker" title="Basic" url="/snippets/components/popup/basic.html"></CodeExample>
+					<CodeExample title="Basic" url="/snippets/components/popup/basic.html"></CodeExample>
 
 				</div>
 				<div class="col-12 col-lg-3">
