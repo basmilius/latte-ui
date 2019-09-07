@@ -10,12 +10,9 @@
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
-<!--					<CodeExample title="Basic" url="/snippets/components/sheet/basic.html"></CodeExample>-->
-
 				</div>
 				<div class="col-12 col-lg-3">
 
-					<TableOfContents/>
 
 				</div>
 			</div>
