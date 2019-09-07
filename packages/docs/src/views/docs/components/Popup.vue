@@ -11,6 +11,9 @@
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
 					<CodeExample title="Basic" url="/snippets/components/popup/basic.html"></CodeExample>
+					<CodeExample title="Adjusted margins" url="/snippets/components/popup/adjusted-margins.html"></CodeExample>
+					<CodeExample title="Custom content" url="/snippets/components/popup/custom-content.html"></CodeExample>
+					<CodeExample title="Window" url="/snippets/components/popup/window.html"></CodeExample>
 
 					<div class="divider divider-horizontal docs-separator"></div>
 

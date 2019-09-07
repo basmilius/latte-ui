@@ -1,0 +1,15 @@
+<button class="btn btn-outline btn-icon btn-primary" ref="popupAdjustedMargins1"><i class="mdi mdi-dots-horizontal"></i></button>
+
+<latte-popup :associate-with="$refs.popupAdjustedMargins1" :margin-x="-9">
+    <nav class="nav nav-list">
+        <latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-1"></i><span>I'm a popup!</span></latte-ripple>
+    </nav>
+</latte-popup>
+
+<button class="btn btn-outline btn-primary" ref="popupAdjustedMargins2"><i class="mdi mdi-dots-horizontal"></i><span>Menu</span></button>
+
+<latte-popup :associate-with="$refs.popupAdjustedMargins2" :margin-y="45">
+	<nav class="nav nav-list">
+		<latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-1"></i><span>I'm a popup!</span></latte-ripple>
+	</nav>
+</latte-popup>

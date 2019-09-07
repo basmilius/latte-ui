@@ -1,12 +1,10 @@
-<button class="btn btn-outline btn-primary" ref="popupBasic">
-    <span>Open popup</span>
-</button>
+<button class="btn btn-outline btn-primary" ref="popupBasic"><span>Open popup</span></button>
 
 <latte-popup :associate-with="$refs.popupBasic">
-    <nav class="nav nav-list">
-        <latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-1"></i><span>Menu item</span></latte-ripple>
-        <latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-2"></i><span>Another menu item</span></latte-ripple>
-        <div class="divider divider-horizontal"></div>
-        <latte-ripple as="a" class="nav-link" href="#" data-close><i class="mdi mdi-dice-3"></i><span>This item closes the popup</span></latte-ripple>
-    </nav>
+	<nav class="nav nav-list">
+		<latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-1"></i><span>Menu item</span></latte-ripple>
+		<latte-ripple as="a" class="nav-link" href="#"><i class="mdi mdi-dice-2"></i><span>Another menu item</span></latte-ripple>
+		<div class="divider divider-horizontal"></div>
+		<latte-ripple as="a" class="nav-link" href="#" data-close><i class="mdi mdi-dice-3"></i><span>This item closes the popup</span></latte-ripple>
+	</nav>
 </latte-popup>
