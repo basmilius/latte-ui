@@ -61,10 +61,10 @@
 
 <script>
 
-	import ApiExplorer from "../../../components/ApiExplorer";
-	import CodeSnippet from "../../../components/CodeSnippet";
-	import PageHeader from "../../../components/PageHeader";
-	import TableOfContents from "../../../components/TableOfContents";
+	import ApiExplorer from "../../components/ApiExplorer";
+	import CodeSnippet from "../../components/CodeSnippet";
+	import PageHeader from "../../components/PageHeader";
+	import TableOfContents from "../../components/TableOfContents";
 
 	export default {
 

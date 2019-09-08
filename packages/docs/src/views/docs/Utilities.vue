@@ -12,7 +12,7 @@
 
 <script>
 
-	import PageHeader from "../../../components/PageHeader";
+	import PageHeader from "../../components/PageHeader";
 
 	export default {
 

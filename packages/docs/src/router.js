@@ -29,6 +29,26 @@ const router = new Router({
 							component: () => import("./views/docs/GettingStarted.vue")
 						},
 						{
+							path: "color",
+							component: () => import("./views/docs/Color.vue")
+						},
+						{
+							path: "grid-system",
+							component: () => import("./views/docs/GridSystem.vue")
+						},
+						{
+							path: "icons",
+							component: () => import("./views/docs/Icons.vue")
+						},
+						{
+							path: "typography",
+							component: () => import("./views/docs/Typography.vue")
+						},
+						{
+							path: "utilities",
+							component: () => import("./views/docs/Utilities.vue")
+						},
+						{
 							path: "components",
 							component: () => import("./components/NestedRouterView.vue"),
 							children: [
@@ -143,28 +163,6 @@ const router = new Router({
 								{
 									path: "window",
 									component: () => import("./views/docs/components/Window.vue")
-								}
-							]
-						},
-						{
-							path: "layout",
-							component: () => import("./components/NestedRouterView.vue"),
-							children: [
-								{
-									path: "color",
-									component: () => import("./views/docs/layout/Color.vue")
-								},
-								{
-									path: "grid-system",
-									component: () => import("./views/docs/layout/GridSystem.vue")
-								},
-								{
-									path: "typography",
-									component: () => import("./views/docs/layout/Typography.vue")
-								},
-								{
-									path: "utilities",
-									component: () => import("./views/docs/layout/Utilities.vue")
 								}
 							]
 						}

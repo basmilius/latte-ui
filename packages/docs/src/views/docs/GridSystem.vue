@@ -27,9 +27,9 @@
 
 <script>
 
-	import PageHeader from "../../../components/PageHeader";
-	import TableOfContents from "../../../components/TableOfContents";
-	import CodeExample from "../../../components/CodeExample";
+	import PageHeader from "../../components/PageHeader";
+	import TableOfContents from "../../components/TableOfContents";
+	import CodeExample from "../../components/CodeExample";
 
 	export default {
 

@@ -1,9 +1,9 @@
 <template>
 
-	<div class="page" id="layout-typography">
+	<div class="page" id="layout-utilities">
 
 		<PageHeader>
-			<h1>Typography</h1>
+			<h1>Icons</h1>
 		</PageHeader>
 
 	</div>
@@ -12,11 +12,11 @@
 
 <script>
 
-	import PageHeader from "../../../components/PageHeader";
+	import PageHeader from "../../components/PageHeader";
 
 	export default {
 
-		name: "Typography",
+		name: "Utilities",
 
 		components: {
 			PageHeader
