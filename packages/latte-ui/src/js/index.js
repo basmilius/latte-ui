@@ -38,7 +38,7 @@ function normalizeOptions(options)
 }
 
 export const defaultOptions = {
-	emojiBaseUrl: "https://cdn.mili.us/assets/joypixels/v5",
+	emojiBaseUrl: "https://g.s3.bmcdn.nl/assets/joypixels/v5",
 	emojiEnabled: true,
 	emojiPath: "/png/64/@0.png",
 	i18n: {},
