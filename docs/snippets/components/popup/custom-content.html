@@ -1,0 +1,13 @@
+<button class="btn btn-outline btn-primary" ref="popupCustomContent"><span>Open popup</span></button>
+
+<latte-popup :associate-with="$refs.popupCustomContent" persistent>
+	<div class="panel" style="width: 300px">
+		<div class="panel-header"><span class="panel-title">Panel</span></div>
+		<div class="panel-body">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, aliquam animi architecto cupiditate dolorem doloremque earum enim expedita inventore minima nam nisi, perspiciatis placeat quaerat quia, ratione suscipit voluptates voluptatum!
+		</div>
+		<div class="panel-footer justify-content-end">
+			<button class="btn btn-contained btn-primary" data-close><span>Close</span></button>
+		</div>
+	</div>
+</latte-popup>
