@@ -58,6 +58,8 @@ export function createElement(tag, props = undefined, content = undefined)
 export function fixHTMLString(html)
 {
 	return html
+		.replace(/v-bind:/g, ":")
+		.replace(/v-on:/g, "@")
 		.replace(/<be-template/g, "<template")
 		.replace(/<\/be-template/g, "</template")
 		.replace(/=""/g, "");

@@ -6,6 +6,16 @@ export function blockActions(h, entry)
 	return h(BEBlockActions, {props: {entry}, slot: "header"});
 }
 
+export function comboBox(h, title, options, getValue, setValue)
+{
+	return h("label", {class: "be-settings-row flex-column"}, [
+		h("span", title),
+		h("select", {class: "custom-select", domProps: {value: getValue()}, on: {change: evt => setValue(evt.target.value)}}, options.map(option =>
+			h("option", {domProps: {value: option.value}}, option.label)
+		))
+	])
+}
+
 export function optional(condition, fn, defaultValue = undefined)
 {
 	if (!condition)
