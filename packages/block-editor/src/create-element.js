@@ -1,5 +1,8 @@
 export function createElement(tag, props = undefined, content = undefined)
 {
+	if (tag === "template")
+		tag = "be-template";
+
 	if (typeof props !== "object" && content === undefined)
 	{
 		content = props;
@@ -50,4 +53,12 @@ export function createElement(tag, props = undefined, content = undefined)
 	}
 
 	return el;
+}
+
+export function fixHTMLString(html)
+{
+	return html
+		.replace(/<be-template/g, "<template")
+		.replace(/<\/be-template/g, "</template")
+		.replace(/=""/g, "");
 }

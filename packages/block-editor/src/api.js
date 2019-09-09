@@ -5,7 +5,7 @@ import { defaultFocusOptions } from "./block";
 import { BlockRegistry } from "./registry";
 import { getLatte } from "./utils";
 import { handleComponentError } from "./helper/error";
-import { createElement } from "./create-element";
+import { createElement, fixHTMLString } from "./create-element";
 
 let blockToFocus = undefined;
 let blocksToUpdateChildren = [];
@@ -452,7 +452,7 @@ export function convertToHtml(root)
 	renderChildren(root)
 		.forEach(dom => tmp.appendChild(dom));
 
-	return tmp.innerHTML;
+	return fixHTMLString(tmp.innerHTML);
 }
 
 export function convertToJson(root)
