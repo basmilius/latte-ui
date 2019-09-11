@@ -84,7 +84,7 @@
 		data()
 		{
 			let i = 0;
-			let rows = Array.from(Array(5000), () => ({id: ++i, name: `Bas ${i}`}));
+			let rows = Array.from(Array(10), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
 				content: [{"id": "heading", "options": {"color": "rgb(247, 54, 43)", "type": "h1", "text": "This is my amazing page!"}},
@@ -103,7 +103,7 @@
 					{"id": "paragraph", "options": {"align": "left", "fontSize": 1, "indent": 0, "text": "Aliquam urna sapien, gravida eget cursus at, fringilla eu metus. In sapien odio, gravida hendrerit iaculis id, sodales sit amet nibh. Nunc nec efficitur diam. Fusce sagittis at nibh eget tristique. Integer elit felis, consequat nec fermentum ut, dignissim sit amet purus. Ut aliquam imperdiet faucibus. Etiam maximus mauris id sem aliquam, vel posuere leo viverra. Nulla eleifend leo in sapien cursus, congue mollis nunc ultrices."}}
 				],
 				rows: rows,
-				testEditor: false
+				testEditor: true
 			};
 		},
 
