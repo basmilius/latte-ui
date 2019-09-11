@@ -17,6 +17,7 @@
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
 	import { getMainElement } from "../../js/core";
+	import { oneOf } from "../../js/helper/array";
 
 	export default {
 
@@ -27,6 +28,7 @@
 			associateWith: {default: undefined},
 			marginX: {default: 0, type: Number},
 			marginY: {default: 0, type: Number},
+			orientation: {default: "vertical", type: String, validator: oneOf(["horizontal", "vertical"])},
 			persistent: {default: false, type: Boolean},
 			withArrow: {default: true, type: Boolean}
 		},
@@ -52,6 +54,7 @@
 		data()
 		{
 			return {
+				arrowPosition: undefined,
 				isOpen: false,
 				isOpening: false,
 				popupX: 0,
@@ -110,13 +113,8 @@
 			{
 				const classes = ["popup"];
 
-				if (this.withArrow)
-				{
-					const aboveUnder = this.y > (self.innerHeight / 2) ? "above" : "under";
-					const position = this.x > (self.innerWidth / 2) ? "right" : "left";
-
-					classes.push(`popup-${position}-${aboveUnder}`);
-				}
+				if (this.withArrow && this.arrowPosition)
+					classes.push("arrow", ...this.arrowPosition);
 
 				if (!this.animateTransform || this.isOpening)
 					classes.push("no-transform-animation");
@@ -192,18 +190,39 @@
 				const t = this.y;
 				const h = this.rect !== null ? this.rect.height : 0;
 				const w = this.rect !== null ? this.rect.width : 0;
+				let x;
+				let y;
 
-				let x = l + this.marginX;
-				let y = t + h + this.marginY;
+				if (this.orientation === "horizontal")
+				{
+					x = l + w + this.marginX;
+					y = t + this.marginY;
 
-				if (px === "right")
-					x = (l + w) - (pcr.width + this.marginX);
+					if (px === "right")
+						x = l - (pcr.width + this.marginX);
 
-				if (py === "above")
-					y = t - (pcr.height + this.marginY);
+					if (py === "above")
+						y = (t + h) - (pcr.height + this.marginY);
 
+					x += (this.isOpen || !this.animateTransform ? 0 : (px === "right" ? -24 : 24));
+				}
+				else
+				{
+					x = l + this.marginX;
+					y = t + h + this.marginY;
+
+					if (px === "right")
+						x = (l + w) - (pcr.width + this.marginX);
+
+					if (py === "above")
+						y = t - (pcr.height + this.marginY);
+
+					y += (this.isOpen || !this.animateTransform ? 0 : (py === "above" ? -24 : 24));
+				}
+
+				this.arrowPosition = [this.orientation, px, py];
 				this.popupX = Math.round(x);
-				this.popupY = Math.round(y + (this.isOpen || !this.animateTransform ? 0 : (py === "above" ? -24 : 24)));
+				this.popupY = Math.round(y);
 			},
 
 			setPosition(x, y)
