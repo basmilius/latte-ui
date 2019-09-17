@@ -92,7 +92,7 @@ export function optionButtons(h, title, buttons, getValue, setValue)
 			...btn,
 			class: "m-0",
 			color: getValue() === btn.value ? "primary" : "dark",
-			style: getValue() === btn.value ? "contained" : "text"
+			style: getValue() === btn.value ? "outline" : "text"
 		}, () => setValue(btn.value))))
 	]);
 }

@@ -11,12 +11,15 @@ $latte-root: "~@bybas/latte-ui/src/";
 
 @import "~@bybas/latte-ui/src/scss/app";
 
-body
+:root
 {
 	--color-primary: 41, 121, 255;
 	--content-gutter: 9px;
 	--drawer-width-secondary: 240px;
+}
 
+body
+{
 	@media (min-width: 992px)
 	{
 		--app-bar-height: 60px;
