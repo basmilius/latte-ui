@@ -11,7 +11,8 @@
 			<nav class="nav nav-tabs px-5 d-none d-lg-flex">
 				<latte-ripple as="router-link" to="/" class="nav-link">Home</latte-ripple>
 				<latte-ripple as="router-link" to="/docs" class="nav-link">Documentation</latte-ripple>
-				<latte-ripple as="router-link" to="/tests" class="nav-link">Random tests</latte-ripple>
+				<latte-ripple as="router-link" to="/block-editor" class="nav-link">Block editor</latte-ripple>
+				<latte-ripple as="router-link" to="/tests" class="nav-link">Bas' playground</latte-ripple>
 			</nav>
 
 			<div class="d-flex align-items-center ml-auto">

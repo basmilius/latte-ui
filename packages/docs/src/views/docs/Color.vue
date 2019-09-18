@@ -39,7 +39,7 @@
 							<CodeSnippet lang="css">
 :root
 {
-	--color-primary: 52, 46, 97;
+	--color-primary: 43, 120, 255;
 	--color-primary-foreground: 255, 255, 255;
 }
 							</CodeSnippet>
@@ -79,68 +79,71 @@
 
 		data()
 		{
+			const computedStyle = window
+				.getComputedStyle(document.body);
+
 			return {
 				api: {
 					variables: [
 						{
-							name: "--default-dark",
+							name: "--dark",
 							type: "rgb",
-							default: [25, 26, 28]
+							default: computedStyle.getPropertyValue("--dark").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--default-light",
+							name: "--light",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--light").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-primary",
 							type: "rgb",
-							default: [55, 125, 255]
+							default: computedStyle.getPropertyValue("--color-primary").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-primary-foreground",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--color-primary-foreground").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-error",
 							type: "rgb",
-							default: [254, 50, 75]
+							default: computedStyle.getPropertyValue("--color-error").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-error-foreground",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--color-error-foreground").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-info",
 							type: "rgb",
-							default: [8, 122, 254]
+							default: computedStyle.getPropertyValue("--color-info").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-info-foreground",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--color-info-foreground").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-success",
 							type: "rgb",
-							default: [23, 195, 123]
+							default: computedStyle.getPropertyValue("--color-success").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-success-foreground",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--color-success-foreground").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-warning",
 							type: "rgb",
-							default: [254, 179, 53]
+							default: computedStyle.getPropertyValue("--color-warning").split(",").map(c => parseInt(c))
 						},
 						{
 							name: "--color-warning-foreground",
 							type: "rgb",
-							default: [255, 255, 255]
+							default: computedStyle.getPropertyValue("--color-warning-foreground").split(",").map(c => parseInt(c))
 						}
 					]
 				}
