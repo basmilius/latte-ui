@@ -63,7 +63,7 @@
 		data()
 		{
 			let i = 0;
-			let rows = Array.from(Array(10), () => ({id: ++i, name: `Bas ${i}`}));
+			let rows = Array.from(Array(10000), () => ({id: ++i, name: `Bas ${i}`}));
 
 			return {
 				rows: rows
