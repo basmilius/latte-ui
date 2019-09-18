@@ -14,12 +14,12 @@
 
 .radius-default
 {
-	border-radius: var(--border-radius) !important;
+	border-radius: var(--radius) !important;
 }
 
 .radius-double
 {
-	border-radius: calc(var(--border-radius) * 2) !important;
+	border-radius: calc(var(--radius) * 2) !important;
 }
 
 .radius-none

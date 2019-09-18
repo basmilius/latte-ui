@@ -105,7 +105,7 @@
 	color: $white !important;
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.text-#{$type}
 	{
@@ -115,22 +115,22 @@
 
 .text-body
 {
-	color: $body-color !important;
+	color: var(--main-foreground) !important;
 }
 
 .text-muted
 {
-	color: $text-muted !important;
+	color: var(--gray-50) !important;
 }
 
-.text-black-50
+.text-light-50
 {
-	color: rgba($black, .5) !important;
+	color: rgba(var(--color-light), .5) !important;
 }
 
-.text-white-50
+.text-dark-50
 {
-	color: rgba($white, .5) !important;
+	color: rgba(var(--color-dark), .5) !important;
 }
 
 .text-decoration-none

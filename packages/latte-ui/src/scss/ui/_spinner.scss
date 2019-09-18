@@ -57,7 +57,7 @@ span.spinner::before,
 	border-radius: .5em;
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.spinner-#{$type}
 	{
@@ -65,7 +65,9 @@ span.spinner::before,
 	}
 }
 
-%inner-spinner
+.autocomplete,
+.form-group,
+.panel
 {
 	& > .spinner
 	{
@@ -85,12 +87,4 @@ span.spinner::before,
 	{
 		display: flex;
 	}
-}
-
-.autocomplete,
-.form-group,
-.panel,
-main.auth-ui section#panel-view
-{
-	@extend %inner-spinner;
 }

@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.notice
+.notice
 {
 	position: relative;
 	display: flex;
@@ -16,7 +16,7 @@ div.notice
 	align-items: center;
 	background: #{latte-rgba(var(--notice-background), .1)};
 	border: 1px solid #{latte-rgba(var(--notice-background), .1)};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	color: #{latte-rgb(var(--notice-background))};
 	font-weight: 500;
 
@@ -64,13 +64,13 @@ div.notice
 		--outline-color: var(--notice-background);
 	}
 
-	+ div.notice
+	+ .notice
 	{
 		margin-top: 1rem;
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $color-types
 {
 	.notice-#{$type}
 	{
@@ -89,11 +89,11 @@ div.notice
 
 	&:first-child
 	{
-		border-radius: var(--border-radius) var(--border-radius) 0 0;
+		border-radius: var(--radius) var(--radius) 0 0;
 	}
 
 	&:last-child
 	{
-		border-radius: 0 0 var(--border-radius) var(--border-radius);
+		border-radius: 0 0 var(--radius) var(--radius);
 	}
 }

@@ -22,7 +22,7 @@
 	justify-content: center;
 	background: #{latte-rgba(var(--badge-color), .1)};
 	box-shadow: 0 0 0 1px #{latte-rgba(var(--badge-color), .2)};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	color: #{latte-rgb(var(--badge-color))};
 	font-size: .8em;
 	font-weight: 500;
@@ -89,7 +89,7 @@ a.badge:hover
 	cursor: pointer;
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.badge-#{$type}
 	{

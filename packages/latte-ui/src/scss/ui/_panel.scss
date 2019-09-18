@@ -30,7 +30,7 @@
 	&:not(.panel-blank)
 	{
 		background: #{latte-rgb(var(--panel-background))};
-		border-radius: var(--border-radius);
+		border-radius: var(--radius);
 	}
 
 	&.panel-outline

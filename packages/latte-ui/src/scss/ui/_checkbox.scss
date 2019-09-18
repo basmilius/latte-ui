@@ -23,7 +23,7 @@ input[type=checkbox].checkbox
 	flex: 0 0 auto;
 	background: transparent;
 	border: 2px solid #{latte-rgb(var(--form-field-outline))};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	cursor: pointer;
 	outline: none;
 	transition: all 180ms var(--ease-swift-out);
@@ -112,7 +112,7 @@ input[type=checkbox].checkbox
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.checkbox-#{$type}
 	{

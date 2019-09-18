@@ -19,12 +19,27 @@
 	--font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 	--branding-logo: #{unquote("url(" + $latte-root + "image/logo.svg)")};
-	--border-radius: 6px;
+	--radius: 6px;
 	--icon-size: 24px;
 
 	--light: 255, 255, 255;
 	--dark: 25, 26, 28;
 	--elevation-color: 127, 127, 127;
+
+	--color-primary: var(--indigo-50);
+	--color-primary-foreground: var(--light);
+	--color-error: var(--red-50);
+	--color-error-foreground: var(--light);
+	--color-info: var(--blue-50);
+	--color-info-foreground: var(--light);
+	--color-success: var(--green-50);
+	--color-success-foreground: var(--light);
+	--color-warning: var(--yellow-50);
+	--color-warning-foreground: var(--light);
+	--color-light: 255, 255, 255;
+	--color-light-foreground: var(--dark);
+	--color-dark: 25, 26, 28;
+	--color-dark-foreground: var(--light);
 
 	--main-background: 249, 249, 249;
 	--main-foreground: 25, 26, 28;
@@ -32,12 +47,6 @@
 
 	--outline-color: 232, 235, 242;
 	--outline-color-secondary: 243, 246, 251;
-
-	@each $type, $color in $theme-colors
-	{
-		--color-#{$type}: #{red($color)}, #{green($color)}, #{blue($color)};
-		--color-#{$type}-foreground: #{dark-or-light($color, var(--dark), var(--light))};
-	}
 
 	@for $level from 0 through 24
 	{

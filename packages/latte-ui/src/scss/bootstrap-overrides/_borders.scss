@@ -57,7 +57,7 @@
 	border-left: 0 !important;
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.border-#{$type}
 	{

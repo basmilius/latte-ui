@@ -30,7 +30,7 @@
 	flex-shrink: 0;
 	justify-content: center;
 	border: 0;
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	cursor: pointer;
 	font-size: var(--btn-font-size);
 	font-weight: 500;
@@ -240,7 +240,7 @@
 
 .btn-fab
 {
-	--border-radius: 28px;
+	--radius: 28px;
 	--btn-height: 56px;
 	--btn-padding: 16px;
 
@@ -293,7 +293,7 @@
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.btn-#{$type}
 	{

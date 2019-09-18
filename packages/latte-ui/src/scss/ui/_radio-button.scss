@@ -71,7 +71,7 @@ input[type=radio].radio-button
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.radio-button-#{$type}
 	{

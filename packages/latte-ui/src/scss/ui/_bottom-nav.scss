@@ -27,7 +27,7 @@
 
 	.btn-action
 	{
-		--border-radius: 0;
+		--radius: 0;
 		--ripple-color: var(--bottom-nav-foreground);
 		--ripple-center: true;
 		--ripple-clip: false;
@@ -117,7 +117,7 @@
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.bottom-nav-#{$type}
 	{

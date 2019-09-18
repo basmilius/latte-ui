@@ -11,11 +11,12 @@
 @import "function/function";
 @import "mixin/mixin";
 
+@import "reboot";
 @import "vendor";
 @import "bootstrap-overrides/bootstrap-overrides";
-@import "reboot";
 
 @import "root";
+@import "colors";
 @import "typography";
 @import "content";
 

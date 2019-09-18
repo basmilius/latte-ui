@@ -89,7 +89,7 @@
 		flex-flow: column;
 		background: rgba(var(--outline-color), .3);
 		border: 2px dashed rgba(var(--outline-color), 1);
-		border-radius: var(--border-radius);
+		border-radius: var(--radius);
 		color: rgba(var(--main-foreground), .75);
 		cursor: pointer;
 		text-align: center;
@@ -321,7 +321,7 @@
 		padding: 6px;
 		flex-flow: column;
 		background: rgba(var(--panel-background), 1);
-		border-radius: var(--border-radius);
+		border-radius: var(--radius);
 		box-shadow: var(--popup-elevation);
 		z-index: 10;
 
@@ -490,7 +490,7 @@
 			justify-content: flex-start;
 			background: transparent;
 			border: 0;
-			border-radius: var(--border-radius);
+			border-radius: var(--radius);
 			cursor: pointer;
 
 			&:hover

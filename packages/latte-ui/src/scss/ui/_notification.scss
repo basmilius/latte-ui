@@ -14,7 +14,7 @@ div.notification
 	width: 360px;
 	align-items: center;
 	background: #{latte-rgb(var(--panel-background))};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	box-shadow: var(--panel-elevation-hover);
 	transition: 420ms var(--ease-swift-out);
 	transition-property: top, opacity, transform;
@@ -140,7 +140,7 @@ div.notification > .avatar
 	}
 }
 
-@each $type in map-keys($theme-colors)
+@each $type in $color-types
 {
 	.notification-#{$type}
 	{

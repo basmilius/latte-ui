@@ -20,7 +20,7 @@
 	top: 0;
 	left: 0;
 	background: #{latte-rgb(var(--popup-background))};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	box-shadow: var(--popup-elevation);
 	opacity: 0;
 	pointer-events: none;

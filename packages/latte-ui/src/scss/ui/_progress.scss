@@ -50,7 +50,7 @@
 		height: 6px;
 		width: 100%;
 		background: #{latte-rgba(var(--progress-color), .25)};
-		border-radius: var(--border-radius);
+		border-radius: var(--radius);
 
 		.progress-value
 		{
@@ -60,7 +60,7 @@
 			left: 0;
 			height: inherit;
 			background: #{latte-rgb(var(--progress-color))};
-			border-radius: var(--border-radius);
+			border-radius: var(--radius);
 		}
 
 		&.is-indeterminate .progress-value

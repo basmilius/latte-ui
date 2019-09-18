@@ -7,15 +7,4 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$theme-colors: (
-		primary: rgb(21, 92, 172),
-		error: rgb(254, 50, 75),
-		info: rgb(102, 153, 204),
-		success: rgb(23, 195, 123),
-		warning: rgb(254, 179, 53),
-		light: rgb(255, 255, 255),
-		dark: rgb(25, 26, 28),
-);
-
-$theme-color-types: map-keys($theme-colors);
-$theme-color-values: map-values($theme-colors);
+$color-types: (primary, error, info, success, warning, light, dark);

@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.bg-#{$type}
 	{
@@ -17,7 +17,7 @@
 
 .bg-white
 {
-	background-color: $white !important;
+	background-color: $white;
 }
 
 .bg-transparent

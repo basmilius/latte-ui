@@ -69,7 +69,7 @@
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.toggle-button-#{$type}
 	{

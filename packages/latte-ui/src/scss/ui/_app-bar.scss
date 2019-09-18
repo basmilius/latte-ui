@@ -195,7 +195,7 @@
 {
 	.btn.app-bar-drawer-branding
 	{
-		--border-radius: 0;
+		--radius: 0;
 		--btn-height: var(--app-bar-height);
 		--icon-size: 36px;
 
@@ -212,7 +212,7 @@
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.app-bar-#{$type}
 	{

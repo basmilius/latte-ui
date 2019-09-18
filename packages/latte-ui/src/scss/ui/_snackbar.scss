@@ -22,7 +22,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	background: #{latte-rgb(var(--dark))};
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	box-shadow: var(--snackbar-elevation);
 	color: #{latte-rgb(var(--light))};
 	transition: 240ms var(--ease-swift-out);

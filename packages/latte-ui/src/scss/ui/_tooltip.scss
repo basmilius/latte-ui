@@ -24,7 +24,7 @@ div.tooltip
 	max-width: 360px;
 	padding: 12px 18px;
 	background: var(--tooltip-background);
-	border-radius: var(--border-radius);
+	border-radius: var(--radius);
 	color: var(--tooltip-foreground);
 	pointer-events: none;
 	transition: opacity 210ms var(--ease-swift-out);
@@ -97,7 +97,7 @@ div.tooltip
 	}
 }
 
-@each $type in $theme-color-types
+@each $type in $color-types
 {
 	.tooltip.tooltip-#{$type}
 	{

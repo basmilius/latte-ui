@@ -76,7 +76,7 @@
 		max-width: 100%;
 		background: rgba(var(--main-background), 1);
 		border: 1px solid rgba(var(--outline-color-secondary), 1);
-		border-radius: var(--border-radius);
+		border-radius: var(--radius);
 		overflow: auto;
 
 		pre
