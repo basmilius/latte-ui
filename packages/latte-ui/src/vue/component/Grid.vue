@@ -158,7 +158,7 @@
 
 				let item = getLayoutItem(this.layout, id);
 
-				if (item === undefined || item === null)
+				if (!item)
 					item = {x: 0, y: 0};
 
 				item.x = x;
@@ -215,7 +215,7 @@
 
 				let item = getLayoutItem(this.layout, id);
 
-				if (item === undefined || item === null)
+				if (!item)
 					item = {height: 0, width: 0};
 
 				item.height = height;

@@ -195,7 +195,7 @@
 
 			addValue(label, value)
 			{
-				if (label === undefined || value === undefined)
+				if (!label || !value)
 					return;
 
 				if (this.values.filter(v => v.value === value).length > 0)
@@ -340,7 +340,7 @@
 				immediate: true,
 				handler()
 				{
-					if (this.dataSource === undefined)
+					if (!this.dataSource)
 						throw new Error("dataSource is undefined.");
 
 					return new Promise(resolve =>

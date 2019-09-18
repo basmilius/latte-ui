@@ -60,7 +60,7 @@
 			{
 				const option = this.options[this.selectedOptionIndex];
 
-				if (option !== undefined)
+				if (option)
 					return option;
 
 				return null;

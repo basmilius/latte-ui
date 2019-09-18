@@ -9,7 +9,7 @@
 
 .message-bubble
 {
-	--radius: calc(var(--radius) * 1.5);
+	--r: calc(var(--radius) * 1.5);
 
 	display: flex;
 	max-width: 540px;
@@ -80,10 +80,10 @@
 	padding: 18px 24px;
 	flex-flow: column;
 	background: #{latte-rgb(var(--message-background))};
-	border-radius: var(--radius);
+	border-radius: var(--r);
 	color: #{latte-rgb(var(--message-foreground))};
 
-	--arrow-size: calc(var(--radius) * 2);
+	--arrow-size: calc(var(--r) * 2);
 
 	&::before,
 	&::after
@@ -92,7 +92,7 @@
 		display: block;
 		bottom: 0;
 		content: "";
-		border-radius: 0 0 var(--radius) var(--radius);
+		border-radius: 0 0 var(--r) var(--r);
 	}
 
 	&::before

@@ -84,7 +84,7 @@
 				return children[0];
 
 			return ce(this.tag, {
-				class: ["latte-portal-target", ...this.transportedClasses].filter(c => c !== undefined),
+				class: ["latte-portal-target", ...this.transportedClasses].filter(c => !!c),
 				props: this.attributes
 			}, children);
 		},

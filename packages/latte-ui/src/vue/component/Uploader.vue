@@ -37,7 +37,7 @@
 
 	function arrayToFileList(files)
 	{
-		if (files === undefined)
+		if (!files)
 			files = [];
 
 		const dataTransfer = new DataTransfer();

@@ -135,7 +135,7 @@
 			this.columns = this.$parent.columns;
 			this.rowHeight = this.$parent.rowHeight;
 			this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
-			this.margin = this.$parent.margin !== undefined ? this.$parent.margin : [24, 24];
+			this.margin = this.$parent.margin ? this.$parent.margin : [24, 24];
 			this.maxRows = this.$parent.maxRows;
 
 			if (this.isDraggable === null)

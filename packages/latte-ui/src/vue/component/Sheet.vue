@@ -291,7 +291,7 @@
 
 			isWithinTriggerBounds(position)
 			{
-				if (position === undefined)
+				if (!position)
 					return false;
 
 				const rect = this.$el.getBoundingClientRect();
@@ -381,7 +381,7 @@
 				if (this.isPeeking)
 					this.isPeeking = !(this.isDragging = true);
 
-				if (!this.touchEnabled || !this.isDragging || this.currentPosition === undefined || this.startPosition === undefined)
+				if (!this.touchEnabled || !this.isDragging || !this.currentPosition || !this.startPosition)
 					return;
 
 				const isSameLocation = this.currentPosition.x === this.startPosition.x && this.currentPosition.y === this.startPosition.y;

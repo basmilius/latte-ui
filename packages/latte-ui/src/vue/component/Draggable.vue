@@ -226,7 +226,7 @@
 			{
 				let element = event.item._underlying_vm_;
 
-				if (element === undefined)
+				if (!element)
 					return;
 
 				removeNode(event.item);

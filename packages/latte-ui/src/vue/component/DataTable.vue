@@ -360,10 +360,10 @@
 				this.actions = this.dsi.actions;
 				this.columns = this.dsi.columns.map(column => Object.assign({}, columnDefaults, column));
 
-				if (this.dsi.sorting !== undefined)
+				if (this.dsi.sorting)
 					this.sort = this.dsi.sorting;
 
-				if (this.dsi.initial_data !== undefined)
+				if (this.dsi.initial_data)
 					this.onReceivedData(this.dsi.initial_data);
 				else
 					this.loadData();
@@ -436,7 +436,7 @@
 				immediate: true,
 				handler()
 				{
-					if (this.dataSource === undefined)
+					if (!this.dataSource)
 						throw new Error("dataSource is undefined.");
 
 					return new Promise(resolve =>

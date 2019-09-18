@@ -56,7 +56,7 @@ class OutsideEvent
 	{
 		const coords = getCoords(evt);
 
-		return coords !== undefined && closest(document.elementFromPoint(coords.x, coords.y), this.source) !== null;
+		return coords && closest(document.elementFromPoint(coords.x, coords.y), this.source) !== null;
 	}
 
 }

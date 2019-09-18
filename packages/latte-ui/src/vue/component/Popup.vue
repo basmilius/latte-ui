@@ -100,7 +100,7 @@
 
 			associatedElement()
 			{
-				if (this.associateWith === undefined)
+				if (!this.associateWith)
 					return undefined;
 
 				if (this.associateWith instanceof Vue)
@@ -149,7 +149,7 @@
 
 			unbindEvents()
 			{
-				if (this.associatedElement === undefined)
+				if (!this.associatedElement)
 					return;
 
 				this.rect = null;
@@ -246,7 +246,7 @@
 
 			onTick()
 			{
-				if (this.associatedElement !== undefined)
+				if (this.associatedElement)
 					this.rect = this.associatedElement.getBoundingClientRect();
 
 				this.calculatePosition();
@@ -258,10 +258,10 @@
 
 			associateWith(n, o)
 			{
-				if (o !== undefined)
+				if (o)
 					this.unbindEvents();
 
-				if (n !== undefined)
+				if (n)
 					this.bindEvents();
 			},
 

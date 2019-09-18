@@ -119,7 +119,7 @@
 			{
 				let cat = this.categories[this.currentCategory] || "";
 
-				return cat !== undefined && (cat.id === "activity" || cat.id === "people");
+				return cat && (cat.id === "activity" || cat.id === "people");
 			}
 
 		},

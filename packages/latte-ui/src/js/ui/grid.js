@@ -258,7 +258,7 @@ export function validateLayout(layout, contextName = "Layout")
 		if (item.i && typeof item.i !== "string")
 			throw new Error(`[LatteUI] ${contextName}[${i}].i must be a string!`);
 
-		if (item.static !== undefined && typeof item.static !== "boolean")
+		if (item.static && typeof item.static !== "boolean")
 			throw new Error(`[LatteUI] ${contextName}[${i}].static must be a boolean!`);
 	}
 }

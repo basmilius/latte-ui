@@ -132,7 +132,7 @@
 
 				const ripple = this.ripples.filter(r => !r.classList.contains("is-removing"))[0];
 
-				if (ripple === undefined)
+				if (!ripple)
 					return;
 
 				ripple.classList.add("is-removing");
