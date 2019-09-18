@@ -38,19 +38,19 @@ const MessagePanel = Vue.extend({
 
 	render(h)
 	{
-		return h("div", {attrs: {role: "dialog"}, class: ["overlay", "is-visible", this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
-			h("div", {class: ["panel"], style: {width: "540px"}}, [
-				h("div", {class: ["panel-header"]}, [
-					h("span", {class: ["panel-title"]}, this.title)
+		return h("div", {attrs: {role: "dialog"}, class: `overlay is-visible ${this.isOpen ? "is-open" : ""}`, style: {zIndex: this.z}}, [
+			h("div", {class: "panel", style: {width: "540px"}}, [
+				h("div", {class: "panel-header"}, [
+					h("span", {class: "panel-title"}, this.title)
 				]),
-				h("div", {class: ["panel-body"]}, [
+				h("div", {class: "panel-body"}, [
 					h("p", {domProps: {innerHTML: this.message}}),
-					!this.prompt ? undefined : h("div", {class: ["form-group"]}, [
+					!this.prompt ? undefined : h("div", {class: "form-group"}, [
 						h("input", {
 							attrs: {
 								type: "text"
 							},
-							class: ["form-control"],
+							class: "form-control",
 							props: {
 								value: this.promptResult
 							},
@@ -61,8 +61,8 @@ const MessagePanel = Vue.extend({
 						})
 					])
 				]),
-				h("div", {class: ["panel-footer", "justify-content-end"]}, this.buttons.map(button => h("latte-ripple", {
-					class: ["btn", ...button.classes],
+				h("div", {class: "panel-footer justify-content-end"}, this.buttons.map(button => h("latte-ripple", {
+					class: ["btn", ...button.classes].join(" "),
 					on: {
 						click: () => this.close(button.id)
 					},

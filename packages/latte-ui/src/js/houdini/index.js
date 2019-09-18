@@ -20,7 +20,7 @@ function registerCSSPaintWorklets()
 			CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`)
 		])
 		.then(() => docRoot.classList.add("css-paint-api"))
-		.catch(err => console.error(`[LatteUI] CSS Paint API not used because worklets could not load.`));
+		.catch(() => console.error(`[LatteUI] CSS Paint API not used because worklets could not load.`));
 }
 
 function registerCSSProperties()

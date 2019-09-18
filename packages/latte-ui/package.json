@@ -1,7 +1,7 @@
 {
 	"name": "@bybas/latte-ui",
 	"version": "1.9.0-dev",
-	"description": "UI Library of Latte Framework.",
+	"description": "A simple UI library build using Vue.js.",
 	"author": {
 		"name": "Bas Milius",
 		"email": "bas@mili.us",

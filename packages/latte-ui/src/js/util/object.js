@@ -66,10 +66,7 @@ export function deepMerge(target, ...sources)
  */
 export function isIterable(obj)
 {
-	if (obj === null)
-		return false;
-
-	return typeof obj[Symbol.iterator] === "function";
+	return obj !== null && typeof obj[Symbol.iterator] === "function";
 }
 
 /**

@@ -24,9 +24,7 @@
 					<nav class="nav nav-list">
 						<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui/releases" target="_blank"><i class="mdi mdi-download"></i><span>Download</span></latte-ripple>
 						<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui" target="_blank"><i class="mdi mdi-github-circle"></i><span>Get Source</span></latte-ripple>
-						<div class="divider divider-horizontal"></div>
-						<latte-ripple as="a" class="nav-link" data-action="latte:switch-theme" data-close data-theme-id="default"><i class="mdi mdi-lightbulb-on"></i><span>Light theme</span></latte-ripple>
-						<latte-ripple as="a" class="nav-link" data-action="latte:switch-theme" data-close data-theme-id="dark"><i class="mdi mdi-invert-colors"></i><span>Dark theme</span></latte-ripple>
+						<!-- TODO(Bas): Reimplement theming options. -->
 					</nav>
 				</latte-popup>
 			</div>

@@ -27,18 +27,8 @@ let lastY = 0;
 const Notification = Vue.extend({
 
 	props: {
-
-		options: {
-			default: () => ({}),
-			required: true,
-			type: Object
-		},
-
-		resolve: {
-			required: true,
-			type: Function
-		}
-
+		options: {default: () => ({}), required: true, type: Object},
+		resolve: {required: true, type: Function}
 	},
 
 	created()

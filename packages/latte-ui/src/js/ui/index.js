@@ -7,7 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { initializeForms } from "./form";
 import message from "./message";
 import notice, { initializeNotices } from "./notice";
 import notification, { initializeNotifications } from "./notification";
@@ -19,7 +18,6 @@ import { initializeScrollbar } from "./scrollbar";
 
 export function initializeUI()
 {
-	initializeForms();
 	initializeNotices();
 	initializeNotifications();
 	initializeOverlays();

@@ -41,8 +41,6 @@ declare namespace Latte
 		export function id(): string;
 
 		export function request(url: string, options?: RequestInit): Promise<Response>;
-
-		export function requestJson(url: string, options?: RequestInit): Promise<Response>;
 	}
 
 	namespace core
@@ -278,26 +276,6 @@ declare namespace Latte
 			export function paste(): Promise<string>;
 		}
 
-		namespace cookies
-		{
-			export function getCookie(name: string): any;
-
-			export function setCookie(name: string, value: any, days?: number): void;
-		}
-
-		namespace datetime
-		{
-			interface FormatOptions
-			{
-				day: string;
-				month: string;
-				weekday: string;
-				year: string;
-			}
-
-			export function formatDateTime(date: Date, options: FormatOptions): string;
-		}
-
 		namespace dom
 		{
 			interface Coords
@@ -337,11 +315,6 @@ declare namespace Latte
 			export function terminateEvent(evt: Event): void;
 
 			export function toDOM(str: string): DocumentFragment;
-		}
-
-		namespace json
-		{
-			export function isJson(str: string): boolean;
 		}
 
 		namespace object

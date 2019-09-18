@@ -19,8 +19,7 @@ let currentZ = 2000;
  */
 export function applyZ(fn)
 {
-	fn(currentZ);
-	currentZ++;
+	fn(currentZ++);
 }
 
 export default {

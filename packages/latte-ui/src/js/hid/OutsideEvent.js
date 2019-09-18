@@ -65,7 +65,7 @@ export function registerOutsideEvents()
 {
 	EventTarget.prototype.addOutsideEventListener = function (type, listener, options = {})
 	{
-		if (this.outsideEvent === undefined)
+		if (!this.outsideEvent)
 			this.outsideEvent = new OutsideEvent(this);
 
 		this.outsideEvent.addEventListener(type, listener, options);
@@ -73,7 +73,7 @@ export function registerOutsideEvents()
 
 	EventTarget.prototype.clearOutsideEventListeners = function ()
 	{
-		if (this.outsideEvent === undefined)
+		if (!this.outsideEvent)
 			this.outsideEvent = new OutsideEvent(this);
 
 		this.outsideEvent.clearListeners();
@@ -81,7 +81,7 @@ export function registerOutsideEvents()
 
 	EventTarget.prototype.removeOutsideEventListener = function (type, listener, options = {})
 	{
-		if (this.outsideEvent === undefined)
+		if (!this.outsideEvent)
 			this.outsideEvent = new OutsideEvent(this);
 
 		this.outsideEvent.removeEventListener(type, listener, options);

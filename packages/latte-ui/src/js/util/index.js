@@ -8,20 +8,15 @@
  */
 
 import clipboard from "./clipboard";
-import cookies from "./cookies";
-import datetime from "./datetime";
+
 import dom from "./dom";
-import json from "./json";
 import object from "./object";
 import string from "./string";
 import touch from "./touch";
 
 export default {
 	clipboard,
-	cookies,
-	datetime,
 	dom,
-	json,
 	object,
 	string,
 	touch

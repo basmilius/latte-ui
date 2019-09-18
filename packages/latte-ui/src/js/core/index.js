@@ -10,8 +10,6 @@
 import popup from "./popup";
 import z from "./z";
 
-import { alert } from "../ui/message";
-
 export const docRoot = document.documentElement;
 export let currentOptions = {};
 
@@ -50,7 +48,7 @@ export function getOptions()
  */
 export function handleError(err, fn = undefined)
 {
-	alert("Aw snap!", `<pre>${err.stack}</pre>`);
+	console.error(err);
 
 	if (fn)
 		fn();

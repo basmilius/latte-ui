@@ -64,9 +64,6 @@ export function stableSort(array, compareFn)
 {
 	return array
 		.map((v, idx) => [idx, v])
-		.sort(function (a, b)
-		{
-			return this(a[1], b[1]) || a[0] - b[0]
-		}.bind(compareFn))
+		.sort((a, b) => compareFn(a[1], b[1]) || a[0] - b[0])
 		.map(c => c[1]);
 }

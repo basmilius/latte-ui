@@ -9,9 +9,8 @@
 
 import LatteSDK from "./sdk";
 
-import { dispatch, initializeActions, on, removeSavedFromQueryString } from "./core/action";
-import { docRoot, getOptions, setOptions, timeout } from "./core";
-import { setCookie } from "./util/cookies";
+import { dispatch, initializeActions, removeSavedFromQueryString } from "./core/action";
+import { getOptions, setOptions, timeout } from "./core";
 import { initializeHoudiniApis } from "./houdini";
 import { registerOutsideEvents } from "./hid/OutsideEvent";
 import { initializeUI } from "./ui";
@@ -39,7 +38,7 @@ function normalizeOptions(options)
 
 export const defaultOptions = {
 	emojiBaseUrl: "https://g.s3.bmcdn.nl/assets/joypixels/v5",
-	emojiEnabled: true,
+	emojiEnabled: false,
 	emojiPath: "/png/64/@0.png",
 	i18n: {},
 	iconFactory: iconFactory,
@@ -69,7 +68,6 @@ export class LatteUI
 		LatteUI.registerMixins(Vue);
 		LatteUI.registerComponents(Vue);
 
-		on("latte:switch-theme", data => LatteUI.onSwitchTheme(data));
 		raf(() => LatteUI.onTick());
 
 		document.addEventListener("visibilitychange", () => LatteUI.onVisibilityChange());
@@ -109,17 +107,6 @@ export class LatteUI
 		initializeActions();
 		initializeUI();
 		removeSavedFromQueryString();
-	}
-
-	static onSwitchTheme(data)
-	{
-		const {themeId} = data;
-
-		if (themeId === undefined)
-			return;
-
-		docRoot.dataset.theme = themeId;
-		setCookie("$ui:theme", themeId);
 	}
 
 	static onVisibilityChange()

@@ -43,7 +43,7 @@ function spawnTooltip(data)
 {
 	let {x, y, content, position = "vertical"} = data;
 
-	if (content === undefined)
+	if (!content)
 		return;
 
 	tooltipElement.innerHTML = "";
