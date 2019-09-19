@@ -27,7 +27,7 @@
 <script>
 
 	import Vue from "vue";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	export default {
 

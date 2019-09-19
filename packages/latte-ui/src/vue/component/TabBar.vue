@@ -29,7 +29,7 @@
 
 	import { raf } from "../../js/util/dom";
 	import { on } from "../../js/core/action";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	export default {
 

@@ -69,7 +69,7 @@
 	import { Buttons, prompt } from "../../js/ui/message";
 	import { translate } from "../../js/i18n";
 	import { clamp } from "../../js/math";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	export default {
 

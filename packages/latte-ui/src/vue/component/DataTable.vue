@@ -106,7 +106,7 @@
 	import { isNullOrWhitespace } from "../../js/util/string";
 	import { handleError } from "../../js/core";
 	import { oneOf } from "../../js/helper/array";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 											<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>

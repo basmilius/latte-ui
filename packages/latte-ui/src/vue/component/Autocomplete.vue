@@ -59,7 +59,7 @@
 
 	import { id, request } from "../../js/core/api";
 	import { handleError } from "../../js/core";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	function areArraysEqual(a, b)
 	{
