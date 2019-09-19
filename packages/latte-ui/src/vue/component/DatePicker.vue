@@ -31,8 +31,8 @@
 
 <script>
 
-	import DateTimePickerMount from "./base/DateTimePickerMount";
-	import Icon from "./base/Icon";
+	import DateTimePickerMount from "./base/DateTimePickerMount.vue";
+	import Icon from "./base/Icon.vue";
 
 	export default {
 

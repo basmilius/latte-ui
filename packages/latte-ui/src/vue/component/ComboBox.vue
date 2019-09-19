@@ -31,7 +31,7 @@
 <script>
 
 	import { raf } from "../../js/util/dom";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	export default {
 

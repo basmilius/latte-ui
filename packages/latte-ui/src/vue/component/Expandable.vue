@@ -29,7 +29,7 @@
 
 <script>
 
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	import { dispatch, on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";

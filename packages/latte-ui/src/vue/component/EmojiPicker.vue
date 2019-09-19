@@ -53,7 +53,7 @@
 
 	import { emojiBaseUrl, ensureEmojisReady, getCategories, getEmoji, getEmojisForCategory, skinTones } from "../../js/ui/emoji";
 	import { createElement } from "../../js/util/dom";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	let isSpriteCssLoaded = false;
 

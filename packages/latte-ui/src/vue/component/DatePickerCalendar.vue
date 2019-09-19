@@ -61,7 +61,7 @@
 <script>
 
 	import moment from "moment";
-	import Icon from "./base/Icon";
+	import Icon from "./base/Icon.vue";
 
 	import { raf } from "../../js/util/dom";
 
