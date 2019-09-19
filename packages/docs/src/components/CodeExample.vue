@@ -41,6 +41,7 @@
 		},
 
 		props: {
+			bindings: {default: () => ({}), type: Object},
 			previewClasses: {default: "", type: String},
 			showCode: {default: true, type: Boolean},
 			title: {default: "Example", type: String},
@@ -78,9 +79,17 @@
 				this.code = code
 					.replace(new RegExp(`\n<div class="ce-gutter"></div>\n`, "g"), "")
 					.replace(new RegExp(`\n<div class="ce-gutter-w"></div>\n`, "g"), "");
+
+				const bindings = this.bindings || {};
+
 				this.component = Vue.extend({
 
-					template: `<div class="${this.previewClasses}">${code}</div>`
+					template: `<div class="${this.previewClasses}">${code}</div>`,
+
+					data()
+					{
+						return bindings || {};
+					}
 
 				});
 				this.isLoading = false;
