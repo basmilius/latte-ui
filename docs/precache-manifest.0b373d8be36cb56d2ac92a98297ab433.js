@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "65b069fdeb325bc4fd5b",
+    "revision": "1f884c2415ea1a253475",
     "url": "/assets/css/app.56cc2fda.css"
   },
   {
-    "revision": "65b069fdeb325bc4fd5b",
-    "url": "/assets/js/app.f36de6ef.js"
+    "revision": "1f884c2415ea1a253475",
+    "url": "/assets/js/app.f2a3e7ed.js"
   },
   {
     "revision": "1e29635720057111708d",
@@ -260,12 +260,12 @@ self.__precacheManifest = [
     "url": "/assets/js/chunk-vendors.00161d87.js"
   },
   {
-    "revision": "a0d13d16cc2f3647680d9f1ff003f58b",
-    "url": "/assets/fonts/materialdesignicons-webfont.a0d13d16.woff"
-  },
-  {
     "revision": "7ec5dab7e7ff250971d2ff50379778dc",
     "url": "/assets/fonts/materialdesignicons-webfont.7ec5dab7.woff2"
+  },
+  {
+    "revision": "a0d13d16cc2f3647680d9f1ff003f58b",
+    "url": "/assets/fonts/materialdesignicons-webfont.a0d13d16.woff"
   },
   {
     "revision": "3ac50b5b36eb2f11b000dce1792d0bb0",
@@ -292,16 +292,16 @@ self.__precacheManifest = [
     "url": "/assets/img/bas.bf57d4d6.svg"
   },
   {
-    "revision": "3e7f0df60982a0fd759703036e7b123d",
+    "revision": "f415d66ffe85796e2fafe30eada40952",
     "url": "/index.html"
-  },
-  {
-    "revision": "aec78d9a76aaab031f16a5aae5ee783d",
-    "url": "/image/hamster.jpg"
   },
   {
     "revision": "20fd01949f6781cf296f56c0b4a6225f",
     "url": "/download/starter-template.html"
+  },
+  {
+    "revision": "aec78d9a76aaab031f16a5aae5ee783d",
+    "url": "/image/hamster.jpg"
   },
   {
     "revision": "2c32a0959ade6a2a703ebc8836f587f6",
@@ -328,28 +328,24 @@ self.__precacheManifest = [
     "url": "/snippets/components/app-bar/cutout.html"
   },
   {
-    "revision": "e66b68c74b2318eaf3b5459d35d1e66d",
-    "url": "/snippets/components/app-bar/main.html"
-  },
-  {
     "revision": "713315b6d3ddd2ae68ed19e5778178ee",
     "url": "/snippets/components/app-bar/flat-transparent.html"
   },
   {
-    "revision": "f52b68300940c602117f74f6ac6a49a7",
-    "url": "/snippets/components/app-bar/panel.html"
+    "revision": "e66b68c74b2318eaf3b5459d35d1e66d",
+    "url": "/snippets/components/app-bar/main.html"
   },
   {
     "revision": "ecba5892efd4729d724c007074c57adf",
     "url": "/snippets/components/app-bar/rows.html"
   },
   {
-    "revision": "281240ff1ffb24ef356622cb34546678",
-    "url": "/snippets/components/app-bar/search.html"
+    "revision": "f52b68300940c602117f74f6ac6a49a7",
+    "url": "/snippets/components/app-bar/panel.html"
   },
   {
-    "revision": "f9b749b987301d1b480d532ebbcdab02",
-    "url": "/snippets/components/avatar/radius.html"
+    "revision": "281240ff1ffb24ef356622cb34546678",
+    "url": "/snippets/components/app-bar/search.html"
   },
   {
     "revision": "3c610a5a558676e1a9323a0b41ceb29a",
@@ -358,6 +354,10 @@ self.__precacheManifest = [
   {
     "revision": "344213b41e658fc00b74a838ed1b5623",
     "url": "/snippets/components/avatar/initials.html"
+  },
+  {
+    "revision": "f9b749b987301d1b480d532ebbcdab02",
+    "url": "/snippets/components/avatar/radius.html"
   },
   {
     "revision": "8833245af56bd082d470fcf0beb3e4b8",
@@ -388,20 +388,20 @@ self.__precacheManifest = [
     "url": "/snippets/components/bottom-nav/shifting.html"
   },
   {
-    "revision": "80ecb06eb606aef5c97a4ef7ca42349c",
-    "url": "/snippets/components/bottom-nav/side.html"
+    "revision": "9015a249fe7fc59308d95b1e8c8c8141",
+    "url": "/snippets/components/button/fab.html"
   },
   {
-    "revision": "a63d70573dc2b17beb2bf4bc49541812",
-    "url": "/snippets/components/button/action.html"
+    "revision": "80ecb06eb606aef5c97a4ef7ca42349c",
+    "url": "/snippets/components/bottom-nav/side.html"
   },
   {
     "revision": "9276948f837aa0fde52dfd65fa55233d",
     "url": "/snippets/components/button/contained.html"
   },
   {
-    "revision": "9015a249fe7fc59308d95b1e8c8c8141",
-    "url": "/snippets/components/button/fab.html"
+    "revision": "a63d70573dc2b17beb2bf4bc49541812",
+    "url": "/snippets/components/button/action.html"
   },
   {
     "revision": "15bd7b96b66db77f36766ea3a18aa3cf",
@@ -416,12 +416,12 @@ self.__precacheManifest = [
     "url": "/snippets/components/button/pill.html"
   },
   {
-    "revision": "4d9bb221736fcb47582146b89062cfd4",
-    "url": "/snippets/components/button/soft.html"
-  },
-  {
     "revision": "ea58454c7a09f2931a0d46d1e83244ec",
     "url": "/snippets/components/button/sizes.html"
+  },
+  {
+    "revision": "4d9bb221736fcb47582146b89062cfd4",
+    "url": "/snippets/components/button/soft.html"
   },
   {
     "revision": "c16e662c81dd2f43e238f03908d238f3",
@@ -440,32 +440,28 @@ self.__precacheManifest = [
     "url": "/snippets/components/expandable/advanced.html"
   },
   {
-    "revision": "73b9a613bcd663283122f54e0cf74bb4",
-    "url": "/snippets/components/expandable/group.html"
-  },
-  {
-    "revision": "8d58215190ce689e878d803e3e0aecb1",
-    "url": "/snippets/components/expandable/nav.html"
-  },
-  {
     "revision": "47bd24c9d8844a0879295e8a9d66011a",
     "url": "/snippets/components/expandable/basic.html"
   },
   {
-    "revision": "63f5ec69cad9bfff297ca78c7bcaeeeb",
-    "url": "/snippets/components/form-elements/checkbox.html"
+    "revision": "73b9a613bcd663283122f54e0cf74bb4",
+    "url": "/snippets/components/expandable/group.html"
   },
   {
     "revision": "9d99bcf6fd734ddeeeb09ff2994e93f8",
     "url": "/snippets/components/form-elements/autocomplete.html"
   },
   {
-    "revision": "ec4c5c8f95d7642f88d7a11a0f42a091",
-    "url": "/snippets/components/form-elements/datetime.html"
+    "revision": "8d58215190ce689e878d803e3e0aecb1",
+    "url": "/snippets/components/expandable/nav.html"
   },
   {
-    "revision": "07aa378abe27cacc1a8894e16363ea7d",
-    "url": "/snippets/components/form-elements/field.html"
+    "revision": "63f5ec69cad9bfff297ca78c7bcaeeeb",
+    "url": "/snippets/components/form-elements/checkbox.html"
+  },
+  {
+    "revision": "ec4c5c8f95d7642f88d7a11a0f42a091",
+    "url": "/snippets/components/form-elements/datetime.html"
   },
   {
     "revision": "a857d85454e93d7486dfec5604f407eb",
@@ -480,12 +476,12 @@ self.__precacheManifest = [
     "url": "/snippets/components/form-elements/range.html"
   },
   {
-    "revision": "e3ccfda46e508f420629d6a1f03e5af9",
-    "url": "/snippets/components/form-elements/select.html"
+    "revision": "07aa378abe27cacc1a8894e16363ea7d",
+    "url": "/snippets/components/form-elements/field.html"
   },
   {
-    "revision": "194c9236572bfe829e5ccd824a38e7c2",
-    "url": "/snippets/components/form-elements/toggle.html"
+    "revision": "e3ccfda46e508f420629d6a1f03e5af9",
+    "url": "/snippets/components/form-elements/select.html"
   },
   {
     "revision": "7a922fd7de506ed7719d4c3c59f49698",
@@ -496,12 +492,20 @@ self.__precacheManifest = [
     "url": "/snippets/components/list/icon.html"
   },
   {
-    "revision": "62a5b84deda459d77c8107a9bfc937f6",
-    "url": "/snippets/components/list/prefix-suffix.html"
-  },
-  {
     "revision": "f284aff138c537c4e6df29c8330e6151",
     "url": "/snippets/components/list/ripple.html"
+  },
+  {
+    "revision": "194c9236572bfe829e5ccd824a38e7c2",
+    "url": "/snippets/components/form-elements/toggle.html"
+  },
+  {
+    "revision": "85128b14e24daedf74471f45292f918f",
+    "url": "/snippets/components/message/confirm.snippet"
+  },
+  {
+    "revision": "62a5b84deda459d77c8107a9bfc937f6",
+    "url": "/snippets/components/list/prefix-suffix.html"
   },
   {
     "revision": "db8356e11dea01ad67c9f03b722ad077",
@@ -512,20 +516,16 @@ self.__precacheManifest = [
     "url": "/snippets/components/message/custom.snippet"
   },
   {
-    "revision": "85128b14e24daedf74471f45292f918f",
-    "url": "/snippets/components/message/confirm.snippet"
-  },
-  {
     "revision": "32e113c7f505e8d3b8f4e79e7f273b87",
     "url": "/snippets/components/message/prompt.snippet"
   },
   {
-    "revision": "321bb4505b26d61579a52615efe742e1",
-    "url": "/snippets/components/message/what.html"
-  },
-  {
     "revision": "0ca3ce54fb831d41629ab8edb403b922",
     "url": "/snippets/components/notice/all.html"
+  },
+  {
+    "revision": "321bb4505b26d61579a52615efe742e1",
+    "url": "/snippets/components/message/what.html"
   },
   {
     "revision": "b9e3ad238ff1e689e38ec8ac819b8996",
@@ -536,12 +536,12 @@ self.__precacheManifest = [
     "url": "/snippets/components/notice/icon.html"
   },
   {
-    "revision": "8cefe9dffcb05e693f025163d05d4fad",
-    "url": "/snippets/components/notice/panel.html"
-  },
-  {
     "revision": "59dc156fc63e83157e9d9f6c29abde96",
     "url": "/snippets/components/notification/avatar.snippet"
+  },
+  {
+    "revision": "8cefe9dffcb05e693f025163d05d4fad",
+    "url": "/snippets/components/notice/panel.html"
   },
   {
     "revision": "1afceafa8f4fd479a9e16d8335e70b8a",
@@ -556,12 +556,12 @@ self.__precacheManifest = [
     "url": "/snippets/components/notification/minimal.snippet"
   },
   {
-    "revision": "d45dc4b0c13c2095fd847814e934eacc",
-    "url": "/snippets/components/pagination/basic.html"
-  },
-  {
     "revision": "5da56e016d3aa7e1c4eff7cd8fd91dd9",
     "url": "/snippets/components/notification/what.html"
+  },
+  {
+    "revision": "d45dc4b0c13c2095fd847814e934eacc",
+    "url": "/snippets/components/pagination/basic.html"
   },
   {
     "revision": "c1418c2dfd35903f1a391e74b4cbb906",
@@ -612,16 +612,20 @@ self.__precacheManifest = [
     "url": "/snippets/components/popup/custom-content.html"
   },
   {
-    "revision": "4f291cde4e85c4117e8fec5e67fe1a56",
-    "url": "/snippets/components/question/api.snippet"
-  },
-  {
     "revision": "a06f7335c23211a1b6cd13d7fa2c90b7",
     "url": "/snippets/components/popup/window.html"
   },
   {
+    "revision": "4f291cde4e85c4117e8fec5e67fe1a56",
+    "url": "/snippets/components/question/api.snippet"
+  },
+  {
     "revision": "cfd1902d7f97c4eff05b77591dfe1105",
     "url": "/snippets/components/question/what.html"
+  },
+  {
+    "revision": "be219479ac36daac7491d3c3a0ab4aa5",
+    "url": "/snippets/components/ripple/clip.html"
   },
   {
     "revision": "f90909c28f605560f04e5a99d5e56f92",
@@ -632,48 +636,44 @@ self.__precacheManifest = [
     "url": "/snippets/components/ripple/color.html"
   },
   {
-    "revision": "be219479ac36daac7491d3c3a0ab4aa5",
-    "url": "/snippets/components/ripple/clip.html"
-  },
-  {
-    "revision": "4f6a93b2f48c45e81a36c50e7681db1f",
-    "url": "/snippets/components/snackbar/api.snippet"
+    "revision": "93569cfac459bf2a3f4974b6ac99a1a3",
+    "url": "/snippets/components/ripple/standalone.html"
   },
   {
     "revision": "d41d8cd98f00b204e9800998ecf8427e",
     "url": "/snippets/components/sheet/basic.html"
   },
   {
-    "revision": "93569cfac459bf2a3f4974b6ac99a1a3",
-    "url": "/snippets/components/ripple/standalone.html"
+    "revision": "4f6a93b2f48c45e81a36c50e7681db1f",
+    "url": "/snippets/components/snackbar/api.snippet"
   },
   {
     "revision": "84e82456821c9b1713616c27435e4475",
     "url": "/snippets/components/snackbar/what.html"
   },
   {
-    "revision": "9cc5fe19cb8130d379dde578bd540b31",
-    "url": "/snippets/layout/grid-system/widths.html"
-  },
-  {
     "revision": "1d026e956843b02b9e48767f0bee8035",
     "url": "/snippets/components/swiper/basic.html"
-  },
-  {
-    "revision": "365faa8b4d400ccdd5a122193de1153e",
-    "url": "/sound/notification.ogg"
   },
   {
     "revision": "1d8395e42a184d87ee769faf0755cded",
     "url": "/snippets/layout/grid-system/auto-grid.html"
   },
   {
-    "revision": "a3a8a472f1a93850283c0dafade1f4de",
-    "url": "/worklet/paint/btn-background.js"
+    "revision": "365faa8b4d400ccdd5a122193de1153e",
+    "url": "/sound/notification.ogg"
+  },
+  {
+    "revision": "9cc5fe19cb8130d379dde578bd540b31",
+    "url": "/snippets/layout/grid-system/widths.html"
   },
   {
     "revision": "e301de90e5b3374be29b7493fd18c40d",
     "url": "/worklet/paint/app-bar-cutout.js"
+  },
+  {
+    "revision": "a3a8a472f1a93850283c0dafade1f4de",
+    "url": "/worklet/paint/btn-background.js"
   },
   {
     "revision": "c00315c86fef13525e01de115c3e5bed",
