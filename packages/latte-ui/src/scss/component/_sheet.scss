@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-div.sheet-overlay
+.sheet-overlay
 {
 	position: fixed;
 	display: block;
@@ -24,7 +24,7 @@ div.sheet-overlay
 	}
 }
 
-div.sheet-content
+.sheet-content
 {
 	position: fixed;
 	display: block;
@@ -64,14 +64,14 @@ div.sheet-content
 	}
 }
 
-div.sheet-content:not(.is-dragging),
-div.sheet-overlay:not(.is-dragging)
+.sheet-content:not(.is-dragging),
+.sheet-overlay:not(.is-dragging)
 {
 	transition: all 300ms var(--ease-swift-out);
 }
 
-.is-popup-opened div.sheet-overlay:not(.is-open),
-.is-popup-opened div.sheet-overlay:not(.is-open) div.sheet-content
+.is-popup-opened .sheet-overlay:not(.is-open),
+.is-popup-opened .sheet-overlay:not(.is-open) div.sheet-content
 {
 	pointer-events: none !important;
 	touch-action: none !important;

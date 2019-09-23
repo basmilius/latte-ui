@@ -1,0 +1,83 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.scaffolding
+{
+	position: relative;
+	display: grid;
+
+	.sheet-content.sheet-left
+	{
+		height: 100vh;
+		width: var(--drawer-width-secondary);
+		background: #{latte-rgb(var(--panel-background))};
+		box-shadow: var(--elevation-1);
+		overflow: auto;
+	}
+
+	.btn-fab
+	{
+		position: fixed;
+		right: var(--content-gutter);
+		bottom: var(--content-gutter);
+		z-index: 1004;
+	}
+
+	@include media-breakpoint-down(md)
+	{
+		grid-auto-rows: auto;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
+	}
+
+	@include media-breakpoint-up(lg)
+	{
+		grid-auto-rows: auto;
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto 1fr;
+
+		.app-bar
+		{
+			grid-column: 2;
+		}
+
+		.sheet-overlay
+		{
+			position: relative;
+			grid-column: 1;
+			grid-row: 1 / span 2;
+			pointer-events: none;
+			touch-action: none;
+		}
+
+		.sheet-content.sheet-left
+		{
+			position: sticky;
+			top: 0;
+			opacity: 1 !important;
+			transform: none !important;
+		}
+
+		&.is-collapsed
+		{
+			grid-template-columns: 1fr;
+
+			.app-bar,
+			.content
+			{
+				grid-column: 1;
+			}
+
+			.sheet-overlay
+			{
+				display: none;
+			}
+		}
+	}
+}

@@ -191,6 +191,10 @@ const router = new Router({
 							component: () => import("./views/examples/news/Frontpage.vue")
 						}
 					]
+				},
+				{
+					path: "scaffolding",
+					component: () => import("./views/examples/scaffolding/App.vue")
 				}
 			]
 		},
