@@ -9,9 +9,9 @@
 				</div>
 			</div>
 			<nav class="nav nav-list">
-				<latte-ripple as="a" class="nav-link" v-for="i of [1, 2, 3]">Nav item {{ i }}</latte-ripple>
+				<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3]">Nav item {{ i }}</latte-ripple>
 				<div class="divider divider-horizontal"></div>
-				<latte-ripple as="a" class="nav-link" v-for="i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">Nav item {{ i }}</latte-ripple>
+				<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">Nav item {{ i }}</latte-ripple>
 			</nav>
 		</latte-sheet>
 
