@@ -1,53 +1,62 @@
 <template>
 
-	<main class="scaffolding">
+	<main class="master-detail scaffolding">
 		<latte-sheet position="left" ref="drawer">
-			<div class="app-bar app-bar-primary app-bar-main">
-				<div class="app-bar-row">
-					<span class="app-bar-title">Latte UI</span>
-					<button class="btn btn-icon btn-text d-lg-none ml-auto" @click="$refs.drawer.toggle()"><i class="mdi mdi-window-close"></i></button>
+			<div class="d-flex align-items-stretch flex-grow-1">
+				<div class="bottom-nav bottom-nav-side bottom-nav-dark bottom-nav-flat justify-content-start">
+					<latte-ripple as="a" class="btn btn-action is-branding"><i class="mdi branding"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Home" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-home"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action is-active" data-tooltip="Relaties" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-account-group"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Contacten" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-phone"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Projecten" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-clipboard-text"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Financieel" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-finance"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Inloggegevens" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-lock"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Hosting" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-cloud"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action" data-tooltip="Screw Up Service" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-nuke"></i></latte-ripple>
+					<latte-ripple as="a" class="btn btn-action mt-auto" data-tooltip="Instellingen" data-tooltip-class="tooltip-right tooltip-primary"><i class="mdi mdi-settings"></i></latte-ripple>
 				</div>
+				<nav class="nav nav-list pt-0 flex-grow-1">
+					<div class="app-bar app-bar-transparent">
+						<div class="app-bar-row">
+							<span class="app-bar-title">Mijn projecten</span>
+						</div>
+					</div>
+					<div class="divider divider-horizontal divider-secondary mx-0 mt-0 mb-3"></div>
+					<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3]" :class="{'is-active': i === 3}">Nav item {{ i }}</latte-ripple>
+					<div class="divider divider-horizontal"></div>
+					<latte-ripple as="a" class="nav-link" :key="i + 3" v-for="i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">Nav item {{ i }}</latte-ripple>
+				</nav>
 			</div>
-			<nav class="nav nav-list">
-				<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3]">Nav item {{ i }}</latte-ripple>
-				<div class="divider divider-horizontal"></div>
-				<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">Nav item {{ i }}</latte-ripple>
-			</nav>
 		</latte-sheet>
 
-		<div class="app-bar app-bar-primary app-bar-main">
+		<div class="app-bar app-bar-light app-bar-main">
 			<div class="app-bar-row">
 				<button class="btn btn-icon btn-text d-lg-none" @click="$refs.drawer.toggle()"><i class="mdi mdi-menu"></i></button>
 				<span class="app-bar-title d-lg-none">Latte UI</span>
-				<nav class="nav nav-tabs d-none d-lg-flex mx-auto ml-lg-0">
-					<latte-ripple as="a" class="nav-link is-active"><span>Home</span></latte-ripple>
-					<latte-ripple as="a" class="nav-link"><span>Documentation</span></latte-ripple>
-					<latte-ripple as="a" class="nav-link"><span>Block editor</span></latte-ripple>
-					<latte-ripple as="a" class="nav-link"><span>Bas' playground</span></latte-ripple>
-				</nav>
-				<button class="btn btn-icon btn-text ml-auto ml-lg-0"><i class="mdi mdi-dots-horizontal"></i></button>
+				<button class="btn btn-icon btn-text ml-auto"><i class="mdi mdi-dots-horizontal"></i></button>
 			</div>
 		</div>
 
 		<button class="btn btn-fab btn-contained btn-success"><i class="mdi mdi-plus"></i></button>
 
 		<div class="content">
-			<div class="row" v-for="r of [1, 2]">
-				<div class="col-12 col-lg-6" v-for="i of [1, 2]">
+			<div class="row no-gutters">
+				<div class="col-12 col-lg order-lg-1">
 
-					<div class="panel mb-panel-gutter">
-						<div class="panel-header"><span class="panel-title">Panel {{ i }}</span></div>
+					<div class="panel" id="detail">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
 						<div class="panel-body">
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aut autem distinctio dolores eligendi est impedit ipsa iste labore, maxime molestias neque odit quaerat quas soluta temporibus ullam veniam vero?</p>
-							<p>Ad aliquam atque culpa dolores eligendi et ex exercitationem expedita explicabo facilis fuga fugit id iste, laboriosam laudantium magnam minima minus, nisi soluta suscipit tempore veniam, veritatis? Nihil, quam, repellat.</p>
-							<p>Consequatur eos itaque nam quibusdam ratione, rerum similique tempora. Architecto assumenda consectetur debitis dolor id ipsum pariatur quo sapiente sint, soluta tempore voluptates. Beatae deleniti dolorum magni nam optio repellendus?</p>
-							<p>A ab animi asperiores commodi consectetur debitis dolor ea exercitationem libero nihil, nostrum officia officiis porro quaerat quos, sint totam. Atque culpa dolore nisi numquam perspiciatis praesentium quis sed voluptatum.</p>
-							<p>Ad aliquid aut dolores eligendi esse est expedita, natus perferendis quibusdam quis reprehenderit suscipit totam ullam ut, vero voluptas voluptatem! Assumenda dolores eligendi eum facere impedit iste quae quibusdam ratione!</p>
-							<p>Consequatur cumque, distinctio est eveniet explicabo fugit ipsam laboriosam, molestiae odio, perferendis porro quos tempore temporibus! Alias asperiores autem ducimus eligendi enim exercitationem porro. Accusamus eligendi fugit harum pariatur sequi.</p>
-							<p>Cum deserunt dignissimos eaque esse quia recusandae, repudiandae? Ad aliquam consequuntur deserunt eaque earum error et id, impedit incidunt labore laborum nisi nobis perferendis provident quae similique voluptas voluptatem voluptatibus.</p>
-							<p>Animi asperiores cupiditate dignissimos doloremque eaque eius explicabo, illum incidunt ipsum itaque iure magnam maxime, molestias nulla obcaecati odit officia perspiciatis placeat praesentium provident quaerat quia ratione repudiandae vero voluptatum?</p>
-							<p>Ab architecto, corporis cupiditate doloremque explicabo nulla numquam perspiciatis quod reiciendis rem repellendus saepe? Atque beatae consectetur, debitis ea eum expedita explicabo illo ipsa modi officiis omnis optio perferendis voluptatum?</p>
-							<p>Ab, aspernatur aut commodi consequatur cumque doloribus eaque earum eum id illo ipsa ipsum iste magni nesciunt nihil nostrum nulla officiis, quisquam repellat sed sit suscipit temporibus vero vitae voluptas!</p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolore iure officia pariatur, quasi rem repellat sit! At consequuntur culpa eius esse eveniet maiores repellendus veniam! Minus quae quod rem!
+						</div>
+					</div>
+
+				</div>
+				<div class="col-12 col-lg-auto order-lg-0" style="width: 480px">
+
+					<div class="panel" id="master">
+						<div class="panel-header"><span class="panel-title">Hi</span></div>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aliquid architecto blanditiis dolore labore, molestiae necessitatibus nesciunt odio perferendis sapiente sit sunt, tenetur. Explicabo laudantium magni nulla qui sequi.
 						</div>
 					</div>
 
@@ -72,8 +81,46 @@
 
 	.scaffolding
 	{
-		--color-primary: var(--blue-50);
-		--color-success: var(--pink-60);
+		--scaffolding-drawer-width: 300px
+	}
+
+	.bottom-nav
+	{
+		.btn-action
+		{
+			height: 72px;
+
+			&.is-branding
+			{
+				--icon-size: 42px;
+
+				margin-bottom: 3px;
+				height: 60px;
+				opacity: 1;
+			}
+
+			&.is-active
+			{
+				--bottom-nav-foreground: var(--color-primary-foreground);
+				--radius: unset;
+
+				z-index: 0;
+
+				&::before
+				{
+					position: absolute;
+					display: block;
+					top: 6px;
+					left: 6px;
+					right: 6px;
+					bottom: 6px;
+					content: "";
+					background: rgba(var(--color-primary), 1);
+					border-radius: var(--radius);
+					z-index: -1;
+				}
+			}
+		}
 	}
 
 </style>

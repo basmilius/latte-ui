@@ -192,27 +192,6 @@
 	}
 }
 
-@include expanded
-{
-	.btn.app-bar-drawer-branding
-	{
-		--radius: 0;
-		--btn-height: var(--app-bar-height);
-		--icon-size: 36px;
-
-		margin: 0 var(--app-bar-gutter) 0 calc(0px - var(--app-bar-gutter));
-		width: var(--drawer-width-primary);
-		background: #{latte-rgb(var(--drawer-background-primary))};
-		pointer-events: none;
-
-		#{unquote($latte-icon-class)}::before
-		{
-			content: "";
-			background: var(--branding-logo) no-repeat center center / contain;
-		}
-	}
-}
-
 @each $type in $color-types
 {
 	.app-bar-#{$type}

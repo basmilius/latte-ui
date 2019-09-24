@@ -1,9 +1,9 @@
 <template>
 
-	<main class="scaffolding" :class="{'is-collapsed': $router.currentRoute.path.substr(0, 5) !== '/docs'}">
+	<main class="scaffolding sheet-below-app-bar" :class="{'is-collapsed': $router.currentRoute.path.substr(0, 5) !== '/docs'}">
 
 		<latte-sheet ref="drawer" class="drawer-container has-secondary" :touch-enabled="isDrawerTouchEnabled">
-			<nav class="nav nav-list py-3">
+			<nav class="nav nav-list py-4" @click="$refs.drawer.close()">
 
 				<div class="d-flex d-lg-none flex-column">
 					<latte-ripple as="router-link" to="/" class="nav-link"><span>Home</span></latte-ripple>
@@ -109,10 +109,13 @@
 <script>
 
 	import MainMenu from "../components/MainMenu";
+
 	export default {
 
 		name: "Skeleton",
+
 		components: {MainMenu},
+
 		data()
 		{
 			return {

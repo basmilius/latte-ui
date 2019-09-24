@@ -21,9 +21,13 @@
 	display: flex;
 	flex: 1 1 auto;
 	background: #{latte-rgba(var(--bottom-nav-background), var(--bottom-nav-alpha))};
-	box-shadow: var(--bottom-nav-elevation);
 	color: #{latte-rgb(var(--bottom-nav-foreground))};
 	overflow: hidden;
+
+	&:not(.bottom-nav-flat)
+	{
+		box-shadow: var(--bottom-nav-elevation);
+	}
 
 	.btn-action
 	{

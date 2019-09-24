@@ -28,4 +28,9 @@
 		margin: 0 9px;
 		width: var(--divider-size);
 	}
+
+	&.divider-secondary
+	{
+		background: #{latte-rgb(var(--outline-color-secondary))};
+	}
 }

@@ -7,6 +7,11 @@
  * LICENSE file that was distributed with this source code.
  */
 
+:root
+{
+	--scaffolding-drawer-width: 270px;
+}
+
 .scaffolding
 {
 	position: relative;
@@ -15,13 +20,13 @@
 	.sheet-content.sheet-left
 	{
 		height: 100vh;
-		width: var(--drawer-width-secondary);
+		width: var(--scaffolding-drawer-width);
 		background: #{latte-rgb(var(--panel-background))};
 		box-shadow: var(--elevation-1);
 		overflow: auto;
 	}
 
-	.btn-fab
+	> .btn-fab
 	{
 		position: fixed;
 		right: var(--content-gutter);
@@ -29,54 +34,93 @@
 		z-index: 1004;
 	}
 
-	@include media-breakpoint-down(md)
+	> .content
+	{
+		overflow: hidden;
+	}
+
+	@include compact
 	{
 		grid-auto-rows: auto;
-		grid-template-columns: 1fr;
+		grid-template-columns: 100vw;
 		grid-template-rows: auto 1fr;
 	}
 
-	@include media-breakpoint-up(lg)
+	@include expanded
 	{
 		grid-auto-rows: auto;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto 1fr;
 
-		.app-bar
+		> .app-bar
 		{
 			grid-column: 2;
 		}
 
-		.sheet-overlay
+		> .sheet-overlay
 		{
 			position: relative;
 			grid-column: 1;
 			grid-row: 1 / span 2;
 			pointer-events: none;
 			touch-action: none;
-		}
 
-		.sheet-content.sheet-left
-		{
-			position: sticky;
-			top: 0;
-			opacity: 1 !important;
-			transform: none !important;
+			.sheet-content.sheet-left
+			{
+				position: sticky;
+				display: flex;
+				top: 0;
+				flex-flow: column;
+				opacity: 1 !important;
+				transform: none !important;
+			}
 		}
 
 		&.is-collapsed
 		{
 			grid-template-columns: 1fr;
 
-			.app-bar,
-			.content
+			> .app-bar,
+			> .content
 			{
 				grid-column: 1;
 			}
 
-			.sheet-overlay
+			> .sheet-overlay
 			{
 				display: none;
+			}
+		}
+
+		&.sheet-below-app-bar
+		{
+			> .app-bar
+			{
+				grid-column: 1 / span 2;
+				grid-row: 1;
+			}
+
+			> .content
+			{
+				grid-column: 2;
+				grid-row: 2;
+			}
+
+			> .sheet-overlay
+			{
+				grid-column: 1;
+				grid-row: 2;
+			}
+
+			&.is-collapsed
+			{
+				grid-template-columns: 1fr;
+
+				> .app-bar,
+				> .content
+				{
+					grid-column: 1;
+				}
 			}
 		}
 	}
