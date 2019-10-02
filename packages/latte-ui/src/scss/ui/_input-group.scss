@@ -1,0 +1,71 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.input-group-addon
+{
+	position: relative;
+	display: flex;
+	height: 100%;
+	padding: 0 15px;
+	align-items: center;
+	justify-content: center;
+	background: #{latte-rgba(var(--form-outline), var(--form-outline-alpha))};
+	color: #{latte-rgb(var(--form-outline-foreground))};
+	transition: inherit;
+	transition-property: background;
+}
+
+.input-group
+{
+	@extend .form-control;
+
+	--r: calc(var(--radius) - 2px);
+
+	.input-group-addon:first-child
+	{
+		border-radius: var(--r) 0 0 var(--r);
+	}
+
+	.input-group-addon:last-child
+	{
+		border-radius: 0 var(--r) var(--r) 0;
+	}
+
+	padding: 0;
+
+	.badge
+	{
+		margin-left: 15px;
+		flex-shrink: 0;
+	}
+
+	.form-control
+	{
+		border: 0;
+	}
+
+	> .btn
+	{
+		margin: 0 4px;
+	}
+
+	.popup
+	{
+		position: absolute;
+		top: calc(100% + 6px);
+		width: 100%;
+		transform: translate3d(0, 24px, 0);
+		z-index: 5;
+
+		&.is-open
+		{
+			transform: translate3d(0, 0, 0);
+		}
+	}
+}

@@ -22,7 +22,7 @@ input[type=checkbox].checkbox
 	width: 24px;
 	flex: 0 0 auto;
 	background: transparent;
-	border: 2px solid #{latte-rgb(var(--form-field-outline))};
+	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: var(--radius);
 	cursor: pointer;
 	outline: none;
@@ -82,7 +82,7 @@ input[type=checkbox].checkbox
 	&:hover::before,
 	&:hover::after
 	{
-		background: #{latte-rgb(var(--form-field-outline))};
+		background: #{latte-rgb(var(--form-outline))};
 	}
 
 	&:focus

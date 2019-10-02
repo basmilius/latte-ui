@@ -22,7 +22,7 @@ input[type=radio].radio-button
 	width: 24px;
 	flex: 0 0 auto;
 	background: transparent;
-	border: 2px solid #{latte-rgb(var(--form-field-outline))};
+	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: none;
@@ -44,7 +44,7 @@ input[type=radio].radio-button
 
 	&:hover::before
 	{
-		background: #{latte-rgb(var(--form-field-outline))};
+		background: #{latte-rgb(var(--form-outline))};
 	}
 
 	&:focus

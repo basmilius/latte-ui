@@ -34,11 +34,6 @@
 		z-index: 1004;
 	}
 
-	> .content
-	{
-		overflow: hidden;
-	}
-
 	@include compact
 	{
 		grid-auto-rows: auto;

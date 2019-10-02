@@ -9,20 +9,70 @@
 
 :root
 {
-	--form-field-outline: var(--outline-color);
+	--form-outline: var(--outline-color);
+	--form-outline-alpha: .5;
+	--form-outline-foreground: var(--main-foreground);
+}
+
+.form-control
+{
+	position: relative;
+	display: flex;
+	height: 48px;
+	padding: 0 15px;
+	width: 100%;
+	align-items: center;
+	background: transparent;
+	border: 2px solid #{latte-rgba(var(--form-outline), var(--form-outline-alpha))};
+	border-radius: var(--radius);
+	color: #{latte-rgb(var(--main-foreground))};
+	outline: none;
+	transition: 210ms var(--ease-swift-out);
+	transition-property: border-color;
+
+	&:focus,
+	&:focus-within
+	{
+		--form-outline-alpha: 1;
+	}
+
+	&::placeholder
+	{
+		color: currentColor;
+		opacity: .5;
+	}
+
+	&[disabled]
+	{
+		cursor: not-allowed;
+		background: #{latte-rgba(var(--outline-color), .25)};
+	}
+}
+
+select.form-control
+{
+	appearance: none;
+	background:
+	{
+		color: transparent;
+		image: unquote("url(" + $latte-root + "image/select-arrow.svg)");
+		position: center right 9px;
+		repeat: no-repeat;
+		size: 24px 24px;
+	}
+
+	option
+	{
+		background: #{latte-rgb(var(--panel-background))};
+	}
 }
 
 .form-group
 {
 	position: relative;
-	display: block;
+	display: flex;
 
-	&.row
-	{
-		display: flex;
-	}
-
-	+ div.form-group
+	+ .form-group
 	{
 		margin-top: 1rem;
 	}
@@ -81,7 +131,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: #{latte-rgb(var(--form-field-outline))};
+		background: #{latte-rgb(var(--form-outline))};
 		border-radius: var(--radius);
 		color: transparent; // ...?
 	}
@@ -107,7 +157,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: #{latte-rgb(var(--form-field-outline))};
+		background: #{latte-rgb(var(--form-outline))};
 		border-radius: var(--radius);
 		border-color: transparent; // ...?
 		color: transparent; // ...?
@@ -136,7 +186,7 @@ label.col-form-label
 	{
 		height: var(--range-track-height);
 		width: 100%;
-		background: #{latte-rgb(var(--form-field-outline))};
+		background: #{latte-rgb(var(--form-outline))};
 		border-radius: var(--radius);
 		border-width: calc(var(--range-thumb-size) / 2);
 		color: transparent; // ...?
@@ -150,146 +200,19 @@ label.col-form-label
 	}
 }
 
-.custom-select
-{
-	display: block;
-	appearance: none;
-	padding: 8px 16px;
-	width: 100%;
-	background:
-	{
-		color: transparent;
-		image: unquote("url(" + $latte-root + "image/select-arrow.svg)");
-		position: center right 9px;
-		repeat: no-repeat;
-		size: 24px 24px;
-	}
-	border: 0;
-	border-radius: var(--radius);
-	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
-	color: currentColor;
-	font-size: 1rem;
-	line-height: 26px;
-	outline: none;
-	transition: all 180ms var(--ease-standard-curve);
-	vertical-align: middle;
-
-	&::placeholder
-	{
-		color: currentColor;
-		opacity: .5;
-	}
-
-	&:focus
-	{
-		box-shadow: 0 0 0 1px #{latte-rgba(var(--color-primary), .75)};
-	}
-
-	&[disabled]
-	{
-		background-color: rgba(0, 0, 0, .025);
-	}
-
-	option
-	{
-		background: #{latte-rgb(var(--panel-background))};
-	}
-}
-
-.form-control,
-.form-control-plain
-{
-	position: relative;
-	display: block;
-	margin: 0;
-	padding: 8px 16px;
-	width: 100%;
-	background: transparent;
-	border: 0;
-	border-radius: inherit;
-	color: currentColor;
-	font-size: 1rem;
-	line-height: 26px;
-	outline: none;
-	vertical-align: middle;
-
-	&.form-control-sm
-	{
-		padding: 4px 8px;
-		line-height: 1em;
-	}
-
-	&[disabled]
-	{
-		background: rgba(0, 0, 0, .025);
-		pointer-events: none;
-	}
-}
-
-.form-control
-{
-	display: flex;
-	align-items: center;
-	border-radius: var(--radius);
-	box-shadow: 0 0 0 1px #{latte-rgb(var(--form-field-outline))};
-	transition: box-shadow 180ms var(--ease-standard-curve);
-	z-index: 0;
-
-	&::placeholder
-	{
-		color: currentColor;
-		opacity: .5;
-	}
-
-	&:focus,
-	&:focus-within
-	{
-		box-shadow: 0 0 0 1px #{latte-rgba(var(--color-primary), .75)};
-	}
-
-	> input.form-control-plain
-	{
-		flex: 1 1 auto;
-	}
-
-	.form-control-prefix,
-	.form-control-suffix
-	{
-		margin: -6px 12px;
-		flex: 0 0 auto;
-		z-index: 1;
-	}
-
-	.form-control-prefix
-	{
-		margin-left: -6px;
-	}
-
-	.form-control-suffix
-	{
-		margin-right: -6px;
-	}
-}
-
-input.form-control
-{
-	display: block;
-}
-
-.form-control > .form-control-plain
-{
-	margin: -8px -16px;
-}
-
-.form-control.form-control-sm > .form-control-plain
-{
-	margin: -4px -8px;
-	padding: 4px 8px;
-}
-
 .form-text
 {
 	position: relative;
 	display: block;
-	margin: 6px 16px;
+	margin: 9px 15px;
+}
+
+@each $type in $color-types
+{
+	.form-control-#{$type}
+	{
+		--form-outline: var(--color-#{$type});
+		--form-outline-alpha: .9;
+		--form-outline-foreground: var(--color-#{$type}-foreground);
+	}
 }
