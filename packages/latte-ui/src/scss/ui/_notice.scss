@@ -15,7 +15,7 @@
 	padding: 15px 24px;
 	align-items: center;
 	background: #{latte-rgba(var(--notice-background), .1)};
-	border: 1px solid #{latte-rgba(var(--notice-background), .1)};
+	border: 2px solid #{latte-rgba(var(--notice-background), .1)};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--notice-background))};
 	font-weight: 500;
@@ -23,7 +23,7 @@
 	&.notice-outline
 	{
 		background: transparent;
-		border: 1px dashed #{latte-rgba(var(--notice-background), .5)};
+		border: 2px dashed #{latte-rgba(var(--notice-background), .5)};
 	}
 
 	.btn
@@ -89,11 +89,13 @@
 
 	&:first-child
 	{
+		border-top: 0;
 		border-radius: var(--radius) var(--radius) 0 0;
 	}
 
 	&:last-child
 	{
+		border-bottom: 0;
 		border-radius: 0 0 var(--radius) var(--radius);
 	}
 }
