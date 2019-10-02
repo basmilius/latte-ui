@@ -16,7 +16,7 @@
 			</nav>
 
 			<div class="d-flex align-items-center ml-auto">
-				<span class="badge mx-2">v{{ $latte.version }}</span>
+				<span class="badge mx-2">v{{ latteVersion }}</span>
 				<div class="divider divider-vertical"></div>
 				<button class="btn btn-icon btn-text" ref="dotsMenu"><i class="mdi mdi-dots-vertical"></i></button>
 
@@ -32,3 +32,24 @@
 	</div>
 
 </template>
+
+<script>
+
+	import { Latte } from "@bybas/latte-ui";
+
+	export default {
+
+		refs: ["dotsMenu"],
+
+		computed: {
+
+			latteVersion()
+			{
+				return Latte.version;
+			}
+
+		}
+
+	}
+
+</script>

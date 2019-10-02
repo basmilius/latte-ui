@@ -72,7 +72,6 @@ export class LatteUI
 
 		document.addEventListener("visibilitychange", () => LatteUI.onVisibilityChange());
 		window.addEventListener("load", () => LatteUI.onDOMContentLoaded(), {passive: true});
-		Vue.prototype.$latte = LatteSDK;
 	}
 
 	static findMainElement(Vue)

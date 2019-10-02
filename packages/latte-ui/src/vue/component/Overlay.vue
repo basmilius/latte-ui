@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="overlay" role="dialog" :class="overlayClasses" v-if="isVisible">
+	<div class="overlay" role="dialog" :class="overlayClasses" v-if="isVisible" v-mtm>
 		<slot></slot>
 	</div>
 
@@ -21,12 +21,16 @@
 	import { register, remove } from "../../js/ui/overlay";
 	import { applyZ } from "../../js/core/z";
 	import { raf } from "../../js/util/dom";
-	import { getMainElement } from "../../js/core";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
+	import { MoveToMainDirective } from "../directive/move-to-main";
 
 	export default {
 
 		name: "latte-overlay",
+
+		directives: {
+			mtm: MoveToMainDirective
+		},
 
 		props: {
 			name: {default: "", required: true, type: String},
@@ -53,11 +57,6 @@
 		mounted()
 		{
 			register(this.name, this);
-
-			if (this.$el.parentNode)
-				this.$el.parentNode.removeChild(this.$el);
-
-			getMainElement().appendChild(this.$el);
 
 			if (this.opened)
 				this.open(this.name);

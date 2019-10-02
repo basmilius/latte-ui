@@ -8,3 +8,4 @@
  */
 
 export { default as MomentMixin } from "./MomentMixin";
+export { default as ReactiveReferencesMixin } from "./ReactiveReferencesMixin";

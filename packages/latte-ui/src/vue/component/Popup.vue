@@ -16,12 +16,16 @@
 	import { applyZ } from "../../js/core/z";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
-	import { getMainElement } from "../../js/core";
 	import { oneOf } from "../../js/helper/array";
+	import { MoveToMainDirective } from "../directive/move-to-main";
 
 	export default {
 
 		name: "latte-popup",
+
+		directives: {
+			mtm: MoveToMainDirective
+		},
 
 		props: {
 			animateTransform: {default: true, type: Boolean},
@@ -41,16 +45,6 @@
 			this.$el.clearOutsideEventListeners();
 		},
 
-		destroyed()
-		{
-			const mainElement = getMainElement();
-
-			if (!(this.$el.parentNode && this.$el.parentNode === mainElement))
-				return;
-
-			mainElement.removeChild(this.$el);
-		},
-
 		data()
 		{
 			return {
@@ -68,15 +62,9 @@
 
 		mounted()
 		{
-			if (this.$el.parentNode)
-				this.$el.parentNode.removeChild(this.$el);
-			else if (this.associatedElement)
+			if (this.associatedElement)
 				this.bindEvents();
-
-			getMainElement().appendChild(this.$el);
-
-			// Update associate-with prop by updating our parent.
-			if (this.$parent && this.$parent.$forceUpdate)
+			else if (this.$parent)
 				this.$parent.$forceUpdate();
 
 			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick), {passive: true});
@@ -91,7 +79,7 @@
 
 		render(h)
 		{
-			return h("div", {class: this.popupClasses, scopedSlots: this.$scopedSlots, style: this.popupStyles}, [
+			return h("div", {class: this.popupClasses, directives: [{name: "mtm"}], scopedSlots: this.$scopedSlots, style: this.popupStyles}, [
 				h("div", {class: "popup-body"}, this.$slots.default)
 			]);
 		},
@@ -147,13 +135,13 @@
 				this.associatedElement.addEventListener("click", this.onClick, {passive: true});
 			},
 
-			unbindEvents()
+			unbindEvents(elm)
 			{
-				if (!this.associatedElement)
+				if (!elm)
 					return;
 
 				this.rect = null;
-				this.associatedElement.removeEventListener("click", this.onClick, {passive: true});
+				elm.removeEventListener("click", this.onClick, {passive: true});
 			},
 
 			close()
@@ -259,7 +247,7 @@
 			associateWith(n, o)
 			{
 				if (o)
-					this.unbindEvents();
+					this.unbindEvents(o);
 
 				if (n)
 					this.bindEvents();
