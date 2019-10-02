@@ -17,8 +17,8 @@ table.table
 	width: 100%;
 	z-index: 0;
 
-	$border: 1px solid #{latte-rgb(var(--outline-color-secondary))};
-	$hover-bg: #{latte-rgba(var(--outline-color-secondary), .5)};
+	$border: 1px solid #{latte-rgb(var(--outline-color))};
+	$hover-bg: #{latte-rgba(var(--outline-color), .5)};
 
 	&.table-border
 	{
@@ -159,7 +159,7 @@ table.table
 		td,
 		th
 		{
-			background: #{latte-rgb(var(--outline-color-secondary))};
+			background: #{latte-rgb(var(--outline-color))};
 			border-top: 1px solid #{latte-rgb(var(--outline-color))};
 			border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
 		}

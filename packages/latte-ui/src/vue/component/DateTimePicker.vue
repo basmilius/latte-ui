@@ -17,7 +17,7 @@
 					<div class="col-auto">
 						<latte-datepicker-calendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-datepicker-calendar>
 					</div>
-					<div class="col-auto border-left" style="--outline-color: var(--outline-color-secondary)">
+					<div class="col-auto border-left">
 						<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
 					</div>
 				</div>

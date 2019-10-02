@@ -68,6 +68,20 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="form-group input-group">
 								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
 							</div>

@@ -10,7 +10,7 @@
 :root
 {
 	--popup-background: 255, 255, 255;
-	--popup-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color-secondary))};
+	--popup-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color))};
 }
 
 .popup

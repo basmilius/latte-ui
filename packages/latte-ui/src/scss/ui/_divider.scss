@@ -7,11 +7,6 @@
  * LICENSE file that was distributed with this source code.
  */
 
-:root
-{
-	--divider-size: 1px;
-}
-
 .divider
 {
 	flex: 0 0 auto;
@@ -20,17 +15,12 @@
 	&.divider-horizontal
 	{
 		margin: 9px 0;
-		height: var(--divider-size);
+		height: 1px;
 	}
 
 	&.divider-vertical
 	{
 		margin: 0 9px;
-		width: var(--divider-size);
-	}
-
-	&.divider-secondary
-	{
-		background: #{latte-rgb(var(--outline-color-secondary))};
+		width: 1px;
 	}
 }

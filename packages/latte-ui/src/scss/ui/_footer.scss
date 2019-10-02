@@ -11,12 +11,10 @@ footer.footer
 {
 	position: relative;
 	display: block;
-	border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+	border-top: 1px solid #{latte-rgb(var(--outline-color))};
 
 	.divider
 	{
-		--outline-color: var(--outline-color-secondary);
-
 		margin: 0;
 	}
 

@@ -11,12 +11,12 @@
 {
 	> .sheet-overlay .sheet-content.sheet-left
 	{
-		box-shadow: var(--divider-size) 0 #{latte-rgb(var(--outline-color-secondary))};
+		box-shadow: 1px 0 #{latte-rgb(var(--outline-color))};
 	}
 
 	> .app-bar
 	{
-		--app-bar-elevation: 0 var(--divider-size) #{latte-rgb(var(--outline-color-secondary))};
+		--app-bar-elevation: 0 1px #{latte-rgb(var(--outline-color))};
 	}
 
 	> .content
@@ -46,7 +46,7 @@
 		{
 			#master
 			{
-				border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+				border-top: 1px solid #{latte-rgb(var(--outline-color))};
 			}
 		}
 
@@ -54,7 +54,7 @@
 		{
 			#master
 			{
-				border-right: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+				border-right: 1px solid #{latte-rgb(var(--outline-color))};
 			}
 		}
 	}

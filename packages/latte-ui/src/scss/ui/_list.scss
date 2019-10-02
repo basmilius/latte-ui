@@ -63,7 +63,7 @@ a.list-item
 
 .list-divided .list-item + .list-item
 {
-	border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+	border-top: 1px solid #{latte-rgb(var(--outline-color))};
 }
 
 .panel > .list

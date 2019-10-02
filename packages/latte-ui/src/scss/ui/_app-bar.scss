@@ -29,15 +29,6 @@
 	box-shadow: var(--app-bar-elevation);
 	color: #{latte-rgb(var(--app-bar-foreground))};
 
-	--btn-background: var(--app-bar-foreground);
-	--btn-foreground: var(--app-bar-background);
-	--badge-color: var(--app-bar-foreground);
-	--outline-color: var(--app-bar-foreground);
-	--ripple-color: var(--app-bar-foreground);
-	--spinner-color: var(--app-bar-foreground);
-	--tabs-accent: var(--app-bar-foreground);
-	--tabs-foreground: var(--app-bar-foreground);
-
 	&.app-bar-cutout
 	{
 		background: paint(app-bar-cutout);
@@ -86,6 +77,15 @@
 	align-items: center;
 	justify-content: flex-start;
 
+	--btn-background: var(--app-bar-foreground);
+	--btn-foreground: var(--app-bar-background);
+	--badge-color: var(--app-bar-foreground);
+	--outline-color: var(--app-bar-foreground);
+	--ripple-color: var(--app-bar-foreground);
+	--spinner-color: var(--app-bar-foreground);
+	--tabs-accent: var(--app-bar-foreground);
+	--tabs-foreground: var(--app-bar-foreground);
+
 	&.app-bar-auto
 	{
 		min-height: unset;
@@ -128,12 +128,30 @@
 	}
 }
 
-.app-bar .form-control
+.app-bar .app-bar-row > .input-group
 {
+	height: 42px;
 	flex: 1 1 0;
 	background: rgba(var(--app-bar-foreground), .075);
-	box-shadow: none;
+	border: 0;
 	color: #{latte-rgb(var(--app-bar-foreground))};
+
+	.input-group-addon,
+	.form-control
+	{
+		background: transparent;
+		color: inherit;
+	}
+
+	.input-group-addon + .form-control
+	{
+		margin-left: -15px;
+	}
+
+	.form-control + .input-group-addon
+	{
+		margin-left: -15px;
+	}
 
 	&:focus-within
 	{
@@ -153,12 +171,12 @@
 
 	&:not(:last-child):not(:only-child)
 	{
-		border-bottom: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+		border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
 	}
 
 	&:last-child:not(:only-child)
 	{
-		border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color-secondary))};
+		border-top: 1px solid #{latte-rgb(var(--outline-color))};
 	}
 
 	.app-bar-title:first-child

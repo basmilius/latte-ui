@@ -9,27 +9,27 @@
 
 .border
 {
-	border: var(--divider-size) solid #{latte-rgb(var(--outline-color))} !important;
+	border: 1px solid #{latte-rgb(var(--outline-color))} !important;
 }
 
 .border-top
 {
-	border-top: var(--divider-size) solid #{latte-rgb(var(--outline-color))} !important;
+	border-top: 1px solid #{latte-rgb(var(--outline-color))} !important;
 }
 
 .border-right
 {
-	border-right: var(--divider-size) solid #{latte-rgb(var(--outline-color))} !important;
+	border-right: 1px solid #{latte-rgb(var(--outline-color))} !important;
 }
 
 .border-bottom
 {
-	border-bottom: var(--divider-size) solid #{latte-rgb(var(--outline-color))} !important;
+	border-bottom: 1px solid #{latte-rgb(var(--outline-color))} !important;
 }
 
 .border-left
 {
-	border-left: var(--divider-size) solid #{latte-rgb(var(--outline-color))} !important;
+	border-left: 1px solid #{latte-rgb(var(--outline-color))} !important;
 }
 
 .border-0

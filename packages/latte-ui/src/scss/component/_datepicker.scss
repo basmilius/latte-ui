@@ -173,7 +173,7 @@
 		position: relative;
 		height: var(--clock-size);
 		width: var(--clock-size);
-		background: #{latte-rgb(var(--outline-color-secondary))};
+		background: #{latte-rgb(var(--outline-color))};
 		border-radius: 999px;
 		user-select: none;
 
@@ -227,7 +227,7 @@
 			bottom: -4px;
 			height: 10px;
 			width: 10px;
-			background: #{latte-rgb(var(--outline-color-secondary))};
+			background: #{latte-rgb(var(--outline-color))};
 			border: 2px solid #{latte-rgb(var(--color-primary))};
 		}
 	}

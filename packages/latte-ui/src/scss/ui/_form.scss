@@ -10,7 +10,7 @@
 :root
 {
 	--form-outline: var(--outline-color);
-	--form-outline-alpha: .5;
+	--form-outline-alpha: .75;
 	--form-outline-foreground: var(--main-foreground);
 }
 
@@ -212,7 +212,6 @@ label.col-form-label
 	.form-control-#{$type}
 	{
 		--form-outline: var(--color-#{$type});
-		--form-outline-alpha: .9;
 		--form-outline-foreground: var(--color-#{$type}-foreground);
 	}
 }

@@ -27,6 +27,9 @@
 
 	--r: calc(var(--radius) - 2px);
 
+	margin: 0;
+	padding: 0;
+
 	.input-group-addon:first-child
 	{
 		border-radius: var(--r) 0 0 var(--r);
@@ -36,8 +39,6 @@
 	{
 		border-radius: 0 var(--r) var(--r) 0;
 	}
-
-	padding: 0;
 
 	.badge
 	{
