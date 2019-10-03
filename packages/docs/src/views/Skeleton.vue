@@ -2,7 +2,7 @@
 
 	<main class="scaffolding sheet-below-app-bar" :class="{'is-collapsed': $router.currentRoute.path.substr(0, 5) !== '/docs'}">
 
-		<latte-sheet ref="drawer" class="drawer-container has-secondary" :touch-enabled="isDrawerTouchEnabled">
+		<latte-sheet ref="drawer" class="drawer-container" :touch-enabled="isDrawerTouchEnabled">
 			<nav class="nav nav-list py-4" @click="$refs.drawer.close()">
 
 				<div class="d-flex d-lg-none flex-column">
