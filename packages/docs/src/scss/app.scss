@@ -11,6 +11,14 @@ $latte-root: "~@bybas/latte-ui/src/";
 
 @import "~@bybas/latte-ui/src/scss/app";
 
+:root
+{
+	@media (min-width: 992px) and (max-width: 1100px)
+	{
+		--scaffolding-drawer-width: 180px;
+	}
+}
+
 body
 {
 	@media (min-width: 992px)

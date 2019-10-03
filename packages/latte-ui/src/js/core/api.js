@@ -18,7 +18,7 @@ export function id()
 {
 	const array = new Uint32Array(3);
 
-	window.crypto.getRandomValues(array);
+	crypto.getRandomValues(array);
 
 	return "l-" + array.join("-");
 }

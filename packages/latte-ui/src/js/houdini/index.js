@@ -58,9 +58,9 @@ function registerCSSProperties()
 
 export function initializeHoudiniApis()
 {
-	if (CSS && CSS.paintWorklet)
+	if (typeof CSS !== "undefined" && CSS.paintWorklet)
 		registerCSSPaintWorklets();
 
-	if (CSS && CSS.registerProperty)
+	if (typeof CSS !== "undefined" && CSS.registerProperty)
 		registerCSSProperties();
 }
