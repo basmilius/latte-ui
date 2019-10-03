@@ -15,9 +15,6 @@
 	--app-bar-elevation: var(--elevation-2);
 	--app-bar-gutter: 15px;
 	--app-bar-height: 60px;
-
-	--app-bar-cutout-offset: 50%;
-	--app-bar-cutout-position: top;
 }
 
 .app-bar
@@ -28,19 +25,6 @@
 	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
 	box-shadow: var(--app-bar-elevation);
 	color: #{latte-rgb(var(--app-bar-foreground))};
-
-	&.app-bar-cutout
-	{
-		background: paint(app-bar-cutout);
-
-		> .btn-fab
-		{
-			position: absolute;
-			left: var(--app-bar-cutout-offset);
-			transform: translate3d(-50%, -50%, 0);
-			z-index: 1;
-		}
-	}
 
 	&.app-bar-flat
 	{

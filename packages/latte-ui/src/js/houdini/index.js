@@ -14,11 +14,7 @@ function registerCSSPaintWorklets()
 {
 	let path = getLattePath();
 
-	Promise
-		.all([
-			CSS.paintWorklet.addModule(`${path}worklet/paint/app-bar-cutout.js`),
-			CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`)
-		])
+	CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`)
 		.then(() => docRoot.classList.add("css-paint-api"))
 		.catch(() => console.error(`[LatteUI] CSS Paint API not used because worklets could not load.`));
 }
@@ -32,13 +28,6 @@ function registerCSSProperties()
 		syntax: "<number>",
 		inherits: true,
 		initialValue: 1
-	});
-
-	CSS.registerProperty({
-		name: "--app-bar-cutout-offset",
-		syntax: "<length-percentage>",
-		inherits: true,
-		initialValue: "50%"
 	});
 
 	CSS.registerProperty({
