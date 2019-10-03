@@ -12,8 +12,8 @@
 	<div class="page mb-3" id="tests">
 
 		<PageHeader>
-			<h1>Random tests</h1>
-			<p>These are some development tests.</p>
+			<h1>Bas' playground</h1>
+			<p>Here are a few things i'm working on for the next release of Latte UI :-)</p>
 		</PageHeader>
 
 		<div class="container">
