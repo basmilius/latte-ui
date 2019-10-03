@@ -52,10 +52,3 @@
 		--elevation-#{$level}: #{if($level == 0, none, elevation-generate($level))};
 	}
 }
-
-.is-popup-opened
-{
-	margin-right: var(--scrollbar-width, 0);
-	overflow: hidden;
-	pointer-events: none;
-}

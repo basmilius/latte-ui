@@ -1,0 +1,55 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+body
+{
+	background: #{latte-rgb(var(--main-background))};
+	font-family: var(--font-sans-serif);
+	font-size: 1rem;
+}
+
+[hidden],
+[v-cloak]
+{
+	display: none !important;
+}
+
+#{unquote($latte-icon-class)}
+{
+	height: 1em;
+	width: 1em;
+	font-size: var(--icon-size);
+	line-height: 1em;
+	vertical-align: middle;
+
+	&::before
+	{
+		height: 1em;
+		width: 1em;
+		line-height: inherit;
+	}
+}
+
+img.emoji
+{
+	height: 1.3em;
+	width: 1.3em;
+	display: inline-block;
+	margin: -.15em .1em .15em;
+	line-height: normal;
+	vertical-align: middle;
+	-webkit-user-drag: none;
+}
+
+.is-popup-opened
+{
+	margin-right: var(--scrollbar-width, 0);
+	overflow: hidden;
+	pointer-events: none;
+}
