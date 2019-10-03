@@ -9,7 +9,7 @@
 
 <template>
 
-	<div>
+	<div class="input-group">
 
 		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" :type="type" class="form-control" :value="inputValue" @click.prevent="open"/>
 

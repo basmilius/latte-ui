@@ -68,15 +68,23 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
 								<input type="text" placeholder="Entry code..." class="form-control"/>
 							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+							<div class="form-group input-group form-control-error">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
 								<input type="text" placeholder="Entry code..." class="form-control"/>
 							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox checkbox-primary"/></div>
+							<div class="form-group input-group form-control-info">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</div>
+							<div class="form-group input-group form-control-success">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</div>
+							<div class="form-group input-group form-control-warning">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
 								<input type="text" placeholder="Entry code..." class="form-control"/>
 							</div>
 						</div>
@@ -102,24 +110,6 @@
 							<div class="form-group input-group">
 								<div class="input-group-addon">https://example.com/profile/</div>
 								<input type="text" placeholder="Choose an username..." class="form-control"/>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group input-group form-control-error">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<input type="text" placeholder="Search for tags..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-info">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<input type="text" placeholder="Search for tags..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-success">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<input type="text" placeholder="Search for tags..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-warning">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<input type="text" placeholder="Search for tags..." class="form-control"/>
 							</div>
 						</div>
 					</div>
