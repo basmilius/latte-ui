@@ -22,13 +22,11 @@
 	position: relative;
 	display: flex;
 	flex-flow: column;
-	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
 	box-shadow: var(--app-bar-elevation);
-	color: #{latte-rgb(var(--app-bar-foreground))};
 
 	&.app-bar-flat
 	{
-		--app-bar-elevation: none;
+		box-shadow: unset;
 	}
 
 	&.app-bar-main
@@ -41,7 +39,7 @@
 	&.app-bar-transparent
 	{
 		--app-bar-alpha: 0;
-		--app-bar-elevation: none;
+		box-shadow: unset;
 	}
 }
 
@@ -59,7 +57,8 @@
 	min-height: var(--app-bar-height);
 	padding: 0 var(--app-bar-gutter);
 	align-items: center;
-	justify-content: flex-start;
+	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
+	color: #{latte-rgb(var(--app-bar-foreground))};
 
 	--btn-background: var(--app-bar-foreground);
 	--btn-foreground: var(--app-bar-background);

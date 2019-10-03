@@ -21,9 +21,24 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header">
-							<span class="panel-title">Form elements</span>
+						<div class="panel-header"><span class="panel-title">App bar</span></div>
+						<div class="panel-body">
+
+							<div class="app-bar app-bar-primary">
+								<div class="app-bar-row">
+									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
+									<span class="app-bar-title">App bar</span>
+								</div>
+								<div class="app-bar-row app-bar-light">
+									<span class="ml-2 mr-4 text-muted">App bar rows with custom colors :)</span>
+								</div>
+							</div>
+
 						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<div class="form-group">
 								<input type="text" placeholder="Type your name..." class="form-control"/>
