@@ -78,7 +78,7 @@ select
 
 @media (prefers-reduced-motion: reduce)
 {
-	*
+	*, ::before, ::after
 	{
 		animation-play-state: paused !important;
 		scroll-behavior: auto !important;
