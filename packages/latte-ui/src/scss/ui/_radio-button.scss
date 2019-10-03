@@ -25,7 +25,7 @@ input[type=radio].radio-button
 	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: 12px;
 	cursor: pointer;
-	outline: none;
+	outline: 0;
 	transition: all 180ms var(--ease-swift-out);
 	vertical-align: middle;
 

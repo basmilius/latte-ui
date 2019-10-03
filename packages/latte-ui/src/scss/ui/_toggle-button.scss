@@ -24,7 +24,7 @@
 	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: 12px;
 	cursor: pointer;
-	outline: none;
+	outline: 0;
 	transition: 240ms var(--ease-swift-out);
 	transition-property: background, border-color;
 	vertical-align: middle;

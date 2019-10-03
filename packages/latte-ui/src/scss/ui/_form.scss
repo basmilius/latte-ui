@@ -26,7 +26,7 @@
 	border: 2px solid #{latte-rgba(var(--form-outline), var(--form-outline-alpha))};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--main-foreground))};
-	outline: none;
+	outline: 0;
 	transition: 210ms var(--ease-swift-out);
 	transition-property: border-color;
 

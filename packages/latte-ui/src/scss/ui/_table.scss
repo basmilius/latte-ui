@@ -173,7 +173,7 @@ table.table
 			border: 0;
 			color: #{latte-rgb(var(--main-foreground))};
 			font-weight: 500;
-			outline: none;
+			outline: 0;
 
 			&::placeholder
 			{
