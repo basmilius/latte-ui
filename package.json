@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.9.0-dev",
+	"version": "1.9.0-beta.0",
 	"description": "Monorepo for latte-ui.",
 	"author": {
 		"name": "Bas Milius",
