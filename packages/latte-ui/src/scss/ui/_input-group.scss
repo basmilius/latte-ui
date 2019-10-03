@@ -46,11 +46,13 @@
 
 	.input-group-addon:first-child
 	{
+		padding-left: 13px;
 		border-radius: var(--r) 0 0 var(--r);
 	}
 
 	.input-group-addon:last-child
 	{
+		padding-right: 13px;
 		border-radius: 0 var(--r) var(--r) 0;
 	}
 
