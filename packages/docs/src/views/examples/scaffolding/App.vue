@@ -21,7 +21,7 @@
 							<span class="app-bar-title">Mijn projecten</span>
 						</div>
 					</div>
-					<div class="divider divider-horizontal divider-secondary mx-0 mt-0 mb-3"></div>
+					<div class="divider divider-horizontal mx-0 mt-0 mb-3"></div>
 					<latte-ripple as="a" class="nav-link" :key="i" v-for="i of [1, 2, 3]" :class="{'is-active': i === 3}">Nav item {{ i }}</latte-ripple>
 					<div class="divider divider-horizontal"></div>
 					<latte-ripple as="a" class="nav-link" :key="i + 3" v-for="i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]">Nav item {{ i }}</latte-ripple>

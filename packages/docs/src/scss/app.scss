@@ -11,33 +11,15 @@ $latte-root: "~@bybas/latte-ui/src/";
 
 @import "~@bybas/latte-ui/src/scss/app";
 
-:root
-{
-	--drawer-width-secondary: 240px;
-}
-
 body
 {
 	@media (min-width: 992px)
 	{
 		--app-bar-height: 60px;
 
-		#skeleton:not(.is-docs)
+		#skeleton:not(.is-docs) .sheet-overlay
 		{
-			.content
-			{
-				--drawer-width-secondary: 0;
-			}
-
-			.sheet-overlay
-			{
-				display: none;
-			}
-		}
-
-		#skeleton.is-docs footer.footer
-		{
-			margin-left: var(--drawer-width-secondary);
+			display: none;
 		}
 	}
 }

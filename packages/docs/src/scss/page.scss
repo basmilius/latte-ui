@@ -20,7 +20,7 @@ div.page-header
 	display: block;
 	margin: 0 0 24px 0;
 	background: rgba(var(--panel-background), 1);
-	border-bottom: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+	border-bottom: 1px solid rgba(var(--outline-color), 1);
 
 	div.page-header-content
 	{
@@ -57,7 +57,5 @@ div.page-header
 
 .docs-separator
 {
-	--outline-color: var(--outline-color-secondary);
-
 	margin: 3rem 0 !important;
 }

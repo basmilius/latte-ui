@@ -136,7 +136,7 @@
 		margin: 6px 6px 0 6px;
 		padding: 120px 0;
 		background: rgba(var(--panel-background), 1);
-		border: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+		border: 1px solid rgba(var(--outline-color), 1);
 
 		@media (max-width: 991px)
 		{
@@ -172,7 +172,7 @@
 			flex: 1 1 0;
 			flex-flow: column;
 			background: rgba(var(--panel-background), 1);
-			border: var(--divider-size) solid rgba(var(--outline-color-secondary), 1);
+			border: 1px solid rgba(var(--outline-color), 1);
 		}
 	}
 

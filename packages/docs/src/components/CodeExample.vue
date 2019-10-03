@@ -137,7 +137,7 @@
 	{
 		padding: 30px;
 		background: rgba(var(--panel-background), 1);
-		border-bottom: 1px solid rgba(var(--outline-color-secondary), 1);
+		border-bottom: 1px solid rgba(var(--outline-color), 1);
 		z-index: 0;
 	}
 
