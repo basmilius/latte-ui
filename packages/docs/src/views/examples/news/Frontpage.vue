@@ -23,7 +23,7 @@
 				<div class="col-6 col-lg" v-for="i of [1, 2, 3, 4]">
 
 					<a href="#" class="panel">
-						<div class="panel-rich-media panel-rich-media-gutter mb-2 embed-responsive embed-responsive-4by3" style="background: url(https://images.pexels.com/photos/1786769/pexels-photo-1786769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat center center / cover"></div>
+						<div class="panel-media panel-media-gutter mb-2 embed-responsive embed-responsive-4by3" style="background: url(https://images.pexels.com/photos/1786769/pexels-photo-1786769.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat center center / cover"></div>
 						<div class="panel-body">
 							<h6>Newsitem {{ i }}</h6>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cupiditate dicta dolorem eius eligendi.</p>

@@ -42,6 +42,58 @@
 					</div>
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Silhouette</span></div>
+						<div class="panel-body" style="background: rgb(var(--main-background))">
+							<div class="row">
+
+								<div class="col-6">
+
+									<div class="panel">
+										<latte-silhouette class="panel-media embed-responsive embed-responsive-16by9"></latte-silhouette>
+										<div class="panel-header">
+											<latte-silhouette class="avatar avatar-36px mr-3"></latte-silhouette>
+											<div class="panel-column">
+												<latte-silhouette as="span" class="panel-title w-75"></latte-silhouette>
+												<latte-silhouette as="span" class="panel-sub-title mt-1 w-50"></latte-silhouette>
+											</div>
+										</div>
+										<div class="panel-body">
+											<latte-silhouette as="p"></latte-silhouette>
+										</div>
+										<div class="panel-footer justify-content-end">
+											<latte-silhouette as="button" class="btn btn-contained btn-primary"></latte-silhouette>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col-6">
+
+									<div class="panel">
+										<div class="panel-media embed-responsive embed-responsive-16by9" style="background-image: url(/image/wallpaper/1.jpg)"></div>
+										<div class="panel-header">
+											<latte-initials class="avatar avatar-36px mr-3" initials="BM"></latte-initials>
+											<div class="panel-column">
+												<span class="panel-title">Silhouette</span>
+												<span class="panel-sub-title">Silhouettes are amazing :-)</span>
+											</div>
+											<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-dots-vertical"></i></button>
+										</div>
+										<div class="panel-body">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid at dolores eius eligendi enim eveniet in molestiae neque nisi nostrum numquam, officiis omnis pariatur placeat, quasi qui similique vitae?</p>
+										</div>
+										<div class="panel-footer justify-content-end">
+											<button class="btn btn-contained btn-primary"><i class="mdi mdi-check-circle"></i><span>Save</span></button>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<div class="form-group">

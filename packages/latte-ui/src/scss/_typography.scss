@@ -24,6 +24,16 @@ $sizes: (33px, 28px, 25px, 22px, 19px, 15px);
 	}
 }
 
+p
+{
+	margin-bottom: 1rem;
+
+	&:last-child
+	{
+		margin-bottom: 0;
+	}
+}
+
 .text-soft
 {
 	color: #{latte-rgb(var(--main-foreground))};
