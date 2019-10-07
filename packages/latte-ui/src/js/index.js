@@ -64,14 +64,14 @@ export class LatteUI
 		initializeHoudiniApis();
 		registerOutsideEvents();
 
-		LatteUI.findMainElement(Vue);
-		LatteUI.registerMixins(Vue);
-		LatteUI.registerComponents(Vue);
+		this.findMainElement(Vue);
+		this.registerMixins(Vue);
+		this.registerComponents(Vue);
 
-		raf(() => LatteUI.onTick());
+		raf(() => this.onTick());
 
-		document.addEventListener("visibilitychange", () => LatteUI.onVisibilityChange());
-		window.addEventListener("load", () => LatteUI.onDOMContentLoaded(), {passive: true});
+		document.addEventListener("visibilitychange", () => this.onVisibilityChange());
+		window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
 	}
 
 	static findMainElement(Vue)

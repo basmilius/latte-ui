@@ -30,7 +30,11 @@
 									<span class="app-bar-title">App bar</span>
 								</div>
 								<div class="app-bar-row app-bar-light">
-									<span class="ml-2 mr-4 text-muted">App bar rows with custom colors :)</span>
+									<label class="input-group">
+										<div class="input-group-addon"><i class="mdi mdi-magnify"></i></div>
+										<input type="search" class="form-control" placeholder="Search for anything..."/>
+										<latte-ripple as="button" class="btn btn-text btn-primary"><span>Search</span></latte-ripple>
+									</label>
 								</div>
 							</div>
 
