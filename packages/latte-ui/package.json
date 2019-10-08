@@ -1,7 +1,7 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.9.0-beta.0",
-	"description": "A simple UI library build using Vue.js.",
+	"version": "1.9.0-beta.1",
+	"description": "An easy to use UI library.",
 	"author": {
 		"name": "Bas Milius",
 		"email": "bas@mili.us",
