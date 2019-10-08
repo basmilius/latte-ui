@@ -29,7 +29,7 @@
 .datepicker-calendar
 {
 	max-width: calc(100vw - 24px);
-	width: 384px;
+	width: 300px;
 	z-index: 0;
 
 	.datepicker-calendar-header
@@ -58,7 +58,6 @@
 
 		.day
 		{
-			position: relative;
 			display: block;
 			margin-bottom: 6px;
 			font-size: .8rem;
@@ -72,9 +71,10 @@
 		{
 			--btn-padding: 0;
 
-			height: 42px;
+			height: 36px;
 			margin: 0;
 			width: 100%;
+			font-size: .9rem;
 
 			&:not([disabled])
 			{
@@ -154,6 +154,7 @@
 			color: #{latte-rgb(var(--main-foreground))};
 			cursor: pointer;
 			font-weight: 500;
+			outline: 0;
 			transition: opacity 90ms var(--ease-swift-out);
 
 			&:not(.is-selection)
@@ -240,7 +241,6 @@
 	.timepicker-clock-item
 	{
 		position: absolute;
-		display: block;
 		top: 50%;
 		left: 50%;
 		height: 36px;
