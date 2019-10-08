@@ -21,27 +21,6 @@
 				<div class="col-12">
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">App bar</span></div>
-						<div class="panel-body">
-
-							<div class="app-bar app-bar-primary">
-								<div class="app-bar-row">
-									<button class="btn btn-icon btn-text"><i class="mdi mdi-menu"></i></button>
-									<span class="app-bar-title">App bar</span>
-								</div>
-								<div class="app-bar-row app-bar-light">
-									<label class="input-group">
-										<div class="input-group-addon"><i class="mdi mdi-magnify"></i></div>
-										<input type="search" class="form-control" placeholder="Search for anything..."/>
-										<latte-ripple as="button" class="btn btn-text btn-primary"><span>Search</span></latte-ripple>
-									</label>
-								</div>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Silhouette</span></div>
 						<div class="panel-body" style="background: rgb(var(--main-background))">
 							<div class="row">

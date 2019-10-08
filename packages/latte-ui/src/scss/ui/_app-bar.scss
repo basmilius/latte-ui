@@ -21,7 +21,9 @@
 	position: relative;
 	display: flex;
 	flex-flow: column;
+	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
 	box-shadow: var(--app-bar-elevation);
+	color: #{latte-rgb(var(--app-bar-foreground))};
 
 	&.app-bar-flat
 	{
@@ -56,8 +58,6 @@
 	min-height: var(--app-bar-height);
 	padding: 0 15px;
 	align-items: center;
-	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
-	color: #{latte-rgb(var(--app-bar-foreground))};
 
 	--btn-background: var(--app-bar-foreground);
 	--btn-foreground: var(--app-bar-background);
