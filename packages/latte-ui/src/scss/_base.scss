@@ -10,6 +10,7 @@
 body
 {
 	background: #{latte-rgb(var(--main-background))};
+	color: #{latte-rgb(var(--main-foreground))};
 	font-family: var(--font-sans-serif);
 	font-size: 1rem;
 }
