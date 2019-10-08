@@ -21,6 +21,50 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Typography</span></div>
+						<div class="panel-body">
+							<h1>Heading 1</h1>
+							<h2>Heading 2</h2>
+							<h3>Heading 3</h3>
+							<h4>Heading 4</h4>
+							<h5>Heading 5</h5>
+							<h6>Heading 6</h6>
+							<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem beatae consequuntur eum illo quam qui. Accusantium animi deleniti est facere fugit, inventore labore nemo neque nobis praesentium sed voluptatum!</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dicta neque quos similique vitae. Cupiditate eligendi molestias numquam odio ratione recusandae vel! Dolorum facilis natus, neque nisi optio recusandae sed.</p>
+							<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A asperiores commodi consequuntur cum delectus eius eveniet facere labore, nobis, odio provident quis quos, sequi suscipit tempore? Ad dolorum fugit rerum!</p>
+							<ul>
+								<li>Item</li>
+								<li>Item</li>
+								<li>Item</li>
+							</ul>
+							<ol>
+								<li>Item</li>
+								<li>Item</li>
+								<li>Item</li>
+							</ol>
+							<p>
+								<abbr title="HyperText Markup Language">HTML</abbr>
+							</p>
+							<blockquote>
+								<blockquote>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus ad aliquam aliquid aperiam blanditiis culpa delectus doloribus enim est eum eveniet exercitationem fugiat, necessitatibus nemo neque tenetur totam vel!</p>
+								</blockquote>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus ad aliquam aliquid aperiam blanditiis culpa delectus doloribus enim est eum eveniet exercitationem fugiat, necessitatibus nemo neque tenetur totam vel!</p>
+							</blockquote>
+							<blockquote>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus ad aliquam aliquid aperiam blanditiis culpa delectus doloribus enim est eum eveniet exercitationem fugiat, necessitatibus nemo neque tenetur totam vel!</p>
+								<blockquote>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus ad aliquam aliquid aperiam blanditiis culpa delectus doloribus enim est eum eveniet exercitationem fugiat, necessitatibus nemo neque tenetur totam vel!</p>
+								</blockquote>
+							</blockquote>
+							<blockquote>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusamus ad aliquam aliquid aperiam blanditiis culpa delectus doloribus enim est eum eveniet exercitationem fugiat, necessitatibus nemo neque tenetur totam vel!</p>
+								<footer>Bas Milius</footer>
+							</blockquote>
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Date/time pickers</span></div>
 						<div class="panel-body">
 							<latte-datepicker></latte-datepicker>

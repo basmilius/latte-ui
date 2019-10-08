@@ -16,7 +16,7 @@
 	--ease-swift-out: cubic-bezier(.55, 0, .1, 1);
 
 	--font-sans-serif: "proxima-nova", sans-serif;
-	--font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	--font-monospace: monospace;
 
 	--branding-logo: #{unquote("url(" + $latte-root + "image/logo.svg)")};
 	--radius: 6px;
@@ -36,14 +36,13 @@
 	--color-success-foreground: var(--light);
 	--color-warning: var(--orange-50);
 	--color-warning-foreground: var(--light);
-	--color-light: 255, 255, 255;
+	--color-light: var(--light);
 	--color-light-foreground: var(--dark);
-	--color-dark: 25, 26, 28;
+	--color-dark: var(--dark);
 	--color-dark-foreground: var(--light);
 
 	--main-background: 249, 249, 249;
 	--main-foreground: 25, 26, 28;
-	--main-placeholder: rgba(0, 0, 0, .42);
 
 	--outline-color: 238,241,245;
 

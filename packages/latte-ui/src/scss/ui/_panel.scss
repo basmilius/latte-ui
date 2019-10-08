@@ -70,8 +70,6 @@ a.panel
 
 .panel-body
 {
-	position: relative;
-	display: block;
 	padding: var(--panel-gutter);
 	flex: 1 1 auto;
 
@@ -83,7 +81,6 @@ a.panel
 
 .panel-column
 {
-	position: relative;
 	display: flex;
 	align-items: stretch;
 	flex-flow: column;
@@ -92,7 +89,6 @@ a.panel
 
 .panel-footer
 {
-	position: relative;
 	display: flex;
 	min-height: 60px;
 	padding: 0 var(--panel-gutter);
@@ -111,16 +107,16 @@ a.panel
 
 .panel-header
 {
-	position: relative;
 	display: flex;
 	min-height: 75px;
 	padding: 0 var(--panel-gutter);
 	align-items: center;
 	flex: 0 0 auto;
+	border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
 
-	&:not(:last-child)
+	&:last-child
 	{
-		border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
+		border-bottom: 0;
 	}
 
 	&.panel-header-sticky
@@ -144,7 +140,6 @@ a.panel
 	flex: 0 0 auto;
 	background:
 	{
-		color: inherit;
 		position: center center;
 		repeat: no-repeat;
 		size: cover;
@@ -174,25 +169,18 @@ a.panel
 
 .panel-title
 {
-	position: relative;
-	display: block;
-	color: rgba(var(--color-dark), .75);
-	font-size: 1.1em;
+	margin: 0;
+	color: #{latte-rgb(var(--main-foreground))};
+	font-size: 1em;
 	font-weight: 700;
 }
 
 .panel-sub-title
 {
-	position: relative;
-	display: block;
-	color: rgba(var(--color-dark), .5);
+	margin: 0;
+	color: #{latte-rgba(var(--main-foreground), .5)};
 	font-size: .9em;
-	font-weight: 600;
-}
-
-.panel.is-closed .panel-header
-{
-	border-bottom-color: transparent;
+	font-weight: 700;
 }
 
 .panel-footer .btn.btn-text:first-child,
@@ -227,12 +215,4 @@ a.panel
 .panel-media-gutter + .panel-header
 {
 	margin-top: calc(var(--panel-gutter) / -2);
-}
-
-.panel-table
-{
-	display: block;
-	overflow: auto;
-
-	-webkit-overflow-scrolling: touch;
 }

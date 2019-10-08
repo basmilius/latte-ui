@@ -177,7 +177,8 @@ table.table
 
 			&::placeholder
 			{
-				color: var(--main-placeholder);
+				color: currentColor;
+				opacity: .5;
 			}
 		}
 	}

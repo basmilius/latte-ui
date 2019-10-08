@@ -7,20 +7,18 @@
  * LICENSE file that was distributed with this source code.
  */
 
-$sizes: (33px, 28px, 25px, 22px, 19px, 15px);
+$sizes: (2rem, 1.8rem, 1.6rem, 1.4rem, 1.2rem, 1rem);
 
 @for $heading from 1 through 6
 {
 	h#{$heading}
 	{
-		position: relative;
-		display: block;
 		margin: 0 0 1rem 0;
 		color: currentColor;
-		font-weight: 600;
+		font-size: nth($sizes, $heading);
+		font-weight: 700;
+		line-height: 1em;
 		vertical-align: middle;
-
-		@include font-size(nth($sizes, $heading));
 	}
 }
 
@@ -28,9 +26,60 @@ p
 {
 	margin-bottom: 1rem;
 
+	&.lead
+	{
+		font-size: 1.1em;
+		font-weight: 300;
+	}
+
 	&:last-child
 	{
 		margin-bottom: 0;
+	}
+}
+
+abbr
+{
+	cursor: help;
+}
+
+blockquote
+{
+	position: relative;
+	margin: 1rem 0;
+	padding: 1rem 1rem 1rem calc(1rem + 6px);
+
+	&::before
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 6px;
+		background: #{latte-rgba(var(--color-primary), .1)};
+		border-radius: 3px;
+		content: "";
+	}
+
+	> blockquote:first-child
+	{
+		margin-top: -1rem;
+	}
+
+	> blockquote:last-child
+	{
+		margin-bottom: -1rem;
+	}
+
+	footer
+	{
+		opacity: .6;
+
+		&::before
+		{
+			margin-right: .5rem;
+			content: "\2014";
+		}
 	}
 }
 
