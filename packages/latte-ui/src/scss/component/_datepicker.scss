@@ -29,7 +29,7 @@
 .datepicker-calendar
 {
 	max-width: calc(100vw - 24px);
-	width: 300px;
+	width: 321px;
 	z-index: 0;
 
 	.datepicker-calendar-header
@@ -71,12 +71,12 @@
 		{
 			--btn-padding: 0;
 
-			height: 36px;
+			height: 39px;
 			margin: 0;
 			width: 100%;
-			font-size: .9rem;
+			font-size: .85rem;
 
-			&:not([disabled])
+			&:not(.btn-contained):not([disabled])
 			{
 				opacity: .7;
 			}

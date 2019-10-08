@@ -38,7 +38,7 @@
 						<div class="panel-body" style="background: rgb(var(--main-background))">
 							<div class="row">
 
-								<div class="col-6">
+								<div class="col-12 col-lg-6">
 
 									<div class="panel">
 										<latte-silhouette class="panel-media embed-responsive embed-responsive-16by9"></latte-silhouette>
@@ -59,7 +59,7 @@
 
 								</div>
 
-								<div class="col-6">
+								<div class="col-12 col-lg-6 mt-panel-gutter mt-lg-0">
 
 									<div class="panel">
 										<div class="panel-media embed-responsive embed-responsive-16by9" style="background-image: url(/image/wallpaper/1.jpg)"></div>

@@ -16,7 +16,7 @@
 				<div class="panel-footer">
 					<latte-ripple as="button" class="btn btn-icon btn-text btn-dark" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
 					<latte-ripple as="button" class="btn btn-text btn-dark ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "OK" | i18n("latte-ui") }}</span></latte-ripple>
 				</div>
 			</latte-timepicker-clock>
 		</template>

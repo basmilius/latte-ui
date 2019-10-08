@@ -65,7 +65,7 @@
 		name: "latte-timepicker-clock",
 
 		props: {
-			clockRadius: {default: 99, type: Number},
+			clockRadius: {default: 103, type: Number},
 			value: {default: () => new Date(), type: Date}
 		},
 
