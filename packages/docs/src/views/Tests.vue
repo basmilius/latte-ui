@@ -21,6 +21,38 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Date/time pickers</span></div>
+						<div class="panel-body">
+							Hi
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Checkbox, radio and toggle buttons</span></div>
+						<div class="panel-body">
+							<input type="checkbox" class="checkbox checkbox-primary mr-1" checked/>
+							<input type="checkbox" class="checkbox checkbox-primary mr-1" />
+							<input type="checkbox" class="checkbox checkbox-primary mr-1" checked/>
+							<input type="checkbox" class="checkbox checkbox-primary mr-1" disabled />
+							<input type="checkbox" class="checkbox checkbox-primary mr-1" checked disabled/>
+						</div>
+						<div class="panel-body">
+							<input type="checkbox" class="toggle-button toggle-button-primary mr-1" checked/>
+							<input type="checkbox" class="toggle-button toggle-button-primary mr-1" />
+							<input type="checkbox" class="toggle-button toggle-button-primary mr-1" checked/>
+							<input type="checkbox" class="toggle-button toggle-button-primary mr-1" disabled />
+							<input type="checkbox" class="toggle-button toggle-button-primary mr-1" checked disabled/>
+						</div>
+						<div class="panel-body">
+							<input type="radio" class="radio-button radio-button-primary mr-1" checked/>
+							<input type="radio" class="radio-button radio-button-primary mr-1" />
+							<input type="radio" class="radio-button radio-button-primary mr-1" checked/>
+							<input type="radio" class="radio-button radio-button-primary mr-1" disabled />
+							<input type="radio" class="radio-button radio-button-primary mr-1" checked disabled/>
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Silhouette</span></div>
 						<div class="panel-body" style="background: rgb(var(--main-background))">
 							<div class="row">

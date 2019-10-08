@@ -17,16 +17,16 @@
 {
 	position: relative;
 	display: inline-block;
+	appearance: none;
 	margin: 0;
 	height: 24px;
 	width: 36px;
-	appearance: none;
 	flex: 0 0 auto;
 	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
-	transition: 240ms var(--ease-swift-out);
+	transition: 180ms var(--ease-swift-out);
 	transition-property: background, border-color;
 	vertical-align: middle;
 
@@ -38,8 +38,7 @@
 		width: 12px;
 		content: "";
 		background: #{latte-rgb(var(--form-outline))};
-		border-radius: 7px;
-		transform: translate3d(0, 0, 0);
+		border-radius: inherit;
 		transition: inherit;
 		transition-property: background, transform;
 	}
@@ -66,7 +65,6 @@
 		cursor: not-allowed;
 		filter: grayscale(100%);
 		opacity: .5;
-		pointer-events: none;
 	}
 }
 

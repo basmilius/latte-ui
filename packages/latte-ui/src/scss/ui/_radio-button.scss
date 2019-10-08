@@ -22,12 +22,12 @@ input[type=radio].radio-button
 	height: 24px;
 	width: 24px;
 	flex: 0 0 auto;
-	background: transparent;
 	border: 2px solid #{latte-rgb(var(--form-outline))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
-	transition: all 180ms var(--ease-swift-out);
+	transition: 180ms var(--ease-swift-out);
+	transition-property: background, border-color;
 	vertical-align: middle;
 
 	&::before
@@ -41,6 +41,7 @@ input[type=radio].radio-button
 		background: transparent;
 		border-radius: 7px;
 		transition: inherit;
+		transition-property: background;
 	}
 
 	&:hover::before
@@ -68,7 +69,6 @@ input[type=radio].radio-button
 		cursor: not-allowed;
 		filter: grayscale(100%);
 		opacity: .5;
-		pointer-events: none;
 	}
 }
 
