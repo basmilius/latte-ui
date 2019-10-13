@@ -42,9 +42,9 @@ div.app-bar-main
 	{
 		overflow: hidden;
 
-		.nav-link.is-not-really-active:not([href="/"])
+		.nav-link.is-not-really-active:not([href="/"]),
+		.nav-link.is-not-really-active:not([href="/"])::before
 		{
-			box-shadow: inset 0 -2px rgba(var(--tabs-accent), 1);
 			opacity: 1;
 		}
 	}
@@ -57,6 +57,12 @@ div.app-bar-main
 		position: sticky;
 		top: var(--app-bar-height);
 		height: calc(100vh - var(--app-bar-height));
+
+		div.sheet-content
+		{
+			border-right: 1px solid rgba(var(--outline-color), 1);
+			box-shadow: none;
+		}
 	}
 }
 

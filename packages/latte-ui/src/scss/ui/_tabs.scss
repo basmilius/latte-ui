@@ -10,9 +10,20 @@
 :root
 {
 	--tabs-accent: var(--color-primary);
-	--tabs-accent-foreground: var(--color-primary-foreground);
 	--tabs-foreground: var(--main-foreground);
 	--tabs-height: 45px;
+}
+
+%tab-indicator
+{
+	position: absolute;
+	display: block;
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	border-radius: 3px 3px 0 0;
+	background: #{latte-rgb(var(--tabs-accent))};
+	transition: all 330ms var(--ease-swift-out);
 }
 
 .nav.nav-tabs
@@ -21,32 +32,15 @@
 	align-items: stretch;
 	flex-flow: row nowrap;
 
-	div.nav-tabs-indicator
+	.nav-tabs-indicator
 	{
-		position: absolute;
-		display: block;
-		left: 0;
-		bottom: 0;
-		height: 2px;
-		background: #{latte-rgb(var(--tabs-accent))};
-		transition: all 330ms var(--ease-swift-out);
-	}
-
-	&.is-over-outline
-	{
-		margin-bottom: -2px;
-		z-index: 1;
-
-		div.nav-tabs-indicator
-		{
-			bottom: -2px;
-		}
+		@extend %tab-indicator;
 	}
 
 	.nav-link
 	{
 		height: auto;
-		padding: 9px 6px;
+		padding: 9px 0;
 		justify-content: center;
 		color: #{latte-rgb(var(--tabs-foreground))};
 		font-weight: 500;
@@ -54,9 +48,18 @@
 		opacity: .6;
 		transition: all 180ms var(--ease-swift-out);
 
+		&::before
+		{
+			@extend %tab-indicator;
+
+			right: 0;
+			content: "";
+			opacity: 0;
+		}
+
 		+ .nav-link
 		{
-			margin-left: 18px;
+			margin-left: 24px;
 		}
 
 		#{unquote($latte-icon-class)}, span
@@ -71,19 +74,27 @@
 
 		&:hover
 		{
-			box-shadow: inset 0 -2px #{latte-rgb(var(--tabs-accent))};
 			opacity: .8;
+
+			&::before
+			{
+				opacity: 1;
+			}
 		}
 
 		&.is-active
 		{
-			box-shadow: inset 0 -2px #{latte-rgb(var(--tabs-accent))};
 			opacity: 1;
+
+			&::before
+			{
+				opacity: 1;
+			}
 		}
 
-		&.no-indicator
+		&.no-indicator.is-active::before
 		{
-			box-shadow: none;
+			opacity: 0;
 		}
 	}
 
@@ -95,39 +106,27 @@
 
 .panel > .nav.nav-tabs
 {
-	padding: 0 24px;
+	--tabs-height: 54px;
+
+	padding: 0 var(--panel-gutter);
 	border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
 
-	div.nav-tabs-indicator
+	.nav-tabs-indicator
 	{
 		bottom: -2px;
 	}
 
 	.nav-link
 	{
-		height: 54px;
-		margin-bottom: -2px;
+		margin-bottom: -1px;
 		z-index: 1;
 	}
 }
 
 .panel-header > .nav.nav-tabs
 {
-	margin-bottom: -2px;
+	--tabs-height: 75px;
+
+	margin-bottom: -1px;
 	z-index: 1;
-
-	&:first-child
-	{
-		margin-left: -6px;
-	}
-
-	&:last-child
-	{
-		margin-right: -6px;
-	}
-
-	.nav-link
-	{
-		min-height: 75px;
-	}
 }
