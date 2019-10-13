@@ -14,11 +14,6 @@
 		box-shadow: 1px 0 #{latte-rgb(var(--outline-color))};
 	}
 
-	> .app-bar
-	{
-		--app-bar-elevation: 0 1px #{latte-rgb(var(--outline-color))};
-	}
-
 	> .content
 	{
 		padding: 0;

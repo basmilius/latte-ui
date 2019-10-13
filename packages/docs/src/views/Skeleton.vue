@@ -69,11 +69,11 @@
 						<div class="row">
 							<div class="col-12 col-lg-4 text-center text-lg-left">
 
-								<img src="../assets/bas.svg" alt="Bas' logo" height="54"/><br/>
+								<img src="../assets/bas.svg" alt="Bas' logo" height="54" class="mx-auto mx-lg-0"/>
 								<br/>
 								<p><strong>By Bas</strong></p>
 								<p>
-									Designed and developed with <img src="https://cdn.mili.us/assets/joypixels/v5/svg/2764.svg" alt="Heart" class="emoji"/> by <a href="https://bas.dev" target="_blank" rel="noopener">Bas Milius</a> and other contributors.
+									Designed and developed with <img src="https://g.s3.bmcdn.nl/assets/joypixels/v5/svg/2764.svg" alt="Heart" class="emoji"/> by <a href="https://bas.dev" target="_blank" rel="noopener">Bas Milius</a> and other contributors.
 								</p>
 
 							</div>

@@ -44,7 +44,7 @@
 	@include expanded
 	{
 		grid-auto-rows: auto;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: auto calc(100% - var(--scaffolding-drawer-width));
 		grid-template-rows: auto 1fr;
 
 		> .app-bar

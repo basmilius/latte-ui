@@ -38,6 +38,17 @@ p
 	}
 }
 
+a
+{
+	color: currentColor;
+	text-decoration: underline;
+
+	&:hover
+	{
+		color: #{latte-rgb(var(--color-primary))};
+	}
+}
+
 abbr
 {
 	cursor: help;
