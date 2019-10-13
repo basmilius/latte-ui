@@ -12,6 +12,7 @@
 	--tabs-accent: var(--color-primary);
 	--tabs-foreground: var(--main-foreground);
 	--tabs-height: 45px;
+	--tabs-radius: 3px 3px 0 0;
 }
 
 %tab-indicator
@@ -21,9 +22,9 @@
 	left: 0;
 	bottom: 0;
 	height: 3px;
-	border-radius: 3px 3px 0 0;
+	border-radius: var(--tabs-radius);
 	background: #{latte-rgb(var(--tabs-accent))};
-	transition: all 330ms var(--ease-swift-out);
+	transition: all 300ms var(--ease-swift-out);
 }
 
 .nav.nav-tabs
@@ -46,7 +47,7 @@
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;
-		transition: all 180ms var(--ease-swift-out);
+		transition: all 150ms var(--ease-swift-out);
 
 		&::before
 		{
