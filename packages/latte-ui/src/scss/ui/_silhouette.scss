@@ -1,0 +1,86 @@
+:root
+{
+	--silhouette-color: var(--outline-color);
+}
+
+@keyframes silhouette
+{
+	from
+	{
+		background: rgba(var(--silhouette-color), 1);
+	}
+
+	to
+	{
+		background: rgba(var(--silhouette-color), .5);
+	}
+}
+
+%silhouette
+{
+	display: block;
+	pointer-events: none;
+	animation: silhouette 1s infinite alternate ease-in-out;
+}
+
+.btn.silhouette
+{
+	@extend %silhouette;
+
+	&:not(.btn-icon)
+	{
+		width: 90px;
+	}
+}
+
+div.silhouette
+{
+	@extend %silhouette;
+}
+
+h1.silhouette,
+h2.silhouette,
+h3.silhouette,
+h4.silhouette,
+h5.silhouette,
+h6.silhouette
+{
+	@extend %silhouette;
+
+	height: 1em;
+	border-radius: 1em;
+}
+
+p.silhouette
+{
+	&::before,
+	&::after
+	{
+		@extend %silhouette;
+
+		height: .8em;
+		margin: .4em 0;
+		border-radius: 1em;
+		content: "";
+	}
+
+	&::before
+	{
+		width: 100%;
+	}
+
+	&::after
+	{
+		margin-top: .6em;
+		width: 70%;
+	}
+}
+
+span.silhouette
+{
+	@extend %silhouette;
+
+	height: 1em;
+	flex-grow: 1;
+	border-radius: 1em;
+}
