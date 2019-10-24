@@ -37,7 +37,13 @@
 			if (this.entry.parent && this.entry.parent.block.canHaveGroups)
 				return this.entry.renderEditor(h);
 
-			return h("div", {class: this.classes, style: this.styles, on: {click: evt => this.onClick(evt)}}, [
+			return h("div", {
+				class: this.classes,
+				style: this.styles,
+				on: {
+					click: evt => this.onClick(evt)
+				}
+			}, [
 				this.renderInserter(h, this.entry.index === 0, this.entry.index, "top"),
 				this.renderInserter(h, true, this.entry.index, "bottom"),
 				this.renderOptions(h),
@@ -125,7 +131,7 @@
 
 				try
 				{
-					return h("latte-portal", {props: {depth, order: -depth, to: `be-settings-pane-${this.entry.editor.uniqueId}`}}, [
+					return h("latte-portal", {props: {depth, to: `be-settings-pane-${this.entry.editor.uniqueId}`}}, [
 						this.entry.block.renderOptions(h, this.entry)
 					]);
 				}

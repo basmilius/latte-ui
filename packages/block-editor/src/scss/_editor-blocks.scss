@@ -24,7 +24,7 @@
 		height: var(--editor-rect-h, 0);
 		width: var(--editor-rect-w, 0);
 		content: "";
-		outline: 2px dashed rgba(var(--color-primary), .15);
+		outline: 2px dashed rgba(var(--outline-color), 1);
 		outline-offset: 12px;
 		pointer-events: none;
 		z-index: 2;

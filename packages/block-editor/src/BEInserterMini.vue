@@ -22,6 +22,7 @@
 		data()
 		{
 			return {
+				editor: editorInstance(this),
 				isOpen: false
 			};
 		},
@@ -30,7 +31,7 @@
 
 			onClick()
 			{
-				editorInstance(this).inserter.open(this.$el.querySelector("i.mdi"), id => this.select(id), -15);
+				this.editor.inserter.open(this.$el.querySelector("i.mdi"), id => this.select(id), -15);
 			},
 
 			select(id)
