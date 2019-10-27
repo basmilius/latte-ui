@@ -12,9 +12,11 @@
 	--table-padding: 12px 24px;
 }
 
-table.table
+.table
 {
 	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
 	z-index: 0;
 
 	$border: 1px solid #{latte-rgb(var(--outline-color))};
