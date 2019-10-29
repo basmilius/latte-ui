@@ -12,10 +12,11 @@
 	--main-background: 25, 26, 28;
 	--main-foreground: 249, 249, 249;
 
-	--color-dark: 255, 255, 255;
-	--color-light: 25, 26, 28;
-	--color-dark-foreground: 25, 26, 28;
-	--color-light-foreground: 255, 255, 255;
+	--color-primary-foreground: var(--dark);
+	--color-error-foreground: var(--dark);
+	--color-info-foreground: var(--dark);
+	--color-success-foreground: var(--dark);
+	--color-warning-foreground: var(--dark);
 
 	--elevation-color: 0, 0, 0;
 
