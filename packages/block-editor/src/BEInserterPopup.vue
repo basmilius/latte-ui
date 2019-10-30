@@ -82,7 +82,7 @@
 
 			onClose()
 			{
-				this.assiciatedElement = undefined;
+				// this.assiciatedElement = undefined;
 				this.isOpen = false;
 			},
 
