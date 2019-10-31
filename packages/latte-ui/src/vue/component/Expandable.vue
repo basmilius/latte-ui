@@ -12,7 +12,7 @@
 	<div class="expandable">
 
 		<div class="expandable-header" @click="toggle">
-			<slot name="header" v-bind:isOpen="isOpen">
+			<slot name="header" v-bind="{isOpen}">
 				<button class="btn btn-icon btn-text btn-dark">
 					<Icon name="menu-swap"/>
 				</button>
@@ -127,7 +127,7 @@
 
 			isOpen()
 			{
-				if (this.isOpen)
+				if (this.isOpen && this.group !== null)
 					dispatch("latte:expandable:open", this);
 
 				this.$emit(this.isOpen ? "open" : "close");
