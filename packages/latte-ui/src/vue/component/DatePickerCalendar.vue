@@ -91,6 +91,11 @@
 
 			dates()
 			{
+				const value = new Date(this.value);
+				value.setFullYear(this.selectedYear);
+				value.setMonth(this.selectedMonth - 1);
+				value.setDate(1);
+
 				let dates = [];
 				let monthDays = this.monthEndDate.date();
 				let beforeDates = Math.max(0, this.monthBeginDate.weekday());
@@ -100,7 +105,7 @@
 
 				for (let x = 1; x <= monthDays; x++)
 				{
-					const date = new Date(this.value.getTime());
+					const date = new Date(value.getTime());
 					date.setFullYear(this.selectedYear);
 					date.setMonth(this.selectedMonth - 1);
 					date.setDate(x);
