@@ -17,6 +17,8 @@
 
 <script>
 
+	import { closestComponent } from "../../js/util/dom";
+
 	export default {
 
 		name: "latte-tab",
@@ -30,13 +32,15 @@
 		data()
 		{
 			return {
-				active: false
+				active: false,
+				container: closestComponent(this, "latte-tab-container")
 			};
 		},
 
 		mounted()
 		{
-			this.$parent.updateChildren();
+			if (this.container)
+				this.container.updateChildren();
 		},
 
 		watch: {
