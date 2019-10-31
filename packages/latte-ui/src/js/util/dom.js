@@ -31,6 +31,25 @@ export function closest(element, selector)
 }
 
 /**
+ * Returns the closest parent component or undefiend when nothing is found.
+ *
+ * @param {Vue} component
+ * @param {String} name
+ *
+ * @returns {Vue}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function closestComponent(component, name)
+{
+	while ((component = component.$parent) !== undefined)
+		if (component.$options.name === name)
+			return component;
+
+	return undefined;
+}
+
+/**
  * Conditional render for vue components.
  *
  * @param {Boolean} condition
