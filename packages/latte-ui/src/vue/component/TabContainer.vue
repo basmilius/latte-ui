@@ -10,7 +10,7 @@
 <template>
 
 	<div class="tab-container">
-		<slot v-bind="{current, tabs}"></slot>
+		<slot v-bind="{current, tabs, setCurrent}"></slot>
 	</div>
 
 </template>
@@ -39,6 +39,11 @@
 		},
 
 		methods: {
+
+			setCurrent(tab)
+			{
+				this.current = tab;
+			},
 
 			updateChildren()
 			{
