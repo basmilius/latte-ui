@@ -33,9 +33,14 @@ export function convertToHtml(root)
 	return fixHTMLString(tmp.innerHTML);
 }
 
-export function convertToJson(root)
+export function convertToJson(root, pretty = false)
 {
-	return JSON.stringify(convertToData(root));
+	const data = convertToData(root);
+
+	if (pretty)
+		return JSON.stringify(data, null, 2);
+
+	return JSON.stringify(data);
 }
 
 export function renderChildren(entry)

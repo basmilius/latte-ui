@@ -7,7 +7,8 @@
 
 		<div class="be-editor-content">
 			<Toolbar/>
-			<ContentMount :content="content"/>
+			<ContentMount :content="content" v-if="view === 'visual'"/>
+			<CodeMount :content="content" v-else-if="view === 'code'"/>
 		</div>
 
 		<Settings>
@@ -37,12 +38,13 @@
 	import InserterQuick from "./InserterQuick";
 	import Settings from "./Settings";
 	import Toolbar from "./Toolbar";
+	import CodeMount from "./CodeMount";
 
 	export default {
 
 		name: "Editor",
 
-		components: {InserterQuick, InserterPopup, Inserter, ContentMount, Settings, Toolbar},
+		components: {CodeMount, InserterQuick, InserterPopup, Inserter, ContentMount, Settings, Toolbar},
 
 		props: {
 			value: {default: () => [], type: Array}
@@ -57,7 +59,8 @@
 					timestamp: Date.now()
 				},
 				content: null,
-				selection: window.getSelection()
+				selection: window.getSelection(),
+				view: "visual"
 			};
 		},
 

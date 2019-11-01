@@ -13,4 +13,15 @@
 		align-items: stretch;
 		flex-flow: column;
 	}
+
+	&.code-view textarea
+	{
+		height: 100%;
+		width: 100%;
+		padding: 24px;
+		background: transparent;
+		border: 0;
+		font-size: .9rem;
+		outline: 0;
+	}
 }

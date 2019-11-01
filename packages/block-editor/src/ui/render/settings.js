@@ -53,7 +53,7 @@ export function nag(h, instance, calc, classes, children)
 			const nag = element.parentNode.querySelector(`#${nagId}`);
 			const wrap = instance.editor.$el.querySelector(".be-content-wrapper");
 
-			if (nag)
+			if (nag && wrap)
 			{
 				const dim = getElementDimensionsAndOffset(element);
 				const edim = getElementDimensionsAndOffset(wrap);

@@ -6,13 +6,18 @@
 			<slot name="start-before"></slot>
 			<Button type="text" color="primary" icon-before="plus-circle" @click="launchInserter"/>
 			<div class="divider divider-vertical"></div>
-			<Button type="text" icon-before="undo" disabled/>
-			<Button type="text" icon-before="redo" disabled/>
+			<Button type="text" icon-before="undo-variant" disabled/>
+			<Button type="text" icon-before="redo-variant" disabled/>
 			<slot name="start-after"></slot>
 
-			<div class="mx-auto"></div>
+			<div class="mx-auto">
+				<latte-portal-target name="toolbar-center"/>
+			</div>
 
 			<slot name="end-before"></slot>
+			<Button type="text" icon-before="eye" v-if="editor.view === 'code'" @click="editor.view = 'visual'"/>
+			<Button type="text" icon-before="code-tags" v-if="editor.view === 'visual'" @click="editor.view = 'code'"/>
+			<div class="divider divider-vertical"></div>
 			<Button type="text" icon-before="dots-vertical"/>
 			<slot name="end-after"></slot>
 
