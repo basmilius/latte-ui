@@ -49,7 +49,7 @@
 
 			html()
 			{
-				return convertToHtml(this.content, true);
+				return convertToHtml(this.content);
 			},
 
 			json()
