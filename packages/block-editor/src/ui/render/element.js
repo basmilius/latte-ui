@@ -3,6 +3,7 @@ import { translate } from "../../core/i18n";
 import { Latte } from "../../util/latte";
 
 import Button from "../Button";
+import Notice from "../Notice";
 
 export function button(h, props, onClick)
 {
@@ -19,6 +20,13 @@ export function divider(h, isHorizontal)
 	return h("div", {
 		class: `divider divider-${isHorizontal ? "horizontal" : "vertical"}`
 	});
+}
+
+export function notice(h, message, options = {})
+{
+	return h(Notice, {props: options}, [
+		h("p", message)
+	]);
 }
 
 export function optionButtons(h, title, buttons, get, set)

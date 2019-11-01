@@ -1,6 +1,6 @@
 <template>
 
-	<button :class="classes" :disabled="disabled" @click="onClick">
+	<button :class="buttonClasses" :disabled="disabled" @click="onClick">
 		<Icon v-if="iconBefore" :name="iconBefore"/>
 		<span v-if="label">{{ label | beTranslate }}</span>
 		<Icon v-if="iconAfter" :name="iconAfter"/>
@@ -20,6 +20,7 @@
 
 		props: {
 			disabled: {default: false, type: Boolean},
+			classes: {default: () => [], type: Array},
 			color: {default: null, type: String | null},
 			iconAfter: {default: null, type: String | null},
 			iconBefore: {default: null, type: String | null},
@@ -29,9 +30,9 @@
 
 		computed: {
 
-			classes()
+			buttonClasses()
 			{
-				const classes = ["btn", `btn-${this.type}`];
+				const classes = ["btn", `btn-${this.type}`, ...this.classes];
 
 				if (this.color !== null)
 					classes.push(`btn-${this.color}`);

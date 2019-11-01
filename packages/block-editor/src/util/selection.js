@@ -1,5 +1,6 @@
 import { ensureTextNode, isInputOrTextarea } from "./element";
 import { handleComponentError } from "./error";
+import { Latte } from "./latte";
 
 const {
 	DOCUMENT_POSITION_FOLLOWING,
@@ -256,10 +257,14 @@ export function saveLastSelection(instance)
 		return;
 
 	const current = instance.editor.selection.getRangeAt(0);
-	const range = document.createRange();
+
+	if (Latte.util.dom.closest(current.startContainer.parentElement, "[contenteditable]") === null)
+		return;
 
 	try
 	{
+		const range = document.createRange();
+
 		range.setStart(ensureTextNode(current.startContainer), current.startOffset);
 		range.setEnd(ensureTextNode(current.endContainer), current.endOffset);
 

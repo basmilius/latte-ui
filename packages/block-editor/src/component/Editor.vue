@@ -32,13 +32,13 @@
 	import { convertToBlocks, convertToData } from "../core/block/api";
 	import { Latte } from "../util/latte";
 
+	import CodeMount from "./CodeMount";
 	import ContentMount from "./ContentMount";
 	import Inserter from "./Inserter";
 	import InserterPopup from "./InserterPopup";
 	import InserterQuick from "./InserterQuick";
 	import Settings from "./Settings";
 	import Toolbar from "./Toolbar";
-	import CodeMount from "./CodeMount";
 
 	export default {
 

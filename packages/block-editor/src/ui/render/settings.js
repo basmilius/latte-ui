@@ -123,7 +123,7 @@ function toolbarCalc(dim, edim, tdim)
 	else if (dim.offset.top < 183)
 		dim.offset.top = 183;
 
-	if (dim.offset.left + (tdim.dimensions.width - 48) > edim.offset.left + edim.dimensions.width)
+	if (dim.offset.left > edim.offset.left + edim.dimensions.width / 2)
 		dim.offset.left = edim.offset.left + edim.dimensions.width - tdim.dimensions.width;
 
 	return {

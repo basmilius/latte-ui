@@ -17,5 +17,14 @@ export function tabBar(h, options = {})
 
 export function tabContainer(h, options = {}, children = [])
 {
+	if (typeof children === "function")
+	{
+		options.scopedSlots = {
+			default: children
+		};
+
+		children = undefined;
+	}
+
 	return h("latte-tab-container", options, children);
 }
