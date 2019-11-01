@@ -1,0 +1,36 @@
+.be-page-break-mount
+{
+	margin: 1rem 0;
+
+	.be-page-break
+	{
+		position: relative;
+		display: block;
+		margin: -.5rem 0;
+		width: 100%;
+		text-align: center;
+
+		&::before
+		{
+			position: absolute;
+			display: block;
+			top: calc(50% - 2px);
+			left: 0;
+			right: 0;
+			content: "";
+			border-top: 4px dashed rgba(var(--outline-color), 1);
+		}
+
+		&::after
+		{
+			position: relative;
+			display: inline-block;
+			padding: 0 1.3rem;
+			content: attr(data-text);
+			background: rgba(var(--root-background), 1);
+			color: rgba(var(--main-foreground), .8);
+			font-size: .85rem;
+			font-weight: 700;
+		}
+	}
+}

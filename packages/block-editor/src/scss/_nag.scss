@@ -1,0 +1,38 @@
+.be-editor-nag
+{
+	--btn-background: var(--main-foreground);
+
+	position: fixed;
+	display: flex;
+	top: var(--nag-y, 0);
+	left: var(--nag-x, 0);
+	padding: 6px;
+	background: rgba(var(--panel-background), 1);
+	border: 1px solid rgba(var(--outline-color), 1);
+	border-radius: var(--radius);
+	box-shadow: var(--elevation-6);
+	transform: var(--nag-transform, none);
+	z-index: 500;
+
+	&.be-sidebar
+	{
+		flex-flow: column;
+	}
+
+	.btn
+	{
+		margin: 0;
+	}
+
+	.divider-horizontal
+	{
+		width: 24px;
+		margin: 9px 6px;
+	}
+
+	.divider-vertical
+	{
+		height: 24px;
+		margin: 6px 9px;
+	}
+}

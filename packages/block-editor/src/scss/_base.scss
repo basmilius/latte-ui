@@ -1,0 +1,35 @@
+.be-editor
+{
+	position: absolute;
+	display: grid;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	grid-template-columns: 1fr 360px;
+	grid-template-rows: 1fr;
+	overflow: hidden;
+	z-index: 0;
+
+	[contenteditable]
+	{
+		cursor: text;
+		outline: 0;
+
+		&:empty::before
+		{
+			content: attr(data-placeholder);
+			opacity: .6;
+		}
+	}
+
+	.be-editor-content,
+	.be-editor-settings
+	{
+		position: relative;
+		display: flex;
+		align-items: stretch;
+		flex-flow: column;
+		overflow: auto;
+	}
+}

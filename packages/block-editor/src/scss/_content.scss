@@ -1,0 +1,16 @@
+.be-content-mount
+{
+	position: relative;
+	flex-grow: 1;
+	background: rgba(var(--root-background), 1);
+
+	.be-content-wrapper
+	{
+		position: relative;
+		display: flex;
+		margin: 66px auto;
+		max-width: var(--root-width);
+		align-items: stretch;
+		flex-flow: column;
+	}
+}

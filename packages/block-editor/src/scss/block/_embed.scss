@@ -1,0 +1,15 @@
+.be-block-embed
+{
+	overflow: visible;
+}
+
+.be-block-embed iframe
+{
+	pointer-events: none;
+}
+
+.be-block-mount.is-selected > .be-block-embed iframe
+{
+	overflow: visible;
+	pointer-events: all;
+}

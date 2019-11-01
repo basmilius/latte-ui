@@ -1,0 +1,21 @@
+.be-block-description
+{
+	position: relative;
+	display: flex;
+	padding: 18px 24px;
+	align-items: flex-start;
+	border-bottom: 1px solid rgba(var(--outline-color), 1);
+	font-size: .9rem;
+
+	i.mdi
+	{
+		margin-right: 15px;
+	}
+
+	strong
+	{
+		display: inline-block;
+		color: rgba(var(--main-foreground), .8);
+		line-height: 24px;
+	}
+}

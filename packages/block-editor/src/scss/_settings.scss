@@ -1,0 +1,111 @@
+.be-editor-settings
+{
+	border-left: 1px solid rgba(var(--outline-color), 1);
+	z-index: 0;
+
+	.nav-tabs
+	{
+		--tabs-height: 61px;
+
+		position: sticky;
+		top: 0;
+		background: rgba(var(--panel-background), 1);
+		border-bottom: 1px solid rgba(var(--outline-color), 1);
+		z-index: 10;
+
+		&::before
+		{
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			content: "";
+			background: rgba(var(--outline-color), .4);
+			z-index: -1;
+		}
+
+		.nav-link
+		{
+			margin: 0 0 -1px 0;
+		}
+	}
+}
+
+.be-settings-group
+{
+	position: relative;
+	display: block;
+	border-bottom: 1px solid rgba(var(--outline-color), 1);
+
+	.settings-body
+	{
+		position: relative;
+		display: flex;
+		flex-flow: column;
+
+		&.is-padded
+		{
+			padding: 21px 24px;
+		}
+	}
+
+	.settings-header
+	{
+		position: relative;
+		display: flex;
+		height: 60px;
+		margin-bottom: -1px;
+		padding: 0 24px;
+		align-items: center;
+		color: rgba(var(--main-foreground), .4);
+		font-size: .8rem;
+		font-weight: 700;
+		user-select: none;
+
+		+ .settings-body.is-padded
+		{
+			padding-top: 9px;
+		}
+	}
+}
+
+.be-settings-row
+{
+	position: relative;
+	display: flex;
+
+	h6
+	{
+		font-size: .9rem;
+		user-select: none;
+	}
+
+	&.flex-column h6
+	{
+		margin-bottom: 1rem;
+	}
+
+	&.flex-row h6
+	{
+		height: 24px;
+		margin: 0;
+		width: 150px;
+		flex: 0 0 auto;
+		line-height: 24px;
+	}
+
+	+ .be-settings-row
+	{
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgba(var(--outline-color), .5);
+	}
+
+	input.custom-range
+	{
+		margin: -1px 0;
+		transform: none;
+	}
+}

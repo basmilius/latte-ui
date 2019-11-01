@@ -1,0 +1,133 @@
+.be-inserter
+{
+	width: 390px;
+	z-index: 0;
+
+	.app-bar
+	{
+		position: sticky;
+		top: 0;
+		background: rgba(var(--panel-background), 1);
+		border-bottom: 1px solid rgba(var(--outline-color), 1);
+		z-index: 2;
+	}
+
+	.be-inserter-group
+	{
+		position: relative;
+		display: flex;
+		flex-flow: column;
+		margin-top: -1px;
+
+		.inserter-group-header
+		{
+			position: sticky;
+			display: flex;
+			top: 80px;
+			padding: 15px 24px;
+			align-items: center;
+			background: rgba(var(--panel-background), 1);
+			border: 1px solid rgba(var(--outline-color), 1);
+			border-left: 0;
+			border-right: 0;
+			cursor: pointer;
+			z-index: 1;
+
+			&::before
+			{
+				position: absolute;
+				display: block;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				content: "";
+				background: rgba(var(--outline-color), .2);
+				z-index: -1;
+			}
+
+			&:hover::before
+			{
+				background: rgba(var(--outline-color), .4);
+			}
+
+			h6
+			{
+				margin: 0 1rem;
+				color: rgba(var(--main-foreground), .5);
+				font-size: .9rem;
+			}
+		}
+
+		.inserter-group-body
+		{
+			position: relative;
+			display: grid;
+			padding: 12px;
+			grid-auto-rows: 1fr;
+			grid-gap: 12px;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		.inserter-block
+		{
+			--ripple-color: var(--color-primary);
+
+			position: relative;
+			display: flex;
+			padding: 18px 9px;
+			flex-flow: column;
+			align-items: center;
+			justify-content: center;
+			background: transparent;
+			border: 0;
+			border-radius: var(--radius);
+			cursor: pointer;
+			outline: 0;
+
+			.mdi
+			{
+				color: rgba(var(--color-primary), 1);
+			}
+
+			span
+			{
+				margin-top: 12px;
+				font-size: .9rem;
+			}
+		}
+	}
+}
+
+.be-inserter-nag
+{
+	position: relative;
+	display: flex;
+	padding: 24px 12px;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+	background: rgba(var(--outline-color), .3);
+	border: 2px dashed rgba(var(--outline-color), 1);
+	border-radius: var(--radius);
+	cursor: pointer;
+	text-align: center;
+
+	&:hover
+	{
+		background: rgba(var(--outline-color), .5);
+	}
+
+	i.mdi
+	{
+		color: rgba(var(--color-primary), 1);
+	}
+
+	span
+	{
+		margin-top: .5rem;
+		color: rgba(var(--main-foreground), .8);
+		font-size: .85rem;
+		font-weight: 700;
+	}
+}

@@ -10,34 +10,20 @@
 <template>
 
 	<div class="panel radius-none" style="height: calc(100vh - 60px)">
-		<BEEditor v-model="content">
-			<template #settings-pane-after="{ blockSettingsShown }">
-				<template v-if="!blockSettingsShown">
-					<div class="panel-header"><span class="panel-title">Page settings</span></div>
-					<BESettingsGroup title="General" :padded="true">
-						This panel was added with a slot.
-					</BESettingsGroup>
-					<BESettingsGroup title="View" :opened="false" :padded="true">
-						This panel was also added with a slot.
-					</BESettingsGroup>
-				</template>
-			</template>
-		</BEEditor>
+		<Editor v-model="content"></Editor>
 	</div>
 
 </template>
 
 <script>
 
-	import { BEEditor } from "../../../block-editor/src";
-
-	import BESettingsGroup from "../../../block-editor/src/BESettingsGroup";
+	import { Editor, SettingsPane } from "../../../block-editor/src";
 
 	export default {
 
 		components: {
-			BESettingsGroup,
-			BEEditor
+			Editor,
+			SettingsPane
 		},
 
 		data()
