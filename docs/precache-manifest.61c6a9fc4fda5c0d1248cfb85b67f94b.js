@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d2ad6dcc6dfaf4a934a6",
-    "url": "/assets/css/app.08d51627.css"
+    "revision": "526f9ef09082a4a842c8",
+    "url": "/assets/css/app.7647e632.css"
   },
   {
     "revision": "1b69f6187e2add103cb7",
@@ -36,6 +36,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/css/chunk-2ba113cd.917b45ac.css"
   },
   {
+    "revision": "80e0329a23262cc8de35",
+    "url": "/assets/css/chunk-2f4d6510.0bda7a30.css"
+  },
+  {
     "revision": "40d0e9f37059eb552eff",
     "url": "/assets/css/chunk-2fa698cf.8599b66d.css"
   },
@@ -66,10 +70,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "42e9217461677a6be5d8",
     "url": "/assets/css/chunk-4856d6fa.8599b66d.css"
-  },
-  {
-    "revision": "95bd6bc4bf0a01dda364",
-    "url": "/assets/css/chunk-585fba58.3e026a37.css"
   },
   {
     "revision": "66f539003d9debd1580d",
@@ -132,8 +132,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "d2ad6dcc6dfaf4a934a6",
-    "url": "/assets/js/app.ee694507.js"
+    "revision": "526f9ef09082a4a842c8",
+    "url": "/assets/js/app.978eff64.js"
   },
   {
     "revision": "1b69f6187e2add103cb7",
@@ -236,6 +236,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d21d825.58eb58a0.js"
   },
   {
+    "revision": "80e0329a23262cc8de35",
+    "url": "/assets/js/chunk-2f4d6510.fda1e0f8.js"
+  },
+  {
     "revision": "40d0e9f37059eb552eff",
     "url": "/assets/js/chunk-2fa698cf.b5c3e732.js"
   },
@@ -270,10 +274,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "37ba56603ced7f5dcd7a",
     "url": "/assets/js/chunk-4d557a22.0392a0f4.js"
-  },
-  {
-    "revision": "95bd6bc4bf0a01dda364",
-    "url": "/assets/js/chunk-585fba58.c949180c.js"
   },
   {
     "revision": "66f539003d9debd1580d",
@@ -320,7 +320,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/wallpaper/1.jpg"
   },
   {
-    "revision": "f9af7ced8f2650a9eff596bd37b5be32",
+    "revision": "7f5af32307921e445d830ff31c0eccfe",
     "url": "/index.html"
   },
   {
