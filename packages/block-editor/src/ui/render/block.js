@@ -8,7 +8,7 @@ export function additionalClasses(h, instance)
 
 export function advancedOptions(h, children)
 {
-	return group(h, "Advanded", true, children);
+	return group(h, "Advanced", true, children);
 }
 
 export function blockActions(h, instance)
