@@ -32,12 +32,30 @@ export class AbstractListBlock extends Block
 
 	render(h, instance)
 	{
-		return render(this.#tag, h, instance);
+		return h(this.#tag, {
+			class: instance.options.class,
+			domProps: {
+				innerHTML: instance.options.text
+			},
+			style: getStyles(instance.options)
+		});
 	}
 
 	renderEditor(h, instance)
 	{
-		return renderEditor(this.#tag, h, instance);
+		return h(this.#tag, {
+			class: instance.options.class,
+			domProps: {
+				contentEditable: "true",
+				innerHTML: instance.options.text
+			},
+			on: {
+				blur: evt => onBlur(evt, instance),
+				input: () => instance.updateEditor(false),
+				keydown: evt => onKeyDown(evt, instance)
+			},
+			style: getStyles(instance.options)
+		});
 	}
 
 	renderOptions(h, instance)
@@ -66,32 +84,6 @@ export class AbstractListBlock extends Block
 		]);
 	}
 
-}
-
-export function render(tag, h, instance)
-{
-	return h(tag, {
-		domProps: {
-			innerHTML: instance.options.text
-		},
-		style: getStyles(instance.options)
-	});
-}
-
-export function renderEditor(tag, h, instance)
-{
-	return h(tag, {
-		domProps: {
-			contentEditable: "true",
-			innerHTML: instance.options.text
-		},
-		on: {
-			blur: evt => onBlur(evt, instance),
-			input: () => instance.updateEditor(false),
-			keydown: evt => onKeyDown(evt, instance)
-		},
-		style: getStyles(instance.options)
-	});
 }
 
 function onKeyDown(evt, instance)

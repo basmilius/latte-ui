@@ -117,6 +117,7 @@ export function onPaste(evt, instance)
 export function render(tag, h, {options})
 {
 	return h(tag, {
+		class: options.class,
 		domProps: {
 			innerHTML: options.text
 		},
@@ -132,6 +133,7 @@ export function renderEditor(tag, h, instance, placeholder = "Start writing...")
 		attrs: {
 			"data-placeholder": translate(placeholder)
 		},
+		class: instance.options.class,
 		domProps: {
 			contentEditable: "true",
 			innerHTML: removeEmptyDivs(instance.options.text)

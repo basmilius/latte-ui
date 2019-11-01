@@ -13,6 +13,7 @@ export class ParagraphBlock extends Block
 	{
 		return {
 			align: "left",
+			class: "",
 			color: undefined,
 			fontSize: 1,
 			indent: 0,

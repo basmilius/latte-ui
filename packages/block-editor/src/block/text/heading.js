@@ -21,6 +21,7 @@ export class HeadingBlock extends Block
 	{
 		return {
 			align: "left",
+			class: "",
 			color: undefined,
 			type: "h3",
 			text: ""
