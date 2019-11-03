@@ -66,7 +66,7 @@ function presetColumn(h, instance, preset, index)
 	}, columns);
 }
 
-function instanceChildOrDefault(block, instance, index)
+export function instanceChildOrDefault(block, instance, index)
 {
 	if (instance.children[index])
 		return instance.children[index];

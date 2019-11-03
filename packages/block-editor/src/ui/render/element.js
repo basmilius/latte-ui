@@ -15,6 +15,16 @@ export function button(h, props, onClick)
 	});
 }
 
+export function comboBox(h, title, options, get, set)
+{
+	return row(h, false, [
+		h("h6", translate(title)),
+		h("select", {class: "form-control", domProps: {value: get()}, on: {change: evt => set(evt.target.value)}}, options.map(option =>
+			h("option", {domProps: {value: option.value}}, option.label)
+		))
+	]);
+}
+
 export function divider(h, isHorizontal)
 {
 	return h("div", {
