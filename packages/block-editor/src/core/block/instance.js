@@ -232,12 +232,15 @@ export class BlockInstance
 		{
 			elm.focus();
 
-			this.#editor.selection.setBaseAndExtent(
-				lastSelectionRange.startContainer,
-				lastSelectionRange.startOffset,
-				lastSelectionRange.endContainer,
-				lastSelectionRange.endOffset
-			);
+			if (lastSelectionRange)
+			{
+				this.#editor.selection.setBaseAndExtent(
+					lastSelectionRange.startContainer,
+					lastSelectionRange.startOffset,
+					lastSelectionRange.endContainer,
+					lastSelectionRange.endOffset
+				);
+			}
 
 			fn();
 			saveLastSelection(this);

@@ -114,6 +114,15 @@
 				this.$emit("be:content-ready");
 			}
 
+		},
+
+		watch: {
+
+			value()
+			{
+				this.onValueChanged();
+			}
+
 		}
 
 	}
