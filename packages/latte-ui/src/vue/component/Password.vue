@@ -11,7 +11,7 @@
 
 	<div class="input-group is-within">
 		<input :type="fieldType" :autocomplete="autocomplete" class="form-control" v-bind="bindings" v-model="password"/>
-		<button class="btn btn-text btn-icon btn-dark" @click="toggle" type="button">
+		<button class="btn btn-text btn-icon" @click="toggle" type="button">
 			<Icon :name="fieldType === 'password' ? 'eye' : 'eye-off'"/>
 		</button>
 	</div>

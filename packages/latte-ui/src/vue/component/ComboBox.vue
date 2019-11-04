@@ -13,7 +13,7 @@
 		<a class="combo-box-selection" :class="selectedOptionClasses" v-if="selectedOptionTemplate !== null" v-html="selectedOptionTemplate"></a>
 		<div class="combo-box-empty" v-else>Select...</div>
 
-		<button class="btn btn-text btn-icon btn-dark form-control-suffix" type="button">
+		<button class="btn btn-text btn-icon form-control-suffix" type="button">
 			<Icon name="chevron-down"/>
 		</button>
 

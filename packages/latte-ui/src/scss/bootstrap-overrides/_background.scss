@@ -15,9 +15,24 @@
 	}
 }
 
+.bg-black
+{
+	background-color: black;
+}
+
 .bg-white
 {
-	background-color: $white;
+	background-color: white;
+}
+
+.bg-main
+{
+	background-color: #{latte-rgb(var(--main-background))};
+}
+
+.bg-panel
+{
+	background-color: #{latte-rgb(var(--panel-background))};
 }
 
 .bg-transparent

@@ -9,7 +9,7 @@
 
 <template>
 
-	<button class="btn btn-icon btn-text btn-dark">
+	<button class="btn btn-icon btn-text">
 		<Icon name="sticker-emoji"/>
 
 		<latte-popup ref="popup" :associate-with="$el" :margin-x="-9" @open="onOpen">

@@ -133,9 +133,9 @@ export const Buttons = {
 
 export const ButtonsDescribed = [
 	{id: Buttons.OK, icon: "check-circle", label: "OK", classes: ["btn-contained", "btn-primary"], weight: 1},
-	{id: Buttons.CANCEL, icon: null, label: "Cancel", classes: ["btn-text", "btn-dark"], weight: 0},
+	{id: Buttons.CANCEL, icon: null, label: "Cancel", classes: ["btn-text"], weight: 0},
 	{id: Buttons.YES, icon: "check-circle", label: "Yes", classes: ["btn-contained", "btn-primary"], weight: 1},
-	{id: Buttons.NO, icon: null, label: "No", classes: ["btn-text", "btn-dark"], weight: 0},
+	{id: Buttons.NO, icon: null, label: "No", classes: ["btn-text"], weight: 0},
 	{id: Buttons.UPDATE, icon: "check-circle", label: "Update", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.SAVE, icon: "check-circle", label: "Save", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.REMOVE, icon: "alert-circle", label: "Remove", classes: ["btn-contained", "btn-error"], weight: 1},
@@ -143,7 +143,7 @@ export const ButtonsDescribed = [
 	{id: Buttons.GO, icon: "arrow-right-bold-circle", label: "Go", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.PROCEED, icon: "arrow-right-bold-circle", label: "Proceed", classes: ["btn-contained", "btn-primary"], weight: 1},
 	{id: Buttons.ALLOW, icon: "check-circle", label: "Allow", classes: ["btn-contained", "btn-primary"], weight: 1},
-	{id: Buttons.DENY, icon: "close-circle", label: "Deny", classes: ["btn-text", "btn-dark"], weight: 0}
+	{id: Buttons.DENY, icon: "close-circle", label: "Deny", classes: ["btn-text"], weight: 0}
 ];
 
 export function create(title, message, buttons, prompt = false)

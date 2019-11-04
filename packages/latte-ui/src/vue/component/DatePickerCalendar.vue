@@ -12,16 +12,16 @@
 	<div class="panel datepicker-calendar">
 
 		<div class="panel-header border-0 datepicker-calendar-header" :class="[selectedView]">
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0" @click="navigate(-1)">
+			<latte-ripple as="button" class="btn btn-icon btn-text m-0" @click="navigate(-1)">
 				<Icon name="chevron-left"/>
 			</latte-ripple>
 
 			<div class="btn-group mx-auto">
-				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
-				<latte-ripple as="button" class="btn btn-text btn-dark" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
+				<latte-ripple as="button" class="btn btn-text" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
+				<latte-ripple as="button" class="btn btn-text" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
 			</div>
 
-			<latte-ripple as="button" class="btn btn-icon btn-text btn-dark m-0" @click="navigate(1)">
+			<latte-ripple as="button" class="btn btn-icon btn-text m-0" @click="navigate(1)">
 				<Icon name="chevron-right"/>
 			</latte-ripple>
 		</div>
@@ -171,7 +171,7 @@
 				if (this.isSelected(date))
 					classes.push("btn-contained", "btn-primary");
 				else
-					classes.push("btn-text", "btn-dark");
+					classes.push("btn-text");
 
 				return classes;
 			},
@@ -183,7 +183,7 @@
 				if (parseInt(month) === this.selectedMonth)
 					classes.push("btn-contained", "btn-primary");
 				else
-					classes.push("btn-text", "btn-dark");
+					classes.push("btn-text");
 
 				return classes;
 			},
@@ -195,7 +195,7 @@
 				if (parseInt(year) === this.selectedYear)
 					classes.push("btn-contained", "btn-primary");
 				else
-					classes.push("btn-text", "btn-dark");
+					classes.push("btn-text");
 
 				return classes;
 			},

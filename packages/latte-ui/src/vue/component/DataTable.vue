@@ -18,7 +18,7 @@
 				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
 					<div class="column-content flex-row align-items-center justify-content-start">
 						<span>{{ column.label }}</span>
-						<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-dark': sort.by !== column.field, 'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
+						<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
 							<Icon name="sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"/>
 							<Icon name="sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"/>
 							<Icon name="sort" v-else/>

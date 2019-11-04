@@ -19,19 +19,11 @@
 	--color-warning-foreground: var(--dark);
 
 	--elevation-color: 0, 0, 0;
-
 	--outline-color: 37, 38, 42;
 
 	--app-bar-background: 32, 33, 36;
 	--app-bar-foreground: 255, 255, 255;
 	--app-bar-elevation: var(--elevation-2), 0 0 0 1px #{latte-rgb(var(--outline-color))};
-
-	--drawer-background-primary: 19, 19, 21;
-	--drawer-background-secondary: 32, 33, 36;
-	--drawer-elevation: var(--elevation-1), 0 0 0 1px #{latte-rgb(var(--outline-color))};
-	--drawer-foreground-primary: 255, 255, 255;
-	--drawer-outline-primary: #{latte-rgb(var(--outline-color))};
-	--drawer-outline-secondary: #{latte-rgb(var(--outline-color))};
 
 	--dropdown-background: rgb(32, 33, 36);
 	--dropdown-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color))};
@@ -53,4 +45,7 @@
 	--tooltip-foreground: rgb(255, 255, 255);
 
 	--nav-section-foreground: rgba(255, 255, 255, .2);
+
+	--btn-background: var(--light);
+	--btn-foreground: var(--dark);
 }

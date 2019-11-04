@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
-					<CodeExample class="darker" preview-classes="bg-light border" title="Simple" url="/snippets/components/datatable/simple.html" :bindings="{exampleDataSource}"/>
+					<CodeExample class="darker" preview-classes="bg-panel border" title="Simple" url="/snippets/components/datatable/simple.html" :bindings="{exampleDataSource}"/>
 
 				</div>
 				<div class="col-12 col-lg-3">

@@ -25,6 +25,7 @@
 	--light: 255, 255, 255;
 	--dark: 25, 26, 28;
 	--elevation-color: 127, 127, 127;
+	--outline-color: 238, 241, 245;
 
 	--color-light: var(--light);
 	--color-light-foreground: var(--dark);
@@ -44,8 +45,6 @@
 
 	--main-background: 249, 249, 249;
 	--main-foreground: 25, 26, 28;
-
-	--outline-color: 238, 241, 245;
 
 	@for $level from 0 through 24
 	{

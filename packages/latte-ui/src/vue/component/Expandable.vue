@@ -13,7 +13,7 @@
 
 		<div class="expandable-header" @click="toggle">
 			<slot name="header" v-bind="{isOpen}">
-				<button class="btn btn-icon btn-text btn-dark">
+				<button class="btn btn-icon btn-text">
 					<Icon name="menu-swap"/>
 				</button>
 			</slot>
