@@ -88,6 +88,8 @@
 
 	&.bottom-nav-side
 	{
+		--btn-height: 72px;
+
 		flex: 0 0 auto;
 		flex-flow: column;
 		justify-content: center;
@@ -109,8 +111,6 @@
 
 		.btn
 		{
-			--btn-height: 84px;
-
 			flex: 0 0 auto;
 
 			span
