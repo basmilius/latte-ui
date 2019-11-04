@@ -57,7 +57,8 @@ const Snackbar = Vue.extend({
 	{
 		return h("div", {class: ["snackbar", locationToClass(this.options.location), this.isOpen ? "is-open" : "is-not-open"], style: {zIndex: this.z}}, [
 			h("div", {class: "snackbar-body"}, this.options.message),
-			conditionalRender(this.options.action, () => h("button", {
+			conditionalRender(this.options.action, () => h("latte-ripple", {
+				props: {as: "button"},
 				class: ["btn", "btn-text", `btn-${this.options.action.color}`],
 				on: {
 					click: () => this.close(true)
