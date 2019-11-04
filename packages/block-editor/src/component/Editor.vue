@@ -6,21 +6,20 @@
 		<InserterQuick ref="inserterQuick"/>
 
 		<div class="be-editor-content">
-			<Toolbar/>
+			<Toolbar>
+				<template #start-before><slot name="toolbar-start-before"/></template>
+				<template #start-after><slot name="toolbar-start-after"/></template>
+				<template #end-before><slot name="toolbar-end-before"/></template>
+				<template #end-after><slot name="toolbar-end-after"/></template>
+			</Toolbar>
 			<ContentMount :content="content" v-if="view === 'visual'"/>
 			<CodeMount :content="content" v-else-if="view === 'code'"/>
 		</div>
 
 		<Settings>
-			<template #settings-before>
-				<slot name="settings-before"></slot>
-			</template>
-			<template #settings-document>
-				<slot name="settings-document"></slot>
-			</template>
-			<template #settings-after>
-				<slot name="settings-after"></slot>
-			</template>
+			<template #before><slot name="settings-before"></slot></template>
+			<template #document><slot name="settings-document"></slot></template>
+			<template #after><slot name="settings-after"></slot></template>
 		</Settings>
 
 	</div>

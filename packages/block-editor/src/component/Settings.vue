@@ -5,11 +5,11 @@
 
 			<latte-tab-bar class="px-3 tabs-fill" v-if="tabs.length > 1"/>
 
-			<slot name="settings-before"></slot>
+			<slot name="before"></slot>
 
 			<SettingsPane label="Document">
 
-				<slot name="settings-document">
+				<slot name="document">
 					<div class="be-settings-group">
 						<div class="settings-body is-padded">
 							<Notice icon="alert-circle">
@@ -31,7 +31,7 @@
 				</latte-portal-target>
 			</SettingsPane>
 
-			<slot name="settings-after"></slot>
+			<slot name="after"></slot>
 
 		</template>
 	</latte-tab-container>
