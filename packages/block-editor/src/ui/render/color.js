@@ -19,5 +19,5 @@ export function simpleColorSelect(h, title, get, set)
 				}
 			}
 		})))
-	]);
+	], "div");
 }

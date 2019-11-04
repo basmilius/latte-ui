@@ -57,9 +57,10 @@ export function nag(h, instance, calc, classes, children)
 			{
 				const dim = getElementDimensionsAndOffset(element);
 				const edim = getElementDimensionsAndOffset(wrap);
+				const rdim = getElementDimensionsAndOffset(instance.editor.$el);
 				const tdim = getElementDimensionsAndOffset(nag);
 
-				const {top, left} = calc(dim, edim, tdim);
+				const {top, left} = calc(dim, edim, rdim, tdim);
 
 				nag.style.setProperty("--nag-x", `${left}px`);
 				nag.style.setProperty("--nag-y", `${top}px`);
@@ -91,43 +92,40 @@ export function toolbar(h, instance, children)
 	return nag(h, instance, toolbarCalc, "be-toolbar", children);
 }
 
-function sidebarCalc(dim, edim)
+function sidebarCalc(dim, edim, rdim)
 {
-	/*
-	 * Dear Developer,
-	 *
-	 * The calc() function should probably account for the height
-	 * of our sidebar.
-	 *
-	 * - Bas
-	 */
+	const offset = 60;
+	const snapPoint = rdim.offset.top + 129;
 
-	if (dim.offset.top + dim.dimensions.height < 183)
-		dim.offset.top = dim.offset.top + dim.dimensions.height;
-	else if (dim.offset.top < 183)
-		dim.offset.top = 183;
+	if (dim.offset.top + dim.dimensions.height < snapPoint - offset)
+		dim.offset.top = dim.offset.top + offset + dim.dimensions.height;
+	else if (dim.offset.top < snapPoint)
+		dim.offset.top = snapPoint;
 
 	if (dim.offset.left > edim.offset.left + edim.dimensions.width / 2)
 		dim.offset.left = edim.offset.left + edim.dimensions.width + 69;
 
 	return {
-		top: dim.offset.top - 60,
-		left: dim.offset.left - 60
+		top: dim.offset.top - offset,
+		left: dim.offset.left - offset
 	};
 }
 
-function toolbarCalc(dim, edim, tdim)
+function toolbarCalc(dim, edim, rdim, tdim)
 {
-	if (dim.offset.top + dim.dimensions.height < 183)
-		dim.offset.top = dim.offset.top + dim.dimensions.height;
-	else if (dim.offset.top < 183)
-		dim.offset.top = 183;
+	const offset = 60;
+	const snapPoint = rdim.offset.top + 129;
+
+	if (dim.offset.top + dim.dimensions.height < snapPoint - offset)
+		dim.offset.top = dim.offset.top + offset + dim.dimensions.height;
+	else if (dim.offset.top < snapPoint)
+		dim.offset.top = snapPoint;
 
 	if (dim.offset.left > edim.offset.left + edim.dimensions.width / 2)
 		dim.offset.left = edim.offset.left + edim.dimensions.width - tdim.dimensions.width;
 
 	return {
-		top: dim.offset.top - 60,
+		top: dim.offset.top - offset,
 		left: dim.offset.left
 	};
 }
