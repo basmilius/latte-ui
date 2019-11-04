@@ -19,7 +19,7 @@
 							<p class="lead">An easy to use UI library build for Vue.js.</p>
 							<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
 								<latte-ripple as="button" class="btn btn-contained btn-outline btn-lg" @click="$router.push('/docs')"><i class="mdi mdi-book-open-variant"></i><span>Documentation</span></latte-ripple>
-								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-dark btn-lg"><i class="mdi mdi-github-circle"></i><span>GitHub</span></latte-ripple>
+								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-lg"><i class="mdi mdi-github-circle"></i><span>GitHub</span></latte-ripple>
 							</div>
 							<small class="text-muted">Version {{ latteVersion }}</small>
 						</div>

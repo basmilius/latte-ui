@@ -113,7 +113,7 @@
 												<span class="panel-title">Silhouette</span>
 												<span class="panel-sub-title">Silhouettes are amazing :-)</span>
 											</div>
-											<button class="btn btn-icon btn-text btn-dark"><i class="mdi mdi-dots-vertical"></i></button>
+											<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
 										</div>
 										<div class="panel-body">
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid at dolores eius eligendi enim eveniet in molestiae neque nisi nostrum numquam, officiis omnis pariatur placeat, quasi qui similique vitae?</p>
