@@ -11,6 +11,7 @@
 {
 	--nav-item-height: 45px;
 	--nav-section-foreground: rgba(0, 0, 0, .25);
+	--nav-radius: 0 3px 3px 0;
 }
 
 .nav
@@ -161,11 +162,30 @@ button.nav-link
 		--toggle-background: var(--color-primary);
 		--toggle-foreground: var(--color-primary-foreground);
 
+		&::before
+		{
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 3px;
+			content: "";
+			background: #{latte-rgb(var(--tabs-accent))};
+			border-radius: var(--nav-radius);
+			opacity: 0;
+			transition: opacity 300ms var(--ease-swift-out);
+		}
+
 		&.is-active
 		{
 			background: transparent;
-			box-shadow: inset 3px 0 #{latte-rgb(var(--color-primary))};
 			color: #{latte-rgb(var(--color-primary))};
+
+			&::before
+			{
+				opacity: 1;
+			}
 		}
 
 		&:not(.is-active).is-hover,
