@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "180bebf4bf7e3b44ac4e",
-    "url": "/assets/css/app.b3102c1d.css"
+    "revision": "57ee3b773dec96c882d6",
+    "url": "/assets/css/app.06983930.css"
   },
   {
     "revision": "1b69f6187e2add103cb7",
@@ -100,7 +100,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/css/chunk-d979c66e.5a671b8b.css"
   },
   {
-    "revision": "c6037517ad99c5e8b85c",
+    "revision": "c4a3aace716f4b0c4993",
     "url": "/assets/css/chunk-vendors.1b530020.css"
   },
   {
@@ -136,8 +136,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "180bebf4bf7e3b44ac4e",
-    "url": "/assets/js/app.b64b36b9.js"
+    "revision": "57ee3b773dec96c882d6",
+    "url": "/assets/js/app.f856d1e4.js"
   },
   {
     "revision": "1b69f6187e2add103cb7",
@@ -200,8 +200,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d0d3c53.0e4227fc.js"
   },
   {
-    "revision": "2c657ebc4fc674b3a2b2",
-    "url": "/assets/js/chunk-2d0d6ea9.20fcd68a.js"
+    "revision": "9463c664dfec80911fb7",
+    "url": "/assets/js/chunk-2d0d6ea9.61b26ebd.js"
   },
   {
     "revision": "d36486e3d6f408647c8f",
@@ -236,8 +236,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d20ebb4.7234df57.js"
   },
   {
-    "revision": "fa24d0b79704c018f969",
-    "url": "/assets/js/chunk-2d216f77.d83c137e.js"
+    "revision": "9bfae02425be15f57738",
+    "url": "/assets/js/chunk-2d216f77.f78da456.js"
   },
   {
     "revision": "79d32605aae25b8e1025",
@@ -308,8 +308,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-d979c66e.c49c7599.js"
   },
   {
-    "revision": "c6037517ad99c5e8b85c",
-    "url": "/assets/js/chunk-vendors.d646b8ab.js"
+    "revision": "c4a3aace716f4b0c4993",
+    "url": "/assets/js/chunk-vendors.eb49532a.js"
   },
   {
     "revision": "ccf77fcb3d81c91f4f94443c9e2ceeec",
@@ -328,7 +328,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/wallpaper/1.jpg"
   },
   {
-    "revision": "ff53b345a813acc23c0c2c4649c5f3e4",
+    "revision": "1aa3f5aa08423213cdb420df275512cf",
     "url": "/index.html"
   },
   {
@@ -364,7 +364,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snippets/components/app-bar/main.html"
   },
   {
-    "revision": "f52b68300940c602117f74f6ac6a49a7",
+    "revision": "ee8408e4175b7d78ecb07a487fdedb4b",
     "url": "/snippets/components/app-bar/panel.html"
   },
   {
@@ -560,7 +560,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snippets/components/message/prompt.snippet"
   },
   {
-    "revision": "321bb4505b26d61579a52615efe742e1",
+    "revision": "0dc9f159696e03f652839e5385f28995",
     "url": "/snippets/components/message/what.html"
   },
   {
@@ -604,7 +604,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snippets/components/pagination/basic.html"
   },
   {
-    "revision": "c1418c2dfd35903f1a391e74b4cbb906",
+    "revision": "e9a42ccc18a009446045baa48403845f",
     "url": "/snippets/components/pagination/controller-bar.html"
   },
   {
@@ -624,7 +624,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snippets/components/panel/list.html"
   },
   {
-    "revision": "99e814e984adb1e05033e5321288e050",
+    "revision": "dd16eeae6a28e6c141d4f36366f4a7e1",
     "url": "/snippets/components/panel/media.html"
   },
   {
@@ -680,11 +680,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snippets/components/ripple/standalone.html"
   },
   {
-    "revision": "d16f321d71e5409a9fc34c15cd4ed84d",
+    "revision": "4d55b7cedae5aa548eb9664eab0f41a6",
     "url": "/snippets/components/scaffolding/below-app-bar.html"
   },
   {
-    "revision": "1c148b5563efc410ea0b64ed16e1a04c",
+    "revision": "cdacafc390b83cf1d065c5aa31f3cfa8",
     "url": "/snippets/components/scaffolding/default.html"
   },
   {
