@@ -19,7 +19,7 @@
 
 	.sheet-content.sheet-left
 	{
-		height: 100vh;
+		height: 100%;
 		width: var(--scaffolding-drawer-width);
 		background: #{latte-rgb(var(--panel-background))};
 		box-shadow: var(--elevation-1);
