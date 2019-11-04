@@ -34,6 +34,11 @@ div.page-header
 		}
 	}
 
+	h1:only-child
+	{
+		margin-bottom: 0;
+	}
+
 	p
 	{
 		font-size: 1.1rem;
