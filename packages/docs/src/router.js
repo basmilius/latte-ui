@@ -141,6 +141,10 @@ const router = new Router({
 									component: () => import("./views/docs/components/Ripple.vue")
 								},
 								{
+									path: "scaffolding",
+									component: () => import("./views/docs/components/Scaffolding.vue")
+								},
+								{
 									path: "sheet",
 									component: () => import("./views/docs/components/Sheet.vue")
 								},

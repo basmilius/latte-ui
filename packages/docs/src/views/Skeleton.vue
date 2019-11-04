@@ -48,6 +48,7 @@
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/progress"><span>Progress</span></latte-ripple>
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/question"><span>Question</span></latte-ripple>
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/ripple"><span>Ripple</span></latte-ripple>
+				<latte-ripple as="router-link" class="nav-link" to="/docs/components/scaffolding"><span>Scaffolding</span></latte-ripple>
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/sheet"><span>Sheet</span></latte-ripple>
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/snackbar"><span>Snackbar</span></latte-ripple>
 				<latte-ripple as="router-link" class="nav-link" to="/docs/components/spinner"><span>Spinner</span></latte-ripple>

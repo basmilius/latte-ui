@@ -4,7 +4,7 @@
 
 		<div class="panel m-auto pt-3" style="max-width: 100%; width: 420px">
 			<div class="panel-body text-center pb-0">
-				<img src="//g.s3.bmcdn.nl/assets/emojione/svg/1f641.svg" alt="Slightly frowning face" height="96" width="96" class="mx-auto"/>
+				<img src="//g.s3.bmcdn.nl/assets/joypixels/v5/svg/1f641.svg" alt="Slightly frowning face" height="96" width="96" class="mx-auto"/>
 			</div>
 			<div class="panel-body border-top-0 text-center">
 				<h1>404</h1>
