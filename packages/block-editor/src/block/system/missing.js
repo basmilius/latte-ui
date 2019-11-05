@@ -1,9 +1,9 @@
 import { Block } from "../../core/block/block";
 import { translate } from "../../core/i18n";
-
-import Icon from "../../ui/Icon";
 import { fragment, sidebar } from "../../ui/render/settings";
 import { blockActions } from "../../ui/render/block";
+
+import Icon from "../../ui/Icon";
 
 export class MissingBlock extends Block
 {

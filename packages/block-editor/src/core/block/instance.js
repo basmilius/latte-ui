@@ -221,7 +221,7 @@ export class BlockInstance
 		{
 			this.#editor.selection.removeAllRanges();
 
-			this.select();
+			elm.click();
 			elm.focus();
 
 			if (elm.isContentEditable && options.select)

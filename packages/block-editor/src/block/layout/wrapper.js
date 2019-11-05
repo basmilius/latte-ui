@@ -4,9 +4,9 @@ import { either } from "../../util/vue";
 import { inserterNag } from "../../ui/render/inserter";
 import { description, fragment, settings, sidebar } from "../../ui/render/settings";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
+import { translate } from "../../core/i18n";
 
 import BlockView from "../../component/BlockView";
-import { translate } from "../../core/i18n";
 
 export class WrapperBlock extends Block
 {
@@ -56,7 +56,9 @@ export class WrapperBlock extends Block
 				key: child.hash,
 				props: {instance: child}
 			}))),
-			() => inserterNag(h, instance)
+			() => h("div", {class: `be-block-wrapper ${instance.options.class}`}, [
+				inserterNag(h, instance)
+			])
 		);
 	}
 

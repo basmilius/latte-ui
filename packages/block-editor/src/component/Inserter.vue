@@ -43,7 +43,7 @@
 				<div class="be-inserter-group">
 					<div class="inserter-group-body">
 						<template v-if="blocks.length > 0">
-							<latte-ripple as="button" class="inserter-block" @click="onClick(block)" :key="block" v-for="block of blocks">
+							<latte-ripple as="button" class="inserter-block" @click="onClick(block)" :key="block.id" v-for="block of blocks">
 								<Icon :name="block.icon"/>
 								<span>{{ block.name }}</span>
 							</latte-ripple>
