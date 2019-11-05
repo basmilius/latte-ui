@@ -230,8 +230,6 @@ export class BlockInstance
 	{
 		this.focus({select: false}, elm =>
 		{
-			elm.focus();
-
 			if (lastSelectionRange)
 			{
 				this.#editor.selection.setBaseAndExtent(
