@@ -10,12 +10,12 @@
 export { MissingBlock } from "./system/missing";
 export { RootBlock } from "./system/root";
 
+export { ButtonBlock } from "./text/button";
 export { HeadingBlock } from "./text/heading";
 export { OrderedListBlock } from "./text/ordered-list";
 export { ParagraphBlock } from "./text/paragraph";
 export { UnorderedListBlock } from "./text/unordered-list";
 
-export { ButtonBlock } from "./layout/button";
 export { ColumnBlock, ColumnsBlock } from "./layout/columns";
 export { PageBreakBlock } from "./layout/page-break";
 export { WrapperBlock } from "./layout/wrapper";

@@ -2,6 +2,7 @@ import { Block } from "../../core/block/block";
 import { description, fragment, group, settings, sidebar } from "../../ui/render/settings";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 import { optionButtons, textField, toggleButton } from "../../ui/render/element";
+import { classColorSelect } from "../../ui/render/color";
 
 const buttonSizes = [
 	{value: "sm", icon: "alpha-s", tooltip: "Small"},
@@ -19,6 +20,9 @@ function getButtonClasses(options)
 {
 	const classes = ["btn", `btn-${options.type}`, options.class];
 
+	if (options.color)
+		classes.push(`btn-${options.color}`);
+
 	if (options.pillButton)
 		classes.push("btn-pill");
 
@@ -35,6 +39,7 @@ export class ButtonBlock extends Block
 	{
 		return {
 			class: "",
+			color: undefined,
 			pillButton: false,
 			rippleButton: true,
 			size: "md",
@@ -61,7 +66,7 @@ export class ButtonBlock extends Block
 
 	constructor()
 	{
-		super("button", "layout", "card-text");
+		super("button", "text", "card-text");
 	}
 
 	render(h, entry)
@@ -102,6 +107,7 @@ export class ButtonBlock extends Block
 			settings(h, instance, [
 				description(h, this),
 				group(h, "Button settings", true, [
+					classColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color})),
 					toggleButton(h, "Pill", () => instance.options.pillButton, pillButton => instance.setOptions({pillButton})),
 					toggleButton(h, "Ripple", () => instance.options.rippleButton, rippleButton => instance.setOptions({rippleButton})),
 					optionButtons(h, "Size", buttonSizes, () => instance.options.size, size => instance.setOptions({size})),
