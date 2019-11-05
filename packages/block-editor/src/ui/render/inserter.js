@@ -6,7 +6,7 @@ import Icon from "../Icon";
 
 export function inserterInline(h, instance)
 {
-	return inserterInlineAbstract(h, "plus", defaultOnClickHandler(instance, instance.parent, ".be-inserter-inline", -12, 12, instance.index));
+	return inserterInlineAbstract(h, "plus", evt => defaultOnClickHandler(evt, instance, instance.parent, ".be-inserter-inline", -12, 12, instance.index));
 }
 
 export function inserterInlineAbstract(h, icon, onClick)
@@ -18,7 +18,11 @@ export function inserterInlineAbstract(h, icon, onClick)
 
 export function inserterNag(h, instance)
 {
-	return inserterNagAbstract(h, "plus-circle", "Add block", defaultOnClickHandler(instance, instance, ".be-inserter-nag"));
+	return inserterNagAbstract(h, "plus-circle", "Add block", evt =>
+	{
+		instance.select();
+		defaultOnClickHandler(evt, instance, instance, ".be-inserter-nag");
+	});
 }
 
 export function inserterNagAbstract(h, icon, message, onClick)
@@ -29,17 +33,14 @@ export function inserterNagAbstract(h, icon, message, onClick)
 	]);
 }
 
-function defaultOnClickHandler(instance, parent, selector, ax = -15, ay = 12, index = undefined)
+function defaultOnClickHandler(evt, instance, parent, selector, ax = -15, ay = 12, index = undefined)
 {
-	return evt =>
+	terminate(evt);
+
+	const elm = Latte.util.dom.closest(evt.target, selector);
+
+	instance.editor.inserter.open(elm.querySelector("i.mdi"), block =>
 	{
-		terminate(evt);
-
-		const elm = Latte.util.dom.closest(evt.target, selector);
-
-		instance.editor.inserter.open(elm.querySelector("i.mdi"), block =>
-		{
-			instance.insertBlock(block.id, index, {}, {}, parent);
-		}, ax, ay);
-	};
+		instance.insertBlock(block.id, index, {}, {}, parent);
+	}, ax, ay);
 }
