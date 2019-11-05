@@ -2,6 +2,7 @@ import { Block } from "../../core/block/block";
 import { description, fragment, group, settings, sidebar } from "../../ui/render/settings";
 import { textField } from "../../ui/render/element";
 import { blockActions } from "../../ui/render/block";
+import { translate } from "../../core/i18n";
 
 export class YouTubeEmbedBlock extends Block
 {
@@ -15,17 +16,17 @@ export class YouTubeEmbedBlock extends Block
 
 	get description()
 	{
-		return "Embeds a YouTube-video.";
+		return translate("Embeds a YouTube-video.");
 	}
 
 	get keywords()
 	{
-		return ["youtube", "embed", "video"];
+		return [translate("Embed"), translate("Video")];
 	}
 
 	get name()
 	{
-		return "YouTube video";
+		return translate("YouTube video");
 	}
 
 	constructor()

@@ -8,17 +8,17 @@ export class PageBreakBlock extends Block
 
 	get description()
 	{
-		return "Breaks the page into multiple views.";
+		return translate("Breaks the page into multiple views.");
 	}
 
 	get keywords()
 	{
-		return ["page break", "break", "pages"];
+		return [translate("Break"), translate("Pages")];
 	}
 
 	get name()
 	{
-		return "Page Break";
+		return translate("Page Break");
 	}
 
 	constructor()

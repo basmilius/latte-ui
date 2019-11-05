@@ -7,7 +7,7 @@
 
 			<slot name="before"></slot>
 
-			<SettingsPane label="Document">
+			<SettingsPane :label="'Document' | beTranslate">
 
 				<slot name="document">
 					<div class="be-settings-group">
@@ -21,7 +21,7 @@
 
 			</SettingsPane>
 
-			<SettingsPane label="Block">
+			<SettingsPane :label="'Block' | beTranslate">
 				<latte-portal-target :name="blockSettingsId" @change="onBlockSettingsChange">
 
 					<SettingsGroup padded title="Block settings">

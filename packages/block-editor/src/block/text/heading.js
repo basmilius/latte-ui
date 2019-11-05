@@ -4,6 +4,7 @@ import { description, fragment, group, settings, sidebar, toolbar } from "../../
 import { simpleColorSelect } from "../../ui/render/color";
 import { alignments } from "../../ui/render/text";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
+import { translate } from "../../core/i18n";
 
 const headerTypes = [
 	{value: "h1", icon: "format-header-1", tooltip: "Header 1"},
@@ -30,17 +31,26 @@ export class HeadingBlock extends Block
 
 	get description()
 	{
-		return "Represents a header text."
+		return translate("Represents a header text.");
 	}
 
 	get keywords()
 	{
-		return ["header", "heading", "text", "h1", "h2", "h3", "h4", "h5", "h6"];
+		return [
+			translate("Heading"),
+			translate("Text"),
+			translate("h1"),
+			translate("h2"),
+			translate("h3"),
+			translate("h4"),
+			translate("h5"),
+			translate("h6")
+		];
 	}
 
 	get name()
 	{
-		return "Header";
+		return translate("Header");
 	}
 
 	constructor()

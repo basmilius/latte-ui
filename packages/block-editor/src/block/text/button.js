@@ -3,6 +3,7 @@ import { description, fragment, group, settings, sidebar } from "../../ui/render
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 import { optionButtons, textField, toggleButton } from "../../ui/render/element";
 import { classColorSelect } from "../../ui/render/color";
+import { translate } from "../../core/i18n";
 
 export const buttonSizes = [
 	{value: "sm", icon: "alpha-s", tooltip: "Small"},
@@ -51,17 +52,17 @@ export class ButtonBlock extends Block
 
 	get description()
 	{
-		return "A button that can link to an action or url.";
+		return translate("A button that can link to an action or url.");
 	}
 
 	get keywords()
 	{
-		return ["button", "link", "action"];
+		return [translate("Link"), translate("Action")];
 	}
 
 	get name()
 	{
-		return "Button";
+		return translate("Button");
 	}
 
 	constructor()

@@ -5,6 +5,7 @@ import { simpleColorSelect } from "../../ui/render/color";
 import { divider, rangeSlider } from "../../ui/render/element";
 import { alignments, boldItalicUnderline, indent } from "../../ui/render/text";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
+import { translate } from "../../core/i18n";
 
 export class ParagraphBlock extends Block
 {
@@ -23,17 +24,17 @@ export class ParagraphBlock extends Block
 
 	get description()
 	{
-		return "A simple paragraph of text."
+		return translate("A simple paragraph of text.");
 	}
 
 	get keywords()
 	{
-		return ["paragraph", "text"];
+		return [translate("Text")];
 	}
 
 	get name()
 	{
-		return "Paragraph";
+		return translate("Paragraph");
 	}
 
 	constructor()

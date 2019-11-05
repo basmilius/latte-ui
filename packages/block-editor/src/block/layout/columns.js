@@ -84,12 +84,12 @@ export class ColumnBlock extends Block
 
 	get description()
 	{
-		return "A single column used in the columns block.";
+		return translate("A single column used in the columns block.");
 	}
 
 	get name()
 	{
-		return "Column";
+		return translate("Column");
 	}
 
 	get showInInserter()
@@ -157,17 +157,17 @@ export class ColumnsBlock extends Block
 
 	get description()
 	{
-		return "Displays blocks in a column view.";
+		return translate("Displays blocks in a column view.");
 	}
 
 	get keywords()
 	{
-		return ["column", "columns", "grid"];
+		return [translate("Grid"), translate("Container")];
 	}
 
 	get name()
 	{
-		return "Columns";
+		return translate("Columns");
 	}
 
 	constructor()

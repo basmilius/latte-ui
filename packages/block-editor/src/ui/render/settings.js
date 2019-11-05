@@ -3,15 +3,19 @@ import { terminate } from "../../util/event";
 import { saveLastSelection } from "../../util/selection";
 import { Latte } from "../../util/latte";
 
-import BlockDescription from "../BlockDescription";
 import Fragment from "../../component/Fragment";
+import Icon from "../Icon";
 import SettingsGroup from "../../component/SettingsGroup";
 
 export function description(h, block)
 {
-	return h(BlockDescription, {
-		props: {block}
-	});
+	return h("div", {class: "be-block-description"}, [
+		h(Icon, {props: {name: block.icon}}),
+		h("div", {class: "caption"}, [
+			h("strong", block.name),
+			h("p", {class: "text-muted"}, block.description)
+		])
+	]);
 }
 
 export function fragment(h, children)

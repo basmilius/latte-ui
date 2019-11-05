@@ -6,6 +6,7 @@ import { description, fragment, settings, sidebar } from "../../ui/render/settin
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 
 import BlockView from "../../component/BlockView";
+import { translate } from "../../core/i18n";
 
 export class WrapperBlock extends Block
 {
@@ -24,17 +25,17 @@ export class WrapperBlock extends Block
 
 	get description()
 	{
-		return "Wraps blocks into a wrapper.";
+		return translate("Wraps blocks into a wrapper.");
 	}
 
 	get keywords()
 	{
-		return ["wrapper"];
+		return [translate("Container")];
 	}
 
 	get name()
 	{
-		return "Wrapper";
+		return translate("Wrapper");
 	}
 
 	constructor()

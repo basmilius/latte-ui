@@ -7,7 +7,7 @@
 					<div class="input-group-addon">
 						<Icon name="magnify"/>
 					</div>
-					<input type="search" class="form-control" placeholder="Search for blocks..." aria-label="Search for blocks..." v-model="searchTerm"/>
+					<input type="search" class="form-control" :placeholder="'Search for blocks...' | beTranslate" :aria-label="'Search for blocks...' | beTranslate" v-model="searchTerm"/>
 				</div>
 			</div>
 		</div>

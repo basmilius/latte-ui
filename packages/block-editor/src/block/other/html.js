@@ -8,6 +8,7 @@ import { portal, target } from "../../ui/render/portal";
 import { button } from "../../ui/render/element";
 import { either } from "../../util/vue";
 import { inserterNagAbstract } from "../../ui/render/inserter";
+import { translate } from "../../core/i18n";
 
 export class HtmlBlock extends Block
 {
@@ -21,17 +22,17 @@ export class HtmlBlock extends Block
 
 	get description()
 	{
-		return "Allows you to add custom HTML code.";
+		return translate("Allows you to add custom HTML code.");
 	}
 
 	get keywords()
 	{
-		return ["html", "custom", "code"];
+		return [translate("Custom"), translate("Code")];
 	}
 
 	get name()
 	{
-		return "Custom HTML";
+		return translate("HTML");
 	}
 
 	constructor()

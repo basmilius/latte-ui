@@ -1,21 +1,22 @@
 import { AbstractListBlock } from "../primitive/list";
+import { translate } from "../../core/i18n";
 
 export class OrderedListBlock extends AbstractListBlock
 {
 
 	get description()
 	{
-		return "An list that is ordered with numbers.";
+		return translate("An list that is ordered with numbers.");
 	}
 
 	get keywords()
 	{
-		return ["list", "ordered"];
+		return [translate("List"), translate("Ordered")];
 	}
 
 	get name()
 	{
-		return "Ordered List";
+		return translate("Ordered List");
 	}
 
 	constructor()
