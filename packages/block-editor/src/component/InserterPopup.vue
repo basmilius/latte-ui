@@ -41,7 +41,7 @@
 				if (this.fn)
 					this.fn(block);
 
-				this.$refs.popup.close();
+				this.close();
 			},
 
 			onClose()
@@ -53,6 +53,11 @@
 			{
 				this.currentCategory = this.currentCategory || CategoryRegistry.categories[0].id;
 				this.isOpen = true;
+			},
+
+			close()
+			{
+				this.$refs.popup.close();
 			},
 
 			open(associateWith, fn, marginX = 0, marginY = 0)

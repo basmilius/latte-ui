@@ -43,8 +43,15 @@
 		opacity: .25;
 	}
 
+	&:not(.is-selected).is-selection-inside > .be-block-view::after
+	{
+		border-color: rgba(var(--outline-color), 1);
+		opacity: 1;
+	}
+
 	&.is-selected > .be-block-view::after
 	{
 		opacity: 1;
+		z-index: 1;
 	}
 }

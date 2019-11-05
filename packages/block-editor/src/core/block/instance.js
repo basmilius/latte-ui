@@ -113,12 +113,23 @@ export class BlockInstance
 
 	get isSelected()
 	{
-		return this.#block.id !== "root" && (this.#isSelected && !(this.#block.canHaveChildren && (this.#children.length === 0 || this.#children.filter(c => c.isSelected).length > 0)));
+		if (this.#block.id === "root")
+			return false;
+
+		return this.#isSelected && !this.containsAnythingSelected;
 	}
 
 	get isSelectionInside()
 	{
-		return this.isSelected || (this.#block.canHaveChildren && this.#children.filter(c => c.isSelected || c.isSelectionInside).length > 0);
+		if (this.#block.id === "root")
+			return false;
+
+		return this.#isSelected || this.containsAnythingSelected;
+	}
+
+	get containsAnythingSelected()
+	{
+		return this.#block.canHaveChildren && this.#children.filter(c => c.isSelected || c.isSelectionInside).length > 0;
 	}
 
 	constructor(editor, index, id, options, children = [], parent = undefined)
@@ -210,7 +221,7 @@ export class BlockInstance
 		{
 			this.#editor.selection.removeAllRanges();
 
-			elm.click();
+			this.select();
 			elm.focus();
 
 			if (elm.isContentEditable && options.select)
@@ -228,7 +239,7 @@ export class BlockInstance
 
 	focusAndExecute(fn)
 	{
-		this.focus({select: false}, elm =>
+		this.focus({select: false}, () =>
 		{
 			if (lastSelectionRange)
 			{
@@ -313,6 +324,8 @@ export class BlockInstance
 			return;
 
 		this.#isRemoving = true;
+
+		this.editor.inserter.close();
 
 		if (focusSibbling)
 		{
