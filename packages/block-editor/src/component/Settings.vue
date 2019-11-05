@@ -1,6 +1,6 @@
 <template>
 
-	<latte-tab-container class="be-editor-settings" :initial-tab="1">
+	<latte-tab-container class="be-editor-settings" :initial-tab="preferredTabIndex">
 		<template #default="{tabs}">
 
 			<latte-tab-bar class="px-3 tabs-fill" v-if="tabs.length > 1"/>
@@ -22,7 +22,7 @@
 			</SettingsPane>
 
 			<SettingsPane label="Block">
-				<latte-portal-target :name="blockSettingsId">
+				<latte-portal-target :name="blockSettingsId" @change="onBlockSettingsChange">
 
 					<SettingsGroup padded title="Block settings">
 						<em>{{ "Please select a block to edit its settings or click on \"Document\" to edit other settings." | beTranslate }}</em>
@@ -55,7 +55,8 @@
 		data()
 		{
 			return {
-				editor: findEditor(this)
+				editor: findEditor(this),
+				preferredTabIndex: 0
 			};
 		},
 
@@ -64,6 +65,15 @@
 			blockSettingsId()
 			{
 				return `${this.editor.uniqueId}-settings-block`;
+			}
+
+		},
+
+		methods: {
+
+			onBlockSettingsChange(passengers)
+			{
+				this.preferredTabIndex = Object.values(passengers).length === 0 ? 0 : 1;
 			}
 
 		}
