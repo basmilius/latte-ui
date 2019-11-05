@@ -4,19 +4,19 @@ import { additionalClasses, advancedOptions, blockActions } from "../../ui/rende
 import { optionButtons, textField, toggleButton } from "../../ui/render/element";
 import { classColorSelect } from "../../ui/render/color";
 
-const buttonSizes = [
+export const buttonSizes = [
 	{value: "sm", icon: "alpha-s", tooltip: "Small"},
 	{value: "md", icon: "alpha-m", tooltip: "Medium"},
 	{value: "lg", icon: "alpha-l", tooltip: "Large"}
 ];
 
-const buttonStyles = [
+export const buttonStyles = [
 	{value: "contained", icon: "alpha-a-box", tooltip: "Solid"},
 	{value: "outline", icon: "alpha-a-box-outline", tooltip: "Outline"},
 	{value: "text", icon: "alpha-a", tooltip: "Text"}
 ];
 
-function getButtonClasses(options)
+export function getButtonClasses(options)
 {
 	const classes = ["btn", `btn-${options.type}`, options.class];
 
