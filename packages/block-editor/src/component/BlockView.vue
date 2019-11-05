@@ -22,6 +22,10 @@
 		render(h)
 		{
 			let vnode = this.instance.renderEditor(h, this.instance);
+
+			if (vnode === undefined)
+				return undefined;
+
 			let classes = ["be-block-view"];
 
 			if (this.instance.block.canHaveGroups)
