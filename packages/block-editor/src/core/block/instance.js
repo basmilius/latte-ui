@@ -355,7 +355,13 @@ export class BlockInstance
 		this.#children = children;
 
 		if (updateIndices)
-			this.#children.forEach((child, index) => child.#index = index);
+		{
+			this.#children.forEach((child, index) =>
+			{
+				child.#index = index;
+				child.updateEditor(false);
+			});
+		}
 
 		this.updateChildren();
 
