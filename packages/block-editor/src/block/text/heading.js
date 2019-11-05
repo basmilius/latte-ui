@@ -5,6 +5,7 @@ import { simpleColorSelect } from "../../ui/render/color";
 import { alignments } from "../../ui/render/text";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 import { translate } from "../../core/i18n";
+import { button, divider, optionButtons } from "../../ui/render/element";
 
 const headerTypes = [
 	{value: "h1", icon: "format-header-1", tooltip: "Header 1"},
@@ -75,6 +76,9 @@ export class HeadingBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
+				group(h, "Text settings", true, [
+					optionButtons(h, "Header", headerTypes, () => instance.options.type, type => instance.setOptions({type}), false)
+				]),
 				group(h, "Color settings", true, [
 					simpleColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color}))
 				]),
@@ -86,6 +90,14 @@ export class HeadingBlock extends Block
 				blockActions(h, instance)
 			]),
 			toolbar(h, instance, [
+				fragment(h, headerTypes.slice(1, 4).map(b => button(h, {
+					...b,
+					iconBefore: b.icon,
+					class: "m-0",
+					color: instance.options.type === b.value ? "primary" : null,
+					type: instance.options.type === b.value ? "outline" : "text"
+				}, () => instance.setOptions({type: b.value})))),
+				divider(h, false),
 				alignments(h, instance)
 			])
 		]);

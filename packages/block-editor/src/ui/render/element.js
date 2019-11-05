@@ -39,13 +39,13 @@ export function notice(h, message, options = {})
 	]);
 }
 
-export function optionButtons(h, title, buttons, get, set)
+export function optionButtons(h, title, buttons, get, set, isRow = true)
 {
 	const value = get();
 
-	return row(h, true, [
+	return row(h, isRow, [
 		h("h6", translate(title)),
-		h("div", {class: "d-flex my-n1 ml-auto"}, buttons.map(b => button(h, {
+		h("div", {class: `d-flex my-n1 ${isRow ? "ml-auto" : ""}`}, buttons.map(b => button(h, {
 			...b,
 			iconBefore: b.icon,
 			class: "m-0",
