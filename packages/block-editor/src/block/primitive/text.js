@@ -47,7 +47,7 @@ export function onInput(evt, tag, instance)
 
 	const searchTerm = text.substr(1).toLowerCase();
 	const foundBlocks = BlockRegistry.blocks
-		.filter(instance => instance.keywords.map(keyword => translate(keyword)).find(keyword => keyword.startsWith(searchTerm)))
+		.filter(b => b.name.toLowerCase().startsWith(searchTerm) || b.keywords.find(k => k.toLowerCase().startsWith(searchTerm)))
 		.slice(0, 5)
 		.sort((a, b) => a.name.localeCompare(b.name));
 
