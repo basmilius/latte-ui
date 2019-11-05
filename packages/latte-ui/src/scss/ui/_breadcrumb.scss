@@ -1,0 +1,31 @@
+.nav.nav-breadcrumb
+{
+	--nav-item-height: 24px;
+
+	flex-flow: row wrap;
+
+	.nav-link
+	{
+		padding: 0;
+	}
+
+	.nav-link + .nav-link
+	{
+		margin-left: 24px;
+
+		&::before
+		{
+			display: inline-block;
+			margin: -6px 0 -6px -24px;
+			width: 24px;
+			content: "\0203A";
+			color: #{latte-rgb(var(--color-primary))};
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 1em;
+			pointer-events: none;
+			text-align: center;
+			vertical-align: middle;
+		}
+	}
+}

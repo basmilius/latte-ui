@@ -21,6 +21,21 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Breadcrumbs</span></div>
+						<div class="panel-body">
+							<nav class="nav nav-breadcrumb">
+								<a class="nav-link">Home</a>
+								<a class="nav-link">Library</a>
+								<a class="nav-link is-active">Music</a>
+							</nav>
+							<nav class="nav nav-breadcrumb mt-3">
+								<a class="nav-link">Home</a>
+								<a class="nav-link is-active">Library</a>
+							</nav>
+						</div>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Typography</span></div>
 						<div class="panel-body">
 							<h1>Heading 1</h1>
