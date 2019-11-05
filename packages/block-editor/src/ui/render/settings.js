@@ -98,8 +98,8 @@ export function toolbar(h, instance, children)
 
 function sidebarCalc(dim, edim, rdim)
 {
-	const offset = 60;
-	const snapPoint = rdim.offset.top + 129;
+	const offset = 72;
+	const snapPoint = rdim.offset.top + 138;
 
 	if (dim.offset.top + dim.dimensions.height < snapPoint - offset)
 		dim.offset.top = dim.offset.top + offset + dim.dimensions.height;
@@ -107,7 +107,7 @@ function sidebarCalc(dim, edim, rdim)
 		dim.offset.top = snapPoint;
 
 	if (dim.offset.left > edim.offset.left + edim.dimensions.width / 2)
-		dim.offset.left = edim.offset.left + edim.dimensions.width + 69;
+		dim.offset.left = edim.offset.left + edim.dimensions.width + 69 + 24;
 
 	return {
 		top: dim.offset.top - offset,
@@ -117,8 +117,8 @@ function sidebarCalc(dim, edim, rdim)
 
 function toolbarCalc(dim, edim, rdim, tdim)
 {
-	const offset = 60;
-	const snapPoint = rdim.offset.top + 129;
+	const offset = 72;
+	const snapPoint = rdim.offset.top + 138;
 
 	if (dim.offset.top + dim.dimensions.height < snapPoint - offset)
 		dim.offset.top = dim.offset.top + offset + dim.dimensions.height;
@@ -126,7 +126,9 @@ function toolbarCalc(dim, edim, rdim, tdim)
 		dim.offset.top = snapPoint;
 
 	if (dim.offset.left > edim.offset.left + edim.dimensions.width / 2)
-		dim.offset.left = edim.offset.left + edim.dimensions.width - tdim.dimensions.width;
+		dim.offset.left = edim.offset.left + edim.dimensions.width - tdim.dimensions.width + 15;
+	else
+		dim.offset.left = dim.offset.left - 15;
 
 	return {
 		top: dim.offset.top - offset,
