@@ -1,12 +1,10 @@
 import { Block } from "../../core/block/block";
-import { renderChildren } from "../../core/block/api";
+import { renderChildren, renderInstances } from "../../core/block/api";
 import { either } from "../../util/vue";
 import { inserterNag } from "../../ui/render/inserter";
 import { description, fragment, settings, sidebar } from "../../ui/render/settings";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 import { translate } from "../../core/i18n";
-
-import BlockView from "../../component/BlockView";
 
 export class WrapperBlock extends Block
 {
@@ -52,10 +50,7 @@ export class WrapperBlock extends Block
 	{
 		return either(
 			instance.children.length > 0,
-			() => h("div", {class: `be-block-wrapper ${instance.options.class}`}, instance.children.map(child => h(BlockView, {
-				key: child.hash,
-				props: {instance: child}
-			}))),
+			() => h("div", {class: `be-block-wrapper ${instance.options.class}`}, renderInstances(h, instance)),
 			() => h("div", {class: `be-block-wrapper ${instance.options.class}`}, [
 				inserterNag(h, instance)
 			])

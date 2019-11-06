@@ -4,9 +4,9 @@ import { Latte } from "../../util/latte";
 
 import Icon from "../Icon";
 
-export function inserterInline(h, instance)
+export function inserterInline(h, instance, indexAdjust = 0)
 {
-	return inserterInlineAbstract(h, "plus", evt => defaultOnClickHandler(evt, instance, instance.parent, ".be-inserter-inline", -12, 12, instance.index));
+	return inserterInlineAbstract(h, "plus", evt => defaultOnClickHandler(evt, instance, instance.parent, ".be-inserter-inline", -12, 12, instance.index + indexAdjust));
 }
 
 export function inserterInlineAbstract(h, icon, onClick)

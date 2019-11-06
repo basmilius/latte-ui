@@ -49,9 +49,14 @@
 		opacity: 1;
 	}
 
-	&.is-selected > .be-block-view::after
+	&.is-selected
 	{
-		opacity: 1;
 		z-index: 1;
+
+		& > .be-block-view::after
+		{
+			opacity: 1;
+			z-index: 1;
+		}
 	}
 }

@@ -2,10 +2,9 @@
 
 	import { BlockInstance } from "../core/block/instance";
 	import { combine, terminate } from "../util/event";
-	import { either, optional } from "../util/vue";
+	import { either } from "../util/vue";
 
 	import BlockMount from "./BlockMount";
-	import { inserterInline } from "../ui/render/inserter";
 
 	export default {
 
@@ -42,7 +41,6 @@
 			});
 
 			return h(BlockMount, {props: {instance: this.instance}}, [
-				optional(this.instance.index > 0 && !this.instance.parent.block.canHaveGroups, () => inserterInline(h, this.instance)),
 				vnode,
 				either(
 					this.instance.isSelected,

@@ -1,5 +1,5 @@
 import { Block } from "../../core/block/block";
-import { convertBlock, renderChildren } from "../../core/block/api";
+import { convertBlock, renderChildren, renderInstances } from "../../core/block/api";
 import { range } from "../../util/array";
 import { description, fragment, group, row, settings, sidebar } from "../../ui/render/settings";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
@@ -116,9 +116,7 @@ export class ColumnBlock extends Block
 
 		return either(
 			instance.children.length > 0,
-			() => h("div", {class: classes}, instance.children.map(child => h(BlockView, {
-				props: {instance: child}
-			}))),
+			() => h("div", {class: classes}, renderInstances(h, instance)),
 			() => h("div", {class: classes}, [
 				inserterNag(h, instance)
 			])
