@@ -5,7 +5,7 @@
 
 			<latte-portal slim to="toolbar-center">
 
-				<nav class="nav nav-tabs" style="--tabs-accent: var(--color-primary)">
+				<nav class="nav nav-tabs" style="--tabs-accent: var(--color-primary); --tabs-height: var(--app-bar-height)">
 
 					<template v-for="(tab, index) in tabs">
 						<a class="nav-link" :class="{'is-active': tab.active}" @click="setCurrent(index)">
