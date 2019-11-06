@@ -96,7 +96,7 @@ export function textField(h, title, get, set, placeholder = undefined)
 		h("input", {
 			class: "form-control",
 			domProps: {
-				placeholder,
+				placeholder: translate(placeholder),
 				type: "text",
 				value: get()
 			},
