@@ -60,7 +60,7 @@ export class HtmlBlock extends Block
 				either(
 					dom.children.length === 0,
 					() => inserterNagAbstract(h, "code-tags", "Edit HTML", () => setCurrent(1)),
-					() => simpleRender(h, (instance.options.code.trim() !== "" ? instance.options.code : "<div></div>")
+					() => simpleRender(h, (instance.options.code.trim() !== "" ? `<div class="be-block-html">${instance.options.code}</div>` : "<div></div>")
 						.replace(/href=/g, "data-be-href=")
 						.replace(/data-action=/g, "data-be-action="))
 				)
