@@ -105,7 +105,7 @@
 	}
 }
 
-.btn-contained
+.btn.btn-contained
 {
 	--btn-bg: #{latte-rgb(var(--btn-background))};
 	--ripple-color: var(--btn-foreground);
@@ -131,7 +131,7 @@
 	}
 }
 
-.btn-outline
+.btn.btn-outline
 {
 	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
 	--btn-alpha: 0;
@@ -161,7 +161,7 @@
 	}
 }
 
-.btn-soft
+.btn.btn-soft
 {
 	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
 	--btn-alpha: .1;
@@ -193,7 +193,7 @@
 	}
 }
 
-.btn-text
+.btn.btn-text
 {
 	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
 	--btn-alpha: 0;
