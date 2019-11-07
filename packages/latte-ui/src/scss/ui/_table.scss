@@ -161,9 +161,9 @@
 		td,
 		th
 		{
-			background: #{latte-rgb(var(--outline-color))};
-			border-top: 1px solid #{latte-rgb(var(--outline-color))};
-			border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
+			background: $hover-bg;
+			border-top: $border;
+			border-bottom: $border;
 		}
 
 		input
@@ -205,4 +205,12 @@
 			border-bottom: $border;
 		}
 	}
+}
+
+.table-overflow
+{
+	position: relative;
+	display: block;
+	max-width: 100%;
+	overflow-x: auto;
 }

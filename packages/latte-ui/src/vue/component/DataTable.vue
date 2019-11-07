@@ -9,90 +9,92 @@
 
 <template>
 
-	<table class="table table-hover mb-0">
-		<thead>
+	<div class="table-overflow">
+		<table class="table table-hover mb-0">
+			<thead>
 
-		<tr v-if="showHeader">
-			<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
-				<th v-if="isSelectionMode" style="width: 42px"></th>
-				<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
-					<div class="column-content flex-row align-items-center justify-content-start">
-						<span>{{ column.label }}</span>
-						<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
-							<Icon name="sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"/>
-							<Icon name="sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"/>
-							<Icon name="sort" v-else/>
-						</button>
-					</div>
-				</th>
-				<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
-					<div class="column-content"><span>&nbsp;</span></div>
-				</th>
-			</slot>
-		</tr>
+			<tr v-if="showHeader">
+				<slot name="data-header" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+					<th v-if="isSelectionMode" style="width: 42px"></th>
+					<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
+						<div class="column-content flex-row align-items-center justify-content-start">
+							<span>{{ column.label }}</span>
+							<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text btn-sm ml-1" :class="{'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
+								<Icon name="sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"/>
+								<Icon name="sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"/>
+								<Icon name="sort" v-else/>
+							</button>
+						</div>
+					</th>
+					<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
+						<div class="column-content"><span>&nbsp;</span></div>
+					</th>
+				</slot>
+			</tr>
 
-		<tr class="search-row" v-if="showSearch">
-			<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
-				<th v-if="isSelectionMode" style="width:42px"></th>
-				<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
-					<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
-				</th>
-				<th v-if="hasActions"></th>
-			</slot>
-		</tr>
+			<tr class="search-row" v-if="showSearch">
+				<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+					<th v-if="isSelectionMode" style="width:42px"></th>
+					<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
+						<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+					</th>
+					<th v-if="hasActions"></th>
+				</slot>
+			</tr>
 
-		<tr v-if="filters.length > 0">
-			<td :colspan="amountOfColumns">
-				<div class="column-content flex-row justify-content-start">
+			<tr v-if="filters.length > 0">
+				<td :colspan="amountOfColumns">
+					<div class="column-content flex-row justify-content-start">
 
-					<template v-for="(filter, filterKey) of filters">
+						<template v-for="(filter, filterKey) of filters">
 						<span class="badge mr-1" :class="filter.class">
 							<span>{{ filter.label }}</span>
 							<button class="btn" @click="removeFilter($event, filterKey)">
 								<Icon name="close"/>
 							</button>
 						</span>
+						</template>
+
+					</div>
+				</td>
+			</tr>
+
+			</thead>
+			<tbody>
+
+			<tr v-for="(row, rowKey) in data">
+				<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
+					<td v-if="isSelectionMode" style="width:42px;z-index:1">
+						<label class="column-content pr-0">
+							<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
+							<input type="checkbox" class="checkbox checkbox-primary mr-0" :id="uniqueId + ':' + row.id" :name="name + '[]'" :value="row.id" v-if="selectMode === 'multiple'" v-model="selection"/>
+						</label>
+					</td>
+
+					<template v-for="(column, columnKey) in columns">
+						<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
+							<component :is="createRowColumn(row, column)"></component>
+						</td>
 					</template>
 
-				</div>
-			</td>
-		</tr>
+					<latte-data-table-actions :actions="actions" :row="row" v-if="hasActions"></latte-data-table-actions>
+				</slot>
+			</tr>
 
-		</thead>
-		<tbody>
+			</tbody>
+			<tfoot>
 
-		<tr v-for="(row, rowKey) in data">
-			<slot name="data-row" :actions="actions" :columns="columns" :has-actions="hasActions" :is-loading="isLoading" :row="row" :row-key="rowKey" :is-selection-mode="isSelectionMode" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
-				<td v-if="isSelectionMode" style="width:42px;z-index:1">
-					<label class="column-content pr-0">
-						<input type="radio" class="radio-button radio-button-primary mr-0" :id="uniqueId + ':' + row.id" :name="name" :value="row.id" v-if="selectMode === 'single'" v-model="selection"/>
-						<input type="checkbox" class="checkbox checkbox-primary mr-0" :id="uniqueId + ':' + row.id" :name="name + '[]'" :value="row.id" v-if="selectMode === 'multiple'" v-model="selection"/>
-					</label>
-				</td>
+			<tr v-if="total > limit">
+				<th :colspan="amountOfColumns">
+					<div class="column-content">
+						<latte-pagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></latte-pagination>
+					</div>
+				</th>
+			</tr>
 
-				<template v-for="(column, columnKey) in columns">
-					<td :data-field="column.field" :data-row="rowKey" :data-column="columnKey" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
-						<component :is="createRowColumn(row, column)"></component>
-					</td>
-				</template>
-
-				<latte-data-table-actions :actions="actions" :row="row" v-if="hasActions"></latte-data-table-actions>
-			</slot>
-		</tr>
-
-		</tbody>
-		<tfoot>
-
-		<tr v-if="total > limit">
-			<th :colspan="amountOfColumns">
-				<div class="column-content">
-					<latte-pagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></latte-pagination>
-				</div>
-			</th>
-		</tr>
-
-		</tfoot>
-	</table>
+			</tfoot>
+		</table>
+	</div>
 
 </template>
 
