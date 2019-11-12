@@ -80,19 +80,6 @@
 					</div>
 
 					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Date/time pickers</span></div>
-						<div class="panel-body">
-							<latte-datepicker></latte-datepicker>
-						</div>
-						<div class="panel-body">
-							<latte-timepicker></latte-timepicker>
-						</div>
-						<div class="panel-body">
-							<latte-datetimepicker></latte-datetimepicker>
-						</div>
-					</div>
-
-					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Silhouette</span></div>
 						<div class="panel-body" style="background: rgb(var(--main-background))">
 							<div class="row">
