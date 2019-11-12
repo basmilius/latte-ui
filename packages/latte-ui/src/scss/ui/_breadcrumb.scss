@@ -8,6 +8,11 @@
 	{
 		padding: 0;
 
+		&:hover
+		{
+			color: #{latte-rgb(var(--color-primary))};
+		}
+
 		&.is-active
 		{
 			pointer-events: none;
