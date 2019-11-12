@@ -57,6 +57,8 @@
 
 	import { id, request } from "../../js/core/api";
 	import { handleError } from "../../js/core";
+	import { terminateEvent } from "../../js/util/dom";
+
 	import Icon from "./base/Icon.vue";
 
 	function areArraysEqual(a, b)
@@ -250,8 +252,7 @@
 
 				this.onSelectSuggestion();
 
-				evt.preventDefault();
-				evt.stopPropagation();
+				terminateEvent(evt);
 			},
 
 			onKeyPressDelete()

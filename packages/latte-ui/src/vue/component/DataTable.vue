@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="table-overflow">
+	<div class="table-overflow" :class="{'is-loading': isLoading}">
 		<table class="table table-hover mb-0">
 			<thead>
 
@@ -26,7 +26,7 @@
 							</button>
 						</div>
 					</th>
-					<th v-if="hasActions" :style="{'width': actionsWidth + 'px'}">
+					<th v-if="hasActions" style="width: 52px">
 						<div class="column-content"><span>&nbsp;</span></div>
 					</th>
 				</slot>
@@ -94,6 +94,8 @@
 
 			</tfoot>
 		</table>
+
+		<span class="spinner spinner-primary" v-if="spinner"></span>
 	</div>
 
 </template>
@@ -104,10 +106,11 @@
 
 	import { on } from "../../js/core/action";
 	import { id, request } from "../../js/core/api";
-	import { closest, createElement } from "../../js/util/dom";
+	import { terminateEvent } from "../../js/util/dom";
 	import { isNullOrWhitespace } from "../../js/util/string";
 	import { handleError } from "../../js/core";
 	import { oneOf } from "../../js/helper/array";
+
 	import Icon from "./base/Icon.vue";
 
 	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
@@ -175,7 +178,6 @@
 		name: "latte-data-table",
 
 		props: {
-			addSpinnerToParent: {default: false, type: Boolean},
 			dataSource: {default: null, required: true, type: Function | String | null},
 			defaultLimit: {default: 20, type: Number},
 			name: {default: () => id(), type: String},
@@ -184,23 +186,19 @@
 			showHeader: {default: true, type: Boolean},
 			showSearch: {default: true, type: Boolean},
 			showSorting: {default: true, type: Boolean},
+			spinner: {default: true, type: Boolean},
 			value: {default: () => [], type: Array | Number}
 		},
 
 		beforeDestroy()
 		{
-			if (this.spinner !== null)
-				this.spinner.remove();
-
-			this.subscriptions.refresh.unsubscribe();
+			this.subscriptions.forEach(sub => sub.unsubscribe());
 		},
 
 		data()
 		{
 			return {
-				subscriptions: {
-					refresh: null
-				},
+				subscriptions: [],
 				isLoading: false,
 				actions: [],
 				columns: [],
@@ -217,7 +215,6 @@
 					by: "",
 					order: 'DESC'
 				},
-				spinner: null,
 				total: 0,
 				uniqueId: id()
 			};
@@ -225,17 +222,12 @@
 
 		mounted()
 		{
-			this.subscriptions.refresh = on("data-tables:refresh", () => this.reload());
-
-			this.addSpinner();
+			this.subscriptions.push(
+				on("data-tables:refresh", () => this.reload())
+			);
 		},
 
 		computed: {
-
-			actionsWidth()
-			{
-				return 52;
-			},
 
 			amountOfColumns()
 			{
@@ -262,9 +254,8 @@
 			addFilter(filter)
 			{
 				for (let i in this.filters)
-					if (this.filters.hasOwnProperty(i))
-						if (this.filters[i].property === filter.property && this.filters[i]["value"] === filter["value"])
-							return;
+					if (this.filters[i].property === filter.property && this.filters[i]["value"] === filter["value"])
+						return;
 
 				this.offset = 0;
 
@@ -272,15 +263,6 @@
 
 				this.filters.push(filter);
 				this.loadData();
-			},
-
-			addSpinner()
-			{
-				if (!this.addSpinnerToParent)
-					return;
-
-				this.spinner = createElement("span", span => span.classList.add("spinner", "spinner-primary"));
-				closest(this.$el, ".panel").append(this.spinner);
 			},
 
 			removeFilter(evt, filterKey)
@@ -397,10 +379,7 @@
 			search(field, value, evt)
 			{
 				if (evt)
-				{
-					evt.preventDefault();
-					evt.stopPropagation();
-				}
+					terminateEvent(evt);
 
 				this.params[field] = value;
 				this.offset = 0;
@@ -465,21 +444,6 @@
 						});
 					});
 				}
-			},
-
-			isLoading()
-			{
-				this.$emit("loading", this.isLoading);
-
-				if (!this.addSpinnerToParent)
-					return;
-
-				const parent = closest(this.$el, ".panel");
-
-				if (this.isLoading)
-					parent.classList.add("is-loading");
-				else
-					parent.classList.remove("is-loading");
 			},
 
 			selection()

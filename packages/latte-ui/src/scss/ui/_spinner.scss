@@ -67,9 +67,10 @@ span.spinner::before,
 
 .input-group,
 .form-group,
-.panel
+.panel,
+.table-overflow
 {
-	& > .spinner
+	> .spinner
 	{
 		position: absolute;
 		display: none;

@@ -30,7 +30,8 @@
 
 <script>
 
-	import { raf } from "../../js/util/dom";
+	import { raf, terminateEvent } from "../../js/util/dom";
+
 	import Icon from "./base/Icon.vue";
 
 	export default {
@@ -142,7 +143,7 @@
 
 				this.close();
 
-				evt.preventDefault();
+				terminateEvent(evt);
 			},
 
 			onKeyPressUp()

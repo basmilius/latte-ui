@@ -40,7 +40,10 @@
 		mounted()
 		{
 			if (this.container)
+			{
 				this.container.updateChildren();
+				this.container.updateTabBars();
+			}
 		},
 
 		watch: {

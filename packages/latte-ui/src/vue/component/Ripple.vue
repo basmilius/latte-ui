@@ -25,6 +25,7 @@
 		data()
 		{
 			return {
+				events: [],
 				center: false,
 				clip: true,
 				observer: null,
@@ -39,6 +40,15 @@
 
 			while (this.ripples.length > 0)
 				this.ripples.shift().remove();
+
+			this.$el.removeEventListener("touchcancel", this.events[0]);
+			this.$el.removeEventListener("touchmove", this.events[1]);
+			this.$el.removeEventListener("touchstart", this.events[2]);
+			this.$el.removeEventListener("touchend", this.events[3]);
+
+			this.$el.removeEventListener("mouseleave", this.events[4]);
+			this.$el.removeEventListener("mousedown", this.events[5]);
+			this.$el.removeEventListener("mouseup", this.events[6]);
 		},
 
 		mounted()
@@ -51,14 +61,14 @@
 				this.observer.observe(this.$el);
 			}
 
-			this.$el.addEventListener("touchcancel", onlyTouch(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("touchmove", onlyTouch(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: true});
-			this.$el.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("touchcancel", this.events[0] = onlyTouch(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("touchmove", this.events[1] = onlyTouch(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("touchstart", this.events[2] = onlyTouch(this.onPointerDown), {passive: true});
+			this.$el.addEventListener("touchend", this.events[3] = onlyTouch(this.onPointerUp), {passive: true});
 
-			this.$el.addEventListener("mouseleave", onlyMouse(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: true});
-			this.$el.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("mouseleave", this.events[4] = onlyMouse(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("mousedown", this.events[5] = onlyMouse(this.onPointerDown), {passive: true});
+			this.$el.addEventListener("mouseup", this.events[6] = onlyMouse(this.onPointerUp), {passive: true});
 		},
 
 		render(h)

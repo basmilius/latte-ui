@@ -47,7 +47,9 @@
 
 		created()
 		{
-			on("latte:expandable:open", expandable => this.onExpandableOpened(expandable));
+			this.subscriptions.push(
+				on("latte:expandable:open", expandable => this.onExpandableOpened(expandable))
+			);
 		},
 
 		data()
@@ -58,8 +60,14 @@
 					overflow: "hidden",
 					transition: "height 210ms var(--ease-swift-out)"
 				},
-				isOpen: false
+				isOpen: false,
+				subscriptions: []
 			};
+		},
+
+		destroyed()
+		{
+			this.subscriptions.forEach(sub => sub.unsubscribe());
 		},
 
 		mounted()

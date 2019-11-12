@@ -80,18 +80,12 @@
 		props: {
 			controllerBar: {default: false, type: Boolean},
 			limit: {default: 10, required: true, type: Number},
+			limits: {default: () => [5, 10, 20, 50, 100], type: Array},
 			navigationControls: {default: true, type: Boolean},
 			offset: {default: 0, type: Number},
 			sizeEnd: {default: 2, type: Number, validator: num => num >= 0},
 			sizeMid: {default: 1, type: Number, validator: num => num >= 0},
 			total: {default: 0, required: true, type: Number}
-		},
-
-		data()
-		{
-			return {
-				limits: [5, 10, 20, 50, 100]
-			};
 		},
 
 		computed: {

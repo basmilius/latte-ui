@@ -45,6 +45,7 @@
 		data()
 		{
 			return {
+				subscriptions: [],
 				current: 0,
 				indicatorBarRect: null,
 				indicatorTabRect: null,
@@ -53,14 +54,21 @@
 			};
 		},
 
+		destroyed()
+		{
+			this.subscriptions.forEach(sub => sub.unsubscribe());
+		},
+
 		mounted()
 		{
 			this.container.$on("change", current => this.onTabChange(current));
 			this.container.updateTabBars();
 
-			on("latte:tick", () => raf(() => this.updateIndicator()));
+			this.subscriptions.push(
+				on("latte:tick", () => raf(() => this.updateIndicator()))
+			);
 
-			window.addEventListener("load", () => raf(() => this.updateIndicator(), 50));
+			raf(() => this.updateIndicator());
 		},
 
 		computed: {

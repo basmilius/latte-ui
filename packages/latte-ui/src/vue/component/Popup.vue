@@ -43,6 +43,7 @@
 				popupClosed();
 
 			this.$el.clearOutsideEventListeners();
+			this.subscriptions.forEach(sub => sub.unsubscribe());
 		},
 
 		data()
@@ -56,7 +57,8 @@
 				rect: null,
 				x: 0,
 				y: 0,
-				lattePersistent: false
+				lattePersistent: false,
+				subscriptions: []
 			};
 		},
 
@@ -72,9 +74,11 @@
 
 			live(this.$el, "[href],[data-close]", "click", () => raf(() => this.close()));
 
-			on("latte:tick", () => this.onTick());
-			on("latte:context-menu", () => this.close());
-			on("latte:overlay", () => this.close());
+			this.subscriptions.push(
+				on("latte:tick", () => this.onTick()),
+				on("latte:context-menu", () => this.close()),
+				on("latte:overlay", () => this.close())
+			);
 		},
 
 		render(h)
