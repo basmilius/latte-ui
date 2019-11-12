@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "422b923320abcb5da0c9",
+    "revision": "b8d83fd1e1a4a239032f",
     "url": "/assets/css/app.aa47317d.css"
   },
   {
@@ -136,8 +136,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "422b923320abcb5da0c9",
-    "url": "/assets/js/app.525f954e.js"
+    "revision": "b8d83fd1e1a4a239032f",
+    "url": "/assets/js/app.fc8d21cf.js"
   },
   {
     "revision": "c1cadc088be7e017d851",
@@ -328,7 +328,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/wallpaper/1.jpg"
   },
   {
-    "revision": "63a6efedc7f8f9aa1860d89d1e6f8400",
+    "revision": "dc1ba8aaf52dcd0b0099d7103592ca78",
     "url": "/index.html"
   },
   {
