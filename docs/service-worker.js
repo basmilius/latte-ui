@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.607dd4be7e5497adbfcba738461dbab0.js"
+  "/precache-manifest.2a22c4aed72d71398e9f051eaea5bf94.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "@bybas/latte-ui-docs"});

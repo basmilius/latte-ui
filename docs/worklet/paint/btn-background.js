@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -11,19 +11,19 @@ registerPaint("btn-background", class
 {
 	static get inputProperties()
 	{
-		return ["--btn-background", "--btn-foreground", "--btn-alpha", "--btn-hover"];
+		return ["--btnBackground", "--btnForeground", "--btnAlpha", "--btnHover"];
 	}
 
 	paint(context, geometry, properties)
 	{
-		context.fillStyle = `rgba(${properties.get("--btn-background")}, ${properties.get("--btn-alpha")})`;
+		context.fillStyle = `rgba(${properties.get("--btnBackground")}, ${properties.get("--btnAlpha")})`;
 		context.beginPath();
 		context.rect(0, 0, geometry.width, geometry.height);
 		context.fill();
 
-		if (properties.get("--btn-hover") > 0)
+		if (properties.get("--btnHover") > 0)
 		{
-			context.fillStyle = `rgba(${properties.get("--btn-foreground")}, ${properties.get("--btn-hover")})`;
+			context.fillStyle = `rgba(${properties.get("--btnForeground")}, ${properties.get("--btnHover")})`;
 			context.beginPath();
 			context.rect(0, 0, geometry.width, geometry.height);
 			context.fill();
