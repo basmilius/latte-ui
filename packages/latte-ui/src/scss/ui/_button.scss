@@ -53,9 +53,16 @@
 		pointer-events: none;
 	}
 
-	> * + *
+	#{unquote($latte-icon-class)} + span,
+	span + #{unquote($latte-icon-class)}
 	{
-		margin-left: 1rem;
+		margin-left: 12px;
+	}
+
+	.avatar
+	{
+		margin: -3px;
+		font-size: 30px;
 	}
 }
 

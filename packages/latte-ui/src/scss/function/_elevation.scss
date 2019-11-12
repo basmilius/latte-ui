@@ -96,7 +96,7 @@ $elevation-ambient-map: (
 		24: "0px 9px 46px 8px"
 );
 
-@function elevation-transition($duration: 240ms, $easing: var(--easeSiftOut))
+@function elevation-transition($duration: 240ms, $easing: var(--easeSwiftOut))
 {
 	@return box-shadow $duration $easing;
 }
