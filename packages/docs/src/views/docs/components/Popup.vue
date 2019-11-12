@@ -109,16 +109,16 @@
 					],
 					variables: [
 						{
-							name: "--popup-background",
+							name: "--popupBackground",
 							description: "Used as the background color of the popup.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--popup-background").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--popupBackground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--popup-elevation",
+							name: "--popupElevation",
 							description: "Used as the elevation shadow of the popup.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--popup-elevation")
+							default: computedStyle.getPropertyValue("--popupElevation")
 						}
 					]
 				}

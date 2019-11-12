@@ -107,15 +107,15 @@
 
 @each $type in $color-types
 {
-	.text-#{$type}
+	.text-#{to-lower-case($type)}
 	{
-		color: #{latte-rgb(var(--color-#{$type}))} !important;
+		color: #{latte-rgb(var(--color#{$type}))} !important;
 	}
 }
 
 .text-body
 {
-	color: var(--main-foreground) !important;
+	color: var(--mainForeground) !important;
 }
 
 .text-muted
@@ -125,12 +125,12 @@
 
 .text-light-50
 {
-	color: rgba(var(--color-light), .5) !important;
+	color: rgba(var(--colorLight), .5) !important;
 }
 
 .text-dark-50
 {
-	color: rgba(var(--color-dark), .5) !important;
+	color: rgba(var(--colorDark), .5) !important;
 }
 
 .text-decoration-none

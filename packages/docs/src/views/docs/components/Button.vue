@@ -64,52 +64,52 @@
 				api: {
 					variables: [
 						{
-							name: "--btn-alpha",
+							name: "--btnAlpha",
 							description: "Controls the button alpha level.",
 							type: "int",
 							default: 1
 						},
 						{
-							name: "--btn-background",
+							name: "--btnBackground",
 							description: "Background color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--btn-background").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--btnBackground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--btn-foreground",
+							name: "--btnForeground",
 							description: "Foreground color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--btn-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--btnForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--btn-font-size",
+							name: "--btnFontSize",
 							description: "Font size of the button.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--btn-font-size")
+							default: computedStyle.getPropertyValue("--btnFontSize")
 						},
 						{
-							name: "--btn-height",
+							name: "--btnHeight",
 							description: "Height of the button.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--btn-height")
+							default: computedStyle.getPropertyValue("--btnHeight")
 						},
 						{
-							name: "--btn-hover",
+							name: "--btnHover",
 							description: "Hover state.",
 							type: "int",
 							default: 0
 						},
 						{
-							name: "--btn-icon-size",
+							name: "--btnIconSize",
 							description: "Icon size.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--btn-icon-size")
+							default: computedStyle.getPropertyValue("--btnIconSize")
 						},
 						{
-							name: "--btn-padding",
+							name: "--btnPadding",
 							description: "Button padding.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--btn-padding")
+							default: computedStyle.getPropertyValue("--btnPadding")
 						}
 					]
 				}

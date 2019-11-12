@@ -55,8 +55,8 @@
 				const rootRect = this.$el.getBoundingClientRect();
 				const itemRect = item.getBoundingClientRect();
 
-				this.$el.style.setProperty("--bottom-nav-ind-height", `${itemRect.height}px`);
-				this.$el.style.setProperty("--bottom-nav-ind-pos", `${itemRect.top - rootRect.top}px`);
+				this.$el.style.setProperty("--bottomNavIndHeight", `${itemRect.height}px`);
+				this.$el.style.setProperty("--bottomNavIndPos", `${itemRect.top - rootRect.top}px`);
 			},
 
 			deactivateItems()

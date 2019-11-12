@@ -10,7 +10,7 @@
 .emoji-picker
 {
 	height: 330px;
-	width: calc(304px + var(--scrollbar-width, 0));
+	width: calc(304px + var(--scrollbarWidth, 0));
 	overflow: auto;
 
 	.skin-tone
@@ -68,7 +68,7 @@
 
 	.nav-tabs
 	{
-		--tabs-accent: var(--color-primary);
+		--tabsAccent: var(--colorPrimary);
 
 		img
 		{

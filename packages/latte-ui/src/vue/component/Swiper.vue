@@ -269,9 +269,9 @@
 				let gutter = this.iPadding.left + this.iPadding.right + this.vPadding.left + this.vPadding.right;
 				let width = (this.itemWidth || this.rect.root.width) - gutter;
 
-				this.$el.style.setProperty("--swiper-item-padding", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);
-				this.$el.style.setProperty("--swiper-item-width", `${width}px`);
-				this.$el.style.setProperty("--swiper-view-padding", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);
+				this.$el.style.setProperty("--swiperItemPadding", `${this.iPadding.top}px ${this.iPadding.right}px ${this.iPadding.bottom}px ${this.iPadding.left}px`);
+				this.$el.style.setProperty("--swiperItemWidth", `${width}px`);
+				this.$el.style.setProperty("--swiperViewPadding", `${this.vPadding.top}px ${this.vPadding.right}px ${this.vPadding.bottom}px ${this.vPadding.left}px`);
 
 				raf(() => this.can.observe = true, 100);
 			}

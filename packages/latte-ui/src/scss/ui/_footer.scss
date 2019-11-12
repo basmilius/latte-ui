@@ -11,7 +11,7 @@ footer.footer
 {
 	position: relative;
 	display: block;
-	border-top: 1px solid #{latte-rgb(var(--outline-color))};
+	border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 
 	.divider
 	{
@@ -21,12 +21,12 @@ footer.footer
 	.nav.nav-links .nav-link
 	{
 		padding: 6px 0;
-		color: #{latte-rgba(var(--main-foreground), .6)};
+		color: #{latte-rgba(var(--mainForeground), .6)};
 		font-size: .95rem;
 
 		&:hover
 		{
-			color: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--colorPrimary))};
 		}
 	}
 }

@@ -74,8 +74,8 @@
 		display: block;
 		margin: 0;
 		max-width: 100%;
-		background: rgba(var(--main-background), 1);
-		border: 1px solid rgba(var(--outline-color), 1);
+		background: rgba(var(--mainBackground), 1);
+		border: 1px solid rgba(var(--outlineColor), 1);
 		border-radius: var(--radius);
 		overflow: auto;
 

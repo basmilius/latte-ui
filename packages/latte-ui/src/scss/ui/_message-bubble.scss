@@ -31,7 +31,7 @@
 	{
 		margin-top: .5em;
 		margin-left: auto;
-		color: #{latte-rgba(var(--message-foreground), .5)};
+		color: #{latte-rgba(var(--messageForeground), .5)};
 		line-height: 1em;
 	}
 
@@ -79,11 +79,11 @@
 	display: flex;
 	padding: 18px 24px;
 	flex-flow: column;
-	background: #{latte-rgb(var(--message-background))};
+	background: #{latte-rgb(var(--messageBackground))};
 	border-radius: var(--r);
-	color: #{latte-rgb(var(--message-foreground))};
+	color: #{latte-rgb(var(--messageForeground))};
 
-	--arrow-size: calc(var(--r) * 2);
+	--arrowSize: calc(var(--r) * 2);
 
 	&::before,
 	&::after
@@ -97,27 +97,27 @@
 
 	&::before
 	{
-		height: var(--arrow-size);
-		width: var(--arrow-size);
+		height: var(--arrowSize);
+		width: var(--arrowSize);
 		background: inherit;
 	}
 
 	&::after
 	{
-		height: calc(var(--arrow-size) + 3px);
-		width: var(--arrow-size);
-		background: #{latte-rgb(var(--panel-background))};
+		height: calc(var(--arrowSize) + 3px);
+		width: var(--arrowSize);
+		background: #{latte-rgb(var(--panelBackground))};
 	}
 }
 
 .incoming .message-bubble-content
 {
-	--message-background: var(--main-background);
-	--message-foreground: var(--main-foreground);
+	--messageBackground: var(--mainBackground);
+	--messageForeground: var(--mainForeground);
 
 	&::before
 	{
-		right: calc(100% - (var(--arrow-size) / 2));
+		right: calc(100% - (var(--arrowSize) / 2));
 	}
 
 	&::after
@@ -128,12 +128,12 @@
 
 .outgoing .message-bubble-content
 {
-	--message-background: var(--color-primary);
-	--message-foreground: var(--color-primary-foreground);
+	--messageBackground: var(--colorPrimary);
+	--messageForeground: var(--colorPrimaryForeground);
 
 	&::before
 	{
-		left: calc(100% - (var(--arrow-size) / 3));
+		left: calc(100% - (var(--arrowSize) / 3));
 	}
 
 	&::after
@@ -147,7 +147,7 @@
 	display: block;
 	min-height: 30px;
 	padding: 6px 24px;
-	color: #{latte-rgba(var(--main-foreground), .5)};
+	color: #{latte-rgba(var(--mainForeground), .5)};
 	font-size: .9rem;
 	font-weight: 500;
 }

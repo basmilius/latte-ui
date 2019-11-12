@@ -9,9 +9,9 @@
 
 @each $type in $color-types
 {
-	.bg-#{$type}
+	.bg-#{to-lower-case($type)}
 	{
-		background-color: #{latte-rgb(var(--color-#{$type}))};
+		background-color: #{latte-rgb(var(--color#{$type}))};
 	}
 }
 
@@ -27,12 +27,12 @@
 
 .bg-main
 {
-	background-color: #{latte-rgb(var(--main-background))};
+	background-color: #{latte-rgb(var(--mainBackground))};
 }
 
 .bg-panel
 {
-	background-color: #{latte-rgb(var(--panel-background))};
+	background-color: #{latte-rgb(var(--panelBackground))};
 }
 
 .bg-transparent

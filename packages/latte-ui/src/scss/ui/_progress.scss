@@ -9,7 +9,7 @@
 
 :root
 {
-	--progress-color: var(--color-primary);
+	--progressColor: var(--colorPrimary);
 }
 
 @keyframes wave-animation
@@ -49,7 +49,7 @@
 	{
 		height: 6px;
 		width: 100%;
-		background: #{latte-rgba(var(--progress-color), .25)};
+		background: #{latte-rgba(var(--progressColor), .25)};
 		border-radius: var(--radius);
 
 		.progress-value
@@ -59,7 +59,7 @@
 			top: 0;
 			left: 0;
 			height: inherit;
-			background: #{latte-rgb(var(--progress-color))};
+			background: #{latte-rgb(var(--progressColor))};
 			border-radius: var(--radius);
 		}
 
@@ -78,13 +78,13 @@
 
 		.progress-track
 		{
-			stroke: #{latte-rgba(var(--progress-color), .25)};
+			stroke: #{latte-rgba(var(--progressColor), .25)};
 		}
 
 		.progress-value
 		{
 			transform-origin: center center;
-			stroke: #{latte-rgb(var(--progress-color))};
+			stroke: #{latte-rgb(var(--progressColor))};
 		}
 
 		&.is-indeterminate .progress-value

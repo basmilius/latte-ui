@@ -16,10 +16,10 @@
 			right: -15px;
 			bottom: -15px;
 			content: "";
-			border: 2px dashed rgba(var(--color-primary), .5);
+			border: 2px dashed rgba(var(--colorPrimary), .5);
 			opacity: 0;
 			pointer-events: none;
-			transition: opacity 60ms var(--ease-swift-out);
+			transition: opacity 60ms var(--easeSwiftOut);
 		}
 	}
 
@@ -45,7 +45,7 @@
 
 	&:not(.is-selected).is-selection-inside > .be-block-view::after
 	{
-		border-color: rgba(var(--outline-color), 1);
+		border-color: rgba(var(--outlineColor), 1);
 		opacity: 1;
 	}
 

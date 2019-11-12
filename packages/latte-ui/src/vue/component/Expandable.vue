@@ -58,7 +58,7 @@
 				bodyStyle: {
 					height: "0",
 					overflow: "hidden",
-					transition: "height 210ms var(--ease-swift-out)"
+					transition: "height 210ms var(--easeSwiftOut)"
 				},
 				isOpen: false,
 				subscriptions: []

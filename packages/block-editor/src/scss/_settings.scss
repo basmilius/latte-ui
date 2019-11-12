@@ -1,16 +1,16 @@
 .be-editor-settings
 {
-	border-left: 1px solid rgba(var(--outline-color), 1);
+	border-left: 1px solid rgba(var(--outlineColor), 1);
 	z-index: 0;
 
 	.nav-tabs
 	{
-		--tabs-height: 61px;
+		--tabsHeight: 61px;
 
 		position: sticky;
 		top: 0;
-		background: rgba(var(--panel-background), 1);
-		border-bottom: 1px solid rgba(var(--outline-color), 1);
+		background: rgba(var(--panelBackground), 1);
+		border-bottom: 1px solid rgba(var(--outlineColor), 1);
 		z-index: 10;
 
 		&::before
@@ -22,7 +22,7 @@
 			right: 0;
 			bottom: 0;
 			content: "";
-			background: rgba(var(--outline-color), .4);
+			background: rgba(var(--outlineColor), .4);
 			z-index: -1;
 		}
 
@@ -37,7 +37,7 @@
 {
 	position: relative;
 	display: block;
-	border-bottom: 1px solid rgba(var(--outline-color), 1);
+	border-bottom: 1px solid rgba(var(--outlineColor), 1);
 
 	.settings-body
 	{
@@ -59,7 +59,7 @@
 		margin-bottom: -1px;
 		padding: 0 24px;
 		align-items: center;
-		color: rgba(var(--main-foreground), .4);
+		color: rgba(var(--mainForeground), .4);
 		font-size: .8rem;
 		font-weight: 700;
 		user-select: none;
@@ -100,7 +100,7 @@
 	{
 		margin-top: 1rem;
 		padding-top: 1rem;
-		border-top: 1px solid rgba(var(--outline-color), .5);
+		border-top: 1px solid rgba(var(--outlineColor), .5);
 	}
 
 	input.custom-range

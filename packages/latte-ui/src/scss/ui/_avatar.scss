@@ -15,7 +15,7 @@
 	flex-shrink: 0;
 	background:
 	{
-		color: #{latte-rgb(var(--panel-background))};
+		color: #{latte-rgb(var(--panelBackground))};
 		position: center center;
 		repeat: no-repeat;
 		size: cover;
@@ -38,8 +38,8 @@
 		height: 1em;
 		margin-right: -.3em;
 		width: 1em;
-		box-shadow: 0 0 0 .1em var(--avatar-strip-background, #{latte-rgb(var(--panel-background))});
-		transition: all 180ms var(--ease-swift-out);
+		box-shadow: 0 0 0 .1em var(--avatarStripBackground, #{latte-rgb(var(--panelBackground))});
+		transition: all 180ms var(--easeSwiftOut);
 
 		&:first-child
 		{

@@ -9,27 +9,27 @@
 
 .border
 {
-	border: 1px solid #{latte-rgb(var(--outline-color))} !important;
+	border: 1px solid #{latte-rgb(var(--outlineColor))} !important;
 }
 
 .border-top
 {
-	border-top: 1px solid #{latte-rgb(var(--outline-color))} !important;
+	border-top: 1px solid #{latte-rgb(var(--outlineColor))} !important;
 }
 
 .border-right
 {
-	border-right: 1px solid #{latte-rgb(var(--outline-color))} !important;
+	border-right: 1px solid #{latte-rgb(var(--outlineColor))} !important;
 }
 
 .border-bottom
 {
-	border-bottom: 1px solid #{latte-rgb(var(--outline-color))} !important;
+	border-bottom: 1px solid #{latte-rgb(var(--outlineColor))} !important;
 }
 
 .border-left
 {
-	border-left: 1px solid #{latte-rgb(var(--outline-color))} !important;
+	border-left: 1px solid #{latte-rgb(var(--outlineColor))} !important;
 }
 
 .border-0
@@ -59,9 +59,9 @@
 
 @each $type in $color-types
 {
-	.border-#{$type}
+	.border-#{to-lower-case($type)}
 	{
-		border-color: #{latte-rgb(var(--color-#{$type}))};
+		border-color: #{latte-rgb(var(--color#{$type}))};
 	}
 }
 

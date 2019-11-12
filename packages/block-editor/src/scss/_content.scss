@@ -2,14 +2,14 @@
 {
 	position: relative;
 	flex-grow: 1;
-	background: rgba(var(--root-background), 1);
+	background: rgba(var(--rootBackground), 1);
 
 	.be-content-wrapper
 	{
 		position: relative;
 		display: flex;
 		margin: 77px auto;
-		max-width: var(--root-width);
+		max-width: var(--rootWidth);
 		align-items: stretch;
 		flex-flow: column;
 	}

@@ -9,8 +9,8 @@
 
 :root
 {
-	--toggle-background: var(--color-primary);
-	--toggle-foreground: var(--color-primary-foreground);
+	--toggleBackground: var(--colorPrimary);
+	--toggleForeground: var(--colorPrimaryForeground);
 }
 
 .toggle-button
@@ -22,11 +22,11 @@
 	height: 24px;
 	width: 36px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgb(var(--form-outline))};
+	border: 2px solid #{latte-rgb(var(--formOutline))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
-	transition: 180ms var(--ease-swift-out);
+	transition: 180ms var(--easeSwiftOut);
 	transition-property: background, border-color;
 	vertical-align: middle;
 
@@ -37,7 +37,7 @@
 		margin: 4px;
 		width: 12px;
 		content: "";
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 		border-radius: inherit;
 		transition: inherit;
 		transition-property: background, transform;
@@ -45,17 +45,17 @@
 
 	&:focus
 	{
-		border-color: #{latte-rgb(var(--toggle-background))};
+		border-color: #{latte-rgb(var(--toggleBackground))};
 	}
 
 	&:checked
 	{
-		background: #{latte-rgb(var(--toggle-background))};
-		border-color: #{latte-rgb(var(--toggle-background))};
+		background: #{latte-rgb(var(--toggleBackground))};
+		border-color: #{latte-rgb(var(--toggleBackground))};
 
 		&::before
 		{
-			background: #{latte-rgb(var(--toggle-foreground))};
+			background: #{latte-rgb(var(--toggleForeground))};
 			transform: translate3d(12px, 0, 0);
 		}
 	}
@@ -70,9 +70,9 @@
 
 @each $type in $color-types
 {
-	.toggle-button-#{$type}
+	.toggle-button-#{to-lower-case($type)}
 	{
-		--toggle-background: var(--color-#{$type});
-		--toggle-foreground: var(--color-#{$type}-foreground);
+		--toggleBackground: var(--color#{$type});
+		--toggleForeground: var(--color#{$type}Foreground);
 	}
 }

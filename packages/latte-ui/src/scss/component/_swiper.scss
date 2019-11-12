@@ -9,9 +9,9 @@
 
 :root
 {
-	--swiper-item-padding: 0;
-	--swiper-item-width: 100%;
-	--swiper-view-padding: 0;
+	--swiperItemPadding: 0;
+	--swiperItemWidth: 100%;
+	--swiperViewPadding: 0;
 }
 
 .swiper
@@ -24,14 +24,14 @@
 	{
 		position: relative;
 		display: flex;
-		padding: var(--swiper-view-padding);
+		padding: var(--swiperViewPadding);
 		flex-flow: row nowrap;
-		transition: all 420ms var(--ease-deceleration-curve);
+		transition: all 420ms var(--easeDecelerationCurve);
 
 		> *
 		{
-			margin: var(--swiper-item-padding);
-			flex: 0 0 var(--swiper-item-width);
+			margin: var(--swiperItemPadding);
+			flex: 0 0 var(--swiperItemWidth);
 		}
 	}
 

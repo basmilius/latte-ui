@@ -24,21 +24,21 @@ function registerCSSProperties()
 	docRoot.classList.add("css-props-values");
 
 	CSS.registerProperty({
-		name: "--app-bar-alpha",
+		name: "--appBarAlpha",
 		syntax: "<number>",
 		inherits: true,
 		initialValue: 1
 	});
 
 	CSS.registerProperty({
-		name: "--btn-alpha",
+		name: "--btnAlpha",
 		syntax: "<number>",
 		inherits: false,
 		initialValue: 1
 	});
 
 	CSS.registerProperty({
-		name: "--btn-hover",
+		name: "--btnHover",
 		syntax: "<number>",
 		inherits: false,
 		initialValue: 0

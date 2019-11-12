@@ -58,27 +58,27 @@
 				api: {
 					variables: [
 						{
-							name: "--tabs-accent",
+							name: "--tabsAccent",
 							description: "The accent color of the indicator.",
-							default: computedStyle.getPropertyValue("--tabs-accent").split(","),
+							default: computedStyle.getPropertyValue("--tabsAccent").split(","),
 							type: "rgb"
 						},
 						{
-							name: "--tabs-foreground",
+							name: "--tabsForeground",
 							description: "The foreground color of tabs.",
-							default: computedStyle.getPropertyValue("--tabs-foreground").split(","),
+							default: computedStyle.getPropertyValue("--tabsForeground").split(","),
 							type: "rgb"
 						},
 						{
-							name: "--tabs-height",
+							name: "--tabsHeight",
 							description: "The height of the tabs.",
-							default: computedStyle.getPropertyValue("--tabs-height"),
+							default: computedStyle.getPropertyValue("--tabsHeight"),
 							type: "string"
 						},
 						{
-							name: "--tabs-radius",
+							name: "--tabsRadius",
 							description: "The radius of the tab indicator.",
-							default: computedStyle.getPropertyValue("--tabs-radius"),
+							default: computedStyle.getPropertyValue("--tabsRadius"),
 							type: "string"
 						}
 					]

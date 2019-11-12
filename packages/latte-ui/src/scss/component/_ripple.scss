@@ -9,13 +9,13 @@
 
 :root
 {
-	--ripple-alpha: .1;
-	--ripple-center: false;
-	--ripple-clip: true;
-	--ripple-color: var(--color-dark);
-	--ripple-duration: 360ms;
-	--ripple-scale: 6;
-	--ripple-size: 36px;
+	--rippleAlpha: .1;
+	--rippleCenter: false;
+	--rippleClip: true;
+	--rippleColor: var(--colorDark);
+	--rippleDuration: 360ms;
+	--rippleScale: 6;
+	--rippleSize: 36px;
 }
 
 *.is-ripple
@@ -45,13 +45,13 @@
 	.ripple
 	{
 		position: absolute;
-		height: var(--ripple-size);
-		width: var(--ripple-size);
-		background: rgba(var(--ripple-color), var(--ripple-alpha));
-		border-radius: var(--ripple-size);
+		height: var(--rippleSize);
+		width: var(--rippleSize);
+		background: rgba(var(--rippleColor), var(--rippleAlpha));
+		border-radius: var(--rippleSize);
 		opacity: 1;
-		transform: translate(var(--ripple-x), var(--ripple-y)) scale3d(var(--ripple-scale), var(--ripple-scale), var(--ripple-scale));
+		transform: translate(var(--rippleX), var(--rippleY)) scale3d(var(--rippleScale), var(--rippleScale), var(--rippleScale));
 		transform-origin: center center;
-		transition: opacity 180ms linear, transform var(--ripple-duration) var(--ease-deceleration-curve);
+		transition: opacity 180ms linear, transform var(--rippleDuration) var(--easeDecelerationCurve);
 	}
 }

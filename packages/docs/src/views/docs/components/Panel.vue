@@ -62,28 +62,28 @@
 				api: {
 					variables: [
 						{
-							name: "--panel-background",
+							name: "--panelBackground",
 							description: "Background color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--panel-background").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--panelBackground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--panel-elevation",
+							name: "--panelElevation",
 							description: "Elevation shadow.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--panel-elevation")
+							default: computedStyle.getPropertyValue("--panelElevation")
 						},
 						{
-							name: "--panel-elevation-hover",
+							name: "--panelElevationHover",
 							description: "Elevation shadow on hover.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--panel-elevation-hover")
+							default: computedStyle.getPropertyValue("--panelElevationHover")
 						},
 						{
-							name: "--panel-gutter",
+							name: "--panelGutter",
 							description: "Gutter.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--panel-gutter")
+							default: computedStyle.getPropertyValue("--panelGutter")
 						}
 					]
 				}

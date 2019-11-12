@@ -1,17 +1,17 @@
 .be-editor-nag
 {
-	--btn-background: var(--main-foreground);
+	--btnBackground: var(--mainForeground);
 
 	position: fixed;
 	display: flex;
-	top: var(--nag-y, 0);
-	left: var(--nag-x, 0);
+	top: var(--nagY, 0);
+	left: var(--nagX, 0);
 	padding: 6px;
-	background: rgba(var(--panel-background), 1);
-	border: 1px solid rgba(var(--outline-color), 1);
+	background: rgba(var(--panelBackground), 1);
+	border: 1px solid rgba(var(--outlineColor), 1);
 	border-radius: var(--radius);
-	box-shadow: var(--elevation-6);
-	transform: var(--nag-transform, none);
+	box-shadow: var(--elevation6);
+	transform: var(--nagTransform, none);
 	z-index: 500;
 
 	&.be-sidebar

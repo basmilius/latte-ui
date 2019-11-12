@@ -89,7 +89,7 @@
 
 	.scaffolding
 	{
-		--scaffolding-drawer-width: 300px
+		--scaffoldingDrawerWidth: 300px
 	}
 
 	.bottom-nav
@@ -100,7 +100,7 @@
 
 			&.is-branding
 			{
-				--icon-size: 42px;
+				--iconSize: 42px;
 
 				margin-bottom: 3px;
 				height: 60px;
@@ -109,7 +109,7 @@
 
 			&.is-active
 			{
-				--bottom-nav-foreground: var(--color-primary-foreground);
+				--bottomNavForeground: var(--colorPrimaryForeground);
 				--radius: unset;
 
 				z-index: 0;
@@ -123,7 +123,7 @@
 					right: 6px;
 					bottom: 6px;
 					content: "";
-					background: rgba(var(--color-primary), 1);
+					background: rgba(var(--colorPrimary), 1);
 					border-radius: var(--radius);
 					z-index: -1;
 				}

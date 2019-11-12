@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="panel-body timepicker-clock">
-			<div class="timepicker-clock-mount" :style="{'--clock-size': `${Math.round(clockRadius * 2.4)}px`}">
+			<div class="timepicker-clock-mount" :style="{'--clockSize': `${Math.round(clockRadius * 2.4)}px`}">
 				<div class="timepicker-clock-pointer" :class="{'is-alternative': pointerAlternative}" :style="{height: `${pointerHeight}px`, transform: `rotate(${pointerDegrees}deg)`}"></div>
 				<button class="timepicker-clock-item hour" :class="{'is-selected': item.isSelected}" :style="item.style" v-if="item.show" v-for="item of items">{{ item.label }}</button>
 			</div>

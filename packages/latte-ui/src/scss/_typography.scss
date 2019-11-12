@@ -67,7 +67,7 @@ blockquote
 		left: 0;
 		bottom: 0;
 		width: 6px;
-		background: #{latte-rgba(var(--color-primary), .1)};
+		background: #{latte-rgba(var(--colorPrimary), .1)};
 		border-radius: 3px;
 		content: "";
 	}
@@ -96,6 +96,6 @@ blockquote
 
 .text-soft
 {
-	color: #{latte-rgb(var(--main-foreground))};
+	color: #{latte-rgb(var(--mainForeground))};
 	opacity: .5;
 }

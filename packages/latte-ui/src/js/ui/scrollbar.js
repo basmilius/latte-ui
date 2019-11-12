@@ -48,6 +48,6 @@ export function initializeScrollbar()
 			docRoot.classList.add("scrollbars");
 
 		raf(() => div.remove());
-		raf(() => docRoot.style.setProperty("--scrollbar-width", `${window.innerWidth - docRoot.clientWidth}px`), 100);
+		raf(() => docRoot.style.setProperty("--scrollbarWidth", `${window.innerWidth - docRoot.clientWidth}px`), 100);
 	});
 }

@@ -1,6 +1,6 @@
 .nav.nav-breadcrumb
 {
-	--nav-item-height: 24px;
+	--navItemHeight: 24px;
 
 	flex-flow: row wrap;
 
@@ -10,7 +10,7 @@
 
 		&:hover
 		{
-			color: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--colorPrimary))};
 		}
 
 		&.is-active
@@ -29,7 +29,7 @@
 			margin: -6px 0 -6px -24px;
 			width: 24px;
 			content: "\0203A";
-			color: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--colorPrimary))};
 			font-size: 24px;
 			font-weight: 700;
 			line-height: 1em;

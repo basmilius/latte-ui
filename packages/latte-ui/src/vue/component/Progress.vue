@@ -12,8 +12,8 @@
 	<svg class="progress progress-ring" :class="{'is-determinate': !isIndeterminate, 'is-indeterminate': isIndeterminate}" style="height: 48px; width: 48px" viewBox="0 0 24 24" v-if="isRing">
 		<defs>
 			<linearGradient id="wave">
-				<stop offset="0%" stop-color="rgb(var(--progress-color))"></stop>
-				<stop offset="25%" stop-color="rgb(var(--progress-color))"></stop>
+				<stop offset="0%" stop-color="rgb(var(--progressColor))"></stop>
+				<stop offset="25%" stop-color="rgb(var(--progressColor))"></stop>
 				<stop offset="25.1%" stop-color="transparent"></stop>
 				<stop offset="100%" stop-color="transparent"></stop>
 			</linearGradient>

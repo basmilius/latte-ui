@@ -9,8 +9,8 @@
 
 :root
 {
-	--radio-background: var(--color-primary);
-	--radio-foreground: var(--color-primary-foreground);
+	--radioBackground: var(--colorPrimary);
+	--radioForeground: var(--colorPrimaryForeground);
 }
 
 input[type=radio].radio-button
@@ -22,11 +22,11 @@ input[type=radio].radio-button
 	height: 24px;
 	width: 24px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgb(var(--form-outline))};
+	border: 2px solid #{latte-rgb(var(--formOutline))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
-	transition: 180ms var(--ease-swift-out);
+	transition: 180ms var(--easeSwiftOut);
 	transition-property: background, border-color;
 	vertical-align: middle;
 
@@ -46,21 +46,21 @@ input[type=radio].radio-button
 
 	&:hover::before
 	{
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 	}
 
 	&:focus
 	{
-		border-color: #{latte-rgb(var(--radio-background))};
+		border-color: #{latte-rgb(var(--radioBackground))};
 	}
 
 	&:checked
 	{
-		border-color: #{latte-rgb(var(--radio-background))};
+		border-color: #{latte-rgb(var(--radioBackground))};
 
 		&::before
 		{
-			background: #{latte-rgb(var(--radio-background))};
+			background: #{latte-rgb(var(--radioBackground))};
 		}
 	}
 
@@ -74,9 +74,9 @@ input[type=radio].radio-button
 
 @each $type in $color-types
 {
-	.radio-button-#{$type}
+	.radio-button-#{to-lower-case($type)}
 	{
-		--radio-background: var(--color-#{$type});
-		--radio-foreground: var(--color-#{$type}-foreground);
+		--radioBackground: var(--color#{$type});
+		--radioForeground: var(--color#{$type}Foreground);
 	}
 }

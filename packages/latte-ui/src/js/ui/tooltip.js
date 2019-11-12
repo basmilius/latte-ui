@@ -68,8 +68,8 @@ function spawnTooltip(data)
 	if (position === "bottom" || (position === "vertical" && y <= window.innerHeight / 2))
 		tooltipElement.classList.add("tooltip-bottom");
 
-	tooltipElement.style.removeProperty("--ta-top");
-	tooltipElement.style.removeProperty("--ta-left");
+	tooltipElement.style.removeProperty("--top");
+	tooltipElement.style.removeProperty("--left");
 
 	raf(() =>
 	{
@@ -127,7 +127,7 @@ function spawnTooltip(data)
 				}
 
 				if (adjustment !== 0)
-					tooltipElement.style.setProperty("--ta-left", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+					tooltipElement.style.setProperty("--left", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
 			}
 			else if (tooltipElement.classList.contains("tooltip-left") || tooltipElement.classList.contains("tooltip-right"))
 			{
@@ -144,7 +144,7 @@ function spawnTooltip(data)
 				}
 
 				if (adjustment !== 0)
-					tooltipElement.style.setProperty("--ta-top", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
+					tooltipElement.style.setProperty("--top", `calc((50% - .45em) - ${Math.floor(adjustment)}px)`);
 			}
 		}
 

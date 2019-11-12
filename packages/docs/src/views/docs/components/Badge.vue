@@ -68,10 +68,10 @@
 				api: {
 					variables: [
 						{
-							name: "--badge-color",
+							name: "--badgeColor",
 							description: "Sets the badge color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--badge-color").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--badgeColor").split(",").map(c => parseInt(c))
 						}
 					]
 				}

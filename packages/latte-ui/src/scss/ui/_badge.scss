@@ -9,27 +9,27 @@
 
 :root
 {
-	--badge-color: var(--color-primary);
+	--badgeColor: var(--colorPrimary);
 }
 
 .badge
 {
-	--spinner-color: var(--badge-color);
+	--spinnerColor: var(--badgeColor);
 
 	display: inline-flex;
 	padding: 6px 9px;
 	align-items: center;
 	justify-content: center;
-	background: #{latte-rgba(var(--badge-color), .1)};
-	box-shadow: 0 0 0 1px #{latte-rgba(var(--badge-color), .2)};
+	background: #{latte-rgba(var(--badgeColor), .1)};
+	box-shadow: 0 0 0 1px #{latte-rgba(var(--badgeColor), .2)};
 	border-radius: var(--radius);
-	color: #{latte-rgb(var(--badge-color))};
+	color: #{latte-rgb(var(--badgeColor))};
 	font-size: .8em;
 	font-weight: 500;
 	line-height: 1em;
 	text-align: center;
 	text-decoration: none;
-	transition: all 210ms var(--ease-swift-out);
+	transition: all 210ms var(--easeSwiftOut);
 	vertical-align: middle;
 
 	+ .badge
@@ -59,19 +59,19 @@
 		margin: -6px -7px -6px 6px;
 		padding: 0;
 		width: 20px;
-		background: #{latte-rgba(var(--badge-color), .1)};
+		background: #{latte-rgba(var(--badgeColor), .1)};
 		border-radius: inherit;
 		color: inherit;
 		overflow: hidden;
 
 		&:hover
 		{
-			background: #{latte-rgba(var(--badge-color), .2)};
+			background: #{latte-rgba(var(--badgeColor), .2)};
 		}
 
 		#{unquote($latte-icon-class)}
 		{
-			--icon-size: 1em;
+			--iconSize: 1em;
 		}
 	}
 
@@ -84,16 +84,16 @@
 
 a.badge:hover
 {
-	background: #{latte-rgba(var(--badge-color), .2)};
-	box-shadow: 0 0 0 1px #{latte-rgba(var(--badge-color), .3)};
+	background: #{latte-rgba(var(--badgeColor), .2)};
+	box-shadow: 0 0 0 1px #{latte-rgba(var(--badgeColor), .3)};
 	cursor: pointer;
 }
 
 @each $type in $color-types
 {
-	.badge-#{$type}
+	.badge-#{to-lower-case($type)}
 	{
-		--badge-color: var(--color-#{$type});
+		--badgeColor: var(--color#{$type});
 	}
 }
 

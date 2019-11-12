@@ -9,9 +9,9 @@
 
 :root
 {
-	--form-outline: var(--outline-color);
-	--form-outline-alpha: .75;
-	--form-outline-foreground: var(--main-foreground);
+	--formOutline: var(--outlineColor);
+	--formOutlineAlpha: .75;
+	--formOutlineForeground: var(--mainForeground);
 }
 
 .form-control
@@ -23,17 +23,17 @@
 	width: 100%;
 	align-items: center;
 	background: transparent;
-	border: 2px solid #{latte-rgba(var(--form-outline), var(--form-outline-alpha))};
+	border: 2px solid #{latte-rgba(var(--formOutline), var(--formOutlineAlpha))};
 	border-radius: var(--radius);
-	color: #{latte-rgb(var(--main-foreground))};
+	color: #{latte-rgb(var(--mainForeground))};
 	outline: 0;
-	transition: 210ms var(--ease-swift-out);
+	transition: 210ms var(--easeSwiftOut);
 	transition-property: border-color;
 
 	&:focus,
 	&:focus-within
 	{
-		--form-outline-alpha: 1;
+		--formOutlineAlpha: 1;
 	}
 
 	&::placeholder
@@ -45,7 +45,7 @@
 	&[disabled]
 	{
 		cursor: not-allowed;
-		background: #{latte-rgba(var(--outline-color), .25)};
+		background: #{latte-rgba(var(--formOutline), .25)};
 	}
 }
 
@@ -63,7 +63,7 @@ select.form-control
 
 	option
 	{
-		background: #{latte-rgb(var(--panel-background))};
+		background: #{latte-rgb(var(--panelBackground))};
 	}
 }
 
@@ -89,11 +89,11 @@ label.col-form-label
 
 .custom-range
 {
-	--range-thumb-size: 24px;
-	--range-track-height: 6px;
+	--rangeThumbSize: 24px;
+	--rangeTrackHeight: 6px;
 
 	appearance: none;
-	height: var(--range-thumb-size);
+	height: var(--rangeThumbSize);
 	padding: 0;
 	width: 100%;
 	background: transparent;
@@ -112,14 +112,14 @@ label.col-form-label
 	&::-webkit-slider-thumb
 	{
 		appearance: none;
-		height: var(--range-thumb-size);
-		width: var(--range-thumb-size);
-		margin-top: calc((var(--range-track-height) - var(--range-thumb-size)) / 2);
-		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid #{latte-rgb(var(--panel-background))};
-		border-radius: var(--range-thumb-size);
+		height: var(--rangeThumbSize);
+		width: var(--rangeThumbSize);
+		margin-top: calc((var(--rangeTrackHeight) - var(--rangeThumbSize)) / 2);
+		background: #{latte-rgb(var(--colorPrimary))};
+		border: 3px solid #{latte-rgb(var(--panelBackground))};
+		border-radius: var(--rangeThumbSize);
 		cursor: pointer;
-		transition: transform 120ms var(--ease-swift-out);
+		transition: transform 120ms var(--easeSwiftOut);
 
 		&:active
 		{
@@ -129,9 +129,9 @@ label.col-form-label
 
 	&::-webkit-slider-runnable-track
 	{
-		height: var(--range-track-height);
+		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 		border-radius: var(--radius);
 		color: transparent; // ...?
 	}
@@ -139,13 +139,13 @@ label.col-form-label
 	&::-moz-range-thumb
 	{
 		appearance: none;
-		height: calc(var(--range-thumb-size) - 6px);
-		width: calc(var(--range-thumb-size) - 6px);
-		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid #{latte-rgb(var(--panel-background))};
-		border-radius: var(--range-thumb-size);
+		height: calc(var(--rangeThumbSize) - 6px);
+		width: calc(var(--rangeThumbSize) - 6px);
+		background: #{latte-rgb(var(--colorPrimary))};
+		border: 3px solid #{latte-rgb(var(--panelBackground))};
+		border-radius: var(--rangeThumbSize);
 		cursor: pointer;
-		transition: transform 120ms var(--ease-swift-out);
+		transition: transform 120ms var(--easeSwiftOut);
 
 		&:active
 		{
@@ -155,9 +155,9 @@ label.col-form-label
 
 	&::-moz-range-track
 	{
-		height: var(--range-track-height);
+		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 		border-radius: var(--radius);
 		border-color: transparent; // ...?
 		color: transparent; // ...?
@@ -166,14 +166,14 @@ label.col-form-label
 	&::-ms-thumb
 	{
 		appearance: none;
-		height: var(--range-thumb-size);
-		width: var(--range-thumb-size);
+		height: var(--rangeThumbSize);
+		width: var(--rangeThumbSize);
 		margin-top: 0;
-		background: #{latte-rgb(var(--color-primary))};
-		border: 3px solid #{latte-rgb(var(--panel-background))};
-		border-radius: var(--range-thumb-size);
+		background: #{latte-rgb(var(--colorPrimary))};
+		border: 3px solid #{latte-rgb(var(--panelBackground))};
+		border-radius: var(--rangeThumbSize);
 		cursor: pointer;
-		transition: transform 120ms var(--ease-swift-out);
+		transition: transform 120ms var(--easeSwiftOut);
 
 		&:active
 		{
@@ -184,11 +184,11 @@ label.col-form-label
 
 	&::-ms-track
 	{
-		height: var(--range-track-height);
+		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 		border-radius: var(--radius);
-		border-width: calc(var(--range-thumb-size) / 2);
+		border-width: calc(var(--rangeThumbSize) / 2);
 		color: transparent; // ...?
 	}
 
@@ -209,9 +209,9 @@ label.col-form-label
 
 @each $type in $color-types
 {
-	.form-control-#{$type}
+	.form-control-#{to-lower-case($type)}
 	{
-		--form-outline: var(--color-#{$type});
-		--form-outline-foreground: var(--color-#{$type}-foreground);
+		--formOutline: var(--color#{$type});
+		--formOutlineForeground: var(--color#{$type}Foreground);
 	}
 }

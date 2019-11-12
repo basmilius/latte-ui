@@ -10,14 +10,14 @@
 div.latte-grid
 {
 	position: relative;
-	transition: transform 210ms var(--ease-deceleration-curve);
+	transition: transform 210ms var(--easeDecelerationCurve);
 }
 
 div.latte-grid-item
 {
 	position: relative;
 	display: block;
-	transition: all 210ms var(--ease-deceleration-curve);
+	transition: all 210ms var(--easeDecelerationCurve);
 
 	&.latte-grid-placeholder::before
 	{
@@ -28,8 +28,8 @@ div.latte-grid-item
 		right: 0;
 		bottom: 0;
 		content: "";
-		background: #{latte-rgba(var(--color-primary), .03)};
-		outline: 2px dashed #{latte-rgba(var(--color-primary), .2)};
+		background: #{latte-rgba(var(--colorPrimary), .03)};
+		outline: 2px dashed #{latte-rgba(var(--colorPrimary), .2)};
 		outline-offset: 2px;
 	}
 

@@ -14,22 +14,22 @@
 	margin: -1px;
 	padding: 15px 24px;
 	align-items: center;
-	background: #{latte-rgba(var(--notice-background), .1)};
-	border: 2px solid #{latte-rgba(var(--notice-background), .1)};
+	background: #{latte-rgba(var(--noticeBackground), .1)};
+	border: 2px solid #{latte-rgba(var(--noticeBackground), .1)};
 	border-radius: var(--radius);
-	color: #{latte-rgb(var(--notice-background))};
+	color: #{latte-rgb(var(--noticeBackground))};
 	font-weight: 500;
 
 	&.notice-outline
 	{
 		background: transparent;
-		border: 2px dashed #{latte-rgba(var(--notice-background), .5)};
+		border: 2px dashed #{latte-rgba(var(--noticeBackground), .5)};
 	}
 
 	.btn
 	{
-		--btn-background: var(--notice-background);
-		--btn-foreground: var(--notice-foreground);
+		--btnBackground: var(--noticeBackground);
+		--btnForeground: var(--noticeForeground);
 	}
 
 	> #{unquote($latte-icon-class)}
@@ -61,7 +61,7 @@
 		flex: 1 1 auto;
 		opacity: .1;
 
-		--outline-color: var(--notice-background);
+		--outlineColor: var(--noticeBackground);
 	}
 
 	+ .notice
@@ -72,10 +72,10 @@
 
 @each $type in $color-types
 {
-	.notice-#{$type}
+	.notice-#{to-lower-case($type)}
 	{
-		--notice-background: var(--color-#{$type});
-		--notice-foreground: var(--color-#{$type}-foreground);
+		--noticeBackground: var(--color#{$type});
+		--noticeForeground: var(--color#{$type}Foreground);
 	}
 }
 

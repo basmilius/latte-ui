@@ -9,8 +9,8 @@
 
 :root
 {
-	--checkbox-background: var(--color-primary);
-	--checkbox-foreground: var(--color-primary-foreground);
+	--checkboxBackground: var(--colorPrimary);
+	--checkboxForeground: var(--colorPrimaryForeground);
 }
 
 .checkbox
@@ -22,11 +22,11 @@
 	height: 24px;
 	width: 24px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgb(var(--form-outline))};
+	border: 2px solid #{latte-rgb(var(--formOutline))};
 	border-radius: var(--radius);
 	cursor: pointer;
 	outline: 0;
-	transition: 180ms var(--ease-swift-out);
+	transition: 180ms var(--easeSwiftOut);
 	transition-property: background, border-color;
 	vertical-align: middle;
 
@@ -76,24 +76,24 @@
 	&:hover::before,
 	&:hover::after
 	{
-		background: #{latte-rgb(var(--form-outline))};
+		background: #{latte-rgb(var(--formOutline))};
 	}
 
 	&:focus
 	{
-		border-color: #{latte-rgb(var(--checkbox-background))};
+		border-color: #{latte-rgb(var(--checkboxBackground))};
 	}
 
 	&:checked,
 	&:indeterminate
 	{
-		background: #{latte-rgb(var(--checkbox-background))};
-		border-color: #{latte-rgb(var(--checkbox-background))};
+		background: #{latte-rgb(var(--checkboxBackground))};
+		border-color: #{latte-rgb(var(--checkboxBackground))};
 
 		&::before,
 		&::after
 		{
-			background: #{latte-rgb(var(--checkbox-foreground))};
+			background: #{latte-rgb(var(--checkboxForeground))};
 		}
 	}
 
@@ -107,9 +107,9 @@
 
 @each $type in $color-types
 {
-	.checkbox-#{$type}
+	.checkbox-#{to-lower-case($type)}
 	{
-		--checkbox-background: var(--color-#{$type});
-		--checkbox-foreground: var(--color-#{$type}-foreground);
+		--checkboxBackground: var(--color#{$type});
+		--checkboxForeground: var(--color#{$type}Foreground);
 	}
 }

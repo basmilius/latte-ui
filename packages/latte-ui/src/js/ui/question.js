@@ -51,7 +51,7 @@ const QuestionPanel = Vue.extend({
 						click: () => this.close(button.id)
 					},
 					style: {
-						"--btn-height": "42px",
+						"--btnHeight": "42px",
 						fontSize: ".9em"
 					}
 				}, button.label)))

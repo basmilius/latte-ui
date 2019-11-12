@@ -9,10 +9,10 @@
 
 :root
 {
-	--panel-background: 255, 255, 255;
-	--panel-elevation: var(--elevation-3);
-	--panel-elevation-hover: var(--elevation-9);
-	--panel-gutter: 30px;
+	--panelBackground: 255, 255, 255;
+	--panelElevation: var(--elevation3);
+	--panelElevationHover: var(--elevation9);
+	--panelGutter: 30px;
 }
 
 .panel
@@ -24,35 +24,35 @@
 
 	&:not(.panel-blank)
 	{
-		box-shadow: var(--panel-elevation);
+		box-shadow: var(--panelElevation);
 	}
 
 	&:not(.panel-blank)
 	{
-		background: #{latte-rgb(var(--panel-background))};
+		background: #{latte-rgb(var(--panelBackground))};
 		border-radius: var(--radius);
 	}
 
 	&.panel-outline
 	{
-		--panel-elevation: 0 0 0 1px #{latte-rgb(var(--outline-color))};
+		--panelElevation: 0 0 0 1px #{latte-rgb(var(--outlineColor))};
 	}
 
 	+ .panel,
 	&.panel-gutter
 	{
-		margin-top: var(--panel-gutter);
+		margin-top: var(--panelGutter);
 	}
 }
 
 .mt-panel-gutter
 {
-	margin-top: var(--panel-gutter);
+	margin-top: var(--panelGutter);
 }
 
 .mb-panel-gutter
 {
-	margin-bottom: var(--panel-gutter);
+	margin-bottom: var(--panelGutter);
 }
 
 a.panel
@@ -64,18 +64,18 @@ a.panel
 
 	&:hover
 	{
-		--panel-elevation: var(--panel-elevation-hover);
+		--panelElevation: var(--panelElevationHover);
 	}
 }
 
 .panel-body
 {
-	padding: var(--panel-gutter);
+	padding: var(--panelGutter);
 	flex: 1 1 auto;
 
 	+ .panel-body
 	{
-		border-top: 1px solid #{latte-rgb(var(--outline-color))};
+		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 	}
 }
 
@@ -91,12 +91,12 @@ a.panel
 {
 	display: flex;
 	min-height: 60px;
-	padding: 0 var(--panel-gutter);
+	padding: 0 var(--panelGutter);
 	align-items: center;
 
 	&:not(:first-child)
 	{
-		border-top: 1px solid #{latte-rgb(var(--outline-color))};
+		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 	}
 
 	.divider
@@ -109,10 +109,10 @@ a.panel
 {
 	display: flex;
 	min-height: 75px;
-	padding: 0 var(--panel-gutter);
+	padding: 0 var(--panelGutter);
 	align-items: center;
 	flex: 0 0 auto;
-	border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
+	border-bottom: 1px solid #{latte-rgb(var(--outlineColor))};
 
 	&:last-child
 	{
@@ -123,7 +123,7 @@ a.panel
 	{
 		position: sticky;
 		top: 0;
-		background: #{latte-rgb(var(--panel-background))};
+		background: #{latte-rgb(var(--panelBackground))};
 		z-index: 1;
 	}
 
@@ -161,8 +161,8 @@ a.panel
 
 	&.panel-media-gutter
 	{
-		margin: calc(var(--panel-gutter) / 2);
-		width: calc(100% - var(--panel-gutter));
+		margin: calc(var(--panelGutter) / 2);
+		width: calc(100% - var(--panelGutter));
 		border-radius: inherit;
 	}
 }
@@ -170,7 +170,7 @@ a.panel
 .panel-title
 {
 	margin: 0;
-	color: #{latte-rgb(var(--main-foreground))};
+	color: #{latte-rgb(var(--mainForeground))};
 	font-size: 1em;
 	font-weight: 700;
 }
@@ -178,7 +178,7 @@ a.panel
 .panel-sub-title
 {
 	margin: 0;
-	color: #{latte-rgba(var(--main-foreground), .5)};
+	color: #{latte-rgba(var(--mainForeground), .5)};
 	font-size: .9em;
 	font-weight: 700;
 }
@@ -209,10 +209,10 @@ a.panel
 
 .panel-media-gutter + .panel-body
 {
-	padding-top: calc(var(--panel-gutter) / 2);
+	padding-top: calc(var(--panelGutter) / 2);
 }
 
 .panel-media-gutter + .panel-header
 {
-	margin-top: calc(var(--panel-gutter) / -2);
+	margin-top: calc(var(--panelGutter) / -2);
 }

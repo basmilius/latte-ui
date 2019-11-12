@@ -72,8 +72,8 @@
 		div.panel
 		{
 			position: sticky;
-			top: calc(var(--app-bar-height) + 24px);
-			max-height: calc(100vh - var(--app-bar-height) - 48px);
+			top: calc(var(--appBarHeight) + 24px);
+			max-height: calc(100vh - var(--appBarHeight) - 48px);
 			overflow: auto;
 			-webkit-overflow-scrolling: touch;
 		}

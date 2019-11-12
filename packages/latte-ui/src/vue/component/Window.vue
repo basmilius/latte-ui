@@ -63,8 +63,8 @@
 				{
 					class: ["window", `window-${this.direction}`],
 					style: {
-						"--window-height": `${this.height}px`,
-						"--window-width": `${this.width}px`
+						"--windowHeight": `${this.height}px`,
+						"--windowWidth": `${this.width}px`
 					}
 				},
 				defaultSlotElements

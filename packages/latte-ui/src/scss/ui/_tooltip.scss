@@ -9,8 +9,8 @@
 
 :root
 {
-	--tooltip-background: rgba(var(--color-dark), .95);
-	--tooltip-foreground: rgb(var(--color-dark-foreground));
+	--tooltipBackground: rgba(var(--colorDark), .95);
+	--tooltipForeground: rgb(var(--colorDarkForeground));
 }
 
 div.tooltip
@@ -23,11 +23,11 @@ div.tooltip
 	left: 0;
 	max-width: 360px;
 	padding: 12px 18px;
-	background: var(--tooltip-background);
+	background: var(--tooltipBackground);
 	border-radius: var(--radius);
-	color: var(--tooltip-foreground);
+	color: var(--tooltipForeground);
 	pointer-events: none;
-	transition: opacity 210ms var(--ease-swift-out);
+	transition: opacity 210ms var(--easeSwiftOut);
 	z-index: 2147483647;
 
 	&::before
@@ -35,7 +35,7 @@ div.tooltip
 		position: absolute;
 		display: block;
 		content: "";
-		color: var(--tooltip-background);
+		color: var(--tooltipBackground);
 		border: $tooltip-arrow solid transparent;
 		transition: inherit;
 		z-index: -1;
@@ -43,32 +43,32 @@ div.tooltip
 
 	&::before
 	{
-		top: var(--ta-top, 0);
-		left: var(--ta-left, 0);
+		top: var(--top, 0);
+		left: var(--left, 0);
 	}
 
 	&.tooltip-top
 	{
-		--ta-top: 100%;
-		--ta-left: calc(50% - #{$tooltip-arrow});
+		--top: 100%;
+		--left: calc(50% - #{$tooltip-arrow});
 	}
 
 	&.tooltip-left
 	{
-		--ta-top: calc(50% - #{$tooltip-arrow});
-		--ta-left: 100%;
+		--top: calc(50% - #{$tooltip-arrow});
+		--left: 100%;
 	}
 
 	&.tooltip-right
 	{
-		--ta-top: calc(50% - #{$tooltip-arrow});
-		--ta-left: #{-($tooltip-arrow * 2)};
+		--top: calc(50% - #{$tooltip-arrow});
+		--left: #{-($tooltip-arrow * 2)};
 	}
 
 	&.tooltip-bottom
 	{
-		--ta-top: #{-($tooltip-arrow * 2)};
-		--ta-left: calc(50% - #{$tooltip-arrow});
+		--top: #{-($tooltip-arrow * 2)};
+		--left: calc(50% - #{$tooltip-arrow});
 	}
 
 	&.tooltip-top::before
@@ -99,9 +99,9 @@ div.tooltip
 
 @each $type in $color-types
 {
-	.tooltip.tooltip-#{$type}
+	.tooltip.tooltip-#{to-lower-case($type)}
 	{
-		--tooltip-background: rgb(var(--color-#{$type}));
-		--tooltip-foreground: rgb(var(--color-#{$type}-foreground));
+		--tooltipBackground: rgb(var(--color#{$type}));
+		--tooltipForeground: rgb(var(--color#{$type}Foreground));
 	}
 }

@@ -88,8 +88,8 @@
 				const sizeHalf = size / 2;
 
 				const computedStyles = window.getComputedStyle(this.$el);
-				this.center = computedStyles.getPropertyValue("--ripple-center").trim() !== "false";
-				this.clip = computedStyles.getPropertyValue("--ripple-clip").trim() !== "false";
+				this.center = computedStyles.getPropertyValue("--rippleCenter").trim() !== "false";
+				this.clip = computedStyles.getPropertyValue("--rippleClip").trim() !== "false";
 
 				if (this.center)
 				{
@@ -103,23 +103,23 @@
 
 					const minSize = this.center ? 12 : Math.max(size * .1, 24);
 
-					ripple.style.setProperty("--ripple-scale", `${minSize / size}`);
-					ripple.style.setProperty("--ripple-size", `${size}px`);
-					ripple.style.setProperty("--ripple-x", `${x - sizeHalf}px`);
-					ripple.style.setProperty("--ripple-y", `${y - sizeHalf}px`);
+					ripple.style.setProperty("--rippleScale", `${minSize / size}`);
+					ripple.style.setProperty("--rippleSize", `${size}px`);
+					ripple.style.setProperty("--rippleX", `${x - sizeHalf}px`);
+					ripple.style.setProperty("--rippleY", `${y - sizeHalf}px`);
 
 					this.$el.querySelector(".ripple-container").appendChild(ripple);
 				});
 
 				raf(() =>
 				{
-					ripple.style.setProperty("--ripple-scale", "1");
+					ripple.style.setProperty("--rippleScale", "1");
 
 					if (this.center)
 						return;
 
-					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
-					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--rippleX", `${rect.width / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--rippleY", `${rect.height / 2 - sizeHalf}px`);
 				});
 
 				return ripple;
@@ -167,9 +167,9 @@
 
 				this.ripples.forEach(ripple =>
 				{
-					ripple.style.setProperty("--ripple-size", `${size}px`);
-					ripple.style.setProperty("--ripple-x", `${rect.width / 2 - sizeHalf}px`);
-					ripple.style.setProperty("--ripple-y", `${rect.height / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--rippleSize", `${size}px`);
+					ripple.style.setProperty("--rippleX", `${rect.width / 2 - sizeHalf}px`);
+					ripple.style.setProperty("--rippleY", `${rect.height / 2 - sizeHalf}px`);
 				});
 			}
 

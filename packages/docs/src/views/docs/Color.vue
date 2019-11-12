@@ -39,8 +39,8 @@
 							<CodeSnippet lang="css">
 :root
 {
-	--color-primary: 43, 120, 255;
-	--color-primary-foreground: 255, 255, 255;
+	--colorPrimary: 43, 120, 255;
+	--colorPrimaryForeground: 255, 255, 255;
 }
 							</CodeSnippet>
 						</div>
@@ -96,54 +96,54 @@
 							default: computedStyle.getPropertyValue("--light").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-primary",
+							name: "--colorPrimary",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-primary").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorPrimary").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-primary-foreground",
+							name: "--colorPrimaryForeground",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-primary-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorPrimaryForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-error",
+							name: "--colorError",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-error").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorError").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-error-foreground",
+							name: "--colorErrorForeground",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-error-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorErrorForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-info",
+							name: "--colorInfo",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-info").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorInfo").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-info-foreground",
+							name: "--colorInfoForeground",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-info-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorInfoForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-success",
+							name: "--colorSuccess",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-success").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorSuccess").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-success-foreground",
+							name: "--colorSuccessForeground",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-success-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorSuccessForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-warning",
+							name: "--colorWarning",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-warning").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorWarning").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--color-warning-foreground",
+							name: "--colorWarningForeground",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--color-warning-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--colorWarningForeground").split(",").map(c => parseInt(c))
 						}
 					]
 				}

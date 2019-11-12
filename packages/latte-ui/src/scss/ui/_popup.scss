@@ -9,8 +9,8 @@
 
 :root
 {
-	--popup-background: 255, 255, 255;
-	--popup-elevation: var(--elevation-16), 0 0 0 1px #{latte-rgb(var(--outline-color))};
+	--popupBackground: 255, 255, 255;
+	--popupElevation: var(--elevation16), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
 }
 
 .popup
@@ -19,12 +19,12 @@
 	display: block;
 	top: 0;
 	left: 0;
-	background: #{latte-rgb(var(--popup-background))};
+	background: #{latte-rgb(var(--popupBackground))};
 	border-radius: var(--radius);
-	box-shadow: var(--popup-elevation);
+	box-shadow: var(--popupElevation);
 	opacity: 0;
 	pointer-events: none;
-	transition: 210ms var(--ease-swift-out);
+	transition: 210ms var(--easeSwiftOut);
 	transition-property: opacity, transform;
 	z-index: 3000;
 
@@ -66,14 +66,14 @@
 			&::after
 			{
 				margin: 1px 0;
-				border-left-color: #{latte-rgb(var(--panel-background))};
-				border-right-color: #{latte-rgb(var(--panel-background))};
+				border-left-color: #{latte-rgb(var(--panelBackground))};
+				border-right-color: #{latte-rgb(var(--panelBackground))};
 			}
 
 			&::before
 			{
-				border-left-color: #{latte-rgb(var(--outline-color))};
-				border-right-color: #{latte-rgb(var(--outline-color))};
+				border-left-color: #{latte-rgb(var(--outlineColor))};
+				border-right-color: #{latte-rgb(var(--outlineColor))};
 			}
 
 			&.left
@@ -167,14 +167,14 @@
 			&::after
 			{
 				margin: 0 1px;
-				border-top-color: #{latte-rgb(var(--panel-background))};
-				border-bottom-color: #{latte-rgb(var(--panel-background))};
+				border-top-color: #{latte-rgb(var(--panelBackground))};
+				border-bottom-color: #{latte-rgb(var(--panelBackground))};
 			}
 
 			&::before
 			{
-				border-top-color: #{latte-rgb(var(--outline-color))};
-				border-bottom-color: #{latte-rgb(var(--outline-color))};
+				border-top-color: #{latte-rgb(var(--outlineColor))};
+				border-bottom-color: #{latte-rgb(var(--outlineColor))};
 			}
 
 			&.above

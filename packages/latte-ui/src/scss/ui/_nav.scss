@@ -9,9 +9,9 @@
 
 :root
 {
-	--nav-item-height: 45px;
-	--nav-section-foreground: rgba(0, 0, 0, .25);
-	--nav-radius: 0 3px 3px 0;
+	--navItemHeight: 45px;
+	--navSectionForeground: rgba(0, 0, 0, .25);
+	--navRadius: 0 3px 3px 0;
 }
 
 .nav
@@ -43,7 +43,7 @@
 		position: relative;
 		display: block;
 		margin: 15px 30px 9px;
-		color: var(--nav-section-foreground);
+		color: var(--navSectionForeground);
 	}
 }
 
@@ -51,7 +51,7 @@
 {
 	position: relative;
 	display: flex;
-	min-height: var(--nav-item-height);
+	min-height: var(--navItemHeight);
 	margin: 0;
 	padding: 6px 30px;
 	align-items: center;
@@ -139,7 +139,7 @@ button.nav-link
 		&:hover
 		{
 			background: transparent;
-			color: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--colorPrimary))};
 		}
 	}
 }
@@ -150,17 +150,17 @@ button.nav-link
 
 	.nav-link
 	{
-		color: #{latte-rgb(var(--main-foreground))};
-		transition: all 150ms var(--ease-standard-curve);
+		color: #{latte-rgb(var(--mainForeground))};
+		transition: all 150ms var(--easeStandardCurve);
 
-		--badge-color: var(--color-primary);
-		--checkbox-background: var(--color-primary);
-		--checkbox-foreground: var(--color-primary-foreground);
-		--radio-background: var(--color-primary);
-		--radio-foreground: var(--color-primary-foreground);
-		--ripple-color: var(--color-primary);
-		--toggle-background: var(--color-primary);
-		--toggle-foreground: var(--color-primary-foreground);
+		--badgeColor: var(--colorPrimary);
+		--checkboxBackground: var(--colorPrimary);
+		--checkboxForeground: var(--colorPrimaryForeground);
+		--radioBackground: var(--colorPrimary);
+		--radioForeground: var(--colorPrimaryForeground);
+		--rippleColor: var(--colorPrimary);
+		--toggleBackground: var(--colorPrimary);
+		--toggleForeground: var(--colorPrimaryForeground);
 
 		&::before
 		{
@@ -171,16 +171,16 @@ button.nav-link
 			bottom: 0;
 			width: 3px;
 			content: "";
-			background: #{latte-rgb(var(--tabs-accent))};
-			border-radius: var(--nav-radius);
+			background: #{latte-rgb(var(--tabsAccent))};
+			border-radius: var(--navRadius);
 			opacity: 0;
-			transition: opacity 300ms var(--ease-swift-out);
+			transition: opacity 300ms var(--easeSwiftOut);
 		}
 
 		&.is-active
 		{
 			background: transparent;
-			color: #{latte-rgb(var(--color-primary))};
+			color: #{latte-rgb(var(--colorPrimary))};
 
 			&::before
 			{
@@ -191,8 +191,8 @@ button.nav-link
 		&:not(.is-active).is-hover,
 		&:not(.is-active):hover
 		{
-			background: #{latte-rgba(var(--color-primary), .075)};
-			color: #{latte-rgb(var(--color-primary))};
+			background: #{latte-rgba(var(--colorPrimary), .075)};
+			color: #{latte-rgb(var(--colorPrimary))};
 		}
 	}
 }

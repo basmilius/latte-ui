@@ -9,13 +9,13 @@
 
 :root
 {
-	--btn-alpha: 1;
-	--btn-background: var(--dark);
-	--btn-foreground: var(--light);
-	--btn-font-size: 1rem;
-	--btn-height: 36px;
-	--btn-hover: 0;
-	--btn-padding: 6px 15px;
+	--btnAlpha: 1;
+	--btnBackground: var(--dark);
+	--btnForeground: var(--light);
+	--btnFontSize: 1rem;
+	--btnHeight: 36px;
+	--btnHover: 0;
+	--btnPadding: 6px 15px;
 }
 
 .btn
@@ -23,22 +23,21 @@
 	position: relative;
 	display: inline-flex;
 	appearance: none;
-	height: var(--btn-height);
+	height: var(--btnHeight);
 	margin: 0;
-	padding: var(--btn-padding);
-	align-items: center;
+	padding: var(--btnPadding);
 	flex-shrink: 0;
-	justify-content: center;
+	place-content: center;
 	border: 0;
 	border-radius: var(--radius);
 	cursor: pointer;
-	font-size: var(--btn-font-size);
+	font-size: var(--btnFontSize);
 	font-weight: 500;
 	outline: 0;
 	text-align: center;
 	text-decoration: none;
-	transition: 150ms var(--ease-swift-out);
-	transition-property: background, color, --btn-alpha, --btn-hover;
+	transition: 150ms var(--easeSwiftOut);
+	transition-property: background, color, --btnAlpha, --btnHover;
 	vertical-align: middle;
 
 	& + .btn
@@ -54,22 +53,15 @@
 		pointer-events: none;
 	}
 
-	#{unquote($latte-icon-class)} + span,
-	span + #{unquote($latte-icon-class)}
+	> * + *
 	{
-		margin-left: 12px;
-	}
-
-	.avatar
-	{
-		margin: -3px;
-		font-size: 30px;
+		margin-left: 1rem;
 	}
 }
 
 .btn-action
 {
-	--btn-height: 60px;
+	--btnHeight: 60px;
 
 	min-width: 90px;
 	align-items: center;
@@ -107,116 +99,116 @@
 
 .btn-contained
 {
-	--btn-bg: #{latte-rgb(var(--btn-background))};
-	--ripple-color: var(--btn-foreground);
-	--spinner-color: var(--btn-foreground);
+	--bg: #{latte-rgb(var(--btnBackground))};
+	--rippleColor: var(--btnForeground);
+	--spinnerColor: var(--btnForeground);
 
-	background: var(--btn-bg);
-	color: #{latte-rgb(var(--btn-foreground))};
+	background: var(--bg);
+	color: #{latte-rgb(var(--btnForeground))};
 
 	@at-root .css-paint-api &:not([href])
 	{
-		--btn-bg: paint(btn-background);
+		--bg: paint(btn-background);
 	}
 
 	&:hover,
 	&:focus
 	{
-		--btn-hover: .1;
+		--btnHover: .1;
 	}
 
 	&:active
 	{
-		--btn-hover: .2;
+		--btnHover: .2;
 	}
 }
 
 .btn-outline
 {
-	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
-	--btn-alpha: 0;
-	--ripple-color: var(--btn-background);
-	--spinner-color: var(--btn-background);
+	--bg: #{latte-rgba(var(--btnBackground), var(--btnAlpha))};
+	--btnAlpha: 0;
+	--rippleColor: var(--btnBackground);
+	--spinnerColor: var(--btnBackground);
 
-	background: var(--btn-bg);
-	box-shadow: inset 0 0 0 2px #{latte-rgba(var(--btn-background), .15)};
-	color: #{latte-rgb(var(--btn-background))};
-	transition-property: background, box-shadow, color, --btn-alpha, --btn-hover;
+	background: var(--bg);
+	box-shadow: inset 0 0 0 2px #{latte-rgba(var(--btnBackground), .15)};
+	color: #{latte-rgb(var(--btnBackground))};
+	transition-property: background, box-shadow, color, --btnAlpha, --btnHover;
 
 	@at-root .css-paint-api &:not([href])
 	{
-		--btn-bg: paint(btn-background);
+		--bg: paint(btn-background);
 	}
 
 	&:not(.is-ripple):hover,
 	&:not(.is-ripple):focus
 	{
-		--btn-alpha: .1;
+		--btnAlpha: .1;
 	}
 
 	&:not(.is-ripple):active
 	{
-		--btn-alpha: .2;
-		--btn-hover: .2;
+		--btnAlpha: .2;
+		--btnHover: .2;
 	}
 }
 
 .btn-soft
 {
-	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
-	--btn-alpha: .1;
-	--ripple-color: var(--btn-background);
-	--spinner-color: var(--btn-background);
+	--bg: #{latte-rgba(var(--btnBackground), var(--btnAlpha))};
+	--btnAlpha: .1;
+	--rippleColor: var(--btnBackground);
+	--spinnerColor: var(--btnBackground);
 
-	background: var(--btn-bg);
-	color: #{latte-rgb(var(--btn-background))};
+	background: var(--bg);
+	color: #{latte-rgb(var(--btnBackground))};
 
 	@at-root .css-paint-api &:not([href])
 	{
-		--btn-bg: paint(btn-background);
+		--bg: paint(btn-background);
 	}
 
 	&:hover,
 	&:focus
 	{
-		--btn-alpha: 1;
-		--btn-hover: .1;
-		--spinner-color: var(--btn-foreground);
+		--btnAlpha: 1;
+		--btnHover: .1;
+		--spinnerColor: var(--btnForeground);
 
-		color: #{latte-rgb(var(--btn-foreground))};
+		color: #{latte-rgb(var(--btnForeground))};
 	}
 
 	&:active
 	{
-		--btn-alpha: 1;
-		--btn-hover: .2;
+		--btnAlpha: 1;
+		--btnHover: .2;
 	}
 }
 
 .btn-text
 {
-	--btn-bg: #{latte-rgba(var(--btn-background), var(--btn-alpha))};
-	--btn-alpha: 0;
-	--ripple-color: var(--btn-background);
-	--spinner-color: var(--btn-background);
+	--bg: #{latte-rgba(var(--btnBackground), var(--btnAlpha))};
+	--btnAlpha: 0;
+	--rippleColor: var(--btnBackground);
+	--spinnerColor: var(--btnBackground);
 
-	background: var(--btn-bg);
-	color: #{latte-rgb(var(--btn-background))};
+	background: var(--bg);
+	color: #{latte-rgb(var(--btnBackground))};
 
 	@at-root .css-paint-api &:not([href])
 	{
-		--btn-bg: paint(btn-background);
+		--bg: paint(btn-background);
 	}
 
 	&:not(.is-ripple):hover,
 	&:not(.is-ripple):focus
 	{
-		--btn-alpha: .1;
+		--btnAlpha: .1;
 	}
 
 	&:not(.is-ripple):active
 	{
-		--btn-alpha: .2;
+		--btnAlpha: .2;
 	}
 
 	&.btn-icon.is-ripple
@@ -227,49 +219,49 @@
 
 .btn-lg
 {
-	--btn-height: 48px;
-	--btn-padding: 9px 24px;
+	--btnHeight: 48px;
+	--btnPadding: 9px 24px;
 }
 
 .btn-sm
 {
-	--btn-height: 24px;
-	--btn-font-size: .9rem;
-	--btn-padding: 0 9px;
-	--icon-size: 18px;
+	--btnHeight: 24px;
+	--btnFontSize: .9rem;
+	--btnPadding: 0 9px;
+	--iconSize: 18px;
 }
 
 .btn-fab
 {
 	--radius: 28px;
-	--btn-height: 56px;
-	--btn-padding: 16px;
+	--btnHeight: 56px;
+	--btnPadding: 16px;
 
-	width: var(--btn-height);
-	box-shadow: var(--elevation-8);
+	width: var(--btnHeight);
+	box-shadow: var(--elevation8);
 }
 
 .btn-icon
 {
-	--btn-padding: 6px;
-	width: var(--btn-height);
+	--btnPadding: 6px;
+	width: var(--btnHeight);
 
 	&.btn-sm
 	{
-		--btn-padding: 3px;
+		--btnPadding: 3px;
 	}
 }
 
 .btn-text.btn-icon
 {
-	--ripple-center: true;
-	--ripple-clip: false;
-	--ripple-duration: 240ms;
+	--rippleCenter: true;
+	--rippleClip: false;
+	--rippleDuration: 240ms;
 }
 
 .btn-pill
 {
-	--btn-height: 54px;
+	--btnHeight: 54px;
 
 	display: flex;
 	margin-left: 0 !important;
@@ -296,9 +288,9 @@
 
 @each $type in $color-types
 {
-	.btn-#{$type}
+	.btn-#{to-lower-case($type)}
 	{
-		--btn-background: var(--color-#{$type});
-		--btn-foreground: var(--color-#{$type}-foreground);
+		--btnBackground: var(--color#{$type});
+		--btnForeground: var(--color#{$type}Foreground);
 	}
 }

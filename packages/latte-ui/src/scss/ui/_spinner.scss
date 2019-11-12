@@ -9,7 +9,7 @@
 
 :root
 {
-	--spinner-color: var(--color-primary);
+	--spinnerColor: var(--colorPrimary);
 }
 
 @keyframes spinner-animation
@@ -29,7 +29,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	font-size: var(--icon-size);
+	font-size: var(--iconSize);
 	vertical-align: middle;
 
 	+ span
@@ -52,16 +52,16 @@ span.spinner::before,
 	width: 1em;
 	content: "";
 	animation: spinner-animation 540ms infinite linear;
-	border: .1em solid #{latte-rgba(var(--spinner-color), .25)};
-	border-top-color: #{latte-rgb(var(--spinner-color))};
+	border: .1em solid #{latte-rgba(var(--spinnerColor), .25)};
+	border-top-color: #{latte-rgb(var(--spinnerColor))};
 	border-radius: .5em;
 }
 
 @each $type in $color-types
 {
-	.spinner-#{$type}
+	.spinner-#{to-lower-case($type)}
 	{
-		--spinner-color: var(--color-#{$type});
+		--spinnerColor: var(--color#{$type});
 	}
 }
 
@@ -78,7 +78,7 @@ span.spinner::before,
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: #{latte-rgba(var(--panel-background), .9)};
+		background: #{latte-rgba(var(--panelBackground), .9)};
 		border-radius: inherit;
 		font-size: 2rem;
 		z-index: 2;

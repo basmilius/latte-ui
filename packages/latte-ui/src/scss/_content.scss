@@ -9,17 +9,17 @@
 
 :root
 {
-	--content-gutter: 24px;
+	--contentGutter: 24px;
 }
 
-div.content
+.content
 {
 	position: relative;
 	display: block;
-	padding: var(--content-gutter);
+	padding: var(--contentGutter);
 
-	> div.notice
+	> .notice
 	{
-		margin-bottom: var(--content-gutter);
+		margin-bottom: var(--contentGutter);
 	}
 }

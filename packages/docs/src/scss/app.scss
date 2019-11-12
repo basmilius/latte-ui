@@ -15,7 +15,7 @@ $latte-root: "~@bybas/latte-ui/src/";
 {
 	@media (min-width: 992px) and (max-width: 1100px)
 	{
-		--scaffolding-drawer-width: 180px;
+		--scaffoldingDrawerWidth: 180px;
 	}
 }
 
@@ -23,7 +23,7 @@ body
 {
 	@media (min-width: 992px)
 	{
-		--app-bar-height: 60px;
+		--appBarHeight: 60px;
 
 		#skeleton:not(.is-docs) .sheet-overlay
 		{
@@ -34,9 +34,9 @@ body
 
 div.app-bar-main
 {
-	--ripple-center: true;
-	--ripple-clip: false;
-	--tabs-height: var(--app-bar-height);
+	--rippleCenter: true;
+	--rippleClip: false;
+	--tabsHeight: var(--appBarHeight);
 
 	.nav-tabs
 	{
@@ -54,7 +54,7 @@ div.app-bar-main
 {
 	.sheet-overlay.drawer-container .sheet-content
 	{
-		border-right: 1px solid rgba(var(--outline-color), 1);
+		border-right: 1px solid rgba(var(--outlineColor), 1);
 		box-shadow: none;
 	}
 }
@@ -69,7 +69,7 @@ span.spinner#app-spinner
 	background: rgba(255, 255, 255, .8);
 	font-size: 2.5rem;
 	pointer-events: none;
-	transition: opacity 210ms var(--ease-swift-out);
+	transition: opacity 210ms var(--easeSwiftOut);
 	z-index: 5000;
 
 	&.is-hidden
@@ -80,7 +80,7 @@ span.spinner#app-spinner
 
 footer.footer
 {
-	background: rgba(var(--panel-background), 1);
+	background: rgba(var(--panelBackground), 1);
 
 	nav.nav.nav-links .nav-link
 	{

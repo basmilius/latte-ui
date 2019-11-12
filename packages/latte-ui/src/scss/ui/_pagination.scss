@@ -17,7 +17,7 @@
 
 	.pagination-item
 	{
-		--icon-size: 18px;
+		--iconSize: 18px;
 
 		display: block;
 		padding: 0 6px;
@@ -42,15 +42,15 @@
 
 		&:hover
 		{
-			background: #{latte-rgba(var(--color-primary), .15)};
-			color: #{latte-rgb(var(--color-primary))};
+			background: #{latte-rgba(var(--colorPrimary), .15)};
+			color: #{latte-rgb(var(--colorPrimary))};
 			opacity: 1;
 		}
 
 		&.is-active
 		{
-			background: #{latte-rgb(var(--color-primary))};
-			color: #{latte-rgb(var(--color-primary-foreground))};
+			background: #{latte-rgb(var(--colorPrimary))};
+			color: #{latte-rgb(var(--colorPrimaryForeground))};
 			cursor: default;
 			opacity: 1;
 			pointer-events: none;

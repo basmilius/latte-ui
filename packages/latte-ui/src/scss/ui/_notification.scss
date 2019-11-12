@@ -13,10 +13,10 @@ div.notification
 	display: flex;
 	width: 360px;
 	align-items: center;
-	background: #{latte-rgb(var(--panel-background))};
+	background: #{latte-rgb(var(--panelBackground))};
 	border-radius: var(--radius);
-	box-shadow: var(--panel-elevation-hover);
-	transition: 420ms var(--ease-swift-out);
+	box-shadow: var(--panelElevationHover);
+	transition: 420ms var(--easeSwiftOut);
 	transition-property: top, opacity, transform;
 
 	@include compact
@@ -47,7 +47,7 @@ span.notification-title
 {
 	position: relative;
 	display: block;
-	color: #{latte-rgb(var(--main-foreground))};
+	color: #{latte-rgb(var(--mainForeground))};
 	font-size: 1.1em;
 	font-weight: 700;
 }
@@ -101,9 +101,9 @@ div.notification-icon
 	margin: 24px;
 	width: 60px;
 	align-self: flex-start;
-	background: var(--notification-background, black);
+	background: var(--notificationBackground, black);
 	border-radius: 30px;
-	color: var(--notification-foreground, white);
+	color: var(--notificationForeground, white);
 
 	#{unquote($latte-icon-class)}
 	{
@@ -142,9 +142,9 @@ div.notification > .avatar
 
 @each $type in $color-types
 {
-	.notification-#{$type}
+	.notification-#{to-lower-case($type)}
 	{
-		--notification-background: #{latte-rgb(var(--color-#{$type}))};
-		--notification-foreground: #{latte-rgb(var(--color-#{$type}-foreground))};
+		--notificationBackground: #{latte-rgb(var(--color#{$type}))};
+		--notificationForeground: #{latte-rgb(var(--color#{$type}Foreground))};
 	}
 }

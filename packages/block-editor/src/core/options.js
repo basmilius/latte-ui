@@ -1,15 +1,15 @@
 export const classColorPalette = [
-	{id: "primary", name: "Primary", value: "rgb(var(--color-primary))"},
-	{id: "dark", name: "Dark", value: "rgb(var(--color-dark))"},
-	{id: "light", name: "Light", value: "rgb(var(--color-light))"},
-	{id: "error", name: "Error", value: "rgb(var(--color-error))"},
-	{id: "info", name: "Info", value: "rgb(var(--color-info))"},
-	{id: "success", name: "Success", value: "rgb(var(--color-success))"},
-	{id: "warning", name: "Warning", value: "rgb(var(--color-warning))"}
+	{id: "primary", name: "Primary", value: "rgb(var(--colorPrimary))"},
+	{id: "dark", name: "Dark", value: "rgb(var(--colorDark))"},
+	{id: "light", name: "Light", value: "rgb(var(--colorLight))"},
+	{id: "error", name: "Error", value: "rgb(var(--colorError))"},
+	{id: "info", name: "Info", value: "rgb(var(--colorInfo))"},
+	{id: "success", name: "Success", value: "rgb(var(--colorSuccess))"},
+	{id: "warning", name: "Warning", value: "rgb(var(--colorWarning))"}
 ];
 
 export const defaultColorPalette = [
-	{name: "Primary", value: "rgb(var(--color-primary))"},
+	{name: "Primary", value: "rgb(var(--colorPrimary))"},
 	{name: "Black", value: "rgb(0, 0, 0)"},
 	{name: "White", value: "rgb(255, 255, 255)"},
 	{name: "Chili", value: "rgb(194, 24, 7)"},

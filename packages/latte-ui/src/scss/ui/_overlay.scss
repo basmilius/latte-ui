@@ -9,8 +9,8 @@
 
 :root
 {
-	--overlay-background: var(--color-dark);
-	--overlay-opacity: .65;
+	--overlayBackground: var(--colorDark);
+	--overlayOpacity: .65;
 }
 
 div.overlay
@@ -25,10 +25,10 @@ div.overlay
 	right: 0;
 	bottom: 0;
 	padding: 48px;
-	background: rgba(var(--overlay-background), var(--overlay-opacity));
+	background: rgba(var(--overlayBackground), var(--overlayOpacity));
 	opacity: 1;
 	overflow: auto;
-	transition: all $anim-duration var(--ease-swift-out);
+	transition: all $anim-duration var(--easeSwiftOut);
 	z-index: 2000;
 
 	-webkit-overflow-scrolling: touch;
@@ -88,7 +88,7 @@ div.overlay
 				{
 					position: sticky;
 					top: 0;
-					background: #{latte-rgb(var(--panel-background))};
+					background: #{latte-rgb(var(--panelBackground))};
 					z-index: 2;
 				}
 
@@ -96,7 +96,7 @@ div.overlay
 				{
 					position: sticky;
 					bottom: 0;
-					background: #{latte-rgb(var(--panel-background))};
+					background: #{latte-rgb(var(--panelBackground))};
 					z-index: 2;
 				}
 			}

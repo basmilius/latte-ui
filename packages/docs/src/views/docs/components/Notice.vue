@@ -56,13 +56,13 @@
 				api: {
 					variables: [
 						{
-							name: "--notice-background",
+							name: "--noticeBackground",
 							description: "Background color.",
 							default: null,
 							type: "rgb"
 						},
 						{
-							name: "--notice-foreground",
+							name: "--noticeForeground",
 							description: "Foreground color.",
 							default: null,
 							type: "rgb"

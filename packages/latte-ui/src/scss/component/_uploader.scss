@@ -14,36 +14,36 @@
 
 :root
 {
-	--drop-target-gutter: 6px;
+	--dropTargetGutter: 6px;
 }
 
 .drop-target
 {
 	position: absolute;
 	display: flex;
-	top: var(--drop-target-gutter);
-	left: var(--drop-target-gutter);
-	right: var(--drop-target-gutter);
-	bottom: var(--drop-target-gutter);
+	top: var(--dropTargetGutter);
+	left: var(--dropTargetGutter);
+	right: var(--dropTargetGutter);
+	bottom: var(--dropTargetGutter);
 	align-items: center;
 	justify-content: center;
-	background: #{latte-rgba(var(--color-primary), .6)};
-	border: 2px dashed #{latte-rgb(var(--color-primary))};
+	background: #{latte-rgba(var(--colorPrimary), .6)};
+	border: 2px dashed #{latte-rgb(var(--colorPrimary))};
 	border-radius: inherit;
-	box-shadow: 0 0 0 var(--drop-target-gutter) #{latte-rgba(var(--color-primary), .6)};
-	color: #{latte-rgb(var(--color-primary-foreground))};
+	box-shadow: 0 0 0 var(--dropTargetGutter) #{latte-rgba(var(--colorPrimary), .6)};
+	color: #{latte-rgb(var(--colorPrimaryForeground))};
 	pointer-events: none;
-	transition: all 300ms var(--ease-swift-out);
+	transition: all 300ms var(--easeSwiftOut);
 
 	&:not(.is-dragging)
 	{
-		--drop-target-gutter: 0;
+		--dropTargetGutter: 0;
 		opacity: 0;
 	}
 
 	&.is-dragging-over
 	{
-		--drop-target-gutter: 9px;
+		--dropTargetGutter: 9px;
 	}
 
 	.drop-target-info

@@ -66,8 +66,8 @@ export function nag(h, instance, calc, classes, children)
 
 				const {top, left} = calc(dim, edim, rdim, tdim);
 
-				nag.style.setProperty("--nag-x", `${left}px`);
-				nag.style.setProperty("--nag-y", `${top}px`);
+				nag.style.setProperty("--nagX", `${left}px`);
+				nag.style.setProperty("--nagY", `${top}px`);
 			}
 
 			window.requestAnimationFrame(fn);

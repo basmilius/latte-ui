@@ -158,7 +158,7 @@
 			overlayStyles()
 			{
 				return {
-					background: `rgba(var(--overlay-background), calc(${this.current} * var(--overlay-opacity)))`
+					background: `rgba(var(--overlayBackground), calc(${this.current} * var(--overlayOpacity)))`
 				};
 			}
 

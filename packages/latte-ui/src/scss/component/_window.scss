@@ -11,10 +11,10 @@
 {
 	position: relative;
 	display: block;
-	height: var(--window-height, 0);
-	width: var(--window-width, 0);
+	height: var(--widowHeight, 0);
+	width: var(--windowWidth, 0);
 	overflow: hidden;
-	transition: 210ms var(--ease-swift-out);
+	transition: 210ms var(--easeSwiftOut);
 	transition-property: height, width;
 }
 
@@ -32,25 +32,25 @@
 	&.window-horizontal.is-staged.is-forward,
 	&.window-horizontal.is-hiding.is-backward
 	{
-		transform: translate3d(var(--window-width, 0), 0, 0);
+		transform: translate3d(var(--windowWidth, 0), 0, 0);
 	}
 
 	&.window-horizontal.is-staged.is-backward,
 	&.window-horizontal.is-hiding.is-forward
 	{
-		transform: translate3d(calc(0px - var(--window-width, 0)), 0, 0);
+		transform: translate3d(calc(0px - var(--windowWidth, 0)), 0, 0);
 	}
 
 	&.window-vertical.is-staged.is-forward,
 	&.window-vertical.is-hiding.is-backward
 	{
-		transform: translate3d(0, var(--window-height, 0), 0);
+		transform: translate3d(0, var(--widowHeight, 0), 0);
 	}
 
 	&.window-vertical.is-staged.is-backward,
 	&.window-vertical.is-hiding.is-forward
 	{
-		transform: translate3d(0, calc(0px - var(--window-height, 0)), 0);
+		transform: translate3d(0, calc(0px - var(--widowHeight, 0)), 0);
 	}
 
 	&.is-hiding,

@@ -49,21 +49,21 @@
 
 a.list-item
 {
-	--ripple-color: var(--color-primary);
+	--rippleColor: var(--colorPrimary);
 
 	cursor: pointer;
 	text-decoration: none;
-	transition: all 150ms var(--ease-standard-curve);
+	transition: all 150ms var(--easeStandardCurve);
 
 	&:hover
 	{
-		background: #{latte-rgba(var(--color-primary), .075)};
+		background: #{latte-rgba(var(--colorPrimary), .075)};
 	}
 }
 
 .list-divided .list-item + .list-item
 {
-	border-top: 1px solid #{latte-rgb(var(--outline-color))};
+	border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 }
 
 .panel > .list

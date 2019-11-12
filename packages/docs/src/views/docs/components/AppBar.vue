@@ -66,40 +66,34 @@
 				api: {
 					variables: [
 						{
-							name: "--app-bar-alpha",
+							name: "--appBarAlpha",
 							description: "App bar alpha.",
 							type: "number",
 							default: 1
 						},
 						{
-							name: "--app-bar-background",
+							name: "--appBarBackground",
 							description: "Background color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--app-bar-background").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--appBarBackground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--app-bar-foreground",
+							name: "--appBarForeground",
 							description: "Foreground color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--app-bar-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--appBarForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--app-bar-elevation",
+							name: "--appBarElevation",
 							description: "Elevation shadow.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--app-bar-elevation")
+							default: computedStyle.getPropertyValue("--appBarElevation")
 						},
 						{
-							name: "--app-bar-gutter",
-							description: "Gutters",
-							type: "string",
-							default: computedStyle.getPropertyValue("--app-bar-gutter")
-						},
-						{
-							name: "--app-bar-height",
+							name: "--appBarHeight",
 							description: "App bar height",
 							type: "string",
-							default: computedStyle.getPropertyValue("--app-bar-height")
+							default: computedStyle.getPropertyValue("--appBarHeight")
 						}
 					]
 				}

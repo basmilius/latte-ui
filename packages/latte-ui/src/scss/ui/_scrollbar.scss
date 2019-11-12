@@ -10,7 +10,7 @@
 .scrollbars,
 .scrollbars *
 {
-	scrollbar-color: #{latte-rgba(var(--color-dark), .2)} transparent;
+	scrollbar-color: #{latte-rgba(var(--colorDark), .2)} transparent;
 	scrollbar-width: thin;
 }
 
@@ -22,11 +22,11 @@
 
 .scrollbars ::-webkit-scrollbar-thumb
 {
-	background: #{latte-rgba(var(--color-dark), .2)} padding-box;
+	background: #{latte-rgba(var(--colorDark), .2)} padding-box;
 	border: 2px solid transparent;
 }
 
 .scrollbars ::-webkit-scrollbar-thumb:hover
 {
-	background: #{latte-rgba(var(--color-dark), .3)} padding-box;
+	background: #{latte-rgba(var(--colorDark), .3)} padding-box;
 }

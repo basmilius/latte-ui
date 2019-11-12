@@ -18,7 +18,7 @@
 			left: 0;
 			right: 0;
 			content: "";
-			border-top: 4px dashed rgba(var(--outline-color), 1);
+			border-top: 4px dashed rgba(var(--outlineColor), 1);
 		}
 
 		&::after
@@ -27,8 +27,8 @@
 			display: inline-block;
 			padding: 0 1.3rem;
 			content: attr(data-text);
-			background: rgba(var(--root-background), 1);
-			color: rgba(var(--main-foreground), .8);
+			background: rgba(var(--rootBackground), 1);
+			color: rgba(var(--mainForeground), .8);
 			font-size: .85rem;
 			font-weight: 700;
 		}

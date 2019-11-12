@@ -81,7 +81,7 @@
 
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Silhouette</span></div>
-						<div class="panel-body" style="background: rgb(var(--main-background))">
+						<div class="panel-body" style="background: rgb(var(--mainBackground))">
 							<div class="row">
 
 								<div class="col-12 col-lg-6">

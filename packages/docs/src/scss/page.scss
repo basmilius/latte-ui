@@ -11,7 +11,7 @@ div.page
 {
 	position: relative;
 	display: block;
-	min-height: calc(100vh - var(--app-bar-height));
+	min-height: calc(100vh - var(--appBarHeight));
 }
 
 div.page-header
@@ -19,8 +19,8 @@ div.page-header
 	position: relative;
 	display: block;
 	margin: 0 0 30px 0;
-	background: rgba(var(--panel-background), 1);
-	border-bottom: 1px solid rgba(var(--outline-color), 1);
+	background: rgba(var(--panelBackground), 1);
+	border-bottom: 1px solid rgba(var(--outlineColor), 1);
 
 	div.page-header-content
 	{

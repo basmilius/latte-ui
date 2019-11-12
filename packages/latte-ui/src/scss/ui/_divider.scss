@@ -10,7 +10,7 @@
 .divider
 {
 	flex: 0 0 auto;
-	background: #{latte-rgb(var(--outline-color))};
+	background: #{latte-rgb(var(--outlineColor))};
 
 	&.divider-horizontal
 	{

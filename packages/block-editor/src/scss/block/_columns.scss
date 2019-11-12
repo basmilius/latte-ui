@@ -20,27 +20,27 @@
 		margin: 7px;
 		padding: 6px;
 		width: calc(33.333% - 14px);
-		background: rgba(var(--outline-color), .25);
-		box-shadow: 0 0 0 1px rgba(var(--outline-color), 1);
+		background: rgba(var(--outlineColor), .25);
+		box-shadow: 0 0 0 1px rgba(var(--outlineColor), 1);
 		border-radius: var(--radius);
 		cursor: pointer;
 
 		&:hover
 		{
-			box-shadow: 0 0 0 2px rgba(var(--outline-color), 1);
+			box-shadow: 0 0 0 2px rgba(var(--outlineColor), 1);
 		}
 
 		&.is-active
 		{
-			box-shadow: 0 0 0 2px rgba(var(--color-primary), 1);
+			box-shadow: 0 0 0 2px rgba(var(--colorPrimary), 1);
 		}
 
 		.column
 		{
 			position: relative;
 			display: block;
-			background: rgba(var(--panel-background), 1);
-			box-shadow: 0 0 0 1px rgba(var(--outline-color), 1);
+			background: rgba(var(--panelBackground), 1);
+			box-shadow: 0 0 0 1px rgba(var(--outlineColor), 1);
 		}
 	}
 }

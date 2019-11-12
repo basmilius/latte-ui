@@ -53,8 +53,8 @@
 		{
 			position: relative;
 			display: block;
-			background: RGB(var(--main-background));
-			box-shadow: inset 0 0 0 1px RGB(var(--outline-color));
+			background: RGB(var(--mainBackground));
+			box-shadow: inset 0 0 0 1px RGB(var(--outlineColor));
 			font-size: .8rem;
 			font-weight: 500;
 			line-height: 48px;

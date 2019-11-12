@@ -9,11 +9,11 @@
 
 :root
 {
-	--app-bar-alpha: 1;
-	--app-bar-background: var(--color-light);
-	--app-bar-foreground: var(--color-light-foreground);
-	--app-bar-elevation: var(--elevation-2);
-	--app-bar-height: 60px;
+	--appBarAlpha: 1;
+	--appBarBackground: var(--colorLight);
+	--appBarForeground: var(--colorLightForeground);
+	--appBarElevation: var(--elevation2);
+	--appBarHeight: 60px;
 }
 
 .app-bar
@@ -21,9 +21,9 @@
 	position: relative;
 	display: flex;
 	flex-flow: column;
-	background: #{latte-rgba(var(--app-bar-background), var(--app-bar-alpha))};
-	box-shadow: var(--app-bar-elevation);
-	color: #{latte-rgb(var(--app-bar-foreground))};
+	background: #{latte-rgba(var(--appBarBackground), var(--appBarAlpha))};
+	box-shadow: var(--appBarElevation);
+	color: #{latte-rgb(var(--appBarForeground))};
 
 	&.app-bar-flat
 	{
@@ -39,7 +39,7 @@
 
 	&.app-bar-transparent
 	{
-		--app-bar-alpha: 0;
+		--appBarAlpha: 0;
 
 		box-shadow: unset;
 	}
@@ -56,18 +56,18 @@
 {
 	position: relative;
 	display: flex;
-	min-height: var(--app-bar-height);
+	min-height: var(--appBarHeight);
 	padding: 0 15px;
 	align-items: center;
 
-	--btn-background: var(--app-bar-foreground);
-	--btn-foreground: var(--app-bar-background);
-	--badge-color: var(--app-bar-foreground);
-	--outline-color: var(--app-bar-foreground);
-	--ripple-color: var(--app-bar-foreground);
-	--spinner-color: var(--app-bar-foreground);
-	--tabs-accent: var(--app-bar-foreground);
-	--tabs-foreground: var(--app-bar-foreground);
+	--btnBackground: var(--appBarForeground);
+	--btnForeground: var(--appBarBackground);
+	--badgeColor: var(--appBarForeground);
+	--outlineColor: var(--appBarForeground);
+	--rippleColor: var(--appBarForeground);
+	--spinnerColor: var(--appBarForeground);
+	--tabsAccent: var(--appBarForeground);
+	--tabsForeground: var(--appBarForeground);
 
 	&.app-bar-auto
 	{
@@ -115,9 +115,9 @@
 {
 	height: 42px;
 	flex: 1 1 0;
-	background: rgba(var(--app-bar-foreground), .075);
+	background: rgba(var(--appBarForeground), .075);
 	border: 0;
-	color: #{latte-rgb(var(--app-bar-foreground))};
+	color: #{latte-rgb(var(--appBarForeground))};
 
 	.input-group-addon,
 	.form-control
@@ -138,28 +138,28 @@
 
 	&:focus-within
 	{
-		background: rgba(var(--app-bar-foreground), .1);
+		background: rgba(var(--appBarForeground), .1);
 		box-shadow: none;
 	}
 
 	::placeholder
 	{
-		color: #{latte-rgba(var(--app-bar-foreground), .5)};
+		color: #{latte-rgba(var(--appBarForeground), .5)};
 	}
 }
 
 .panel > .app-bar
 {
-	--app-bar-elevation: none;
+	--appBarElevation: none;
 
 	&:not(:last-child):not(:only-child)
 	{
-		border-bottom: 1px solid #{latte-rgb(var(--outline-color))};
+		border-bottom: 1px solid #{latte-rgb(var(--outlineColor))};
 	}
 
 	&:last-child:not(:only-child)
 	{
-		border-top: 1px solid #{latte-rgb(var(--outline-color))};
+		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 	}
 
 	.app-bar-title:first-child
@@ -195,9 +195,9 @@
 
 @each $type in $color-types
 {
-	.app-bar-#{$type}
+	.app-bar-#{to-lower-case($type)}
 	{
-		--app-bar-background: var(--color-#{$type});
-		--app-bar-foreground: var(--color-#{$type}-foreground);
+		--appBarBackground: var(--color#{$type});
+		--appBarForeground: var(--color#{$type}Foreground);
 	}
 }

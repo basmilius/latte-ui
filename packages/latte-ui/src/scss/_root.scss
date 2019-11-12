@@ -9,45 +9,45 @@
 
 :root
 {
-	--ease-acceleration-curve: cubic-bezier(0.4, 0.0, 1, 1);
-	--ease-deceleration-curve: cubic-bezier(0.0, 0.0, 0.2, 1);
-	--ease-sharp-curve: cubic-bezier(0.4, 0.0, 0.6, 1);
-	--ease-standard-curve: cubic-bezier(0.4, 0.0, 0.2, 1);
-	--ease-swift-out: cubic-bezier(.55, 0, .1, 1);
+	--easeAccelerationCurve: cubic-bezier(0.4, 0.0, 1, 1);
+	--easeDecelerationCurve: cubic-bezier(0.0, 0.0, 0.2, 1);
+	--easeSharpCurve: cubic-bezier(0.4, 0.0, 0.6, 1);
+	--easeStandardCurve: cubic-bezier(0.4, 0.0, 0.2, 1);
+	--easeSwiftOut: cubic-bezier(.55, 0, .1, 1);
 
-	--font-sans-serif: "proxima-nova", sans-serif;
-	--font-monospace: monospace;
+	--fontSansSerif: "proxima-nova", sans-serif;
+	--fontMonospace: monospace;
 
-	--branding-logo: #{unquote("url(" + $latte-root + "image/logo.svg)")};
+	--brandingLogo: #{unquote("url(" + $latte-root + "image/logo.svg)")};
 	--radius: 6px;
-	--icon-size: 24px;
+	--iconSize: 24px;
 
 	--light: 255, 255, 255;
 	--dark: 25, 26, 28;
-	--elevation-color: 127, 127, 127;
-	--outline-color: 238, 241, 245;
+	--elevationColor: 127, 127, 127;
+	--outlineColor: 238, 241, 245;
 
-	--color-light: var(--light);
-	--color-light-foreground: var(--dark);
-	--color-dark: var(--dark);
-	--color-dark-foreground: var(--light);
+	--colorLight: var(--light);
+	--colorLightForeground: var(--dark);
+	--colorDark: var(--dark);
+	--colorDarkForeground: var(--light);
 
-	--color-primary: var(--indigo-60);
-	--color-primary-foreground: var(--light);
-	--color-error: var(--red-50);
-	--color-error-foreground: var(--light);
-	--color-info: var(--blue-50);
-	--color-info-foreground: var(--light);
-	--color-success: var(--green-50);
-	--color-success-foreground: var(--light);
-	--color-warning: var(--orange-50);
-	--color-warning-foreground: var(--light);
+	--colorPrimary: var(--indigo60);
+	--colorPrimaryForeground: var(--light);
+	--colorError: var(--red50);
+	--colorErrorForeground: var(--light);
+	--colorInfo: var(--blue50);
+	--colorInfoForeground: var(--light);
+	--colorSuccess: var(--green50);
+	--colorSuccessForeground: var(--light);
+	--colorWarning: var(--orange50);
+	--colorWarningForeground: var(--light);
 
-	--main-background: 246, 247, 250;
-	--main-foreground: 25, 26, 28;
+	--mainBackground: 246, 247, 250;
+	--mainForeground: 25, 26, 28;
 
 	@for $level from 0 through 24
 	{
-		--elevation-#{$level}: #{if($level == 0, none, elevation-generate($level))};
+		--elevation#{$level}: #{if($level == 0, none, elevation-generate($level))};
 	}
 }

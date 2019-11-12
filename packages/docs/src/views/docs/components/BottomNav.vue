@@ -85,28 +85,28 @@
 					],
 					variables: [
 						{
-							name: "--bottom-nav-alpha",
+							name: "--bottomNavAlpha",
 							description: "Botton nav alpha.",
 							type: "int",
 							default: 1
 						},
 						{
-							name: "--bottom-nav-background",
+							name: "--bottomNavBackground",
 							description: "Background color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--bottom-nav-background").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--bottomNavBackground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--bottom-nav-foreground",
+							name: "--bottomNavForeground",
 							description: "Foreground color.",
 							type: "rgb",
-							default: computedStyle.getPropertyValue("--bottom-nav-foreground").split(",").map(c => parseInt(c))
+							default: computedStyle.getPropertyValue("--bottomNavForeground").split(",").map(c => parseInt(c))
 						},
 						{
-							name: "--bottom-nav-elevation",
+							name: "--bottomNavElevation",
 							description: "Bottom nav elevation shadow.",
 							type: "string",
-							default: computedStyle.getPropertyValue("--bottom-nav-elevation")
+							default: computedStyle.getPropertyValue("--bottomNavElevation")
 						}
 					]
 				}

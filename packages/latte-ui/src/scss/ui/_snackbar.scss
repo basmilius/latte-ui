@@ -9,23 +9,23 @@
 
 :root
 {
-	--snackbar-elevation: var(--elevation-8);
+	--snackbarElevation: var(--elevation8);
 }
 
 .snackbar
 {
 	position: fixed;
 	display: flex;
-	margin: var(--content-gutter);
+	margin: var(--contentGutter);
 	max-width: 540px;
 	padding: 15px 24px;
 	align-items: center;
 	justify-content: flex-start;
 	background: #{latte-rgb(var(--dark))};
 	border-radius: var(--radius);
-	box-shadow: var(--snackbar-elevation);
+	box-shadow: var(--snackbarElevation);
 	color: #{latte-rgb(var(--light))};
-	transition: 240ms var(--ease-swift-out);
+	transition: 240ms var(--easeSwiftOut);
 	transition-property: opacity, transform;
 
 	&:not(.is-open)
@@ -35,7 +35,7 @@
 
 	@include compact
 	{
-		max-width: calc(100vw - (var(--content-gutter) * 2));
+		max-width: calc(100vw - (var(--contentGutter) * 2));
 		width: 100%;
 	}
 
@@ -55,11 +55,11 @@
 {
 	left: 50%;
 	bottom: 0;
-	transform: translate3d(calc(-50% - var(--content-gutter)), 0, 0);
+	transform: translate3d(calc(-50% - var(--contentGutter)), 0, 0);
 
 	&:not(.is-open)
 	{
-		transform: translate3d(calc(-50% - var(--content-gutter)), 3px, 0) scale3d(.9, .9, 1);
+		transform: translate3d(calc(-50% - var(--contentGutter)), 3px, 0) scale3d(.9, .9, 1);
 	}
 }
 
@@ -89,11 +89,11 @@
 {
 	top: 0;
 	left: 50%;
-	transform: translate3d(calc(-50% - var(--content-gutter)), 0, 0);
+	transform: translate3d(calc(-50% - var(--contentGutter)), 0, 0);
 
 	&:not(.is-open)
 	{
-		transform: translate3d(calc(-50% - var(--content-gutter)), -3px, 0) scale3d(.9, .9, 1);
+		transform: translate3d(calc(-50% - var(--contentGutter)), -3px, 0) scale3d(.9, .9, 1);
 	}
 }
 

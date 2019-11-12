@@ -67,7 +67,7 @@
 .sheet-content:not(.is-dragging),
 .sheet-overlay:not(.is-dragging)
 {
-	transition: 300ms var(--ease-swift-out);
+	transition: 300ms var(--easeSwiftOut);
 	transition-property: background, opacity, transform;
 }
 

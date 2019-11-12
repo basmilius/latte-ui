@@ -9,14 +9,14 @@
 
 :root
 {
-	--icon-background: #{latte-rgb(var(--color-primary))};
-	--icon-foreground: #{latte-rgb(var(--color-primary-foreground))};
+	--iconBackground: #{latte-rgb(var(--colorPrimary))};
+	--iconForeground: #{latte-rgb(var(--colorPrimaryForeground))};
 }
 
 #{unquote($latte-icon-class)}.branding::before
 {
 	content: "";
-	background: var(--branding-logo) no-repeat center center / contain;
+	background: var(--brandingLogo) no-repeat center center / contain;
 }
 
 #{unquote($latte-icon-class)}.icon-rounded
@@ -27,8 +27,8 @@
 
 	&.icon-rounded-bg
 	{
-		background: var(--icon-background);
+		background: var(--iconBackground);
 		border-radius: 1em;
-		color: var(--icon-foreground);
+		color: var(--iconForeground);
 	}
 }

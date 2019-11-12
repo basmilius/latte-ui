@@ -15,23 +15,23 @@
 	padding: 10px 15px;
 	align-items: center;
 	justify-content: center;
-	background: #{latte-rgba(var(--form-outline), var(--form-outline-alpha))};
-	color: #{latte-rgb(var(--form-outline-foreground))};
+	background: #{latte-rgba(var(--formOutline), var(--formOutlineAlpha))};
+	color: #{latte-rgb(var(--formOutlineForeground))};
 	transition: inherit;
 	transition-property: background;
 
-	--checkbox-background: var(--form-outline-foreground);
-	--checkbox-foreground: var(--form-outline);
-	--radio-background: var(--form-outline-foreground);
-	--radio-foreground: var(--form-outline);
-	--toggle-background: var(--form-outline-foreground);
-	--toggle-foreground: var(--form-outline);
+	--checkboxBackground: var(--formOutlineForeground);
+	--checkboxForeground: var(--formOutline);
+	--radioBackground: var(--formOutlineForeground);
+	--radioForeground: var(--formOutline);
+	--toggleBackground: var(--formOutlineForeground);
+	--toggleForeground: var(--formOutline);
 
 	.checkbox,
 	.radio-button,
 	.toggle-button
 	{
-		--form-outline: var(--form-outline-foreground);
+		--formOutline: var(--formOutlineForeground);
 	}
 }
 

@@ -9,7 +9,7 @@
 
 :root
 {
-	--scaffolding-drawer-width: 270px;
+	--scaffoldingDrawerWidth: 270px;
 }
 
 .scaffolding
@@ -20,17 +20,17 @@
 	.sheet-content.sheet-left
 	{
 		height: 100%;
-		width: var(--scaffolding-drawer-width);
-		background: #{latte-rgb(var(--panel-background))};
-		box-shadow: var(--elevation-1);
+		width: var(--scaffoldingDrawerWidth);
+		background: #{latte-rgb(var(--panelBackground))};
+		box-shadow: var(--elevation1);
 		overflow: auto;
 	}
 
 	> .btn-fab
 	{
 		position: fixed;
-		right: var(--content-gutter);
-		bottom: var(--content-gutter);
+		right: var(--colorGutter);
+		bottom: var(--colorGutter);
 		z-index: 1004;
 	}
 
@@ -44,7 +44,7 @@
 	@include expanded
 	{
 		grid-auto-rows: auto;
-		grid-template-columns: auto calc(100% - var(--scaffolding-drawer-width));
+		grid-template-columns: auto calc(100% - var(--scaffoldingDrawerWidth));
 		grid-template-rows: auto 1fr;
 
 		> .app-bar
@@ -105,8 +105,8 @@
 
 			> .sheet-overlay
 			{
-				top: var(--app-bar-height);
-				height: calc(100vh - var(--app-bar-height));
+				top: var(--appBarHeight);
+				height: calc(100vh - var(--appBarHeight));
 				grid-column: 1;
 				grid-row: 2;
 			}
