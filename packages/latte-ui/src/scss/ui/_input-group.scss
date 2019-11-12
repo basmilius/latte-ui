@@ -11,11 +11,11 @@
 {
 	position: relative;
 	display: flex;
-	height: 100%;
 	padding: 10px 15px;
-	align-items: center;
+	align-items: flex-start;
+	align-self: stretch;
 	justify-content: center;
-	background: #{latte-rgba(var(--formOutline), var(--formOutlineAlpha))};
+	background: #{latte-rgba(var(--formOutline), .75)};
 	color: #{latte-rgb(var(--formOutlineForeground))};
 	transition: inherit;
 	transition-property: background;
@@ -59,7 +59,7 @@
 
 	.badge
 	{
-		margin-left: 15px;
+		margin: 9px;
 		flex-shrink: 0;
 	}
 
