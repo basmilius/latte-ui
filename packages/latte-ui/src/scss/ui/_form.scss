@@ -10,7 +10,6 @@
 :root
 {
 	--formOutline: var(--outlineColor);
-	--formOutlineAlpha: .75;
 	--formOutlineForeground: var(--mainForeground);
 }
 
@@ -23,7 +22,7 @@
 	width: 100%;
 	align-items: center;
 	background: transparent;
-	border: 2px solid #{latte-rgba(var(--formOutline), var(--formOutlineAlpha))};
+	border: 2px solid #{latte-rgba(var(--formOutline), .75)};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--mainForeground))};
 	outline: 0;
@@ -33,7 +32,7 @@
 	&:focus,
 	&:focus-within
 	{
-		--formOutlineAlpha: 1;
+		border-color: #{latte-rgb(var(--formOutline))};
 	}
 
 	&::placeholder
