@@ -89,6 +89,9 @@
 
 			onValueChanged()
 			{
+				if (this.isDragging)
+					return;
+
 				const {width, height} = this.$el.getBoundingClientRect();
 
 				this.x = this.value.x * width;
@@ -101,9 +104,6 @@
 
 			value()
 			{
-				if (this.isDragging)
-					return;
-
 				this.onValueChanged();
 			}
 

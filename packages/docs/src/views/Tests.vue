@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel" style="width: 330px">
+					<div class="panel">
 						<latte-colorpicker-select></latte-colorpicker-select>
 					</div>
 

@@ -1,6 +1,6 @@
 <template>
 
-	<div class="colorpicker" :style="styles">
+	<div class="colorpicker" draggable="false" :style="styles">
 		<div class="colorpicker-controls">
 			<XYPos class="colorpicker-saturation" v-model="saturation">
 				<div class="saturation-overlay white"></div>
@@ -12,6 +12,7 @@
 		<div class="divider divider-horizontal"></div>
 		<div class="colorpicker-debug px-3" style="font-size: .9rem; font-family: var(--fontMonospace)">
 			<div>Hue: {{ hue }}</div>
+			<div>Saturation: {{ saturation }}</div>
 			<div>Alpha: {{ alpha }}</div>
 			<div>HEX: {{ color.hex }}</div>
 			<div>RGB: {{ color.rgb }}</div>
@@ -30,27 +31,31 @@
 
 <script>
 
-	import { hexToRGB, hslToRGB, hsvToRGB, rgbToHex, rgbToHSL, rgbToHSV } from "../../js/util/color";
+	import { hexToRGB, hsvToRGB, rgbToHex, rgbToHSL, rgbToHSV } from "../../js/util/color";
+	import { clamp, roundStep } from "../../js/math";
 
 	import Slider from "./base/Slider";
 	import XYPos from "./base/XYPos";
 
-	function smartColor(data)
+	function smartColor(data, oldHue)
 	{
-		let rgb;
+		let hsv;
 
-		if (data.r && data.g && data.b)
-			rgb = data;
+		if (data.h && data.s && data.v)
+			hsv = data;
 		else if (data.h && data.s && data.l)
-			rgb = hslToRGB(data);
-		else if (data.h && data.s && data.v)
-			rgb = hsvToRGB(data);
+			hsv = {h: data.h / 360, s: data.s / 100, v: data.l / 100};
+		else if (data.r && data.g && data.b)
+			hsv = rgbToHSV(data);
 		else
-			rgb = hexToRGB(data);
+			hsv = rgbToHSV(hexToRGB(data));
 
-		const hex = rgbToHex(rgb);
+		if (hsv.s === 0)
+			hsv.h = hsv.h || oldHue || 0;
+
+		const rgb = hsvToRGB(hsv);
 		const hsl = rgbToHSL(rgb);
-		const hsv = rgbToHSV(rgb);
+		const hex = rgbToHex(rgb);
 
 		return {
 			hex,
@@ -71,8 +76,9 @@
 			return {
 				alpha: 100,
 				hue: 0,
-				color: smartColor("#a8122c"),
+				color: smartColor("#3388d5"),
 				saturation: {x: 0, y: 0},
+				oldHue: null,
 				isChanging: false
 			};
 		},
@@ -85,8 +91,26 @@
 
 				return {
 					"--hex": this.color.hex,
-					"--hue-hex": `rgb(${r}, ${g}, ${b})`,
+					"--hue-hex": `rgb(${r}, ${g}, ${b})`
 				};
+			}
+
+		},
+
+		methods: {
+
+			onHueSaturationChanged()
+			{
+				if (this.isChanging)
+					return;
+
+				this.oldHue = this.color.hsv.h;
+
+				this.color = smartColor({
+					h: clamp(this.hue === 0 ? 1 : this.hue / 360, 0, 1),
+					s: clamp(this.saturation.x, 0, 1),
+					v: clamp(1 - this.saturation.y, 0, 1)
+				}, this.oldHue);
 			}
 
 		},
@@ -98,10 +122,10 @@
 				{
 					this.isChanging = true;
 
-					this.hue = this.color.hsl.h;
+					this.hue = roundStep(this.color.hsv.h * 360, 1);
 					this.saturation = {
-						x: .5,
-						y: .5
+						x: this.color.hsv.s,
+						y: 1 - this.color.hsv.v
 					};
 
 					this.$nextTick(() => this.isChanging = false);
@@ -110,23 +134,12 @@
 
 			hue()
 			{
-				if (this.isChanging)
-					return;
-
-				let h = this.hue;
-
-				if (h === 0)
-					h = 360;
-
-				this.color = smartColor({h: h / 360, s: this.color.hsv.s, v: this.color.hsv.v});
+				this.onHueSaturationChanged();
 			},
 
 			saturation()
 			{
-				if (this.isChanging)
-					return;
-
-				this.color = smartColor({h: this.color.hsv.h, s: this.saturation.y, v: this.saturation.x});
+				this.onHueSaturationChanged();
 			}
 
 		}

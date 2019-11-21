@@ -9,12 +9,12 @@
 
 .colorpicker
 {
+	--gutter: 3px;
+	--position: 50%;
+	--thumbSize: 18px;
+
 	.slider
 	{
-		--gutter: 3px;
-		--position: 50%;
-		--thumbSize: 18px;
-
 		position: relative;
 		display: block;
 		user-select: none;
@@ -25,7 +25,7 @@
 			height: var(--thumbSize);
 			width: var(--thumbSize);
 			background: #{latte-rgb(var(--panelBackground))};
-			border: calc(var(--gutter) / 2) solid #{latte-rgb(var(--panelBackground))};
+			border: var(--gutter) solid #{latte-rgb(var(--panelBackground))};
 			border-radius: 99px;
 			box-shadow: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
 			transform: translate3d(-50%, -50%, 0);
@@ -96,8 +96,25 @@
 				right: 0;
 				bottom: 0;
 				content: "";
-				background: linear-gradient(to top, transparent, var(--hex));
+				background: linear-gradient(to top, transparent, #{latte-rgb(var(--mainForeground))});
 			}
+		}
+	}
+
+	.xy-pos
+	{
+		position: relative;
+
+		.xy-pos-thumb
+		{
+			position: absolute;
+			height: var(--thumbSize);
+			width: var(--thumbSize);
+			background: #{latte-rgb(var(--panelBackground))};
+			border: calc(var(--gutter) / 2) solid #{latte-rgb(var(--panelBackground))};
+			border-radius: 99px;
+			box-shadow: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
+			transform: translate3d(-50%, -50%, 0);
 		}
 	}
 
@@ -115,27 +132,11 @@
 		}
 	}
 
-	.xy-pos
-	{
-		--thumbSize: 18px;
-
-		position: relative;
-
-		.xy-pos-thumb
-		{
-			position: absolute;
-			height: var(--thumbSize);
-			width: var(--thumbSize);
-			background: #{latte-rgb(var(--panelBackground))};
-			border-radius: 99px;
-			box-shadow: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
-			transform: translate3d(-50%, -50%, 0);
-		}
-	}
-
 	position: relative;
 	display: flex;
 	flex-flow: column;
+	user-drag: none;
+	user-select: none;
 
 	.colorpicker-controls
 	{
@@ -155,6 +156,11 @@
 		flex-grow: 1;
 		background: var(--hue-hex);
 		border-radius: var(--radius);
+
+		.xy-pos-thumb
+		{
+			background: var(--hex);
+		}
 
 		.saturation-overlay
 		{

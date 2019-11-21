@@ -89,7 +89,7 @@
 
 				const value = roundStep(p * (this.max - this.min), this.step) + this.min;
 
-				this.position = p * 100;
+				this.position = (value - this.min) / (this.max - this.min) * 100;
 
 				this.$emit("input", value);
 			},
