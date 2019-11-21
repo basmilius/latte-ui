@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "975a73db71daf6cc6860",
-    "url": "/assets/css/app.308cad08.css"
+    "revision": "9b43ce8b2485b8e758b1",
+    "url": "/assets/css/app.579c4750.css"
   },
   {
     "revision": "c1cadc088be7e017d851",
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/css/chunk-2991d334.e8b6d223.css"
   },
   {
-    "revision": "fbc5023b12620b08363a",
+    "revision": "f3bc331de886775a6b3a",
     "url": "/assets/css/chunk-2f4d6510.3e34f2e9.css"
   },
   {
@@ -100,7 +100,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/css/chunk-f90431f0.e8b6d223.css"
   },
   {
-    "revision": "c4a3aace716f4b0c4993",
+    "revision": "9888fb5b1a75e8485599",
     "url": "/assets/css/chunk-vendors.1b530020.css"
   },
   {
@@ -136,8 +136,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "975a73db71daf6cc6860",
-    "url": "/assets/js/app.af2eec13.js"
+    "revision": "9b43ce8b2485b8e758b1",
+    "url": "/assets/js/app.b8626336.js"
   },
   {
     "revision": "c1cadc088be7e017d851",
@@ -160,12 +160,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2991d334.13431c84.js"
   },
   {
-    "revision": "a611b368ded73f76a59d",
-    "url": "/assets/js/chunk-2d0a44c6.7b199b46.js"
+    "revision": "90470586444c4eb7b2ee",
+    "url": "/assets/js/chunk-2d0a44c6.a4482804.js"
   },
   {
-    "revision": "b1bb0567c7ec386043a5",
-    "url": "/assets/js/chunk-2d0af68b.2516bebe.js"
+    "revision": "b49b063e765a122ed587",
+    "url": "/assets/js/chunk-2d0af68b.e84f41fb.js"
   },
   {
     "revision": "b45d0136078553370a94",
@@ -180,12 +180,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d0cf32f.075bd682.js"
   },
   {
-    "revision": "35cc191a70117eee7a8f",
-    "url": "/assets/js/chunk-2d0d3c53.bc0c5a69.js"
+    "revision": "1681959a49503b709bd6",
+    "url": "/assets/js/chunk-2d0d3c53.007275f4.js"
   },
   {
-    "revision": "f43a1a913cbee688f0e1",
-    "url": "/assets/js/chunk-2d0d6ea9.3ae23a9c.js"
+    "revision": "111551bee4bbc441111a",
+    "url": "/assets/js/chunk-2d0d6ea9.7cf7453b.js"
   },
   {
     "revision": "b876a6e3cd7dc7f31cdd",
@@ -200,8 +200,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d0dd45f.d04e75f7.js"
   },
   {
-    "revision": "5cbfed5562bdf00ce2cf",
-    "url": "/assets/js/chunk-2d0decf2.2d45ede0.js"
+    "revision": "be5faeb278ff6ae15772",
+    "url": "/assets/js/chunk-2d0decf2.b48e404c.js"
   },
   {
     "revision": "ab126efddf5d730366a6",
@@ -220,16 +220,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d20ebb4.499792f0.js"
   },
   {
-    "revision": "ff33387b70c2da07b551",
-    "url": "/assets/js/chunk-2d216f77.508206f3.js"
+    "revision": "9347473a3a5692d9f99f",
+    "url": "/assets/js/chunk-2d216f77.6e2543c3.js"
   },
   {
     "revision": "2e1f560d41d1aedb8162",
     "url": "/assets/js/chunk-2d21d825.0c51d7d4.js"
   },
   {
-    "revision": "fbc5023b12620b08363a",
-    "url": "/assets/js/chunk-2f4d6510.ea17a00a.js"
+    "revision": "f3bc331de886775a6b3a",
+    "url": "/assets/js/chunk-2f4d6510.21ff0c80.js"
   },
   {
     "revision": "384fe5d6b667f6410acd",
@@ -308,8 +308,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-f90431f0.c68514f0.js"
   },
   {
-    "revision": "c4a3aace716f4b0c4993",
-    "url": "/assets/js/chunk-vendors.eb49532a.js"
+    "revision": "9888fb5b1a75e8485599",
+    "url": "/assets/js/chunk-vendors.e7defc04.js"
   },
   {
     "revision": "ccf77fcb3d81c91f4f94443c9e2ceeec",
@@ -328,7 +328,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/wallpaper/1.jpg"
   },
   {
-    "revision": "b75015898313e973d981fb868ddf27d8",
+    "revision": "66fb4f51bcbba4a9858079d6b5018304",
     "url": "/index.html"
   },
   {
