@@ -20,6 +20,10 @@
 			<div class="row">
 				<div class="col-12">
 
+					<div class="panel" style="width: 330px">
+						<latte-colorpicker-select></latte-colorpicker-select>
+					</div>
+
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Breadcrumbs</span></div>
 						<div class="panel-body">
@@ -38,6 +42,7 @@
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Typography</span></div>
 						<div class="panel-body">
+							<h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus facilis, officiis? Aliquid cumque dolorem dolores est et excepturi hic, ipsam itaque iusto labore natus nulla, odio officia pariatur, quia recusandae.</h4>
 							<h1>Heading 1</h1>
 							<h2>Heading 2</h2>
 							<h3>Heading 3</h3>

@@ -1,0 +1,179 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+.colorpicker
+{
+	.slider
+	{
+		--gutter: 3px;
+		--position: 50%;
+		--thumbSize: 18px;
+
+		position: relative;
+		display: block;
+		user-select: none;
+
+		.slider-thumb
+		{
+			position: absolute;
+			height: var(--thumbSize);
+			width: var(--thumbSize);
+			background: #{latte-rgb(var(--panelBackground))};
+			border: calc(var(--gutter) / 2) solid #{latte-rgb(var(--panelBackground))};
+			border-radius: 99px;
+			box-shadow: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
+			transform: translate3d(-50%, -50%, 0);
+		}
+
+		.slider-track
+		{
+			position: absolute;
+			background: #{latte-rgb(var(--outlineColor))};
+			overflow: hidden;
+		}
+
+		&-horizontal
+		{
+			height: var(--thumbSize);
+			width: 100%;
+			margin: 0 var(--gutter);
+
+			.slider-thumb
+			{
+				top: 50%;
+				left: var(--position);
+			}
+
+			.slider-track
+			{
+				top: var(--gutter);
+				left: 0;
+				right: 0;
+				bottom: var(--gutter);
+			}
+		}
+
+		&-vertical
+		{
+			height: 200px;
+			width: var(--thumbSize);
+			margin: var(--gutter) 0;
+
+			.slider-thumb
+			{
+				top: var(--position);
+				left: 50%;
+			}
+
+			.slider-track
+			{
+				top: 0;
+				left: var(--gutter);
+				right: var(--gutter);
+				bottom: 0;
+			}
+		}
+	}
+
+	.slider.alpha
+	{
+		.slider-track
+		{
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC) repeat center;
+			border-radius: var(--radius);
+
+			&::after
+			{
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				content: "";
+				background: linear-gradient(to top, transparent, var(--hex));
+			}
+		}
+	}
+
+	.slider.hue
+	{
+		.slider-thumb
+		{
+			background: var(--hue-hex);
+		}
+
+		.slider-track
+		{
+			background: linear-gradient(to bottom, rgb(255, 0, 0) 0, rgb(255, 255, 0) 17%, rgb(0, 255, 0) 33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 67%, rgb(255, 0, 255) 83%, rgb(255, 0, 0));
+			border-radius: var(--radius);
+		}
+	}
+
+	.xy-pos
+	{
+		--thumbSize: 18px;
+
+		position: relative;
+
+		.xy-pos-thumb
+		{
+			position: absolute;
+			height: var(--thumbSize);
+			width: var(--thumbSize);
+			background: #{latte-rgb(var(--panelBackground))};
+			border-radius: 99px;
+			box-shadow: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
+			transform: translate3d(-50%, -50%, 0);
+		}
+	}
+
+	position: relative;
+	display: flex;
+	flex-flow: column;
+
+	.colorpicker-controls
+	{
+		position: relative;
+		display: flex;
+		padding: 15px;
+
+		.slider
+		{
+			margin-left: 9px;
+		}
+	}
+
+	.colorpicker-saturation
+	{
+		margin: 3px;
+		flex-grow: 1;
+		background: var(--hue-hex);
+		border-radius: var(--radius);
+
+		.saturation-overlay
+		{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: inherit;
+
+			&.white
+			{
+				background: linear-gradient(to right, white, hsla(0, 0%, 100%, 0));
+			}
+
+			&.black
+			{
+				background: linear-gradient(to top, black, transparent);
+			}
+		}
+	}
+}

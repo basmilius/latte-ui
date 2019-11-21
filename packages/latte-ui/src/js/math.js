@@ -40,6 +40,21 @@ export function pseudoRandom(seed)
 }
 
 /**
+ * Rounds the given value to step.
+ *
+ * @param {Number} value
+ * @param {Number} step
+ *
+ * @returns {Number}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function roundStep(value, step)
+{
+	return Math.ceil(value / step) * step;
+}
+
+/**
  * Implementation of the pythagorean equation.
  *
  * @param {Number} a

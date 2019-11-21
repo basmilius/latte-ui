@@ -16,9 +16,7 @@ $sizes: (2rem, 1.8rem, 1.6rem, 1.4rem, 1.2rem, 1rem);
 		margin: 0 0 1rem 0;
 		color: currentColor;
 		font-size: nth($sizes, $heading);
-		font-weight: 700;
 		line-height: 1em;
-		vertical-align: middle;
 	}
 }
 
