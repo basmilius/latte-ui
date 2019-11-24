@@ -1,6 +1,6 @@
 <template>
 
-	<div class="xy-pos" @mousedown="onMouseDown">
+	<div class="xy-pos" @mousedown="onMouseDown" @touchstart="onMouseDown">
 		<slot></slot>
 
 		<div class="xy-pos-thumb" :style="thumbStyle"></div>
@@ -10,7 +10,7 @@
 
 <script>
 
-	import { relativeCoordsTo } from "../../../js/util/dom";
+	import { relativeCoordsTo, terminateEvent } from "../../../js/util/dom";
 	import { clamp } from "../../../js/math";
 
 	export default {
@@ -34,12 +34,16 @@
 		{
 			window.removeEventListener("mousemove", this.onMouseMove);
 			window.removeEventListener("mouseup", this.onMouseUp);
+			window.removeEventListener("touchmove", this.onMouseMove);
+			window.removeEventListener("touchend", this.onMouseUp);
 		},
 
 		mounted()
 		{
 			window.addEventListener("mousemove", this.onMouseMove, {passive: true});
 			window.addEventListener("mouseup", this.onMouseUp, {passive: true});
+			window.addEventListener("touchmove", this.onMouseMove, {passive: false});
+			window.addEventListener("touchend", this.onMouseUp, {passive: false});
 
 			this.onValueChanged();
 		},
@@ -70,7 +74,15 @@
 				if (!this.isDragging)
 					return;
 
-				const {x, y} = relativeCoordsTo(this.$el, evt);
+				if (evt.type.substring(0, 5) === "touch")
+					terminateEvent(evt);
+
+				const coords = relativeCoordsTo(this.$el, evt);
+
+				if (!coords)
+					return;
+
+				const {x, y} = coords;
 				const {width, height} = this.$el.getBoundingClientRect();
 
 				this.valueX = clamp(x, 0, width) / width;

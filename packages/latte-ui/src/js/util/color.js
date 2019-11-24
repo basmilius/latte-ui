@@ -180,6 +180,34 @@ export function rgbToHSV(rgb)
 	return {h, s, v};
 }
 
+export function smartColor(data, oldHue)
+{
+	let hsv;
+
+	if (!isNaN(data.h) && !isNaN(data.s) && !isNaN(data.v))
+		hsv = data;
+	else if (!isNaN(data.h) && !isNaN(data.s) && !isNaN(data.l))
+		hsv = {h: data.h / 360, s: data.s / 100, v: data.l / 100};
+	else if (!isNaN(data.r) && !isNaN(data.g) && !isNaN(data.b))
+		hsv = rgbToHSV(data);
+	else
+		hsv = rgbToHSV(hexToRGB(data));
+
+	if (hsv.s === 0)
+		hsv.h = hsv.h || oldHue || 0;
+
+	const rgb = hsvToRGB(hsv);
+	const hsl = rgbToHSL(rgb);
+	const hex = rgbToHex(rgb);
+
+	return {
+		hex,
+		rgb,
+		hsl,
+		hsv
+	};
+}
+
 function hueToRgb(p, q, t)
 {
 	if (t < 0)

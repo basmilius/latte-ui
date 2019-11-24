@@ -1,6 +1,6 @@
 <template>
 
-	<div class="slider" :class="['slider-' + direction]" @mousedown="onMouseDown">
+	<div class="slider" :class="['slider-' + direction]" @mousedown="onMouseDown" @touchstart="onMouseDown">
 		<div class="slider-track"></div>
 		<div class="slider-thumb" :style="thumbStyle"></div>
 	</div>
@@ -10,7 +10,7 @@
 <script>
 
 	import { oneOf } from "../../../js/helper/array";
-	import { relativeCoordsTo } from "../../../js/util/dom";
+	import { relativeCoordsTo, terminateEvent } from "../../../js/util/dom";
 	import { clamp, roundStep } from "../../../js/math";
 
 	export default {
@@ -35,12 +35,16 @@
 		{
 			window.removeEventListener("mousemove", this.onMouseMove);
 			window.removeEventListener("mouseup", this.onMouseUp);
+			window.removeEventListener("touchmove", this.onMouseMove);
+			window.removeEventListener("touchend", this.onMouseUp);
 		},
 
 		mounted()
 		{
 			window.addEventListener("mousemove", this.onMouseMove, {passive: true});
 			window.addEventListener("mouseup", this.onMouseUp, {passive: true});
+			window.addEventListener("touchmove", this.onMouseMove, {passive: false});
+			window.addEventListener("touchend", this.onMouseUp, {passive: false});
 		},
 
 		computed: {
@@ -77,6 +81,9 @@
 			{
 				if (!this.isDragging)
 					return;
+
+				if (evt.type.substring(0, 5) === "touch")
+					terminateEvent(evt);
 
 				const {x, y} = relativeCoordsTo(this.$el, evt);
 				const {width, height} = this.$el.getBoundingClientRect();
