@@ -19,7 +19,8 @@
 		name: "latte-ripple",
 
 		props: {
-			as: {default: "div", type: String}
+			as: {default: "div", type: String},
+			onHover: {default: false, type: Boolean}
 		},
 
 		data()
@@ -48,7 +49,8 @@
 
 			this.$el.removeEventListener("mouseleave", this.events[4]);
 			this.$el.removeEventListener("mousedown", this.events[5]);
-			this.$el.removeEventListener("mouseup", this.events[6]);
+			this.$el.removeEventListener("mouseenter", this.events[6]);
+			this.$el.removeEventListener("mouseup", this.events[7]);
 		},
 
 		mounted()
@@ -68,7 +70,8 @@
 
 			this.$el.addEventListener("mouseleave", this.events[4] = onlyMouse(this.onPointerUp), {passive: true});
 			this.$el.addEventListener("mousedown", this.events[5] = onlyMouse(this.onPointerDown), {passive: true});
-			this.$el.addEventListener("mouseup", this.events[6] = onlyMouse(this.onPointerUp), {passive: true});
+			this.$el.addEventListener("mouseenter", this.events[6] = onlyMouse(this.onPointerEnter), {passive: true});
+			this.$el.addEventListener("mouseup", this.events[7] = onlyMouse(this.onPointerUp), {passive: true});
 		},
 
 		render(h)
@@ -120,19 +123,27 @@
 
 					ripple.style.setProperty("--rippleX", `${rect.width / 2 - sizeHalf}px`);
 					ripple.style.setProperty("--rippleY", `${rect.height / 2 - sizeHalf}px`);
-				});
+				}, this.onHover ? 16 : 0);
 
 				return ripple;
 			},
 
-			onPointerDown(evt)
+			onPointerDown(evt, wasHover = false)
 			{
-				if (isSomethingScrolling)
+				if (isSomethingScrolling || (this.onHover && !wasHover))
 					return;
 
 				const {x, y} = relativeCoordsTo(this.$el, evt);
 
 				this.ripples.push(this.createRipple(x, y));
+			},
+
+			onPointerEnter(evt)
+			{
+				if (!this.onHover)
+					return;
+
+				this.onPointerDown(evt, true);
 			},
 
 			onPointerUp()

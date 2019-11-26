@@ -37,7 +37,7 @@
 				<span>B</span>
 			</label>
 			<label class="preview-value alpha">
-				<input class="form-control" type="number" min="0" max="255" :value="(alpha / 100).toFixed(2)"/>
+				<input class="form-control" type="number" min="0" max="1" step="0.01" :value="(alpha / 100).toFixed(2)"/>
 				<span>A</span>
 			</label>
 		</div>

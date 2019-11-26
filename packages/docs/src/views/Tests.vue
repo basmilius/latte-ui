@@ -21,6 +21,20 @@
 				<div class="col-12">
 
 					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Hover ripple</span></div>
+						<latte-ripple as="div" class="position-relative panel-body" on-hover>
+							<br/>
+							<br/>
+							<br/>
+						</latte-ripple>
+						<latte-ripple as="div" class="position-relative panel-body">
+							<br/>
+							<br/>
+							<br/>
+						</latte-ripple>
+					</div>
+
+					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Breadcrumbs</span></div>
 						<div class="panel-body">
 							<nav class="nav nav-breadcrumb">
