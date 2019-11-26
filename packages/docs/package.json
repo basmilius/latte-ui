@@ -12,7 +12,7 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
-		"@mdi/font": "^4.5.95",
+		"@mdi/font": "^4.6.95",
 		"animejs": "^3.1.0",
 		"highlight.js": "^9.16.2",
 		"moment": "^2.24.0",
