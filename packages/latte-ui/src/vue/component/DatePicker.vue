@@ -14,10 +14,10 @@
 		<template v-slot="{current, setCurrent, setNow, cancel, select}">
 			<latte-datepicker-calendar ref="picker" :value="current" @input="setCurrent">
 
-				<template v-slot="{selectedView}">
+				<template v-slot="{isOverlay, selectedView}">
 					<div class="panel-footer" v-if="selectedView === 'dates'">
-						<latte-ripple as="button" class="btn btn-icon btn-text" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
-						<latte-ripple as="button" class="btn btn-text ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+						<latte-ripple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
+						<latte-ripple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
 						<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
 					</div>
 				</template>

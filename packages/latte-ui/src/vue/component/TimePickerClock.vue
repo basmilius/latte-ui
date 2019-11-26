@@ -97,6 +97,8 @@
 			clockMount.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: false});
 			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
 			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
+
+			this.$parent.$on("close", () => this.view = "hours");
 		},
 
 		computed: {

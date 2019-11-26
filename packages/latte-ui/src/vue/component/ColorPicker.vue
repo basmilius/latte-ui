@@ -15,10 +15,10 @@
 			<div class="colorpicker-preview-color" :style="{background: hslaValue}"></div>
 		</div>
 
-		<component :is="componentType" class="colorpickermount" :associate-with="$refs.control" :name="uniqueId" ref="popup" :responsive="false" persistent @open="isOpen = true">
+		<component :is="componentType" class="colorpickermount" :associate-with="$refs.control" :name="uniqueId" ref="popup" :responsive="false" @close="cancel" @open="isOpen = true">
 			<latte-colorpicker-select v-model="color" v-if="isOpen">
-				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-text ml-auto" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
+				<div class="panel-footer justify-content-end">
+					<latte-ripple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
 					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
 				</div>
 			</latte-colorpicker-select>
@@ -98,7 +98,7 @@
 
 			cancel()
 			{
-				this.color = this.value;
+				this.color = this.current;
 				this.close();
 			},
 
@@ -118,7 +118,15 @@
 				this.current = this.color;
 
 				this.$emit("input", this.stringValue);
-				this.close();
+				this.$nextTick(() => this.close());
+			},
+
+			onValueChanged()
+			{
+				const value = smartColor(this.value);
+
+				this.color = value;
+				this.current = value;
 			}
 
 		},
@@ -127,10 +135,7 @@
 
 			value()
 			{
-				const value = smartColor(this.value);
-
-				this.color = value;
-				this.current = value;
+				this.onValueChanged();
 			}
 
 		}
