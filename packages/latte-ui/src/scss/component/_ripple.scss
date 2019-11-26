@@ -13,7 +13,7 @@
 	--rippleCenter: false;
 	--rippleClip: true;
 	--rippleColor: var(--colorDark);
-	--rippleDuration: 360ms;
+	--rippleDuration: 300ms;
 	--rippleScale: 6;
 	--rippleSize: 36px;
 }
@@ -52,6 +52,6 @@
 		opacity: 1;
 		transform: translate(var(--rippleX), var(--rippleY)) scale3d(var(--rippleScale), var(--rippleScale), var(--rippleScale));
 		transform-origin: center center;
-		transition: opacity 180ms linear, transform var(--rippleDuration) var(--easeDecelerationCurve);
+		transition: opacity calc(var(--rippleDuration) / 2) linear, transform var(--rippleDuration) var(--easeDecelerationCurve);
 	}
 }

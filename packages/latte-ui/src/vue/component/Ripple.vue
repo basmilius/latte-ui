@@ -94,6 +94,8 @@
 				this.center = computedStyles.getPropertyValue("--rippleCenter").trim() !== "false";
 				this.clip = computedStyles.getPropertyValue("--rippleClip").trim() !== "false";
 
+				const duration = parseInt(computedStyles.getPropertyValue("--rippleDuration"));
+
 				if (this.center)
 				{
 					x = rect.width / 2;
@@ -103,6 +105,7 @@
 				const ripple = createElement("div", ripple =>
 				{
 					ripple.classList.add("ripple");
+					ripple.duration = duration;
 
 					const minSize = 3;
 
@@ -145,11 +148,14 @@
 
 				this.onPointerDown(evt, true);
 
-				this.ripples[0].addEventListener("transitionend", () => this.onPointerUp());
+				this.ripples[0].addEventListener("transitionend", () => this.onPointerUp(evt, true));
 			},
 
-			onPointerUp()
+			onPointerUp(evt, wasHover = false)
 			{
+				if (this.onHover && !wasHover)
+					return;
+
 				if (this.ripples.length === 0)
 					return;
 
@@ -160,13 +166,13 @@
 
 				ripple.classList.add("is-removing");
 
-				raf(() => ripple.style.setProperty("opacity", "0"), 180);
+				raf(() => ripple.style.setProperty("opacity", "0"), ripple.duration / 2);
 
 				raf(() =>
 				{
 					this.ripples = this.ripples.filter(r => r !== ripple);
 					ripple.remove();
-				}, 360);
+				}, ripple.duration);
 			},
 
 			onResizeObserved()
