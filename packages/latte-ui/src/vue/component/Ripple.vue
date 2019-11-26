@@ -104,7 +104,7 @@
 				{
 					ripple.classList.add("ripple");
 
-					const minSize = this.center ? 12 : Math.max(size * .1, 24);
+					const minSize = 3;
 
 					ripple.style.setProperty("--rippleScale", `${minSize / size}`);
 					ripple.style.setProperty("--rippleSize", `${size}px`);
@@ -123,7 +123,7 @@
 
 					ripple.style.setProperty("--rippleX", `${rect.width / 2 - sizeHalf}px`);
 					ripple.style.setProperty("--rippleY", `${rect.height / 2 - sizeHalf}px`);
-				}, this.onHover ? 16 : 0);
+				}, this.onHover ? 16 : undefined);
 
 				return ripple;
 			},
@@ -144,6 +144,8 @@
 					return;
 
 				this.onPointerDown(evt, true);
+
+				this.ripples[0].addEventListener("transitionend", () => this.onPointerUp());
 			},
 
 			onPointerUp()
