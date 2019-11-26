@@ -50,12 +50,16 @@
 
 		name: "latte-colorpicker-select",
 
+		props: {
+			value: {default: "#4752ba"}
+		},
+
 		data()
 		{
 			return {
 				alpha: 100,
 				hue: 0,
-				color: smartColor("#3388d5"),
+				color: smartColor(this.value),
 				saturation: {x: 0, y: 0},
 				oldHue: null,
 				isChanging: false
@@ -119,6 +123,11 @@
 			saturation()
 			{
 				this.onHueSaturationChanged();
+			},
+
+			value()
+			{
+				this.color = smartColor(this.value);
 			}
 
 		}
