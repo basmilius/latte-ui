@@ -180,15 +180,19 @@ export function rgbToHSV(rgb)
 	return {h, s, v};
 }
 
-export function smartColor(data, oldHue)
+export function smartColor(data, oldHue, initialAlpha)
 {
+	if (data.hex && data.rgb && data.hsl && data.hsv && data._is)
+		return data;
+
+	let alpha;
 	let hsv;
 
-	if (!isNaN(data.h) && !isNaN(data.s) && !isNaN(data.v))
+	if (allNumber(data, ["h", "s", "v"]))
 		hsv = data;
-	else if (!isNaN(data.h) && !isNaN(data.s) && !isNaN(data.l))
+	else if (allNumber(data, ["h", "s", "l"]))
 		hsv = {h: data.h / 360, s: data.s / 100, v: data.l / 100};
-	else if (!isNaN(data.r) && !isNaN(data.g) && !isNaN(data.b))
+	else if (allNumber(data, ["r", "g", "b"]))
 		hsv = rgbToHSV(data);
 	else
 		hsv = rgbToHSV(hexToRGB(data));
@@ -196,16 +200,54 @@ export function smartColor(data, oldHue)
 	if (hsv.s === 0)
 		hsv.h = hsv.h || oldHue || 0;
 
+	if (!isNaN(data.a))
+		alpha = data.a;
+	else if (!isNaN(initialAlpha))
+		alpha = initialAlpha;
+	else
+		alpha = 1;
+
 	const rgb = hsvToRGB(hsv);
 	const hsl = rgbToHSL(rgb);
 	const hex = rgbToHex(rgb);
 
 	return {
+		alpha,
 		hex,
 		rgb,
 		hsl,
-		hsv
+		hsv,
+		hsla: {...hsl, a: alpha},
+		hsva: {...hsv, a: alpha},
+		rgba: {...rgb, a: alpha},
+		_is: true
 	};
+}
+
+export function colorToString(data)
+{
+	if (allNumber(data, ["r", "g", "b", "a"]))
+		return `rgba(${data.r}, ${data.g}, ${data.b}, ${data.a})`;
+
+	if (allNumber(data, ["r", "g", "b"]))
+		return `rgb(${data.r}, ${data.g}, ${data.b})`;
+
+	if (allNumber(data, ["h", "s", "l", "a"]))
+		return `hsla(${data.h}, ${data.s}%, ${data.l}%, ${data.a * 100}%)`;
+
+	if (allNumber(data, ["h", "s", "l"]))
+		return `hsl(${data.h}, ${data.s}, ${data.l})`;
+
+	return data;
+}
+
+function allNumber(obj, props)
+{
+	for (let prop of props)
+		if (isNaN(obj[prop]))
+			return false;
+
+	return true;
 }
 
 function hueToRgb(p, q, t)

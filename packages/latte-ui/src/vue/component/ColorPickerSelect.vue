@@ -1,6 +1,15 @@
+<!--
+  - Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+  -
+  - This file is part of the Latte UI package.
+  -
+  - For the full copyright and license information, please view the
+  - LICENSE file that was distributed with this source code.
+  -->
+
 <template>
 
-	<div class="colorpicker" draggable="false" :style="styles">
+	<div class="panel colorpicker" draggable="false" :style="styles">
 		<div class="colorpicker-controls">
 			<XYPos class="colorpicker-saturation" v-model="saturation">
 				<div class="saturation-overlay white"></div>
@@ -10,7 +19,7 @@
 			<Slider class="alpha" direction="vertical" :min="100" :max="0" v-model="alpha"/>
 		</div>
 		<div class="colorpicker-preview">
-			<div class="preview-color" :style="{backgroundColor: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${alpha / 100})`}"></div>
+			<div class="colorpicker-preview-color" :style="{backgroundColor: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${alpha / 100})`}"></div>
 			<label class="preview-value hex">
 				<input class="form-control" type="text" maxlength="7" :value="color.hex"/>
 				<span>HEX</span>
@@ -32,6 +41,7 @@
 				<span>A</span>
 			</label>
 		</div>
+		<slot></slot>
 	</div>
 
 </template>
@@ -56,10 +66,12 @@
 
 		data()
 		{
+			const color = smartColor(this.value);
+
 			return {
-				alpha: 100,
+				alpha: (color.alpha || 1) * 100,
 				hue: 0,
-				color: smartColor(this.value),
+				color: color,
 				saturation: {x: 0, y: 0},
 				oldHue: null,
 				isChanging: false
@@ -93,7 +105,7 @@
 					h: clamp(this.hue / 360, 0, 1),
 					s: clamp(this.saturation.x, 0, 1),
 					v: clamp(1 - this.saturation.y, 0, 1)
-				}, this.oldHue);
+				}, this.oldHue, this.alpha / 100);
 			}
 
 		},
@@ -105,14 +117,21 @@
 				{
 					this.isChanging = true;
 
+					this.alpha = this.color.alpha * 100;
 					this.hue = roundStep(this.color.hsv.h * 360, 1);
 					this.saturation = {
 						x: this.color.hsv.s,
 						y: 1 - this.color.hsv.v
 					};
 
+					this.$emit("input", this.color);
 					this.$nextTick(() => this.isChanging = false);
 				}
+			},
+
+			alpha()
+			{
+				this.onHueSaturationChanged();
 			},
 
 			hue()
@@ -127,7 +146,11 @@
 
 			value()
 			{
-				this.color = smartColor(this.value);
+				if (this.isChanging)
+					return;
+
+				this.color = smartColor(this.value, undefined, this.alpha / 100);
+				this.alpha = (this.color.alpha || 1) * 100;
 			}
 
 		}

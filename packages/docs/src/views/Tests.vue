@@ -20,10 +20,6 @@
 			<div class="row">
 				<div class="col-12">
 
-					<div class="panel" style="width: 360px">
-						<latte-colorpicker-select></latte-colorpicker-select>
-					</div>
-
 					<div class="panel">
 						<div class="panel-header"><span class="panel-title">Breadcrumbs</span></div>
 						<div class="panel-body">
@@ -36,6 +32,116 @@
 								<a class="nav-link">Home</a>
 								<a class="nav-link is-active">Library</a>
 							</nav>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="panel-header"><span class="panel-title">Form elements</span></div>
+						<div class="panel-body">
+							<label class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-palette"></i></div>
+								<latte-colorpicker value="#ABCDEF"></latte-colorpicker>
+							</label>
+							<label class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-calendar"></i></div>
+								<latte-datepicker></latte-datepicker>
+							</label>
+							<label class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-clock"></i></div>
+								<latte-timepicker></latte-timepicker>
+							</label>
+							<label class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-calendar-clock"></i></div>
+								<latte-datetimepicker></latte-datetimepicker>
+							</label>
+						</div>
+						<div class="panel-body">
+							<label class="form-group">
+								<input type="text" placeholder="Type your name..." class="form-control"/>
+							</label>
+							<label class="form-group">
+								<input type="text" placeholder="Type your name..." class="form-control" disabled/>
+							</label>
+							<label class="form-group">
+								<select class="form-control">
+									<option value="1">This is an option</option>
+								</select>
+							</label>
+							<label class="form-group">
+								<select class="form-control" disabled>
+									<option value="1">This is an option</option>
+								</select>
+							</label>
+						</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
+							</div>
+							<div class="form-group">
+								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
+								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
+								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
+								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
+								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
+								<input type="text" placeholder="Search for tags..." class="form-control"/>
+							</div>
+						</div>
+						<div class="panel-body">
+							<label class="form-group input-group">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</label>
+							<label class="form-group input-group form-control-error">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</label>
+							<label class="form-group input-group form-control-info">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</label>
+							<label class="form-group input-group form-control-success">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</label>
+							<label class="form-group input-group form-control-warning">
+								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
+								<input type="text" placeholder="Entry code..." class="form-control"/>
+							</label>
+						</div>
+						<div class="panel-body">
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
+							</div>
+							<div class="form-group input-group">
+								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
+								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
+								<button class="btn btn-contained btn-primary"><span>Save</span></button>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
+								<div class="input-group-addon"><i class="mdi mdi-check-circle"></i></div>
+							</div>
+							<div class="form-group input-group">
+								<div class="input-group-addon">https://example.com/profile/</div>
+								<input type="text" placeholder="Choose an username..." class="form-control"/>
+							</div>
 						</div>
 					</div>
 
@@ -132,98 +238,6 @@
 
 								</div>
 
-							</div>
-						</div>
-					</div>
-
-					<div class="panel">
-						<div class="panel-header"><span class="panel-title">Form elements</span></div>
-						<div class="panel-body">
-							<div class="form-group">
-								<input type="text" placeholder="Type your name..." class="form-control"/>
-							</div>
-							<div class="form-group">
-								<input type="text" placeholder="Type your name..." class="form-control" disabled/>
-							</div>
-							<div class="form-group">
-								<select class="form-control">
-									<option value="1">This is an option</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<select class="form-control" disabled>
-									<option value="1">This is an option</option>
-								</select>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
-							</div>
-							<div class="form-group">
-								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
-							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
-								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
-							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
-								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
-								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
-								<input type="text" placeholder="Search for tags..." class="form-control"/>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group input-group">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
-								<input type="text" placeholder="Entry code..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-error">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
-								<input type="text" placeholder="Entry code..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-info">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
-								<input type="text" placeholder="Entry code..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-success">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
-								<input type="text" placeholder="Entry code..." class="form-control"/>
-							</div>
-							<div class="form-group input-group form-control-warning">
-								<div class="input-group-addon"><input type="checkbox" class="checkbox"/></div>
-								<input type="text" placeholder="Entry code..." class="form-control"/>
-							</div>
-						</div>
-						<div class="panel-body">
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
-								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-							</div>
-							<div class="form-group input-group">
-								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
-							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
-								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<button class="btn btn-contained btn-primary"><span>Save</span></button>
-							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
-								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><i class="mdi mdi-check-circle"></i></div>
-							</div>
-							<div class="form-group input-group">
-								<div class="input-group-addon">https://example.com/profile/</div>
-								<input type="text" placeholder="Choose an username..." class="form-control"/>
 							</div>
 						</div>
 					</div>

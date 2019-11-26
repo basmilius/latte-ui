@@ -11,9 +11,9 @@
 
 	<div class="input-group">
 
-		<input readonly ref="input" :id="id" :name="name" :placeholder="placeholder" :type="type" class="form-control" :value="inputValue" @click.prevent="open"/>
+		<input readonly ref="control" :id="id" :name="name" :placeholder="placeholder" :type="type" class="form-control" :value="inputValue" @click.prevent="open"/>
 
-		<component :is="componentType" class="datetimemount" :class="type" :associate-with="$refs.input" :name="uniqueId" ref="popup" :responsive="false" persistent>
+		<component :is="componentType" class="datetimemount" :class="type" :associate-with="$refs.control" :name="uniqueId" ref="popup" :responsive="false" persistent>
 			<slot v-bind="{current, setCurrent, setNow, isOverlay, cancel, close, open, select}"></slot>
 		</component>
 
@@ -36,6 +36,8 @@
 			type: {required: true, type: String},
 			value: {default: () => new Date(), type: Date}
 		},
+
+		refs: ["control"],
 
 		data()
 		{
