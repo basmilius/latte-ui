@@ -189,13 +189,38 @@ export function smartColor(data, oldHue, initialAlpha)
 	let hsv;
 
 	if (allNumber(data, ["h", "s", "v"]))
+	{
 		hsv = data;
+	}
 	else if (allNumber(data, ["h", "s", "l"]))
-		hsv = {h: data.h / 360, s: data.s / 100, v: data.l / 100};
+	{
+		hsv = rgbToHSV(hslToRGB(data));
+	}
 	else if (allNumber(data, ["r", "g", "b"]))
+	{
 		hsv = rgbToHSV(data);
+	}
 	else
-		hsv = rgbToHSV(hexToRGB(data));
+	{
+		if (data.substring(0, 3) === "rgb")
+		{
+			const [r, g, b, a] = data.match(/[\d.]+/g);
+
+			hsv = rgbToHSV({r, g, b});
+			initialAlpha = parseFloat(a);
+		}
+		else if (data.substring(0, 3) === "hsl")
+		{
+			const [h, s, l, a] = data.match(/[\d.]+/g);
+
+			hsv = rgbToHSV(hslToRGB({h, s, l}));
+			initialAlpha = parseInt(a) / 100;
+		}
+		else
+		{
+			hsv = rgbToHSV(hexToRGB(data));
+		}
+	}
 
 	if (hsv.s === 0)
 		hsv.h = hsv.h || oldHue || 0;
