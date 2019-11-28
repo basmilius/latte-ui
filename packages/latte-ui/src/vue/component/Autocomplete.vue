@@ -59,7 +59,7 @@
 	import { handleError } from "../../js/core";
 	import { terminateEvent } from "../../js/util/dom";
 
-	import Icon from "./base/Icon.vue";
+	import Icon from "./Icon.vue";
 
 	function areArraysEqual(a, b)
 	{

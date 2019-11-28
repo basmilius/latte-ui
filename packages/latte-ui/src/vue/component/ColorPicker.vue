@@ -31,10 +31,10 @@
 
 	import { id } from "../../js/core/api";
 	import { on } from "../../js/core/action";
+	import { oneOf } from "../../js/helper/array";
 	import { colorToString, smartColor } from "../../js/util/color";
 
-	import Icon from "./base/Icon";
-	import { oneOf } from "../../js/helper/array";
+	import Icon from "./Icon.vue";
 
 	export default {
 

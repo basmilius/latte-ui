@@ -23,6 +23,7 @@ export { default as EmojiPicker } from "./EmojiPicker.vue";
 export { default as Expandable } from "./Expandable.vue";
 export { default as Grid } from "./Grid.vue";
 export { default as GridItem } from "./GridItem.vue";
+export { default as Icon } from "./Icon.vue";
 export { default as Initials } from "./Initials.vue";
 export { default as Moment } from "./Moment.vue";
 export { default as Overlay } from "./Overlay.vue";

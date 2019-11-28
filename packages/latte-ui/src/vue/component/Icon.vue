@@ -1,10 +1,10 @@
 <script>
 
-	import { icon } from "../../../js/core";
+	import { icon } from "../../js/core";
 
 	export default {
 
-		name: "Icon",
+		name: "latte-icon",
 
 		props: {
 			name: {required: true, type: String},

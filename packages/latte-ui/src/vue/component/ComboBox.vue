@@ -32,7 +32,7 @@
 
 	import { raf, terminateEvent } from "../../js/util/dom";
 
-	import Icon from "./base/Icon.vue";
+	import Icon from "./Icon.vue";
 
 	export default {
 
