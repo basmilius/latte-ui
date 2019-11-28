@@ -45,14 +45,32 @@
 	}
 }
 
+.m-panel-gutter,
+.my-panel-gutter,
 .mt-panel-gutter
 {
 	margin-top: var(--panelGutter);
 }
 
+.m-panel-gutter,
+.my-panel-gutter,
 .mb-panel-gutter
 {
 	margin-bottom: var(--panelGutter);
+}
+
+.m-panel-gutter,
+.mx-panel-gutter,
+.ml-panel-gutter
+{
+	margin-left: var(--panelGutter);
+}
+
+.m-panel-gutter,
+.mx-panel-gutter,
+.mr-panel-gutter
+{
+	margin-right: var(--panelGutter);
 }
 
 a.panel
