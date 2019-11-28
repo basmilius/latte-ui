@@ -1,0 +1,24 @@
+// Import LatteUI, ommit the next line if you're running in a browser.
+import LatteUI from "@bybas/latte-ui";
+
+// Register LatteUI with Vue.
+Vue.use(LatteUI, {
+	emojiBaseUrl: "https://g.s3.bmcdn.nl/assets/joypixels/v5",
+	emojiEnabled: false,
+	emojiPath: "/png/64/@0.png",
+	i18n: {},
+	iconFactory: iconFactory,
+	iconSelector: ".mdi",
+	locale: navigator.language,
+	root: undefined,
+	tickInterval: 200
+});
+
+// Import the CSS. You can also do this in your own scss file
+// to override some of the scss variables.
+import "@bybas/latte-ui/src/scss/app.scss";
+
+// Create your Vue instance.
+new Vue({
+	el: "#app"
+});
