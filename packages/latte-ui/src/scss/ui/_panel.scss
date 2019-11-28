@@ -10,8 +10,8 @@
 :root
 {
 	--panelBackground: 255, 255, 255;
-	--panelElevation: var(--elevation3);
-	--panelElevationHover: var(--elevation9);
+	--panelElevation: var(--elevation3), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
+	--panelElevationHover: var(--elevation9), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
 	--panelGutter: 30px;
 }
 

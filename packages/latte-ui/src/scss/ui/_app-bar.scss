@@ -12,7 +12,7 @@
 	--appBarAlpha: 1;
 	--appBarBackground: var(--colorLight);
 	--appBarForeground: var(--colorLightForeground);
-	--appBarElevation: var(--elevation2);
+	--appBarElevation: var(--elevation2), inset 0 0 0 1px #{latte-rgba(var(--light), .05)};
 	--appBarHeight: 60px;
 }
 

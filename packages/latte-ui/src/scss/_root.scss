@@ -7,7 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-:root
+%light
 {
 	--easeAccelerationCurve: cubic-bezier(0.4, 0.0, 1, 1);
 	--easeDecelerationCurve: cubic-bezier(0.0, 0.0, 0.2, 1);
@@ -45,9 +45,61 @@
 
 	--mainBackground: 246, 247, 250;
 	--mainForeground: 25, 26, 28;
+}
+
+%dark
+{
+	--mainBackground: 25, 26, 28;
+	--mainForeground: 200, 200, 200;
+
+	--colorPrimaryForeground: var(--dark);
+	--colorErrorForeground: var(--dark);
+	--colorInfoForeground: var(--dark);
+	--colorSuccessForeground: var(--dark);
+	--colorWarningForeground: var(--dark);
+
+	--elevationColor: 0, 0, 0;
+	--outlineColor: 49, 50, 56;
+
+	--appBarBackground: 32, 33, 36;
+	--appBarForeground: 255, 255, 255;
+
+	--overlayBackground: 0, 0, 0;
+	--panelBackground: 32, 33, 36;
+	--popupBackground: 32, 33, 36;
+
+	--tooltipBackground: rgba(0, 0, 0, .9);
+	--tooltipForeground: rgb(255, 255, 255);
+
+	--navSectionForeground: rgba(255, 255, 255, .2);
+
+	--btnBackground: var(--light);
+	--btnForeground: var(--dark);
+}
+
+:root
+{
+	@extend %light;
 
 	@for $level from 0 through 24
 	{
 		--elevation#{$level}: #{if($level == 0, none, elevation-generate($level))};
 	}
+}
+
+:root[data-theme="dark"]
+{
+	@extend %dark;
+}
+
+:root[data-theme="high-contrast"]
+{
+	--outlineColor: 222, 228, 236;
+}
+
+:root[data-theme="dark high-contrast"]
+{
+	@extend %dark;
+
+	--outlineColor: 73, 74, 83;
 }

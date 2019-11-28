@@ -9,7 +9,7 @@
 
 :root
 {
-	--snackbarElevation: var(--elevation8);
+	--snackbarElevation: var(--elevation8), inset 0 0 0 1px #{latte-rgba(var(--light), .05)};
 }
 
 .snackbar
