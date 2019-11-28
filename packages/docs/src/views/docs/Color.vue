@@ -28,7 +28,7 @@
 							</p>
 						</div>
 						<div class="notice notice-info">
-							<i class="mdi mdi-information-outline"></i>
+							<latte-icon>information-outline</latte-icon>
 							<p>
 								Note that colors are defined as individual rgb values. We've chosen this so that we can adjust alpha
 								channels without defining milions of variables for everything.<br/>

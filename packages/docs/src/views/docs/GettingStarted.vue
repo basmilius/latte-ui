@@ -33,7 +33,10 @@ npm i @bybas/latte-ui
 					<div class="panel">
 						<div class="panel-header">
 							<h2 class="panel-title mb-0">Install using CDN</h2>
-							<a href="/download/starter-template.html" download="starter-template.html" class="btn btn-outline btn-primary ml-auto d-none d-lg-flex"><i class="mdi mdi-download"></i><span>Starter template</span></a>
+							<a href="/download/starter-template.html" download="starter-template.html" class="btn btn-outline btn-primary ml-auto d-none d-lg-flex">
+								<latte-icon>download</latte-icon>
+								<span>Starter template</span>
+							</a>
 						</div>
 						<div class="panel-body">
 							<p>

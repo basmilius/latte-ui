@@ -1,6 +1,6 @@
 <latte-expandable class="nav nav-list p-0">
 	<template #header="{isOpen}">
-		<button class="nav-link"><span>Toggle</span><i class="mdi" :class="{'mdi-chevron-down': !isOpen, 'mdi-chevron-up': isOpen}"></i></button>
+		<button class="nav-link"><span>Toggle</span><latte-icon :name="isOpen ? 'chevron-up' : 'chevron-down'"></latte-icon></button>
 	</template>
 
 	<div class="p-3 bg-primary text-white">

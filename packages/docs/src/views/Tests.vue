@@ -39,20 +39,20 @@
 						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<label class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-palette" aria-hidden="true"></i></div>
+								<div class="input-group-addon"><latte-icon palettearia-hidden="true"></latte-icon></div>
 								<latte-colorpicker value="#ABCDEF"></latte-colorpicker>
 								<span class="sr-only">Select a color</span>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-calendar"></i></div>
+								<div class="input-group-addon"><latte-icon>calendar</latte-icon></div>
 								<latte-datepicker></latte-datepicker>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-clock"></i></div>
+								<div class="input-group-addon"><latte-icon>clock</latte-icon></div>
 								<latte-timepicker></latte-timepicker>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-calendar-clock"></i></div>
+								<div class="input-group-addon"><latte-icon>calendar-clock</latte-icon></div>
 								<latte-datetimepicker></latte-datetimepicker>
 							</label>
 						</div>
@@ -82,19 +82,19 @@
 								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
+								<div class="input-group-addon"><latte-icon>tag-heart</latte-icon></div>
 								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag-heart"></i></div>
+								<div class="input-group-addon"><latte-icon>tag-heart</latte-icon></div>
 								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
 							</div>
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-tag"></i></div>
-								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
-								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><i class="mdi mdi-close"></i></button></span>
+								<div class="input-group-addon"><latte-icon>tag</latte-icon></div>
+								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><latte-icon>close</latte-icon></button></span>
+								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><latte-icon>close</latte-icon></button></span>
 								<input type="text" placeholder="Search for tags..." class="form-control"/>
 							</div>
 						</div>
@@ -122,22 +122,22 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
 							</div>
 							<div class="form-group input-group">
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
 								<button class="btn btn-contained btn-primary"><span>Save</span></button>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-email"></i></div>
+								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><i class="mdi mdi-check-circle"></i></div>
+								<div class="input-group-addon"><latte-icon>check-circle</latte-icon></div>
 							</div>
 							<div class="form-group input-group">
 								<div class="input-group-addon">https://example.com/profile/</div>
@@ -227,13 +227,13 @@
 												<span class="panel-title">Silhouette</span>
 												<span class="panel-sub-title">Silhouettes are amazing :-)</span>
 											</div>
-											<button class="btn btn-icon btn-text"><i class="mdi mdi-dots-vertical"></i></button>
+											<button class="btn btn-icon btn-text"><latte-icon>dots-vertical</latte-icon></button>
 										</div>
 										<div class="panel-body">
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid at dolores eius eligendi enim eveniet in molestiae neque nisi nostrum numquam, officiis omnis pariatur placeat, quasi qui similique vitae?</p>
 										</div>
 										<div class="panel-footer justify-content-end">
-											<button class="btn btn-contained btn-primary"><i class="mdi mdi-check-circle"></i><span>Save</span></button>
+											<button class="btn btn-contained btn-primary"><latte-icon>check-circle</latte-icon><span>Save</span></button>
 										</div>
 									</div>
 

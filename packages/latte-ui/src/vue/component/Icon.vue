@@ -7,13 +7,18 @@
 		name: "latte-icon",
 
 		props: {
-			name: {required: true, type: String},
+			name: {type: String},
 			options: {default: () => ({}), type: Object}
 		},
 
 		render(h)
 		{
-			return icon(this.name, h, this.options);
+			let iconName = this.name;
+
+			if (this.$slots.default && this.$slots.default[0])
+				iconName = this.$slots.default[0].text;
+
+			return icon(iconName, h, this.options);
 		}
 
 	}

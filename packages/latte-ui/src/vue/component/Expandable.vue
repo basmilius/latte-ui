@@ -29,10 +29,10 @@
 
 <script>
 
-	import Icon from "./Icon.vue";
-
 	import { dispatch, on } from "../../js/core/action";
 	import { raf } from "../../js/util/dom";
+
+	import Icon from "./Icon.vue";
 
 	export default {
 

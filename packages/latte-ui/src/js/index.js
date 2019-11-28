@@ -25,10 +25,13 @@ import { deepMerge } from "./util/object";
 
 function iconFactory(icon, h = undefined, hOptions = {})
 {
-	if (h)
-		return h("i", deepMerge({}, {class: ["mdi", `mdi-${icon}`], attrs: {"aria-hidden": "true"}}, hOptions));
+	if (icon !== "branding")
+		icon = "mdi-" + icon;
 
-	return `<i class="mdi mdi-${icon}"></i>`;
+	if (h)
+		return h("i", deepMerge({}, {class: ["mdi", icon], attrs: {"aria-hidden": "true"}}, hOptions));
+
+	return `<i class="mdi ${icon}"></i>`;
 }
 
 function normalizeOptions(options)

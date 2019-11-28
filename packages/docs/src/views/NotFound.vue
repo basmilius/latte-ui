@@ -11,7 +11,7 @@
 				<p><strong>OOPS!</strong> The requested page could not be found! Did you get the URL right?</p>
 			</div>
 			<div class="panel-body border-top-0 pt-0">
-				<router-link as="router-link" tag="latte-ripple" to="/" class="btn btn-outline btn-pill btn-primary"><i class="mdi mdi-arrow-left-bold-circle"></i><span>Go Home</span></router-link>
+				<router-link as="router-link" tag="latte-ripple" to="/" class="btn btn-outline btn-pill btn-primary"><latte-icon>arrow-left-bold-circle</latte-icon><span>Go Home</span></router-link>
 			</div>
 		</div>
 

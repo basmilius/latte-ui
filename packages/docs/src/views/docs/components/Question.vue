@@ -24,7 +24,7 @@
 					<div class="panel">
 						<div class="panel-header"><h2 class="panel-title">JavaScript API</h2></div>
 						<div class="panel-body">
-							<button class="btn btn-contained btn-primary" @click="findMe"><i class="mdi mdi-map-marker"></i><span>Find me</span></button>
+							<button class="btn btn-contained btn-primary" @click="findMe"><latte-icon>map-marker</latte-icon><span>Find me</span></button>
 						</div>
 						<div class="panel-body">
 							<CodeSnippet lang="js" url="/snippets/components/question/api.snippet"></CodeSnippet>
