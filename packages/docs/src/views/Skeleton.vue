@@ -91,7 +91,7 @@
 							</div>
 							<div class="col-12 col-lg mt-5 mt-lg-0 footer-nav text-center text-lg-left">
 
-								<strong>Packages</strong>
+								<strong>Packages (Coming soon)</strong>
 								<nav class="nav nav-links mt-3">
 									<router-link to="/packages/blocks" class="nav-link">Blocks</router-link>
 									<router-link to="/packages/layouts" class="nav-link">Layouts</router-link>

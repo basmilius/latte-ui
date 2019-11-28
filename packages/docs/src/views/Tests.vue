@@ -39,9 +39,8 @@
 						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<label class="form-group input-group">
-								<div class="input-group-addon"><latte-icon palettearia-hidden="true"></latte-icon></div>
+								<div class="input-group-addon"><latte-icon>palette</latte-icon></div>
 								<latte-colorpicker value="#ABCDEF"></latte-colorpicker>
-								<span class="sr-only">Select a color</span>
 							</label>
 							<label class="form-group input-group">
 								<div class="input-group-addon"><latte-icon>calendar</latte-icon></div>

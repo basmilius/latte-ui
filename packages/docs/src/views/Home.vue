@@ -5,10 +5,10 @@
 		<div id="home-hero">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-12 col-lg-6">
+					<div class="col-12 col-lg-7">
 
 						<div class="page-header-content text-center" id="logo-container">
-							<img src="../assets/logo.svg" alt="Latte UI" id="hero-image"/>
+							<img src="../assets/example.png" alt="Something created with Latte UI" id="hero-image"/>
 						</div>
 
 					</div>
@@ -18,8 +18,14 @@
 							<h1>Latte UI</h1>
 							<p class="lead">An easy to use UI library build for Vue.js.</p>
 							<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
-								<latte-ripple as="button" class="btn btn-contained btn-outline btn-lg" @click="$router.push('/docs')"><latte-icon>book-open-variant</latte-icon><span>Documentation</span></latte-ripple>
-								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-lg"><latte-icon>github-circle</latte-icon><span>GitHub</span></latte-ripple>
+								<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg" @click="$router.push('/docs')">
+									<latte-icon>book-open-variant</latte-icon>
+									<span>Documentation</span>
+								</latte-ripple>
+								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-lg">
+									<latte-icon>github-circle</latte-icon>
+									<span>GitHub</span>
+								</latte-ripple>
 							</div>
 							<small class="text-muted">Version {{ latteVersion }}</small>
 						</div>
@@ -35,13 +41,13 @@
 				<h4>Install</h4>
 				<div class="flex-grow-1 mb-3">
 					<p>
-						Use Latte within your project by including the source through NPM. Everything except the
+						Use Latte UI within your project by including the source through NPM. Everything except the
 						documentation is included.
 					</p>
 					<p><strong>Yarn</strong></p>
-					<CodeSnippet class="mb-3" lang="shell" small>yarn add @bybas/latte-ui</CodeSnippet>
+					<CodeSnippet class="mb-3" lang="shell" small url="/snippets/home/yarn.txt"/>
 					<p><strong>NPM</strong></p>
-					<CodeSnippet class="mb-3" lang="shell" small>npm i @bybas/latte-ui</CodeSnippet>
+					<CodeSnippet class="mb-3" lang="shell" small url="/snippets/home/npm.txt"/>
 				</div>
 				<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg" @click="$router.push('/docs')"><span>Install guide</span></latte-ripple>
 
@@ -51,18 +57,13 @@
 				<h4>CDN & Download</h4>
 				<div class="position-relative w-100 flex-grow-1 mb-3">
 					<p>
-						Start quickly by including Latte from a CDN in your template. Just include the following
+						Start quickly by including Latte UI from a CDN in your template. Just include the following
 						links and you're ready!
 					</p>
 					<p><strong>CSS only</strong></p>
-					<CodeSnippet class="mb-3" lang="html" small>
-&lt;link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/&gt;
-					</CodeSnippet>
+					<CodeSnippet class="mb-3" lang="html" small url="/snippets/home/cdn-css.txt"/>
 					<p><strong>JS & Vue</strong></p>
-					<CodeSnippet class="mb-3" lang="html" small>
-&lt;script href="https://unpkg.com/vue@2.6.10/dist/vue.min.js" type="application/javascript"&gt;&lt;/script&gt;
-&lt;script href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.js" type="application/javascript"&gt;&lt;/script&gt;
-					</CodeSnippet>
+					<CodeSnippet class="mb-3" lang="html" small url="/snippets/home/cdn-full.txt"/>
 					<p>Rather include the Latte compiled files in your source? Just download it!</p>
 				</div>
 				<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg" @click="notAvailable"><span>Download</span></latte-ripple>
@@ -73,10 +74,10 @@
 				<h4>Gallery</h4>
 				<div class="flex-grow-1 mb-3">
 					<p>
-						Curious to see what Latte looks like in real applications? View the gallery for inspiration
+						Curious to see what Latte UI looks like in real applications? View the gallery for inspiration
 						and submit your own!
 					</p>
-					<img src="https://via.placeholder.com/540x300" alt="Placeholder" class="w-100" />
+					<img src="https://via.placeholder.com/540x300" alt="Placeholder" class="w-100"/>
 				</div>
 				<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg" @click="notAvailable"><span>Explore</span></latte-ripple>
 
@@ -145,7 +146,8 @@
 
 		img#hero-image
 		{
-			width: 80%;
+			width: 90%;
+			box-shadow: var(--elevation24);
 		}
 	}
 

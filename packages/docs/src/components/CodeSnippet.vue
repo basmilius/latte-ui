@@ -9,6 +9,7 @@
 		name: "CodeSnippet",
 
 		props: {
+			codeString: {default: null, type: String},
 			lang: {default: "js", required: true, type: String},
 			small: {default: false, type: Boolean},
 			url: {default: null, type: String | null}
@@ -17,7 +18,7 @@
 		data()
 		{
 			return {
-				code: null
+				code: this.codeString
 			};
 		},
 
@@ -28,7 +29,7 @@
 
 		render(ce)
 		{
-			const code = hljs.highlight(this.lang, (this.url !== null ? (this.code !== null ? this.code : "") : this.$slots.default[0].text).trim()).value;
+			const code = hljs.highlight(this.lang, (this.url !== null ? (this.code !== null ? this.code : "") : this.code || this.$slots.default[0].text).trim()).value;
 			const cmp = Vue.extend({
 				template: `<div class="code-snippet ${this.small ? "small" : ""}"><pre>${code}</pre></div>`
 			});
@@ -40,6 +41,9 @@
 
 			loadSnippet()
 			{
+				if (this.url === null)
+					return;
+
 				Latte.api.request(this.url)
 					.then(r => r.text())
 					.then(r => this.onSnippetLoaded(r))

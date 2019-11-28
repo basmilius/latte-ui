@@ -23,7 +23,7 @@
 						<div class="panel-header"><h2 class="panel-title m-0">Colors</h2></div>
 						<div class="panel-body">
 							<p>
-								Latte-ui uses a minimal set of colors that you can override to whatever you want. Override them in
+								Latte UI uses a minimal set of colors that you can override to whatever you want. Override them in
 								the <code>:root</code> selector in CSS.
 							</p>
 						</div>

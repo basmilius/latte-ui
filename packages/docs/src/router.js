@@ -183,16 +183,6 @@ const router = new Router({
 			]
 		},
 		{
-			path: "/examples",
-			component: () => import("./components/NestedRouterView.vue"),
-			children: [
-				{
-					path: "scaffolding",
-					component: () => import("./views/examples/scaffolding/App.vue")
-				}
-			]
-		},
-		{
 			path: "*",
 			component: () => import("./views/NotFound.vue")
 		}
