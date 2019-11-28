@@ -9,7 +9,7 @@ export function classColorSelect(h, title, get, set)
 	return row(h, false, [
 		h("h6", translate(title)),
 		h("div", {class: "be-color-grid"}, classColorPalette.map(color => h("button", {
-			attrs: {"data-tooltip": translate(color.name)},
+			attrs: {"aria-label": translate(color.name), "data-tooltip": translate(color.name)},
 			class: `color ${color.id === value ? "is-active" : ""}`,
 			style: {color: color.value},
 			on: {
@@ -29,7 +29,7 @@ export function simpleColorSelect(h, title, get, set)
 	return row(h, false, [
 		h("h6", translate(title)),
 		h("div", {class: "be-color-grid"}, defaultColorPalette.map(color => h("button", {
-			attrs: {"data-tooltip": translate(color.name)},
+			attrs: {"aria-label": translate(color.name), "data-tooltip": translate(color.name)},
 			class: `color ${color.value === value ? "is-active" : ""}`,
 			style: {color: color.value},
 			on: {

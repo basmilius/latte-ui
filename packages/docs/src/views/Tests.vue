@@ -39,8 +39,9 @@
 						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<label class="form-group input-group">
-								<div class="input-group-addon"><i class="mdi mdi-palette"></i></div>
+								<div class="input-group-addon"><i class="mdi mdi-palette" aria-hidden="true"></i></div>
 								<latte-colorpicker value="#ABCDEF"></latte-colorpicker>
+								<span class="sr-only">Select a color</span>
 							</label>
 							<label class="form-group input-group">
 								<div class="input-group-addon"><i class="mdi mdi-calendar"></i></div>

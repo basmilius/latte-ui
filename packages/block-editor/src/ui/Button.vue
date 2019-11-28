@@ -1,6 +1,6 @@
 <template>
 
-	<button :class="buttonClasses" :disabled="disabled" @click="onClick">
+	<button :class="buttonClasses" :disabled="disabled" @click="onClick" :aria-label="(ariaLabel || ariaTooltip) | beTranslate" :data-tooltip="ariaTooltip | beTranslate">
 		<Icon v-if="iconBefore" :name="iconBefore"/>
 		<span v-if="label">{{ label | beTranslate }}</span>
 		<Icon v-if="iconAfter" :name="iconAfter"/>
@@ -20,6 +20,8 @@
 
 		props: {
 			disabled: {default: false, type: Boolean},
+			ariaLabel: {default: null, type: String | null},
+			ariaTooltip: {default: null, type: String | null},
 			classes: {default: () => [], type: Array},
 			color: {default: null, type: String | null},
 			iconAfter: {default: null, type: String | null},

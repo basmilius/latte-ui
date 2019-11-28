@@ -14,9 +14,9 @@ export function advancedOptions(h, children)
 export function blockActions(h, instance)
 {
 	return fragment(h, [
-		button(h, {disabled: instance.isFirst, iconBefore: "arrow-up", type: "text"}, () => instance.rearrange(-1)),
-		button(h, {disabled: instance.isLast, iconBefore: "arrow-down", type: "text"}, () => instance.rearrange(1)),
+		button(h, {ariaLabel: "Move up", disabled: instance.isFirst, iconBefore: "arrow-up", type: "text"}, () => instance.rearrange(-1)),
+		button(h, {ariaLabel: "Move down", disabled: instance.isLast, iconBefore: "arrow-down", type: "text"}, () => instance.rearrange(1)),
 		divider(h, true),
-		button(h, {iconBefore: "delete", type: "text"}, () => instance.remove())
+		button(h, {ariaLabel: "Remove block", iconBefore: "delete", type: "text"}, () => instance.remove())
 	]);
 }

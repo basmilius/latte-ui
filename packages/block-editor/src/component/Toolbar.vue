@@ -4,10 +4,10 @@
 		<div class="app-bar-row">
 
 			<slot name="start-before"></slot>
-			<Button type="text" color="primary" icon-before="plus-circle" @click="launchInserter"/>
+			<Button type="text" color="primary" icon-before="plus-circle" aria-tooltip="Insert a new block." @click="launchInserter"/>
 			<div class="divider divider-vertical"></div>
-			<Button type="text" icon-before="undo-variant" disabled/>
-			<Button type="text" icon-before="redo-variant" disabled/>
+			<Button type="text" icon-before="undo-variant" aria-tooltip="Undo" disabled/>
+			<Button type="text" icon-before="redo-variant" aria-tooltip="Redo" disabled/>
 			<slot name="start-after"></slot>
 
 			<div class="mx-auto">
@@ -15,10 +15,10 @@
 			</div>
 
 			<slot name="end-before"></slot>
-			<Button type="text" icon-before="eye" v-if="editor.view === 'code'" @click="editor.view = 'visual'"/>
-			<Button type="text" icon-before="code-tags" v-if="editor.view === 'visual'" @click="editor.view = 'code'"/>
+			<Button type="text" icon-before="eye" aria-tooltip="View visual" v-if="editor.view === 'code'" @click="editor.view = 'visual'"/>
+			<Button type="text" icon-before="code-tags" aria-tooltip="View code" v-if="editor.view === 'visual'" @click="editor.view = 'code'"/>
 			<div class="divider divider-vertical"></div>
-			<Button type="text" icon-before="dots-vertical"/>
+			<Button type="text" icon-before="dots-vertical" aria-tooltip="More options..."/>
 			<slot name="end-after"></slot>
 
 		</div>

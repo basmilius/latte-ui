@@ -84,8 +84,8 @@
 								<strong>Develop</strong>
 								<nav class="nav nav-links mt-3">
 									<router-link to="/docs" class="nav-link">Documentation</router-link>
-									<a href="//github.com/basmilius/latte-ui/issues" target="_blank" class="nav-link">Report a bug</a>
-									<a href="//github.com/basmilius/latte-ui/issues" target="_blank" class="nav-link">Request a feature</a>
+									<a href="//github.com/basmilius/latte-ui/issues#bug" target="_blank" class="nav-link">Report a bug</a>
+									<a href="//github.com/basmilius/latte-ui/issues#feature" target="_blank" class="nav-link">Request a feature</a>
 								</nav>
 
 							</div>

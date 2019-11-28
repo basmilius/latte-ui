@@ -10,6 +10,14 @@
 
 		<latte-tab label="Properties" v-if="properties">
 			<table class="table">
+				<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+				</thead>
+				<tbody>
 				<template v-for="property of properties">
 
 					<tr>
@@ -36,6 +44,7 @@
 					</tr>
 
 				</template>
+				</tbody>
 			</table>
 		</latte-tab>
 

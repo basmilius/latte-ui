@@ -4,7 +4,7 @@ import Vue from "vue";
 
 export function initializeInternationalization()
 {
-	Vue.filter("beTranslate", (text, ...params) => translate(text, params));
+	Vue.filter("beTranslate", (text, ...params) => text ? translate(text, params) : text);
 }
 
 export function translate(text, ...params)

@@ -26,7 +26,7 @@ import { deepMerge } from "./util/object";
 function iconFactory(icon, h = undefined, hOptions = {})
 {
 	if (h)
-		return h("i", deepMerge({}, {class: ["mdi", `mdi-${icon}`]}, hOptions));
+		return h("i", deepMerge({}, {class: ["mdi", `mdi-${icon}`], attrs: {"aria-hidden": "true"}}, hOptions));
 
 	return `<i class="mdi mdi-${icon}"></i>`;
 }

@@ -10,7 +10,12 @@
 
 		render(h)
 		{
-			return h("i", {class: ["mdi", `mdi-${this.name}`]});
+			return h("i", {
+				class: ["mdi", `mdi-${this.name}`],
+				attrs: {
+					"aria-hidden": "true"
+				}
+			});
 		}
 
 	}
