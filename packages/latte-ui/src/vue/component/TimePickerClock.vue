@@ -337,6 +337,16 @@
 				}
 			},
 
+			currentHour()
+			{
+				navigator.vibrate(1);
+			},
+
+			currentMinute()
+			{
+				navigator.vibrate(1);
+			},
+
 			value()
 			{
 				this.current = new Date(this.value.getTime());
