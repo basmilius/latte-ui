@@ -110,13 +110,13 @@
 				});
 			},
 
-			getSuggestions(query, offset, limit)
+			getSuggestions(query, offset, limit, values)
 			{
 				return new Promise(resolve =>
 				{
 					reset();
 
-					request(`${url}?q=${encodeURI(query)}&offset=${offset}&limit=${limit}`, {cache: "no-cache", signal: abortController.signal})
+					request(`${url}?q=${encodeURI(query)}&selected=${values.map(v => v.value).join(",")}&offset=${offset}&limit=${limit}`, {cache: "no-cache", signal: abortController.signal})
 						.then(r => r.json())
 						.then(r =>
 						{
@@ -302,7 +302,7 @@
 					return;
 				}
 
-				this.dsi.getSuggestions(this.searchTerm, this.offset, this.limit)
+				this.dsi.getSuggestions(this.searchTerm, this.offset, this.limit, this.values)
 					.then(r => this.onReceiveSuggestions(r))
 					.catch(err => handleError(err));
 			},

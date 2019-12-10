@@ -11,11 +11,9 @@
 				<div class="col-12 col-lg-9 mb-panel-gutter">
 
 					<CodeExample title="Standalone" url="/snippets/components/ripple/standalone.html"></CodeExample>
-
 					<CodeExample title="Color" url="/snippets/components/ripple/color.html"></CodeExample>
-
+					<CodeExample title="Hover" url="/snippets/components/ripple/hover.html"></CodeExample>
 					<CodeExample title="Center" url="/snippets/components/ripple/center.html"></CodeExample>
-
 					<CodeExample title="Clip" url="/snippets/components/ripple/clip.html"></CodeExample>
 
 				</div>

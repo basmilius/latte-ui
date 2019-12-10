@@ -148,7 +148,7 @@
 
 				this.onPointerDown(evt, true);
 
-				this.ripples[0].addEventListener("transitionend", () => this.onPointerUp(evt, true));
+				this.ripples[this.ripples.length - 1].addEventListener("transitionend", () => this.onPointerUp(evt, true));
 			},
 
 			onPointerUp(evt, wasHover = false)
