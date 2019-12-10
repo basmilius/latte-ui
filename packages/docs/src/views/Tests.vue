@@ -258,9 +258,10 @@
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid at dolores eius eligendi enim eveniet in molestiae neque nisi nostrum numquam, officiis omnis pariatur placeat, quasi qui similique vitae?</p>
 										</div>
 										<div class="panel-footer justify-content-end">
-											<button class="btn btn-contained btn-primary">
+											<latte-ripple as="button" class="btn btn-contained btn-primary">
 												<latte-icon>check-circle</latte-icon>
-												<span>Save</span></button>
+												<span>Save</span>
+											</latte-ripple>
 										</div>
 									</div>
 
