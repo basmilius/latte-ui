@@ -115,9 +115,11 @@
 {
 	height: 42px;
 	flex: 1 1 0;
-	background: rgba(var(--appBarForeground), .075);
+	background: rgba(var(--appBarForeground), .1);
 	border: 0;
 	color: #{latte-rgb(var(--appBarForeground))};
+	transition: 210ms var(--easeSwiftOut);
+	transition-property: background;
 
 	.input-group-addon,
 	.form-control
@@ -136,9 +138,10 @@
 		margin-left: -15px;
 	}
 
+	&:focus,
 	&:focus-within
 	{
-		background: rgba(var(--appBarForeground), .1);
+		background: rgba(var(--appBarForeground), .2);
 		box-shadow: none;
 	}
 
