@@ -39,19 +39,27 @@
 						<div class="panel-header"><span class="panel-title">Form elements</span></div>
 						<div class="panel-body">
 							<label class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>palette</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>palette</latte-icon>
+								</div>
 								<latte-colorpicker value="#ABCDEF"></latte-colorpicker>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>calendar</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>calendar</latte-icon>
+								</div>
 								<latte-datepicker></latte-datepicker>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>clock</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>clock</latte-icon>
+								</div>
 								<latte-timepicker></latte-timepicker>
 							</label>
 							<label class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>calendar-clock</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>calendar-clock</latte-icon>
+								</div>
 								<latte-datetimepicker></latte-datetimepicker>
 							</label>
 						</div>
@@ -81,17 +89,23 @@
 								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>tag-heart</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>tag-heart</latte-icon>
+								</div>
 								<latte-autocomplete :data-source="autocompleteDataSource" v-model="selected"></latte-autocomplete>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>tag-heart</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>tag-heart</latte-icon>
+								</div>
 								<latte-autocomplete multi-select :data-source="autocompleteDataSource" v-model="selectedMulti"></latte-autocomplete>
 							</div>
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>tag</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>tag</latte-icon>
+								</div>
 								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><latte-icon>close</latte-icon></button></span>
 								<span class="badge badge-primary"><span>Awesome</span><button class="btn"><latte-icon>close</latte-icon></button></span>
 								<input type="text" placeholder="Search for tags..." class="form-control"/>
@@ -121,22 +135,32 @@
 						</div>
 						<div class="panel-body">
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>email</latte-icon>
+								</div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
 							</div>
 							<div class="form-group input-group">
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>email</latte-icon>
+								</div>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>email</latte-icon>
+								</div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
 								<button class="btn btn-contained btn-primary"><span>Save</span></button>
 							</div>
 							<div class="form-group input-group">
-								<div class="input-group-addon"><latte-icon>email</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>email</latte-icon>
+								</div>
 								<input type="text" placeholder="E-mailaddress..." class="form-control"/>
-								<div class="input-group-addon"><latte-icon>check-circle</latte-icon></div>
+								<div class="input-group-addon">
+									<latte-icon>check-circle</latte-icon>
+								</div>
 							</div>
 							<div class="form-group input-group">
 								<div class="input-group-addon">https://example.com/profile/</div>
@@ -226,13 +250,17 @@
 												<span class="panel-title">Silhouette</span>
 												<span class="panel-sub-title">Silhouettes are amazing :-)</span>
 											</div>
-											<button class="btn btn-icon btn-text"><latte-icon>dots-vertical</latte-icon></button>
+											<button class="btn btn-icon btn-text">
+												<latte-icon>dots-vertical</latte-icon>
+											</button>
 										</div>
 										<div class="panel-body">
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid at dolores eius eligendi enim eveniet in molestiae neque nisi nostrum numquam, officiis omnis pariatur placeat, quasi qui similique vitae?</p>
 										</div>
 										<div class="panel-footer justify-content-end">
-											<button class="btn btn-contained btn-primary"><latte-icon>check-circle</latte-icon><span>Save</span></button>
+											<button class="btn btn-contained btn-primary">
+												<latte-icon>check-circle</latte-icon>
+												<span>Save</span></button>
 										</div>
 									</div>
 
@@ -309,9 +337,14 @@
 						return new Promise(resolve => resolve(items.filter(item => ids.indexOf(item.value) > -1)));
 					},
 
-					getSuggestions(query, offset, limit)
+					getSuggestions(query, offset, limit, values)
 					{
-						return new Promise(resolve => resolve(items.filter(item => item.label.indexOf(query) === 0).slice(offset, limit)));
+						return new Promise(resolve => resolve(
+							items
+								.filter(item => values.filter(v => v.value === item.value).length === 0)
+								.filter(item => item.label.indexOf(query) === 0)
+								.slice(offset, limit)
+						));
 					}
 				};
 			}
