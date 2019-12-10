@@ -9,7 +9,8 @@
 
 :root
 {
-	--formOutline: var(--outlineColor);
+	--formAlpha: .3;
+	--formOutline: var(--outlineColorSecondary);
 	--formOutlineForeground: var(--mainForeground);
 }
 
@@ -22,7 +23,7 @@
 	width: 100%;
 	align-items: center;
 	background: transparent;
-	border: 2px solid #{latte-rgba(var(--formOutline), .75)};
+	border: 2px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--mainForeground))};
 	outline: 0;
@@ -44,7 +45,7 @@
 	&[disabled]
 	{
 		cursor: not-allowed;
-		background: #{latte-rgba(var(--formOutline), .25)};
+		background: #{latte-rgba(var(--formOutline), .15)};
 	}
 }
 
@@ -210,6 +211,7 @@ label.col-form-label
 {
 	.form-control-#{to-lower-case($type)}
 	{
+		--formAlpha: .7;
 		--formOutline: var(--color#{$type});
 		--formOutlineForeground: var(--color#{$type}Foreground);
 	}

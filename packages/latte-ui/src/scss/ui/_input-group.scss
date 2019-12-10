@@ -15,7 +15,7 @@
 	align-items: flex-start;
 	align-self: stretch;
 	justify-content: center;
-	background: #{latte-rgba(var(--formOutline), .75)};
+	background: #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	color: #{latte-rgb(var(--formOutlineForeground))};
 	transition: inherit;
 	transition-property: background;
@@ -39,7 +39,7 @@
 {
 	@extend .form-control;
 
-	--r: calc(var(--radius) - 2px);
+	--r: calc(var(--radius) - 3px);
 
 	flex-flow: row wrap;
 	margin: 0;
