@@ -5,29 +5,25 @@
 		<div id="home-hero">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-12 col-lg-7">
-
-						<div class="page-header-content text-center" id="logo-container">
-							<img src="../assets/example.png" alt="Something created with Latte UI" id="hero-image"/>
-						</div>
-
-					</div>
-					<div class="col-12 col-lg-5 mt-3 mt-lg-0 ml-lg-auto">
+					<div class="col-12 col-lg-5">
 
 						<div class="page-header-content tall">
 							<h1>Latte UI</h1>
-							<p class="lead">An easy to use UI library build for Vue.js.</p>
+							<p class="lead">
+								An Open Source project built using Vue.js to create beautiful interfaces with.
+							</p>
 							<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
-								<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg" @click="$router.push('/docs')">
-									<latte-icon>book-open-variant</latte-icon>
-									<span>Documentation</span>
-								</latte-ripple>
-								<latte-ripple as="a" href="//github.com/basmilius/latte-ui" target="_blank" class="btn btn-text btn-lg">
-									<latte-icon>github-circle</latte-icon>
-									<span>GitHub</span>
+								<latte-ripple as="button" class="btn btn-contained  btn-primary btn-lg radius-circle" @click="$router.push('/docs')">
+									<span>Let's start</span>
 								</latte-ripple>
 							</div>
-							<small class="text-muted">Version {{ latteVersion }}</small>
+						</div>
+
+					</div>
+					<div class="col-12 col-lg-6 mt-3 mt-lg-0 ml-lg-auto">
+
+						<div class="page-header-content text-center" id="logo-container">
+							<img src="../assets/example.png" alt="Something created with Latte UI" id="hero-image"/>
 						</div>
 
 					</div>
