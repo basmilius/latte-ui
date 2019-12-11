@@ -1,9 +1,9 @@
 <template>
 
-	<div id="app">
+	<main id="app">
 		<router-view/>
 		<span class="spinner spinner-primary" :class="{'is-hidden': !isLoading}" id="app-spinner"></span>
-	</div>
+	</main>
 
 </template>
 

@@ -7,15 +7,9 @@
 			</button>
 
 			<span class="app-bar-title">Latte UI</span>
+			<div class="mx-auto"></div>
 
-			<nav class="nav nav-tabs px-5 d-none d-lg-flex">
-				<latte-ripple as="router-link" to="/" class="nav-link">Home</latte-ripple>
-				<latte-ripple as="router-link" to="/docs" class="nav-link">Documentation</latte-ripple>
-				<latte-ripple as="router-link" to="/block-editor" class="nav-link">Block editor</latte-ripple>
-				<latte-ripple as="router-link" to="/tests" class="nav-link">Bas' playground</latte-ripple>
-			</nav>
-
-			<div class="d-flex align-items-center ml-auto">
+			<div class="d-flex align-items-center">
 				<span class="badge mx-2">v{{ latteVersion }}</span>
 				<div class="divider divider-vertical"></div>
 				<button class="btn btn-icon btn-text" ref="dotsMenu" aria-label="More..."><latte-icon>dots-vertical</latte-icon></button>
@@ -24,7 +18,6 @@
 					<nav class="nav nav-list">
 						<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui/releases" target="_blank"><latte-icon>download</latte-icon><span>Download</span></latte-ripple>
 						<latte-ripple as="a" class="nav-link" href="//github.com/basmilius/latte-ui" target="_blank"><latte-icon>github-circle</latte-icon><span>Get Source</span></latte-ripple>
-						<!-- TODO(Bas): Reimplement theming options. -->
 					</nav>
 				</latte-popup>
 			</div>

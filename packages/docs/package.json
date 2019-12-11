@@ -26,6 +26,7 @@
 		"@vue/cli-service": "^4.0.5",
 		"node-sass": "^4.13.0",
 		"sass-loader": "^8.0.0",
+		"raw-loader": "^4.0.0",
 		"vue-template-compiler": "^2.6.10"
 	},
 	"postcss": {

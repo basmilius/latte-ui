@@ -1,5 +1,0 @@
-yarn add @bybas/latte-ui
-
---- or ---
-
-npm i @bybas/latte-ui

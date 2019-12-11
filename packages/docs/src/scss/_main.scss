@@ -1,0 +1,67 @@
+/*!
+ * Copyright (c) 2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+main#app
+{
+	> .spinner
+	{
+		position: absolute;
+		display: none;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #{latte-rgba(var(--panelBackground), .9)};
+		border-radius: inherit;
+		font-size: 2rem;
+		z-index: 2;
+	}
+
+	&.is-loading > .spinner
+	{
+		display: flex;
+	}
+}
+
+.scaffolding .sheet-content.sheet-left .nav .expandable-body .nav-link
+{
+	padding-left: 45px;
+}
+
+.page-header
+{
+	position: relative;
+	display: block;
+	background: rgba(var(--panelBackground), 1);
+	border-bottom: 1px solid rgba(var(--outlineColor), 1);
+	z-index: 1;
+
+	--tabsHeight: 60px;
+
+	&.is-sticky
+	{
+		position: sticky;
+		top: -84px;
+	}
+
+	.nav
+	{
+		max-width: 100%;
+		overflow: auto;
+	}
+}
+
+@include media-breakpoint-up(lg)
+{
+	.scaffolding .sheet-content.sheet-left
+	{
+		border-right: 1px solid rgba(var(--outlineColor), 1);
+		box-shadow: none;
+	}
+}

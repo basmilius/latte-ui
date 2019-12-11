@@ -1,6 +1,6 @@
 <template>
 
-	<div class="d-flex vh-100 vw-100">
+	<div class="d-flex vh-100">
 
 		<div class="panel m-auto pt-3" style="max-width: 100%; width: 420px">
 			<div class="panel-body text-center pb-0">

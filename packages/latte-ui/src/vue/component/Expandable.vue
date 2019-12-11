@@ -41,6 +41,7 @@
 		name: "latte-expandable",
 
 		props: {
+			closeWhenOpen: {default: true, type: Boolean},
 			group: {default: null, type: String | null},
 			opened: {default: false, type: Boolean}
 		},
@@ -123,6 +124,9 @@
 
 			toggle()
 			{
+				if (!this.closeWhenOpen && this.isOpen)
+					return;
+
 				if (this.isOpen)
 					this.close();
 				else
