@@ -1,3 +1,0 @@
-<link href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.css" type="text/css"/>
-<script href="https://unpkg.com/vue@2.6.10/dist/vue.min.js" type="application/javascript"></script>
-<script href="https://unpkg.com/@bybas/latte-ui/dist/latte-ui.js" type="application/javascript"></script>
