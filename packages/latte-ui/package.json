@@ -1,6 +1,6 @@
 {
 	"name": "@bybas/latte-ui",
-	"version": "1.9.0-beta.13",
+	"version": "1.9.0-beta.14",
 	"description": "An easy to use UI library.",
 	"author": {
 		"name": "Bas Milius",
@@ -28,40 +28,40 @@
 		"serve": "cross-env NODE_ENV=development webpack --config config/browser.js --progress --hide-modules --watch"
 	},
 	"devDependencies": {
-		"@babel/core": "7.7.4",
+		"@babel/core": "^7.7.7",
 		"@babel/plugin-proposal-class-properties": "^7.7.4",
 		"@babel/plugin-proposal-decorators": "^7.7.4",
 		"@babel/plugin-proposal-json-strings": "^7.7.4",
 		"@babel/plugin-syntax-dynamic-import": "^7.7.4",
 		"@babel/plugin-syntax-import-meta": "^7.7.4",
-		"@babel/preset-env": "^7.7.4",
+		"@babel/preset-env": "^7.7.7",
 		"babel-loader": "^8.0.6",
-		"concurrently": "^5.0.0",
-		"copy-webpack-plugin": "^5.0.5",
+		"concurrently": "^5.0.2",
+		"copy-webpack-plugin": "^5.1.1",
 		"cross-env": "^6.0.3",
-		"css-loader": "^3.2.0",
+		"css-loader": "^3.4.0",
 		"cssnano": "^4.1.10",
 		"cssnano-preset-advanced": "^4.0.7",
-		"mini-css-extract-plugin": "^0.8.0",
+		"mini-css-extract-plugin": "^0.8.2",
 		"node-sass": "^4.13.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.3",
 		"rimraf": "^3.0.0",
 		"sass-loader": "^8.0.0",
-		"terser-webpack-plugin": "^2.2.1",
+		"terser-webpack-plugin": "^2.3.1",
 		"uglify-template-string-loader": "^1.1.1",
-		"vue-loader": "^15.7.2",
+		"vue-loader": "^15.8.3",
 		"vue-style-loader": "^4.1.2",
-		"vue-template-compiler": "^2.6.10",
-		"webpack": "^4.41.2",
+		"vue-template-compiler": "^2.6.11",
+		"webpack": "^4.41.4",
 		"webpack-cli": "^3.3.10",
 		"webpack-merge": "^4.2.2"
 	},
 	"dependencies": {
 		"bootstrap": "^4.4.1",
 		"moment": "^2.24.0",
-		"vue": "^2.6.10"
+		"vue": "^2.6.11"
 	},
 	"peerDependencies": {
-		"vue": "^2.6.10"
+		"vue": "^2.6.11"
 	}
 }
