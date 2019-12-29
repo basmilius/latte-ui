@@ -71,11 +71,21 @@
 
 		name: "latte-datepicker-calendar",
 
+		inject: ["popup"],
+
 		props: {
 			bodyClass: {default: "", type: String},
 			maxYear: {default: 2100, type: Number},
 			minYear: {default: 1900, type: Number},
 			value: {default: () => new Date(), type: Date}
+		},
+
+		beforeDestroy()
+		{
+			if (!this.popup)
+				return;
+
+			this.popup.$off("close", this.onPopupClosed);
 		},
 
 		data()
@@ -85,6 +95,14 @@
 				selectedView: "dates",
 				selectedYear: 1996
 			};
+		},
+
+		mounted()
+		{
+			if (!this.popup)
+				return;
+
+			this.popup.$on("close", this.onPopupClosed);
 		},
 
 		computed: {
@@ -241,6 +259,11 @@
 					this.selectedMonth = 12;
 					this.selectedYear--;
 				}
+			},
+
+			onPopupClosed()
+			{
+				this.view("dates");
 			},
 
 			select(date)

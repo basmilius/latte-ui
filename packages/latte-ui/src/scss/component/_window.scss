@@ -11,7 +11,7 @@
 {
 	position: relative;
 	display: block;
-	height: var(--widowHeight, 0);
+	height: var(--windowHeight, 0);
 	width: var(--windowWidth, 0);
 	overflow: hidden;
 	transition: 210ms var(--easeSwiftOut);

@@ -24,6 +24,8 @@
 
 		name: "latte-grid-item",
 
+		inject: ["grid"],
+
 		props: {
 			id: {required: true},
 			isDraggable: {default: true, type: Boolean},
@@ -54,6 +56,9 @@
 
 		created()
 		{
+			if (!this.grid)
+				throw new Error("[LatteUI] <latte-grid-item/> must live inside a <latte-grid/>.");
+
 			const $this = this;
 
 			this.updateWidthHandler = function (width)
@@ -132,19 +137,19 @@
 
 		mounted()
 		{
-			this.columns = this.$parent.columns;
-			this.rowHeight = this.$parent.rowHeight;
-			this.containerWidth = this.$parent.width !== null ? this.$parent.width : 100;
-			this.margin = this.$parent.margin ? this.$parent.margin : [24, 24];
-			this.maxRows = this.$parent.maxRows;
+			this.columns = this.grid.columns;
+			this.rowHeight = this.grid.rowHeight;
+			this.containerWidth = this.grid.width !== null ? this.grid.width : 100;
+			this.margin = this.grid.margin ? this.grid.margin : [24, 24];
+			this.maxRows = this.grid.maxRows;
 
 			if (this.isDraggable === null)
-				this.draggable = this.$parent.isDraggable;
+				this.draggable = this.grid.isDraggable;
 			else
 				this.draggable = this.isDraggable;
 
 			if (this.isResizable === null)
-				this.resizable = this.$parent.isResizable;
+				this.resizable = this.grid.isResizable;
 			else
 				this.resizable = this.isResizable;
 

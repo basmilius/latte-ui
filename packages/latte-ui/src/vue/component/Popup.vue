@@ -66,8 +66,6 @@
 		{
 			if (this.associatedElement)
 				this.bindEvents();
-			else if (this.$parent)
-				this.$parent.$forceUpdate();
 
 			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick), {passive: true});
 			this.$el.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick), {passive: true});
@@ -79,6 +77,13 @@
 				on("latte:context-menu", () => this.close()),
 				on("latte:overlay", () => this.close())
 			);
+		},
+
+		provide()
+		{
+			return {
+				popup: this
+			};
 		},
 
 		render(h)

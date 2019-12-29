@@ -64,9 +64,19 @@
 
 		name: "latte-timepicker-clock",
 
+		inject: ["popup"],
+
 		props: {
 			clockRadius: {default: 103, type: Number},
 			value: {default: () => new Date(), type: Date}
+		},
+
+		beforeDestroy()
+		{
+			if (!this.popup)
+				return;
+
+			this.popup.$off("close", this.onPopupClosed);
 		},
 
 		data()
@@ -98,7 +108,10 @@
 			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
 			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
 
-			this.$parent.$on("close", () => this.view = "hours");
+			if (!this.popup)
+				return;
+
+			this.popup.$on("close", this.onPopupClosed);
 		},
 
 		computed: {
@@ -266,6 +279,11 @@
 
 				if (this.view === "hours")
 					this.view = "minutes";
+			},
+
+			onPopupClosed()
+			{
+				this.view = "hours";
 			},
 
 			setAM()

@@ -114,6 +114,13 @@
 			});
 		},
 
+		provide()
+		{
+			return {
+				grid: this
+			};
+		},
+
 		computed: {
 
 			isDragging()
