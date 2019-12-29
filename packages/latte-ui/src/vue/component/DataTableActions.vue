@@ -14,11 +14,11 @@
 			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'More options...' | i18n('latte-ui')">
 				<Icon name="dots-horizontal"/>
 			</button>
-			<latte-popup :associate-with="$refs.btn" :margin-x="-9">
+			<LattePopup :associate-with="$refs.btn" :margin-x="-9">
 				<nav class="nav nav-list">
 					<component data-close v-for="(action, actionKey) in actions" :is="createAction(action, row)" :key="actionKey"></component>
 				</nav>
-			</latte-popup>
+			</LattePopup>
 		</div>
 	</td>
 
@@ -28,10 +28,11 @@
 
 	import Vue from "vue";
 	import Icon from "./Icon.vue";
+	import LattePopup from "./Popup";
 
 	export default {
 
-		components: {Icon},
+		components: {LattePopup, Icon},
 
 		name: "latte-data-table-actions",
 

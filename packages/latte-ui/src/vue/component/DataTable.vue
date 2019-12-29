@@ -77,7 +77,7 @@
 						</td>
 					</template>
 
-					<latte-data-table-actions :actions="actions" :row="row" v-if="hasActions"></latte-data-table-actions>
+					<LatteDataTableActions :actions="actions" :row="row" v-if="hasActions"></LatteDataTableActions>
 				</slot>
 			</tr>
 
@@ -87,7 +87,7 @@
 			<tr v-if="total > limit">
 				<th :colspan="amountOfColumns">
 					<div class="column-content">
-						<latte-pagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></latte-pagination>
+						<LattePagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></LattePagination>
 					</div>
 				</th>
 			</tr>
@@ -112,6 +112,8 @@
 	import { oneOf } from "../../js/helper/array";
 
 	import Icon from "./Icon.vue";
+	import LatteDataTableActions from "./DataTableActions";
+	import LattePagination from "./Pagination";
 
 	const badgesHTML = `	<template v-for="badge of (row.badges || [])">
 								<a class="badge ml-2" :class="['badge-' + badge.type]" @click="applyFilter($event, badge.filter, badge.type)" v-if="badge.filter !== null">{{ badge.message }}</a>
@@ -173,7 +175,7 @@
 
 	export default {
 
-		components: {Icon},
+		components: {LattePagination, LatteDataTableActions, Icon},
 
 		name: "latte-data-table",
 

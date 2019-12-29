@@ -19,13 +19,13 @@
 					<Icon name="menu-swap"/>
 				</button>
 
-				<latte-popup :associate-with="$refs.entriesButton" :margin-y="9">
+				<LattePopup :associate-with="$refs.entriesButton" :margin-y="9">
 					<nav class="nav nav-list">
 						<template v-for="l of limits">
-							<latte-ripple as="a" class="nav-link" data-close @click="$emit('limit', l)"><span>{{ "@0 entries"|i18n("latte-ui", l) }}</span></latte-ripple>
+							<LatteRipple as="a" class="nav-link" data-close @click="$emit('limit', l)"><span>{{ "@0 entries"|i18n("latte-ui", l) }}</span></LatteRipple>
 						</template>
 					</nav>
-				</latte-popup>
+				</LattePopup>
 
 				<span class="ml-3">{{ "Showing @0 - @1 of @2"|i18n("latte-ui", offset + 1, Math.min(offset + limit, total), total) }}</span>
 
@@ -71,10 +71,12 @@
 	import { clamp } from "../../js/math";
 
 	import Icon from "./Icon.vue";
+	import LattePopup from "./Popup";
+	import LatteRipple from "./Ripple";
 
 	export default {
 
-		components: {Icon},
+		components: {LatteRipple, LattePopup, Icon},
 
 		name: "latte-pagination",
 
