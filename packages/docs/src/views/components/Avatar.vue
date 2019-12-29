@@ -12,6 +12,10 @@
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
+				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel"/>
+				<CodeExample :code="previews.initials" title="Initials" classes="bg-panel"/>
+				<CodeExample :code="previews.shapes" title="Shapes" classes="bg-panel"/>
+				<CodeExample :code="previews.strip" title="Strip" classes="bg-panel"/>
 			</div>
 		</TitledRow>
 
@@ -23,12 +27,10 @@
 
 <script>
 
-	import previewActionButtons from "raw-loader!../../data/components/app-bar/action-buttons.html";
-	import previewAutoHeight from "raw-loader!../../data/components/app-bar/auto-height.html";
-	import previewPanel from "raw-loader!../../data/components/app-bar/panel.html";
-	import previewSearch from "raw-loader!../../data/components/app-bar/search.html";
-	import previewStandard from "raw-loader!../../data/components/app-bar/standard.html";
-	import previewTabs from "raw-loader!../../data/components/app-bar/tabs.html";
+	import previewInitials from "raw-loader!../../data/components/avatar/initials.html";
+	import previewShapes from "raw-loader!../../data/components/avatar/shapes.html";
+	import previewStrip from "raw-loader!../../data/components/avatar/strip.html";
+	import previewStandard from "raw-loader!../../data/components/avatar/standard.html";
 
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
@@ -45,11 +47,9 @@
 			return {
 				previews: {
 					standard: previewStandard,
-					actionButtons: previewActionButtons,
-					autoHeight: previewAutoHeight,
-					panel: previewPanel,
-					search: previewSearch,
-					tabs: previewTabs
+					initials: previewInitials,
+					shapes: previewShapes,
+					strip: previewStrip
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},
