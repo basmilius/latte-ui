@@ -17,7 +17,7 @@
 					<div class="col-12 col-lg mt-5 mt-lg-0 footer-nav text-center text-lg-left">
 
 						<strong>Develop</strong>
-						<nav class="nav nav-links mt-3">
+						<nav class="nav nav-links mt-3 align-items-center align-items-lg-start">
 							<router-link to="/docs" class="nav-link">Documentation</router-link>
 							<a href="//github.com/basmilius/latte-ui/issues#bug" target="_blank" class="nav-link">Report a bug</a>
 							<a href="//github.com/basmilius/latte-ui/issues#feature" target="_blank" class="nav-link">Request a feature</a>
@@ -27,7 +27,7 @@
 					<div class="col-12 col-lg mt-5 mt-lg-0 footer-nav text-center text-lg-left">
 
 						<strong>Packages (Coming soon)</strong>
-						<nav class="nav nav-links mt-3">
+						<nav class="nav nav-links mt-3 align-items-center align-items-lg-start">
 							<router-link to="/packages/blocks" class="nav-link">Blocks</router-link>
 							<router-link to="/packages/layouts" class="nav-link">Layouts</router-link>
 						</nav>

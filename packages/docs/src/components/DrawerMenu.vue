@@ -2,13 +2,13 @@
 
 	<nav class="nav nav-list py-4">
 
-		<latte-expandable :close-when-open="false" group="main">
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path === '/'">
 			<template v-slot:header>
 				<DrawerMenuItem to="/"><span>Home</span></DrawerMenuItem>
 			</template>
 		</latte-expandable>
 
-		<latte-expandable :close-when-open="false" group="main">
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/getting-started')">
 			<template v-slot:header="{isOpen}">
 				<DrawerMenuItem to="/getting-started"><span>Getting Started</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
@@ -19,7 +19,7 @@
 			</template>
 		</latte-expandable>
 
-		<latte-expandable :close-when-open="false" group="main">
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/layout')">
 			<template v-slot:header="{isOpen}">
 				<DrawerMenuItem to="/layout"><span>Layout</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
@@ -35,7 +35,7 @@
 			</template>
 		</latte-expandable>
 
-		<latte-expandable :close-when-open="false" group="main">
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/components')">
 			<template v-slot:header="{isOpen}">
 				<DrawerMenuItem to="/components"><span>Components</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
@@ -66,7 +66,7 @@
 			</template>
 		</latte-expandable>
 
-		<latte-expandable :close-when-open="false" group="main">
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/javascript-api')">
 			<template v-slot:header="{isOpen}">
 				<DrawerMenuItem to="/javascript-api"><span>JavaScript API</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>

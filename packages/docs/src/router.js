@@ -36,6 +36,10 @@ const router = new Router({
 						{
 							path: "/",
 							component: () => import("./views/components/Index.vue")
+						},
+						{
+							path: "app-bar",
+							component: () => import("./views/components/AppBar.vue")
 						}
 					]
 				},

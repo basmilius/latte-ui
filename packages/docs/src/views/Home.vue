@@ -6,7 +6,7 @@
 			<div class="row py-5 align-items-center">
 				<div class="col-12 col-lg-5">
 
-					<div class="page-header-content tall">
+					<div class="page-header-content tall text-center text-lg-left">
 						<h1>Latte UI</h1>
 						<p class="lead">
 							An Open Source project built using Vue.js to create beautiful interfaces with.

@@ -4,13 +4,13 @@
 		<div class="container pt-5" :class="{'pb-5': tabsWithElement.length === 0}">
 			<div class="row">
 				<div class="col-12 py-3">
-					<h1 class="m-0">{{ title }}</h1>
+					<h1 class="m-0 text-center text-lg-left">{{ title }}</h1>
 				</div>
 			</div>
 			<div class="row" v-if="tabsWithElement.length > 0">
 				<div class="col-12">
 
-					<nav class="nav nav-tabs mt-3">
+					<nav class="nav nav-tabs mt-3 justify-content-center justify-content-lg-start">
 						<a @click="navigate(tab.selector)" class="nav-link" :class="{'is-active': currentTab && currentTab.selector === tab.selector}" v-for="tab of tabsWithElement">
 							<span>{{ tab.label }}</span>
 						</a>
@@ -96,10 +96,14 @@
 						this.tabsWithElement = this.tabs.map(tab =>
 						{
 							const elm = document.querySelector(tab.selector);
-							const rect = elm ? elm.getBoundingClientRect() : null;
+
+							if (!elm)
+								return undefined;
+
+							const rect = elm.getBoundingClientRect();
 
 							return Object.assign({}, tab, {elm, rect});
-						});
+						}).filter(tab => !!tab);
 
 						this.onScroll();
 					});

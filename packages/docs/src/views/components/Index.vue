@@ -16,7 +16,7 @@
 		</div>
 
 		<TitledRow class="py-5" title="Available components">
-			<div class="col-12 col-lg-3 d-flex" v-for="cmp of components">
+			<div class="col-6 col-md-4 col-lg-3 d-flex" v-for="cmp of components">
 
 				<latte-ripple as="router-link" :to="cmp.url" class="panel mb-panel-gutter w-100">
 					<div class="panel-media panel-media-gutter bg-primary embed-responsive embed-responsive-16by9"></div>
