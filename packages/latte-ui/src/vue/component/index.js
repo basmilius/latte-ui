@@ -11,8 +11,6 @@ export { default as Autocomplete } from "./Autocomplete.vue";
 export { default as BottomNav } from "./BottomNav.vue";
 export { default as ColorPicker } from "./ColorPicker.vue";
 export { default as ColorPickerSelect } from "./ColorPickerSelect.vue";
-export { default as ComboBox } from "./ComboBox.vue";
-export { default as ComboBoxItem } from "./ComboBoxItem.vue";
 export { default as DataTable } from "./DataTable.vue";
 export { default as DataTableActions } from "./DataTableActions.vue";
 export { default as DatePicker } from "./DatePicker.vue";

@@ -17,11 +17,11 @@
 
 <script>
 
-	import { closestComponent } from "../../js/util/dom";
-
 	export default {
 
 		name: "latte-tab",
+
+		inject: ["tabContainer"],
 
 		props: {
 			badge: {default: "", type: String},
@@ -29,21 +29,29 @@
 			label: {default: "", type: String}
 		},
 
+		beforeDestroy()
+		{
+			if (!this.tabContainer)
+				return;
+
+			this.tabContainer.updateChildren();
+			this.tabContainer.updateTabBars();
+		},
+
 		data()
 		{
 			return {
-				active: false,
-				container: closestComponent(this, "latte-tab-container")
+				active: false
 			};
 		},
 
 		mounted()
 		{
-			if (this.container)
-			{
-				this.container.updateChildren();
-				this.container.updateTabBars();
-			}
+			if (!this.tabContainer)
+				return;
+
+			this.tabContainer.updateChildren();
+			this.tabContainer.updateTabBars();
 		},
 
 		watch: {

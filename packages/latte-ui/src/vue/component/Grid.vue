@@ -11,7 +11,7 @@
 
 	<div ref="grid" class="latte-grid" :class="{'is-dragging': isDragging}" :style="styles" role="grid">
 		<slot></slot>
-		<latte-grid-item class="latte-grid-placeholder" v-show="isDragging" :x="placeholder.x" :y="placeholder.y" :height="placeholder.height" :width="placeholder.width" id="__placeholder__"></latte-grid-item>
+		<LatteGridItem class="latte-grid-placeholder" v-show="isDragging" :x="placeholder.x" :y="placeholder.y" :height="placeholder.height" :width="placeholder.width" id="__placeholder__"></LatteGridItem>
 	</div>
 
 </template>
@@ -19,11 +19,12 @@
 <script>
 
 	import { bottom, compact, eventBus, getLayoutItem, moveElement, validateLayout } from "../../js/ui/grid";
+	import LatteGridItem from "./GridItem";
 
 	export default {
 
 		name: "latte-grid",
-
+		components: {LatteGridItem},
 		props: {
 			autoSize: {default: true, type: Boolean},
 			columns: {default: 12, type: Number},
@@ -112,6 +113,13 @@
 
 				window.onload = init.bind(this);
 			});
+		},
+
+		provide()
+		{
+			return {
+				grid: this
+			};
 		},
 
 		computed: {

@@ -12,43 +12,43 @@
 	<div class="panel datepicker-calendar">
 
 		<div class="panel-header border-0 datepicker-calendar-header" :class="[selectedView]">
-			<latte-ripple as="button" class="btn btn-icon btn-text m-0" @click="navigate(-1)">
+			<LatteRipple as="button" class="btn btn-icon btn-text m-0" @click="navigate(-1)">
 				<Icon name="chevron-left"/>
-			</latte-ripple>
+			</LatteRipple>
 
 			<div class="btn-group mx-auto">
-				<latte-ripple as="button" class="btn btn-text" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></latte-ripple>
-				<latte-ripple as="button" class="btn btn-text" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></latte-ripple>
+				<LatteRipple as="button" class="btn btn-text" @click="view('months')"><span>{{ moment(monthBeginDate).format("MMMM") }}</span></LatteRipple>
+				<LatteRipple as="button" class="btn btn-text" @click="view('years')"><span>{{ moment(monthBeginDate).format("YYYY") }}</span></LatteRipple>
 			</div>
 
-			<latte-ripple as="button" class="btn btn-icon btn-text m-0" @click="navigate(1)">
+			<LatteRipple as="button" class="btn btn-icon btn-text m-0" @click="navigate(1)">
 				<Icon name="chevron-right"/>
-			</latte-ripple>
+			</LatteRipple>
 		</div>
 
 		<div class="panel-body datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
 			<span class="day" v-for="day of days">{{ day }}</span>
 
 			<template v-for="date of dates">
-				<latte-ripple as="button" :key="date.getTime()" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
+				<LatteRipple as="button" :key="date.getTime()" :class="getClassesForDate(date)" :disabled="isOtherMonth(date)" @click="select(date)">
 					<span>{{ date.getDate() }}</span>
-				</latte-ripple>
+				</LatteRipple>
 			</template>
 		</div>
 
 		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
 			<template v-for="(month, index) in months">
-				<latte-ripple as="button" :key="index" :class="getClassesForMonth(index + 1)" :data-month="index + 1" @click="selectMonth(index + 1)">
+				<LatteRipple as="button" :key="index" :class="getClassesForMonth(index + 1)" :data-month="index + 1" @click="selectMonth(index + 1)">
 					{{ month }}
-				</latte-ripple>
+				</LatteRipple>
 			</template>
 		</div>
 
 		<div class="panel-body datepicker-calendar-years" v-if="selectedView === 'years'">
 			<template v-for="(year, index) in years">
-				<latte-ripple as="button" :key="index" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)">
+				<LatteRipple as="button" :key="index" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)">
 					<span>{{ year }}</span>
-				</latte-ripple>
+				</LatteRipple>
 			</template>
 		</div>
 
@@ -64,18 +64,29 @@
 	import Icon from "./Icon.vue";
 
 	import { raf } from "../../js/util/dom";
+	import LatteRipple from "./Ripple";
 
 	export default {
 
-		components: {Icon},
+		components: {LatteRipple, Icon},
 
 		name: "latte-datepicker-calendar",
+
+		inject: ["popup"],
 
 		props: {
 			bodyClass: {default: "", type: String},
 			maxYear: {default: 2100, type: Number},
 			minYear: {default: 1900, type: Number},
 			value: {default: () => new Date(), type: Date}
+		},
+
+		beforeDestroy()
+		{
+			if (!this.popup)
+				return;
+
+			this.popup.$off("close", this.onPopupClosed);
 		},
 
 		data()
@@ -85,6 +96,14 @@
 				selectedView: "dates",
 				selectedYear: 1996
 			};
+		},
+
+		mounted()
+		{
+			if (!this.popup)
+				return;
+
+			this.popup.$on("close", this.onPopupClosed);
 		},
 
 		computed: {
@@ -241,6 +260,11 @@
 					this.selectedMonth = 12;
 					this.selectedYear--;
 				}
+			},
+
+			onPopupClosed()
+			{
+				this.view("dates");
 			},
 
 			select(date)

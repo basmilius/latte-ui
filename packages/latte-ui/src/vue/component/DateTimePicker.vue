@@ -15,34 +15,34 @@
 			<template v-if="!isOverlay">
 				<div class="row no-gutters">
 					<div class="col-auto">
-						<latte-datepicker-calendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-datepicker-calendar>
+						<LatteDatepickerCalendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteDatepickerCalendar>
 					</div>
 					<div class="col-auto border-left">
-						<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
+						<LatteTimepickerClock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteTimepickerClock>
 					</div>
 				</div>
 
 				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
-					<latte-ripple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
 				</div>
 			</template>
 
-			<latte-tab-container class="panel" v-else>
-				<latte-tab-bar></latte-tab-bar>
-				<latte-tab :label="'Date' | i18n('latte-ui')">
-					<latte-datepicker-calendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-datepicker-calendar>
-				</latte-tab>
-				<latte-tab :label="'Time' | i18n('latte-ui')">
-					<latte-timepicker-clock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></latte-timepicker-clock>
-				</latte-tab>
+			<LatteTabContainer class="panel" v-else>
+				<LatteTabBar></LatteTabBar>
+				<LatteTab :label="'Date' | i18n('latte-ui')">
+					<LatteDatepickerCalendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteDatepickerCalendar>
+				</LatteTab>
+				<LatteTab :label="'Time' | i18n('latte-ui')">
+					<LatteTimepickerClock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteTimepickerClock>
+				</LatteTab>
 				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
-					<latte-ripple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
 				</div>
-			</latte-tab-container>
+			</LatteTabContainer>
 		</template>
 
 	</DateTimePickerMount>
@@ -53,10 +53,16 @@
 
 	import DateTimePickerMount from "./base/DateTimePickerMount.vue";
 	import Icon from "./Icon.vue";
+	import LatteDatepickerCalendar from "./DatePickerCalendar";
+	import LatteTimepickerClock from "./TimePickerClock";
+	import LatteRipple from "./Ripple";
+	import LatteTabContainer from "./TabContainer";
+	import LatteTabBar from "./TabBar";
+	import LatteTab from "./Tab";
 
 	export default {
 
-		components: {DateTimePickerMount, Icon},
+		components: {LatteTab, LatteTabBar, LatteTabContainer, LatteRipple, LatteTimepickerClock, LatteDatepickerCalendar, DateTimePickerMount, Icon},
 
 		inheritAttrs: false,
 

@@ -10,18 +10,18 @@
 <template>
 
 	<div class="input-group" ref="control">
-		<input type="text" class="form-control" readonly :value="stringValue" @click.prevent="open"/>
+		<input type="text" class="form-control" readonly v-bind="$attrs" :value="stringValue" @click.prevent="open"/>
 		<div class="input-group-addon bg-transparent">
 			<div class="colorpicker-preview-color" :style="{background: hslaValue}"></div>
 		</div>
 
 		<component :is="componentType" class="colorpickermount" :associate-with="$refs.control" :name="uniqueId" ref="popup" :responsive="false" @close="cancel" @open="isOpen = true">
-			<latte-colorpicker-select v-model="color" v-if="isOpen">
+			<LatteColorpickerSelect v-model="color" v-if="isOpen">
 				<div class="panel-footer justify-content-end">
-					<latte-ripple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></latte-ripple>
+					<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
 				</div>
-			</latte-colorpicker-select>
+			</LatteColorpickerSelect>
 		</component>
 	</div>
 
@@ -35,10 +35,14 @@
 	import { colorToString, smartColor } from "../../js/util/color";
 
 	import Icon from "./Icon.vue";
+	import LatteColorpickerSelect from "./ColorPickerSelect";
+	import LatteRipple from "./Ripple";
 
 	export default {
 
-		components: {Icon},
+		inheritAttrs: false,
+
+		components: {LatteRipple, LatteColorpickerSelect, Icon},
 
 		name: "latte-colorpicker",
 

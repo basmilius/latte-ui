@@ -12,13 +12,13 @@
 	<DateTimePickerMount class="timepicker" type="time" input-format="HH:mm" :id="id" :name="name" :placeholder="placeholder" v-bind="$attrs" v-on="$listeners">
 
 		<template v-slot="{current, isOverlay, setCurrent, setNow, cancel, select}">
-			<latte-timepicker-clock ref="picker" :value="current" @input="setCurrent">
+			<LatteTimepickerClock ref="picker" :value="current" @input="setCurrent">
 				<div class="panel-footer">
-					<latte-ripple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></latte-ripple>
-					<latte-ripple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></latte-ripple>
-					<latte-ripple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "OK" | i18n("latte-ui") }}</span></latte-ripple>
+					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "OK" | i18n("latte-ui") }}</span></LatteRipple>
 				</div>
-			</latte-timepicker-clock>
+			</LatteTimepickerClock>
 		</template>
 
 	</DateTimePickerMount>
@@ -29,10 +29,12 @@
 
 	import DateTimePickerMount from "./base/DateTimePickerMount.vue";
 	import Icon from "./Icon.vue";
+	import LatteTimepickerClock from "./TimePickerClock";
+	import LatteRipple from "./Ripple";
 
 	export default {
 
-		components: {DateTimePickerMount, Icon},
+		components: {LatteRipple, LatteTimepickerClock, DateTimePickerMount, Icon},
 
 		inheritAttrs: false,
 

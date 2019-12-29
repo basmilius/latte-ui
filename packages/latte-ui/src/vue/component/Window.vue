@@ -14,6 +14,8 @@
 
 	export default {
 
+		inject: ["popup"],
+
 		name: "latte-window",
 
 		props: {
@@ -26,23 +28,26 @@
 				current: 0,
 				previous: -1,
 				height: 0,
-				width: 0,
-				isParentPopup: this.$parent.$options.name === "latte-popup"
+				width: 0
 			};
 		},
 
 		destroyed()
 		{
-			if (this.isParentPopup)
-				this.$parent.$off("close", this.reset);
+			if (!this.popup)
+				return;
+
+			this.popup.$off("close", this.reset);
 		},
 
 		mounted()
 		{
 			this.update();
 
-			if (this.isParentPopup)
-				this.$parent.$on("close", this.reset);
+			if (!this.popup)
+				return;
+
+			this.popup.$on("close", this.reset);
 		},
 
 		render(h)
@@ -58,17 +63,13 @@
 				.filter(view => !!view.tag)
 				.map(view => h("div", {class: ["window-view", `window-${this.direction}`]}, [view]));
 
-			return h(
-				"div",
-				{
-					class: ["window", `window-${this.direction}`],
-					style: {
-						"--windowHeight": `${this.height}px`,
-						"--windowWidth": `${this.width}px`
-					}
-				},
-				defaultSlotElements
-			);
+			return h("div", {
+				class: ["window", `window-${this.direction}`],
+				style: {
+					"--windowHeight": `${this.height}px`,
+					"--windowWidth": `${this.width}px`
+				}
+			}, defaultSlotElements);
 		},
 
 		methods: {
@@ -97,7 +98,7 @@
 				{
 					this.current = 0;
 					this.previous = -1;
-				}, this.isParentPopup ? 210 : 0);
+				}, this.popup ? 210 : 0);
 			},
 
 			update()
