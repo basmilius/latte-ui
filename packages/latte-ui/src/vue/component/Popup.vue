@@ -18,6 +18,7 @@
 	import { popupClosed, popupOpened } from "../../js/core/popup";
 	import { oneOf } from "../../js/helper/array";
 	import { MoveToMainDirective } from "../directive/move-to-main";
+	import { addEventListener } from "../../js/util/event";
 
 	export default {
 
@@ -58,6 +59,7 @@
 				x: 0,
 				y: 0,
 				lattePersistent: false,
+				events: [],
 				subscriptions: []
 			};
 		},
@@ -142,17 +144,18 @@
 
 			bindEvents()
 			{
+				this.events.push(
+					addEventListener(this.associatedElement, "click", this.onClick)
+				);
 				this.rect = this.associatedElement.getBoundingClientRect();
-				this.associatedElement.addEventListener("click", this.onClick, {passive: true});
 			},
 
-			unbindEvents(elm)
+			unbindEvents()
 			{
-				if (!elm)
-					return;
+				this.events.forEach(remove => remove());
 
+				this.events = [];
 				this.rect = null;
-				elm.removeEventListener("click", this.onClick, {passive: true});
 			},
 
 			close()
@@ -258,7 +261,7 @@
 			associateWith(n, o)
 			{
 				if (o)
-					this.unbindEvents(o);
+					this.unbindEvents();
 
 				if (n)
 					this.bindEvents();
