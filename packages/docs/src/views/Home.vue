@@ -12,7 +12,7 @@
 							An Open Source project built using Vue.js to create beautiful interfaces with.
 						</p>
 						<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
-							<latte-ripple as="button" class="btn btn-contained  btn-primary btn-lg radius-circle" @click="$router.push('/docs')">
+							<latte-ripple as="button" class="btn btn-contained  btn-primary btn-lg radius-circle" @click="$router.push('/getting-started')">
 								<span>Let's start</span>
 							</latte-ripple>
 						</div>
