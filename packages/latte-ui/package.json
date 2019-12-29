@@ -42,7 +42,7 @@
 		"css-loader": "^3.4.0",
 		"cssnano": "^4.1.10",
 		"cssnano-preset-advanced": "^4.0.7",
-		"mini-css-extract-plugin": "^0.8.2",
+		"mini-css-extract-plugin": "^0.9.0",
 		"node-sass": "^4.13.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.3",
 		"rimraf": "^3.0.0",
@@ -52,7 +52,7 @@
 		"vue-loader": "^15.8.3",
 		"vue-style-loader": "^4.1.2",
 		"vue-template-compiler": "^2.6.11",
-		"webpack": "^4.41.4",
+		"webpack": "^4.41.5",
 		"webpack-cli": "^3.3.10",
 		"webpack-merge": "^4.2.2"
 	},
