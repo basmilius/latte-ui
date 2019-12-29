@@ -24,6 +24,7 @@
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { oneOf } from "../../js/helper/array";
 	import { isSomethingScrolling } from "../../js/ui/scrollbar";
+	import { addEventListener } from "../../js/util/event";
 
 	const TRIGGER_SIZE = 18;
 
@@ -40,7 +41,7 @@
 		data()
 		{
 			return {
-				events: [0, 0, 0, 0, 0, 0],
+				events: [],
 				isDragging: false,
 				isPeeking: false,
 				current: 0.0,
@@ -58,15 +59,7 @@
 			if (this.isOpen)
 				popupClosed();
 
-			window.removeEventListener("resize", this.close);
-
-			window.removeEventListener("touchcancel", this.events[0]);
-			window.removeEventListener("touchstart", this.events[1]);
-			window.removeEventListener("touchmove", this.events[2]);
-			window.removeEventListener("touchend", this.events[3]);
-
-			window.removeEventListener("mousedown", this.events[4]);
-			window.removeEventListener("mouseup", this.events[5]);
+			this.events.forEach(remove => remove());
 		},
 
 		mounted()
@@ -74,15 +67,17 @@
 			this.overlay = this.$el;
 			this.content = this.$el.querySelector("div.sheet-content");
 
-			window.addEventListener("resize", this.close);
+			this.events.push(
+				addEventListener(window, "resize", this.close),
 
-			window.addEventListener("touchcancel", this.events[0] = onlyTouch(this.onPointerCancel), {passive: false});
-			window.addEventListener("touchstart", this.events[1] = onlyTouch(this.onPointerDown), {passive: false});
-			window.addEventListener("touchmove", this.events[2] = onlyTouch(this.onPointerMove), {passive: false});
-			window.addEventListener("touchend", this.events[3] = onlyTouch(this.onPointerUp), {passive: false});
+				addEventListener(window, "touchcancel", onlyTouch(this.onPointerCancel), {passive: false}),
+				addEventListener(window, "touchstart", onlyTouch(this.onPointerDown), {passive: false}),
+				addEventListener(window, "touchmove", onlyTouch(this.onPointerMove), {passive: false}),
+				addEventListener(window, "touchend", onlyTouch(this.onPointerUp), {passive: false}),
 
-			window.addEventListener("mousedown", this.events[4] = onlyMouse(this.onPointerDown), {passive: false});
-			window.addEventListener("mouseup", this.events[5] = onlyMouse(this.onPointerUp), {passive: false});
+				addEventListener(window, "mousedown", onlyMouse(this.onPointerDown), {passive: false}),
+				addEventListener(window, "mouseup", onlyMouse(this.onPointerUp), {passive: false})
+			);
 		},
 
 		computed: {

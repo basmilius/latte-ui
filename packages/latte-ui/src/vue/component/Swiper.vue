@@ -22,6 +22,7 @@
 	import { getCoords, raf } from "../../js/util/dom";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { clamp } from "../../js/math";
+	import { addEventListener } from "../../js/util/event";
 
 	function convertPadding(p)
 	{
@@ -48,6 +49,7 @@
 
 		beforeDestroy()
 		{
+			this.events.forEach(remove => remove());
 			this.observer.disconnect();
 		},
 
@@ -70,6 +72,7 @@
 					root: null,
 					body: null
 				},
+				events: [],
 				observer: new MutationObserver(mutations => this.onDOMMutations(mutations)),
 				viewCount: 0,
 				currentPosition: undefined,
@@ -81,10 +84,12 @@
 
 		mounted()
 		{
-			this.$el.addEventListener("touchstart", onlyTouch(this.onTouchStart), {passive: true});
-			this.$el.addEventListener("touchmove", onlyTouch(this.onTouchMove), {passive: true});
-			this.$el.addEventListener("touchend", onlyTouch(this.onTouchEnd), {passive: true});
-			this.$el.addEventListener("wheel", onlyMouse(this.onMouseWheel));
+			this.events.push(
+				addEventListener(this.$el, "touchstart", onlyTouch(this.onTouchStart)),
+				addEventListener(this.$el, "touchmove", onlyTouch(this.onTouchMove)),
+				addEventListener(this.$el, "touchend", onlyTouch(this.onTouchEnd)),
+				addEventListener(this.$el, "wheel", onlyMouse(this.onMouseWheel), {passive: false})
+			);
 
 			this.observer.observe(this.$el, {
 				attributes: true,
