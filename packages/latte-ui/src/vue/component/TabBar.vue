@@ -27,7 +27,7 @@
 
 <script>
 
-	import { closestComponent, raf } from "../../js/util/dom";
+	import { raf } from "../../js/util/dom";
 	import { on } from "../../js/core/action";
 
 	import Icon from "./Icon.vue";
@@ -37,6 +37,8 @@
 		components: {Icon},
 
 		name: "latte-tab-bar",
+
+		inject: ["tabContainer"],
 
 		props: {
 			animatedIndicator: {default: false, type: Boolean}
@@ -49,7 +51,6 @@
 				current: 0,
 				indicatorBarRect: null,
 				indicatorTabRect: null,
-				container: closestComponent(this, "latte-tab-container"),
 				tabs: []
 			};
 		},
@@ -61,8 +62,8 @@
 
 		mounted()
 		{
-			this.container.$on("change", current => this.onTabChange(current));
-			this.container.updateTabBars();
+			this.tabContainer.$on("change", current => this.onTabChange(current));
+			this.tabContainer.updateTabBars();
 
 			this.subscriptions.push(
 				on("latte:tick", () => raf(() => this.updateIndicator()))
@@ -90,7 +91,7 @@
 
 			click(index)
 			{
-				this.container.current = index;
+				this.tabContainer.current = index;
 			},
 
 			updateIndicator()

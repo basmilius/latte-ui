@@ -38,6 +38,13 @@
 			this.updateChildren();
 		},
 
+		provide()
+		{
+			return {
+				tabContainer: this
+			};
+		},
+
 		methods: {
 
 			setCurrent(tab)
