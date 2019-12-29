@@ -37,6 +37,7 @@
 	import { raf, relativeCoordsTo, terminateEvent } from "../../js/util/dom";
 	import { pythagorean } from "../../js/math";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
+	import { addEventListener } from "../../js/util/event";
 
 	const innerRingOffset = -33;
 
@@ -73,6 +74,8 @@
 
 		beforeDestroy()
 		{
+			this.events.forEach(remove => remove());
+
 			if (!this.popup)
 				return;
 
@@ -85,6 +88,7 @@
 				current: new Date(this.value.getTime()),
 				currentHour: 0,
 				currentMinute: 0,
+				events: [],
 				isPointerDown: false,
 				isSwitchingViews: false,
 				pointerAlternative: false,
@@ -100,13 +104,15 @@
 
 			const clockMount = this.$el.querySelector(".timepicker-clock-mount");
 
-			clockMount.addEventListener("mousedown", onlyMouse(this.onPointerDown), {passive: false});
-			window.addEventListener("mousemove", onlyMouse(this.onPointerMove), {passive: false});
-			window.addEventListener("mouseup", onlyMouse(this.onPointerUp), {passive: false});
+			this.events.push(
+				addEventListener(clockMount, "mousedown", onlyMouse(this.onPointerDown), {passive: false}),
+				addEventListener(window, "mousemove", onlyMouse(this.onPointerMove), {passive: false}),
+				addEventListener(window, "mouseup", onlyMouse(this.onPointerUp), {passive: false}),
 
-			clockMount.addEventListener("touchstart", onlyTouch(this.onPointerDown), {passive: false});
-			window.addEventListener("touchmove", onlyTouch(this.onPointerMove), {passive: false});
-			window.addEventListener("touchend", onlyTouch(this.onPointerUp), {passive: false});
+				addEventListener(clockMount, "touchstart", onlyTouch(this.onPointerDown), {passive: false}),
+				addEventListener(window, "touchmove", onlyTouch(this.onPointerMove), {passive: false}),
+				addEventListener(window, "touchend", onlyTouch(this.onPointerUp), {passive: false})
+			);
 
 			if (!this.popup)
 				return;

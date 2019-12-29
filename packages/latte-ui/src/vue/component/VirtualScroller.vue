@@ -28,6 +28,7 @@
 	import { raf } from "../../js/util/dom";
 	import { spaceship } from "../../js/operators";
 	import { oneOf } from "../../js/helper/array";
+	import { addEventListener } from "../../js/util/event";
 
 	// TODO(Bas): Variable height?
 	export default {
@@ -53,6 +54,7 @@
 		{
 			return {
 				__items: [],
+				events: [],
 				multiplier: 1,
 				position: 0,
 				limit: 0,
@@ -66,12 +68,15 @@
 
 		destroyed()
 		{
-			this.$el.removeEventListener("scroll", this.onScroll);
+			this.events.forEach(remove => remove());
 		},
 
 		mounted()
 		{
-			this.$el.addEventListener("scroll", this.onScroll, {passive: true});
+			this.events.push(
+				addEventListener(this.$el, "scroll", this.onScroll)
+			);
+
 			this.calculateVisibleNodes();
 		},
 

@@ -12,6 +12,8 @@
 	import { oneOf } from "../../../js/helper/array";
 	import { relativeCoordsTo, terminateEvent } from "../../../js/util/dom";
 	import { clamp, roundStep } from "../../../js/math";
+	import { addEventListener } from "../../../js/util/event";
+	import { onlyMouse, onlyTouch } from "../../../js/util/touch";
 
 	export default {
 
@@ -26,6 +28,7 @@
 		data()
 		{
 			return {
+				events: [],
 				isDragging: false,
 				position: 0
 			};
@@ -33,18 +36,17 @@
 
 		destroyed()
 		{
-			window.removeEventListener("mousemove", this.onMouseMove);
-			window.removeEventListener("mouseup", this.onMouseUp);
-			window.removeEventListener("touchmove", this.onMouseMove);
-			window.removeEventListener("touchend", this.onMouseUp);
+			this.events.forEach(remove => remove());
 		},
 
 		mounted()
 		{
-			window.addEventListener("mousemove", this.onMouseMove, {passive: true});
-			window.addEventListener("mouseup", this.onMouseUp, {passive: true});
-			window.addEventListener("touchmove", this.onMouseMove, {passive: false});
-			window.addEventListener("touchend", this.onMouseUp, {passive: false});
+			this.events.push(
+				addEventListener(window, "mousemove", onlyMouse(this.onMouseMove)),
+				addEventListener(window, "mouseup", onlyMouse(this.onMouseUp)),
+				addEventListener(window, "touchmove", onlyTouch(this.onMouseMove), {passive: false}),
+				addEventListener(window, "touchend", onlyTouch(this.onMouseUp), {passive: false})
+			);
 		},
 
 		computed: {

@@ -13,6 +13,7 @@
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { pythagorean } from "../../js/math";
 	import { isSomethingScrolling } from "../../js/ui/scrollbar";
+	import { addEventListener } from "../../js/util/event";
 
 	export default {
 
@@ -42,15 +43,7 @@
 			while (this.ripples.length > 0)
 				this.ripples.shift().remove();
 
-			this.$el.removeEventListener("touchcancel", this.events[0]);
-			this.$el.removeEventListener("touchmove", this.events[1]);
-			this.$el.removeEventListener("touchstart", this.events[2]);
-			this.$el.removeEventListener("touchend", this.events[3]);
-
-			this.$el.removeEventListener("mouseleave", this.events[4]);
-			this.$el.removeEventListener("mousedown", this.events[5]);
-			this.$el.removeEventListener("mouseenter", this.events[6]);
-			this.$el.removeEventListener("mouseup", this.events[7]);
+			this.events.forEach(remove => remove());
 		},
 
 		mounted()
@@ -63,15 +56,17 @@
 				this.observer.observe(this.$el);
 			}
 
-			this.$el.addEventListener("touchcancel", this.events[0] = onlyTouch(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("touchmove", this.events[1] = onlyTouch(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("touchstart", this.events[2] = onlyTouch(this.onPointerDown), {passive: true});
-			this.$el.addEventListener("touchend", this.events[3] = onlyTouch(this.onPointerUp), {passive: true});
+			this.events.push(
+				addEventListener(this.$el, "touchcancel", onlyTouch(this.onPointerUp)),
+				addEventListener(this.$el, "touchmove", onlyTouch(this.onPointerUp)),
+				addEventListener(this.$el, "touchstart", onlyTouch(this.onPointerDown)),
+				addEventListener(this.$el, "touchend", onlyTouch(this.onPointerUp)),
 
-			this.$el.addEventListener("mouseleave", this.events[4] = onlyMouse(this.onPointerUp), {passive: true});
-			this.$el.addEventListener("mousedown", this.events[5] = onlyMouse(this.onPointerDown), {passive: true});
-			this.$el.addEventListener("mouseenter", this.events[6] = onlyMouse(this.onPointerEnter), {passive: true});
-			this.$el.addEventListener("mouseup", this.events[7] = onlyMouse(this.onPointerUp), {passive: true});
+				addEventListener(this.$el, "mouseleave", onlyMouse(this.onPointerUp)),
+				addEventListener(this.$el, "mousedown", onlyMouse(this.onPointerDown)),
+				addEventListener(this.$el, "mouseenter", onlyMouse(this.onPointerEnter)),
+				addEventListener(this.$el, "mouseup", onlyMouse(this.onPointerUp))
+			);
 		},
 
 		render(h)
@@ -148,7 +143,7 @@
 
 				this.onPointerDown(evt, true);
 
-				this.ripples[this.ripples.length - 1].addEventListener("transitionend", () => this.onPointerUp(evt, true));
+				this.ripples[this.ripples.length - 1].addEventListener("transitionend", () => this.onPointerUp(evt, true), {once: true});
 			},
 
 			onPointerUp(evt, wasHover = false)
