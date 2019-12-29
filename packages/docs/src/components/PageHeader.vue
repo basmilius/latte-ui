@@ -73,15 +73,30 @@
 
 			onScroll()
 			{
-				const scrollTop = document.scrollingElement.scrollTop || window.scrollTop || 0;
-				const tabs = this.tabsWithElement
-					.sort((a, b) => Latte.operators.spaceship(a.rect.top, b.rect.top));
-
-				if (tabs.length === 0)
+				if (this.tabsWithElement.length === 0)
 					return this.currentTab = null;
 
-				this.currentTab = tabs
-					.reduce((a, b) => Math.abs(scrollTop - a.rect.top) < Math.abs(scrollTop - b.rect.top) ? a : b);
+				const scrollTop = document.scrollingElement.scrollTop;
+
+				this.currentTab = this.tabsWithElement
+					.sort((a, b) => Latte.operators.spaceship(a.rect.top, b.rect.top))
+					.filter(a => a.rect.top <= scrollTop + window.innerHeight)
+					.reduce((a, b) => Math.abs(a.rect.top - scrollTop) < Math.abs(b.rect.top - scrollTop) ? a : b);
+			},
+
+			updateTabs()
+			{
+				this.tabsWithElement = this.tabs.map(tab =>
+				{
+					const elm = document.querySelector(tab.selector);
+
+					if (!elm)
+						return undefined;
+
+					const rect = elm.getBoundingClientRect();
+
+					return Object.assign({}, tab, {elm, rect});
+				}).filter(tab => !!tab);
 			}
 
 		},
@@ -93,18 +108,7 @@
 				{
 					this.$nextTick(() =>
 					{
-						this.tabsWithElement = this.tabs.map(tab =>
-						{
-							const elm = document.querySelector(tab.selector);
-
-							if (!elm)
-								return undefined;
-
-							const rect = elm.getBoundingClientRect();
-
-							return Object.assign({}, tab, {elm, rect});
-						}).filter(tab => !!tab);
-
+						this.updateTabs();
 						this.onScroll();
 					});
 				}

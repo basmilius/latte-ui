@@ -2,22 +2,16 @@
 
 	<div class="page" id="component-app-bar">
 
-		<PageHeader title="App Bar" :tabs="tabs"/>
+		<PageHeader title="Avatar" :tabs="tabs"/>
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Introduction" id="introduction">
 			<div class="col-12 col-lg-6">
-				<p class="lead">An App Bar is the primary navigation element of your app or website. It can also show your primary branding color.</p>
+				<p class="lead">Used to show profile pictures or initials of users or other images in a list.</p>
 			</div>
 		</TitledRow>
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
-				<CodeExample :code="previews.standard" title="Standard"/>
-				<CodeExample :code="previews.autoHeight" title="Auto height"/>
-				<CodeExample :code="previews.actionButtons" title="Action buttons"/>
-				<CodeExample :code="previews.search" title="Search bar"/>
-				<CodeExample :code="previews.panel" title="Panel"/>
-				<CodeExample :code="previews.tabs" title="Tabs"/>
 			</div>
 		</TitledRow>
 

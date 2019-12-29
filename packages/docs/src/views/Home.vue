@@ -130,7 +130,9 @@
 	export default {
 
 		name: "Home",
+
 		components: {CodeSnippet},
+
 		data()
 		{
 			return {
