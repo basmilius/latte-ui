@@ -27,6 +27,7 @@
 	import { dispatch } from "../../js/core/action";
 	import { id } from "../../js/core/api";
 	import { closest } from "../../js/util/dom";
+	import { addEventListener } from "../../js/util/event";
 
 	const defaultStrings = {
 		dropFile: "Drop here to upload!",
@@ -61,23 +62,15 @@
 
 		beforeDestroy()
 		{
-			window.removeEventListener("dragend", this.fn.onDragEnd);
-			window.removeEventListener("dragleave", this.fn.onDragLeave);
-			window.removeEventListener("dragover", this.fn.onDragOver);
-			window.removeEventListener("drop", this.fn.onDrop);
+			this.events.forEach(remove => remove());
 		},
 
 		data()
 		{
 			return {
+				events: [],
 				blobs: [],
 				files: [],
-				fn: {
-					onDragEnd: evt => this.onDragEnd(evt),
-					onDragLeave: evt => this.onDragLeave(evt),
-					onDragOver: evt => this.onDragOver(evt),
-					onDrop: evt => this.onDrop(evt)
-				},
 				isDragging: false,
 				isDraggingOver: false
 			};
@@ -85,10 +78,12 @@
 
 		mounted()
 		{
-			window.addEventListener("dragend", this.fn.onDragEnd);
-			window.addEventListener("dragleave", this.fn.onDragLeave);
-			window.addEventListener("dragover", this.fn.onDragOver);
-			window.addEventListener("drop", this.fn.onDrop);
+			this.events.push(
+				addEventListener(window, "dragend", this.onDragEnd, {passive: false}),
+				addEventListener(window, "dragleave", this.onDragLeave, {passive: false}),
+				addEventListener(window, "dragover", this.onDragOver, {passive: false}),
+				addEventListener(window, "drop", this.onDrop, {passive: false})
+			);
 		},
 
 		computed: {
