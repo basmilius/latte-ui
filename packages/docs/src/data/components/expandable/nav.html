@@ -1,0 +1,32 @@
+<nav class="nav nav-list">
+	<a class="nav-link"><latte-icon>home</latte-icon><span>Home</span></a>
+
+	<latte-expandable group="example-nav">
+		<template #header="{isOpen}">
+			<a class="nav-link">
+				<latte-icon>view-grid</latte-icon>
+				<span>Components</span>
+				<latte-icon :name="isOpen ? 'chevron-up' : 'chevron-down'"></latte-icon>
+			</a>
+		</template>
+
+		<a class="nav-link"><latte-icon></latte-icon><span>App bar</span></a>
+		<a class="nav-link"><latte-icon></latte-icon><span>Avatar</span></a>
+		<a class="nav-link"><latte-icon></latte-icon><span>Badge</span></a>
+		<a class="nav-link"><latte-icon></latte-icon><span>Bottom nav</span></a>
+	</latte-expandable>
+
+	<latte-expandable group="example-nav">
+		<template #header="{isOpen}">
+			<a class="nav-link">
+				<latte-icon>eye</latte-icon>
+				<span>Examples</span>
+				<latte-icon :name="isOpen ? 'chevron-up' : 'chevron-down'"></latte-icon>
+			</a>
+		</template>
+
+		<a class="nav-link"><latte-icon></latte-icon><span>Admin dashboard</span></a>
+		<a class="nav-link"><latte-icon></latte-icon><span>Blog</span></a>
+		<a class="nav-link"><latte-icon></latte-icon><span>Website</span></a>
+	</latte-expandable>
+</nav>
