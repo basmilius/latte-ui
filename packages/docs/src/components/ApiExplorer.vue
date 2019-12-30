@@ -1,6 +1,6 @@
 <template>
 
-	<latte-tab-container class="panel">
+	<latte-tab-container class="panel" style="z-index: 0">
 
 		<latte-tab-bar></latte-tab-bar>
 

@@ -44,6 +44,10 @@ const router = new Router({
 						{
 							path: "avatar",
 							component: () => import("./views/components/Avatar.vue")
+						},
+						{
+							path: "badge",
+							component: () => import("./views/components/Badge.vue")
 						}
 					]
 				},

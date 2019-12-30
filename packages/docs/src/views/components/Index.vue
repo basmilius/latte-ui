@@ -48,9 +48,9 @@
 		{
 			return {
 				components: [
-					{url: "/components/app-bar", title: "App Bar", description: "The primary navigation element, used to display the branding of your app."},
-					{url: "/components/avatar", title: "Avatar", description: "Used to show profile pictures or initials of users or other images in a list."},
-					{url: "/components/badge", title: "Badge", description: "Also known as tags."},
+					{url: "/components/app-bar", title: "App Bar", description: "Lorem ipsum dolor sit amet..."},
+					{url: "/components/avatar", title: "Avatar", description: "Lorem ipsum dolor sit amet..."},
+					{url: "/components/badge", title: "Badge", description: "Lorem ipsum dolor sit amet..."},
 					{url: "/components/bottom-nav", title: "Bottom Nav", description: "Lorem ipsum dolor sit amet..."},
 					{url: "/components/button", title: "Button", description: "Lorem ipsum dolor sit amet..."},
 					{url: "/components/chat", title: "Chat", description: "Lorem ipsum dolor sit amet..."},
