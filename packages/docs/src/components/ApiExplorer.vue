@@ -1,8 +1,8 @@
 <template>
 
-	<latte-tab-container class="panel" style="z-index: 0">
+	<latte-tab-container class="panel overflow-auto text-left" style="z-index: 0">
 
-		<latte-tab-bar></latte-tab-bar>
+		<latte-tab-bar style="position: sticky; left: 0"></latte-tab-bar>
 
 		<latte-tab label="Properties" v-if="properties">
 			<table class="table">

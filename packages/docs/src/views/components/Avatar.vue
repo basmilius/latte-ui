@@ -12,10 +12,10 @@
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
-				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel d-flex align-items-center justify-content-center"/>
-				<CodeExample :code="previews.initials" title="Initials" classes="bg-panel d-flex align-items-center justify-content-center"/>
-				<CodeExample :code="previews.shapes" title="Shapes" classes="bg-panel d-flex align-items-center justify-content-center"/>
-				<CodeExample :code="previews.strip" title="Strip" classes="bg-panel d-flex align-items-center flex-column justify-content-center"/>
+				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
+				<CodeExample :code="previews.initials" title="Initials" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
+				<CodeExample :code="previews.shapes" title="Shapes" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
+				<CodeExample :code="previews.strip" title="Strip" classes="bg-panel d-flex flex-wrap align-items-center flex-column justify-content-center"/>
 			</div>
 		</TitledRow>
 

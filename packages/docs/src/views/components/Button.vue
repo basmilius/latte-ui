@@ -12,15 +12,15 @@
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
-				<CodeExample :code="previews.contained" title="Contained" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.outline" title="Outline" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.soft" title="Soft" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.text" title="Text" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.action" title="Action" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.floatingAction" title="Floating action" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.group" title="Group" classes="bg-panel d-flex justify-content-center"/>
-				<CodeExample :code="previews.pill" title="Pill" classes="d-flex justify-content-center"/>
-				<CodeExample :code="previews.sizes" title="Sizes" classes="bg-panel d-flex align-items-center justify-content-center"/>
+				<CodeExample :code="previews.contained" title="Contained" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.outline" title="Outline" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.soft" title="Soft" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.text" title="Text" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.action" title="Action" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.floatingAction" title="Floating action" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.group" title="Group" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.pill" title="Pill" classes="d-flex flex-column flex-lg-row justify-content-center"/>
+				<CodeExample :code="previews.sizes" title="Sizes" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
 			</div>
 		</TitledRow>
 
