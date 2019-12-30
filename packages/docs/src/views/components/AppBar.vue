@@ -21,7 +21,11 @@
 			</div>
 		</TitledRow>
 
-		<TitledRow class="py-5 text-center text-lg-left" title="API" id="api"></TitledRow>
+		<TitledRow class="py-5 text-center text-lg-left" title="API" id="api">
+			<div class="col-12">
+				<ApiExplorer v-bind="api"/>
+			</div>
+		</TitledRow>
 
 	</div>
 
@@ -39,16 +43,54 @@
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
 	import CodeExample from "../../components/CodeExample";
+	import ApiExplorer from "../../components/ApiExplorer";
 
 	export default {
 
 		name: "AppBar",
 
-		components: {CodeExample, TitledRow, PageHeader},
+		components: {ApiExplorer, CodeExample, TitledRow, PageHeader},
 
 		data()
 		{
+			const computedStyle = window
+				.getComputedStyle(document.body);
+
 			return {
+				api: {
+					variables: [
+						{
+							name: "--appBarAlpha",
+							description: "App bar alpha.",
+							type: "number",
+							default: 1
+						},
+						{
+							name: "--appBarBackground",
+							description: "Background color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--appBarBackground").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--appBarForeground",
+							description: "Foreground color.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--appBarForeground").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--appBarElevation",
+							description: "Elevation shadow.",
+							type: "string",
+							default: computedStyle.getPropertyValue("--appBarElevation")
+						},
+						{
+							name: "--appBarHeight",
+							description: "App bar height",
+							type: "string",
+							default: computedStyle.getPropertyValue("--appBarHeight")
+						}
+					]
+				},
 				previews: {
 					standard: previewStandard,
 					actionButtons: previewActionButtons,

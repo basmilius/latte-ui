@@ -87,7 +87,7 @@
 		{
 			margin: 0;
 			padding: 24px;
-			font-family: "Operator Mono", monospace;
+			font-family: var(--fontMonospace);
 			font-size: 13px;
 			font-weight: 500;
 			overflow: visible;
