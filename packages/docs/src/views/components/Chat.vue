@@ -12,8 +12,8 @@
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
-				<CodeExample :code="previews.standard" title="Contained" classes="bg-panel"/>
-				<CodeExample :code="previews.avatar" title="Outline" classes="bg-panel"/>
+				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel"/>
+				<CodeExample :code="previews.avatar" title="With avatars" classes="bg-panel"/>
 			</div>
 		</TitledRow>
 
