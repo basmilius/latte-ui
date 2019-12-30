@@ -1,11 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "643c3be24cbdeb14a016",
-    "url": "/assets/css/app.d8e2dce7.css"
+    "revision": "4857cbf8908fbf3a994c",
+    "url": "/assets/css/app.b0eaf388.css"
   },
   {
-    "revision": "ea69f646b6c7bcaf56c2",
-    "url": "/assets/css/chunk-633a4d85.eedebc7a.css"
+    "revision": "430568d5fe52a198b091",
+    "url": "/assets/css/chunk-0b491d51.83c46cf4.css"
+  },
+  {
+    "revision": "129162ddfce68ba7ea89",
+    "url": "/assets/css/chunk-1dffd2f6.83c46cf4.css"
+  },
+  {
+    "revision": "fd7f746857d4e39f7556",
+    "url": "/assets/css/chunk-2a0dc27b.83c46cf4.css"
+  },
+  {
+    "revision": "dccecd382eda075e8fcc",
+    "url": "/assets/css/chunk-5db00a87.5b4a215a.css"
+  },
+  {
+    "revision": "f8c5bc50c2820d9c357d",
+    "url": "/assets/css/chunk-9d612662.83c46cf4.css"
+  },
+  {
+    "revision": "e3e5a7b8540adfc790aa",
+    "url": "/assets/css/chunk-dae99bc6.83c46cf4.css"
   },
   {
     "revision": "6f5cc8f867f0d214083c",
@@ -48,8 +68,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "643c3be24cbdeb14a016",
-    "url": "/assets/js/app.038a28b6.js"
+    "revision": "4857cbf8908fbf3a994c",
+    "url": "/assets/js/app.ebb18073.js"
+  },
+  {
+    "revision": "430568d5fe52a198b091",
+    "url": "/assets/js/chunk-0b491d51.4dd288fa.js"
+  },
+  {
+    "revision": "129162ddfce68ba7ea89",
+    "url": "/assets/js/chunk-1dffd2f6.a74d45ae.js"
+  },
+  {
+    "revision": "fd7f746857d4e39f7556",
+    "url": "/assets/js/chunk-2a0dc27b.062cb2ef.js"
   },
   {
     "revision": "265604fde8571a6b2fad",
@@ -60,31 +92,47 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d0e5e97.9404edee.js"
   },
   {
-    "revision": "7a16be4135db430aafa2",
-    "url": "/assets/js/chunk-3bf747b6.01d9a64d.js"
+    "revision": "b920eccc58d779de0e9d",
+    "url": "/assets/js/chunk-3bf747b6.d30bdf0d.js"
   },
   {
-    "revision": "ae3d6d215affce33938a",
-    "url": "/assets/js/chunk-3bfa8183.cb16bdcf.js"
-  },
-  {
-    "revision": "1030c97f2f14b2b6dd77",
-    "url": "/assets/js/chunk-3bfb6dbc.7785c0f2.js"
+    "revision": "a9c5f7347e5421acc905",
+    "url": "/assets/js/chunk-3bfa8183.dca27c6e.js"
   },
   {
     "revision": "335985e7c944abd32be5",
     "url": "/assets/js/chunk-4d557a22.3e21d485.js"
   },
   {
-    "revision": "ea69f646b6c7bcaf56c2",
-    "url": "/assets/js/chunk-633a4d85.72dd1b48.js"
+    "revision": "dccecd382eda075e8fcc",
+    "url": "/assets/js/chunk-5db00a87.a3ed1a58.js"
+  },
+  {
+    "revision": "026b58f13efc2fb343b5",
+    "url": "/assets/js/chunk-711b6898.148085a1.js"
+  },
+  {
+    "revision": "f8c5bc50c2820d9c357d",
+    "url": "/assets/js/chunk-9d612662.de467030.js"
+  },
+  {
+    "revision": "e3e5a7b8540adfc790aa",
+    "url": "/assets/js/chunk-dae99bc6.8e6e09b2.js"
   },
   {
     "revision": "6f5cc8f867f0d214083c",
     "url": "/assets/js/chunk-vendors.d83831c5.js"
   },
   {
-    "revision": "7ee911aac51ae76b91e8c58ef89d3e47",
+    "revision": "bf57d4d63203b88b49e15c778bb01a88",
+    "url": "/image/bas.svg"
+  },
+  {
+    "revision": "4ca19b6154a6b79026a10c78ec0d6167",
+    "url": "/image/dog-with-hat.jpg"
+  },
+  {
+    "revision": "480ef40f170b80bc7984079d1be22075",
     "url": "/index.html"
   },
   {
