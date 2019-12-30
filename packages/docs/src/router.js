@@ -60,6 +60,14 @@ const router = new Router({
 						{
 							path: "chat",
 							component: () => import("./views/components/Chat.vue")
+						},
+						{
+							path: "datatable",
+							component: () => import("./views/components/Datatable.vue")
+						},
+						{
+							path: "expandable",
+							component: () => import("./views/components/Expandable.vue")
 						}
 					]
 				},

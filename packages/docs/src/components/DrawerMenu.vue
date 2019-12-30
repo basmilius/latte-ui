@@ -46,7 +46,7 @@
 				<DrawerMenuItem to="/components/bottom-nav"><span>Bottom Nav</span></DrawerMenuItem>
 				<DrawerMenuItem to="/components/button"><span>Button</span></DrawerMenuItem>
 				<DrawerMenuItem to="/components/chat"><span>Chat</span></DrawerMenuItem>
-				<DrawerMenuItem to="/components/data-table"><span>Datatable</span></DrawerMenuItem>
+				<DrawerMenuItem to="/components/datatable"><span>Datatable</span></DrawerMenuItem>
 				<DrawerMenuItem to="/components/expandable"><span>Expandable</span></DrawerMenuItem>
 				<DrawerMenuItem to="/components/form-elements"><span>Form elements</span></DrawerMenuItem>
 				<DrawerMenuItem to="/components/list"><span>List</span></DrawerMenuItem>

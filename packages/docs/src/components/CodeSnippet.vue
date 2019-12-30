@@ -1,7 +1,6 @@
 <script>
 
 	import hljs from "highlight.js";
-	import Vue from "vue";
 	import { Latte } from "../../../latte-ui";
 
 	export default {
@@ -27,14 +26,16 @@
 			this.loadSnippet();
 		},
 
-		render(ce)
+		render(h)
 		{
 			const code = hljs.highlight(this.lang, (this.url !== null ? (this.code !== null ? this.code : "") : this.code || this.$slots.default[0].text).trim()).value;
-			const cmp = Vue.extend({
-				template: `<div class="code-snippet ${this.small ? "small" : ""}"><pre>${code}</pre></div>`
-			});
 
-			return ce(cmp);
+			return h("div", {
+				class: ["code-snippet", this.small ? "small" : "not-small"],
+				domProps: {
+					innerHTML: `<pre>${code}</pre>`
+				}
+			});
 		},
 
 		methods: {
