@@ -43,7 +43,7 @@
 
 	export default {
 
-		name: "AppBar",
+		name: "Badge",
 
 		components: {ApiExplorer, CodeExample, TitledRow, PageHeader},
 

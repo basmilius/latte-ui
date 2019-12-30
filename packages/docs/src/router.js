@@ -48,6 +48,10 @@ const router = new Router({
 						{
 							path: "badge",
 							component: () => import("./views/components/Badge.vue")
+						},
+						{
+							path: "bottom-nav",
+							component: () => import("./views/components/BottomNav.vue")
 						}
 					]
 				},
