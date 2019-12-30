@@ -36,14 +36,22 @@
 				return this.code
 					.trim()
 					.replace(/<[^>]*class="[^"]*\bpreview-code\b[^"]*"[^>]*><\/[^>]*>/gm, "")
+					.replace(/\s(preview:[^("\s)]*)/gm, "")
 					.replace(/(\r?\n){2,}/gm, "\n\n");
+			},
+
+			previewCode()
+			{
+				return this.code
+					.trim()
+					.replace(/(preview:)/gm, "");
 			},
 
 			preview()
 			{
 				const bindings = this.bindings;
 				const classes = this.classes;
-				const code = this.code;
+				const code = this.previewCode;
 
 				return Vue.extend({
 
