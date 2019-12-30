@@ -52,6 +52,10 @@ const router = new Router({
 						{
 							path: "bottom-nav",
 							component: () => import("./views/components/BottomNav.vue")
+						},
+						{
+							path: "button",
+							component: () => import("./views/components/Button.vue")
 						}
 					]
 				},
