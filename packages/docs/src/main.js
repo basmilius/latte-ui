@@ -14,7 +14,7 @@ import "./registerServiceWorker";
 Vue.config.productionTip = false;
 
 Vue.use(LatteUI, {
-	emojiEnabled: false,
+	emojiEnabled: true,
 	emojiPath: "/svg/@0.svg"
 });
 

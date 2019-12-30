@@ -56,6 +56,10 @@ const router = new Router({
 						{
 							path: "button",
 							component: () => import("./views/components/Button.vue")
+						},
+						{
+							path: "chat",
+							component: () => import("./views/components/Chat.vue")
 						}
 					]
 				},
