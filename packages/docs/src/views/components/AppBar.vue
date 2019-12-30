@@ -33,13 +33,6 @@
 
 <script>
 
-	import previewActionButtons from "raw-loader!../../data/components/app-bar/action-buttons.html";
-	import previewAutoHeight from "raw-loader!../../data/components/app-bar/auto-height.html";
-	import previewPanel from "raw-loader!../../data/components/app-bar/panel.html";
-	import previewSearch from "raw-loader!../../data/components/app-bar/search.html";
-	import previewStandard from "raw-loader!../../data/components/app-bar/standard.html";
-	import previewTabs from "raw-loader!../../data/components/app-bar/tabs.html";
-
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
 	import CodeExample from "../../components/CodeExample";
@@ -92,12 +85,12 @@
 					]
 				},
 				previews: {
-					standard: previewStandard,
-					actionButtons: previewActionButtons,
-					autoHeight: previewAutoHeight,
-					panel: previewPanel,
-					search: previewSearch,
-					tabs: previewTabs
+					standard: require("raw-loader!../../data/components/app-bar/standard.html").default,
+					actionButtons: require("raw-loader!../../data/components/app-bar/action-buttons.html").default,
+					autoHeight: require("raw-loader!../../data/components/app-bar/auto-height.html").default,
+					panel: require("raw-loader!../../data/components/app-bar/panel.html").default,
+					search: require("raw-loader!../../data/components/app-bar/search.html").default,
+					tabs: require("raw-loader!../../data/components/app-bar/tabs.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},

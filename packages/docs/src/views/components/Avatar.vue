@@ -31,11 +31,6 @@
 
 <script>
 
-	import previewInitials from "raw-loader!../../data/components/avatar/initials.html";
-	import previewShapes from "raw-loader!../../data/components/avatar/shapes.html";
-	import previewStrip from "raw-loader!../../data/components/avatar/strip.html";
-	import previewStandard from "raw-loader!../../data/components/avatar/standard.html";
-
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
 	import CodeExample from "../../components/CodeExample";
@@ -61,10 +56,10 @@
 					]
 				},
 				previews: {
-					standard: previewStandard,
-					initials: previewInitials,
-					shapes: previewShapes,
-					strip: previewStrip
+					standard: require("raw-loader!../../data/components/avatar/standard.html").default,
+					initials: require("raw-loader!../../data/components/avatar/initials.html").default,
+					shapes: require("raw-loader!../../data/components/avatar/shapes.html").default,
+					strip: require("raw-loader!../../data/components/avatar/strip.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},

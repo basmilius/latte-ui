@@ -31,11 +31,6 @@
 
 <script>
 
-	import previewClickable from "raw-loader!../../data/components/badge/clickable.html";
-	import previewClosable from "raw-loader!../../data/components/badge/closable.html";
-	import previewSpinner from "raw-loader!../../data/components/badge/spinner.html";
-	import previewStandard from "raw-loader!../../data/components/badge/standard.html";
-
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
 	import CodeExample from "../../components/CodeExample";
@@ -64,10 +59,10 @@
 					]
 				},
 				previews: {
-					standard: previewStandard,
-					clickable: previewClickable,
-					closable: previewClosable,
-					spinner: previewSpinner
+					standard: require("raw-loader!../../data/components/badge/standard.html").default,
+					clickable: require("raw-loader!../../data/components/badge/clickable.html").default,
+					closable: require("raw-loader!../../data/components/badge/closable.html").default,
+					spinner: require("raw-loader!../../data/components/badge/spinner.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},

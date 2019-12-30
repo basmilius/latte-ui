@@ -30,10 +30,6 @@
 
 <script>
 
-	import previewShifting from "raw-loader!../../data/components/bottom-nav/shifting.html";
-	import previewSide from "raw-loader!../../data/components/bottom-nav/side.html";
-	import previewStandard from "raw-loader!../../data/components/bottom-nav/standard.html";
-
 	import PageHeader from "../../components/PageHeader";
 	import TitledRow from "../../components/TitledRow";
 	import CodeExample from "../../components/CodeExample";
@@ -107,9 +103,9 @@
 					]
 				},
 				previews: {
-					standard: previewStandard,
-					shifting: previewShifting,
-					side: previewSide
+					standard: require("raw-loader!../../data/components/bottom-nav/standard.html").default,
+					shifting: require("raw-loader!../../data/components/bottom-nav/shifting.html").default,
+					side: require("raw-loader!../../data/components/bottom-nav/side.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},
