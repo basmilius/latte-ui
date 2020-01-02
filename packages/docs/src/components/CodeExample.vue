@@ -37,6 +37,7 @@
 					.trim()
 					.replace(/<[^>]*class="[^"]*\bpreview-code\b[^"]*"[^>]*><\/[^>]*>/gm, "")
 					.replace(/\s(preview:[^("\s)]*)/gm, "")
+					.replace(/\sclass=""/gm, "")
 					.replace(/(\r?\n){2,}/gm, "\n\n");
 			},
 

@@ -68,6 +68,10 @@ const router = new Router({
 						{
 							path: "expandable",
 							component: () => import("./views/components/Expandable.vue")
+						},
+						{
+							path: "form-elements",
+							component: () => import("./views/components/FormElements.vue")
 						}
 					]
 				},
