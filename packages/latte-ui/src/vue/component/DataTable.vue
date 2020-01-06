@@ -10,7 +10,7 @@
 <template>
 
 	<div class="table-overflow" :class="{'is-loading': isLoading}">
-		<table class="table table-hover mb-0">
+		<table class="table table-hover mb-0" :class="tableClasses">
 			<thead>
 
 			<tr v-if="showHeader">
@@ -36,6 +36,7 @@
 				<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
 					<th v-if="isSelectionMode" style="width:42px"></th>
 					<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
+						<!--suppress HtmlFormInputWithoutLabel -->
 						<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 					</th>
 					<th v-if="hasActions"></th>
@@ -189,6 +190,7 @@
 			showSearch: {default: true, type: Boolean},
 			showSorting: {default: true, type: Boolean},
 			spinner: {default: true, type: Boolean},
+			tableClasses: {default: () => [], type: Array | String},
 			value: {default: () => [], type: Array | Number}
 		},
 
@@ -361,6 +363,36 @@
 				this.loadData();
 			},
 
+			onDataSourceChange()
+			{
+				if (!this.dataSource)
+					throw new Error("dataSource is undefined.");
+
+				return new Promise(resolve =>
+				{
+					let dsi;
+
+					if (typeof this.dataSource === "string")
+						dsi = urlDataSource(this.dataSource);
+					else
+						dsi = this.dataSource();
+
+					if (!(dsi instanceof Promise))
+						dsi = Promise.resolve(dsi);
+
+					dsi.then(dsi =>
+					{
+						this.dsi = dsi;
+
+						if (!this.dsi)
+							throw new Error("Invalid data source instance.");
+
+						this.loadSetup();
+						resolve();
+					});
+				});
+			},
+
 			onReceivedData(response)
 			{
 				if (!response)
@@ -417,35 +449,7 @@
 			dataSource: {
 				deep: true,
 				immediate: true,
-				handler()
-				{
-					if (!this.dataSource)
-						throw new Error("dataSource is undefined.");
-
-					return new Promise(resolve =>
-					{
-						let dsi;
-
-						if (typeof this.dataSource === "string")
-							dsi = urlDataSource(this.dataSource);
-						else
-							dsi = this.dataSource();
-
-						if (!(dsi instanceof Promise))
-							dsi = Promise.resolve(dsi);
-
-						dsi.then(dsi =>
-						{
-							this.dsi = dsi;
-
-							if (!this.dsi)
-								throw new Error("Invalid data source instance.");
-
-							this.loadSetup();
-							resolve();
-						});
-					});
-				}
+				handler: "onDataSourceChange"
 			},
 
 			selection()

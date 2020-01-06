@@ -22,6 +22,7 @@
 
 		</template>
 
+		<!--suppress HtmlFormInputWithoutLabel -->
 		<input type="search" :name="name" :disabled="disabled" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 
 		<div class="popup" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
