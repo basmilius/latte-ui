@@ -1,6 +1,6 @@
 <template>
 
-	<div class="page" id="component-app-bar">
+	<div class="page" id="component-form-elements">
 
 		<PageHeader title="Form elements" :tabs="tabs"/>
 

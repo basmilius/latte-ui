@@ -1,6 +1,6 @@
 <template>
 
-	<div class="page" id="component-app-bar">
+	<div class="page" id="component-avatar">
 
 		<PageHeader title="Avatar" :tabs="tabs"/>
 

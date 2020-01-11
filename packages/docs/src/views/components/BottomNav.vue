@@ -1,6 +1,6 @@
 <template>
 
-	<div class="page" id="component-app-bar">
+	<div class="page" id="component-bottom-nav">
 
 		<PageHeader title="Bottom nav" :tabs="tabs"/>
 
