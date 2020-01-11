@@ -18,6 +18,11 @@
 				<CodeExample :code="previews.addons" title="Addons" classes="bg-panel"/>
 				<CodeExample :code="previews.colors" title="Colors" classes="bg-panel"/>
 				<CodeExample :code="previews.password" title="Password" classes="bg-panel"/>
+				<CodeExample :code="previews.autocomplete" :bindings="bindings.autocomplete" title="Autocomplete" classes="bg-panel" style="overflow: visible"/>
+				<CodeExample :code="previews.range" title="Range" classes="bg-panel"/>
+				<CodeExample :code="previews.checkbox" title="Checkbox" classes="bg-panel"/>
+				<CodeExample :code="previews.radio" title="Radio" classes="bg-panel"/>
+				<CodeExample :code="previews.toggle" title="Toggle" classes="bg-panel"/>
 			</div>
 		</TitledRow>
 
@@ -46,8 +51,37 @@
 
 		data()
 		{
+			const computedStyle = window
+				.getComputedStyle(document.body);
+
 			return {
-				api: {},
+				api: {
+					variables: [
+						{
+							name: "--formAlpha",
+							description: "Used for non-focused border, based on --formOutline.",
+							type: "float",
+							default: computedStyle.getPropertyValue("--formAlpha")
+						},
+						{
+							name: "--formOutline",
+							description: "Used for the border of form elements.",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--formOutline").split(",").map(c => parseInt(c))
+						},
+						{
+							name: "--formOutlineForeground",
+							description: "Used for text on --formOutline, used in form addons for example..",
+							type: "rgb",
+							default: computedStyle.getPropertyValue("--formOutlineForeground").split(",").map(c => parseInt(c))
+						}
+					]
+				},
+				bindings: {
+					autocomplete: {
+						dataSource: require("../../data/components/form-elements/autocomplete-data-source.js").default
+					}
+				},
 				previews: {
 					field: require("raw-loader!../../data/components/form-elements/field.html").default,
 					select: require("raw-loader!../../data/components/form-elements/select.html").default,
@@ -55,6 +89,11 @@
 					addons: require("raw-loader!../../data/components/form-elements/addons.html").default,
 					colors: require("raw-loader!../../data/components/form-elements/colors.html").default,
 					password: require("raw-loader!../../data/components/form-elements/password.html").default,
+					autocomplete: require("raw-loader!../../data/components/form-elements/autocomplete.html").default,
+					range: require("raw-loader!../../data/components/form-elements/range.html").default,
+					checkbox: require("raw-loader!../../data/components/form-elements/checkbox.html").default,
+					radio: require("raw-loader!../../data/components/form-elements/radio.html").default,
+					toggle: require("raw-loader!../../data/components/form-elements/toggle.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},
