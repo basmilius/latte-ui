@@ -72,6 +72,10 @@ const router = new Router({
 						{
 							path: "form-elements",
 							component: () => import("./views/components/FormElements.vue")
+						},
+						{
+							path: "list",
+							component: () => import("./views/components/List.vue")
 						}
 					]
 				},
