@@ -22,7 +22,7 @@
 	height: 24px;
 	width: 24px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgb(var(--formOutline))};
+	border: 2px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	border-radius: var(--radius);
 	cursor: pointer;
 	outline: 0;
@@ -81,7 +81,7 @@
 
 	&:focus
 	{
-		border-color: #{latte-rgb(var(--checkboxBackground))};
+		border-color: #{latte-rgb(var(--formOutline))};
 	}
 
 	&:checked,
@@ -99,9 +99,20 @@
 
 	&[disabled]
 	{
+		--checkboxForeground: var(--formOutline);
+
+		background: #{latte-rgba(var(--formOutline), .15)};
+		border-color: #{latte-rgba(var(--formOutline), .3)};
 		cursor: not-allowed;
-		filter: grayscale(100%);
-		opacity: .5;
+
+		&:not(:checked):not(:indeterminate)
+		{
+			&::before,
+			&::after
+			{
+				background: transparent;
+			}
+		}
 	}
 }
 
