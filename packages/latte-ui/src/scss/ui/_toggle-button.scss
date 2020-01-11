@@ -22,7 +22,7 @@
 	height: 24px;
 	width: 36px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgb(var(--formOutline))};
+	border: 2px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
@@ -45,7 +45,7 @@
 
 	&:focus
 	{
-		border-color: #{latte-rgb(var(--toggleBackground))};
+		border-color: #{latte-rgb(var(--formOutline))};
 	}
 
 	&:checked
@@ -62,9 +62,11 @@
 
 	&[disabled]
 	{
+		--toggleForeground: var(--formOutline);
+
+		background: #{latte-rgba(var(--formOutline), .15)};
+		border-color: #{latte-rgba(var(--formOutline), .3)};
 		cursor: not-allowed;
-		filter: grayscale(100%);
-		opacity: .5;
 	}
 }
 
