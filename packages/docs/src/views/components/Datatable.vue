@@ -43,7 +43,7 @@
 
 	export default {
 
-		name: "Chat",
+		name: "Datatable",
 
 		components: {ApiExplorer, CodeSnippet, CodeExample, TitledRow, PageHeader},
 

@@ -39,7 +39,7 @@
 
 	export default {
 
-		name: "Chat",
+		name: "List",
 
 		components: {ApiExplorer, CodeSnippet, CodeExample, TitledRow, PageHeader},
 

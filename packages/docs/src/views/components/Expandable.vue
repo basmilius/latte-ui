@@ -38,7 +38,7 @@
 
 	export default {
 
-		name: "Chat",
+		name: "Expandable",
 
 		components: {ApiExplorer, CodeExample, TitledRow, PageHeader},
 
