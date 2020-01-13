@@ -200,26 +200,17 @@ export function isReady()
  */
 export function live(root, selector, event, callback, options = {passive: true})
 {
-	if (event.indexOf(" ") > -1)
-	{
-		const events = event.split(" ");
-
-		events.forEach(event => live(root, selector, event, callback));
-
-		return;
-	}
-
 	root.addEventListener(event, function (evt)
 	{
-		const qs = root.querySelectorAll(selector);
+		const elements = root.querySelectorAll(selector);
 
-		if (!qs)
+		if (!elements)
 			return;
 
 		let el = evt.target;
 		let index;
 
-		while (el && ((index = Array.prototype.indexOf.call(qs, el)) === -1))
+		while (el && ((index = Array.prototype.indexOf.call(elements, el)) === -1))
 			el = el.parentElement;
 
 		if (index > -1)

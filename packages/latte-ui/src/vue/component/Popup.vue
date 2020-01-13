@@ -7,6 +7,16 @@
   - LICENSE file that was distributed with this source code.
   -->
 
+<template>
+
+	<div :class="popupClasses" :style="popupStyles" v-mtm>
+		<div class="popup-body">
+			<slot></slot>
+		</div>
+	</div>
+
+</template>
+
 <script>
 
 	import Vue from "vue";
@@ -88,13 +98,6 @@
 			return {
 				popup: this
 			};
-		},
-
-		render(h)
-		{
-			return h("div", {class: this.popupClasses, directives: [{name: "mtm"}], scopedSlots: this.$scopedSlots, style: this.popupStyles}, [
-				h("div", {class: "popup-body"}, this.$slots.default)
-			]);
 		},
 
 		computed: {
