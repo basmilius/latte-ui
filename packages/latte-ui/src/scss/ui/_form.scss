@@ -131,7 +131,7 @@ label.col-form-label
 	{
 		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--formOutline))};
+		background: #{latte-rgba(var(--formOutline), var(--formAlpha))};
 		border-radius: var(--radius);
 		color: transparent; // ...?
 	}
@@ -157,7 +157,7 @@ label.col-form-label
 	{
 		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--formOutline))};
+		background: #{latte-rgba(var(--formOutline), var(--formAlpha))};
 		border-radius: var(--radius);
 		border-color: transparent; // ...?
 		color: transparent; // ...?
@@ -186,7 +186,7 @@ label.col-form-label
 	{
 		height: var(--rangeTrackHeight);
 		width: 100%;
-		background: #{latte-rgb(var(--formOutline))};
+		background: #{latte-rgba(var(--formOutline), var(--formAlpha))};
 		border-radius: var(--radius);
 		border-width: calc(var(--rangeThumbSize) / 2);
 		color: transparent; // ...?
@@ -196,7 +196,6 @@ label.col-form-label
 	{
 		cursor: not-allowed;
 		filter: grayscale(100%);
-		opacity: .5;
 	}
 }
 

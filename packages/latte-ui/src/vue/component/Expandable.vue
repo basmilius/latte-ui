@@ -19,9 +19,13 @@
 			</slot>
 		</div>
 
-		<div class="expandable-body" :style="bodyStyle">
-			<slot></slot>
-		</div>
+		<transition name="expandable">
+
+			<div class="expandable-body" :style="{height}" v-if="isOpen">
+				<slot></slot>
+			</div>
+
+		</transition>
 
 	</div>
 
@@ -56,11 +60,7 @@
 		data()
 		{
 			return {
-				bodyStyle: {
-					height: "0",
-					overflow: "hidden",
-					transition: "height 210ms var(--easeSwiftOut)"
-				},
+				height: "0",
 				isOpen: false,
 				subscriptions: []
 			};
@@ -71,44 +71,27 @@
 			this.subscriptions.forEach(sub => sub.unsubscribe());
 		},
 
-		mounted()
-		{
-			if (this.opened)
-				this.open();
-		},
-
 		methods: {
-
-			onExpandableOpened(expandable)
-			{
-				if (this === expandable)
-					return;
-
-				if (this.group !== expandable.group)
-					return;
-
-				raf(() => this.close());
-			},
 
 			updateBody()
 			{
 				if (this.isOpen)
 				{
-					this.bodyStyle.height = "auto";
+					this.height = "auto";
 
 					raf(() =>
 					{
 						const rect = this.$el.querySelector("div.expandable-body").getBoundingClientRect();
 						const height = rect.height;
 
-						this.bodyStyle.height = "0";
+						this.height = "0";
 
-						raf(() => this.bodyStyle.height = height + "px");
+						raf(() => this.height = height + "px");
 					});
 				}
 				else
 				{
-					raf(() => this.bodyStyle.height = "0");
+					raf(() => this.height = "0");
 				}
 			},
 
@@ -131,13 +114,20 @@
 					this.close();
 				else
 					this.open();
-			}
+			},
 
-		},
+			onExpandableOpened(expandable)
+			{
+				if (this === expandable)
+					return;
 
-		watch: {
+				if (this.group !== expandable.group)
+					return;
 
-			isOpen()
+				this.close();
+			},
+
+			onOpenChanged()
 			{
 				if (this.isOpen && this.group !== null)
 					dispatch("latte:expandable:open", this);
@@ -146,12 +136,29 @@
 				this.updateBody();
 			},
 
-			opened()
+			onOpenedChanged()
 			{
-				if (this.opened)
-					this.open();
-				else
-					this.close();
+				raf(() =>
+				{
+					if (this.opened)
+						this.open();
+					else
+						this.close();
+				});
+			}
+
+		},
+
+		watch: {
+
+			isOpen: {
+				immediate: true,
+				handler: "onOpenChanged"
+			},
+
+			opened: {
+				immediate: true,
+				handler: "onOpenedChanged"
 			}
 
 		}

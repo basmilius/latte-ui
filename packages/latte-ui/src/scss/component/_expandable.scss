@@ -7,13 +7,21 @@
  * LICENSE file that was distributed with this source code.
  */
 
-@import "colorpicker";
-@import "combo-box";
-@import "datepicker";
-@import "emoji-picker";
-@import "expandable";
-@import "ripple";
-@import "sheet";
-@import "swiper";
-@import "uploader";
-@import "window";
+.expandable
+{
+	&-body
+	{
+		overflow: hidden;
+	}
+
+	&-leave-to
+	{
+		height: 0 !important;
+	}
+
+	&-enter-active,
+	&-leave-active
+	{
+		transition: height 210ms var(--easeSwiftOut);
+	}
+}

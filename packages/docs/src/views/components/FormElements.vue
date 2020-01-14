@@ -15,6 +15,7 @@
 				<CodeExample :code="previews.field" title="Field" classes="bg-panel"/>
 				<CodeExample :code="previews.select" title="Select" classes="bg-panel"/>
 				<CodeExample :code="previews.datetime" title="Date and time picker" classes="bg-panel"/>
+				<CodeExample :code="previews.color" title="Colorpicker" classes="bg-panel"/>
 				<CodeExample :code="previews.addons" title="Addons" classes="bg-panel"/>
 				<CodeExample :code="previews.colors" title="Colors" classes="bg-panel"/>
 				<CodeExample :code="previews.password" title="Password" classes="bg-panel"/>
@@ -87,6 +88,7 @@
 					select: require("raw-loader!../../data/components/form-elements/select.html").default,
 					datetime: require("raw-loader!../../data/components/form-elements/datetime.html").default,
 					addons: require("raw-loader!../../data/components/form-elements/addons.html").default,
+					color: require("raw-loader!../../data/components/form-elements/color.html").default,
 					colors: require("raw-loader!../../data/components/form-elements/colors.html").default,
 					password: require("raw-loader!../../data/components/form-elements/password.html").default,
 					autocomplete: require("raw-loader!../../data/components/form-elements/autocomplete.html").default,
