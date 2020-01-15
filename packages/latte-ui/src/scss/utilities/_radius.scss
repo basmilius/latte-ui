@@ -7,28 +7,31 @@
  * LICENSE file that was distributed with this source code.
  */
 
-.radius-circle
+.radius
 {
-	border-radius: 999px !important;
-}
+	&-circle
+	{
+		border-radius: 999px !important;
+	}
 
-.radius-default
-{
-	border-radius: var(--radius) !important;
-}
+	&-default
+	{
+		border-radius: var(--radius) !important;
+	}
 
-.radius-double
-{
-	border-radius: calc(var(--radius) * 2) !important;
-}
+	&-double
+	{
+		border-radius: calc(var(--radius) * 2) !important;
+	}
 
-.radius-none
-{
-	border-radius: 0 !important;
-}
+	&-none
+	{
+		border-radius: 0 !important;
+	}
 
-.radius-squircle
-{
-	border-radius: 0 !important;
-	mask: unquote("url(" + $latte-root + "image/squircle.svg)");
+	&-squircle
+	{
+		border-radius: 0 !important;
+		mask: unquote("url(" + $latte-root + "image/squircle.svg)");
+	}
 }

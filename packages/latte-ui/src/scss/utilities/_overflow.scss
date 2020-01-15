@@ -7,12 +7,20 @@
  * LICENSE file that was distributed with this source code.
  */
 
-.overflow-auto
+.overflow
 {
-	overflow: auto;
-}
+	&-auto
+	{
+		overflow: auto;
+	}
 
-.overflow-hidden
-{
-	overflow: hidden;
+	&-hidden
+	{
+		overflow: hidden;
+	}
+
+	&-visible
+	{
+		overflow: visible;
+	}
 }

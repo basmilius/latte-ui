@@ -16,47 +16,47 @@
 	overflow: hidden;
 	transition: 210ms var(--easeSwiftOut);
 	transition-property: height, width;
-}
 
-.window-view
-{
-	position: absolute;
-	top: 0;
-	left: 0;
-
-	&.is-hidden
+	&-view
 	{
-		display: none;
-	}
+		position: absolute;
+		top: 0;
+		left: 0;
 
-	&.window-horizontal.is-staged.is-forward,
-	&.window-horizontal.is-hiding.is-backward
-	{
-		transform: translate3d(var(--windowWidth, 0), 0, 0);
-	}
+		&.is-hidden
+		{
+			display: none;
+		}
 
-	&.window-horizontal.is-staged.is-backward,
-	&.window-horizontal.is-hiding.is-forward
-	{
-		transform: translate3d(calc(0px - var(--windowWidth, 0)), 0, 0);
-	}
+		&.window-horizontal.is-staged.is-forward,
+		&.window-horizontal.is-hiding.is-backward
+		{
+			transform: translate3d(var(--windowWidth, 0), 0, 0);
+		}
 
-	&.window-vertical.is-staged.is-forward,
-	&.window-vertical.is-hiding.is-backward
-	{
-		transform: translate3d(0, var(--widowHeight, 0), 0);
-	}
+		&.window-horizontal.is-staged.is-backward,
+		&.window-horizontal.is-hiding.is-forward
+		{
+			transform: translate3d(calc(0px - var(--windowWidth, 0)), 0, 0);
+		}
 
-	&.window-vertical.is-staged.is-backward,
-	&.window-vertical.is-hiding.is-forward
-	{
-		transform: translate3d(0, calc(0px - var(--widowHeight, 0)), 0);
-	}
+		&.window-vertical.is-staged.is-forward,
+		&.window-vertical.is-hiding.is-backward
+		{
+			transform: translate3d(0, var(--widowHeight, 0), 0);
+		}
 
-	&.is-hiding,
-	&.is-visible:not(.is-staged)
-	{
-		transition: inherit;
-		transition-property: transform;
+		&.window-vertical.is-staged.is-backward,
+		&.window-vertical.is-hiding.is-forward
+		{
+			transform: translate3d(0, calc(0px - var(--widowHeight, 0)), 0);
+		}
+
+		&.is-hiding,
+		&.is-visible:not(.is-staged)
+		{
+			transition: inherit;
+			transition-property: transform;
+		}
 	}
 }
