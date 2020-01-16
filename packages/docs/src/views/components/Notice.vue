@@ -1,8 +1,8 @@
 <template>
 
-	<div class="page" id="component-list">
+	<div class="page" id="component-notice">
 
-		<PageHeader title="List" :tabs="tabs"/>
+		<PageHeader title="Notice" :tabs="tabs"/>
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Introduction" id="introduction">
 			<div class="col-12 col-lg-6">
@@ -13,9 +13,11 @@
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
 				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel"/>
-				<CodeExample :code="previews.icons" title="With icons" classes="bg-panel"/>
-				<CodeExample :code="previews.prefixSuffix" title="With prefix and suffix" classes="bg-panel"/>
-				<CodeExample :code="previews.hover" title="With hover" classes="bg-panel"/>
+				<CodeExample :code="previews.closeable" title="Closeable" classes="bg-panel"/>
+				<CodeExample :code="previews.icon" title="With icon" classes="bg-panel"/>
+				<CodeExample :code="previews.fill" title="Fill" classes="bg-panel"/>
+				<CodeExample :code="previews.button" title="With buttons" classes="bg-panel"/>
+				<CodeExample :code="previews.panel" title="Inside a panel"/>
 			</div>
 		</TitledRow>
 
@@ -39,7 +41,7 @@
 
 	export default {
 
-		name: "List",
+		name: "Notice",
 
 		components: {ApiExplorer, CodeSnippet, CodeExample, TitledRow, PageHeader},
 
@@ -48,10 +50,12 @@
 			return {
 				api: {},
 				previews: {
-					standard: require("raw-loader!../../data/components/list/standard.html").default,
-					icons: require("raw-loader!../../data/components/list/icons.html").default,
-					prefixSuffix: require("raw-loader!../../data/components/list/prefix-suffix.html").default,
-					hover: require("raw-loader!../../data/components/list/hover.html").default
+					standard: require("raw-loader!../../data/components/notice/standard.html").default,
+					closeable: require("raw-loader!../../data/components/notice/closeable.html").default,
+					icon: require("raw-loader!../../data/components/notice/icon.html").default,
+					fill: require("raw-loader!../../data/components/notice/fill.html").default,
+					button: require("raw-loader!../../data/components/notice/button.html").default,
+					panel: require("raw-loader!../../data/components/notice/panel.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},

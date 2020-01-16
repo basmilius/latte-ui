@@ -76,6 +76,10 @@ const router = new Router({
 						{
 							path: "list",
 							component: () => import("./views/components/List.vue")
+						},
+						{
+							path: "notice",
+							component: () => import("./views/components/Notice.vue")
 						}
 					]
 				},

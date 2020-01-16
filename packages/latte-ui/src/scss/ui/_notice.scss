@@ -13,14 +13,29 @@
 	display: flex;
 	margin: -1px;
 	padding: 15px 24px;
-	align-items: center;
+	align-items: flex-start;
 	background: #{latte-rgba(var(--noticeBackground), .1)};
 	border: 2px solid #{latte-rgba(var(--noticeBackground), .1)};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--noticeBackground))};
 	font-weight: 500;
 
-	&.notice-outline
+	&-body
+	{
+		display: flex;
+		align-items: flex-start;
+	}
+
+	&-fill
+	{
+		padding: 24px;
+		border-top: 0;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0;
+	}
+
+	&-outline
 	{
 		background: transparent;
 		border: 2px dashed #{latte-rgba(var(--noticeBackground), .5)};
@@ -32,9 +47,10 @@
 		--btnForeground: var(--noticeForeground);
 	}
 
-	> #{unquote($latte-icon-class)}
+	> #{unquote($latte-icon-class)},
+	.notice-body > #{unquote($latte-icon-class)}
 	{
-		margin: -1px 0;
+		margin: 0;
 		align-self: flex-start;
 
 		&:not(:last-child)
@@ -46,7 +62,11 @@
 	.btn.notice-dismiss
 	{
 		margin: -7px -15px -7px auto;
-		align-self: flex-start;
+	}
+
+	.notice-body .btn.notice-dismiss
+	{
+		margin-right: 0;
 	}
 
 	p:last-of-type
