@@ -103,7 +103,6 @@
 
 		background: #{latte-rgba(var(--formOutline), .15)};
 		border-color: #{latte-rgba(var(--formOutline), .3)};
-		cursor: not-allowed;
 
 		&:not(:checked):not(:indeterminate)
 		{
