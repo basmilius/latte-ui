@@ -21,16 +21,15 @@
 	display: flex;
 	align-items: stretch;
 	flex-flow: column;
+	background: #{latte-rgb(var(--panelBackground))};
+	border-radius: var(--radius);
+	box-shadow: var(--panelElevation);
 
-	&:not(.panel-blank)
+	&.panel-blank
 	{
-		box-shadow: var(--panelElevation);
-	}
-
-	&:not(.panel-blank)
-	{
-		background: #{latte-rgb(var(--panelBackground))};
-		border-radius: var(--radius);
+		background: transparent;
+		border-radius: 0;
+		box-shadow: none;
 	}
 
 	&.panel-outline
