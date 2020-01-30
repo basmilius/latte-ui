@@ -13,7 +13,6 @@
 
 @import "reboot";
 @import "vendor";
-@import "bootstrap-overrides/bootstrap-overrides";
 
 @import "root";
 @import "colors";
@@ -25,3 +24,4 @@
 @import "component/component";
 @import "view/view";
 @import "utilities/utilities";
+@import "bootstrap-overrides/bootstrap-overrides";
