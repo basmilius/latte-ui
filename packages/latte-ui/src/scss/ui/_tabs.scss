@@ -15,48 +15,23 @@
 	--tabsRadius: 3px 3px 0 0;
 }
 
-%tab-indicator
-{
-	position: absolute;
-	display: block;
-	left: 0;
-	bottom: 0;
-	height: 3px;
-	background: #{latte-rgb(var(--tabsAccent))};
-	border-radius: var(--tabsRadius);
-	transition: all 300ms var(--easeSwiftOut);
-}
-
 .nav.nav-tabs
 {
 	min-height: var(--tabsHeight);
 	align-items: stretch;
 	flex-flow: row nowrap;
 
-	.nav-tabs-indicator
-	{
-		@extend %tab-indicator;
-	}
-
 	.nav-link
 	{
 		height: auto;
-		padding: 9px 0;
+		padding: 9px 0 7px 0;
 		justify-content: center;
+		border-bottom: 2px solid transparent;
 		color: #{latte-rgb(var(--tabsForeground))};
 		font-weight: 500;
 		line-height: 24px;
 		opacity: .6;
 		transition: all 150ms var(--easeSwiftOut);
-
-		&::before
-		{
-			@extend %tab-indicator;
-
-			right: 0;
-			content: "";
-			opacity: 0;
-		}
 
 		+ .nav-link
 		{
@@ -75,27 +50,14 @@
 
 		&:hover
 		{
+			border-color: #{latte-rgb(var(--tabAccent))};
 			opacity: .8;
-
-			&::before
-			{
-				opacity: 1;
-			}
 		}
 
 		&.is-active
 		{
+			border-color: #{latte-rgb(var(--tabAccent))};
 			opacity: 1;
-
-			&::before
-			{
-				opacity: 1;
-			}
-		}
-
-		&.no-indicator.is-active::before
-		{
-			opacity: 0;
 		}
 	}
 
@@ -111,11 +73,6 @@
 
 	padding: 0 var(--panelGutter);
 	border-bottom: 1px solid #{latte-rgb(var(--outlineColor))};
-
-	.nav-tabs-indicator
-	{
-		bottom: -2px;
-	}
 
 	.nav-link
 	{
