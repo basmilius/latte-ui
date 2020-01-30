@@ -3,7 +3,7 @@
 	<main class="scaffolding sheet-below-app-bar">
 
 		<latte-sheet ref="drawer" class="drawer-container" :touch-enabled="isDrawerTouchEnabled">
-			<DrawerMenu class="nav nav-list py-4" @click="$refs.drawer.close()"/>
+			<DrawerMenu @click="$refs.drawer.close()"/>
 		</latte-sheet>
 
 		<MainMenu @toggle-drawer="$refs.drawer.toggle()"/>

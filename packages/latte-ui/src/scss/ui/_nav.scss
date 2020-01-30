@@ -9,7 +9,6 @@
 
 :root
 {
-	--navItemHeight: 45px;
 	--navSectionForeground: rgba(0, 0, 0, .25);
 	--navRadius: 0 3px 3px 0;
 }
@@ -51,11 +50,12 @@
 {
 	position: relative;
 	display: flex;
-	min-height: var(--navItemHeight);
+	min-height: 45px;
 	margin: 0;
-	padding: 6px 30px;
+	padding: 12px 30px;
 	align-items: center;
 	flex: 0 0 auto;
+	color: #{latte-rgba(var(--mainForeground), .75)};
 	cursor: pointer;
 	outline: 0;
 	text-decoration: none;
@@ -67,25 +67,7 @@
 
 	#{unquote($latte-icon-class)}
 	{
-		position: relative;
 		display: block;
-	}
-
-	span.badge
-	{
-		flex: 0 0 auto;
-	}
-
-	span:not(.badge)
-	{
-		position: relative;
-		display: block;
-		flex: 1 1 auto;
-
-		+ span.badge
-		{
-			margin-left: 1rem;
-		}
 	}
 
 	.avatar
@@ -94,15 +76,9 @@
 		font-size: 30px;
 	}
 
-	.avatar + *,
-	#{unquote($latte-icon-class)} + *
+	> *:not(div) + *
 	{
-		margin-left: 24px;
-	}
-
-	#{unquote($latte-icon-class)}:last-child
-	{
-		margin-right: -3px;
+		margin-left: 1.2rem;
 	}
 }
 
@@ -146,12 +122,14 @@ button.nav-link
 
 .nav.nav-list
 {
-	padding: 15px 0;
+	padding: 12px 9px;
 
 	.nav-link
 	{
-		color: #{latte-rgb(var(--mainForeground))};
-		transition: all 150ms var(--easeStandardCurve);
+		padding: 12px 21px;
+		border-radius: var(--radius);
+		transition: 210ms var(--easeStandardCurve);
+		transition-property: background, color;
 
 		--badgeColor: var(--colorPrimary);
 		--checkboxBackground: var(--colorPrimary);
@@ -162,37 +140,26 @@ button.nav-link
 		--toggleBackground: var(--colorPrimary);
 		--toggleForeground: var(--colorPrimaryForeground);
 
-		&::before
+		+ .nav-link
 		{
-			position: absolute;
-			display: block;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			width: 3px;
-			content: "";
-			background: #{latte-rgb(var(--tabsAccent))};
-			border-radius: var(--navRadius);
-			opacity: 0;
-			transition: opacity 300ms var(--easeSwiftOut);
+			margin-top: 1px;
+		}
+
+		#{unquote($latte-icon-class)}
+		{
+			opacity: .8;
+		}
+
+		&:focus-within,
+		&:hover
+		{
+			background: #{latte-rgba(var(--outlineColorSecondary), .2)};
 		}
 
 		&.is-active
 		{
-			background: transparent;
-			color: #{latte-rgb(var(--colorPrimary))};
-
-			&::before
-			{
-				opacity: 1;
-			}
-		}
-
-		&:not(.is-active).is-hover,
-		&:not(.is-active):hover
-		{
-			background: #{latte-rgba(var(--colorPrimary), .075)};
-			color: #{latte-rgb(var(--colorPrimary))};
+			background: #{latte-rgba(var(--outlineColorSecondary), .3)};
+			color: #{latte-rgb(var(--mainForeground))};
 		}
 	}
 }

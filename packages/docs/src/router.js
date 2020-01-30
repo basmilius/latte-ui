@@ -20,6 +20,10 @@ const router = new Router({
 					component: () => import("./views/Home.vue")
 				},
 				{
+					path: "/tests",
+					component: () => import("./views/Tests.vue")
+				},
+				{
 					path: "/getting-started",
 					component: () => import("./views/NestedView.vue"),
 					children: [

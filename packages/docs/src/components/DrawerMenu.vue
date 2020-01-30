@@ -10,7 +10,7 @@
 
 		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/getting-started')">
 			<template v-slot:header="{isOpen}">
-				<DrawerMenuItem to="/getting-started"><span>Getting Started</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
+				<DrawerMenuItem to="/getting-started"><span>Getting Started</span><latte-icon class="ml-auto">{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
 			<template>
 				<DrawerMenuItem to="/getting-started/about"><span>About Latte UI</span></DrawerMenuItem>
@@ -21,7 +21,7 @@
 
 		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/layout')">
 			<template v-slot:header="{isOpen}">
-				<DrawerMenuItem to="/layout"><span>Layout</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
+				<DrawerMenuItem to="/layout"><span>Layout</span><latte-icon class="ml-auto">{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
 			<template>
 				<DrawerMenuItem to="/layout/color"><span>Color</span></DrawerMenuItem>
@@ -37,7 +37,7 @@
 
 		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/components')">
 			<template v-slot:header="{isOpen}">
-				<DrawerMenuItem to="/components"><span>Components</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
+				<DrawerMenuItem to="/components"><span>Components</span><latte-icon class="ml-auto">{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
 			<template>
 				<DrawerMenuItem to="/components/app-bar"><span>App Bar</span></DrawerMenuItem>
@@ -68,7 +68,7 @@
 
 		<latte-expandable :close-when-open="false" group="main" :opened="$route.path.startsWith('/javascript-api')">
 			<template v-slot:header="{isOpen}">
-				<DrawerMenuItem to="/javascript-api"><span>JavaScript API</span><latte-icon>{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
+				<DrawerMenuItem to="/javascript-api"><span>JavaScript API</span><latte-icon class="ml-auto">{{ isOpen ? "chevron-down" : "chevron-right"}}</latte-icon></DrawerMenuItem>
 			</template>
 			<template>
 				<DrawerMenuItem to="/javascript-api/actions"><span>Actions</span></DrawerMenuItem>
@@ -76,6 +76,12 @@
 				<DrawerMenuItem to="/javascript-api/notification"><span>Notification</span></DrawerMenuItem>
 				<DrawerMenuItem to="/javascript-api/question"><span>Question</span></DrawerMenuItem>
 				<DrawerMenuItem to="/javascript-api/snackbar"><span>Snackbar</span></DrawerMenuItem>
+			</template>
+		</latte-expandable>
+
+		<latte-expandable :close-when-open="false" group="main" :opened="$route.path === '/tests'">
+			<template v-slot:header>
+				<DrawerMenuItem to="/tests"><span>Tests</span></DrawerMenuItem>
 			</template>
 		</latte-expandable>
 
