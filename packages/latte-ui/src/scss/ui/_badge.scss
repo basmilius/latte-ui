@@ -16,9 +16,10 @@
 {
 	--spinnerColor: var(--badgeColor);
 
-	display: inline-flex;
+	display: flex;
 	padding: 6px 9px;
 	align-items: center;
+	flex: 0 0 auto;
 	justify-content: center;
 	background: #{latte-rgba(var(--badgeColor), .1)};
 	box-shadow: 0 0 0 1px #{latte-rgba(var(--badgeColor), .2)};
@@ -37,7 +38,7 @@
 		margin-left: 3px;
 	}
 
-	&.badge-fill
+	&.badge-fluid
 	{
 		width: 100%;
 	}

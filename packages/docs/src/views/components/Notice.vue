@@ -15,7 +15,7 @@
 				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel"/>
 				<CodeExample :code="previews.closeable" title="Closeable" classes="bg-panel"/>
 				<CodeExample :code="previews.icon" title="With icon" classes="bg-panel"/>
-				<CodeExample :code="previews.fill" title="Fill" classes="bg-panel"/>
+				<CodeExample :code="previews.fluid" title="Fluid" classes="bg-panel"/>
 				<CodeExample :code="previews.button" title="With buttons" classes="bg-panel"/>
 				<CodeExample :code="previews.panel" title="Inside a panel"/>
 			</div>
@@ -53,7 +53,7 @@
 					standard: require("raw-loader!../../data/components/notice/standard.html").default,
 					closeable: require("raw-loader!../../data/components/notice/closeable.html").default,
 					icon: require("raw-loader!../../data/components/notice/icon.html").default,
-					fill: require("raw-loader!../../data/components/notice/fill.html").default,
+					fluid: require("raw-loader!../../data/components/notice/fluid.html").default,
 					button: require("raw-loader!../../data/components/notice/button.html").default,
 					panel: require("raw-loader!../../data/components/notice/panel.html").default
 				},
