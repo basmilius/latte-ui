@@ -38,20 +38,12 @@
 	}
 }
 
-#{unquote($latte-icon-class)}.spinner
+span.spinner::before
 {
-	display: inline-flex;
-	vertical-align: middle;
-}
-
-span.spinner::before,
-#{unquote($latte-icon-class)}.spinner::before
-{
-	display: block;
 	height: 1em;
 	width: 1em;
 	content: "";
-	animation: spinner-animation 540ms infinite linear;
+	animation: spinner-animation 600ms infinite linear;
 	border: .1em solid #{latte-rgba(var(--spinnerColor), .25)};
 	border-top-color: #{latte-rgb(var(--spinnerColor))};
 	border-radius: .5em;
