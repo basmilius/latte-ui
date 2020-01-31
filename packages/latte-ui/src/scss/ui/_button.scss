@@ -47,7 +47,7 @@
 	}
 
 	&[disabled],
-	&.disabled
+	&.is-disabled
 	{
 		filter: grayscale(100%);
 		opacity: .5;
@@ -120,12 +120,15 @@
 	}
 
 	&:hover,
-	&:focus
+	&:focus,
+	&.is-hover,
+	&.is-focus
 	{
 		--btnHover: .1;
 	}
 
-	&:active
+	&:active,
+	&.is-active
 	{
 		--btnHover: .2;
 	}
@@ -148,16 +151,22 @@
 		--bg: paint(btn-background);
 	}
 
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
+	&:not(.is-ripple)
 	{
-		--btnAlpha: .1;
-	}
+		&:hover,
+		&:focus,
+		&.is-hover,
+		&.is-focus
+		{
+			--btnAlpha: .1;
+		}
 
-	&:not(.is-ripple):active
-	{
-		--btnAlpha: .2;
-		--btnHover: .2;
+		&:active,
+		&.is-active
+		{
+			--btnAlpha: .2;
+			--btnHover: .2;
+		}
 	}
 }
 
@@ -177,7 +186,9 @@
 	}
 
 	&:hover,
-	&:focus
+	&:focus,
+	&.is-hover,
+	&.is-focus
 	{
 		--btnAlpha: 1;
 		--btnHover: .1;
@@ -186,7 +197,8 @@
 		color: #{latte-rgb(var(--btnForeground))};
 	}
 
-	&:active
+	&:active,
+	&.is-active
 	{
 		--btnAlpha: 1;
 		--btnHover: .2;
@@ -208,15 +220,21 @@
 		--bg: paint(btn-background);
 	}
 
-	&:not(.is-ripple):hover,
-	&:not(.is-ripple):focus
+	&:not(.is-ripple)
 	{
-		--btnAlpha: .1;
-	}
+		&:hover,
+		&:focus,
+		&.is-hover,
+		&.is-focus
+		{
+			--btnAlpha: .1;
+		}
 
-	&:not(.is-ripple):active
-	{
-		--btnAlpha: .2;
+		&:active,
+		&.is-active
+		{
+			--btnAlpha: .2;
+		}
 	}
 
 	&.btn-icon.is-ripple
