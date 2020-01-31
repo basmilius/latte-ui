@@ -15,7 +15,6 @@
 
 	.btn
 	{
-		margin: 0;
 		border-radius: 0;
 
 		&:first-child
@@ -36,25 +35,10 @@
 		}
 	}
 
-	.btn + .btn:not(.btn-outline):not(.btn-text)
+	.btn-contained
 	{
 		box-shadow: -1px 0 #{latte-rgba(var(--btnForeground), .1)};
 	}
-
-	+ .btn-group
-	{
-		margin-left: 6px;
-	}
-}
-
-.btn + .btn-group
-{
-	margin-left: 6px;
-}
-
-.btn-group + .btn
-{
-	margin-left: 6px;
 }
 
 .panel > .btn-group
@@ -76,6 +60,6 @@
 
 	.btn
 	{
-		border-radius: 0 !important;
+		border-radius: 0;
 	}
 }

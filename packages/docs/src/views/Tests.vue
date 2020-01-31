@@ -42,6 +42,27 @@
 					</div>
 
 					<div class="row mt-panel-gutter">
+						<div class="col-12">
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="app-bar app-bar-primary">
+										<div class="app-bar-row">
+											<img class="mr-3" src="/image/bas.svg" alt="Bas' logo" height="36" />
+											<button class="btn btn-text is-hover"><span>Home</span></button>
+											<button class="btn btn-text"><span>About</span></button>
+											<button class="btn btn-text"><span>Projects</span></button>
+											<button class="btn btn-text"><span>Contact</span></button>
+											<button class="btn btn-icon btn-text ml-auto"><latte-icon>dots-vertical</latte-icon></button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="row mt-panel-gutter">
 						<div class="col-12 col-lg-6">
 
 							<div class="panel">
@@ -125,6 +146,99 @@
 						</div>
 					</div>
 
+				</div>
+			</div>
+
+			<div class="panel panel-blank overflow-hidden">
+				<div class="panel-header">
+					<span class="panel-title">Button</span>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-12">
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-contained btn-primary"><span>Button</span></button>
+									<button class="btn btn-contained btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-contained btn-primary ml-2"><span>Button</span><latte-icon>check-circle</latte-icon></button>
+									<button class="btn btn-contained btn-primary ml-2"><span class="spinner"></span><span>Button</span></button>
+									<button class="btn btn-contained btn-primary ml-2"><span class="text-uppercase">Button</span></button>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-outline btn-primary"><span>Button</span></button>
+									<button class="btn btn-outline btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-outline btn-primary ml-2"><span>Button</span><latte-icon>check-circle</latte-icon></button>
+									<button class="btn btn-outline btn-primary ml-2"><span class="spinner"></span><span>Button</span></button>
+									<button class="btn btn-outline btn-primary ml-2"><span class="text-uppercase">Button</span></button>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-text btn-primary"><span>Button</span></button>
+									<button class="btn btn-text btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-text btn-primary ml-2"><span>Button</span><latte-icon>check-circle</latte-icon></button>
+									<button class="btn btn-text btn-primary ml-2"><span class="spinner"></span><span>Button</span></button>
+									<button class="btn btn-text btn-primary ml-2"><span class="text-uppercase">Button</span></button>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-contained btn-primary is-small"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-contained btn-primary is-medium ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-contained btn-primary is-large ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-contained btn-primary is-huge ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-contained btn-primary is-fluid is-large"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-contained btn-primary is-fluid is-large mt-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<button class="btn btn-text btn-action btn-primary"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-text btn-action btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-text btn-action btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+									<button class="btn btn-text btn-action btn-primary ml-2"><latte-icon>check-circle</latte-icon><span>Button</span></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="row mt-panel-gutter">
+						<div class="col-12 col-lg-6">
+
+							<div class="panel">
+								<div class="panel-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, animi atque consectetur cum deleniti dolor, dolores eveniet illo, illum ipsa modi officia optio quam quia quisquam quos saepe soluta temporibus.
+								</div>
+								<button class="btn btn-contained btn-primary is-fluid is-huge"><span>Button</span></button>
+							</div>
+
+						</div>
+						<div class="col-12 col-lg-6">
+
+							<div class="panel">
+								<div class="panel-body">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, animi atque consectetur cum deleniti dolor, dolores eveniet illo, illum ipsa modi officia optio quam quia quisquam quos saepe soluta temporibus.
+								</div>
+								<div class="btn-group">
+									<button class="btn btn-contained btn-primary is-fluid is-huge"><span>Button</span></button>
+									<button class="btn btn-contained btn-primary is-fluid is-huge"><span>Button</span></button>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				</div>
 			</div>
 

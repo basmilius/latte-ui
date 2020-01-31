@@ -14,12 +14,10 @@
 			<div class="col-12">
 				<CodeExample :code="previews.contained" title="Contained" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.outline" title="Outline" classes="bg-panel d-flex flex-wrap justify-content-center"/>
-				<CodeExample :code="previews.soft" title="Soft" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.text" title="Text" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.action" title="Action" classes="bg-panel d-flex flex-wrap justify-content-center"/>
-				<CodeExample :code="previews.floatingAction" title="Floating action" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.group" title="Group" classes="bg-panel d-flex flex-wrap justify-content-center"/>
-				<CodeExample :code="previews.pill" title="Pill" classes="d-flex flex-column flex-lg-row justify-content-center"/>
+				<CodeExample :code="previews.fluid" title="Pill" classes="d-flex flex-column flex-lg-row justify-content-center"/>
 				<CodeExample :code="previews.sizes" title="Sizes" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
 			</div>
 		</TitledRow>
@@ -108,12 +106,10 @@
 				previews: {
 					contained: require("raw-loader!../../data/components/button/contained.html").default,
 					outline: require("raw-loader!../../data/components/button/outline.html").default,
-					soft: require("raw-loader!../../data/components/button/soft.html").default,
 					text: require("raw-loader!../../data/components/button/text.html").default,
 					action: require("raw-loader!../../data/components/button/action.html").default,
-					floatingAction: require("raw-loader!../../data/components/button/floating-action.html").default,
 					group: require("raw-loader!../../data/components/button/group.html").default,
-					pill: require("raw-loader!../../data/components/button/pill.html").default,
+					fluid: require("raw-loader!../../data/components/button/fluid.html").default,
 					sizes: require("raw-loader!../../data/components/button/sizes.html").default
 				},
 				tabs: [
