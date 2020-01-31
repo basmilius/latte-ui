@@ -7,12 +7,12 @@
 				<div class="col-12 col-lg-5">
 
 					<div class="page-header-content tall text-center text-lg-left">
-						<h1>Latte UI</h1>
+						<h1>Latte<span class="text-primary">UI</span></h1>
 						<p class="lead">
-							An Open Source project built using Vue.js to create beautiful interfaces with.
+							An open-source project built using Vue.js to create beautiful interfaces with.
 						</p>
 						<div class="d-flex mt-4 mb-3 justify-content-center justify-content-lg-start" id="hero-actions">
-							<latte-ripple as="button" class="btn btn-contained  btn-primary btn-lg radius-circle" @click="$router.push('/getting-started')">
+							<latte-ripple as="button" class="btn btn-contained btn-primary is-large" @click="$router.push('/getting-started')">
 								<span>Let's start</span>
 							</latte-ripple>
 						</div>
@@ -47,7 +47,7 @@
 							<CodeSnippet lang="shell" :code-string="data.npmInstall" small/>
 						</div>
 						<div class="panel-body border-0 flex-grow-0 pt-0">
-							<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg"><span>Install Guide</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-outline btn-primary is-large"><span>Install Guide</span></latte-ripple>
 						</div>
 					</div>
 
@@ -68,7 +68,7 @@
 							<CodeSnippet lang="html" :code-string="data.cdn" small/>
 						</div>
 						<div class="panel-body border-0 flex-grow-0 pt-0">
-							<latte-ripple as="button" class="btn btn-outline btn-primary btn-lg"><span>Download instead</span></latte-ripple>
+							<latte-ripple as="button" class="btn btn-outline btn-primary is-large"><span>Download instead</span></latte-ripple>
 						</div>
 					</div>
 
