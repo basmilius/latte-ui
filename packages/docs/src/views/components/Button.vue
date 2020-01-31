@@ -54,12 +54,6 @@
 				api: {
 					variables: [
 						{
-							name: "--btnAlpha",
-							description: "Controls the button alpha level.",
-							type: "int",
-							default: 1
-						},
-						{
 							name: "--btnBackground",
 							description: "Background color.",
 							type: "rgb",
@@ -70,30 +64,6 @@
 							description: "Foreground color.",
 							type: "rgb",
 							default: computedStyle.getPropertyValue("--btnForeground").split(",").map(c => parseInt(c))
-						},
-						{
-							name: "--btnFontSize",
-							description: "Font size of the button.",
-							type: "string",
-							default: computedStyle.getPropertyValue("--btnFontSize")
-						},
-						{
-							name: "--btnHeight",
-							description: "Height of the button.",
-							type: "string",
-							default: computedStyle.getPropertyValue("--btnHeight")
-						},
-						{
-							name: "--btnHover",
-							description: "Hover state.",
-							type: "int",
-							default: 0
-						},
-						{
-							name: "--btnIconSize",
-							description: "Icon size.",
-							type: "string",
-							default: computedStyle.getPropertyValue("--btnIconSize")
 						},
 						{
 							name: "--btnPadding",
