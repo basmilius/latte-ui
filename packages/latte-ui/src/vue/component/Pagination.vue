@@ -14,7 +14,7 @@
 		<template v-if="controllerBar">
 			<div class="d-flex align-items-center mr-auto">
 
-				<button ref="entriesButton" class="btn btn-sm btn-text btn-small pr-1" style="--btnHeight: 30px">
+				<button ref="entriesButton" class="btn is-small btn-text pr-1" style="--btnHeight: 30px">
 					<span>{{ "@0 entries"|i18n("latte-ui", limit) }}</span>
 					<Icon name="menu-swap"/>
 				</button>
