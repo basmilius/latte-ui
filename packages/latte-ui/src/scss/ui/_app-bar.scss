@@ -151,6 +151,11 @@
 	}
 }
 
+.app-bar .btn-action
+{
+	min-width: 90px;
+}
+
 .panel > .app-bar
 {
 	--appBarElevation: none;
