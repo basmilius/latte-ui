@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "17b3cf2e60689f3a59a8",
-    "url": "/assets/css/app.104a049c.css"
+    "revision": "0af0c9beafa693a7537c",
+    "url": "/assets/css/app.05ce8e12.css"
   },
   {
     "revision": "360797cf86b4ea17d5db",
     "url": "/assets/css/chunk-0a991f5b.83c46cf4.css"
   },
   {
-    "revision": "b73a73ab2fcd1f168d6b",
-    "url": "/assets/css/chunk-0b491d51.83c46cf4.css"
+    "revision": "209a7f1ae7d00887a1d8",
+    "url": "/assets/css/chunk-1c9b6ed8.83c46cf4.css"
   },
   {
     "revision": "72a5e81eee87743eff3f",
@@ -88,16 +88,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "17b3cf2e60689f3a59a8",
-    "url": "/assets/js/app.2f17d146.js"
+    "revision": "0af0c9beafa693a7537c",
+    "url": "/assets/js/app.ce33d828.js"
   },
   {
     "revision": "360797cf86b4ea17d5db",
     "url": "/assets/js/chunk-0a991f5b.44c851a9.js"
   },
   {
-    "revision": "b73a73ab2fcd1f168d6b",
-    "url": "/assets/js/chunk-0b491d51.1e935b03.js"
+    "revision": "209a7f1ae7d00887a1d8",
+    "url": "/assets/js/chunk-1c9b6ed8.bd0e8b65.js"
   },
   {
     "revision": "72a5e81eee87743eff3f",
@@ -112,12 +112,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-2d0be2ce.72519c5e.js"
   },
   {
-    "revision": "173350783ebb6be362c7",
-    "url": "/assets/js/chunk-2d0d6ea9.c3277d61.js"
+    "revision": "e2bb8b228fec784682e0",
+    "url": "/assets/js/chunk-2d0d6ea9.f17eef66.js"
   },
   {
-    "revision": "47db613e8d4a610f9b52",
-    "url": "/assets/js/chunk-2d0e5e97.9404edee.js"
+    "revision": "346af28912f2404f40ec",
+    "url": "/assets/js/chunk-2d0e5e97.5b275898.js"
   },
   {
     "revision": "b920eccc58d779de0e9d",
@@ -180,7 +180,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/dog-with-hat.jpg"
   },
   {
-    "revision": "5a1d01e9f943c5bc3904d99ad1ff70dc",
+    "revision": "925b32c5c2b1251a10f19c1eb9cf1532",
     "url": "/index.html"
   },
   {
