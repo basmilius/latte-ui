@@ -164,6 +164,41 @@
 						</div>
 					</div>
 
+					<div class="row mt-panel-gutter">
+						<div class="col-12">
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="badge-group">
+										<span class="badge is-small">Badge</span>
+										<span class="badge">Badge</span>
+										<span class="badge is-large">Badge</span>
+										<span class="badge is-huge">Badge</span>
+									</div>
+									<div class="badge-group">
+										<span class="badge is-small"><span>Badge</span><span class="spinner"></span></span>
+										<span class="badge"><span>Badge</span><span class="spinner"></span></span>
+										<span class="badge is-large"><span>Badge</span><span class="spinner"></span></span>
+										<span class="badge is-huge"><span>Badge</span><span class="spinner"></span></span>
+									</div>
+									<div class="badge-group">
+										<span class="badge is-small"><span>Badge</span><button class="close"></button></span>
+										<span class="badge"><span>Badge</span><button class="close"></button></span>
+										<span class="badge is-large"><span>Badge</span><button class="close"></button></span>
+										<span class="badge is-huge"><span>Badge</span><button class="close"></button></span>
+									</div>
+									<div class="badge-group">
+										<span class="badge is-small"><span>Badge</span><latte-icon>information</latte-icon></span>
+										<span class="badge"><span>Badge</span><latte-icon>information</latte-icon></span>
+										<span class="badge is-large"><span>Badge</span><latte-icon>information</latte-icon></span>
+										<span class="badge is-huge"><span>Badge</span><latte-icon>information</latte-icon></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
 				</div>
 			</div>
 

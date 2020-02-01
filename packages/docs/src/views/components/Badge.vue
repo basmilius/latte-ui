@@ -15,7 +15,9 @@
 				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.clickable" title="Clickable" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.closable" title="Closable" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.icon" title="With an icon" classes="bg-panel d-flex flex-wrap justify-content-center"/>
 				<CodeExample :code="previews.spinner" title="With a spinner" classes="bg-panel d-flex flex-wrap justify-content-center"/>
+				<CodeExample :code="previews.sizes" title="Different sizes" classes="bg-panel d-flex flex-wrap align-items-center justify-content-center"/>
 			</div>
 		</TitledRow>
 
@@ -62,6 +64,8 @@
 					standard: require("raw-loader!../../data/components/badge/standard.html").default,
 					clickable: require("raw-loader!../../data/components/badge/clickable.html").default,
 					closable: require("raw-loader!../../data/components/badge/closable.html").default,
+					icon: require("raw-loader!../../data/components/badge/icon.html").default,
+					sizes: require("raw-loader!../../data/components/badge/sizes.html").default,
 					spinner: require("raw-loader!../../data/components/badge/spinner.html").default
 				},
 				tabs: [

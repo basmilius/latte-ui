@@ -33,24 +33,6 @@
 	transition: all 210ms var(--easeSwiftOut);
 	vertical-align: middle;
 
-	&.is-fluid
-	{
-		display: flex;
-		width: 100%;
-		flex: 1 1 auto;
-	}
-
-	&.badge-lg
-	{
-		padding: 9px 12px;
-		font-size: 1rem;
-
-		.btn
-		{
-			margin: -6px -4px -6px 9px;
-		}
-	}
-
 	> .close
 	{
 		--closeColor: var(--badgeColor);
@@ -100,18 +82,56 @@
 			margin-right: -6px;
 		}
 	}
-}
 
-
-.badge-group
-{
-	display: flex;
-	margin: -3px;
-	flex-flow: row wrap;
-
-	.badge
+	&.is-fluid
 	{
-		margin: 3px;
+		display: flex;
+		width: 100%;
+		flex: 1 1 auto;
+	}
+
+	&.is-small
+	{
+		height: 24px;
+		padding: 3px 9px;
+		font-size: .8rem;
+
+		> .close
+		{
+			font-size: 18px;
+		}
+
+		> #{unquote($latte-icon-class)}
+		{
+			font-size: 18px;
+
+			&:first-child
+			{
+				margin-left: -6px;
+			}
+
+			&:last-child
+			{
+				margin-right: -6px;
+			}
+		}
+
+		> .spinner
+		{
+			font-size: 18px;
+		}
+	}
+
+	&.is-large
+	{
+		height: 36px;
+		padding: 9px 15px;
+	}
+
+	&.is-huge
+	{
+		height: 42px;
+		padding: 12px 21px;
 	}
 }
 
@@ -119,6 +139,19 @@ a.badge:hover
 {
 	background: #{latte-rgba(var(--badgeColor), .2)};
 	cursor: pointer;
+}
+
+.badge-group
+{
+	display: flex;
+	margin: -3px;
+	align-items: center;
+	flex-flow: row wrap;
+
+	.badge
+	{
+		margin: 3px;
+	}
 }
 
 @each $type in $color-types
