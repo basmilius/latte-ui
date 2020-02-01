@@ -31,11 +31,6 @@
 	justify-content: center;
 	font-size: var(--iconSize);
 	vertical-align: middle;
-
-	+ span
-	{
-		margin-left: 1rem;
-	}
 }
 
 span.spinner::before

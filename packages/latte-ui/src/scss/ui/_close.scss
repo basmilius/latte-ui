@@ -1,0 +1,66 @@
+/*!
+ * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ *
+ * This file is part of the Latte UI package.
+ *
+ * For the full copyright and license information, please view the
+ * LICENSE file that was distributed with this source code.
+ */
+
+:root
+{
+	--closeColor: var(--mainForeground);
+}
+
+.close
+{
+	position: relative;
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+	background: #{latte-rgba(var(--closeColor), .3)};
+	border: 0;
+	border-radius: 1em;
+	font-size: 24px;
+	opacity: .5;
+	outline: 0;
+	transition: opacity 210ms var(--easeSwiftOut);
+	vertical-align: middle;
+
+	&::before,
+	&::after
+	{
+		position: absolute;
+		display: block;
+		top: 50%;
+		left: 50%;
+		height: .1em;
+		width: .6em;
+		content: "";
+		background: #{latte-rgb(var(--closeColor))};
+	}
+
+	&::before
+	{
+		transform: translate3d(-50%, -50%, 0) rotate(45deg);
+	}
+
+	&::after
+	{
+		transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+	}
+
+	&:focus,
+	&.is-focus,
+	&:hover,
+	&.is-hover
+	{
+		opacity: .75;
+	}
+
+	&:active,
+	&.is-active
+	{
+		opacity: .85;
+	}
+}

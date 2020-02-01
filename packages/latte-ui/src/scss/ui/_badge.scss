@@ -9,6 +9,7 @@
 
 :root
 {
+
 	--badgeColor: var(--colorPrimary);
 }
 
@@ -16,31 +17,27 @@
 {
 	--spinnerColor: var(--badgeColor);
 
-	display: flex;
-	padding: 6px 9px;
+	display: inline-flex;
+	height: 30px;
+	padding: 6px 12px;
 	align-items: center;
 	flex: 0 0 auto;
 	justify-content: center;
 	background: #{latte-rgba(var(--badgeColor), .1)};
-	box-shadow: 0 0 0 1px #{latte-rgba(var(--badgeColor), .2)};
-	border-radius: var(--radius);
+	border-radius: 2em;
 	color: #{latte-rgb(var(--badgeColor))};
-	font-size: .8em;
-	font-weight: 500;
-	line-height: 1em;
+	font-size: 1rem;
+	line-height: 1.1em;
 	text-align: center;
 	text-decoration: none;
 	transition: all 210ms var(--easeSwiftOut);
 	vertical-align: middle;
 
-	+ .badge
+	&.is-fluid
 	{
-		margin-left: 3px;
-	}
-
-	&.badge-fluid
-	{
+		display: flex;
 		width: 100%;
+		flex: 1 1 auto;
 	}
 
 	&.badge-lg
@@ -54,39 +51,73 @@
 		}
 	}
 
-	.btn
+	> .close
 	{
-		height: 20px;
-		margin: -6px -7px -6px 6px;
-		padding: 0;
-		width: 20px;
-		background: #{latte-rgba(var(--badgeColor), .1)};
-		border-radius: inherit;
-		color: inherit;
-		overflow: hidden;
+		--closeColor: var(--badgeColor);
 
-		&:hover
+		margin: 0 6px;
+		font-size: 20px;
+
+		&:first-child
 		{
-			background: #{latte-rgba(var(--badgeColor), .2)};
+			margin-left: -6px;
 		}
 
-		#{unquote($latte-icon-class)}
+		&:last-child
 		{
-			--iconSize: 1em;
+			margin-right: -6px;
 		}
 	}
 
-	.spinner
+	> #{unquote($latte-icon-class)}
 	{
-		margin: -6px .5rem -6px 0;
-		font-size: 18px;
+		margin: -3px 6px;
+		font-size: 24px;
+
+		&:first-child
+		{
+			margin-left: -9px;
+		}
+
+		&:last-child
+		{
+			margin-right: -9px;
+		}
+	}
+
+	> .spinner
+	{
+		margin: -1px 6px;
+		font-size: 20px;
+
+		&:first-child
+		{
+			margin-left: -6px;
+		}
+
+		&:last-child
+		{
+			margin-right: -6px;
+		}
+	}
+}
+
+
+.badge-group
+{
+	display: flex;
+	margin: -3px;
+	flex-flow: row wrap;
+
+	.badge
+	{
+		margin: 3px;
 	}
 }
 
 a.badge:hover
 {
 	background: #{latte-rgba(var(--badgeColor), .2)};
-	box-shadow: 0 0 0 1px #{latte-rgba(var(--badgeColor), .3)};
 	cursor: pointer;
 }
 

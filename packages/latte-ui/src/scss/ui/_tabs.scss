@@ -50,13 +50,13 @@
 
 		&:hover
 		{
-			border-color: #{latte-rgb(var(--tabAccent))};
+			border-color: #{latte-rgb(var(--tabsAccent))};
 			opacity: .8;
 		}
 
 		&.is-active
 		{
-			border-color: #{latte-rgb(var(--tabAccent))};
+			border-color: #{latte-rgb(var(--tabsAccent))};
 			opacity: 1;
 		}
 	}

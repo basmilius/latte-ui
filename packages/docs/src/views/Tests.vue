@@ -107,6 +107,68 @@
 
 			<div class="panel panel-blank overflow-hidden">
 				<div class="panel-header">
+					<span class="panel-title">Badge</span>
+				</div>
+				<div class="panel-body">
+
+					<div class="row">
+						<div class="col-12 col-lg-6">
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="badge-group">
+										<span class="badge"><span>Badge</span></span>
+										<span class="badge"><span class="spinner"></span><span>Badge</span></span>
+										<span class="badge"><span>Badge</span><button class="close" aria-label="Remove this badge"></button></span>
+										<span class="badge"><span>Badge</span><latte-icon>information</latte-icon></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="badge-group">
+										<span class="badge"><span>Badge</span></span>
+										<span class="badge"><span>Badge</span><span class="spinner"></span></span>
+										<span class="badge"><button class="close" aria-label="Remove this badge"></button><span>Badge</span></span>
+										<span class="badge"><latte-icon>information</latte-icon><span>Badge</span></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="col-12 col-lg-6">
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="badge-group">
+										<span class="badge badge-info"><span>Badge</span></span>
+										<span class="badge badge-error"><span class="spinner"></span><span>Badge</span></span>
+										<span class="badge badge-warning"><span>Badge</span><button class="close" aria-label="Remove this badge"></button></span>
+										<span class="badge badge-success"><span>Badge</span><latte-icon>information</latte-icon></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel">
+								<div class="panel-body">
+									<div class="badge-group">
+										<span class="badge badge-info"><span>Badge</span></span>
+										<span class="badge badge-error"><span>Badge</span><span class="spinner"></span></span>
+										<span class="badge badge-warning"><button class="close" aria-label="Remove this badge"></button><span>Badge</span></span>
+										<span class="badge badge-success"><latte-icon>information</latte-icon><span>Badge</span></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="panel panel-blank overflow-hidden">
+				<div class="panel-header">
 					<span class="panel-title">Breadcrumb</span>
 				</div>
 				<div class="panel-body">
