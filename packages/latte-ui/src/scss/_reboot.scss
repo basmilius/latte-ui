@@ -70,7 +70,8 @@ select
 {
 	font: inherit;
 
-	&[disabled]
+	&[disabled],
+	&.is-disabled
 	{
 		cursor: not-allowed;
 	}

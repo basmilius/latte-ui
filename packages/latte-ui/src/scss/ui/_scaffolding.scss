@@ -26,14 +26,6 @@
 		overflow: auto;
 	}
 
-	> .btn-fab
-	{
-		position: fixed;
-		right: var(--colorGutter);
-		bottom: var(--colorGutter);
-		z-index: 1004;
-	}
-
 	@include compact
 	{
 		grid-auto-rows: auto;

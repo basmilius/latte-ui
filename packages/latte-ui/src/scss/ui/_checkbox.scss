@@ -97,7 +97,8 @@
 		}
 	}
 
-	&[disabled]
+	&[disabled],
+	&.is-disabled
 	{
 		--checkboxForeground: var(--formOutline);
 

@@ -63,7 +63,8 @@ input[type=radio].radio-button
 		}
 	}
 
-	&[disabled]
+	&[disabled],
+	&.is-disabled
 	{
 		--radioColor: var(--formOutline);
 

@@ -42,7 +42,8 @@
 		opacity: .5;
 	}
 
-	&[disabled]
+	&[disabled],
+	&.is-disabled
 	{
 		background: #{latte-rgba(var(--formOutline), .15)};
 	}
@@ -191,9 +192,9 @@ label.col-form-label
 		color: transparent; // ...?
 	}
 
-	&[disabled]
+	&[disabled],
+	&.is-disabled
 	{
-		cursor: not-allowed;
 		filter: grayscale(100%);
 	}
 }

@@ -50,9 +50,7 @@
 						<template v-for="(filter, filterKey) of filters">
 						<span class="badge mr-1" :class="filter.class">
 							<span>{{ filter.label }}</span>
-							<button class="btn" @click="removeFilter($event, filterKey)">
-								<Icon name="close"/>
-							</button>
+							<button class="close" @click="removeFilter($event, filterKey)"></button>
 						</span>
 						</template>
 

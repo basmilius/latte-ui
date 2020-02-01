@@ -16,6 +16,8 @@
 
 .btn
 {
+	--iconSize: 24px;
+
 	display: inline-flex;
 	padding: var(--btnPadding);
 	align-items: center;
@@ -35,19 +37,15 @@
 		margin-left: 9px;
 	}
 
-	#{unquote($latte-icon-class)}
+	.avatar
 	{
-		--iconSize: 24px;
+		margin: -3px;
+		font-size: 30px;
 	}
 
 	.spinner
 	{
 		font-size: 24px;
-	}
-
-	&-icon
-	{
-		--btnPadding: 6px;
 	}
 
 	&-action
@@ -64,6 +62,7 @@
 
 	&-contained
 	{
+		--rippleColor: var(--btnForeground);
 		--spinnerColor: var(--btnForeground);
 
 		background: #{latte-rgb(var(--btnBackground))};
@@ -103,6 +102,7 @@
 
 	&-outline
 	{
+		--rippleColor: var(--btnBackground);
 		--spinnerColor: var(--btnBackground);
 
 		background: transparent;
@@ -126,6 +126,7 @@
 
 	&-text
 	{
+		--rippleColor: var(--btnBackground);
 		--spinnerColor: var(--btnBackground);
 
 		background: transparent;
@@ -146,6 +147,18 @@
 		}
 	}
 
+	&-text#{&}-icon
+	{
+		--rippleCenter: true;
+		--rippleClip: false;
+		--rippleDuration: 240ms;
+
+		&.is-ripple
+		{
+			background: transparent;
+		}
+	}
+
 	&.is-fluid
 	{
 		display: flex;
@@ -156,6 +169,7 @@
 	&.is-small
 	{
 		--btnPadding: 3px 6px;
+		--iconSize: 18px;
 	}
 
 	&.is-large
@@ -166,6 +180,32 @@
 	&.is-huge
 	{
 		--btnPadding: 18px 30px;
+	}
+
+	&-icon
+	{
+		--btnPadding: 6px;
+
+		&.is-small
+		{
+			--btnPadding: 3px;
+		}
+
+		&.is-large
+		{
+			--btnPadding: 12px;
+		}
+
+		&.is-huge
+		{
+			--btnPadding: 18px;
+		}
+	}
+
+	&[disabled],
+	&.is-disabled
+	{
+		filter: grayscale(100%);
 	}
 }
 
@@ -178,6 +218,7 @@
 		border-top-left-radius: inherit;
 		border-top-right-radius: inherit;
 	}
+
 	&:last-child
 	{
 		border-bottom-left-radius: inherit;

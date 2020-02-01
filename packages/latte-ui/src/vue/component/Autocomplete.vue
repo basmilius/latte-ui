@@ -14,9 +14,9 @@
 		<template v-for="selection in values">
 
 			<slot name="selection" v-bind="selection">
-				<div class="badge badge-primary">
+				<div class="badge badge-primary is-small">
 					<span>{{ selection.label }}</span>
-					<button class="btn" @click="selection.remove()"><Icon name="close"/></button>
+					<button class="close" @click="selection.remove()"></button>
 				</div>
 			</slot>
 
@@ -32,14 +32,14 @@
 
 						<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
 							<slot name="suggestion" v-bind="suggestion">
-								<div class="flex-grow-1" v-if="suggestion.sub_label">
+								<div class="d-flex flex-column flex-grow-1" v-if="suggestion.sub_label">
 									<span>{{ suggestion.label }}</span>
 									<span class="text-soft">{{ suggestion.sub_label }}</span>
 								</div>
 
 								<span v-else>{{ suggestion.label }}</span>
 
-								<Icon name="chevron-right"/>
+								<Icon class="ml-auto" name="chevron-right"/>
 							</slot>
 						</a>
 
