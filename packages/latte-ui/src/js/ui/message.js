@@ -47,13 +47,9 @@ const MessagePanel = Vue.extend({
 					h("p", {domProps: {innerHTML: this.message}}),
 					!this.prompt ? undefined : h("div", {class: "form-group"}, [
 						h("input", {
-							attrs: {
-								type: "text"
-							},
+							attrs: {type: "text"},
 							class: "form-control",
-							props: {
-								value: this.promptResult
-							},
+							props: {value: this.promptResult},
 							on: {
 								input: v => this.promptResult = v.target.value,
 								keydown: v => v.key === "Enter" && this.promptResult.trim() !== "" ? this.close(this.buttons[this.buttons.length - 1].id) : undefined
@@ -61,14 +57,10 @@ const MessagePanel = Vue.extend({
 						})
 					])
 				]),
-				h("div", {class: "panel-footer justify-content-end"}, this.buttons.map(button => h("latte-ripple", {
-					class: ["btn", ...button.classes].join(" "),
-					on: {
-						click: () => this.close(button.id)
-					},
-					props: {
-						as: "button"
-					}
+				h("div", {class: "panel-footer justify-content-end"}, this.buttons.map((button, index) => h("latte-ripple", {
+					class: ["btn", ...button.classes, (index === 0 ? "ml-0" : "ml-2")].join(" "),
+					on: {click: () => this.close(button.id)},
+					props: {as: "button"}
 				}, [
 					button.icon !== null ? icon(button.icon, h) : undefined,
 					h("span", {}, button.label)

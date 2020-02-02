@@ -9,7 +9,7 @@
 
 <template>
 
-	<div class="input-group" :disabled="disabled" :class="{'is-loading': isLoading}">
+	<div class="input-group" :disabled="disabled" :class="{'is-loading': isLoading, 'pl-2': values.length > 0}">
 
 		<template v-for="selection in values">
 

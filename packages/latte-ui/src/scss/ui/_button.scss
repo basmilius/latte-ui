@@ -106,7 +106,7 @@
 		--spinnerColor: var(--btnBackground);
 
 		background: transparent;
-		box-shadow: inset 0 0 0 2px #{latte-rgba(var(--btnBackground), .5)};
+		box-shadow: inset 0 0 0 1px #{latte-rgba(var(--btnBackground), .5)};
 		color: #{latte-rgb(var(--btnBackground))};
 
 		&:focus,

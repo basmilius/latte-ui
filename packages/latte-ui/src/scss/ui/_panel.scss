@@ -25,18 +25,19 @@
 	border-radius: var(--radius);
 	box-shadow: var(--panelElevation);
 
-	&.panel-blank
+	&-blank
 	{
 		background: transparent;
 		border-radius: 0;
 		box-shadow: none;
 	}
 
-	&.panel-outline
+	&-outline
 	{
 		--panelElevation: 0 0 0 1px #{latte-rgb(var(--outlineColor))};
 	}
 
+	// TODO(Bas) Deprecate this, should be manually added by the user.
 	+ .panel,
 	&.panel-gutter
 	{
@@ -44,40 +45,12 @@
 	}
 }
 
-.m-panel-gutter,
-.my-panel-gutter,
-.mt-panel-gutter
-{
-	margin-top: var(--panelGutter);
-}
-
-.m-panel-gutter,
-.my-panel-gutter,
-.mb-panel-gutter
-{
-	margin-bottom: var(--panelGutter);
-}
-
-.m-panel-gutter,
-.mx-panel-gutter,
-.ml-panel-gutter
-{
-	margin-left: var(--panelGutter);
-}
-
-.m-panel-gutter,
-.mx-panel-gutter,
-.mr-panel-gutter
-{
-	margin-right: var(--panelGutter);
-}
-
 a.panel
 {
-	color: currentColor;
+	color: unset;
 	cursor: pointer;
 	text-decoration: none;
-	transition: elevation-transition(330ms);
+	transition: box-shadow 240ms var(--easeSwiftOut);
 
 	&:hover
 	{
@@ -85,15 +58,42 @@ a.panel
 	}
 }
 
+// TODO(Bas) Deprecate this, should be manually added by the user.
+.m-panel-gutter,
+.my-panel-gutter,
+.mt-panel-gutter
+{
+	margin-top: var(--panelGutter);
+}
+
+// TODO(Bas) Deprecate this, should be manually added by the user.
+.m-panel-gutter,
+.my-panel-gutter,
+.mb-panel-gutter
+{
+	margin-bottom: var(--panelGutter);
+}
+
+// TODO(Bas) Deprecate this, should be manually added by the user.
+.m-panel-gutter,
+.mx-panel-gutter,
+.ml-panel-gutter
+{
+	margin-left: var(--panelGutter);
+}
+
+// TODO(Bas) Deprecate this, should be manually added by the user.
+.m-panel-gutter,
+.mx-panel-gutter,
+.mr-panel-gutter
+{
+	margin-right: var(--panelGutter);
+}
+
 .panel-body
 {
 	padding: var(--panelGutter);
 	flex: 1 1 auto;
-
-	+ .panel-body
-	{
-		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
-	}
 }
 
 .panel-column
@@ -111,11 +111,6 @@ a.panel
 	padding: 0 var(--panelGutter);
 	align-items: center;
 
-	&:not(:first-child)
-	{
-		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
-	}
-
 	.divider
 	{
 		height: 24px;
@@ -129,14 +124,8 @@ a.panel
 	padding: 0 var(--panelGutter);
 	align-items: center;
 	flex: 0 0 auto;
-	border-bottom: 1px solid #{latte-rgb(var(--outlineColor))};
 
-	&:last-child
-	{
-		border-bottom: 0;
-	}
-
-	&.panel-header-sticky
+	&-sticky
 	{
 		position: sticky;
 		top: 0;
@@ -147,6 +136,18 @@ a.panel
 	.divider
 	{
 		height: 24px;
+	}
+}
+
+.panel-header,
+.panel-body,
+.panel-footer
+{
+	+ .panel-header,
+	+ .panel-body,
+	+ .panel-footer
+	{
+		border-top: 1px solid #{latte-rgb(var(--outlineColor))};
 	}
 }
 

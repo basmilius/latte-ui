@@ -23,7 +23,7 @@
 	width: 100%;
 	align-items: center;
 	background: transparent;
-	border: 2px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
+	border: 1px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--mainForeground))};
 	outline: 0;
@@ -45,7 +45,7 @@
 	&[disabled],
 	&.is-disabled
 	{
-		background: #{latte-rgba(var(--formOutline), .15)};
+		background-color: #{latte-rgba(var(--formOutline), .15)};
 	}
 }
 

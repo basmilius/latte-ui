@@ -19,7 +19,9 @@
 			<LatteColorpickerSelect v-model="color" v-if="isOpen">
 				<div class="panel-footer justify-content-end">
 					<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
-					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select">
+						<Icon name="check-circle"/>
+						<span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
 				</div>
 			</LatteColorpickerSelect>
 		</component>
@@ -37,6 +39,7 @@
 	import Icon from "./Icon.vue";
 	import LatteColorpickerSelect from "./ColorPickerSelect";
 	import LatteRipple from "./Ripple";
+	import { raf } from "../../js/util/dom";
 
 	export default {
 
@@ -103,7 +106,12 @@
 			cancel()
 			{
 				this.color = this.current;
-				this.close();
+
+				raf(() =>
+				{
+					if (this.$refs.popup.isOpen)
+						this.close()
+				});
 			},
 
 			close()

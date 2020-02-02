@@ -13,7 +13,7 @@
 
 		<template v-slot="{current, setCurrent, setNow, isOverlay, cancel, select}">
 			<template v-if="!isOverlay">
-				<div class="row no-gutters">
+				<div class="panel-body row no-gutters p-0">
 					<div class="col-auto">
 						<LatteDatepickerCalendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteDatepickerCalendar>
 					</div>
@@ -31,10 +31,10 @@
 
 			<LatteTabContainer class="panel" v-else>
 				<LatteTabBar></LatteTabBar>
-				<LatteTab :label="'Date' | i18n('latte-ui')">
+				<LatteTab class="panel-body p-0" :label="'Date' | i18n('latte-ui')">
 					<LatteDatepickerCalendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteDatepickerCalendar>
 				</LatteTab>
-				<LatteTab :label="'Time' | i18n('latte-ui')">
+				<LatteTab class="panel-body p-0" :label="'Time' | i18n('latte-ui')">
 					<LatteTimepickerClock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteTimepickerClock>
 				</LatteTab>
 				<div class="panel-footer">

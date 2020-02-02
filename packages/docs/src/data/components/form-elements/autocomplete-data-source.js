@@ -17,10 +17,11 @@ export default function autocompleteDataSource()
 			return Promise.resolve(values.map(value => items.find(item => item.value === value)));
 		},
 
-		getSuggestions(searchQuery, offset, limit)
+		getSuggestions(searchQuery, offset, limit, values)
 		{
 			return Promise.resolve(items
 				.filter(item => item.label.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1)
+				.filter(item => !values.find(value => item.value === value.value))
 				.slice(offset, offset + limit));
 		}
 

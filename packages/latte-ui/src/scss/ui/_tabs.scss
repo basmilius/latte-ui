@@ -67,7 +67,7 @@
 	}
 }
 
-.panel > .nav.nav-tabs
+.panel > .nav-tabs
 {
 	--tabsHeight: 54px;
 
@@ -81,7 +81,12 @@
 	}
 }
 
-.panel-header > .nav.nav-tabs
+.panel-header + .nav-tabs
+{
+	margin-top: -21px;
+}
+
+.panel-header > .nav-tabs
 {
 	--tabsHeight: 75px;
 

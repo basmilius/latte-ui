@@ -21,7 +21,7 @@ input[type=radio].radio-button
 	height: 24px;
 	width: 24px;
 	flex: 0 0 auto;
-	border: 2px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
+	border: 1px solid #{latte-rgba(var(--formOutline), var(--formAlpha))};
 	border-radius: 12px;
 	cursor: pointer;
 	outline: 0;
@@ -34,7 +34,7 @@ input[type=radio].radio-button
 		position: absolute;
 		display: block;
 		height: 14px;
-		margin: 3px;
+		margin: 4px;
 		width: 14px;
 		content: "";
 		background: transparent;

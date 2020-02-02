@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2019 - Bas Milius <bas@mili.us>
+ * Copyright (c) 2018-2020 - Bas Milius <bas@mili.us>
  *
  * This file is part of the Latte UI package.
  *
@@ -7,17 +7,7 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { getLattePath } from "../util/dom";
 import { docRoot } from "../core";
-
-function registerCSSPaintWorklets()
-{
-	let path = getLattePath();
-
-	CSS.paintWorklet.addModule(`${path}worklet/paint/btn-background.js`)
-		.then(() => docRoot.classList.add("css-paint-api"))
-		.catch(() => console.error(`[LatteUI] CSS Paint API not used because worklets could not load.`));
-}
 
 function registerCSSProperties()
 {
@@ -29,27 +19,10 @@ function registerCSSProperties()
 		inherits: true,
 		initialValue: 1
 	});
-
-	CSS.registerProperty({
-		name: "--btnAlpha",
-		syntax: "<number>",
-		inherits: false,
-		initialValue: 1
-	});
-
-	CSS.registerProperty({
-		name: "--btnHover",
-		syntax: "<number>",
-		inherits: false,
-		initialValue: 0
-	});
 }
 
 export function initializeHoudiniApis()
 {
-	if (typeof CSS !== "undefined" && CSS.paintWorklet)
-		registerCSSPaintWorklets();
-
 	if (typeof CSS !== "undefined" && CSS.registerProperty)
 		registerCSSProperties();
 }

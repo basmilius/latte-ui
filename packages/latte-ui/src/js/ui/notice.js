@@ -11,6 +11,7 @@ import { on } from "../core/action";
 import { id } from "../core/api"
 import { isIterable } from "../util/object";
 import { icon } from "../core";
+import { closest } from "../util/dom";
 
 export function initializeNotices()
 {
@@ -18,7 +19,7 @@ export function initializeNotices()
 	notices = notices.filter(notice => notice.querySelector("button.notice-dismiss") !== null);
 	notices = notices.map(notice => notice.querySelector("button.notice-dismiss"));
 
-	notices.forEach(dismissButton => dismissButton.addEventListener("click", () => dismissButton.parentNode.parentNode.removeChild(dismissButton.parentNode)));
+	notices.forEach(dismissButton => dismissButton.addEventListener("click", () => closest(dismissButton, ".notice").remove()));
 
 	on("latte:notice", data => create(decodeURIComponent(data.message), data.type || "info"));
 }

@@ -11,7 +11,7 @@
 
 	<div class="panel datepicker-calendar">
 
-		<div class="panel-header border-0 datepicker-calendar-header" :class="[selectedView]">
+		<div class="panel-header datepicker-calendar-header" :class="[selectedView]">
 			<LatteRipple as="button" class="btn btn-icon btn-text m-0" @click="navigate(-1)">
 				<Icon name="chevron-left"/>
 			</LatteRipple>
@@ -26,7 +26,7 @@
 			</LatteRipple>
 		</div>
 
-		<div class="panel-body datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
+		<div class="panel-body border-0 datepicker-calendar-dates px-3 pb-3 px-lg-4 pt-0" :class="bodyClass" v-if="selectedView === 'dates'">
 			<span class="day" v-for="day of days">{{ day }}</span>
 
 			<template v-for="date of dates">
@@ -36,7 +36,7 @@
 			</template>
 		</div>
 
-		<div class="panel-body datepicker-calendar-months" v-if="selectedView === 'months'">
+		<div class="panel-body border-0 datepicker-calendar-months" v-if="selectedView === 'months'">
 			<template v-for="(month, index) in months">
 				<LatteRipple as="button" :key="index" :class="getClassesForMonth(index + 1)" :data-month="index + 1" @click="selectMonth(index + 1)">
 					{{ month }}
@@ -44,7 +44,7 @@
 			</template>
 		</div>
 
-		<div class="panel-body datepicker-calendar-years" v-if="selectedView === 'years'">
+		<div class="panel-body border-0 datepicker-calendar-years" v-if="selectedView === 'years'">
 			<template v-for="(year, index) in years">
 				<LatteRipple as="button" :key="index" :class="getClassesForYear(year)" :data-year="year" @click="selectYear(year)">
 					<span>{{ year }}</span>

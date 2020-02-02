@@ -15,7 +15,7 @@
 	padding: 15px 24px;
 	align-items: flex-start;
 	background: #{latte-rgba(var(--noticeBackground), .1)};
-	border: 2px solid #{latte-rgba(var(--noticeBackground), .1)};
+	border: 1px solid #{latte-rgba(var(--noticeBackground), .1)};
 	border-radius: var(--radius);
 	color: #{latte-rgb(var(--noticeBackground))};
 	font-weight: 500;
@@ -28,7 +28,7 @@
 
 	&-fluid
 	{
-		padding: 24px;
+		padding: 30px;
 		border-top: 0;
 		border-left: 0;
 		border-right: 0;
@@ -61,7 +61,8 @@
 
 	.btn.notice-dismiss
 	{
-		margin: -7px -15px -7px auto;
+		margin: -7px -9px -7px auto;
+		transform: translateX(6px);
 	}
 
 	.notice-body .btn.notice-dismiss

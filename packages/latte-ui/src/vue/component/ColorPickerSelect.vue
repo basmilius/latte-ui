@@ -10,7 +10,7 @@
 <template>
 
 	<div class="panel colorpicker" draggable="false" :style="styles">
-		<div class="colorpicker-controls">
+		<div class="panel-body colorpicker-controls">
 			<XYPos class="colorpicker-saturation" v-model="saturation">
 				<div class="saturation-overlay white"></div>
 				<div class="saturation-overlay black"></div>
@@ -18,7 +18,7 @@
 			<Slider class="hue" direction="vertical" :min="0" :max="360" v-model="hue"/>
 			<Slider class="alpha" direction="vertical" :min="100" :max="0" v-model="alpha"/>
 		</div>
-		<div class="colorpicker-preview">
+		<div class="panel-body border-0 colorpicker-preview">
 			<div class="colorpicker-preview-color" :style="{backgroundColor: `rgba(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b}, ${alpha / 100})`}"></div>
 			<label class="preview-value hex">
 				<input class="form-control" type="text" maxlength="7" v-model="hex" pattern="[a-fA-F0-9]+" @blur="onHueSaturationChanged" @keydown="onHexKeyDown" @input="onHexChange" ref="hex"/>
