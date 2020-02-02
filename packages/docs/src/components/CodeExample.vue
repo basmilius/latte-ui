@@ -1,3 +1,12 @@
+<!--
+  - Copyright (c) 2018-2020 - Bas Milius <bas@mili.us>
+  -
+  - This file is part of the Latte UI package.
+  -
+  - For the full copyright and license information, please view the
+  - LICENSE file that was distributed with this source code.
+  -->
+
 <template>
 
 	<div class="panel overflow-hidden">
@@ -38,7 +47,8 @@
 					.replace(/<[^>]*class="[^"]*\bpreview-code\b[^"]*"[^>]*><\/[^>]*>/gm, "")
 					.replace(/\s(preview:[^("\s)]*)/gm, "")
 					.replace(/\sclass=""/gm, "")
-					.replace(/(\r?\n){2,}/gm, "\n\n");
+					.replace(/(\r?\n){2,}/gm, "\n\n")
+					.trim();
 			},
 
 			previewCode()
