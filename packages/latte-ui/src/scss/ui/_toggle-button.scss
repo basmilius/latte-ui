@@ -33,9 +33,9 @@
 	&::before
 	{
 		display: block;
-		height: 12px;
-		margin: 5px;
-		width: 12px;
+		height: 14px;
+		margin: 4px;
+		width: 14px;
 		content: "";
 		background: #{latte-rgb(var(--formOutline))};
 		border-radius: inherit;
