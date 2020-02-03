@@ -11,6 +11,7 @@
 
 	import { terminateEvent } from "../../js/util/dom";
 	import { clamp } from "../../js/math";
+	import { spaceship } from "../../js/operators";
 
 	export default {
 
@@ -95,7 +96,8 @@
 
 			onPopupOpen()
 			{
-				const children = this.getFocusableChildren();
+				const children = this.getFocusableChildren()
+					.sort((a, b) => spaceship(b.tabIndex, a.tabIndex));
 
 				if (children.length < 1)
 					return;
