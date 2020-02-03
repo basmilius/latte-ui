@@ -9,9 +9,15 @@
 
 <template>
 
-	<latte-ripple as="router-link" class="nav-link" :to="to">
-		<slot></slot>
-	</latte-ripple>
+	<router-link :to="to">
+		<template #default="{href, isExactActive, navigate}">
+
+			<latte-ripple as="a" class="nav-link" :class="{'is-active': isExactActive}" :href="href" :tabindex="isExactActive ? 0 : -1" @click="navigate">
+				<slot></slot>
+			</latte-ripple>
+
+		</template>
+	</router-link>
 
 </template>
 

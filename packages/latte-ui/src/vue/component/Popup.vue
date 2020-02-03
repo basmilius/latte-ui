@@ -9,7 +9,7 @@
 
 <template>
 
-	<div :class="popupClasses" :style="popupStyles" v-mtm>
+	<div :class="popupClasses" :style="popupStyles" @keydown="onKeyDown" v-mtm>
 		<div class="popup-body">
 			<slot></slot>
 		</div>
@@ -27,7 +27,7 @@
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
 	import { oneOf } from "../../js/helper/array";
-	import { MoveToMainDirective } from "../directive/move-to-main";
+	import { MoveToMainDirective } from "../directive";
 	import { addEventListener } from "../../js/util/event";
 
 	export default {
@@ -239,6 +239,17 @@
 			onClick()
 			{
 				this.toggle();
+			},
+
+			onKeyDown(evt)
+			{
+				if (evt.code !== "Escape")
+					return;
+
+				this.close();
+
+				if (this.associatedElement)
+					this.associatedElement.focus();
 			},
 
 			onOutsideClick()

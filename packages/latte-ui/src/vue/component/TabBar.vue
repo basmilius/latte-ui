@@ -9,10 +9,10 @@
 
 <template>
 
-	<nav class="nav nav-tabs">
+	<nav class="nav nav-tabs" role="tablist">
 
 		<template v-for="(tab, index) in tabs">
-			<a class="nav-link" :class="{'is-active': tab.active}" @click="click(index)">
+			<a :tabindex="tab.active ? 0 : -1" class="nav-link" :class="{'is-active': tab.active}" @click="click(index)" role="tab">
 				<Icon :name="tab.icon" v-if="tab.icon !== ''"/>
 				<span v-if="tab.label !== ''">{{ tab.label }}</span>
 				<span class="badge badge-primary ml-2" v-if="tab.badge !== ''">{{ tab.badge }}</span>
@@ -46,6 +46,7 @@
 		mounted()
 		{
 			this.tabContainer.$on("change", current => this.onTabChange(current));
+			this.tabContainer.$on("update", tabs => this.tabs = tabs);
 			this.tabContainer.updateTabBars();
 		},
 

@@ -69,10 +69,7 @@
 
 			updateTabBars()
 			{
-				this.$children
-					.filter(c => c.$options.name === "latte-tab-bar")
-					.forEach(c => this.$set(c, "tabs", this.tabs));
-
+				this.$emit("update", this.tabs);
 				this.updateCurrent();
 			}
 

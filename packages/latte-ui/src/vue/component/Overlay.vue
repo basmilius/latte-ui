@@ -22,7 +22,7 @@
 	import { applyZ } from "../../js/core/z";
 	import { raf } from "../../js/util/dom";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
-	import { MoveToMainDirective } from "../directive/move-to-main";
+	import { MoveToMainDirective } from "../directive";
 
 	export default {
 

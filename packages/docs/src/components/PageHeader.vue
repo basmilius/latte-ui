@@ -19,11 +19,15 @@
 			<div class="row" v-if="tabsWithElement.length > 0">
 				<div class="col-12">
 
-					<nav class="nav nav-tabs mt-3 justify-content-center justify-content-lg-start">
-						<a @click="navigate(tab.selector)" class="nav-link" :class="{'is-active': currentTab && currentTab.selector === tab.selector}" v-for="tab of tabsWithElement">
-							<span>{{ tab.label }}</span>
-						</a>
-					</nav>
+					<latte-focus-zone is-horizontal>
+						<nav class="nav nav-tabs mt-3 justify-content-center justify-content-lg-start">
+							<template v-for="tab of tabsWithElement">
+								<a class="nav-link" :tabindex="currentTab && currentTab.selector === tab.selector ? 0 : -1" :class="{'is-active': currentTab && currentTab.selector === tab.selector}" @click="navigate(tab.selector)">
+									<span>{{ tab.label }}</span>
+								</a>
+							</template>
+						</nav>
+					</latte-focus-zone>
 
 				</div>
 			</div>
