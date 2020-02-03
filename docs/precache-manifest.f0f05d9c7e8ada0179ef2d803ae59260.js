@@ -1,7 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1512534d3423bd036c8c",
-    "url": "/assets/css/app.c5359c6a.css"
+    "revision": "297a804b0548b559ebdf",
+    "url": "/assets/css/app.f455aed0.css"
   },
   {
     "revision": "2469886e6d1f668f0fc2",
@@ -88,8 +88,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "1512534d3423bd036c8c",
-    "url": "/assets/js/app.c5af2c12.js"
+    "revision": "297a804b0548b559ebdf",
+    "url": "/assets/js/app.ecac215a.js"
   },
   {
     "revision": "2469886e6d1f668f0fc2",
@@ -180,7 +180,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/dog-with-hat.jpg"
   },
   {
-    "revision": "6488fa9118572ffd178c3c7c4566d7f3",
+    "revision": "61c596c344939d8b8429ff52d4ec59f1",
     "url": "/index.html"
   },
   {
