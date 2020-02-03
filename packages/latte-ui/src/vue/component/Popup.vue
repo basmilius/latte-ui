@@ -9,11 +9,13 @@
 
 <template>
 
-	<div :class="popupClasses" :style="popupStyles" @keydown="onKeyDown" v-mtm>
-		<div class="popup-body">
-			<slot></slot>
+	<transition name="popup" @before-enter="onBeforeEnter" @enter="onEnter">
+		<div :class="popupClasses" :style="popupStyles" @keydown="onKeyDown" v-mtm v-if="isOpen">
+			<div class="popup-body">
+				<slot></slot>
+			</div>
 		</div>
-	</div>
+	</transition>
 
 </template>
 
@@ -39,7 +41,6 @@
 		},
 
 		props: {
-			animateTransform: {default: true, type: Boolean},
 			associateWith: {default: undefined},
 			marginX: {default: 0, type: Number},
 			marginY: {default: 0, type: Number},
@@ -53,7 +54,6 @@
 			if (this.isOpen)
 				popupClosed();
 
-			this.$el.clearOutsideEventListeners();
 			this.subscriptions.forEach(sub => sub.unsubscribe());
 		},
 
@@ -62,12 +62,14 @@
 			return {
 				arrowPosition: undefined,
 				isOpen: false,
-				isOpening: false,
+				offsetX: 0,
+				offsetY: 0,
 				popupX: 0,
 				popupY: 0,
 				rect: null,
 				x: 0,
 				y: 0,
+				z: 0,
 				lattePersistent: false,
 				events: [],
 				subscriptions: []
@@ -80,11 +82,6 @@
 				this.bindEvents();
 			else if (this.$parent)
 				this.$parent.$forceUpdate();
-
-			this.$el.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick), {passive: true});
-			this.$el.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick), {passive: true});
-
-			live(this.$el, "[href],[data-close]", "click", () => raf(() => this.close()));
 
 			this.subscriptions.push(
 				on("latte:tick", () => this.onTick()),
@@ -120,19 +117,24 @@
 				if (this.withArrow && this.arrowPosition)
 					classes.push("arrow", ...this.arrowPosition);
 
-				if (!this.animateTransform || this.isOpening)
-					classes.push("no-transform-animation");
-
-				if (this.isOpen === true)
-					classes.push("is-open");
-
 				return classes;
 			},
 
 			popupStyles()
 			{
 				return {
-					"transform": `translate3d(${this.popupX}px, ${this.popupY}px, 0)`
+					"--popupOrigin": `${this.offsetX}px, ${this.offsetY}px`,
+					top: `${this.popupY}px`,
+					left: `${this.popupX}px`,
+					zIndex: this.z
+				};
+			},
+
+			pos()
+			{
+				return {
+					isTop: this.y < (self.innerHeight / 2),
+					isLeft: this.x < (self.innerWidth / 2)
 				};
 			},
 
@@ -171,10 +173,8 @@
 
 			open()
 			{
-				applyZ(z => this.$el.style.setProperty("z-index", z));
-				this.isOpening = true;
-				this.calculatePosition();
-				raf(() => this.isOpening = !(this.isOpen = true));
+				applyZ(z => this.z = z);
+				this.isOpen = true;
 			},
 
 			toggle()
@@ -185,9 +185,9 @@
 					this.open();
 			},
 
-			calculatePosition()
+			calculatePosition(elm)
 			{
-				const pcr = this.$el.getBoundingClientRect();
+				const pcr = (elm || this.$el).getBoundingClientRect();
 				const px = this.x > (self.innerWidth / 2) ? "right" : "left";
 				const py = this.y > (self.innerHeight / 2) ? "above" : "under";
 
@@ -208,8 +208,6 @@
 
 					if (py === "above")
 						y = (t + h) - (pcr.height + this.marginY);
-
-					x += (this.isOpen || !this.animateTransform ? 0 : (px === "right" ? -24 : 24));
 				}
 				else
 				{
@@ -221,8 +219,6 @@
 
 					if (py === "above")
 						y = t - (pcr.height + this.marginY);
-
-					y += (this.isOpen || !this.animateTransform ? 0 : (py === "above" ? -24 : 24));
 				}
 
 				this.arrowPosition = [this.orientation, px, py];
@@ -234,6 +230,22 @@
 			{
 				this.x = x;
 				this.y = y;
+			},
+
+			onBeforeEnter(elm)
+			{
+				elm.addOutsideEventListener("mousedown", onlyMouse(this.onOutsideClick), {passive: true});
+				elm.addOutsideEventListener("touchstart", onlyTouch(this.onOutsideClick), {passive: true});
+
+				if (this.associatedElement)
+					this.rect = this.associatedElement.getBoundingClientRect();
+
+				live(elm, "[href],[data-close]", "click", () => raf(() => this.close()));
+			},
+
+			onEnter(elm)
+			{
+				this.calculatePosition(elm);
 			},
 
 			onClick()
@@ -262,6 +274,9 @@
 
 			onTick()
 			{
+				if (!this.isOpen)
+					return;
+
 				if (this.associatedElement)
 					this.rect = this.associatedElement.getBoundingClientRect();
 
@@ -283,15 +298,17 @@
 
 			isOpen()
 			{
-				this.calculatePosition();
-
 				dispatch("latte:tooltip:hide");
 
 				if (this.isOpen)
 				{
-					dispatch("latte:popup:open", this);
 					popupOpened();
-					this.$emit("open");
+
+					raf(() =>
+					{
+						dispatch("latte:popup:open", this);
+						this.$emit("open");
+					});
 				}
 				else
 				{
@@ -314,7 +331,10 @@
 					this.y = 0;
 				}
 
-				this.calculatePosition();
+				const {isTop, isLeft} = this.pos;
+
+				this.offsetX = this.orientation === "horizontal" ? (isLeft ? 24 : -24) : 0;
+				this.offsetY = this.orientation === "vertical" ? (isTop ? 24 : -24) : 0;
 			}
 
 		}

@@ -500,6 +500,8 @@
 
 		name: "Tests",
 
+		refs: ["breadcrumbMenu"],
+
 		components: {TestCase}
 
 	}

@@ -11,6 +11,37 @@
 {
 	--popupBackground: 255, 255, 255;
 	--popupElevation: var(--elevation16), 0 0 0 1px #{latte-rgb(var(--outlineColor))};
+	--popupOrigin: 0, 0;
+}
+
+@keyframes popup-close
+{
+	from
+	{
+		opacity: 1;
+		transform: none;
+	}
+
+	to
+	{
+		opacity: 0;
+		transform: translate3d(var(--popupOrigin), 0);
+	}
+}
+
+@keyframes popup-open
+{
+	from
+	{
+		opacity: 0;
+		transform: translate3d(var(--popupOrigin), 0);
+	}
+
+	to
+	{
+		opacity: 1;
+		transform: none;
+	}
 }
 
 .popup
@@ -22,21 +53,18 @@
 	background: #{latte-rgb(var(--popupBackground))};
 	border-radius: var(--radius);
 	box-shadow: var(--popupElevation);
-	opacity: 0;
-	pointer-events: none;
-	transition: 210ms var(--easeSwiftOut);
-	transition-property: opacity, transform;
+	pointer-events: all;
 	z-index: 3000;
 
-	&.no-transform-animation
+	&-enter-active
 	{
-		transition-property: opacity;
+		opacity: 0;
+		animation: popup-open 210ms var(--easeSwiftOut) 48ms;
 	}
 
-	&.is-open
+	&-leave-active
 	{
-		opacity: 1;
-		pointer-events: all;
+		animation: popup-close 210ms var(--easeSwiftOut);
 	}
 
 	&.arrow

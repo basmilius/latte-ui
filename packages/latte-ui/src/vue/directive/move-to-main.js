@@ -20,8 +20,8 @@ export const MoveToMainDirective = {
 
 	unbind(el)
 	{
-		if (el.parentNode)
-			el.parentNode.removeChild(el);
+		// if (el.parentNode)
+		// 	el.parentNode.removeChild(el);
 	}
 
 };
