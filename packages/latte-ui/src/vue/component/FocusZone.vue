@@ -71,7 +71,7 @@
 			{
 				const key = evt.code;
 
-				if (key === "Enter" || key === "Spave")
+				if (key === "Enter" || key === "Space")
 				{
 					this.activeElement.click();
 				}
