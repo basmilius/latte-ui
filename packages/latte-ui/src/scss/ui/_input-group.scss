@@ -79,15 +79,11 @@
 
 	.popup
 	{
+		--popupOrigin: 0, 24px;
+
 		position: absolute;
 		top: calc(100% + 6px);
 		width: 100%;
-		transform: translate3d(0, 24px, 0);
 		z-index: 5;
-
-		&.is-open
-		{
-			transform: translate3d(0, 0, 0);
-		}
 	}
 }

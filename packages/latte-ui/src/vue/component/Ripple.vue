@@ -187,6 +187,18 @@
 				});
 			}
 
+		},
+
+		watch: {
+
+			ripples()
+			{
+				if (this.ripples.length === 0)
+					this.$el.classList.remove("has-ripple");
+				else
+					this.$el.classList.add("has-ripple");
+			}
+
 		}
 
 	}

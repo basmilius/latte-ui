@@ -25,28 +25,30 @@
 		<!--suppress HtmlFormInputWithoutLabel -->
 		<input type="search" :name="name" :disabled="disabled" class="form-control" ref="field" :placeholder="placeholder" autocomplete="false" @focus="onFocus" v-model="searchTerm" @keydown.delete="onKeyPressDelete" @keydown.enter="onSelectSuggestion" @keydown.tab="onSelectFirstSuggestion" @keydown.down="onKeyPressDown" @keydown.up="onKeyPressUp" v-if="canSearch"/>
 
-		<div class="popup" :class="{'is-open': shouldOpenSuggestions}" role="combobox">
-			<div class="popup-body">
-				<nav class="nav nav-list">
-					<template v-for="(suggestion, index) in suggestionsFiltered">
+		<transition name="popup">
+			<div class="popup" role="combobox" v-if="shouldOpenSuggestions">
+				<div class="popup-body">
+					<nav class="nav nav-list">
+						<template v-for="(suggestion, index) in suggestionsFiltered">
 
-						<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
-							<slot name="suggestion" v-bind="suggestion">
-								<div class="d-flex flex-column flex-grow-1" v-if="suggestion.sub_label">
-									<span>{{ suggestion.label }}</span>
-									<span class="text-soft">{{ suggestion.sub_label }}</span>
-								</div>
+							<a class="nav-link" :class="{'is-hover': currentSuggestion === index}" @pointermove.passive="currentSuggestion = index" @click="onSelectSuggestion" role="option">
+								<slot name="suggestion" v-bind="suggestion">
+									<div class="d-flex flex-column flex-grow-1" v-if="suggestion.sub_label">
+										<span>{{ suggestion.label }}</span>
+										<span class="text-soft">{{ suggestion.sub_label }}</span>
+									</div>
 
-								<span v-else>{{ suggestion.label }}</span>
+									<span v-else>{{ suggestion.label }}</span>
 
-								<Icon class="ml-auto" name="chevron-right"/>
-							</slot>
-						</a>
+									<Icon class="ml-auto" name="chevron-right"/>
+								</slot>
+							</a>
 
-					</template>
-				</nav>
+						</template>
+					</nav>
+				</div>
 			</div>
-		</div>
+		</transition>
 
 		<span class="spinner spinner-primary"></span>
 
