@@ -206,6 +206,7 @@
 	&.is-disabled
 	{
 		filter: grayscale(100%);
+		opacity: .5;
 	}
 }
 
