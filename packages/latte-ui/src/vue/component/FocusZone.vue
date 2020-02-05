@@ -65,6 +65,12 @@
 			onFocusLost()
 			{
 				this.activeElement = null;
+
+				this.$nextTick(() =>
+				{
+					if (this.activeElement === null && this.popup)
+						this.popup.close();
+				});
 			},
 
 			onKeyDown(evt)
@@ -74,6 +80,10 @@
 				if (key === "Enter" || key === "Space")
 				{
 					this.activeElement.click();
+				}
+				else if (key === "Tab" && this.popup)
+				{
+					this.popup.onKeyDown({code: "Escape"});
 				}
 				else if (this.isHorizontal || this.isVertical)
 				{
