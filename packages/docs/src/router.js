@@ -29,6 +29,10 @@ const router = new Router({
 					component: () => import("./views/Home.vue")
 				},
 				{
+					path: "/block-editor",
+					component: () => import("./views/BlockEditor.vue")
+				},
+				{
 					path: "/tests",
 					component: () => import("./views/Tests.vue")
 				},
