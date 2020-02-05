@@ -8,20 +8,36 @@
  */
 
 import { getMainElement } from "../../js/core";
+import { raf } from "../../js/util/dom";
 
 export const MoveToMainDirective = {
 
 	inserted(el)
 	{
 		const mainElement = getMainElement();
-
 		mainElement.appendChild(el);
+
+		el.addEventListener("animationstart", () => el.isAnimating = true);
+		el.addEventListener("animationend", () => el.isAnimating = false);
+
+		el.addEventListener("transitionstart", () => el.isAnimating = true);
+		el.addEventListener("transitionend", () => el.isAnimating = false);
 	},
 
 	unbind(el)
 	{
-		// if (el.parentNode)
-		// 	el.parentNode.removeChild(el);
+		raf(() =>
+		{
+			if (el.isAnimating)
+			{
+				el.addEventListener("animationend", () => el.remove());
+				el.addEventListener("transitionend", () => el.remove());
+
+				return;
+			}
+
+			el.remove();
+		}, 16);
 	}
 
 };

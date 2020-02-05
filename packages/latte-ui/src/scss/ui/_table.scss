@@ -22,7 +22,7 @@
 	$border: 1px solid #{latte-rgb(var(--outlineColor))};
 	$hover-bg: #{latte-rgba(var(--outlineColor), .5)};
 
-	&.table-border
+	&-border
 	{
 		td,
 		th
@@ -31,7 +31,7 @@
 		}
 	}
 
-	&.table-compact
+	&-compact
 	{
 		--tablePadding: 6px 15px;
 	}
@@ -52,12 +52,12 @@
 		height: inherit;
 		margin: 0;
 		padding: 0;
-		background: transparent;
-		vertical-align: middle;
 	}
 
 	tr:not(:first-child) td,
-	tr:not(:first-child) th
+	tr:not(:first-child) th,
+	thead + tbody tr td,
+	tbody + tfoot tr td
 	{
 		border-top: $border;
 	}
@@ -66,6 +66,15 @@
 	tbody tr:hover th
 	{
 		background: $hover-bg;
+	}
+
+	thead .form-control
+	{
+		height: unset;
+		padding: var(--tablePadding);
+		background: $hover-bg;
+		border: 0;
+		border-radius: 0;
 	}
 
 	.column-content
@@ -78,23 +87,6 @@
 		justify-content: center;
 		vertical-align: middle;
 		transition: background 90ms var(--easeSwiftOut);
-
-		*
-		{
-			vertical-align: middle;
-		}
-	}
-
-	tfoot .column-content,
-	thead .column-content
-	{
-		padding: var(--tablePadding);
-		font-weight: 500;
-	}
-
-	tfoot tr:first-child .column-content
-	{
-		border-top: $border;
 	}
 
 	tbody input.column-content
@@ -145,64 +137,16 @@
 		}
 	}
 
-	th.actions,
-	td.actions
+	tr.table-sticky
 	{
-		.btn + .btn
+		th,
+		td
 		{
-			margin-left: 4px;
-		}
-	}
-
-	tr.search-row
-	{
-		position: relative;
-
-		td,
-		th
-		{
-			background: $hover-bg;
-			border-top: $border;
-			border-bottom: $border;
-		}
-
-		input
-		{
-			display: block;
-			padding: var(--tablePadding);
-			width: 100%;
-			background: transparent;
-			border: 0;
-			color: #{latte-rgb(var(--mainForeground))};
-			font-weight: 500;
-			outline: 0;
-
-			&::placeholder
-			{
-				color: currentColor;
-				opacity: .5;
-			}
-		}
-	}
-
-	.column-content nav.pagination
-	{
-		position: sticky;
-		right: 21px;
-	}
-
-	&.table-sticky thead tr:first-child th
-	{
-		position: sticky;
-		top: 0;
-		z-index: 10;
-
-		.column-content
-		{
-			margin-top: -1px;
-			margin-bottom: -2px;
+			position: sticky;
+			top: var(--tableStickyOffset, 0);
 			background: #{latte-rgb(var(--panelBackground))};
-			border-bottom: $border;
+			box-shadow: 0 1px #{latte-rgb(var(--outlineColor))};
+			z-index: 1;
 		}
 	}
 }

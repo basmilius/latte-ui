@@ -32,14 +32,19 @@
 				</slot>
 			</tr>
 
-			<tr class="search-row" v-if="showSearch">
+			<tr v-if="showSearch">
 				<slot name="data-search" :columns="columns" :is-loading="isLoading" :is-selection-mode="isSelectionMode" :search="search" :selection="selection" :select-mode="selectMode" :unique-id="uniqueId">
-					<th v-if="isSelectionMode" style="width:42px"></th>
-					<th v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
-						<!--suppress HtmlFormInputWithoutLabel -->
-						<input v-if="column.is_searchable" type="search" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+					<th v-if="isSelectionMode" style="width:42px">
+						<div class="form-control"></div>
 					</th>
-					<th v-if="hasActions"></th>
+					<td v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
+						<!--suppress HtmlFormInputWithoutLabel -->
+						<input v-if="column.is_searchable" type="search" class="form-control" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+						<div class="form-control" v-else></div>
+					</td>
+					<th v-if="hasActions">
+						<div class="form-control"></div>
+					</th>
 				</slot>
 			</tr>
 
@@ -83,12 +88,12 @@
 			</tbody>
 			<tfoot>
 
-			<tr v-if="total > limit">
-				<th :colspan="amountOfColumns">
+			<tr>
+				<td :colspan="amountOfColumns">
 					<div class="column-content">
 						<LattePagination controller-bar :limit="limit" :offset="offset" :total="total" @limit="setLimit" @navigate="navigateToOffset"></LattePagination>
 					</div>
-				</th>
+				</td>
 			</tr>
 
 			</tfoot>

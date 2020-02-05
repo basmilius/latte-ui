@@ -14,9 +14,8 @@
 		<template v-if="controllerBar">
 			<div class="d-flex align-items-center mr-auto">
 
-				<button ref="entriesButton" class="btn is-small btn-text pr-1" style="--btnHeight: 30px">
+				<button ref="entriesButton" class="btn btn-text my-n2" style="margin-left: -12px">
 					<span>{{ "@0 entries"|i18n("latte-ui", limit) }}</span>
-					<Icon name="menu-swap"/>
 				</button>
 
 				<LattePopup :associate-with="$refs.entriesButton" :margin-y="9">
@@ -29,12 +28,12 @@
 					</LatteFocusZone>
 				</LattePopup>
 
-				<span class="ml-3">{{ "Showing @0 - @1 of @2"|i18n("latte-ui", offset + 1, Math.min(offset + limit, total), total) }}</span>
+				<small class="ml-2 text-muted">{{ "Showing @0 - @1 of @2"|i18n("latte-ui", offset + 1, Math.min(offset + limit, total), total) }}</small>
 
 			</div>
 		</template>
 
-		<template v-if="visiblePages.length > 0">
+		<template v-if="visiblePages.length > 1">
 			<div class="d-flex align-items-center">
 
 				<template v-if="navigationControls && currentPage > 1">

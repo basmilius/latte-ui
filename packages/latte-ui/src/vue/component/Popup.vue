@@ -85,7 +85,6 @@
 
 			this.subscriptions.push(
 				on("latte:tick", () => this.onTick()),
-				on("latte:context-menu", () => this.close()),
 				on("latte:overlay", () => this.close())
 			);
 		},
@@ -150,7 +149,7 @@
 			bindEvents()
 			{
 				this.events.push(
-					addEventListener(this.associatedElement, "click", this.onClick)
+					addEventListener(this.associatedElement, "click", this.toggle)
 				);
 				this.rect = this.associatedElement.getBoundingClientRect();
 			},
@@ -246,11 +245,6 @@
 			onEnter(elm)
 			{
 				this.calculatePosition(elm);
-			},
-
-			onClick()
-			{
-				this.toggle();
 			},
 
 			onKeyDown(evt)

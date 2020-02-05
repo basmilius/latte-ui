@@ -13,6 +13,7 @@ export { default as ColorPicker } from "./ColorPicker.vue";
 export { default as ColorPickerSelect } from "./ColorPickerSelect.vue";
 export { default as DataTable } from "./DataTable.vue";
 export { default as DataTableActions } from "./DataTableActions.vue";
+export { default as DataView } from "./DataView.vue";
 export { default as DatePicker } from "./DatePicker.vue";
 export { default as DatePickerCalendar } from "./DatePickerCalendar.vue";
 export { default as DateTimePicker } from "./DateTimePicker.vue";
