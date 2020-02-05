@@ -48,7 +48,8 @@
 		&:hover,
 		&.is-hover
 		{
-			margin: 0;
+			margin-left: 0;
+			margin-right: 0;
 			padding: 9px 12px 7px;
 			background: #{latte-rgba(var(--outlineColorSecondary), .2)};
 			color: #{latte-rgb(var(--tabsForeground))};
