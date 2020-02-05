@@ -14,7 +14,7 @@
 
 			<latte-portal slim to="toolbar-center">
 
-				<nav class="nav nav-tabs" style="--tabsAccent: var(--colorPrimary); --tabsHeight: var(--appBarHeight)">
+				<nav class="nav nav-tabs" style="--tabsAccent: var(--colorPrimary); --tabsHeight: calc(var(--appBarHeight) + 1px); margin-bottom: -1px">
 
 					<template v-for="(tab, index) in tabs">
 						<a class="nav-link" :class="{'is-active': tab.active}" @click="setCurrent(index)">
@@ -28,12 +28,12 @@
 
 			</latte-portal>
 
-			<latte-tab label="HTML" class="flex-grow-1">
-				<textarea readonly class="text-monospace" :aria-label="'Code view' | beTranslate">{{ html }}</textarea>
-			</latte-tab>
-
 			<latte-tab label="JSON" class="flex-grow-1">
 				<textarea readonly class="text-monospace" :aria-label="'Code view' | beTranslate">{{ json }}</textarea>
+			</latte-tab>
+
+			<latte-tab label="HTML" class="flex-grow-1">
+				<textarea readonly class="text-monospace" :aria-label="'Code view' | beTranslate">{{ html }}</textarea>
 			</latte-tab>
 
 		</template>

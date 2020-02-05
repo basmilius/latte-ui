@@ -13,7 +13,7 @@
 		<div class="app-bar-row">
 
 			<slot name="start-before"></slot>
-			<Button type="text" color="primary" icon-before="plus-circle" aria-tooltip="Insert a new block." @click="launchInserter"/>
+			<Button type="text" color="primary" icon-before="plus-circle" aria-tooltip="Insert a new block." :disabled="editor.view !== 'visual'" @click="launchInserter"/>
 			<div class="divider divider-vertical"></div>
 			<Button type="text" icon-before="undo-variant" aria-tooltip="Undo" disabled/>
 			<Button type="text" icon-before="redo-variant" aria-tooltip="Redo" disabled/>

@@ -41,4 +41,10 @@
 		flex-flow: column;
 		overflow: auto;
 	}
+
+	.be-editor-content .notice.is-fluid
+	{
+		margin-top: 0;
+		border-top-width: 1px;
+	}
 }

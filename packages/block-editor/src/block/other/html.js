@@ -60,7 +60,7 @@ export class HtmlBlock extends Block
 
 		return tabContainer(h, {style: {minHeight: "24px", zIndex: "0"}}, ({current, tabs, setCurrent}) => [
 			portal(h, `${instance.hash}-toolbar`, tabs.map((tab, index) => button(h, {
-				classes: index === 0 ? [""] : ["ml-2"],
+				classes: [index > 0 ? "ml-2" : undefined, current === index ? "is-hover" : undefined].filter(i => !!i),
 				label: tab.label,
 				color: current === index ? "primary" : undefined,
 				type: current === index ? "outline" : "text"

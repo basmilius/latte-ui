@@ -89,6 +89,12 @@
 				</template>
 			</latte-expandable>
 
+			<latte-expandable :close-when-open="false" group="main" :opened="$route.path === '/block-editor'">
+				<template v-slot:header>
+					<DrawerMenuItem to="/block-editor"><span>Block editor</span></DrawerMenuItem>
+				</template>
+			</latte-expandable>
+
 			<latte-expandable :close-when-open="false" group="main" :opened="$route.path === '/tests'">
 				<template v-slot:header>
 					<DrawerMenuItem to="/tests"><span>Tests</span></DrawerMenuItem>

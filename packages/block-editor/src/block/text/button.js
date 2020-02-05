@@ -15,9 +15,10 @@ import { classColorSelect } from "../../ui/render/color";
 import { translate } from "../../core/i18n";
 
 export const buttonSizes = [
-	{value: "sm", icon: "alpha-s", tooltip: "Small"},
-	{value: "md", icon: "alpha-m", tooltip: "Medium"},
-	{value: "lg", icon: "alpha-l", tooltip: "Large"}
+	{value: "small", icon: "alpha-s", tooltip: "Small"},
+	{value: "medium", icon: "alpha-m", tooltip: "Medium"},
+	{value: "large", icon: "alpha-l", tooltip: "Medium"},
+	{value: "huge", icon: "alpha-h", tooltip: "Large"}
 ];
 
 export const buttonStyles = [
@@ -33,11 +34,11 @@ export function getButtonClasses(options)
 	if (options.color)
 		classes.push(`btn-${options.color}`);
 
-	if (options.pillButton)
-		classes.push("btn-pill");
+	if (options.isFluid)
+		classes.push("is-fluid");
 
-	if (options.size && options.size !== "md")
-		classes.push(`btn-${options.size}`);
+	if (options.size && options.size !== "medium")
+		classes.push(`is-${options.size}`);
 
 	return classes.filter(c => c.trim() !== "").join(" ");
 }
@@ -50,7 +51,7 @@ export class ButtonBlock extends Block
 		return {
 			class: "",
 			color: undefined,
-			pillButton: false,
+			isFluid: false,
 			rippleButton: true,
 			size: "md",
 			text: "Button",
@@ -118,7 +119,7 @@ export class ButtonBlock extends Block
 				description(h, this),
 				group(h, "Button settings", true, [
 					classColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color})),
-					toggleButton(h, "Pill", () => instance.options.pillButton, pillButton => instance.setOptions({pillButton})),
+					toggleButton(h, "Fluid", () => instance.options.isFluid, isFluid => instance.setOptions({isFluid})),
 					toggleButton(h, "Ripple", () => instance.options.rippleButton, rippleButton => instance.setOptions({rippleButton})),
 					optionButtons(h, "Size", buttonSizes, () => instance.options.size, size => instance.setOptions({size})),
 					optionButtons(h, "Style", buttonStyles, () => instance.options.type, type => instance.setOptions({type}))

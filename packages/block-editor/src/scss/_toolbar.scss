@@ -13,4 +13,17 @@
 	top: 0;
 	border-bottom: 1px solid rgba(var(--outlineColor), 1);
 	z-index: 1000;
+
+	&::before
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: "";
+		background: rgba(var(--outlineColor), .4);
+		z-index: -1;
+	}
 }

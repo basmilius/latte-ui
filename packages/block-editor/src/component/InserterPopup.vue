@@ -9,8 +9,8 @@
 
 <template>
 
-	<latte-popup ref="popup" :associate-with="assiciatedElement" :margin-x="marginX" :margin-y="marginY" @close="onClose" @open="onOpen">
-		<Inserter @select="onSelect"/>
+	<latte-popup ref="popup" :associate-with="assiciatedElement" :margin-x="marginX" :margin-y="marginY" @open="onOpen">
+		<Inserter @update="onCategoryUpdate" @select="onSelect" v-if="$refs.popup"/>
 	</latte-popup>
 
 </template>
@@ -18,6 +18,7 @@
 <script>
 
 	import { CategoryRegistry } from "../core/category/registry";
+	import { Latte } from "../util/latte";
 	import { findEditor } from "../util/vue";
 
 	import Inserter from "./Inserter";
@@ -28,6 +29,8 @@
 
 		components: {Inserter},
 
+		refs: ["popup"],
+
 		data()
 		{
 			return {
@@ -35,13 +38,17 @@
 				currentCategory: null,
 				editor: findEditor(this),
 				fn: undefined,
-				isOpen: false,
 				marginX: 0,
 				marginY: 0
 			};
 		},
 
 		methods: {
+
+			onCategoryUpdate()
+			{
+				Latte.util.dom.raf(() => this.$refs.popup.calculatePosition());
+			},
 
 			onSelect(block)
 			{
@@ -50,18 +57,12 @@
 				if (this.fn)
 					this.fn(block);
 
-				this.close();
-			},
-
-			onClose()
-			{
-				this.isOpen = false;
+				Latte.util.dom.raf(() => this.$refs.popup.close(), 90);
 			},
 
 			onOpen()
 			{
 				this.currentCategory = this.currentCategory || CategoryRegistry.categories[0].id;
-				this.isOpen = true;
 			},
 
 			close()

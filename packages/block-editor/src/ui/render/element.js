@@ -54,10 +54,10 @@ export function optionButtons(h, title, buttons, get, set, isRow = true)
 
 	return row(h, isRow, [
 		h("h6", translate(title)),
-		h("div", {class: `d-flex my-n1 ${isRow ? "ml-auto" : ""}`}, buttons.map(b => button(h, {
+		h("div", {class: `d-flex my-n1 ${isRow ? "ml-auto" : ""}`}, buttons.map((b, index) => button(h, {
 			...b,
 			iconBefore: b.icon,
-			class: "m-0",
+			classes: [index > 0 ? "ml-1" : undefined, value === b.value ? "is-hover" : undefined].filter(c => !!c),
 			color: value === b.value ? "primary" : null,
 			type: value === b.value ? "outline" : "text"
 		}, () => set(b.value))))
