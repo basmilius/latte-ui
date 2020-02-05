@@ -12,7 +12,7 @@
 	<latte-tab-container class="be-editor-settings" :initial-tab="preferredTabIndex">
 		<template #default="{tabs}">
 
-			<latte-tab-bar class="px-3 is-fluid" v-if="tabs.length > 1"/>
+			<latte-tab-bar class="mx-0 px-3 is-fluid" v-if="tabs.length > 1"/>
 
 			<slot name="before"></slot>
 
