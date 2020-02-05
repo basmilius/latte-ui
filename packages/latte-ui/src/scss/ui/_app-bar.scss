@@ -111,7 +111,7 @@
 	}
 }
 
-.app-bar .app-bar-row > .input-group
+.app-bar-row > .input-group
 {
 	height: 42px;
 	flex: 1 1 0;
@@ -141,13 +141,13 @@
 	&:focus,
 	&:focus-within
 	{
-		background: rgba(var(--appBarForeground), .2);
+		background: rgba(var(--appBarForeground), .15);
 		box-shadow: none;
 	}
 
 	::placeholder
 	{
-		color: #{latte-rgba(var(--appBarForeground), .5)};
+		color: #{latte-rgba(var(--appBarForeground), .75)};
 	}
 }
 
