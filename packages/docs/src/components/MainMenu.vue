@@ -28,7 +28,6 @@
 						<nav class="nav nav-list">
 							<latte-ripple tabindex="0" as="a" class="nav-link" href="//github.com/basmilius/latte-ui/releases" target="_blank"><latte-icon>download</latte-icon><span>Download</span></latte-ripple>
 							<latte-ripple tabindex="-1" as="a" class="nav-link" href="//github.com/basmilius/latte-ui" target="_blank"><latte-icon>github-circle</latte-icon><span>Get Source</span></latte-ripple>
-							<latte-ripple tabindex="-1" as="a" class="nav-link" href="#" :key="i" v-for="i of [1, 2, 3, 4, 5, 6, 7]"><latte-icon>dice-3</latte-icon><span>A fancy menu item {{ i }}</span></latte-ripple>
 						</nav>
 					</latte-focus-zone>
 				</latte-popup>
