@@ -9,7 +9,7 @@
 
 <template>
 
-	<transition name="popup" @before-enter="onBeforeEnter" @enter="onEnter">
+	<transition name="popup" @before-enter="onBeforeEnter" @before-leave="onBeforeLeave" @enter="onEnter">
 		<div :class="popupClasses" :style="popupStyles" @keydown="onKeyDown" v-mtm v-if="isOpen">
 			<div class="popup-body">
 				<slot></slot>
@@ -172,6 +172,9 @@
 
 			open()
 			{
+				if (this.isOpen)
+					return;
+
 				applyZ(z => this.z = z);
 				this.isOpen = true;
 			},
@@ -240,6 +243,11 @@
 					this.rect = this.associatedElement.getBoundingClientRect();
 
 				live(elm, "[href],[data-close]", "click", () => raf(() => this.close()));
+			},
+
+			onBeforeLeave(elm)
+			{
+				elm.clearOutsideEventListeners();
 			},
 
 			onEnter(elm)
