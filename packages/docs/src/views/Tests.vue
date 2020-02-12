@@ -77,7 +77,7 @@
 										<span class="app-bar-title">App bar</span>
 									</div>
 								</div>
-								<div class="notice notice-info notice-fluid">
+								<div class="notice notice-info is-fluid">
 									<latte-icon>information</latte-icon>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								</div>
@@ -96,7 +96,7 @@
 										<button class="btn btn-icon btn-text ml-auto"><latte-icon>dots-vertical</latte-icon></button>
 									</div>
 								</div>
-								<div class="notice notice-error notice-fluid">
+								<div class="notice notice-error is-fluid">
 									<latte-icon>alert-circle</latte-icon>
 									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 								</div>
