@@ -38,8 +38,7 @@
 	}
 
 	// TODO(Bas) Deprecate this, should be manually added by the user.
-	+ .panel,
-	&.panel-gutter
+	+ .panel
 	{
 		margin-top: var(--panelGutter);
 	}

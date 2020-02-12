@@ -12,13 +12,13 @@
 	flex: 0 0 auto;
 	background: #{latte-rgb(var(--outlineColor))};
 
-	&.divider-horizontal
+	&-horizontal
 	{
 		margin: 9px 0;
 		height: 1px;
 	}
 
-	&.divider-vertical
+	&-vertical
 	{
 		margin: 0 9px;
 		width: 1px;

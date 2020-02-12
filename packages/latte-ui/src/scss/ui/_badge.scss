@@ -54,7 +54,6 @@
 	> #{unquote($latte-icon-class)}
 	{
 		margin: -3px 6px;
-		font-size: 24px;
 
 		&:first-child
 		{
@@ -103,7 +102,7 @@
 
 		> #{unquote($latte-icon-class)}
 		{
-			font-size: 18px;
+			--iconSize: 18px;
 
 			&:first-child
 			{

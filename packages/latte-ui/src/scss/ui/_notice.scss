@@ -48,7 +48,7 @@
 	}
 
 	> #{unquote($latte-icon-class)},
-	.notice-body > #{unquote($latte-icon-class)}
+	&-body > #{unquote($latte-icon-class)}
 	{
 		margin: 0;
 		align-self: flex-start;
@@ -65,7 +65,7 @@
 		transform: translateX(6px);
 	}
 
-	.notice-body .btn.notice-dismiss
+	&-body .btn.notice-dismiss
 	{
 		margin-right: 0;
 	}

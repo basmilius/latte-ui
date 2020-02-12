@@ -47,46 +47,46 @@ div.tooltip
 		left: var(--left, 0);
 	}
 
-	&.tooltip-top
+	&-top
 	{
 		--top: 100%;
 		--left: calc(50% - #{$tooltip-arrow});
 	}
 
-	&.tooltip-left
+	&-left
 	{
 		--top: calc(50% - #{$tooltip-arrow});
 		--left: 100%;
 	}
 
-	&.tooltip-right
+	&-right
 	{
 		--top: calc(50% - #{$tooltip-arrow});
 		--left: #{-($tooltip-arrow * 2)};
 	}
 
-	&.tooltip-bottom
+	&-bottom
 	{
 		--top: #{-($tooltip-arrow * 2)};
 		--left: calc(50% - #{$tooltip-arrow});
 	}
 
-	&.tooltip-top::before
+	&-top::before
 	{
 		border-top-color: currentColor;
 	}
 
-	&.tooltip-left::before
+	&-left::before
 	{
 		border-left-color: currentColor;
 	}
 
-	&.tooltip-right::before
+	&-right::before
 	{
 		border-right-color: currentColor;
 	}
 
-	&.tooltip-bottom::before
+	&-bottom::before
 	{
 		border-bottom-color: currentColor;
 	}

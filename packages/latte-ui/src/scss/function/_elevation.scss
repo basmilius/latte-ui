@@ -96,11 +96,6 @@ $elevation-ambient-map: (
 		24: "0px 9px 46px 8px"
 );
 
-@function elevation-transition($duration: 240ms, $easing: var(--easeSwiftOut))
-{
-	@return box-shadow $duration $easing;
-}
-
 @function elevation-generate($z, $colorProperty: var(--elevationColor), $opacity-boost: 0)
 {
 	@if type-of($z) != number or not unitless($z)

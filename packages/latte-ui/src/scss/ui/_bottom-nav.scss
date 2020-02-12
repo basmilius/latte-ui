@@ -22,12 +22,13 @@
 	height: 60px;
 	flex: 1 1 auto;
 	background: #{latte-rgba(var(--bottomNavBackground), var(--bottomNavAlpha))};
+	box-shadow: var(--bottomNavElevation);
 	color: #{latte-rgb(var(--bottomNavForeground))};
 	overflow: hidden;
 
-	&:not(.bottom-nav-flat)
+	&-flat
 	{
-		box-shadow: var(--bottomNavElevation);
+		box-shadow: none;
 	}
 
 	.btn-action
@@ -66,7 +67,7 @@
 		}
 	}
 
-	&.bottom-nav-shifting .btn-action
+	&-shifting .btn-action
 	{
 		&:not(.is-active) span
 		{
@@ -87,7 +88,7 @@
 		}
 	}
 
-	&.bottom-nav-side
+	&-side
 	{
 		height: unset;
 		width: 80px;

@@ -45,13 +45,13 @@
 	margin: 0;
 	padding: 0;
 
-	.input-group-addon:first-child
+	&-addon:first-child
 	{
 		padding-left: 13px;
 		border-radius: var(--r) 0 0 var(--r);
 	}
 
-	.input-group-addon:last-child
+	&-addon:last-child
 	{
 		padding-right: 13px;
 		border-radius: 0 var(--r) var(--r) 0;

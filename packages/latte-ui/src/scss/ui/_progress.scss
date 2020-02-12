@@ -45,7 +45,7 @@
 	overflow: hidden;
 	vertical-align: middle;
 
-	&.progress-bar
+	&-bar
 	{
 		height: 6px;
 		width: 100%;
@@ -71,7 +71,7 @@
 		}
 	}
 
-	&.progress-ring
+	&-ring
 	{
 		border-radius: 999px;
 		transform: rotate3d(0, 0, 1, -90deg);

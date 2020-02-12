@@ -11,28 +11,28 @@
 {
 	.bg-#{to-lower-case($type)}
 	{
-		background-color: #{latte-rgb(var(--color#{$type}))};
+		background-color: #{latte-rgb(var(--color#{$type}))} !important;
 	}
 }
 
 .bg-black
 {
-	background-color: black;
+	background-color: black !important;
 }
 
 .bg-white
 {
-	background-color: white;
+	background-color: white !important;
 }
 
 .bg-main
 {
-	background-color: #{latte-rgb(var(--mainBackground))};
+	background-color: #{latte-rgb(var(--mainBackground))} !important;
 }
 
 .bg-panel
 {
-	background-color: #{latte-rgb(var(--panelBackground))};
+	background-color: #{latte-rgb(var(--panelBackground))} !important;
 }
 
 .bg-transparent

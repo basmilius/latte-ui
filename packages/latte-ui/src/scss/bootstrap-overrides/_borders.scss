@@ -61,7 +61,7 @@
 {
 	.border-#{to-lower-case($type)}
 	{
-		border-color: #{latte-rgb(var(--color#{$type}))};
+		border-color: #{latte-rgb(var(--color#{$type}))} !important;
 	}
 }
 

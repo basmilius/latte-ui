@@ -39,7 +39,7 @@
 		width: 100%;
 	}
 
-	.snackbar-body:not(:last-child)
+	&-body:not(:last-child)
 	{
 		margin-right: 15px;
 	}
