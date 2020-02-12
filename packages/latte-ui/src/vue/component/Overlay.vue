@@ -36,7 +36,8 @@
 		props: {
 			name: {default: "", required: true, type: String},
 			opened: {default: false, type: Boolean},
-			responsive: {default: true, type: Boolean}
+			isDismissible: {default: true, type: Boolean},
+			isResponsive: {default: true, type: Boolean}
 		},
 
 		data()
@@ -69,7 +70,7 @@
 			{
 				const classes = ["overlay"];
 
-				if (this.responsive)
+				if (this.isResponsive)
 					classes.push("is-responsive");
 
 				return classes;

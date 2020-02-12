@@ -53,3 +53,23 @@ export function removeEventListener(elm, eventName, symbol)
 
 	delete events[symbol];
 }
+
+/**
+ * Creates a global key event for a single key.
+ * @param {String} key
+ * @param {Function} fn
+ * @returns {Function}
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function globalKeyEvent(key, fn)
+{
+	return evt =>
+	{
+		if (evt.code !== key)
+			return;
+
+		fn(evt);
+	};
+}

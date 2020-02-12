@@ -24,7 +24,7 @@
 	import Vue from "vue";
 
 	import { dispatch, on } from "../../js/core/action";
-	import { live, raf } from "../../js/util/dom";
+	import { live, raf, terminateEvent } from "../../js/util/dom";
 	import { applyZ } from "../../js/core/z";
 	import { onlyMouse, onlyTouch } from "../../js/util/touch";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
@@ -259,6 +259,9 @@
 			{
 				if (evt.code !== "Escape")
 					return;
+
+				terminateEvent(evt);
+				evt.stopImmediatePropagation();
 
 				this.close();
 

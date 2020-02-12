@@ -8,6 +8,9 @@
  */
 
 import { on } from "../core/action";
+import { globalKeyEvent } from "../util/event";
+import { spaceship } from "../operators";
+import { terminateEvent } from "../util/dom";
 
 let registry = {};
 
@@ -15,6 +18,8 @@ export function initializeOverlays()
 {
 	on("latte:ui:overlay", data => open(data.name || undefined));
 	on("latte:ui:overlay:close", data => close(data.name || undefined));
+
+	window.addEventListener("keydown", globalKeyEvent("Escape", onEscape));
 }
 
 export function close(name)
@@ -45,6 +50,21 @@ export function register(name, overlay)
 export function remove(name)
 {
 	delete registry[name];
+}
+
+function onEscape(evt)
+{
+	const overlay = Object.values(registry)
+		.filter(o => o.isOpen)
+		.sort((a, b) => spaceship(b.z, a.z))
+		.shift();
+
+	if (!overlay)
+		return;
+
+	terminateEvent(evt);
+
+	overlay.close();
 }
 
 export default {
