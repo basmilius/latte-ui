@@ -40,20 +40,20 @@
 			isResponsive: {default: true, type: Boolean}
 		},
 
+		beforeDestroy()
+		{
+			if (this.isOpen)
+				popupClosed();
+
+			remove(this.name);
+		},
+
 		data()
 		{
 			return {
 				isOpen: false,
 				z: 0
 			};
-		},
-
-		destroyed()
-		{
-			if (this.isOpen)
-				popupClosed();
-
-			remove(this.name);
 		},
 
 		mounted()

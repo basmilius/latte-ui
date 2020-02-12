@@ -15,13 +15,6 @@
 
 		<latte-tab label="Properties" v-if="properties">
 			<table class="table">
-				<thead>
-				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-				</thead>
 				<tbody>
 				<template v-for="property of properties">
 
@@ -29,7 +22,7 @@
 						<td style="min-width: 300px">
 							<div class="column-content justify-content-start">
 								<small class="text-muted">Name</small>
-								<strong class="text-monospace">{{ property.name }} <span class="badge badge-info" style="font-size: .6rem" v-if="property.required">required</span></strong>
+								<strong class="text-monospace">{{ property.name }} <span class="badge badge-info is-small" v-if="property.required">required</span></strong>
 								<span class="text-muted" v-if="property.description">{{ property.description }}</span>
 							</div>
 						</td>

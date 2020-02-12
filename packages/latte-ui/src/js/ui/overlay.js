@@ -55,7 +55,7 @@ export function remove(name)
 function onEscape(evt)
 {
 	const overlay = Object.values(registry)
-		.filter(o => o.isOpen)
+		.filter(o => o.isOpen && o.isDismissible)
 		.sort((a, b) => spaceship(b.z, a.z))
 		.shift();
 

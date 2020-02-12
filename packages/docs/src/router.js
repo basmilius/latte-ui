@@ -101,6 +101,10 @@ const router = new Router({
 						{
 							path: "notice",
 							component: () => import("./views/components/Notice.vue")
+						},
+						{
+							path: "overlay",
+							component: () => import("./views/components/Overlay.vue")
 						}
 					]
 				},

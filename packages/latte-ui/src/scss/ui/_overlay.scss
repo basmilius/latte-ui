@@ -85,11 +85,16 @@
 
 	-webkit-overflow-scrolling: touch;
 
+	> *
+	{
+		margin: auto;
+	}
+
 	&-enter-active
 	{
 		animation: overlay-open 210ms var(--easeSwiftOut);
 
-		.panel
+		> *
 		{
 			opacity: 0;
 			animation: overlay-open-panel 210ms var(--easeSwiftOut) 105ms;
@@ -100,15 +105,10 @@
 	{
 		animation: overlay-close 210ms var(--easeSwiftOut) 105ms;
 
-		.panel
+		> *
 		{
 			animation: overlay-close-panel 210ms var(--easeSwiftOut);
 		}
-	}
-
-	> .panel
-	{
-		margin: auto;
 	}
 
 	@include compact

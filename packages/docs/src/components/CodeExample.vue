@@ -35,6 +35,7 @@
 			bindings: {default: () => ({}), type: Object},
 			classes: {default: "", type: String},
 			code: {required: true, type: String},
+			references: {default: () => [], type: Array},
 			title: {required: true, type: String}
 		},
 
@@ -63,8 +64,11 @@
 				const bindings = this.bindings;
 				const classes = this.classes;
 				const code = this.previewCode;
+				const references = this.references;
 
 				return Vue.extend({
+
+					refs: references,
 
 					template: `<div class="panel-body bg-main ${classes}">${code}</div>`,
 

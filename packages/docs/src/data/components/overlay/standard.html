@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright (c) 2018-2020 - Bas Milius <bas@mili.us>
+  ~
+  ~ This file is part of the Latte UI package.
+  ~
+  ~ For the full copyright and license information, please view the
+  ~ LICENSE file that was distributed with this source code.
+  -->
+
+<div class="panel panel-body align-items-start">
+
+	<button class="btn btn-contained btn-primary is-large" data-action="latte:ui:overlay" data-name="overlay-1">Open overlay</button>
+
+	<latte-overlay name="overlay-1">
+
+		<div class="panel" style="width: 480px">
+			<div class="panel-header">
+				<span class="panel-title">Overlay example</span>
+				<button class="btn btn-icon btn-text ml-auto" data-action="latte:ui:overlay:close" data-name="overlay-1"><latte-icon>close</latte-icon></button>
+			</div>
+			<div class="panel-body">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio hic perferendis sit. Adipisci aperiam architecto doloremque dolores dolorum facilis fugit magnam quaerat quidem quo, sed, sint temporibus tenetur vitae voluptas.
+			</div>
+		</div>
+
+	</latte-overlay>
+
+</div>
