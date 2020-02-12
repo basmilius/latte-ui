@@ -12,7 +12,6 @@
 	--tabsAccent: var(--colorPrimary);
 	--tabsForeground: var(--mainForeground);
 	--tabsHeight: 45px;
-	--tabsRadius: 3px 3px 0 0;
 }
 
 .nav.nav-tabs
@@ -25,22 +24,36 @@
 	.nav-link
 	{
 		height: auto;
-		margin: 0 12px;
-		padding: 9px 0 7px 0;
+		margin: 0;
+		padding: 9px 12px;
 		justify-content: center;
-		border-bottom: 2px solid transparent;
+		border-radius: var(--radius);
 		color: #{latte-rgba(var(--tabsForeground), .7)};
 		line-height: 24px;
-		transition: all 150ms var(--easeSwiftOut);
+		transition: 150ms var(--easeSwiftOut);
+		transition-property: background, color;
+
+		&::after
+		{
+			position: absolute;
+			display: block;
+			left: 12px;
+			right: 12px;
+			bottom: 0;
+			height: 2px;
+			content: "";
+			transition: inherit;
+			transition-property: left, right, background;
+		}
 
 		#{unquote($latte-icon-class)}, span
 		{
 			flex: 0 0 auto;
 		}
 
-		#{unquote($latte-icon-class)} + span
+		> *:not(div) + *
 		{
-			margin-left: 15px;
+			margin-left: 9px;
 		}
 
 		&:focus,
@@ -48,17 +61,25 @@
 		&:hover,
 		&.is-hover
 		{
-			margin-left: 0;
-			margin-right: 0;
-			padding: 9px 12px 7px;
 			background: #{latte-rgba(var(--outlineColorSecondary), .2)};
 			color: #{latte-rgb(var(--tabsForeground))};
 		}
 
+		&:hover::after,
+		&.is-hover::after
+		{
+			left: 0;
+			right: 0;
+		}
+
 		&.is-active
 		{
-			border-color: #{latte-rgb(var(--tabsAccent))};
 			color: #{latte-rgb(var(--tabsForeground))};
+
+			&::after
+			{
+				background: #{latte-rgb(var(--tabsAccent))};
+			}
 		}
 	}
 

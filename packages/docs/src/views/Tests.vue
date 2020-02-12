@@ -483,7 +483,31 @@
 						</div>
 
 					</div>
-					<div class="col-12 col-lg-6"></div>
+					<div class="col-12 col-lg-6">
+
+						<div class="panel">
+							<latte-tab-container class="panel-body" role="tabpanel">
+
+								<latte-focus-zone is-horizontal>
+									<latte-tab-bar class="mb-3"></latte-tab-bar>
+								</latte-focus-zone>
+
+								<latte-tab icon="file" label="My files">
+									My files
+								</latte-tab>
+
+								<latte-tab icon="clock" label="Recent">
+									Recent
+								</latte-tab>
+
+								<latte-tab icon="share-variant" label="Shared with me">
+									Shared with me
+								</latte-tab>
+
+							</latte-tab-container>
+						</div>
+
+					</div>
 				</div>
 			</TestCase>
 
