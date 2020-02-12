@@ -9,9 +9,11 @@
 
 <template>
 
-	<div class="overlay" role="dialog" :class="overlayClasses" v-if="isVisible" v-mtm>
-		<slot></slot>
-	</div>
+	<transition name="overlay">
+		<div role="dialog" :class="overlayClasses" :style="overlayStyles" v-if="isOpen" v-mtm>
+			<slot></slot>
+		</div>
+	</transition>
 
 </template>
 
@@ -20,7 +22,6 @@
 	import { dispatch } from "../../js/core/action";
 	import { register, remove } from "../../js/ui/overlay";
 	import { applyZ } from "../../js/core/z";
-	import { raf } from "../../js/util/dom";
 	import { popupClosed, popupOpened } from "../../js/core/popup";
 	import { MoveToMainDirective } from "../directive";
 
@@ -42,7 +43,7 @@
 		{
 			return {
 				isOpen: false,
-				isVisible: false
+				z: 0
 			};
 		},
 
@@ -66,18 +67,19 @@
 
 			overlayClasses()
 			{
-				const classes = [];
-
-				if (this.isOpen)
-					classes.push("is-open");
+				const classes = ["overlay"];
 
 				if (this.responsive)
 					classes.push("is-responsive");
 
-				if (this.isVisible)
-					classes.push("is-visible");
-
 				return classes;
+			},
+
+			overlayStyles()
+			{
+				return {
+					zIndex: this.z
+				};
 			}
 
 		},
@@ -86,13 +88,12 @@
 
 			close()
 			{
-				if (!this.isVisible)
+				if (!this.isOpen)
 					return;
 
 				popupClosed();
 
-				raf(() => this.isOpen = false);
-				raf(() => this.isVisible = false, 270);
+				this.isOpen = false;
 
 				dispatch("latte:overlay", {overlay: this, open: false});
 				this.$emit("close", this);
@@ -100,21 +101,13 @@
 
 			open()
 			{
-				if (this.isVisible)
+				if (this.isOpen)
 					return;
 
 				popupOpened();
 
-				raf(() =>
-				{
-					this.isVisible = true;
-
-					raf(() =>
-					{
-						applyZ(z => this.$el.style.setProperty("z-index", z));
-						this.isOpen = true;
-					});
-				});
+				applyZ(z => this.z = z);
+				this.isOpen = true;
 
 				dispatch("latte:overlay", {overlay: this, open: true});
 				this.$emit("open", this);

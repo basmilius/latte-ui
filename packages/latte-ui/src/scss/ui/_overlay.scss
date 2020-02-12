@@ -13,13 +13,66 @@
 	--overlayOpacity: .65;
 }
 
-div.overlay
+@keyframes overlay-close
 {
-	$anim-duration: 210ms;
-	$anim-delay: $anim-duration / 2;
+	from
+	{
+		opacity: 1;
+	}
 
+	to
+	{
+		opacity: 0;
+	}
+}
+
+@keyframes overlay-close-panel
+{
+	from
+	{
+		opacity: 1;
+		transform: none;
+	}
+
+	to
+	{
+		opacity: 0;
+		transform: scale(.95);
+	}
+}
+
+@keyframes overlay-open
+{
+	from
+	{
+		opacity: 0;
+	}
+
+	to
+	{
+		opacity: 1;
+	}
+}
+
+@keyframes overlay-open-panel
+{
+	from
+	{
+		opacity: 0;
+		transform: scale(.95);
+	}
+
+	to
+	{
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.overlay
+{
 	position: fixed;
-	display: none;
+	display: flex;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -28,45 +81,34 @@ div.overlay
 	background: rgba(var(--overlayBackground), var(--overlayOpacity));
 	opacity: 1;
 	overflow: auto;
-	transition: all $anim-duration var(--easeSwiftOut);
-	z-index: 2000;
+	pointer-events: all;
 
 	-webkit-overflow-scrolling: touch;
 
-	.panel
+	&-enter-active
 	{
-		opacity: 1;
-		transform: none;
-		transition: inherit;
-		transition-delay: $anim-delay;
+		animation: overlay-open 210ms var(--easeSwiftOut);
+
+		.panel
+		{
+			opacity: 0;
+			animation: overlay-open-panel 210ms var(--easeSwiftOut) 105ms;
+		}
+	}
+
+	&-leave-active
+	{
+		animation: overlay-close 210ms var(--easeSwiftOut) 105ms;
+
+		.panel
+		{
+			animation: overlay-close-panel 210ms var(--easeSwiftOut);
+		}
 	}
 
 	> .panel
 	{
 		margin: auto;
-	}
-
-	&.is-open
-	{
-		pointer-events: all;
-	}
-
-	&.is-visible
-	{
-		display: flex;
-	}
-
-	&:not(.is-open)
-	{
-		opacity: 0;
-		transition-delay: $anim-delay;
-
-		.panel
-		{
-			opacity: 0;
-			transform: scale3d(.95, .95, .95);
-			transition-delay: 0ms;
-		}
 	}
 
 	@include compact
@@ -84,7 +126,7 @@ div.overlay
 				border-radius: 0;
 				z-index: 0;
 
-				div.panel-header:first-child
+				.panel-header:first-child
 				{
 					position: sticky;
 					top: 0;
@@ -92,7 +134,7 @@ div.overlay
 					z-index: 2;
 				}
 
-				div.panel-footer:last-child
+				.panel-footer:last-child
 				{
 					position: sticky;
 					bottom: 0;
