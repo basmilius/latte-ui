@@ -17,6 +17,13 @@ module.exports = {
 		name: "LatteUI",
 		themeColor: "#155cac",
 		msTileColor: "#155cac"
+	},
+	css: {
+		loaderOptions: {
+			sass: {
+				implementation: require("dart-sass")
+			}
+		}
 	}
 };
 
