@@ -9,7 +9,8 @@
 
 let fs = require("fs");
 let path = require("path");
-let webpack = require("webpack");
+let handleProgress = require("./progress");
+let {BannerPlugin, DefinePlugin, LoaderOptionsPlugin, ProgressPlugin} = require("webpack");
 
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -132,8 +133,7 @@ module.exports = {
 			publicPath: "./"
 		}),
 		new CopyPlugin([
-			{from: `${rootDir}/src/sound`, to: `${rootDir}/dist/sound`},
-			{from: `${rootDir}/src/worklet`, to: `${rootDir}/dist/worklet`}
+			{from: `${rootDir}/src/sound`, to: `${rootDir}/dist/sound`}
 		])
 	],
 	resolve: {
@@ -157,15 +157,19 @@ if (process.env.NODE_ENV === "production")
 {
 	module.exports.devtool = "source-map";
 	module.exports.plugins = (module.exports.plugins || []).concat([
-		new webpack.DefinePlugin({
+		new DefinePlugin({
 			"process.env": {
 				NODE_ENV: '"production"'
 			}
 		}),
-		new webpack.LoaderOptionsPlugin({
+
+		new LoaderOptionsPlugin({
 			minimize: true
 		}),
-		new webpack.BannerPlugin({
+
+		new ProgressPlugin(handleProgress),
+
+		new BannerPlugin({
 			banner: fs.readFileSync("config/license-header.txt", "utf8").trim(),
 			test: /\.(css|js)$/
 		})

@@ -22,10 +22,10 @@
 	"bugs": "https://github.com/basmilius/latte-ui/issues",
 	"scripts": {
 		"build": "concurrently \"yarn clean:dist\" \"yarn build:browser\"",
-		"build:browser": "cross-env NODE_ENV=production webpack --config config/browser.js --progress --hide-modules",
-		"build:module": "cross-env NODE_ENV=production webpack --config config/module.js --progress --hide-modules",
+		"build:browser": "cross-env NODE_ENV=production webpack --config config/browser.js --hide-modules",
+		"build:module": "cross-env NODE_ENV=production webpack --config config/module.js --hide-modules",
 		"clean:dist": "rimraf dist",
-		"serve": "cross-env NODE_ENV=development webpack --config config/browser.js --progress --hide-modules --watch"
+		"serve": "cross-env NODE_ENV=development webpack --config config/browser.js --hide-modules --watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.4",
