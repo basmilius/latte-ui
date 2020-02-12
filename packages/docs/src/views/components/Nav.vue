@@ -29,12 +29,6 @@
 			</div>
 		</TitledRow>
 
-		<TitledRow class="py-5 text-center text-lg-left" title="API" id="api">
-			<div class="col-12">
-				<ApiExplorer v-bind="api"/>
-			</div>
-		</TitledRow>
-
 	</div>
 
 </template>
@@ -56,7 +50,6 @@
 		data()
 		{
 			return {
-				api: {},
 				previews: {
 					standard: require("raw-loader!../../data/components/nav/standard.html").default,
 					badge: require("raw-loader!../../data/components/nav/badge.html").default,
@@ -66,8 +59,7 @@
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},
-					{label: "Examples", selector: "#examples"},
-					{label: "API", selector: "#api"}
+					{label: "Examples", selector: "#examples"}
 				]
 			};
 		}
