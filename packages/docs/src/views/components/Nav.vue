@@ -9,9 +9,9 @@
 
 <template>
 
-	<div class="page" id="component-list">
+	<div class="page" id="component-nav">
 
-		<PageHeader title="List" :tabs="tabs"/>
+		<PageHeader title="Nav" :tabs="tabs"/>
 
 		<TitledRow class="py-5 text-center text-lg-left" title="Introduction" id="introduction">
 			<div class="col-12 col-lg-6">
@@ -22,9 +22,10 @@
 		<TitledRow class="py-5 text-center text-lg-left" title="Examples" id="examples">
 			<div class="col-12">
 				<CodeExample :code="previews.standard" title="Standard" classes="bg-panel"/>
+				<CodeExample :code="previews.badge" title="With badge" classes="bg-panel"/>
 				<CodeExample :code="previews.icon" title="With icon" classes="bg-panel"/>
-				<CodeExample :code="previews.prefixSuffix" title="With prefix and suffix" classes="bg-panel"/>
-				<CodeExample :code="previews.hover" title="With hover" classes="bg-panel"/>
+				<CodeExample :code="previews.spinner" title="With spinner" classes="bg-panel"/>
+				<CodeExample :code="previews.formElements" title="With form elements" classes="bg-panel"/>
 			</div>
 		</TitledRow>
 
@@ -48,7 +49,7 @@
 
 	export default {
 
-		name: "List",
+		name: "Nav",
 
 		components: {ApiExplorer, CodeSnippet, CodeExample, TitledRow, PageHeader},
 
@@ -57,10 +58,11 @@
 			return {
 				api: {},
 				previews: {
-					standard: require("raw-loader!../../data/components/list/standard.html").default,
-					icon: require("raw-loader!../../data/components/list/icons.html").default,
-					prefixSuffix: require("raw-loader!../../data/components/list/prefix-suffix.html").default,
-					hover: require("raw-loader!../../data/components/list/hover.html").default
+					standard: require("raw-loader!../../data/components/nav/standard.html").default,
+					badge: require("raw-loader!../../data/components/nav/badge.html").default,
+					formElements: require("raw-loader!../../data/components/nav/form-elements.html").default,
+					icon: require("raw-loader!../../data/components/nav/icon.html").default,
+					spinner: require("raw-loader!../../data/components/nav/spinner.html").default
 				},
 				tabs: [
 					{label: "Introduction", selector: "#introduction"},

@@ -95,6 +95,10 @@ const router = new Router({
 							component: () => import("./views/components/List.vue")
 						},
 						{
+							path: "nav",
+							component: () => import("./views/components/Nav.vue")
+						},
+						{
 							path: "notice",
 							component: () => import("./views/components/Notice.vue")
 						}
