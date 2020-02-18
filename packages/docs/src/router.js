@@ -105,6 +105,10 @@ const router = new Router({
 						{
 							path: "overlay",
 							component: () => import("./views/components/Overlay.vue")
+						},
+						{
+							path: "pagination",
+							component: () => import("./views/components/Pagination.vue")
 						}
 					]
 				},

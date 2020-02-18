@@ -12,9 +12,7 @@
 	<div class="panel overflow-hidden">
 		<div class="panel-header"><span class="panel-title">{{ title }}</span></div>
 		<component :is="preview" v-if="preview"></component>
-		<div class="panel-body">
-			<CodeSnippet :code-string="cleanCode" lang="html"/>
-		</div>
+		<CodeSnippet class="border-left-0 border-right-0 border-bottom-0 radius-none" :code-string="cleanCode" lang="html"/>
 	</div>
 
 </template>
