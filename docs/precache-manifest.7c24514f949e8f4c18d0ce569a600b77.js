@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e261d64e9c572887ad3f",
+    "revision": "1f28b05ceb2298241091",
     "url": "/assets/css/app.62bc4c2f.css"
   },
   {
@@ -64,7 +64,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/css/chunk-fd5ae69c.639057b4.css"
   },
   {
-    "revision": "dc8e5d1f6919b437017b",
+    "revision": "fcc87e20e718771dc1e3",
     "url": "/assets/css/chunk-vendors.beef9c06.css"
   },
   {
@@ -104,8 +104,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/img/squircle.a0003766.svg"
   },
   {
-    "revision": "e261d64e9c572887ad3f",
-    "url": "/assets/js/app.2d60841e.js"
+    "revision": "1f28b05ceb2298241091",
+    "url": "/assets/js/app.a0de3f70.js"
   },
   {
     "revision": "880a4e962a85719dbb79",
@@ -200,8 +200,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/assets/js/chunk-fd5ae69c.9bdb7d2b.js"
   },
   {
-    "revision": "dc8e5d1f6919b437017b",
-    "url": "/assets/js/chunk-vendors.e2cd73c5.js"
+    "revision": "fcc87e20e718771dc1e3",
+    "url": "/assets/js/chunk-vendors.29126cf1.js"
   },
   {
     "revision": "bf57d4d63203b88b49e15c778bb01a88",
@@ -212,7 +212,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/image/dog-with-hat.jpg"
   },
   {
-    "revision": "8204f00c8db573c1838001194422eea8",
+    "revision": "4d5b797a3e510946ad727d9df5f1d071",
     "url": "/index.html"
   },
   {
