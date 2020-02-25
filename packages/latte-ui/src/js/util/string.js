@@ -7,6 +7,38 @@
  * LICENSE file that was distributed with this source code.
  */
 
+import { sprintf as _sprintf, vsprintf as _vsprintf } from "sprintf-js";
+
+/**
+ * Formats the given string with the given args.
+ *
+ * @param {String} str
+ * @param {*} args
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function sprintf(str, ...args)
+{
+	return _sprintf(str, ...args);
+}
+
+/**
+ * Formats the given string with the given args.
+ *
+ * @param {String} str
+ * @param {*} args
+ *
+ * @returns {String}
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function vsprintf(str, args)
+{
+	return _vsprintf(str, args);
+}
+
 /**
  * Implodes commas between strings and replaces the last comma with an &.
  *
@@ -19,24 +51,6 @@
 export function commaCommaAnd(strs)
 {
 	return strs.join(", ").replace(/(.*),/, "$1 &");
-}
-
-/**
- * Applies parameters to a string.
- *
- * @param {String} str
- * @param {String} params
- *
- * @returns {String}
- * @author Bas Milius <bas@mili.us>
- * @since 1.8.0
- */
-export function format(str, ...params)
-{
-	for (let i = 0; i < params.length; i++)
-		str = str.replace(new RegExp(`@${i}`, "g"), params[i]);
-
-	return str;
 }
 
 /**
@@ -58,6 +72,7 @@ export function isNullOrWhitespace(str)
 
 export default {
 	commaCommaAnd,
-	format,
-	isNullOrWhitespace
+	isNullOrWhitespace,
+	sprintf,
+	vsprintf
 };

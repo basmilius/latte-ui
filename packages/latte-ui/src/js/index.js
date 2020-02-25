@@ -10,7 +10,8 @@
 import LatteSDK from "./sdk";
 
 import { dispatch, initializeActions, removeSavedFromQueryString } from "./core/action";
-import { getOptions, setOptions, timeout } from "./core";
+import { timeout } from "./core";
+import { getOptions, setMainElement, setOptions } from "./options";
 import { initializeHoudiniApis } from "./houdini";
 import { registerOutsideEvents } from "./hid/OutsideEvent";
 import { initializeUI } from "./ui";
@@ -21,35 +22,6 @@ import * as Mixins from "../vue/mixin"
 
 import { initializeEmoji } from "./ui/emoji";
 import { isSomethingScrolling } from "./ui/scrollbar";
-import { deepMerge } from "./util/object";
-
-function iconFactory(icon, h = undefined, hOptions = {})
-{
-	if (icon !== "branding")
-		icon = "mdi-" + icon;
-
-	if (h)
-		return h("i", deepMerge({}, {class: ["mdi", icon], attrs: {"aria-hidden": "true"}}, hOptions));
-
-	return `<i class="mdi ${icon}"></i>`;
-}
-
-function normalizeOptions(options)
-{
-	return Object.assign({}, defaultOptions, options);
-}
-
-export const defaultOptions = {
-	emojiBaseUrl: "https://g.s3.bmcdn.nl/assets/joypixels/v5",
-	emojiEnabled: false,
-	emojiPath: "/png/64/@0.png",
-	i18n: {},
-	iconFactory: iconFactory,
-	iconSelector: ".mdi",
-	locale: navigator.language,
-	root: undefined,
-	tickInterval: 200
-};
 
 let foundMainElement = false;
 let tickTimeout = 0;
@@ -58,10 +30,9 @@ export class LatteUI
 {
 	static install(Vue, options = {})
 	{
-		options = normalizeOptions(options);
-		setOptions(options);
+		options = setOptions(options);
 
-		if (options.emojiEnabled)
+		if (options.emoji.enabled)
 			initializeEmoji(options);
 
 		initializeHoudiniApis();
@@ -72,6 +43,8 @@ export class LatteUI
 		this.registerComponents(Vue);
 
 		raf(() => this.onTick());
+
+		window.Latte = LatteSDK;
 
 		document.addEventListener("visibilitychange", () => this.onVisibilityChange());
 		window.addEventListener("load", () => this.onDOMContentLoaded(), {passive: true});
@@ -87,9 +60,7 @@ export class LatteUI
 
 				foundMainElement = true;
 
-				setOptions(Object.assign({}, getOptions(), {
-					mainElement: this.$root.$el
-				}));
+				setMainElement(this.$root.$el);
 			}
 		});
 	}
@@ -126,7 +97,7 @@ export class LatteUI
 		if (document.hidden === true)
 			return;
 
-		tickTimeout = timeout(getOptions().tickInterval, () => LatteUI.onTick());
+		tickTimeout = timeout(getOptions().core.tick, () => LatteUI.onTick());
 
 		if (isSomethingScrolling)
 			return;

@@ -15,8 +15,8 @@
 			<LatteTimepickerClock ref="picker" :value="current" @input="setCurrent">
 				<div class="panel-footer">
 					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
-					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
-					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "OK" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "cancel" | i18n("latte_ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "set" | i18n("latte_ui") }}</span></LatteRipple>
 				</div>
 			</LatteTimepickerClock>
 		</template>

@@ -12,8 +12,9 @@ import Vue from "vue";
 import { on } from "../core/action";
 import { id } from "../core/api";
 import { conditionalRender, createElement, eachRender, getLattePath, raf } from "../util/dom";
-import { getMainElement, icon } from "../core";
+import { icon } from "../core";
 import { applyZ } from "../core/z";
+import { getMainElement } from "../options";
 
 const defaultOptions = {
 	duration: 3000,

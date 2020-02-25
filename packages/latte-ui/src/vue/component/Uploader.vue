@@ -15,8 +15,8 @@
 		<slot v-bind="{blobs, files, id, multiple, name, openDialog, removeFile}"></slot>
 
 		<div class="drop-target" :class="{'is-dragging': isDragging, 'is-dragging-over': isDraggingOver}">
-			<div class="drop-target-info" v-if="!isDraggingOver">{{ (multiple ? strings.placeFiles : strings.placeFile) | i18n("latte-ui") }}</div>
-			<div class="drop-target-info" v-else>{{ (multiple ? strings.dropFiles : strings.dropFile) | i18n("latte-ui") }}</div>
+			<div class="drop-target-info" v-if="!isDraggingOver">{{ (multiple ? strings.placeFiles : strings.placeFile) | i18n("latte_ui") }}</div>
+			<div class="drop-target-info" v-else>{{ (multiple ? strings.dropFiles : strings.dropFile) | i18n("latte_ui") }}</div>
 		</div>
 	</div>
 
@@ -30,10 +30,10 @@
 	import { addEventListener } from "../../js/util/event";
 
 	const defaultStrings = {
-		dropFile: "Drop here to upload!",
-		dropFiles: "Drop here to upload!",
-		placeFile: "Place your file here to upload",
-		placeFiles: "Place your file(s) here to upload"
+		dropFile: "uploader.drop_here",
+		dropFiles: "uploader.drop_here",
+		placeFile: "uploader.place_file",
+		placeFiles: "uploader.place_files"
 	};
 
 	function arrayToFileList(files)

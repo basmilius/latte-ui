@@ -19,7 +19,7 @@
 					<th v-for="column in columns" :data-field="column.field" :style="{'min-width': (column.width ? column.width + 'px' : 'auto'), 'width': (column.width ? column.width + 'px' : 'auto') }">
 						<div class="column-content flex-row align-items-center justify-content-start">
 							<span>{{ column.label }}</span>
-							<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text is-small ml-1" :class="{'btn-primary': sort.by === column.field}" :aria-label="'Sort by @0'|i18n('latte-ui', [column.label])" @click="sortBy(column.field)">
+							<button v-if="showSorting && column.is_sortable" class="btn btn-icon btn-text is-small ml-1" :class="{'btn-primary': sort.by === column.field}" :aria-label="'datatable.sort_by' | i18n('latte_ui', [column.label])" @click="sortBy(column.field)">
 								<Icon name="sort-ascending" v-if="sort.by === column.field && sort.order === 'ASC'"/>
 								<Icon name="sort-descending" v-else-if="sort.by === column.field && sort.order === 'DESC'"/>
 								<Icon name="sort" v-else/>
@@ -39,7 +39,7 @@
 					</th>
 					<td v-for="column in columns" :data-field="column.field" :style="{'width': (column.width ? column.width + 'px' : 'auto') }">
 						<!--suppress HtmlFormInputWithoutLabel -->
-						<input v-if="column.is_searchable" type="search" class="form-control" :placeholder="'Search'|i18n('latte-ui')" :aria-label="'Search by @0'|i18n('data-table', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
+						<input v-if="column.is_searchable" type="search" class="form-control" :placeholder="'datatable.search' | i18n('latte_ui')" :aria-label="'datatable.search_for' | i18n('latte_ui', [column.label])" v-model.lazy="params[column.field]" @keydown.enter="search(column.field, $event.target.value, $event)"/>
 						<div class="form-control" v-else></div>
 					</td>
 					<th v-if="hasActions">

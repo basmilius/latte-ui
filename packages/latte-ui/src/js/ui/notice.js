@@ -11,7 +11,8 @@ import { on } from "../core/action";
 import { id } from "../core/api"
 import { isIterable } from "../util/object";
 import { icon } from "../core";
-import { closest } from "../util/dom";
+import { closest, createElement } from "../util/dom";
+import { getMainElement } from "../options";
 
 export function initializeNotices()
 {
@@ -37,30 +38,36 @@ export function areEntitiesNotices(entities)
 	return true;
 }
 
-export function create(message, type, dismissible = true)
+export function create(message, type, isDismissible = true)
 {
 	const noticeId = id();
 
-	const notice = document.createElement("div");
-	notice.classList.add("notice", `notice-${type}`);
-	notice.setAttribute("id", noticeId);
-
-	const p = document.createElement("p");
-	p.innerHTML = message;
-
-	notice.appendChild(p);
-
-	if (dismissible)
+	const notice = createElement("div", div =>
 	{
-		const dismiss = document.createElement("button");
-		dismiss.classList.add("btn", "btn-text", "btn-icon", "notice-dismiss");
-		dismiss.innerHTML = icon("close");
-		dismiss.addEventListener("click", () => remove(noticeId), {passive: true});
+		div.classList.add("notice", `notice-${type}`, "is-fluid");
+		div.setAttribute("id", noticeId);
+		div.appendChild(createElement("div", c =>
+		{
+			c.classList.add("container");
+			c.appendChild(createElement("div", b =>
+			{
+				b.classList.add("notice-body");
+				b.appendChild(createElement("p", p => p.innerHTML = message));
 
-		notice.appendChild(dismiss);
-	}
+				if (!isDismissible)
+					return;
 
-	const content = document.querySelector("main#app > div.content");
+				b.appendChild(createElement("button", button =>
+				{
+					button.classList.add("btn", "btn-text", "btn-icon", "notice-dismiss");
+					button.innerHTML = icon("close");
+					button.addEventListener("click", () => remove(noticeId), {once: true, passive: true});
+				}));
+			}));
+		}));
+	});
+
+	const content = getMainElement().querySelector("div.content");
 
 	content.insertBefore(notice, content.querySelector(":scope > *:first-child"));
 

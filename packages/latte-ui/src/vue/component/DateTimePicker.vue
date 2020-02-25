@@ -24,23 +24,23 @@
 
 				<div class="panel-footer">
 					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
-					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
-					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "cancel" | i18n("latte_ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "set" | i18n("latte_ui") }}</span></LatteRipple>
 				</div>
 			</template>
 
 			<LatteTabContainer class="panel" v-else>
 				<LatteTabBar></LatteTabBar>
-				<LatteTab class="panel-body p-0" :label="'Date' | i18n('latte-ui')">
+				<LatteTab class="panel-body p-0" :label="'datetime.date' | i18n('latte_ui')">
 					<LatteDatepickerCalendar class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteDatepickerCalendar>
 				</LatteTab>
-				<LatteTab class="panel-body p-0" :label="'Time' | i18n('latte-ui')">
+				<LatteTab class="panel-body p-0" :label="'datetime.time' | i18n('latte_ui')">
 					<LatteTimepickerClock class="panel-blank" ref="picker" :value="current" @input="setCurrent"></LatteTimepickerClock>
 				</LatteTab>
 				<div class="panel-footer">
 					<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
-					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
-					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" v-if="isOverlay" @click="cancel"><span>{{ "cancel" | i18n("latte_ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "set" | i18n("latte_ui") }}</span></LatteRipple>
 				</div>
 			</LatteTabContainer>
 		</template>

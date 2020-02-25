@@ -17,8 +17,8 @@
 				<template v-slot="{isOverlay, selectedView}">
 					<div class="panel-footer" v-if="selectedView === 'dates'">
 						<LatteRipple as="button" class="btn btn-icon btn-text mr-auto" @click="setNow"><Icon name="calendar-today"/></LatteRipple>
-						<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
-						<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
+						<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "cancel" | i18n("latte_ui") }}</span></LatteRipple>
+						<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select"><Icon name="check-circle"/><span>{{ "set" | i18n("latte_ui") }}</span></LatteRipple>
 					</div>
 				</template>
 

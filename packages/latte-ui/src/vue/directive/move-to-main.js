@@ -7,8 +7,8 @@
  * LICENSE file that was distributed with this source code.
  */
 
-import { getMainElement } from "../../js/core";
 import { raf } from "../../js/util/dom";
+import { getMainElement } from "../../js/options";
 
 export const MoveToMainDirective = {
 

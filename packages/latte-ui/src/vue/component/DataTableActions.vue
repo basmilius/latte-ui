@@ -11,7 +11,7 @@
 
 	<td class="actions">
 		<div class="column-content flex-row align-items-center pl-0">
-			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'More options...' | i18n('latte-ui')">
+			<button ref="btn" class="btn btn-icon btn-text" :aria-label="'datatable.more_options' | i18n('latte_ui')">
 				<Icon name="dots-horizontal"/>
 			</button>
 			<LattePopup :associate-with="$refs.btn" :margin-x="-9">

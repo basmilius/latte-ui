@@ -9,33 +9,9 @@
 
 import popup from "./popup";
 import z from "./z";
+import { getOptions } from "../options";
 
 export const docRoot = document.documentElement;
-export let currentOptions = {};
-
-/**
- * Gets the main#app element.
- *
- * @returns {HTMLElement}
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function getMainElement()
-{
-	return currentOptions.mainElement || document.body; // Fallback to body then..!
-}
-
-/**
- * Gets the used latte options for local use.
- *
- * @returns {Object}
- * @author Bas Milius <bas@mili.us>
- * @since 1.6.0
- */
-export function getOptions()
-{
-	return currentOptions;
-}
 
 /**
  * Handles an Error.
@@ -67,7 +43,7 @@ export function handleError(err, fn = undefined)
  */
 export function icon(icon, h = undefined, hOptions = {})
 {
-	return currentOptions.iconFactory(icon, h, hOptions);
+	return getOptions().icon.factory(icon, h, hOptions);
 }
 
 /**
@@ -142,19 +118,6 @@ export function register(func)
 }
 
 /**
- * Sets the used latte options for local use.
- *
- * @param {Object} options
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.3.0
- */
-export function setOptions(options)
-{
-	currentOptions = options;
-}
-
-/**
  * Sets a timeout.
  *
  * @param {Number} timeout
@@ -190,8 +153,6 @@ export default {
 	popup,
 	z,
 
-	getMainElement,
-	getOptions,
 	handleError,
 	interval,
 	randomPassword,

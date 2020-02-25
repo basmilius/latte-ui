@@ -9,30 +9,21 @@
 
 import Vue from "vue";
 
-import { currentOptions } from "./core";
-import { format } from "./util/string";
+import { getOptions } from "./options";
+import { deepMerge } from "./util/object";
+import { vsprintf } from "./util/string";
 
-/**
- * Replaces params in a string.
- *
- * @param {String} str
- * @param {Array} params
- *
- * @returns {*}
- *
- * @author Bas Milius <bas@mili.us>
- * @since 1.0.0
- */
-export function replace(str, params = [])
-{
-	return format(str, ...params);
-}
+import {strings as latte_ui_strings} from "../i18n/latte_ui.json";
+
+const defaultStrings = {
+	latte_ui: latte_ui_strings
+};
 
 /**
  * Translates a string.
  *
  * @param {String} domain
- * @param {String} string
+ * @param {String} key
  * @param {Array} params
  *
  * @returns {String}
@@ -40,19 +31,20 @@ export function replace(str, params = [])
  * @author Bas Milius <bas@mili.us>
  * @since 1.0.0
  */
-export function translate(domain, string, params = [])
+export function translate(domain, key, params = [])
 {
-	const translations = currentOptions.i18n;
+	const options = getOptions();
+	const translations = deepMerge({}, defaultStrings, options.i18n.strings || {});
+	const domainStrings = translations[domain] || {};
 
-	if (!translations[domain] || !translations[domain][string])
-		return replace(string, params);
+	if (!domainStrings[key])
+		return key;
 
-	return replace(translations[domain][string], params);
+	return vsprintf(domainStrings[key], params);
 }
 
-Vue.filter("i18n", (value, domain = "root", ...params) => translate(domain, value, params));
+Vue.filter("i18n", (value, domain = "latte_ui", ...params) => translate(domain, value, params));
 
 export default {
-	replace,
 	translate
 }

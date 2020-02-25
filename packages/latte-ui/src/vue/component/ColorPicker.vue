@@ -18,10 +18,10 @@
 		<component :is="componentType" class="colorpickermount" :associate-with="$refs.control" :name="uniqueId" ref="popup" :responsive="false" @close="cancel" @open="isOpen = true">
 			<LatteColorpickerSelect v-model="color" v-if="isOpen">
 				<div class="panel-footer justify-content-end">
-					<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "Cancel" | i18n("latte-ui") }}</span></LatteRipple>
+					<LatteRipple as="button" class="btn btn-text" @click="cancel" v-if="isOverlay"><span>{{ "cancel" | i18n("latte_ui") }}</span></LatteRipple>
 					<LatteRipple as="button" class="btn btn-contained btn-primary" @click="select">
 						<Icon name="check-circle"/>
-						<span>{{ "Set" | i18n("latte-ui") }}</span></LatteRipple>
+						<span>{{ "set" | i18n("latte_ui") }}</span></LatteRipple>
 				</div>
 			</LatteColorpickerSelect>
 		</component>

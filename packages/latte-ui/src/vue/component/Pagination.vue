@@ -15,20 +15,20 @@
 			<div class="d-flex align-items-center mr-auto">
 
 				<button ref="entriesButton" class="btn btn-text my-n2" style="margin-left: -12px">
-					<span>{{ "@0 entries"|i18n("latte-ui", limit) }}</span>
+					<span>{{ "pagination.entries" | i18n("latte_ui", limit) }}</span>
 				</button>
 
 				<LattePopup :associate-with="$refs.entriesButton" :margin-y="9">
 					<LatteFocusZone is-cycle is-vertical>
 						<nav class="nav nav-list">
 							<template v-for="l of limits">
-								<LatteRipple as="a" :tabindex="l === limit ? 0 : -1" class="nav-link" data-close @click="$emit('limit', l)">{{ "@0 entries"|i18n("latte-ui", l) }}</LatteRipple>
+								<LatteRipple as="a" :tabindex="l === limit ? 0 : -1" class="nav-link" data-close @click="$emit('limit', l)">{{ "pagination.entries" | i18n("latte_ui", l) }}</LatteRipple>
 							</template>
 						</nav>
 					</LatteFocusZone>
 				</LattePopup>
 
-				<small class="ml-2 text-muted">{{ "Showing @0 - @1 of @2"|i18n("latte-ui", offset + 1, Math.min(offset + limit, total), total) }}</small>
+				<small class="ml-2 text-muted">{{ "pagination.showing_entries" | i18n("latte_ui", offset + 1, Math.min(offset + limit, total), total) }}</small>
 
 			</div>
 		</template>
@@ -152,7 +152,10 @@
 
 			askForPage()
 			{
-				prompt(translate("latte-ui", "Navigate to page..."), translate("latte-ui", "To which page do you want to go?")).then(r =>
+				const title = translate("latte_ui", "pagination.go_to.title");
+				const message = translate("latte_ui", "pagination.go_to.message");
+
+				prompt(title, message).then(r =>
 				{
 					if (r.button !== Buttons.OK)
 						return;

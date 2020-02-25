@@ -19,8 +19,8 @@
 					<div class="app-bar app-bar-flat">
 						<nav class="nav nav-tabs is-over-outline px-2">
 							<template v-for="(cat, index) of categories">
-								<a class="nav-link mx-0" :data-tooltip="cat.label | i18n('latte-ui')" :class="{'is-active': index === currentCategory}" @click="currentCategory = index">
-									<img :src="cat.imageUrl" :alt="cat.label | i18n('latte-ui')"/>
+								<a class="nav-link mx-0" :data-tooltip="`emoji.category.${cat.id}` | i18n('latte_ui')" :class="{'is-active': index === currentCategory}" @click="currentCategory = index">
+									<img :src="cat.imageUrl" :alt="`emoji.category.${cat.id}` | i18n('latte_ui')"/>
 								</a>
 							</template>
 						</nav>
@@ -53,7 +53,7 @@
 
 <script>
 
-	import { emojiBaseUrl, ensureEmojisReady, getCategories, getEmoji, getEmojisForCategory, skinTones } from "../../js/ui/emoji";
+	import { ensureEmojisReady, getCategories, getEmoji, getEmojiBaseUrl, getEmojisForCategory, skinTones } from "../../js/ui/emoji";
 	import { createElement } from "../../js/util/dom";
 
 	import Icon from "./Icon.vue";
@@ -83,7 +83,7 @@
 			document.head.appendChild(createElement("link", link =>
 			{
 				link.rel = "stylesheet";
-				link.href = `${emojiBaseUrl}/sprite/joypixels-sprite-24.min.css`;
+				link.href = getEmojiBaseUrl("/sprite/joypixels-sprite-24.min.css");
 			}));
 		},
 

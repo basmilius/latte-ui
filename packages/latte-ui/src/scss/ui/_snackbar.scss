@@ -10,6 +10,36 @@
 :root
 {
 	--snackbarElevation: var(--elevation8), inset 0 0 0 1px #{latte-rgba(var(--light), .05)};
+	--snackbarTranslate: 0, 0;
+	--snackbarTranslateTo: 0, 0;
+}
+
+@keyframes snackbar-close
+{
+	from
+	{
+		opacity: 1;
+	}
+
+	to
+	{
+		opacity: 0;
+		transform: translate3d(var(--snackbarTranslate), 0);
+	}
+}
+
+@keyframes snackbar-open
+{
+	from
+	{
+		opacity: 0;
+		transform: translate3d(var(--snackbarTranslate), 0);
+	}
+
+	to
+	{
+		opacity: 1;
+	}
 }
 
 .snackbar
@@ -25,12 +55,16 @@
 	border-radius: var(--radius);
 	box-shadow: var(--snackbarElevation);
 	color: #{latte-rgb(var(--light))};
-	transition: 240ms var(--easeSwiftOut);
-	transition-property: opacity, transform;
+	transform: translate3d(var(--snackbarTranslateTo), 0);
 
-	&:not(.is-open)
+	&-enter-active
 	{
-		opacity: 0;
+		animation: snackbar-open 210ms var(--easeSwiftOut);
+	}
+
+	&-leave-active
+	{
+		animation: snackbar-close 210ms var(--easeSwiftOut);
 	}
 
 	@include compact
@@ -55,12 +89,9 @@
 {
 	left: 50%;
 	bottom: 0;
-	transform: translate3d(calc(-50% - var(--contentGutter)), 0, 0);
 
-	&:not(.is-open)
-	{
-		transform: translate3d(calc(-50% - var(--contentGutter)), 3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: calc(-50% - var(--contentGutter)), 100%;
+	--snackbarTranslateTo: calc(-50% - var(--contentGutter)), 0;
 }
 
 .snackbar-bottom-left
@@ -68,10 +99,7 @@
 	left: 0;
 	bottom: 0;
 
-	&:not(.is-open)
-	{
-		transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: -100%, 0;
 }
 
 .snackbar-bottom-right
@@ -79,22 +107,16 @@
 	right: 0;
 	bottom: 0;
 
-	&:not(.is-open)
-	{
-		transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: 100%, 0;
 }
 
 .snackbar-top
 {
 	top: 0;
 	left: 50%;
-	transform: translate3d(calc(-50% - var(--contentGutter)), 0, 0);
 
-	&:not(.is-open)
-	{
-		transform: translate3d(calc(-50% - var(--contentGutter)), -3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: calc(-50% - var(--contentGutter)), -100%;
+	--snackbarTranslateTo: calc(-50% - var(--contentGutter)), 0;
 }
 
 .snackbar-top-left
@@ -102,10 +124,7 @@
 	top: 0;
 	left: 0;
 
-	&:not(.is-open)
-	{
-		transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: -100%, 0;
 }
 
 .snackbar-top-right
@@ -113,10 +132,7 @@
 	top: 0;
 	right: 0;
 
-	&:not(.is-open)
-	{
-		transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
-	}
+	--snackbarTranslate: 100%, 0;
 }
 
 @include compact
@@ -130,10 +146,8 @@
 		bottom: 0;
 		transform: none;
 
-		&:not(.is-open)
-		{
-			transform: translate3d(0, 3px, 0) scale3d(.9, .9, 1);
-		}
+		--snackbarTranslate: 0, 100%;
+		--snackbarTranslateTo: 0, 0;
 	}
 
 	.snackbar-top,
@@ -145,9 +159,7 @@
 		right: 0;
 		transform: none;
 
-		&:not(.is-open)
-		{
-			transform: translate3d(0, -3px, 0) scale3d(.9, .9, 1);
-		}
+		--snackbarTranslate: 0, -100%;
+		--snackbarTranslateTo: 0, 0;
 	}
 }

@@ -8,12 +8,24 @@
  */
 
 import Vue from "vue";
-import { request } from "../core/api";
 import { spaceship } from "../operators";
-import { format } from "../util/string";
+import { request } from "../core/api";
+import { sprintf } from "../util/string";
 
-export let emojiBaseUrl;
-export let emojiPath;
+// noinspection JSUnusedLocalSymbols
+let __mock = {
+	category_label: "",
+	code_points: {
+		base: "",
+		fully_qualified: ""
+	},
+	diversity_base: 0,
+	diversity_children: []
+};
+
+let emojiBaseUrl;
+let emojiEnabled;
+let emojiPath;
 
 export const skinTones = [
 	null,
@@ -31,16 +43,22 @@ let resolvers = [];
 
 Vue.directive("emojify", (el, binding, vnode) =>
 {
-	vnode.key = vnode.elm.innerHTML;
+	if (!emojiEnabled)
+		return;
+
+	const html = vnode.elm["innerHTML"];
+
+	vnode.key = html;
 
 	ensureEmojisReady()
-		.then(() => el.innerHTML = replaceEmoji(vnode.elm.innerHTML));
+		.then(() => el.innerHTML = replaceEmoji(html));
 });
 
 export function initializeEmoji(options)
 {
-	emojiBaseUrl = options.emojiBaseUrl;
-	emojiPath = options.emojiPath;
+	emojiBaseUrl = options.emoji.baseUrl;
+	emojiEnabled = options.emoji.enabled;
+	emojiPath = options.emoji.path;
 
 	loadCategories();
 }
@@ -66,9 +84,14 @@ export function getEmoji(codePoint)
 	return emojisJson.find(emoji => emoji.codePoints.base === codePoint);
 }
 
+export function getEmojiBaseUrl(path)
+{
+	return emojiBaseUrl + path;
+}
+
 export function getEmojiUrl(codePoint)
 {
-	return emojiBaseUrl + format(emojiPath, codePoint);
+	return emojiBaseUrl + sprintf(emojiPath, codePoint);
 }
 
 export function getEmojisForCategory(category)
@@ -171,14 +194,14 @@ function onEmojisLoaded(emojis)
 			category: emoji.category,
 			codePoints: {
 				base: emoji.code_points.base,
-				output: emoji.code_points.output
+				output: emoji.code_points.fully_qualified
 			},
-			diversities: emoji.diversities,
+			diversities: emoji.diversity_children,
 			diversity: emoji.diversity,
 			isDiversityBase: emoji.diversity_base === 1,
 			name: emoji.name,
 			order: emoji.order,
-			unicode: convertCodePoint(emoji.code_points.output)
+			unicode: convertCodePoint(emoji.code_points.fully_qualified)
 		}))
 		.sort((a, b) => spaceship(b.codePoints.output.length, a.codePoints.output.length));
 
