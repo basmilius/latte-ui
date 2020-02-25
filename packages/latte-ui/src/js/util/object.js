@@ -10,50 +10,46 @@
 /**
  * Deep merges multiple objects.
  *
- * @param {*} target
  * @param {*} sources
  *
  * @returns {*}
  * @author Bas Milius <bas@mili.us>
  * @since 1.0.0
  */
-export function deepMerge(target, ...sources)
+export function deepMerge(...sources)
 {
-	if (sources.length === 0)
-		return target;
+	let acc = {};
 
-	const source = sources.shift();
-
-	if (!isObject(target) || !isObject(source))
-		return deepMerge(target, ...sources);
-
-	for (const key in source)
+	for (const source of sources)
 	{
-		if (!source.hasOwnProperty(key))
-			continue;
-
-		if (isObject(source[key]))
+		if (Array.isArray(source))
 		{
-			if (!target[key])
-				Object.assign(target, {[key]: source[key]});
+			if (!(Array.isArray(acc)))
+				acc = [];
 
-			deepMerge(target[key], source[key]);
+			acc = [...acc, ...source];
 		}
-		else if (Array.isArray(source[key]))
+		else if (isObject(source))
 		{
-			let arr = target[key] || [];
-			arr.push(...source[key]);
+			for (let [key, value] of Object.entries(source))
+			{
+				if (isObject(value) && key in acc)
+					value = deepMerge(acc[key], value);
 
-			Object.assign(target, {[key]: arr});
-		}
-		else
-		{
-			Object.assign(target, {[key]: source[key]});
+				acc = {...acc, [key]: value};
+			}
 		}
 	}
 
-	return deepMerge(target, ...sources);
+	return acc;
 }
+
+console.log(
+	deepMerge(
+		[{a: true}],
+		[{b: true}]
+	)
+);
 
 /**
  * Returns TRUE when obj is iterable.
