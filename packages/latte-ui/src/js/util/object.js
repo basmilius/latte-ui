@@ -44,13 +44,6 @@ export function deepMerge(...sources)
 	return acc;
 }
 
-console.log(
-	deepMerge(
-		[{a: true}],
-		[{b: true}]
-	)
-);
-
 /**
  * Returns TRUE when obj is iterable.
  *
