@@ -25,17 +25,17 @@ export class YouTubeEmbedBlock extends Block
 
 	get description()
 	{
-		return translate("Embeds a YouTube-video.");
+		return translate("block.embeds.youtube.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Embed"), translate("Video")];
+		return translate("block.embeds.youtube.keywords");
 	}
 
 	get name()
 	{
-		return translate("YouTube video");
+		return translate("block.embeds.youtube.name");
 	}
 
 	constructor()
@@ -64,8 +64,8 @@ export class YouTubeEmbedBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "YouTube", true, [
-					textField(h, "Video-ID", () => instance.options.videoId, videoId => instance.setOptions({videoId}))
+				group(h, translate("block.embeds.youtube.settings"), true, [
+					textField(h, translate("block.embeds.youtube.settings.video_id"), () => instance.options.videoId, videoId => instance.setOptions({videoId}))
 				])
 			]),
 			sidebar(h, instance, [

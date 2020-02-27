@@ -33,17 +33,17 @@ export class ParagraphBlock extends Block
 
 	get description()
 	{
-		return translate("A simple paragraph of text.");
+		return translate("block.text.paragraph.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Text")];
+		return translate("block.text.paragraph.keywords");
 	}
 
 	get name()
 	{
-		return translate("Paragraph");
+		return translate("block.text.paragraph.name");
 	}
 
 	constructor()
@@ -58,7 +58,7 @@ export class ParagraphBlock extends Block
 
 	renderEditor(h, instance)
 	{
-		return renderEditor("p", h, instance, "Start writing or type / to insert a block...");
+		return renderEditor("p", h, instance, translate("block.text.paragraph.start_writing"));
 	}
 
 	renderOptions(h, instance)
@@ -66,11 +66,11 @@ export class ParagraphBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "Text settings", true, [
-					rangeSlider(h, "Size", () => instance.options.fontSize, fontSize => instance.setOptions({fontSize}), .7, 3, .1, "@0em")
+				group(h, translate("block.primitive.text_settings"), true, [
+					rangeSlider(h, translate("common.size"), () => instance.options.fontSize, fontSize => instance.setOptions({fontSize}), .7, 3, .1, "@0em")
 				]),
-				group(h, "Color settings", true, [
-					simpleColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color}))
+				group(h, translate("block.primitive.color_settings"), true, [
+					simpleColorSelect(h, translate("common.color"), () => instance.options.color, color => instance.setOptions({color}))
 				]),
 				advancedOptions(h, [
 					additionalClasses(h, instance)

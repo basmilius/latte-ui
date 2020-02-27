@@ -16,7 +16,7 @@
 
 				<latte-ripple as="button" class="nav-link" :class="{'is-active': selectedIndex === index}" @mousedown="select(block)">
 					<Icon :name="block.icon"/>
-					<span>{{ block.name | beTranslate }}</span>
+					<span>{{ block.name }}</span>
 				</latte-ripple>
 
 			</template>
@@ -24,7 +24,7 @@
 		</nav>
 		<div class="m-2" style="max-width: 240px" v-else>
 			<Notice style="grid-column: span 3">
-				<p>{{ "No blocks found matching your search term." | beTranslate }}</p>
+				<p>{{ "inserter.nothing_found" | i18n }}</p>
 			</Notice>
 		</div>
 	</latte-popup>
@@ -35,12 +35,17 @@
 
 	import Icon from "../ui/Icon";
 	import Notice from "../ui/Notice";
+	import { generateEditorI18n } from "../core/i18n";
 
 	export default {
 
 		name: "InserterQuick",
 
 		components: {Icon, Notice},
+
+		filters: {
+			i18n: generateEditorI18n()
+		},
 
 		data()
 		{

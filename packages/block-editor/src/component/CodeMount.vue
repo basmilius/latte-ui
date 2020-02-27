@@ -29,11 +29,13 @@
 			</latte-portal>
 
 			<latte-tab label="JSON" class="flex-grow-1">
-				<textarea readonly class="text-monospace" :aria-label="'Code view' | beTranslate">{{ json }}</textarea>
+				<!--suppress HtmlFormInputWithoutLabel -->
+				<textarea readonly class="text-monospace" :aria-label="'code_view.json' | i18n">{{ json }}</textarea>
 			</latte-tab>
 
 			<latte-tab label="HTML" class="flex-grow-1">
-				<textarea readonly class="text-monospace" :aria-label="'Code view' | beTranslate">{{ html }}</textarea>
+				<!--suppress HtmlFormInputWithoutLabel -->
+				<textarea readonly class="text-monospace" :aria-label="'code_view.html' | i18n">{{ html }}</textarea>
 			</latte-tab>
 
 		</template>
@@ -44,11 +46,16 @@
 <script>
 
 	import { BlockInstance } from "../core/block/instance";
-	import { convertToHtml, convertToJson } from "../core/block/api";
+	import { convertToHtml, convertToJson } from "..";
+	import { generateEditorI18n } from "../core/i18n";
 
 	export default {
 
 		name: "CodeMount",
+
+		filters: {
+			i18n: generateEditorI18n()
+		},
 
 		props: {
 			content: {required: true, type: BlockInstance | null}

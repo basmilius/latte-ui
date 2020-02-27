@@ -8,7 +8,14 @@
  */
 
 import { fragment, group } from "./settings";
-import { button, divider, textField } from "./element";
+import { button, divider, optionButtons, textField } from "./element";
+import { translate } from "../../core/i18n";
+
+const blockAlignment = [
+	{value: "start", icon: "format-horizontal-align-left", tooltip: "common.start"},
+	{value: "center", icon: "format-horizontal-align-center", tooltip: "common.center"},
+	{value: "end", icon: "format-horizontal-align-right", tooltip: "common.end"}
+];
 
 export function additionalClasses(h, instance)
 {
@@ -28,4 +35,9 @@ export function blockActions(h, instance)
 		divider(h, true),
 		button(h, {ariaLabel: "Remove block", iconBefore: "delete", type: "text"}, () => instance.remove())
 	]);
+}
+
+export function blockAlignments(h, instance)
+{
+	return optionButtons(h, translate("common.align"), blockAlignment, () => instance.options.align, align => instance.setOptions({align}));
 }

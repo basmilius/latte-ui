@@ -20,6 +20,20 @@ const defaultStrings = {
 };
 
 /**
+ * Adds the given strings to the given domain.
+ *
+ * @param {String} domain
+ * @param {Object} strings
+ *
+ * @author Bas Milius <bas@mili.us>
+ * @since 1.9.0
+ */
+export function addStrings(domain, strings)
+{
+	defaultStrings[domain] = deepMerge({}, defaultStrings[domain] || {}, strings);
+}
+
+/**
  * Translates a string.
  *
  * @param {String} domain

@@ -9,15 +9,17 @@
 
 <template>
 
-	<button :class="buttonClasses" :disabled="disabled" @click="onClick" :aria-label="(ariaLabel || ariaTooltip) | beTranslate" :data-tooltip="ariaTooltip | beTranslate">
+	<button :class="buttonClasses" :disabled="disabled" @click="onClick" :aria-label="(ariaLabel || ariaTooltip) | i18n" :data-tooltip="ariaTooltip | i18n">
 		<Icon v-if="iconBefore" :name="iconBefore"/>
-		<span v-if="label">{{ label | beTranslate }}</span>
+		<span v-if="label">{{ label | i18n }}</span>
 		<Icon v-if="iconAfter" :name="iconAfter"/>
 	</button>
 
 </template>
 
 <script>
+
+	import { generateEditorI18n } from "../core/i18n";
 
 	import Icon from "./Icon";
 
@@ -26,6 +28,10 @@
 		name: "Button",
 
 		components: {Icon},
+
+		filters: {
+			i18n: generateEditorI18n()
+		},
 
 		props: {
 			disabled: {default: false, type: Boolean},

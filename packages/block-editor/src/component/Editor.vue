@@ -21,19 +21,6 @@
 				<template #end-before><slot name="toolbar-end-before"/></template>
 				<template #end-after><slot name="toolbar-end-after"/></template>
 			</Toolbar>
-			<Notice icon="information" type="info" is-fluid>
-				<template #content="{icon}">
-					<div class="container">
-						<div class="notice-body">
-							<Icon :name="icon"/>
-							<p>
-								<strong>Work in progress!</strong><br/>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae consequatur cumque dolores placeat tempore ut. Architecto facere facilis inventore laboriosam, laborum quae, reiciendis repudiandae sed tempora tenetur unde voluptate.
-							</p>
-						</div>
-					</div>
-				</template>
-			</Notice>
 			<ContentMount :content="content" v-if="view === 'visual'"/>
 			<CodeMount :content="content" v-else-if="view === 'code'"/>
 		</div>

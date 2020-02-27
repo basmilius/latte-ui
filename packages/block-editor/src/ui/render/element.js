@@ -64,7 +64,7 @@ export function optionButtons(h, title, buttons, get, set, isRow = true)
 	], "div");
 }
 
-export function rangeSlider(h, title, get, set, min = 1, max = 10, step = 1, tooltip = "@0")
+export function rangeSlider(h, title, get, set, min = 1, max = 10, step = 1, tooltip = "%d")
 {
 	const value = get();
 

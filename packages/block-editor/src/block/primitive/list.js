@@ -16,6 +16,7 @@ import { divider, rangeSlider } from "../../ui/render/element";
 import { simpleColorSelect } from "../../ui/render/color";
 import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
 import { alignments, boldItalicUnderline } from "../../ui/render/text";
+import { translate } from "../../core/i18n";
 
 export class AbstractListBlock extends Block
 {
@@ -72,11 +73,11 @@ export class AbstractListBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "Text settings", true, [
-					rangeSlider(h, "Size", () => instance.options.fontSize, fontSize => instance.setOptions({fontSize}), .7, 3, .1, "@0em")
+				group(h, translate("block.primitive.text_settings"), true, [
+					rangeSlider(h, translate("common.size"), () => instance.options.fontSize, fontSize => instance.setOptions({fontSize}), .7, 3, .1, "%dem")
 				]),
-				group(h, "Color settings", true, [
-					simpleColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color}))
+				group(h, translate("block.primitive.color_settings"), true, [
+					simpleColorSelect(h, translate("common.color"), () => instance.options.color, color => instance.setOptions({color}))
 				]),
 				advancedOptions(h, [
 					additionalClasses(h, instance)

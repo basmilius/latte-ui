@@ -9,27 +9,38 @@
 
 import { Block } from "../../core/block/block";
 import { description, fragment, group, settings, sidebar } from "../../ui/render/settings";
-import { additionalClasses, advancedOptions, blockActions } from "../../ui/render/block";
+import { additionalClasses, advancedOptions, blockActions, blockAlignments } from "../../ui/render/block";
 import { optionButtons, textField, toggleButton } from "../../ui/render/element";
 import { classColorSelect } from "../../ui/render/color";
 import { translate } from "../../core/i18n";
+import { optional } from "../../util/vue";
 
 export const buttonSizes = [
-	{value: "small", icon: "alpha-s", tooltip: "Small"},
-	{value: "medium", icon: "alpha-m", tooltip: "Medium"},
-	{value: "large", icon: "alpha-l", tooltip: "Medium"},
-	{value: "huge", icon: "alpha-h", tooltip: "Large"}
+	{value: "small", icon: "alpha-s", tooltip: "block.text.button.sizes.small"},
+	{value: "medium", icon: "alpha-m", tooltip: "block.text.button.sizes.medium"},
+	{value: "large", icon: "alpha-l", tooltip: "block.text.button.sizes.large"},
+	{value: "huge", icon: "alpha-h", tooltip: "block.text.button.sizes.huge"}
 ];
 
 export const buttonStyles = [
-	{value: "contained", icon: "alpha-a-box", tooltip: "Solid"},
-	{value: "outline", icon: "alpha-a-box-outline", tooltip: "Outline"},
-	{value: "text", icon: "alpha-a", tooltip: "Text"}
+	{value: "contained", icon: "alpha-a-box", tooltip: "block.text.button.styles.contained"},
+	{value: "outline", icon: "alpha-a-box-outline", tooltip: "block.text.button.styles.outline"},
+	{value: "text", icon: "alpha-a", tooltip: "block.text.button.styles.text"}
 ];
 
 export function getButtonClasses(options)
 {
 	const classes = ["btn", `btn-${options.type}`, options.class];
+
+	if (options.align)
+	{
+		if (options.align === "start")
+			classes.push("mr-auto");
+		else if (options.align === "center")
+			classes.push("mx-auto");
+		else if (options.align === "end")
+			classes.push("ml-auto");
+	}
 
 	if (options.color)
 		classes.push(`btn-${options.color}`);
@@ -49,11 +60,12 @@ export class ButtonBlock extends Block
 	get defaultOptions()
 	{
 		return {
+			align: "start",
 			class: "",
 			color: undefined,
 			isFluid: false,
 			rippleButton: true,
-			size: "md",
+			size: "medium",
 			text: "Button",
 			type: "contained",
 			url: ""
@@ -62,17 +74,17 @@ export class ButtonBlock extends Block
 
 	get description()
 	{
-		return translate("A button that can link to an action or url.");
+		return translate("block.text.button.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Link"), translate("Action")];
+		return translate("block.text.button.keywords");
 	}
 
 	get name()
 	{
-		return translate("Button");
+		return translate("block.text.button.name");
 	}
 
 	constructor()
@@ -117,15 +129,16 @@ export class ButtonBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "Button settings", true, [
-					classColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color})),
-					toggleButton(h, "Fluid", () => instance.options.isFluid, isFluid => instance.setOptions({isFluid})),
-					toggleButton(h, "Ripple", () => instance.options.rippleButton, rippleButton => instance.setOptions({rippleButton})),
-					optionButtons(h, "Size", buttonSizes, () => instance.options.size, size => instance.setOptions({size})),
-					optionButtons(h, "Style", buttonStyles, () => instance.options.type, type => instance.setOptions({type}))
+				group(h, translate("block.text.button.settings"), true, [
+					classColorSelect(h, translate("common.color"), () => instance.options.color, color => instance.setOptions({color})),
+					toggleButton(h, translate("common.fluid"), () => instance.options.isFluid, isFluid => instance.setOptions({isFluid})),
+					toggleButton(h, translate("common.ripple"), () => instance.options.rippleButton, rippleButton => instance.setOptions({rippleButton})),
+					optional(!instance.options.isFluid, () => blockAlignments(h, instance)),
+					optionButtons(h, translate("common.size"), buttonSizes, () => instance.options.size, size => instance.setOptions({size})),
+					optionButtons(h, translate("common.style"), buttonStyles, () => instance.options.type, type => instance.setOptions({type}))
 				]),
-				group(h, "Target options", true, [
-					textField(h, "URL", () => instance.options.url, url => instance.setOptions({url}))
+				group(h, translate("block.text.button.settings.target"), true, [
+					textField(h, translate("common.url"), () => instance.options.url, url => instance.setOptions({url}))
 				]),
 				advancedOptions(h, [
 					additionalClasses(h, instance)

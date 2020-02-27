@@ -16,13 +16,13 @@
 
 			<slot name="before"></slot>
 
-			<SettingsPane :label="'Document' | beTranslate">
+			<SettingsPane :label="'settings.document' | i18n">
 
 				<slot name="document">
 					<div class="be-settings-group">
 						<div class="settings-body is-padded">
 							<Notice icon="alert-circle">
-								<p>{{ "There are no document settings available" | beTranslate }}</p>
+								<p>{{ "settings.document.empty" | i18n }}</p>
 							</Notice>
 						</div>
 					</div>
@@ -30,11 +30,11 @@
 
 			</SettingsPane>
 
-			<SettingsPane :label="'Block' | beTranslate">
+			<SettingsPane :label="'settings.block' | i18n">
 				<latte-portal-target :name="blockSettingsId" @change="onBlockSettingsChange">
 
 					<SettingsGroup padded title="Block settings">
-						<em>{{ "Please select a block to edit its settings or click on \"Document\" to edit other settings." | beTranslate }}</em>
+						<em>{{ "settings.block.select_block" | i18n }}</em>
 					</SettingsGroup>
 
 				</latte-portal-target>
@@ -50,6 +50,7 @@
 <script>
 
 	import { findEditor } from "../util/vue";
+	import { generateEditorI18n } from "../core/i18n";
 
 	import SettingsGroup from "./SettingsGroup";
 	import SettingsPane from "./SettingsPane";
@@ -60,6 +61,10 @@
 		name: "Settings",
 
 		components: {Notice, SettingsGroup, SettingsPane},
+
+		filters: {
+			i18n: generateEditorI18n()
+		},
 
 		data()
 		{

@@ -50,7 +50,7 @@ const presets = [
 function presetsSelect(h, instance)
 {
 	return row(h, false, [
-		h("h6", translate("Presets")),
+		h("h6", translate("block.layout.columns.settings.presets")),
 		h("div", {class: "d-flex flex-wrap be-columns-presets"}, presets.map((preset, index) => presetColumn(h, instance, preset, index)))
 	]);
 }
@@ -93,12 +93,12 @@ export class ColumnBlock extends Block
 
 	get description()
 	{
-		return translate("A single column used in the columns block.");
+		return translate("block.layout.column.description");
 	}
 
 	get name()
 	{
-		return translate("Column");
+		return translate("block.layout.column.name");
 	}
 
 	get showInInserter()
@@ -164,17 +164,17 @@ export class ColumnsBlock extends Block
 
 	get description()
 	{
-		return translate("Displays blocks in a column view.");
+		return translate("block.layout.columns.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Grid"), translate("Container")];
+		return translate("block.layout.columns.keywords");
 	}
 
 	get name()
 	{
-		return translate("Columns");
+		return translate("block.layout.columns.name");
 	}
 
 	constructor()
@@ -229,14 +229,14 @@ export class ColumnsBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "Grid settings", true, [
+				group(h, translate("block.layout.columns.settings"), true, [
 					presetsSelect(h, instance),
-					optional(instance.options.preset === -1, () => rangeSlider(h, "Amount of columns", () => instance.options.columns, columns =>
+					optional(instance.options.preset === -1, () => rangeSlider(h, translate("block.layout.columns.settings.amount_columns"), () => instance.options.columns, columns =>
 					{
 						instance.setOptions({columns});
 						instance.setChildren(instance.children.slice(0, columns));
-					}, 2, 6, 1, "@0 columns")),
-					toggleButton(h, "Gutters", () => instance.options.gutters, gutters => instance.setOptions({gutters}))
+					}, 2, 6, 1, "block.layout.columns.settings.n_columns")),
+					toggleButton(h, translate("block.layout.columns.settings.gutters"), () => instance.options.gutters, gutters => instance.setOptions({gutters}))
 				]),
 				advancedOptions(h, [
 					additionalClasses(h, instance)

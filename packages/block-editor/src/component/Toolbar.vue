@@ -13,10 +13,10 @@
 		<div class="app-bar-row">
 
 			<slot name="start-before"></slot>
-			<Button type="text" color="primary" icon-before="plus-circle" aria-tooltip="Insert a new block." :disabled="editor.view !== 'visual'" @click="launchInserter"/>
+			<Button type="text" color="primary" icon-before="plus-circle" aria-tooltip="toolbar.insert" :disabled="editor.view !== 'visual'" @click="launchInserter"/>
 			<div class="divider divider-vertical"></div>
-			<Button type="text" icon-before="undo-variant" aria-tooltip="Undo" disabled/>
-			<Button type="text" icon-before="redo-variant" aria-tooltip="Redo" disabled/>
+			<Button type="text" icon-before="undo-variant" aria-tooltip="toolbar.undo" disabled/>
+			<Button type="text" icon-before="redo-variant" aria-tooltip="toolbar.redo" disabled/>
 			<slot name="start-after"></slot>
 
 			<div class="mx-auto">
@@ -24,10 +24,10 @@
 			</div>
 
 			<slot name="end-before"></slot>
-			<Button type="text" icon-before="eye" aria-tooltip="View visual" v-if="editor.view === 'code'" @click="editor.view = 'visual'"/>
-			<Button type="text" icon-before="code-tags" aria-tooltip="View code" v-if="editor.view === 'visual'" @click="editor.view = 'code'"/>
+			<Button type="text" icon-before="eye" aria-tooltip="toolbar.view.visual" v-if="editor.view === 'code'" @click="editor.view = 'visual'"/>
+			<Button type="text" icon-before="code-tags" aria-tooltip="toolbar.view.code" v-if="editor.view === 'visual'" @click="editor.view = 'code'"/>
 			<div class="divider divider-vertical"></div>
-			<Button type="text" icon-before="dots-vertical" aria-tooltip="More options..."/>
+			<Button type="text" icon-before="dots-vertical" aria-tooltip="toolbar.more"/>
 			<slot name="end-after"></slot>
 
 		</div>

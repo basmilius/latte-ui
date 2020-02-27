@@ -15,17 +15,17 @@ export class UnorderedListBlock extends AbstractListBlock
 
 	get description()
 	{
-		return translate("An list that is not ordered.");
+		return translate("block.text.unordered_list.description");
 	}
 
 	get keywords()
 	{
-		return [translate("List"), translate("Unordered")];
+		return translate("block.text.unordered_list.keywords");
 	}
 
 	get name()
 	{
-		return translate("Unordered List");
+		return translate("block.text.unordered_list.name");
 	}
 
 	constructor()

@@ -18,6 +18,11 @@
 <script>
 
 	import { Editor, SettingsPane } from "../../../block-editor/src";
+	import { addStrings } from "@bybas/latte-ui/src/js/i18n";
+
+	import {default as strings} from "../../../block-editor/block_editor.json";
+
+	addStrings("block_editor", strings);
 
 	export default {
 

@@ -17,17 +17,17 @@ export class PageBreakBlock extends Block
 
 	get description()
 	{
-		return translate("Breaks the page into multiple views.");
+		return translate("block.layout.page_break.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Break"), translate("Pages")];
+		return translate("block.layout.page_break.keywords");
 	}
 
 	get name()
 	{
-		return translate("Page Break");
+		return translate("block.layout.page_break.name");
 	}
 
 	constructor()
@@ -44,7 +44,7 @@ export class PageBreakBlock extends Block
 	{
 		return h("div", {class: "be-page-break-mount"}, [
 			h("div", {
-				attrs: {"data-text": translate("Page Break")},
+				attrs: {"data-text": translate("block.layout.page_break.name")},
 				class: "be-page-break"
 			})
 		]);

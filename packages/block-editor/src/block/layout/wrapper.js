@@ -32,17 +32,17 @@ export class WrapperBlock extends Block
 
 	get description()
 	{
-		return translate("Wraps blocks into a wrapper.");
+		return translate("block.layout.wrapper.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Container")];
+		return translate("block.layout.wrapper.keywords");
 	}
 
 	get name()
 	{
-		return translate("Wrapper");
+		return translate("block.layout.wrapper.name");
 	}
 
 	constructor()

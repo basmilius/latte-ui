@@ -12,12 +12,12 @@
 	<div class="panel panel-blank be-inserter">
 		<div class="app-bar">
 			<div class="app-bar-row app-bar-auto px-3 py-3">
-				<div class="input-group">
+				<label class="input-group">
 					<div class="input-group-addon">
 						<Icon name="magnify"/>
 					</div>
-					<input type="search" class="form-control" :placeholder="'Search for blocks...' | beTranslate" :aria-label="'Search for blocks...' | beTranslate" v-model="searchTerm"/>
-				</div>
+					<input type="search" class="form-control" :placeholder="'inserter.search' | i18n" :aria-label="'inserter.search' | i18n" v-model="searchTerm"/>
+				</label>
 			</div>
 		</div>
 		<div class="panel-body p-0">
@@ -39,7 +39,7 @@
 						</template>
 						<template v-else>
 							<Notice icon="alert-circle" style="grid-column: span 3">
-								<p>{{ "There are no blocks in this category." | beTranslate }}</p>
+								<p>{{ "inserter.nothing_in_category" | i18n }}</p>
 							</Notice>
 						</template>
 					</div>
@@ -59,7 +59,7 @@
 						</template>
 						<template v-else>
 							<Notice icon="alert-circle" style="grid-column: span 3">
-								<p>{{ "No blocks found matching your search term." | beTranslate }}</p>
+								<p>{{ "inserter.nothing_found" | i18n }}</p>
 							</Notice>
 						</template>
 					</div>
@@ -79,12 +79,17 @@
 
 	import Icon from "../ui/Icon";
 	import Notice from "../ui/Notice";
+	import { generateEditorI18n } from "../core/i18n";
 
 	export default {
 
 		name: "Inserter",
 
 		components: {Notice, Icon},
+
+		filters: {
+			i18n: generateEditorI18n()
+		},
 
 		data()
 		{

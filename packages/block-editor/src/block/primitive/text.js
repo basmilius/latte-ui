@@ -134,7 +134,7 @@ export function render(tag, h, {options})
 	});
 }
 
-export function renderEditor(tag, h, instance, placeholder = "Start writing...")
+export function renderEditor(tag, h, instance, placeholder = "block.primitive.text.start_writing")
 {
 	canUpdate = true;
 

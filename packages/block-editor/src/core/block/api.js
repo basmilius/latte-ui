@@ -10,10 +10,10 @@
 import { createElement, fixHTMLString } from "../../util/create-element";
 import { BlockInstance } from "./instance";
 import { flatten } from "../../util/array";
-
-import BlockView from "../../component/BlockView";
 import { optional } from "../../util/vue";
 import { inserterInline } from "../../ui/render/inserter";
+
+import BlockView from "../../component/BlockView";
 
 export function convertBlock(editor, index, block, parent = undefined)
 {

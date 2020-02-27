@@ -31,17 +31,17 @@ export class HtmlBlock extends Block
 
 	get description()
 	{
-		return translate("Allows you to add custom HTML code.");
+		return translate("block.other.html.description");
 	}
 
 	get keywords()
 	{
-		return [translate("Custom"), translate("Code")];
+		return translate("block.other.html.keywords");
 	}
 
 	get name()
 	{
-		return translate("HTML");
+		return translate("block.other.html.name");
 	}
 
 	constructor()
@@ -65,16 +65,16 @@ export class HtmlBlock extends Block
 				color: current === index ? "primary" : undefined,
 				type: current === index ? "outline" : "text"
 			}, () => setCurrent(index)))),
-			tab(h, "Visual", undefined, [
+			tab(h, "block.other.html.settings.visual", undefined, [
 				either(
 					dom.children.length === 0,
-					() => inserterNagAbstract(h, "code-tags", "Edit HTML", () => setCurrent(1)),
+					() => inserterNagAbstract(h, "code-tags", "block.other.html.settings.edit_html", () => setCurrent(1)),
 					() => simpleRender(h, (instance.options.code.trim() !== "" ? `<div class="be-block-html">${instance.options.code}</div>` : "<div></div>")
 						.replace(/href=/g, "data-be-href=")
 						.replace(/data-action=/g, "data-be-action="))
 				)
 			]),
-			tab(h, "Code", undefined, [
+			tab(h, "block.other.html.settings.code", undefined, [
 				h("textarea", {
 					class: "form-control text-monospace",
 					domProps: {rows: 10, value: instance.options.code},

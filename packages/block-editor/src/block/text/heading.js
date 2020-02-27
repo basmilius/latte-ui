@@ -41,26 +41,17 @@ export class HeadingBlock extends Block
 
 	get description()
 	{
-		return translate("Represents a header text.");
+		return translate("block.text.heading.description");
 	}
 
 	get keywords()
 	{
-		return [
-			translate("Heading"),
-			translate("Text"),
-			translate("h1"),
-			translate("h2"),
-			translate("h3"),
-			translate("h4"),
-			translate("h5"),
-			translate("h6")
-		];
+		return translate("block.text.heading.keywords");
 	}
 
 	get name()
 	{
-		return translate("Header");
+		return translate("block.text.heading.name");
 	}
 
 	constructor()
@@ -85,11 +76,11 @@ export class HeadingBlock extends Block
 		return fragment(h, [
 			settings(h, instance, [
 				description(h, this),
-				group(h, "Text settings", true, [
-					optionButtons(h, "Header", headerTypes, () => instance.options.type, type => instance.setOptions({type}), false)
+				group(h, translate("block.primitive.text_settings"), true, [
+					optionButtons(h, translate("common.level"), headerTypes, () => instance.options.type, type => instance.setOptions({type}), false)
 				]),
-				group(h, "Color settings", true, [
-					simpleColorSelect(h, "Color", () => instance.options.color, color => instance.setOptions({color}))
+				group(h, translate("block.primitive.color_settings"), true, [
+					simpleColorSelect(h, translate("common.color"), () => instance.options.color, color => instance.setOptions({color}))
 				]),
 				advancedOptions(h, [
 					additionalClasses(h, instance)
