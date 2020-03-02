@@ -191,6 +191,17 @@
 				this.currentPosition = coords;
 
 				let change = (this.startPosition.x - this.currentPosition.x);
+
+				if (Math.abs(this.startPosition.y - this.currentPosition.y) > 60)
+				{
+					this.is.dragging = false;
+					this.onTouchEnd();
+					return;
+				}
+
+				if (Math.abs(change) < 12)
+					return;
+
 				let itemWidth = (this.itemWidth || this.rect.root.width) - (this.vPadding.left + this.vPadding.right);
 				let overflow = 0;
 				let position = this.positionBeforeTouch - change;
@@ -229,6 +240,9 @@
 				}
 				else
 				{
+					if (this.currentPosition === undefined || this.startPosition === undefined)
+						return;
+
 					let change = (this.startPosition.x - this.currentPosition.x);
 
 					if (Math.abs(change) < (itemWidth * .2))
