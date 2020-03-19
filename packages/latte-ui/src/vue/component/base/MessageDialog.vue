@@ -9,7 +9,7 @@
 
 <template>
 
-	<Overlay :is-dismissible="false" :name="id" :opened="isOpen">
+	<Overlay :is-dismissible="false" :is-responsive="false" :name="id" :opened="isOpen">
 
 		<div class="panel" style="width: 540px">
 			<div class="panel-header">
@@ -25,10 +25,10 @@
 			<div class="panel-footer justify-content-end">
 				<template v-for="(button, index) of buttons">
 
-					<latte-ripple as="button" :key="index" :class="['btn', ...button.classes, (index === 0 ? 'ml-0' : 'ml-2')]" @click="close(button.id)">
+					<Ripple as="button" :key="index" :class="['btn', ...button.classes, (index === 0 ? 'ml-0' : 'ml-2')]" @click="close(button.id)">
 						<Icon :name="button.icon" v-if="button.icon"/>
 						<span>{{ button.label }}</span>
-					</latte-ripple>
+					</Ripple>
 
 				</template>
 			</div>
@@ -40,14 +40,14 @@
 
 <script>
 
-	import { Icon, Overlay } from "../index";
+	import { Icon, Overlay, Ripple } from "../index";
 	import { id } from "../../../js/core/api";
 	import { raf } from "../../../js/util/dom";
 	import { overlayAnimationDuration } from "../../../js/options";
 
 	export default {
 
-		components: {Icon, Overlay},
+		components: {Icon, Overlay, Ripple},
 
 		name: "MessageDialog",
 

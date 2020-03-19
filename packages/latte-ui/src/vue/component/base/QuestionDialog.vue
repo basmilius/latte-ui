@@ -9,7 +9,7 @@
 
 <template>
 
-	<Overlay :is-dismissible="false" :name="id" :opened="isOpen">
+	<Overlay :is-dismissible="false" :is-responsive="false" :name="id" :opened="isOpen">
 
 		<div class="panel" :style="{width: options.width}">
 			<div class="panel-header justify-content-center py-4">
@@ -19,9 +19,9 @@
 			<div class="panel-body d-flex flex-column border-0 py-3">
 				<template v-for="(button, index) of buttons">
 
-					<latte-ripple as="button" class="btn btn-text btn-primary is-fluid is-large" :key="index" @click="close(button.id)">
+					<Ripple as="button" class="btn btn-text btn-primary is-fluid is-large" :key="index" @click="close(button.id)">
 						<span>{{ button.label }}</span>
-					</latte-ripple>
+					</Ripple>
 
 				</template>
 			</div>
@@ -33,14 +33,14 @@
 
 <script>
 
-	import { Icon, Overlay } from "../index";
+	import { Icon, Overlay, Ripple } from "../index";
 	import { id } from "../../../js/core/api";
 	import { raf } from "../../../js/util/dom";
 	import { overlayAnimationDuration } from "../../../js/options";
 
 	export default {
 
-		components: {Icon, Overlay},
+		components: {Icon, Overlay, Ripple},
 
 		name: "QuestionDialog",
 
