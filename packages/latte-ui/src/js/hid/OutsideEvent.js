@@ -12,16 +12,15 @@ import { closest, getCoords } from "../util/dom";
 class OutsideEvent
 {
 
-	#listeners = [];
-
 	constructor(source)
 	{
+		this.listeners = [];
 		this.source = source;
 	}
 
 	addEventListener(type, listener, options = {})
 	{
-		listener.id = this.#listeners.length;
+		listener.id = this.listeners.length;
 		listener.type = type;
 		listener.hof = evt =>
 		{
@@ -31,27 +30,27 @@ class OutsideEvent
 			listener.apply(this.source, evt);
 		};
 
-		this.#listeners.push(listener);
+		this.listeners.push(listener);
 
 		document.addEventListener(type, listener.hof, options);
 	}
 
 	clearListeners()
 	{
-		this.#listeners.forEach(listener => this.removeEventListener(listener.type, listener));
-		this.#listeners = [];
+		this.listeners.forEach(listener => this.removeEventListener(listener.type, listener));
+		this.listeners = [];
 	}
 
 	removeEventListener(type, listener)
 	{
-		const index = this.#listeners.findIndex(l => l.id === listener.id);
+		const index = this.listeners.findIndex(l => l.id === listener.id);
 
 		if (index === -1)
 			return;
 
-		document.removeEventListener(type, this.#listeners[index].hof);
+		document.removeEventListener(type, this.listeners[index].hof);
 
-		this.#listeners.splice(index, 1);
+		this.listeners.splice(index, 1);
 	}
 
 	isWithinSource(evt)
